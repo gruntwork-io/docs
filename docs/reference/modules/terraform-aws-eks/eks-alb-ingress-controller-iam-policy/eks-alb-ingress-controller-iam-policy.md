@@ -88,6 +88,13 @@ module "eks_alb_ingress_controller_iam_policy" {
   # optionally create or not create the resources within this module.
   create_resources = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
+  # A map of custom tags to apply to the IAM Poilcy if enabled. The key is the
+  # tag name and the value is the tag value.
+  iam_policy_tags = {}
+
 }
 
 
@@ -129,6 +136,13 @@ inputs = {
   # to use the 'count' parameter on modules. By using this parameter, you can
   # optionally create or not create the resources within this module.
   create_resources = true
+
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
+  # A map of custom tags to apply to the IAM Poilcy if enabled. The key is the
+  # tag name and the value is the tag value.
+  iam_policy_tags = {}
 
 }
 
@@ -176,6 +190,24 @@ If you set this variable to false, this module will not create any resources. Th
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply to all AWS resources managed by this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the IAM Poilcy if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -214,6 +246,6 @@ The name of the IAM policy created with the permissions for the ALB ingress cont
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.3/modules/eks-alb-ingress-controller-iam-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2642cdc0edfa8ed97f2c8f43524e17ae"
+  "hash": "d0c4abd10649ea32ebb8feb914d664c9"
 }
 ##DOCS-SOURCER-END -->

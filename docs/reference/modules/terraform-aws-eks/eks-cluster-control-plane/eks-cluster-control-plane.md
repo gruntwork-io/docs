@@ -458,7 +458,7 @@ module "eks_cluster_control_plane" {
   access_entries = {}
 
   # Map of EKS Access Entry Policy Associations to be created for the cluster.
-  access_entry_poilcy_associations = {}
+  access_entry_policy_associations = {}
 
   # A list of additional security group IDs to attach to the control plane.
   additional_security_groups = []
@@ -539,12 +539,26 @@ module "eks_cluster_control_plane" {
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
+  # A map of default tags to apply to all supported resources in this module.
+  # These tags will be merged with any other resource specific tags. The key is
+  # the tag name and the value is the tag value.
+  default_tags = {}
+
   # Configuraiton object for the EBS CSI Driver EKS AddOn
   ebs_csi_driver_addon_config = {}
 
   # A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the
   # tag name and the value is the tag value.
   ebs_csi_driver_addon_tags = {}
+
+  # A map of custom tags to apply to the IAM Policies created for the EBS CSI
+  # Driver IAM Role if enabled. The key is the tag name and the value is the tag
+  # value.
+  ebs_csi_driver_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EBS CSI Driver IAM Role if enabled. The
+  # key is the tag name and the value is the tag value.
+  ebs_csi_driver_iam_role_tags = {}
 
   # If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used
   # for a policy attachment.
@@ -560,6 +574,28 @@ module "eks_cluster_control_plane" {
   # Map of EKS add-ons, where key is name of the add-on and value is a map of
   # add-on properties.
   eks_addons = {}
+
+  # A map of custom tags to apply to the EKS Cluster Cluster Creator Access
+  # Entry. The key is the tag name and the value is the tag value.
+  eks_cluster_creator_access_entry_tags = {}
+
+  # A map of custom tags to apply to the EKS Cluster IAM Role. The key is the
+  # tag name and the value is the tag value.
+  eks_cluster_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Cluster OIDC Provider. The key is
+  # the tag name and the value is the tag value.
+  eks_cluster_oidc_tags = {}
+
+  # A map of custom tags to apply to the Control Plane Services Fargate Profile
+  # IAM Role for this EKS Cluster if enabled. The key is the tag name and the
+  # value is the tag value.
+  eks_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Control Plane Services Fargate Profile
+  # for this EKS Cluster if enabled. The key is the tag name and the value is
+  # the tag value.
+  eks_fargate_profile_tags = {}
 
   # When set to true, the module configures and install the EBS CSI Driver as an
   # EKS managed AddOn
@@ -652,6 +688,12 @@ module "eks_cluster_control_plane" {
   # logs are only streamed to this group if var.enabled_cluster_log_types is
   # true.
   should_create_cloudwatch_log_group = true
+
+  # Support type to use for the cluster. If the cluster is set to EXTENDED, it
+  # will enter extended support at the end of standard support. If the cluster
+  # is set to STANDARD, it will be automatically upgraded at the end of standard
+  # support. Valid values are EXTENDED, STANDARD
+  support_type = null
 
   # When set to true, the sync-core-components command will skip updating
   # coredns. This variable is ignored if `use_upgrade_cluster_script` is false.
@@ -793,7 +835,7 @@ inputs = {
   access_entries = {}
 
   # Map of EKS Access Entry Policy Associations to be created for the cluster.
-  access_entry_poilcy_associations = {}
+  access_entry_policy_associations = {}
 
   # A list of additional security group IDs to attach to the control plane.
   additional_security_groups = []
@@ -874,12 +916,26 @@ inputs = {
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
+  # A map of default tags to apply to all supported resources in this module.
+  # These tags will be merged with any other resource specific tags. The key is
+  # the tag name and the value is the tag value.
+  default_tags = {}
+
   # Configuraiton object for the EBS CSI Driver EKS AddOn
   ebs_csi_driver_addon_config = {}
 
   # A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the
   # tag name and the value is the tag value.
   ebs_csi_driver_addon_tags = {}
+
+  # A map of custom tags to apply to the IAM Policies created for the EBS CSI
+  # Driver IAM Role if enabled. The key is the tag name and the value is the tag
+  # value.
+  ebs_csi_driver_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EBS CSI Driver IAM Role if enabled. The
+  # key is the tag name and the value is the tag value.
+  ebs_csi_driver_iam_role_tags = {}
 
   # If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used
   # for a policy attachment.
@@ -895,6 +951,28 @@ inputs = {
   # Map of EKS add-ons, where key is name of the add-on and value is a map of
   # add-on properties.
   eks_addons = {}
+
+  # A map of custom tags to apply to the EKS Cluster Cluster Creator Access
+  # Entry. The key is the tag name and the value is the tag value.
+  eks_cluster_creator_access_entry_tags = {}
+
+  # A map of custom tags to apply to the EKS Cluster IAM Role. The key is the
+  # tag name and the value is the tag value.
+  eks_cluster_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Cluster OIDC Provider. The key is
+  # the tag name and the value is the tag value.
+  eks_cluster_oidc_tags = {}
+
+  # A map of custom tags to apply to the Control Plane Services Fargate Profile
+  # IAM Role for this EKS Cluster if enabled. The key is the tag name and the
+  # value is the tag value.
+  eks_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Control Plane Services Fargate Profile
+  # for this EKS Cluster if enabled. The key is the tag name and the value is
+  # the tag value.
+  eks_fargate_profile_tags = {}
 
   # When set to true, the module configures and install the EBS CSI Driver as an
   # EKS managed AddOn
@@ -987,6 +1065,12 @@ inputs = {
   # logs are only streamed to this group if var.enabled_cluster_log_types is
   # true.
   should_create_cloudwatch_log_group = true
+
+  # Support type to use for the cluster. If the cluster is set to EXTENDED, it
+  # will enter extended support at the end of standard support. If the cluster
+  # is set to STANDARD, it will be automatically upgraded at the end of standard
+  # support. Valid values are EXTENDED, STANDARD
+  support_type = null
 
   # When set to true, the sync-core-components command will skip updating
   # coredns. This variable is ignored if `use_upgrade_cluster_script` is false.
@@ -1168,7 +1252,7 @@ Any types represent complex values of variable type. For details, please consult
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="access_entry_poilcy_associations" requirement="optional" type="any">
+<HclListItem name="access_entry_policy_associations" requirement="optional" type="any">
 <HclListItemDescription>
 
 Map of EKS Access Entry Policy Associations to be created for the cluster.
@@ -1350,21 +1434,6 @@ A map of custom tags to apply to the EKS add-ons. The key is the tag name and th
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-     {
-       key1 = "value1"
-       key2 = "value2"
-     }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="custom_tags_eks_cluster" requirement="optional" type="map(string)">
@@ -1374,21 +1443,6 @@ A map of custom tags to apply to the EKS Cluster. The key is the tag name and th
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-     {
-       key1 = "value1"
-       key2 = "value2"
-     }
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="custom_tags_security_group" requirement="optional" type="map(string)">
@@ -1398,21 +1452,15 @@ A map of custom tags to apply to the Security Group for this EKS Cluster. The ke
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
+</HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
 
-```hcl
-     {
-       key1 = "value1"
-       key2 = "value2"
-     }
+A map of default tags to apply to all supported resources in this module. These tags will be merged with any other resource specific tags. The key is the tag name and the value is the tag value.
 
-```
-</details>
-
-</HclGeneralListItem>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="ebs_csi_driver_addon_config" requirement="optional" type="any">
@@ -1460,21 +1508,24 @@ A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the tag na
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
+</HclListItem>
 
+<HclListItem name="ebs_csi_driver_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
 
-```hcl
-     {
-       key1 = "value1"
-       key2 = "value2"
-     }
+A map of custom tags to apply to the IAM Policies created for the EBS CSI Driver IAM Role if enabled. The key is the tag name and the value is the tag value.
 
-```
-</details>
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
-</HclGeneralListItem>
+<HclListItem name="ebs_csi_driver_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EBS CSI Driver IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="ebs_csi_driver_kms_key_arn" requirement="optional" type="string">
@@ -1548,6 +1599,51 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="eks_cluster_creator_access_entry_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Cluster Cluster Creator Access Entry. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_cluster_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Cluster IAM Role. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_cluster_oidc_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Cluster OIDC Provider. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_fargate_profile_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Control Plane Services Fargate Profile IAM Role for this EKS Cluster if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_fargate_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Control Plane Services Fargate Profile for this EKS Cluster if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="enable_ebs_csi_driver" requirement="optional" type="bool">
@@ -1683,6 +1779,15 @@ When true, precreate the CloudWatch Log Group to use for EKS control plane loggi
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="support_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Support type to use for the cluster. If the cluster is set to EXTENDED, it will enter extended support at the end of standard support. If the cluster is set to STANDARD, it will be automatically upgraded at the end of standard support. Valid values are EXTENDED, STANDARD
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="upgrade_cluster_script_skip_coredns" requirement="optional" type="bool">
@@ -1984,6 +2089,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.3/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5f93d8c634709428324b91cb6ba29706"
+  "hash": "a1f0dbecc930a3ba2c21c2a99a0d6630"
 }
 ##DOCS-SOURCER-END -->

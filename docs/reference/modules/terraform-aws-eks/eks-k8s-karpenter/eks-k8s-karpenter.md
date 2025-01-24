@@ -123,6 +123,9 @@ module "eks_k_8_s_karpenter" {
   # Conditional flag to optionally create resources in this module.
   create_resources = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Additional Helm chart values to pass to the Karpenter Helm chart. See the
   # official Karpenter Helm chart values file and documentation for available
   # configuration options.
@@ -154,12 +157,19 @@ module "eks_k_8_s_karpenter" {
   karpenter_chart_skip_crds = false
 
   # The version of the Karpenter Helm chart.
-  karpenter_chart_version = "v0.32.7"
+  karpenter_chart_version = "v0.37.5"
 
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
   # Service Account. This is required if `create_karpenter_controller_irsa` is
   # set to false.
   karpenter_controller_existing_role_arn = null
+
+  # A map of custom tags to apply to the Karpenter Controller IAM Policies if
+  # enabled. The key is the tag name and the value is the tag value.
+  karpenter_controller_iam_policy_tags = {}
+
+  # Additional tags to add to the Karpenter Controller IAM Role.
+  karpenter_controller_iam_role_tags = {}
 
   # The Helm chart name for the Karpenter CRD chart.
   karpenter_crd_chart_name = "karpenter-crd"
@@ -188,6 +198,10 @@ module "eks_k_8_s_karpenter" {
   # Whether or not to create the Karpneter CRDs via the karpenter-crd Helm
   # chart. It is suggested to manage the Karpenter CRDs via this Helm chart.
   karpenter_crd_helm_create = true
+
+  # A map of custom tags to apply to the Karpenter Deprovisioning Queue IAM
+  # Policies if enabled. The key is the tag name and the value is the tag value.
+  karpenter_deprovisioning_queue_iam_policy_tags = {}
 
   # Additional tags to add to the Karpenter Deprovisioning Queue.
   karpenter_deprovisioning_queue_tags = {}
@@ -295,6 +309,9 @@ inputs = {
   # Conditional flag to optionally create resources in this module.
   create_resources = true
 
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
+
   # Additional Helm chart values to pass to the Karpenter Helm chart. See the
   # official Karpenter Helm chart values file and documentation for available
   # configuration options.
@@ -326,12 +343,19 @@ inputs = {
   karpenter_chart_skip_crds = false
 
   # The version of the Karpenter Helm chart.
-  karpenter_chart_version = "v0.32.7"
+  karpenter_chart_version = "v0.37.5"
 
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
   # Service Account. This is required if `create_karpenter_controller_irsa` is
   # set to false.
   karpenter_controller_existing_role_arn = null
+
+  # A map of custom tags to apply to the Karpenter Controller IAM Policies if
+  # enabled. The key is the tag name and the value is the tag value.
+  karpenter_controller_iam_policy_tags = {}
+
+  # Additional tags to add to the Karpenter Controller IAM Role.
+  karpenter_controller_iam_role_tags = {}
 
   # The Helm chart name for the Karpenter CRD chart.
   karpenter_crd_chart_name = "karpenter-crd"
@@ -360,6 +384,10 @@ inputs = {
   # Whether or not to create the Karpneter CRDs via the karpenter-crd Helm
   # chart. It is suggested to manage the Karpenter CRDs via this Helm chart.
   karpenter_crd_helm_create = true
+
+  # A map of custom tags to apply to the Karpenter Deprovisioning Queue IAM
+  # Policies if enabled. The key is the tag name and the value is the tag value.
+  karpenter_deprovisioning_queue_iam_policy_tags = {}
 
   # Additional tags to add to the Karpenter Deprovisioning Queue.
   karpenter_deprovisioning_queue_tags = {}
@@ -503,6 +531,15 @@ Conditional flag to optionally create resources in this module.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to apply to all AWS resources managed by this module.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="karpenter_chart_additional_values" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -588,7 +625,7 @@ Whether or not to install CRDs with the Karpenter Helm Chart. This should be set
 The version of the Karpenter Helm chart.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v0.32.7&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v0.37.5&quot;"/>
 </HclListItem>
 
 <HclListItem name="karpenter_controller_existing_role_arn" requirement="optional" type="string">
@@ -598,6 +635,24 @@ Provide an existing IAM Role ARN to be used with the Karpenter Controller Servic
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="karpenter_controller_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Karpenter Controller IAM Policies if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="karpenter_controller_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Additional tags to add to the Karpenter Controller IAM Role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="karpenter_crd_chart_name" requirement="optional" type="string">
@@ -670,6 +725,15 @@ Whether or not to create the Karpneter CRDs via the karpenter-crd Helm chart. It
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="karpenter_deprovisioning_queue_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Karpenter Deprovisioning Queue IAM Policies if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="karpenter_deprovisioning_queue_tags" requirement="optional" type="map(string)">
@@ -843,6 +907,6 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.3/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0078bb97bbed621ab881fceb0a2fe9fc"
+  "hash": "67e3eff7555c1a5d12194e6b9f6f64ae"
 }
 ##DOCS-SOURCER-END -->

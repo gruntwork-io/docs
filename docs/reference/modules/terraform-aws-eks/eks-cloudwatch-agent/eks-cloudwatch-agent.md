@@ -92,6 +92,10 @@ module "eks_cloudwatch_agent" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # A map of custom tags to apply to the Agent IAM Role if enabled. The key is
+  # the tag name and the value is the tag value.
+  agent_iam_role_tags = {}
+
   # The Container repository to use for looking up the cloudwatch-agent
   # Container image when deploying the pods. When null, uses the default
   # repository set in the chart.
@@ -105,6 +109,9 @@ module "eks_cloudwatch_agent" {
   # this is different from the app/container version (use
   # var.aws_cloudwatch_agent_version to control the app/container version).
   aws_cloudwatch_metrics_chart_version = "0.0.7"
+
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -178,6 +185,10 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # A map of custom tags to apply to the Agent IAM Role if enabled. The key is
+  # the tag name and the value is the tag value.
+  agent_iam_role_tags = {}
+
   # The Container repository to use for looking up the cloudwatch-agent
   # Container image when deploying the pods. When null, uses the default
   # repository set in the chart.
@@ -191,6 +202,9 @@ inputs = {
   # this is different from the app/container version (use
   # var.aws_cloudwatch_agent_version to control the app/container version).
   aws_cloudwatch_metrics_chart_version = "0.0.7"
+
+  # Tags to apply to all AWS resources managed by this module.
+  default_tags = {}
 
   # Create a dependency between the resources in this module to the interpolated
   # values in this list (and thus the source resources). In other words, the
@@ -237,6 +251,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.3/modules/eks-cloudwatch-agent/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a2cfae99fdbca6d8c19387c9283e655c"
+  "hash": "e9431f64fb8ae84932e99b82c84f7b66"
 }
 ##DOCS-SOURCER-END -->
