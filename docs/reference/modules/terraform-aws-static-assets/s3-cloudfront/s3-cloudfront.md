@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="0.20.0" lastModifiedVersion="0.18.5"/>
+<VersionBadge repoTitle="A" version="0.20.0" lastModifiedVersion="0.18.5"/>
 
 # S3 CloudFront Module
 
@@ -1522,6 +1522,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.0/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "69275bd4b88de58dd5e807fb0763abe9"
+  "hash": "2aa51265a5ac54177019b1d1ba7a0af6"
 }
 ##DOCS-SOURCER-END -->

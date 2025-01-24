@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="0.20.0" lastModifiedVersion="0.18.5"/>
+<VersionBadge repoTitle="A" version="0.20.0" lastModifiedVersion="0.18.5"/>
 
 # S3 Static Website
 
@@ -864,6 +864,6 @@ A value that can be used to chain resources to depend on the website bucket bein
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.0/modules/s3-static-website/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e0d5fc26a3811d2894bf8cf5682f590b"
+  "hash": "3ec7973e706c6e1c6f47ea1c1e660a98"
 }
 ##DOCS-SOURCER-END -->

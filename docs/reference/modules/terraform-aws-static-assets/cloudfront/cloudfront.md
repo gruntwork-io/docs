@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="0.20.0" lastModifiedVersion="0.20.0"/>
+<VersionBadge repoTitle="A" version="0.20.0" lastModifiedVersion="0.20.0"/>
 
 # CloudFront Module
 
@@ -170,6 +170,7 @@ module "cloudfront" {
       viewer-request  = optional(object( function_arn = string ))
       viewer-response = optional(object( function_arn = string ))
     ), )
+    grpc_config = optional(object( enabled = bool ))
   )>
 
   # When you use the CloudFront console to create or update a distribution, you
@@ -203,6 +204,15 @@ module "cloudfront" {
     origin_shield = optional(object(
       enabled = bool
       origin_shield_region = optional(string)
+    ))
+    vpc_origin_config = optional(object(
+      arn = string
+      origin_protocol_policy = string
+      origin_ssl_protocols = optional(list(string), ["TLSv1.2"])
+      http_port = optional(number, 80)
+      https_port = optional(number, 443)
+      origin_keepalive_timeout = optional(number)
+      origin_read_timeout = optional(number)
     ))
   ))>
 
@@ -442,6 +452,7 @@ inputs = {
       viewer-request  = optional(object( function_arn = string ))
       viewer-response = optional(object( function_arn = string ))
     ), )
+    grpc_config = optional(object( enabled = bool ))
   )>
 
   # When you use the CloudFront console to create or update a distribution, you
@@ -475,6 +486,15 @@ inputs = {
     origin_shield = optional(object(
       enabled = bool
       origin_shield_region = optional(string)
+    ))
+    vpc_origin_config = optional(object(
+      arn = string
+      origin_protocol_policy = string
+      origin_ssl_protocols = optional(list(string), ["TLSv1.2"])
+      http_port = optional(number, 80)
+      https_port = optional(number, 443)
+      origin_keepalive_timeout = optional(number)
+      origin_read_timeout = optional(number)
     ))
   ))>
 
@@ -750,7 +770,7 @@ object({
     }))
     existing_origin_request_policy_id = optional(string)
 
-    # Defines a CloudFront real-time log configuration resource..
+    # Defines a CloudFront real-time log configuration resource.
     realtime_log_config = optional(object({
       # The sampling rate for this real-time log configuration.
       # The sampling rate determines the percentage of viewer requests that are represented in the real-time log data.
@@ -914,6 +934,9 @@ object({
       viewer-request  = optional(object({ function_arn = string }))
       viewer-response = optional(object({ function_arn = string }))
     }), {})
+
+    # Whether Grpc requests are enabled.
+    grpc_config = optional(object({ enabled = bool }))
   })
 ```
 
@@ -1196,7 +1219,7 @@ object({
 
 ```hcl
 
-     Defines a CloudFront real-time log configuration resource..
+     Defines a CloudFront real-time log configuration resource.
 
 ```
 </details>
@@ -1528,6 +1551,16 @@ object({
 ```
 </details>
 
+<details>
+
+
+```hcl
+
+     Whether Grpc requests are enabled.
+
+```
+</details>
+
 </HclGeneralListItem>
 </HclListItem>
 
@@ -1636,6 +1669,40 @@ map(object({
       # AWS Region for Origin Shield. To specify a region, use the region code, not the region name.
       # For example, specify the US East (Ohio) region as us-east-2.
       origin_shield_region = optional(string)
+    }))
+    vpc_origin_config = optional(object({
+      # ARN for an Elastic Load Balancer or EC2 instance.
+      arn = string
+
+      # The protocol policy that you want CloudFront to use when fetching objects from your origin.
+      # - HTTP only: CloudFront uses only HTTP to access the origin.
+      # - HTTPS only: CloudFront uses only HTTPS to access the origin.
+      # - Match viewer: CloudFront communicates with your origin using HTTP or HTTPS, depending on the protocol of the viewer request.
+      # One of http-only, https-only, or match-viewer.
+      origin_protocol_policy = string
+
+      # Choose the minimum TLS/SSL protocol that CloudFront can use when it establishes an HTTPS connection to your origin.
+      # Lower TLS protocols are less secure, so we recommend that you choose the latest TLS protocol that your origin supports.
+      # Valid values include protocols SSLv3, TLSv1, TLSv1.1, TLSv1.2
+      origin_ssl_protocols = optional(list(string), ["TLSv1.2"])
+
+      # Origin's HTTP port. The default is port 80.
+      http_port = optional(number, 80)
+
+      # Origin's HTTPS port. The default is port 443.
+      https_port = optional(number, 443)
+
+      # The keep-alive timeout is how long (in seconds) CloudFront tries to maintain a connection to your custom origin after it gets the last packet of a response.
+      # Maintaining a persistent connection saves the time that is required to re-establish the TCP connection and perform another TLS handshake for subsequent requests.
+      # Increasing the keep-alive timeout helps improve the request-per-connection metric for distributions.
+      # AWS enforces an upper limit of 60. But you can request an increase. Defaults to 5.
+      origin_keepalive_timeout = optional(number)
+
+      # The origin response timeout, also known as the origin read timeout or origin request timeout, applies to both of the following values:
+      # - How long (in seconds) CloudFront waits for a response after forwarding a request to the origin.
+      # - How long (in seconds) CloudFront waits after receiving a packet of a response from the origin and before receiving the next packet.
+      # By default, AWS enforces an upper limit of 60. But you can request an increase. Defaults to 30.
+      origin_read_timeout = optional(number)
     }))
   }))
 ```
@@ -1766,6 +1833,78 @@ map(object({
 
        AWS Region for Origin Shield. To specify a region, use the region code, not the region name.
        For example, specify the US East (Ohio) region as us-east-2.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       The protocol policy that you want CloudFront to use when fetching objects from your origin.
+       - HTTP only: CloudFront uses only HTTP to access the origin.
+       - HTTPS only: CloudFront uses only HTTPS to access the origin.
+       - Match viewer: CloudFront communicates with your origin using HTTP or HTTPS, depending on the protocol of the viewer request.
+       One of http-only, https-only, or match-viewer.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Choose the minimum TLS/SSL protocol that CloudFront can use when it establishes an HTTPS connection to your origin.
+       Lower TLS protocols are less secure, so we recommend that you choose the latest TLS protocol that your origin supports.
+       Valid values include protocols SSLv3, TLSv1, TLSv1.1, TLSv1.2
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Origin's HTTP port. The default is port 80.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Origin's HTTPS port. The default is port 443.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       The keep-alive timeout is how long (in seconds) CloudFront tries to maintain a connection to your custom origin after it gets the last packet of a response.
+       Maintaining a persistent connection saves the time that is required to re-establish the TCP connection and perform another TLS handshake for subsequent requests.
+       Increasing the keep-alive timeout helps improve the request-per-connection metric for distributions.
+       AWS enforces an upper limit of 60. But you can request an increase. Defaults to 5.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       The origin response timeout, also known as the origin read timeout or origin request timeout, applies to both of the following values:
+       - How long (in seconds) CloudFront waits for a response after forwarding a request to the origin.
+       - How long (in seconds) CloudFront waits after receiving a packet of a response from the origin and before receiving the next packet.
+       By default, AWS enforces an upper limit of 60. But you can request an increase. Defaults to 30.
 
 ```
 </details>
@@ -2349,6 +2488,7 @@ map(object({
       viewer-request  = optional(object({ function_arn = string }))
       viewer-response = optional(object({ function_arn = string }))
     }), {})
+    grpc_config = optional(object({ enabled = bool }))
   }))
 ```
 
@@ -2603,6 +2743,6 @@ Unique identifier that specifies the AWS WAF web ACL, if any, to associate with 
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.0/modules/cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f2b74d7021bf7b17838621bf71c42750"
+  "hash": "bea1076132cd1209d5f210eb447e49e1"
 }
 ##DOCS-SOURCER-END -->
