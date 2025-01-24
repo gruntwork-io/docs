@@ -81,6 +81,25 @@ Permission sets are normally bound to groups using your IDP.
 
 For an example of a manual binding see the [sso-groups module](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.3/modules/aws-sso/sso-groups).
 
+### What are permission boundaries?
+
+Permission boundaries are an advanced feature of AWS IAM that allows you to set the maximum permissions that an entity.
+For example you can limit the permissions of a Permission Set to `ReadOnlyAccess`:
+
+```hcl
+module "sso_permission_set" {
+  source = "git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets"
+
+  name          = "GWReadOnlyAccess"
+  description   = "Provides read-only access to accounts"
+  managed_policy_names = ["ReadOnlyAccess"]
+
+  permissions_boundary_managed_policy_name = ["ReadOnlyAccess"]
+}
+```
+
+For more information on permission boundaries, see the [official documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html).
+
 ## Sample Usage
 
 <Tabs>
@@ -113,6 +132,16 @@ module "sso_permission_sets" {
 
   # A list of managed policy names to add to the Permission set.
   managed_policy_names = []
+
+  # The customer managed policy reference to use as the permissions boundary for
+  # the Permission Set. Note that this is mutually exclusive with
+  # `permissions_boundary_managed_policy_arn`.
+  permisions_boundary_customer_managed_policy_reference = null
+
+  # The name of the managed policy to use as the permissions boundary for the
+  # Permission Set. Note that this is mutually exclusive with
+  # `permissions_boundary_customer_managed_policy_reference`.
+  permissions_boundary_managed_policy_name = null
 
   # The length, in hours, that a session is valid.
   session_duration_hours = 1
@@ -161,6 +190,16 @@ inputs = {
 
   # A list of managed policy names to add to the Permission set.
   managed_policy_names = []
+
+  # The customer managed policy reference to use as the permissions boundary for
+  # the Permission Set. Note that this is mutually exclusive with
+  # `permissions_boundary_managed_policy_arn`.
+  permisions_boundary_customer_managed_policy_reference = null
+
+  # The name of the managed policy to use as the permissions boundary for the
+  # Permission Set. Note that this is mutually exclusive with
+  # `permissions_boundary_customer_managed_policy_reference`.
+  permissions_boundary_managed_policy_name = null
 
   # The length, in hours, that a session is valid.
   session_duration_hours = 1
@@ -214,6 +253,34 @@ A list of managed policy names to add to the Permission set.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="permisions_boundary_customer_managed_policy_reference" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+The customer managed policy reference to use as the permissions boundary for the Permission Set. Note that this is mutually exclusive with `permissions_boundary_managed_policy_arn`.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    name = string
+    path = default("/")
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="permissions_boundary_managed_policy_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the managed policy to use as the permissions boundary for the Permission Set. Note that this is mutually exclusive with `permissions_boundary_customer_managed_policy_reference`.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="session_duration_hours" requirement="optional" type="number">
@@ -273,6 +340,6 @@ The name of the permission set that was created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.3/modules/sso-permission-sets/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6de7b742aeae92fd3444c893afaf3b01"
+  "hash": "8b61a9fe8b273a506b8423b1af774152"
 }
 ##DOCS-SOURCER-END -->
