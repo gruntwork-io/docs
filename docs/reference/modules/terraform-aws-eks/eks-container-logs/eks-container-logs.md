@@ -225,7 +225,7 @@ module "eks_container_logs" {
   # Configurations for forwarding logs to CloudWatch Logs using the original
   # plugin. Set to null if you do not wish to forward the logs to CloudWatch
   # Logs using the older plugin. This is disabled by default in fluent-bit.
-  cloudwatch_configuration = {"autoCreateGroup":null,"credentialsEndpoint":null,"enabled":false,"endpoint":null,"extraOutputs":null,"logFormat":null,"logKey":null,"logRetentionDays":null,"logStreamName":null,"log_group_name":"/aws/eks/fluentbit-cloudwatch/logs","log_stream_prefix":"fluentbit-","match":"*","region":"us-east-1","roleArn":null}
+  cloudwatch_configuration = {"autoCreateGroup":null,"credentialsEndpoint":null,"enabled":false,"endpoint":null,"extraOutputs":null,"logFormat":null,"logGroupName":"/aws/eks/fluentbit-cloudwatch/logs","logKey":null,"logRetentionDays":null,"logStreamName":null,"logStreamPrefix":"fluentbit-","match":"*","region":"us-east-1","roleArn":null}
 
   # Configurations for forwarding logs to CloudWatch Logs using a higher
   # performance plugin. Set to null if you do not wish to forward the logs to
@@ -452,7 +452,7 @@ inputs = {
   # Configurations for forwarding logs to CloudWatch Logs using the original
   # plugin. Set to null if you do not wish to forward the logs to CloudWatch
   # Logs using the older plugin. This is disabled by default in fluent-bit.
-  cloudwatch_configuration = {"autoCreateGroup":null,"credentialsEndpoint":null,"enabled":false,"endpoint":null,"extraOutputs":null,"logFormat":null,"logKey":null,"logRetentionDays":null,"logStreamName":null,"log_group_name":"/aws/eks/fluentbit-cloudwatch/logs","log_stream_prefix":"fluentbit-","match":"*","region":"us-east-1","roleArn":null}
+  cloudwatch_configuration = {"autoCreateGroup":null,"credentialsEndpoint":null,"enabled":false,"endpoint":null,"extraOutputs":null,"logFormat":null,"logGroupName":"/aws/eks/fluentbit-cloudwatch/logs","logKey":null,"logRetentionDays":null,"logStreamName":null,"logStreamPrefix":"fluentbit-","match":"*","region":"us-east-1","roleArn":null}
 
   # Configurations for forwarding logs to CloudWatch Logs using a higher
   # performance plugin. Set to null if you do not wish to forward the logs to
@@ -603,6 +603,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.3/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1992e35b560373eed978c62b862e8579"
+  "hash": "a5b6fd82bca7b7a29797de141fbf1535"
 }
 ##DOCS-SOURCER-END -->
