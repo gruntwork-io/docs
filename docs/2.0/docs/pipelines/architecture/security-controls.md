@@ -84,7 +84,7 @@ This separation ensures that controls like [branch protection](https://docs.gith
 #### `root-pipelines-plan`
 
 A read-only plan role for the `infrastructure-live-root` repository. 
-- This role is among the first created when setting up DevOps Foundations.
+- This role is one of the first created when setting up DevOps Foundations. It is provisioned manually by the customer during the platform setup process.
 - It exists in all accounts and handles tasks necessary for setting up AWS accounts.
 - These roles are highly permissive among read-only roles as they manage foundational AWS account setups.
 
@@ -108,16 +108,26 @@ A read/write apply role for the `infrastructure-live-access-control` repository.
 
 #### `delegated-pipelines-plan`
 
-A read-only plan role for delegated repositories.
+A read-only plan role for delegated repositories, used by Pipelines Enterprise customers.
+
 - These roles are pre-configured to have minimal permissions, primarily for managing OpenTofu/Terraform state.
-- Pull requests opened during provisioning include documentation for adding additional permissions if necessary.
+- A pull request will be opened in `infrastructure-live-access-control` during provisioning include documentation for adding additional permissions if necessary.
 - Users should ensure that only the necessary _read-only_ permissions are granted for the specific delegated repository.
+
+
+:::note
+
+These roles have almost no permissions by default. They are pre-configured by default to only have access to OpenTofu/Terraform state, and the pull requests that are opened to provision them include documentation on how to add additional permissions as appropriate.
+
+It is up to the user provisioning these roles to ensure that this role has only the necessary _read-only_ permissions required to manage infrastructure changes relevant to the delegated repository.
+
+:::
 
 #### `delegated-pipelines-apply`
 
 A read/write apply role for delegated repositories.
 - Similar to the plan role, these roles are pre-configured with minimal permissions and are intended for managing OpenTofu/Terraform state.
-- Pull requests include guidance for adding appropriate permissions.
+- A pull request will be opened in `infrastructure-live-access-control` during provisioning include documentation for adding additional permissions if necessary.
 - Users must ensure that the role has only the necessary _read/write_ permissions required for the delegated repository.
 
 :::note
