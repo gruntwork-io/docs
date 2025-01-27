@@ -43,7 +43,7 @@ By investing a small amount of additional time in authoring a patch, module auth
 
 ## For module consumers
 
-Module consumers typically reference specific versions of OpenTofu/Terraform modules to maintain consistency. Over time, as new versions of modules are released, consumer code can become outdated. In cases where updates introduce breaking changes, the code must be edited to ensure compatibility—this is where Patcher proves valuable.
+Module consumers typically reference specific versions of OpenTofu/Terraform modules to maintain consistency. Over time, as new versions of modules are released, consumer code can become outdated. In cases where updates introduce breaking changes, consuming code must be edited to ensure compatibility—this is where Patcher proves most valuable.
 
 Patcher automates updates by applying patches that incorporate breaking changes, reducing the manual effort required to keep infrastructure code current.
 
