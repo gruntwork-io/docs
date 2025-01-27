@@ -26,7 +26,7 @@ To demonstrate these strategies, consider the following example repository:
 Assuming newer versions are available for all three dependencies, the strategies would result in:
 - **Full-consolidation**: One pull request updating all seven units.
 - **No-consolidation**: Seven separate pull requests, one per unit.
-- **Dependency-only consolidation**: Three pull requests—one for each dependency. For example, `dependency1` would be updated across both `dev` and 'prod'.
+- **Dependency-only consolidation**: Three pull requests—one for each dependency. For example, `dependency1` would be updated across both `dev` and `prod`.
 - **Environment-only consolidation**: Two pull requests—one for all updates in `dev` and one for all updates in `prod`.
 - **(Environment x Dependency) consolidation**: Five pull requests—two for updates in `dev` and three for updates in `prod`.
 
