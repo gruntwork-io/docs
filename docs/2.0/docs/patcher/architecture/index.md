@@ -11,7 +11,7 @@ In the future, you'll model environments using a configuration-based system inte
 
 ### Dependencies
 
-A `dependency` in Patcher workflows refers to versioned code that your codebase references, typically a Terraform or OpenTofu module stored in a Git repository and tagged with a specific version. For example, if your Terraform source module is `gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.8.0`, the corresponding dependency is `gruntwork-io/terraform-aws-messaging/sqs`.
+A `dependency` in Patcher workflows refers to versioned code that your codebase references, typically a OpenTofu or Terraform module stored in a Git repository and tagged with a specific version. For example, if your OpenTofu/Terraform source module is `gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v0.8.0`, the corresponding dependency is `gruntwork-io/terraform-aws-messaging/sqs`.
 
 
 Patcher organizes promotion workflows by grouping changes per dependency. It identifies all instances of `gruntwork-io/terraform-aws-messaging/sqs` within a specified environment and generates a single pull request to update the dependency to the next appropriate version.  
