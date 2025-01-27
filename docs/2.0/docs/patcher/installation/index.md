@@ -40,7 +40,7 @@ To run the Patcher `update` command locally without Docker or in a CI pipeline, 
 
 ## Running Patcher
 
-Run Patcher within a local Git repository that uses Terraform or Terragrunt t0 analyze **all** modules in the current folder, including child folders. Patcher supports `source` values only from GitHub.
+Run Patcher within a local Git repository that uses OpenTofu/Terraform or Terragrunt to analyze **all** modules in the current folder, including child folders. Patcher supports `source` values only from GitHub.
 
 If you have purchased and deployed the [Reference Architecture](https://gruntwork.io/reference-architecture/) and your deployment is organized in an `infrastructure-live` repository, we recommend running Patcher within each environment folder, such as `infrastructure-live/dev`.
 
