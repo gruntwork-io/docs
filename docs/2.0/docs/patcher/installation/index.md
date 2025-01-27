@@ -23,7 +23,7 @@ $ mv patcher /usr/local/bin
 
 ## Before running Patcher
 
-### GitHub personal access token
+### GitHub Personal Access Token
 
 To fetch information from GitHub, Patcher requires a [GitHub Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token), with the `repo` scope. Set the
 `GITHUB_OAUTH_TOKEN` environment variable to your GitHub Personal Access token:
