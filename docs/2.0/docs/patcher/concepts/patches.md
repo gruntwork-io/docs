@@ -29,7 +29,7 @@ steps:
 Patcher is designed for two key personas:
 
 - **Module authors**: Authors of OpenTofu/Terraform modules.
-- **Module consumers**: Use OpenTofu/Terraform modules created by module authors, typically referenced in Terragrunt units (`terragrunt.hcl` files) or directly in Terraform/OpenTofu code.
+- **Module consumers**: Users of OpenTofu/Terraform modules, typically referenced in Terragrunt units (`terragrunt.hcl` files) or directly in Terraform/OpenTofu code.
 
 ## For module authors
 
