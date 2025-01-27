@@ -8,7 +8,7 @@ Once a pull request is approved, merging it using the `dispatch` action triggers
 
 Patcher is purpose-built for infrastructure as code, offering built-in support for versioning in Terraform, OpenTofu, and Terragrunt. As a result, even if your infrastructure has differences between environments, Patcher can still identify outdated modules and apply updates in a sane way through a promotion workflow.
 
-Below is a sequence diagram walking through a hypothetical promotion workflow from `dev` to `stage` to `prod` environments
+Below is a sequence diagram walking through a hypothetical promotion workflow from `dev` to `stage` to `prod` environments:
 
 ```mermaid
 sequenceDiagram
