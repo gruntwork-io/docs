@@ -4,16 +4,16 @@
 
 After working with hundreds of organizations to improve DevOps processes, we’ve identified two key truths about managing infrastructure changes:
 
-1. Teams need control over how infrastructure changes are rolled out.
-2. Deploying infrastructure changes often carries risks.
+1. Teams want to control exactly how infrastructure change gets rolled out
+2. Deploying infrastructure changes can be scary!
 
 To address the need for **control**, Gruntwork Pipelines uses [configuration as code](/2.0/reference/pipelines/configurations-as-code/api). Using HCL (a widely adopted alternative to JSON and YAML), you can define configuration values for your entire Git repository, specific environments, or individual deployable infrastructure units. For instance, you can specify unique AWS authentication strategies at different levels, from individual units to the entire repository.
 
-To address the need for **assurance**, Gruntwork Pipelines provides a clear and user-friendly `terragrunt plan` experience. It also allows customization to include any additional steps your organization requires to build confidence in a deployment. Assurance remains a key focus for future updates.
+To address the need for **assurance**, Gruntwork Pipelines provides a clear and user-friendly `terragrunt plan` experience. It also allows customization to include any additional steps your organization requires to build confidence in a deployment. Building assurance also factors heavily into our roadmap.
 
 ## Built for Terragrunt
 
-Gruntwork Pipelines is built with first-class support for the full Terragrunt lifecycle, including:
+Gruntwork is the creator and maintainer of [Terragrunt](https://terragrunt.gruntwork.io), so we built Gruntwork Pipelines with first-class support for the full Terragrunt lifecycle, including:
 - `terragrunt plan`
 - `terragrunt apply`
 - `terragrunt destroy`
@@ -23,9 +23,9 @@ Gruntwork actively contributes to Terragrunt, ensuring it supports features crit
 
 ## Simplifies CI/CD Complexity
 
-Building and maintaining a CI/CD pipeline for infrastructure changes can be costly and time-consuming. Customers typically need pipelines that coordinate related changes effectively without triggering updates across all infrastructure components unnecessarily.
+One of the things we've discovered over the years helping customers automate their infrastructure management is that it can be _very_ costly and time-consuming to build and maintain a CI/CD pipeline that can efficiently handle the complexity of infrastructure changes. Customers typically don't want to trigger an update to _all_ of their infrastructure whenever _any_ component changes, and they typically want to have related changes coordinated and rolled out correctly.
 
-Gruntwork Pipelines is designed for minimal setup, followed by intuitive infrastructure updates. Most customers can configure Pipelines in under an hour and manage all infrastructure changes directly through pull requests. With Pipelines, you update your Infrastructure as Code to reflect the desired state, submit a pull request for review, and let Pipelines handle the rest.
+A driving design goal of Gruntwork Pipelines is to allow for a minimal setup experience, followed by a very intuitive model for driving infrastructure updates. Most customers can get Pipelines configured in less than an hour, then drive all of their infrastructure changes directly via pull requests to Infrastructure as Code. Most of the time, you do not need to think about how Gruntwork Pipelines works, or how it makes decisions about what to do. You simply update your Infrastructure as Code to reflect the desired state of your infrastructure, have the pull request reviewed and merged, then Gruntwork Pipelines takes care of the rest.
 
 ## Runs in GitHub Actions
 

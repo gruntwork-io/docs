@@ -26,7 +26,7 @@ Blocks can be one of three types: `bare`, `labeled`, or `fully qualified`.
 
 - The `environment` block is a `labeled` block, with `an_environment` as its label.
 
-- Most Terraform configurations use `fully qualified` blocks, which include both a type and a label. For instance, `resource "aws_instance" "my_instance" { ... }` has a type of `aws_instance` and a label of `my_instance`.
+- Most OpenTofu/Terraform configurations use `fully qualified` blocks, which include both a type and a label. For instance, `resource "aws_instance" "my_instance" { ... }` has a type of `aws_instance` and a label of `my_instance`.
 
 
 ### Attributes
