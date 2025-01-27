@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.4" lastModifiedVersion="0.65.9"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.5" lastModifiedVersion="0.65.9"/>
 
 # AWS Auth Helper
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.4/modules/aws-auth" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.5/modules/aws-auth" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.65.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -175,7 +175,7 @@ eval $(aws-auth --serial-number arn:aws:iam::123456789011:mfa/jondoe --token-cod
 
 If you store your secrets in a CLI-friendly password manager, such as [pass](https://www.passwordstore.org/),
 [lpass](https://github.com/lastpass/lastpass-cli) or
-[1Password CLI](https://support.1password.com/command-line-getting-started/), then you can reduce this even further! Instructions on how to set this up for Lastpass / `lpass` can be found [here](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.4/modules/aws-auth/AWS-AUTH-LASTPASS.md) and 1Password / `op` [here](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.4/modules/aws-auth/AWS-AUTH-1PASSWORD.md).
+[1Password CLI](https://support.1password.com/command-line-getting-started/), then you can reduce this even further! Instructions on how to set this up for Lastpass / `lpass` can be found [here](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.5/modules/aws-auth/AWS-AUTH-LASTPASS.md) and 1Password / `op` [here](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.5/modules/aws-auth/AWS-AUTH-1PASSWORD.md).
 
 First, store your permanent AWS credentials in `pass`:
 
@@ -249,11 +249,11 @@ If you you need to run `aws-auth` with a cronjob, you may want to set the `$USER
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.4/modules/aws-auth/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.4/modules/aws-auth/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.4/modules/aws-auth/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.5/modules/aws-auth/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.5/modules/aws-auth/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.5/modules/aws-auth/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "39d21b0efc808e73c286295682d65216"
+  "hash": "cdf155f510e8257d36a1c65eed0cfd40"
 }
 ##DOCS-SOURCER-END -->
