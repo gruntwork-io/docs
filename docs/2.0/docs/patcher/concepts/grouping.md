@@ -31,7 +31,7 @@ Assuming newer versions are available for all three dependencies, the strategies
 - **(Environment x Dependency) consolidation**: Five pull requests—two for updates in `dev` and three for updates in `prod`.
 
 ## Terminology
-* `unit`: A folder containing a `terragrunt.hcl` file, representing a single OpenTofu state file. A unit may reference one or more modules as dependencies.
+* `unit`: A folder containing a `terragrunt.hcl` file, representing a single OpenTofu state file. A unit may reference one or more units as dependencies.
 * `dependency` (or `target`): An OpenTofu module referenced using a `ref` (typically a full source path and version) in a `unit`. Patcher interprets semantic versioning for dependency updates.
 * `environment`: A logical grouping of infrastructure representing application stages, such as `dev` or `prod`. Environments are generally organized as folders in the repository and include multiple units and dependencies.
 * `update`: The action of modifying a dependency reference to use a newer version and accommodating any associated breaking changes.
