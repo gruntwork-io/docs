@@ -37,7 +37,7 @@ Module authors often need to introduce breaking changes in their modules, which 
 
 When a module consumer executes a patch, their code is updated automatically to reflect changes such as adding or renaming variables, updating provider references, or applying other transformations defined in the patch. 
 
-While module authors have the flexibility to write any command steps for patches, such as validating tool versions or using `sed` for find-and-replace operations, it is **strongly recommended** to use [`terrapatch`](https://github.com/gruntwork-io/terrapatch). Terrapatch is a Gruntwork tool that enables precise updates to Terraform/OpenTofu HCL files.
+While module authors have the flexibility to write any command steps for patches, such as validating tool versions or using `sed` for find-and-replace operations, it is **strongly recommended** to use [`terrapatch`](https://github.com/gruntwork-io/terrapatch). Terrapatch is a Gruntwork tool that enables precise updates to Terragrunt or Terraform/OpenTofu HCL files.
 
 By investing a small amount of additional time in authoring a patch, module authors enable all module consumers to seamlessly adopt breaking changes without manual intervention.
 
