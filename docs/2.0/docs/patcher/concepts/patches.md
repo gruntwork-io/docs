@@ -84,7 +84,7 @@ Alternatively, use `--non-interactive` mode to apply updates automatically:
 ```bash
 $ patcher update --non-interactive
 ```
-By default, Patcher does not open a pull request. However, changes are visible in version control, allowing you to create pull requests or integrate changes using your IaC workflow
+By default, Patcher does not open a pull request. However, changes are visible in version control, allowing you to create pull requests or integrate changes using your IaC workflow.
 
 ### Examples running `patcher update`
 Here is a basic example:
