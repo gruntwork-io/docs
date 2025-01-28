@@ -1,6 +1,6 @@
 # Delegated Repositories
 
-::: note 
+:::note 
 
 Account Factory-created Delegated Repositories are only available to DevOps Foundations Enterprise customers.
 

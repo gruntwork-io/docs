@@ -51,9 +51,9 @@ After making all necessary code changes, commit them to Git with **[skip ci]** i
     terragrunt plan
     terragrunt apply
     ```
-
+This is a plan/apply operation because the TGW module reads the `accounts.yml` file to determine which accounts are attached to the TGW.
 8. Delete the folders for the targeted accounts from the repository
-9. Commit changes to your branch, including `[skip ci]` in the commit message
+9. Commit the changes to your branch, including `[skip ci]` in the commit message
 10. Open a Pull Request and verify that `Pipelines Plan` is absent
 11. Approve and **squash-merge** the Pull Request (if multiple commits exist), again including [skip ci] in the commit message. This step will prevent Gruntwork Pipelines from initiating any destruction processes
 
@@ -63,7 +63,7 @@ For accounts created in a separate delegated infrastructure repository:
 
 1. If all accounts in a delegated repository are closed, delete the entire repository. Otherwise, delete only the folders for the closed accounts
 2. Create and merge a Pull Request with [skip ci] in the commit message
-3. If delegated repositories were removed, update the `infrastructure-pipelines` repository by removing references to the deleted repositories in the `.gruntwork/config` file via a Pull Request
+3. If delegated repositories were removed, **and** you have a setup that includes an `infrastructure-pipelines` repository; update the `infrastructure-pipelines` repository by removing references to the deleted repositories in the `.gruntwork/config` file via a Pull Request
 
 ##### Access control infrastructure repository (Enterprise-only)
  
@@ -75,7 +75,9 @@ If an `infrastructure-access-control` repository is part of your setup:
 
 ##### (Optional) Destroy resources in account before closing
 
-If necessary, destroy resources provisioned in the account before closing it:
+If necessary, destroy resources provisioned in the account before closing it.
+
+You may need to delete resources if you encounter issues with coordination between different accounts where resources remain present in the account to be closed that are referenced in other accounts.
 
 1. Create a new branch in the infrastructure repository
 2. Remove the folders containing the resources to be destroyed

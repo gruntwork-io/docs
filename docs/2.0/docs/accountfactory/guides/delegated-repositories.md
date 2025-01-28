@@ -80,8 +80,8 @@ The Baseline PR includes essential infrastructure for the delegated repository t
 
 Inspect the Baseline PR and merge it into the main branch. This triggers:
 
-- Terragrunt to apply core baselines (security, logs, shared) for the new account(s).
-- Baseline application for the new account(s), creating any requested infrastructure.
+- Terragrunt to apply core baselines (in the security, logs, and shared accounts) for the new account(s).
+- Baseline application for the new account(s), creating the requested infrastructure.
 - Pipelines to create the new repository for the account(s), including:
   - Configuring collaborators from your settings.
   - Enabling branch protection (may fail on free GitHub plans).
