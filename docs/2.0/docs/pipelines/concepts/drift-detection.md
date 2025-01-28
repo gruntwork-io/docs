@@ -1,15 +1,15 @@
 # Pipelines Drift Detection
 
 :::note
-Pipelines Drift Detection is only available to Devops Foundations Enterprise customers.
+Pipelines Drift Detection is available exclusively to DevOps Foundations Enterprise customers.
 :::
 
 ## What is Pipelines Drift Detection
 
-Infrastructure Drift occurs when the applied terragrunt cloud configuration differs from the committed Infrastructure as Code (IaC).
+Infrastructure drift occurs when the applied Terragrunt cloud configuration no longer matches the committed Infrastructure as Code (IaC).
 
-Pipelines Drift Detection helps to mitigate Drift in your repositories by running `terragrunt plan` on infrastructure units. If the plan detects any units have drifted from their applied configuration Pipelines will open a Drift Detected Pull Request tracking this drift in your repository.
+Pipelines Drift Detection helps address drift in your repositories by running `terragrunt plan` on infrastructure units. If drift is detected, Pipelines creates a Drift Detected Pull Request to track the changes in your repository.
 
-When the Drift Detected Pull Request is merged, Pipelines will run `terragrunt apply` on all units where drift was detected to ensure resources once again match what is specified in code.
+When the Drift Detected Pull Request is merged, Pipelines runs `terragrunt apply` on all units where drift was identified, ensuring that resources align with the specifications in your code.
 
-See [Setting up Drift Detection](/2.0/docs/pipelines/configuration/driftdetection) and [Running Drift Detection](/2.0/docs/pipelines/guides/running-drift-detection) for more information on how to detect and remediate drift in your repositories.
+For more information on detecting and resolving drift, see [Setting up Drift Detection](/2.0/docs/pipelines/configuration/driftdetection) and [Running Drift Detection](/2.0/docs/pipelines/guides/running-drift-detection).

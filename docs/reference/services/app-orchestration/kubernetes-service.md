@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.6" lastModifiedVersion="0.114.0"/>
+<VersionBadge version="0.118.10" lastModifiedVersion="0.118.7"/>
 
 # Kubernetes Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/modules/services/k8s-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules/services/k8s-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fk8s-service" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -74,9 +74,9 @@ don’t have access to this repo, email [support@gruntwork.io](mailto:support@gr
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -84,7 +84,7 @@ don’t have access to this repo, email [support@gruntwork.io](mailto:support@gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -92,7 +92,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -111,7 +111,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "k_8_s_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/k8s-service?ref=v0.118.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/k8s-service?ref=v0.118.10"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -377,6 +377,10 @@ module "k_8_s_service" {
   # the application container.
   liveness_probe_protocol = "HTTP"
 
+  # Limit the maximum number of revisions saved per release. Use 0 for no limit.
+  # Defaults to 0 (no limit).
+  max_history = 0
+
   # The minimum number of pods that should be available at any given point in
   # time. This is used to configure a PodDisruptionBudget for the service,
   # allowing you to achieve a graceful rollout. See
@@ -509,7 +513,7 @@ module "k_8_s_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/k8s-service?ref=v0.118.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/k8s-service?ref=v0.118.10"
 }
 
 inputs = {
@@ -777,6 +781,10 @@ inputs = {
   # Protocol (HTTP or HTTPS) that the liveness probe should use to connect to
   # the application container.
   liveness_probe_protocol = "HTTP"
+
+  # Limit the maximum number of revisions saved per release. Use 0 for no limit.
+  # Defaults to 0 (no limit).
+  max_history = 0
 
   # The minimum number of pods that should be available at any given point in
   # time. This is used to configure a PodDisruptionBudget for the service,
@@ -1659,6 +1667,15 @@ Protocol (HTTP or HTTPS) that the liveness probe should use to connect to the ap
 <HclListItemDefaultValue defaultValue="&quot;HTTP&quot;"/>
 </HclListItem>
 
+<HclListItem name="max_history" requirement="optional" type="number">
+<HclListItemDescription>
+
+Limit the maximum number of revisions saved per release. Use 0 for no limit. Defaults to 0 (no limit).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
 <HclListItem name="min_number_of_pods_available" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2045,11 +2062,11 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/modules/services/k8s-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/modules/services/k8s-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/modules/services/k8s-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules/services/k8s-service/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules/services/k8s-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.10/modules/services/k8s-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5dcb8738c45ee25b505195e5c7be5053"
+  "hash": "c9268814909a2965cef75755023b1fea"
 }
 ##DOCS-SOURCER-END -->

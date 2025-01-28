@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.1" lastModifiedVersion="0.69.2"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.6" lastModifiedVersion="0.69.2"/>
 
 # A best-practices set of IAM roles for cross-account access
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/cross-account-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cross-account-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.69.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -34,7 +34,7 @@ This module creates the following IAM roles (all optional):
 These IAM Roles are intended to be assumed by human users (i.e., IAM Users in another AWS account). The default
 maximum session expiration for these roles is 12 hours (configurable via the `var.max_session_duration_human_users`).
 Note that these are the *maximum* session expirations; the actual value for session expiration is specified when
-making API calls to assume the IAM role (see [aws-auth](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/aws-auth)).
+making API calls to assume the IAM role (see [aws-auth](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-auth)).
 
 *   **allow-read-only-access-from-other-accounts**: Users from the accounts in
     `var.allow_read_only_access_from_other_account_arns` will get read-only access to all services in this account.
@@ -65,11 +65,11 @@ making API calls to assume the IAM role (see [aws-auth](https://github.com/grunt
 These IAM Roles are intended to be assumed by machine users (i.e., an EC2 Instance in another AWS account). The default
 maximum session expiration for these roles is 1 hour (configurable via the `var.max_session_duration_machine_users`).
 Note that these are the *maximum* session expirations; the actual value for session expiration is specified when
-making API calls to assume the IAM role (see [aws-auth](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/aws-auth)).
+making API calls to assume the IAM role (see [aws-auth](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-auth)).
 
 *   **allow-ssh-grunt-access-from-other-accounts**: Users (or more likely, EC2 Instances) from the accounts in
     `var.allow_ssh_grunt_access_from_other_account_arns` will get read access to IAM Groups and public SSH keys. This is
-    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
+    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
     connections against IAM users defined in this AWS account.
 
 *   **allow-auto-deploy-access-from-other-accounts**: Users from the accounts in `var.allow_auto_deploy_from_other_account_arns`
@@ -96,7 +96,7 @@ roles with the AWS CLI takes quite a few steps, so use the [aws-auth script](htt
 ## Background Information
 
 For background information on IAM, IAM users, IAM policies, and more, check out the [background information docs in
-the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/iam-policies#background-information).
+the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-policies#background-information).
 
 ## Sample Usage
 
@@ -111,7 +111,7 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 module "cross_account_iam_roles" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.75.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.75.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -298,7 +298,7 @@ module "cross_account_iam_roles" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.75.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cross-account-iam-roles?ref=v0.75.6"
 }
 
 inputs = {
@@ -1086,11 +1086,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/cross-account-iam-roles/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/cross-account-iam-roles/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/cross-account-iam-roles/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cross-account-iam-roles/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cross-account-iam-roles/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cross-account-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2acc4e39449102d1d6b5d99af45db8c6"
+  "hash": "5c460b5a74351be88efa2e036634c611"
 }
 ##DOCS-SOURCER-END -->

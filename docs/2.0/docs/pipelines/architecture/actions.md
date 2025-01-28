@@ -10,10 +10,10 @@ When a pull request is created, Pipelines will automatically execute `terragrunt
 
 When a pull request is merged, Pipelines will automatically execute either `terragrunt apply` or `terragrunt destroy` on every infrastructure change, depending on the type of infrastructure change. For example, if the pull request deletes a `terragrunt.hcl` file, Pipelines will run `terragrunt destroy`.
 
-## Skipping Runs
+## Skipping runs
 
 Sometimes you find it necessary to make a change without going through the full pipelines process. This can be accomplished using GitHub's built in method for skipping workflow runs [by adding [skip ci] to your commit message](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs).
 
-## Other Actions
+## Other actions
 
 If you'd like to request a new Pipelines action, please email us at [feedback@gruntwork.io](mailto:feedback@gruntwork.io).

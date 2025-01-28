@@ -2,21 +2,23 @@ import DocCardList from '@theme/DocCardList';
 
 # Overview
 
-Authoring a large library of modules like this requires that certain principles be decided and documented for iteration.
+Developing and maintaining a comprehensive library of modules requires clearly defined and documented principles to support ongoing iteration and improvement.
 
-These principles help guide decision making when multiple valid approaches exist for tackling a problem.
+These principles serve as a framework for decision-making when multiple valid solutions are available for addressing a problem.
 
-## High Level Principles
+## High-level principles
 
-These are some documented high level principles that should be followed in order to encourage continuous increase in the quality of modules in the library.
+The following high-level principles are intended to continuously improve the quality and reliability of the modules within this library.
 
-### If Isn't Tested It's Broken
+### If it isn't tested, it's broken
 
-The [Terratest](https://github.com/gruntwork-io/terratest) testing library was created in order to provide a way to efficiently test IAC modules in an easy way.
-All modules in the library should have tests associated with them, and whenever possible, should have tests that test all the most important behaviors.
+The [Terratest](https://github.com/gruntwork-io/terratest) testing library was developed to provide an efficient and effective method for testing Infrastructure as Code (IaC) modules.  
 
-It can be expensive to maintain this many tests, but it is more expensive not to, when dealing with surface area this large.
+All modules in this library **must** have associated tests. Wherever feasible, these tests should cover all critical functionalities and behaviors.  
 
-As a matter of general practice, it is more important that a module is tested at all than that it is tested comprehensively
+While maintaining a comprehensive suite of tests can be resource-intensive, neglecting testing introduces significantly higher risks and costs due to the library's extensive surface area.  
+
+As a best practice, it is **more important that a module has basic testing coverage** than that it is tested exhaustively.
+
 
 <DocCardList />

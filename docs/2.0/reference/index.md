@@ -1,7 +1,8 @@
 # Developer Reference
 
-Welcome to the Reference section of Gruntwork’s documentation site. This section is your go-to resource for information on configuring our products. Here, you’ll be able to find products and their required inputs/configurations and output to help you make the most of our tools and services.
+Welcome to the Reference section of Gruntwork’s documentation site. This section is a comprehensive resource for detailed information on configuring Gruntwork products. Here, you can explore required inputs, configurations, and outputs for our tools and services to maximize their value in your workflows.
 
-If you’re looking for broader context, tutorials, or best practices, check out our [Docs section](/), where we offer educational guides to help you get started and deepen your understanding of our ecosystem.
+For broader context, tutorials, or best practices, visit our [Docs section](/), where you’ll find educational guides designed to help you get started and deepen your understanding of the Gruntwork ecosystem.
 
-Whether you’re setting up a new product, troubleshooting an issue, or diving deep into advanced configurations, the Reference section is here to provide the clarity you need. See the left-hand navigation for a list of available topics.
+Whether setting up a new product, resolving an issue, or exploring advanced configurations, the Reference section is structured to provide the precise information you need. Use the navigation menu on the left to browse available topics.
+ 
