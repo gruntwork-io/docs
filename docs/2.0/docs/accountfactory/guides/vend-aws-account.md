@@ -2,48 +2,49 @@
 
 ## Introduction
 
-The Account Factory Workflow in your `infrastructure-live-root` repository can be used to vend new AWS accounts. It takes a single input consisting of a JSON payload that you can generate from the `account-factory-inputs.html` web page.
+The Account Factory Workflow in your `infrastructure-live-root` repository can be used to create new AWS accounts. It requires a single input—a JSON payload—generated from the `account-factory-inputs.html` web page.
 
-We use a JSON payload to support more vending options, as GitHub Workflows are limited to only 10 inputs.
+The JSON payload approach provides greater flexibility for account vending, overcoming the GitHub workflow restriction of a 10-input maximum.
 
 :::note
-This guide pertains only to non-delegated repositories. Enterprise customers are also able to [use Account Factory to create new Delegated Repositories](/2.0/docs/accountfactory/guides/delegated-repositories).
+
+This guide focuses on non-delegated repositories. Enterprise customers can also [use Account Factory to create new Delegated Repositories](/2.0/docs/accountfactory/guides/delegated-repositories).
+
 :::
+
 
 ### Step 1 - Download the file
 
-Navigate to your `infrastructure-live-root` repository and download the inputs web page located at `.github/workflows/account-factory-inputs.html` to your local machine.
+Locate the inputs web page in your `infrastructure-live-root` repository at `.github/workflows/account-factory-inputs.html` and download it to your local machine.
 
 ### Step 2 - Populate the values
 
-Open `account-factory-inputs.html` in a web browser and populate the input options.
+Open the downloaded `account-factory-inputs.html` file in a web browser and populate the input fields as required.
 
-At the end of the page click "Generate", and copy the JSON output into your clipboard.
+Once all values are filled, click "Generate" and copy the resulting JSON output to your clipboard.
 
-### Step 3 - Run the Account Factory Workflow
+### Step 3 - Run the Account Factory workflow
 
-In GitHub, navigate to the Actions tab of your `infrastructure-live-root` repository and select `Account factory` on the left hand pane.
+Access the Actions tab in your `infrastructure-live-root` repository on GitHub and select `Account factory` from the left-hand pane.
 
-Select "Run workflow" on the right and paste in the generated JSON payload into the dropdown.
+Click "Run workflow" on the right, paste the generated JSON payload into the dropdown, and click the green "Run workflow" button to initiate the workflow.
 
-Click the green "Run workflow" button in the dropdown and your workflow will begin running.
+### Step 4 - Merge the account request PR
 
-### Step 4 - Merge the Account Request PR
+After the workflow is complete, a new Pull Request will be created in the `infrastructure-live-root` repository. This PR will add an account request to the `_new-account-requests` directory.
 
-Once the workflow has completed a new Pull Request will be opened in your `infrastructure-live-root` repository adding an account request to the `_new-account-requests` directory.
+Review and merge the Pull Request to begin the account creation process.
 
-Review and merge the pull request to being creating the account.
+Once the account request PR merges into the main branch, Pipelines will initiate the account creation in AWS. This process typically takes 10 to 15 minutes but may extend to 45 minutes.
 
-When the account request PR has been merged into your main branch, Pipelines will begin creating the new account in AWS. This can take some time (generally 10 to 15 minutes though it can be up to 45).
+- The SSO user created for the new account will use your organization's [Access Portal URL](https://docs.aws.amazon.com/signin/latest/userguide/sign-in-urls-defined.html#access-portal-url) to log in. New users invited to AWS IAM Identity Center (formerly AWS SSO) will receive an email with login instructions. Existing users can access the Portal URL through the organization's administrator.
 
-- The SSO user created in the new account will be able to sign in using your organization’s [Access Portal Url](https://docs.aws.amazon.com/signin/latest/userguide/sign-in-urls-defined.html#access-portal-url). If the user is being invited into AWS IAM Identity Center (Successor to SSO) for this first time, they will receive an email with instructions on how to log in. Otherwise, the Portal Url can be provided by your organization’s administrator.
+- The root user of the new account will receive an email and can log in by following the "Forgot Password" process on the [AWS Console's Sign-in page](https://console.aws.amazon.com/).
 
-- The root user of the new account will receive an email and can login by following the “Forgot Password” flow in the [AWS Console’s Sign in page](https://console.aws.amazon.com/) to set a password and subsequently log in.
-
-Once the account has been successfully created, Pipelines will open another Pull Request to baseline the new account.
+When the account is successfully created, Pipelines will open another Pull Request to baseline the account.
 
 ### Step 5 - Merge the Account Baseline PR
 
-Review and merge the Account Baseline Pull Request. This Pull Request contains required infrastructure for your delegated repository to plan and apply infrastructure changes in AWS, as well as account baselines and account specific infrastructure such as a VPC if configured.
+Review and merge the Account Baseline Pull Request. This PR contains essential infrastructure for enabling your delegated repository to plan and apply infrastructure changes in AWS. It also includes account baselines and configured account-specific infrastructure, such as a VPC.
 
-The new account's IaC is tracked in your `infrastructure-live-root` as a new directory. Once the Account Baseline PR has been merged to your main branch, and Pipelines has applied the changes, you are ready to start adding new infrastructure to your new account by adding Terragrunt units to this directory.
+The new account's Infrastructure as Code (IaC) is tracked in `infrastructure-live-root` as a newly created directory. Once the Account Baseline PR merges into the main branch and Pipelines applies the changes, you can add infrastructure to the new account by creating Terragrunt units in the directory.
