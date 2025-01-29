@@ -33,13 +33,11 @@ Gruntwork recommends using a password manager such as [1Password](https://1passw
 If screen sharing while generating tokens, **pause or hide your screen** before selecting the `Generate token` button to prevent exposure.
 :::
 
-
 ### GitHub token types
 
 GitHub supports two types of tokens:
 
 1. Classic tokens
-
 2. Fine-grained tokens
 
 #### Classic tokens
@@ -66,9 +64,8 @@ However, fine-grained tokens have the following limitations:
 
 In Pipelines, the `ci-user` will need two fine-grained tokens because they allow for very limited access to specific repositories, with minimal permissions to them.
 
-:::tip 
+:::tip
 The `INFRA_ROOT_WRITE_TOKEN` and `ORG_REPO_ADMIN_TOKEN` must be created as **fine-grained tokens**.
-
 :::
 
 :::tip
@@ -145,9 +142,9 @@ This token must have the following permissions to the `INFRA_ROOT_WRITE_TOKEN` f
 
 - **Content:** Read & write access — Required to clone the repository and push changes.  
 - **Issues:** Read & write access — Allows Pipelines to open issues when manual intervention is needed.  
-- **Metadata:** Read access — Grants access to repository metadata, essential for automation.  
+- **Metadata:** Read access — Grants access to repository metadata. 
 - **Pull requests:** Read & write access — Enables Pipelines to automate infrastructure changes through PRs.  
-- **Workflows:** Read & write access — Needed to update workflow files in `.github/workflows`.
+- **Workflows:** Read & write access — Needed to update workflow files in `.github/workflows` when provisioning new repositories.
 
 ![INFRA_ROOT_WRITE_TOKEN PAT Configuration](/img/pipelines/security/INFRA_ROOT_WRITE_TOKEN.png)
 
@@ -155,7 +152,7 @@ This token must have the following permissions to the `INFRA_ROOT_WRITE_TOKEN` f
 
 <summary>Why does this token need these permissions?</summary>
 
-Below is a detailed breakdown of the permissions needed for the `INFRA_ROOT_WRITE_TOKEN`, based on our testing. Permissions were gradually added to identify the minimal set required for Pipelines functionality. Some permissions are tied to specific actions, while others are exclusively used by Enterprise customers.
+Below is a detailed breakdown of the permissions needed for the `INFRA_ROOT_WRITE_TOKEN`. Some permissions are tied to specific actions, while others are exclusively used by Enterprise customers.
 
 If you are not an Enterprise customer or prefer Pipelines not to execute certain behaviors, you can opt not to grant the related permissions.
 
@@ -166,10 +163,10 @@ Needed for cloning `infrastructure-live-root` and pushing automated changes. Wit
 Allows Pipelines to open issues that alert teams when manual action is required.
 
 ##### Metadata read access  
-Grants visibility into repository metadata for better automation.
+Grants visibility into repository metadata.
 
 ##### Pull requests read & write access  
-Essential for creating pull requests to introduce infrastructure changes.
+Allows Pipelines to create pull requests to introduce infrastructure changes.
 
 ##### Workflows read & write access  
 Required to update workflows when provisioning new repositories.
@@ -209,13 +206,14 @@ Used for bootstrapping repositories and populating them with necessary content.
 Grants repository-level insights needed for automation.
 
 ##### Pull requests read & write access  
-Automates infrastructure updates via pull requests.
+     This is required to open pull requests. When vending delegated repositories for Enterprise customers, Pipelines will open pull requests to automate the process of introducing new Infrastructure as Code changes to drive infrastructure updates.
 
 ##### Workflows read & write access  
-Manages workflow files required for continuous integration and deployment.
+ This is required to update GitHub Action workflow files. When vending delegated repositories for Enterprise customers, Pipelines will create new repositories, including content in the `.github/workflows` directory. Without this permission, Pipelines would not be able to provision repositories with this content.
 
 ##### Members read & write access  
-Grants permission to manage GitHub teams and repository access for delegated repositories.
+
+     Required to update GitHub organization team members. When vending delegated repositories for Enterprise customers, Pipelines will add team members to a team that has access to a delegated repository. Without this permission, Pipelines would not be able to provision repositories that are accessible to the correct team members.
 
 </details>
 
