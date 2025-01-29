@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.59.5" lastModifiedVersion="0.57.2"/>
+<VersionBadge repoTitle="CI Modules" version="0.59.7" lastModifiedVersion="0.57.2"/>
 
 # Gruntwork Module CircleCI Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.5/modules/gruntwork-module-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/gruntwork-module-circleci-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.57.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -191,11 +191,11 @@ variables](https://circleci.com/docs/environment-variables/).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.5/modules/gruntwork-module-circleci-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.5/modules/gruntwork-module-circleci-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.5/modules/gruntwork-module-circleci-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/gruntwork-module-circleci-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/gruntwork-module-circleci-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/gruntwork-module-circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "872637db4a08421312fdc230404ea932"
+  "hash": "fd69937b886b42f85d7df1f69e625574"
 }
 ##DOCS-SOURCER-END -->

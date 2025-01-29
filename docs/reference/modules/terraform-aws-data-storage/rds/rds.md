@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.40.2" lastModifiedVersion="0.40.2"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.40.3" lastModifiedVersion="0.40.3"/>
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.2/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.3/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle,
 or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups,
@@ -117,7 +117,7 @@ Set `multi_az=true`. When setting up a multi-AZ (Availability Zone) RDS deployme
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.40.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.40.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -479,6 +479,13 @@ module "rds" {
   # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
 
+  # Time zone of the DB instance. timezone is currently only supported by
+  # Microsoft SQL Server. The timezone can only be set on creation. See MSSQL
+  # User Guide
+  # (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone)
+  # for more information.
+  timezone = null
+
   # Timeout for DB updating
   updating_timeout = "80m"
 
@@ -497,7 +504,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.40.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.40.3"
 }
 
 inputs = {
@@ -861,6 +868,13 @@ inputs = {
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
   # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
+
+  # Time zone of the DB instance. timezone is currently only supported by
+  # Microsoft SQL Server. The timezone can only be set on creation. See MSSQL
+  # User Guide
+  # (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone)
+  # for more information.
+  timezone = null
 
   # Timeout for DB updating
   updating_timeout = "80m"
@@ -1672,6 +1686,15 @@ The type of storage to use for the primary instance. Must be one of 'standard' (
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
 </HclListItem>
 
+<HclListItem name="timezone" requirement="optional" type="string">
+<HclListItemDescription>
+
+Time zone of the DB instance. timezone is currently only supported by Microsoft SQL Server. The timezone can only be set on creation. See MSSQL User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone) for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="updating_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1732,11 +1755,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.2/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.2/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.2/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.3/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.3/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.3/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cf437c0db9f9e35487022117638952a8"
+  "hash": "3005cf8645255ff89bd7585bb41befbe"
 }
 ##DOCS-SOURCER-END -->

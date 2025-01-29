@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.40.2" lastModifiedVersion="0.38.1"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.40.3" lastModifiedVersion="0.40.3"/>
 
 # RDS Read Replicas Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.2/modules/rds-replicas" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.3/modules/rds-replicas" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.38.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates a read replica (read-only copy) of a DB instance.
 
@@ -77,7 +77,7 @@ terraform import aws_db_instance.<identifier> <primary_instance_arn>
 
 module "rds_replicas" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-replicas?ref=v0.40.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-replicas?ref=v0.40.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -290,6 +290,13 @@ module "rds_replicas" {
   # This is ignored if create_subnet_group=false.
   subnet_ids = null
 
+  # Time zone of the DB instance. timezone is currently only supported by
+  # Microsoft SQL Server. The timezone can only be set on creation. See MSSQL
+  # User Guide
+  # (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone)
+  # for more information.
+  timezone = null
+
   # Timeout for DB updating
   updating_timeout = "80m"
 
@@ -308,7 +315,7 @@ module "rds_replicas" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-replicas?ref=v0.40.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-replicas?ref=v0.40.3"
 }
 
 inputs = {
@@ -523,6 +530,13 @@ inputs = {
   # Gruntwork VPC setup, these should be the private persistence subnet ids.
   # This is ignored if create_subnet_group=false.
   subnet_ids = null
+
+  # Time zone of the DB instance. timezone is currently only supported by
+  # Microsoft SQL Server. The timezone can only be set on creation. See MSSQL
+  # User Guide
+  # (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone)
+  # for more information.
+  timezone = null
 
   # Timeout for DB updating
   updating_timeout = "80m"
@@ -947,6 +961,15 @@ A list of subnet ids where the database should be deployed. In the standard Grun
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="timezone" requirement="optional" type="string">
+<HclListItemDescription>
+
+Time zone of the DB instance. timezone is currently only supported by Microsoft SQL Server. The timezone can only be set on creation. See MSSQL User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone) for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="updating_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -983,11 +1006,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.2/modules/rds-replicas/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.2/modules/rds-replicas/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.2/modules/rds-replicas/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.3/modules/rds-replicas/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.3/modules/rds-replicas/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.3/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d9886c4cdb5509b2626f5e0031b1fd44"
+  "hash": "fe6a54b293d4d097b4ce9293d28d7c56"
 }
 ##DOCS-SOURCER-END -->

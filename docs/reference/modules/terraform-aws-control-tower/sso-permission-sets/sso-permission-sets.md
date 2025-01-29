@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.8.1" />
+<VersionBadge repoTitle="Control Tower" version="0.8.4" />
 
 # SSO Permission Sets
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/aws-sso/sso-permission-sets" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.4/modules/aws-sso/sso-permission-sets" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=sso-permission-sets" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -79,7 +79,26 @@ access to the AWS Account with the IAM permissions defined on the Permission Set
 
 Permission sets are normally bound to groups using your IDP.
 
-For an example of a manual binding see the [sso-groups module](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/aws-sso/sso-groups).
+For an example of a manual binding see the [sso-groups module](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.4/modules/aws-sso/sso-groups).
+
+### What are permission boundaries?
+
+Permission boundaries are an advanced feature of AWS IAM that allows you to set the maximum permissions that an entity.
+For example you can limit the permissions of a Permission Set to `ReadOnlyAccess`:
+
+```hcl
+module "sso_permission_set" {
+  source = "git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets"
+
+  name          = "GWReadOnlyAccess"
+  description   = "Provides read-only access to accounts"
+  managed_policy_names = ["ReadOnlyAccess"]
+
+  permissions_boundary_managed_policy_name = ["ReadOnlyAccess"]
+}
+```
+
+For more information on permission boundaries, see the [official documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html).
 
 ## Sample Usage
 
@@ -94,7 +113,7 @@ For an example of a manual binding see the [sso-groups module](https://github.co
 
 module "sso_permission_sets" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.8.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.8.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -113,6 +132,16 @@ module "sso_permission_sets" {
 
   # A list of managed policy names to add to the Permission set.
   managed_policy_names = []
+
+  # The customer managed policy reference to use as the permissions boundary for
+  # the Permission Set. Note that this is mutually exclusive with
+  # `permissions_boundary_managed_policy_name`.
+  permisions_boundary_customer_managed_policy_reference = null
+
+  # The name of the managed policy to use as the permissions boundary for the
+  # Permission Set. Note that this is mutually exclusive with
+  # `permissions_boundary_customer_managed_policy_reference`.
+  permissions_boundary_managed_policy_name = null
 
   # The length, in hours, that a session is valid.
   session_duration_hours = 1
@@ -139,7 +168,7 @@ module "sso_permission_sets" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.8.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.8.4"
 }
 
 inputs = {
@@ -161,6 +190,16 @@ inputs = {
 
   # A list of managed policy names to add to the Permission set.
   managed_policy_names = []
+
+  # The customer managed policy reference to use as the permissions boundary for
+  # the Permission Set. Note that this is mutually exclusive with
+  # `permissions_boundary_managed_policy_name`.
+  permisions_boundary_customer_managed_policy_reference = null
+
+  # The name of the managed policy to use as the permissions boundary for the
+  # Permission Set. Note that this is mutually exclusive with
+  # `permissions_boundary_customer_managed_policy_reference`.
+  permissions_boundary_managed_policy_name = null
 
   # The length, in hours, that a session is valid.
   session_duration_hours = 1
@@ -216,6 +255,34 @@ A list of managed policy names to add to the Permission set.
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="permisions_boundary_customer_managed_policy_reference" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+The customer managed policy reference to use as the permissions boundary for the Permission Set. Note that this is mutually exclusive with `permissions_boundary_managed_policy_name`.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    name = string
+    path = optional(string, "/")
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="permissions_boundary_managed_policy_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the managed policy to use as the permissions boundary for the Permission Set. Note that this is mutually exclusive with `permissions_boundary_customer_managed_policy_reference`.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="session_duration_hours" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -265,15 +332,14 @@ The name of the permission set that was created.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/sso-permission-sets/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/sso-permission-sets/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.1/modules/sso-permission-sets/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.4/modules/sso-permission-sets/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.4/modules/sso-permission-sets/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.4/modules/sso-permission-sets/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c34446a457daf139013064c4538cff6a"
+  "hash": "b69bbe0842959c28c29f3a5a7d937dae"
 }
 ##DOCS-SOURCER-END -->
