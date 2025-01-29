@@ -155,7 +155,7 @@ Setting up Control Tower for the first time can take over an hour, with most of 
 
 ### Configure Organizational Units (OUs)
 
-1. Rename the "Additional OU" to **"Pre-prod"**.
+1. Rename the "Additional OU" to **"Pre-prod"** (Note the casing of the name here).
 
    <details>
    <summary>Screenshot</summary>
@@ -208,10 +208,10 @@ Control Tower creation will take approximately one hour.
    </details>
 
    :::tip
-   You can safely close the browser tab during this process.
+   You can safely close your browser tab once you see this notice. The setup process will proceed unaffected in the background.
    :::
 
-3. Invitations will be sent to the Root user for signing in using AWS IAM Identity Center. Once accepted, the Root user can access the Root, Logs, and Security accounts via the Identity Center Access Portal.
+3. Invitations will be sent to the Root user (designed as the *Control Tower Admin*) for signing in using AWS IAM Identity Center. Once accepted, the Root user can access the Root, Logs, and Security accounts via the Identity Center Access Portal.
 
    <details>
    <summary>Screenshot</summary>
@@ -222,7 +222,7 @@ Control Tower creation will take approximately one hour.
 
 Complete the following steps to prepare for Gruntwork Account Factory:
 
-1. [Disable the default VPC](https://docs.aws.amazon.com/controltower/latest/userguide/configure-without-vpc.html#create-without-vpc) created for new accounts. Gruntwork will create VPCs as needed.
+1. [Disable the default VPC](https://docs.aws.amazon.com/controltower/latest/userguide/configure-without-vpc.html#create-without-vpc) created for new accounts. Gruntwork Account Factory will create VPCs as needed.
 2. Create a shared account in a `Prod` OU:
    - Navigate to the [AWS Control Tower Organization Dashboard](https://console.aws.amazon.com/controltower/home/organization).
    - Choose **Create Resources** > `Create organizational unit`.
@@ -231,10 +231,20 @@ Complete the following steps to prepare for Gruntwork Account Factory:
    - Name the account `Shared`, use the shared email address from the prerequisites, and assign it to the `Prod` OU.
 
       :::tip
-      The shared account is intended for resources like KMS Keys, AMIs, or ECR repositories.
+      The shared account is intended for shared resources like KMS Keys, AMIs, or ECR repositories.
       :::
 
    - Assign IAM Identity Center user access to the `Shared` account.
+
+      1. Navigate to IAM Identity Center, then click AWS accounts under **Multi-account permissions** in the side menu
+
+      2. Select the `Shared` account from the `Prod` OU dropdown and click **Assign users or groups**
+
+      3. Switch to the `Users` tab, select your management user from the list and click **Next**
+
+      4.  Select `AWSAdministratorAccess` from the list of Permission Sets, then click **Next**
+
+      5.  Click `Submit` to finish assigning access to your user
 
 ## Next steps
 
