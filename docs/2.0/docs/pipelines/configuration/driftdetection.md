@@ -1,6 +1,5 @@
 # Setting up Pipelines Drift Detection
 
-If you're a Pipelines Enterprise customer and you installed Pipelines using our infrastructure-live-root repository template then Drift Detection is already installed and available as a GitHub workflow in your repository.
+If you are a Pipelines Enterprise customer and used the infrastructure-live-root repository template to install Pipelines, Drift Detection is already included and available as a GitHub workflow in your repository.
 
-If you installed Pipelines in a manner other than from the template and you're an enterprise customer and you want to add Drift Detection, see the [Installing Drift Detection Guide](/2.0/docs/pipelines/guides/installing-drift-detection.md).
-
+For installations not based on the template, follow the [Installing Drift Detection Guide](/2.0/docs/pipelines/guides/installing-drift-detection.md) to enable Drift Detection.
