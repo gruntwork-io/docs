@@ -239,6 +239,48 @@ module "bastion_host" {
   # use null, or Terraform will complain).
   external_account_ssh_grunt_role_arn = ""
 
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  # for the instance.
+  high_instance_cpu_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a CPU utilization percentage above
+  # this threshold.
+  high_instance_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the instance.
+  high_instance_disk_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a root disk utilization percentage
+  # above this threshold.
+  high_instance_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization
+  # percentage for the instance.
+  high_instance_memory_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a Memory utilization percentage
+  # above this threshold.
+  high_instance_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_memory_utilization_treat_missing_data = "missing"
+
   # The type of instance to run for the bastion host
   instance_type = "t3.micro"
 
@@ -248,6 +290,19 @@ module "bastion_host" {
   # The name of the bastion host and the other resources created by these
   # templates
   name = "bastion-host"
+
+  # If set to true, the root volume will be deleted when the Instance is
+  # terminated.
+  root_volume_delete_on_termination = true
+
+  # The size of the root volume, in gigabytes.
+  root_volume_size = 8
+
+  # Tags to set on the root volume.
+  root_volume_tags = {}
+
+  # The root volume type. Must be one of: standard, gp2, io1.
+  root_volume_type = "standard"
 
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
@@ -418,6 +473,48 @@ inputs = {
   # use null, or Terraform will complain).
   external_account_ssh_grunt_role_arn = ""
 
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  # for the instance.
+  high_instance_cpu_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a CPU utilization percentage above
+  # this threshold.
+  high_instance_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the instance.
+  high_instance_disk_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a root disk utilization percentage
+  # above this threshold.
+  high_instance_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization
+  # percentage for the instance.
+  high_instance_memory_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a Memory utilization percentage
+  # above this threshold.
+  high_instance_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_memory_utilization_treat_missing_data = "missing"
+
   # The type of instance to run for the bastion host
   instance_type = "t3.micro"
 
@@ -427,6 +524,19 @@ inputs = {
   # The name of the bastion host and the other resources created by these
   # templates
   name = "bastion-host"
+
+  # If set to true, the root volume will be deleted when the Instance is
+  # terminated.
+  root_volume_delete_on_termination = true
+
+  # The size of the root volume, in gigabytes.
+  root_volume_size = 8
+
+  # Tags to set on the root volume.
+  root_volume_tags = {}
+
+  # The root volume type. Must be one of: standard, gp2, io1.
+  root_volume_type = "standard"
 
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
@@ -720,6 +830,87 @@ If you are using ssh-grunt and your IAM users / groups are defined in a separate
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="high_instance_cpu_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the CPU utilization percentage for the instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_instance_cpu_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the EC2 instance has a CPU utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_instance_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_instance_disk_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the root disk utilization percentage for the instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_instance_disk_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the EC2 instance has a root disk utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_instance_disk_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_instance_memory_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the Memory utilization percentage for the instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_instance_memory_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the EC2 instance has a Memory utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_instance_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="instance_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -745,6 +936,42 @@ The name of the bastion host and the other resources created by these templates
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;bastion-host&quot;"/>
+</HclListItem>
+
+<HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, the root volume will be deleted when the Instance is terminated.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="root_volume_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+The size of the root volume, in gigabytes.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="8"/>
+</HclListItem>
+
+<HclListItem name="root_volume_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags to set on the root volume.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="root_volume_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The root volume type. Must be one of: standard, gp2, io1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;standard&quot;"/>
 </HclListItem>
 
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
@@ -854,6 +1081,6 @@ The fully qualified name of the bastion host.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.12/modules/mgmt/bastion-host/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "08468fe8b865e8a4065f8bb0adcd4cae"
+  "hash": "589cb7b5846165304a4d532b9da748bd"
 }
 ##DOCS-SOURCER-END -->
