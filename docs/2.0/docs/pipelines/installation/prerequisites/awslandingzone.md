@@ -1,3 +1,6 @@
+import CustomizableValue from '/src/components/CustomizableValue';
+
+ 
 # Landing Zone
 
 ## Overview
@@ -6,7 +9,7 @@ The Landing Zone component establishes an initial best-practice AWS multi-accoun
 
 ## Extending AWS Control Tower
 
-Gruntwork’s suggested Landing Zone and Account Factory extend AWS Control Tower to provide additional critical functionality.
+Gruntwork’s suggested Landing Zone and Account Factory extends AWS Control Tower to provide additional critical functionality.
 
 ### What is AWS Control Tower?
 
@@ -18,8 +21,8 @@ Gruntwork’s Account Factory addresses these limitations by enhancing Control T
 
 1. Configure and customize new AWS accounts using Terraform/OpenTofu.
 2. Through Gruntwork Account Factory:
-   - Ensure all new AWS accounts comply with the CIS AWS Foundations Benchmark by default.
-   - Request new AWS accounts using YAML files, GitHub Actions, or systems like ServiceNow.
+   - Ensure all new AWS accounts comply with the CIS AWS Foundations Benchmark out of the box.
+   - Request new AWS accounts using YAML files, GitHub Actions, or any system that can trigger a GitHub action (e.g. ServiceNow).
    - Review and customize AWS account requests through GitHub Pull Request workflows.
    - Define and apply an organization-specific account baseline.
    - Automatically keep AWS account baselines up-to-date with [Patcher](/2.0/docs/patcher/concepts/).
@@ -78,7 +81,7 @@ To use Gruntwork Account Factory, begin by setting up a new multi-account enviro
         ![Edit Key Policy](/img/devops-foundations/account/edit-key-policy.png)
         </details>
 
-      - Add the necessary policy statement, replacing `YOUR-HOME-REGION`, `YOUR-MANAGEMENT-ACCOUNT-ID`, and `YOUR-KMS-KEY-ID` with your account-specific values:
+      - Add the necessary policy statement, replacing <CustomizableValue id="HOMEREGION" />, <CustomizableValue id="MAMANGEMENTACCOUNTID" />, and <CustomizableValue id="KMSKEYID" /> with your account-specific values:
 
         ```json
         {
@@ -88,7 +91,7 @@ To use Gruntwork Account Factory, begin by setting up a new multi-account enviro
             "Service": "config.amazonaws.com"
           },
           "Action": ["kms:Decrypt", "kms:GenerateDataKey"],
-          "Resource": "arn:aws:kms:YOUR-HOME-REGION:YOUR-MANAGEMENT-ACCOUNT-ID:key/YOUR-KMS-KEY-ID"
+          "Resource": "arn:aws:kms:$$HOMEREGION$$:$$MANAGEMENTACCOUNTID$$:key/$$KMSKEYID$$"
         }
         ```
 
