@@ -12,7 +12,7 @@ The upgrade process starts by deploying Pipelines through the ECS Deploy Runner 
 
 ECS Deploy Runner provided a secure approach to CI/CD for infrastructure. Pipelines builds on these principles, integrating with modern CI systems like GitHub Actions for improved usability and setup simplicity. Key improvements include:
 
-- **Simplified Setup:** Simplified Setup: Pipelines removes the need for deploying AWS resources (aside from setting up an OIDC token), relying solely on GitHub Actions workflows for setup.
+- **Simplified Setup:** Pipelines removes the need for deploying AWS resources (aside from setting up an OIDC token), relying solely on GitHub Actions workflows for setup.
 - **Pull Request-Centric UX:** Pipelines organizes its operations around pull requests, offering detailed feedback in pull request comments.
 - **Streamlined Updates:** Pipelines is designed for seamless updates, ensuring users can easily stay on the latest version.
 
@@ -76,7 +76,7 @@ For additional context, see [Security Hardening with OpenID Connect](https://doc
 
 ### Generate Pipelines IAM code using GitHub Actions
 
-In your `infrastructure-live` repository, create a pull request to add a [GitHub Actions workflow](https://github.com/gruntwork-io/gruntwork-infra-live-standalone-template/blob/main/.github/workflows/bootstrap.yml) for bootstrapping IAM roles. Once merged into `main`, run the **Infrastructure Live Bootstrap** workflow for each account. Each run generates a pull request containing Terraform code to create the required IAM roles and OIDC providers.
+In your `infrastructure-live` repository, create a pull request to add a [GitHub Actions workflow](https://github.com/gruntwork-io/gruntwork-infra-live-standalone-template/blob/main/.github/workflows/bootstrap.yml) into your `.github/workflows` directory for bootstrapping IAM roles. Once merged into `main`, run the **Infrastructure Live Bootstrap** workflow for each account. Each run generates a pull request containing Terraform code to create the required IAM roles and OIDC providers.
 
 :::tip
 Start by testing Pipelines in non-production environments before rolling it out to production.

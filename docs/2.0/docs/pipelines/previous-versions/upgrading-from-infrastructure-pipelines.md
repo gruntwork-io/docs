@@ -58,7 +58,7 @@ The `bootstrap.yml` workflow configures the `accounts.yml` file as if initializi
 git checkout origin/main -- accounts.yml
 ```
 
-### Reverting the update of your `multi_region_common.hcl`file
+### Reverting the update of your `multi_region_common.hcl` file
 
 The `bootstrap.yml` workflow sets your `multi_region_common.hcl` file as if you were setting up a new repository from scratch. You have likely already made changes to this file, and you will want to revert the changes that the `bootstrap.yml` workflow made to this file:
 
@@ -132,7 +132,7 @@ Ensure that the permissions assigned to these roles are appropriate for your org
 # # Ensure you have the necessary permissions for the account you are working in
 cd <path-to-account>/_global/github-actions-openid-connect-provider
 
-# If the OIDC provider already exists in your account but is not in the state file, you can import it
+# If the OIDC provider already exists in your account but is not in the IaC state, you can import it
 # Note: If `jq` is not installed, replace the code in `$()` below with the relevant account ID.
 terragrunt import 'aws_iam_openid_connect_provider.github' "arn:aws:iam::$(aws sts get-caller-identity | jq -r '.Account'):oidc-provider/token.actions.githubusercontent.com"
 terragrunt apply
@@ -189,7 +189,9 @@ Refer to the `Tagging` section in the updated `README.md` included in the pull r
 
 Earlier versions of `infrastructure-live` repositories often used a `source_base_url` local variable in `terragrunt.hcl` files to centralize module sourcing. This pattern has been deprecated due to its complexity and the difficulty of managing configuration isolation.
 
-To update, search for `source_base_url` in your files. Replace its usage with direct module source paths, referencing the relevant `_envcommon` folder if necessary.
+If you have a `source_base_url` local variable in your `terragrunt.hcl` files, you will need to remove it and update the `source` values in your `terraform` configuration blocks to reflect the underlying module source. 
+
+You can do this by searching for `source_base_url` in your editor, taking note of every location where this pattern is used, then finding the referenced include (usually the equivalent `_envcommon` folder for the folder you are looking at), and updating the `source` value to reflect the new location.
 
 ### The `README.md` file
 
@@ -220,6 +222,25 @@ Search for and remove outdated files or folders that are no longer needed, such 
 - `_envcommon/landingzone/pipelines-pre-auth-role.hcl`
 - `_envcommon/landingzone/central-pipelines-plan-role.hcl`
 - `_envcommon/landingzone/central-pipelines-apply-role.hcl`
+- `_envcommon/landingzone/team-pipelines-plan-role.hcl`
+- `_envcommon/landingzone/team-pipelines-apply-role.hcl`
+- `_envcommon/landingzone/pipelines-policy-plan-update-role.hcl`
+- `_envcommon/landingzone/pipelines-policy-apply-update-role.hcl`
+- `_envcommon/landingzone/github-oidc-role.hcl`
+
+Some folders that you should search across your repository for removal include:
+
+- `pipelines-pre-auth-role`
+- `team-pipelines-plan-role`
+- `team-pipelines-apply-role`
+- `pipelines-pre-auth-role`
+- `central-pipelines-plan-role`
+- `central-pipelines-apply-role`
+- `pipelines-policy-plan-update-role`
+- `pipelines-policy-apply-update-role`
+- `github-oidc-role`
+
+It is very likely that you will not have _all_ of these files in your `infrastructure-live` repository, but you should search for them to ensure that you are not leaving any unnecessary files in your repository.
 
 Consult Gruntwork support if you're unsure about residual files.
 
@@ -229,11 +250,16 @@ Remove any tokens or secrets used with the previous `infrastructure-pipelines` s
 
 ### Archive the `infrastructure-pipelines` repository
 
-If the `infrastructure-pipelines` repository is no longer needed, archive it to prevent accidental use. Refer to [GitHub's archiving documentation](https://docs.github.com/en/repositories/archiving-a-github-repository/archiving-repositories).
+The `infrastructure-pipelines` repository is no longer needed, and should be archived to prevent accidental use. Refer to [GitHub's archiving documentation](https://docs.github.com/en/repositories/archiving-a-github-repository/archiving-repositories).
+
+Note that this is a reversible process, which is advisable in case you need to revert back to the old setup for any reason. If you would prefer to permanently delete the repository instead, you can refer to the [GitHub documentation on deleting the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/deleting-a-repository).
 
 ## Conclusion 🎉
 
-You have successfully migrated your repository from `infrastructure-pipelines`! Perform small tests to ensure stability and familiarize yourself with the new setup.
+You have successfully migrated your repository from `infrastructure-pipelines`! We recommend performing small tests to ensure stability and familiarize yourself with the new setup.
+
+
+Create a new pull request that makes a small change to your infrastructure code (adding a comment to a `terragrunt.hcl` file will trigger Pipelines), and ensure that the plan and apply workflows run as expected, that you know where the logs will appear, and that you have a good understanding of how to troubleshoot any issues that may arise.
 
 If you encounter any issues or have suggestions for improving this guide, please contact Gruntwork support or contribute to the community guide.
 

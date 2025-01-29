@@ -24,7 +24,7 @@ This section covers creating a resource in your AWS account using Pipelines and 
 
 ### Adding a new S3 bucket
 
-1. Create the folder structure for the new S3 bucket in your environment. Replace `<CustomizableValue id="ACCOUNT_NAME" />` with the account name you are deploying to and `<CustomizableValue id="REGION" />` with the AWS region where the S3 bucket will be deployed.
+1. Create the folder structure for the new S3 bucket in your environment. Replace <CustomizableValue id="ACCOUNT_NAME" /> with the account name you are deploying to and <CustomizableValue id="REGION" /> with the AWS region where the S3 bucket will be deployed.
 
     ```bash
     mkdir -p $$ACCOUNT_NAME$$/$$REGION$$/$$ACCOUNT_NAME$$/data-storage/s3
@@ -40,7 +40,7 @@ This section covers creating a resource in your AWS account using Pipelines and 
     }
     ```
 
-2. Add the Terragrunt code below to the newly created `terragrunt.hcl` file to define the S3 bucket. Replace `<CustomizableValue id='S3_BUCKET_NAME'/>` with your desired bucket name. Ensure the bucket name is unique.
+2. Add the Terragrunt code below to the newly created `terragrunt.hcl` file to define the S3 bucket. Replace <CustomizableValue id='S3_BUCKET_NAME'/> with your desired bucket name. Ensure the bucket name is unique.
 
 
     ```hcl title="$$ACCOUNT_NAME$$/$$REGION$$/$$ACCOUNT_NAME$$/data-storage/s3/terragrunt.hcl"

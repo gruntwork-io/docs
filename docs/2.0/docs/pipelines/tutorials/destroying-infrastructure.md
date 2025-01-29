@@ -26,7 +26,7 @@ This section explains how to destroy AWS resources using Pipelines and GitOps wo
 
 ### Delete the infrastructure code
 
-1. Remove the folder containing the infrastructure code for the resource you want to destroy. For the S3 bucket example, delete the folder containing the S3 bucket code. Replace `<CustomizableValue id="ACCOUNT_NAME" />` and `<CustomizableValue id="REGION" />` with the appropriate values.
+1. Remove the folder containing the infrastructure code for the resource you want to destroy. For the S3 bucket example, delete the folder containing the S3 bucket code. Replace <CustomizableValue id="ACCOUNT_NAME" /> and <CustomizableValue id="REGION" /> with the appropriate values.
 
     ```bash
     rm -rf $$ACCOUNT_NAME$$/$$REGION$$/$$ACCOUNT_NAME$$/data-storage/s3
@@ -50,5 +50,4 @@ If you are satisfied with the changes shown in the `plan` action, you can procee
 
 Approve and merge the pull request to trigger the apply action, permanently deleting the resource from your AWS account.
 
-<!-- Add Image -->
-<!-- [Pipelines Destroy Apply Comment](/img/pipelines/tutorial/pipelines-destro
+Congratulations! You have successfully destroyed an AWS resource using Gruntwork Pipelines and GitOps workflows. To verify the resource has been destroyed, check your AWS management console.
