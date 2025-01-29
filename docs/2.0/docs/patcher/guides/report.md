@@ -1,14 +1,16 @@
 # Patcher Report
 
-Patcher `report` generates a list of module dependencies in JSON format. 
+Patcher `report` generates a list of module dependencies in JSON format.
 
 ## Non-interactive mode
+
 Example usage:
 ```
 patcher report prod
 ```
 
-The `report` command outputs the list of module dependencies in JSON format to `stdout`. For example: 
+The `report` command outputs the list of module dependencies in JSON format to `stdout`. For example:
+
 ```json
 [
    "gruntwork-io/terraform-aws-monitoring/logs/load-balancer-access-logs",
