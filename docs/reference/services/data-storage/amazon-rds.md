@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.11" lastModifiedVersion="0.118.11"/>
+<VersionBadge version="0.118.12" lastModifiedVersion="0.118.12"/>
 
 # Amazon Relational Database Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.11/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.12/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -69,7 +69,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.11/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.12/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,12 +77,12 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.11/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.12/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
-*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.11/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
+*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.12/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
 
 
 ## Sample Usage
@@ -103,7 +103,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -487,6 +487,10 @@ module "rds" {
   # https://aws.amazon.com/rds/performance-insights/ for more details.
   performance_insights_enabled = false
 
+  # Amount of time in days to retain Performance Insights data. Valid values are
+  # 7, 731 (2 years) or a multiple of 31.
+  performance_insights_retention_period = 7
+
   # The port the DB will listen on (e.g. 3306). Alternatively, this can be
   # provided via AWS Secrets Manager. See the description of
   # db_config_secrets_manager_id.
@@ -605,7 +609,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.12"
 }
 
 inputs = {
@@ -991,6 +995,10 @@ inputs = {
   # be enabled for specific versions of database engines. See
   # https://aws.amazon.com/rds/performance-insights/ for more details.
   performance_insights_enabled = false
+
+  # Amount of time in days to retain Performance Insights data. Valid values are
+  # 7, 731 (2 years) or a multiple of 31.
+  performance_insights_retention_period = 7
 
   # The port the DB will listen on (e.g. 3306). Alternatively, this can be
   # provided via AWS Secrets Manager. See the description of
@@ -2195,6 +2203,15 @@ Specifies whether Performance Insights are enabled. Performance Insights can be 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="performance_insights_retention_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+Amount of time in days to retain Performance Insights data. Valid values are 7, 731 (2 years) or a multiple of 31.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="7"/>
+</HclListItem>
+
 <HclListItem name="port" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2557,11 +2574,11 @@ The ID of the Security Group that controls access to the RDS DB instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.11/modules/data-stores/rds/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.11/modules/data-stores/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.11/modules/data-stores/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.12/modules/data-stores/rds/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.12/modules/data-stores/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.12/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "18182e140001e814ff4d729e209054e0"
+  "hash": "11114d15c1f5acf07965c1388d9b04aa"
 }
 ##DOCS-SOURCER-END -->
