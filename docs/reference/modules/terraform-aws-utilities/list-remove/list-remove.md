@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.10.5" lastModifiedVersion="0.9.6"/>
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.10.6" lastModifiedVersion="0.9.6"/>
 
 # List Remove Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/list-remove" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.6/modules/list-remove" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.9.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -43,7 +43,7 @@ The output `new_list` should be the list `["us-east-1a", "us-east-1d", "us-east-
 
 ## Example code
 
-See the [list-remove example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/examples/list-remove) for working sample code.
+See the [list-remove example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.6/examples/list-remove) for working sample code.
 
 ## Sample Usage
 
@@ -58,7 +58,7 @@ See the [list-remove example](https://github.com/gruntwork-io/terraform-aws-util
 
 module "list_remove" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/list-remove?ref=v0.10.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/list-remove?ref=v0.10.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -85,7 +85,7 @@ module "list_remove" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/list-remove?ref=v0.10.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/list-remove?ref=v0.10.6"
 }
 
 inputs = {
@@ -157,15 +157,14 @@ Any types represent complex values of variable type. For details, please consult
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/list-remove/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/list-remove/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/list-remove/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.6/modules/list-remove/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.6/modules/list-remove/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.6/modules/list-remove/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d8add57c82a0352dc87965ceba32d481"
+  "hash": "2545f4e5b19c55a4a10e17c699ca2c40"
 }
 ##DOCS-SOURCER-END -->

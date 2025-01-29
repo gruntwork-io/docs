@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.2" lastModifiedVersion="0.69.2"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.6" lastModifiedVersion="0.69.2"/>
 
 # A Best-Practices Set of IAM Groups
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules/iam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-groups" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.69.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -52,7 +52,7 @@ This module optionally creates the following IAM Groups:
     since users can grant arbitrary permissions!
 *   **use-existing-iam-roles:** IAM Users in this group can pass *existing* IAM Roles to AWS resources to which they have
     been granted access. These IAM Users cannot create *new* IAM Roles, only use existing ones. See
-    [the three levels of IAM permissions](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules/iam-policies#the-three-levels-of-iam-permissions) for more information.
+    [the three levels of IAM permissions](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-policies#the-three-levels-of-iam-permissions) for more information.
 *   **ssh-grunt-sudo-users:** IAM Users in this group have SSH access with `sudo` privileges to any EC2 Instance configured
     to use this group to manage SSH logins.
 *   **ssh-grunt-users:** IAM Users in this group have SSH access without `sudo` privileges to any EC2 Instance configured
@@ -83,7 +83,7 @@ own account unless this IAM Policy is attached to his account.
 
 ### IAM Users
 
-This module does not create any IAM Users, nor assign any existing IAM Users to IAM Groups. You can use the [iam-users module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules/iam-users) to create users.
+This module does not create any IAM Users, nor assign any existing IAM Users to IAM Groups. You can use the [iam-users module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-users) to create users.
 
 ### IAM Roles
 
@@ -108,7 +108,7 @@ otherwise enable IAM Users to access the billing console:
 ## Background Information
 
 For background information on IAM, IAM users, IAM policies, and more, check out the [background information docs in
-the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules/iam-policies#background-information).
+the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-policies#background-information).
 
 ## Sample Usage
 
@@ -123,7 +123,7 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 module "iam_groups" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.75.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.75.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -309,7 +309,7 @@ module "iam_groups" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.75.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-groups?ref=v0.75.6"
 }
 
 inputs = {
@@ -953,11 +953,11 @@ Should we create the IAM Group for user self-management? Allows users to manage 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules/iam-groups/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules/iam-groups/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules/iam-groups/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-groups/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-groups/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d3120b3c2fcc4f794a8b957cada80fec"
+  "hash": "bb1e773206e70d428a3f741fabd7d997"
 }
 ##DOCS-SOURCER-END -->

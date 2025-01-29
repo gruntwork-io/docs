@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.38.3" lastModifiedVersion="0.38.3"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.38.4" lastModifiedVersion="0.38.4"/>
 
 # ECS Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.38.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.38.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an [Elastic Container Service (ECS) Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) that you can use to run one or more related, long-running Docker containers, such as a web service. An ECS service can automatically deploy multiple instances of your Docker containers across an ECS cluster (see the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster)), restart any failed Docker containers, route traffic across your containers using an optional Elastic Load Balancer (ELB), and optionally register the services to AWS Service Discovery Service. Additionally, CodeDeploy blue/green deployments are supported as the module can be enabled to ignore CodeDeploy managed resources.
+This module creates an [Elastic Container Service (ECS) Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html) that you can use to run one or more related, long-running Docker containers, such as a web service. An ECS service can automatically deploy multiple instances of your Docker containers across an ECS cluster (see the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-cluster)), restart any failed Docker containers, route traffic across your containers using an optional Elastic Load Balancer (ELB), and optionally register the services to AWS Service Discovery Service. Additionally, CodeDeploy blue/green deployments are supported as the module can be enabled to ignore CodeDeploy managed resources.
 
 ![ECS Service architecture](/img/reference/modules/terraform-aws-ecs/ecs-service/ecs-service-architecture.png)
 
@@ -47,15 +47,15 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is Amazon ECS?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/core-concepts.md#what-is-elastic-container-service)
+*   [What is Amazon ECS?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/core-concepts.md#what-is-elastic-container-service)
 
-*   [Helpful vocabulary for ECS](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/core-concepts.md#helpful-vocabulary)
+*   [Helpful vocabulary for ECS](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/core-concepts.md#helpful-vocabulary)
 
-*   [What is Fargate?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/core-concepts.md#what-is-fargate)
+*   [What is Fargate?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/core-concepts.md#what-is-fargate)
 
-*   [What is an ECS Service?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#what-is-an-ecs-service)
+*   [What is an ECS Service?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service/core-concepts.md#what-is-an-ecs-service)
 
-*   [What is ECS Service Discovery?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#what-is-ecs-service-discovery)
+*   [What is ECS Service Discovery?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service/core-concepts.md#what-is-ecs-service-discovery)
 
 *   [ECS Documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html): Amazon’s docs for ECS that cover core concepts such as the different cluster hosting options, scheduling properties, Docker, security, and monitoring.
 
@@ -63,27 +63,27 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-    *   [modules/ecs-cluster](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster): use this module to provision an ECS cluster with ECS container instances.
+    *   [modules/ecs-cluster](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-cluster): use this module to provision an ECS cluster with ECS container instances.
 
-    *   [modules/ecs-scripts](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-scripts): use the scripts in this module to configure private docker registries and register ECS container instances to ECS clusters.
+    *   [modules/ecs-scripts](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-scripts): use the scripts in this module to configure private docker registries and register ECS container instances to ECS clusters.
 
-    *   [modules/ecs-service](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service): use this module to deploy one or more docker containers as a ECS service, with options to use ELBs (CLB, ALB, or NLB), Service Discovery, or Fargate.
+    *   [modules/ecs-service](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service): use this module to deploy one or more docker containers as a ECS service, with options to use ELBs (CLB, ALB, or NLB), Service Discovery, or Fargate.
 
-    *   [modules/ecs-daemon-service](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service): use this module to deploy one or more docker containers that run on a regular schedule.
+    *   [modules/ecs-daemon-service](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-daemon-service): use this module to deploy one or more docker containers that run on a regular schedule.
 
-    *   [modules/ecs-deploy](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-deploy): use the scripts in this module to run one or more docker containers as a one time task on an ECS cluster.
+    *   [modules/ecs-deploy](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-deploy): use the scripts in this module to run one or more docker containers as a one time task on an ECS cluster.
 
-    *   **\[DEPRECATED]** [modules/ecs-deploy-check-binaries](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-deploy-check-binaries): use the python binary packages in this module to check ECS service deployments to ensure that they are active and healthy.
+    *   **\[DEPRECATED]** [modules/ecs-deploy-check-binaries](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-deploy-check-binaries): use the python binary packages in this module to check ECS service deployments to ensure that they are active and healthy.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/test): Automated tests for the modules and examples.
 
 ### Gruntwork analysis
 
-*   [EC2 vs Fargate launch types](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/core-concepts.md#ec2-vs-fargate-launch-types): A detailed comparison between the two available launch types for ECS, showing you the trade-offs between ECS container instances and Fargate.
+*   [EC2 vs Fargate launch types](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/core-concepts.md#ec2-vs-fargate-launch-types): A detailed comparison between the two available launch types for ECS, showing you the trade-offs between ECS container instances and Fargate.
 
 ## Deploy
 
@@ -91,7 +91,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -115,23 +115,23 @@ Production-ready sample code from the Reference Architecture:
 
 ### Day-to-day operations
 
-*   [How do I use Fargate?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#how-do-i-use-fargate)
+*   [How do I use Fargate?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service/core-concepts.md#how-do-i-use-fargate)
 
-*   [How do I associate the ECS Service with an ALB or NLB?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#how-do-i-associate-the-ecs-service-with-an-alb-or-nlb)
+*   [How do I associate the ECS Service with an ALB or NLB?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service/core-concepts.md#how-do-i-associate-the-ecs-service-with-an-alb-or-nlb)
 
-*   [How do I setup Service Discovery?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#how-do-i-setup-service-discovery)
+*   [How do I setup Service Discovery?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service/core-concepts.md#how-do-i-setup-service-discovery)
 
-*   [How do I add IAM policies to the ECS service?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#how-do-you-add-additional-iam-policies-to-the-ecs-service)
+*   [How do I add IAM policies to the ECS service?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service/core-concepts.md#how-do-you-add-additional-iam-policies-to-the-ecs-service)
 
-*   [How do I scale an ECS service?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#how-do-you-scale-an-ecs-service)
+*   [How do I scale an ECS service?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service/core-concepts.md#how-do-you-scale-an-ecs-service)
 
 ### Major changes
 
-*   [How do you make changes to the EC2 instances in the cluster?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/module/ecs-cluster/README.md#how-do-you-make-changes-to-the-ec-2-instances-in-the-cluster)
+*   [How do you make changes to the EC2 instances in the cluster?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/module/ecs-cluster/README.md#how-do-you-make-changes-to-the-ec-2-instances-in-the-cluster)
 
-*   [How do ECS Services deploy new versions of containers?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#how-do-ecs-services-deploy-new-versions-of-containers)
+*   [How do ECS Services deploy new versions of containers?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service/core-concepts.md#how-do-ecs-services-deploy-new-versions-of-containers)
 
-*   [How do I do a canary deployment?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/core-concepts.md#how-do-i-do-a-canary-deployment)
+*   [How do I do a canary deployment?](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service/core-concepts.md#how-do-i-do-a-canary-deployment)
 
 ## Sample Usage
 
@@ -146,7 +146,7 @@ Production-ready sample code from the Reference Architecture:
 
 module "ecs_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.38.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.38.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -472,10 +472,19 @@ module "ecs_service" {
   # Define runtime platform options
   runtime_platform = null
 
+  # ECS Service Connect configuration for this service to discover and connect
+  # to services, and be discovered by, and connected from, other services within
+  # a namespace
+  service_connect_configuration = null
+
   # Use this variable to adjust the default timeout of 20m for create and update
   # operations the the ECS service. Adjusting the value can be particularly
   # useful when using 'wait_for_steady_state'.
   service_create_update_timeout = "20m"
+
+  # Use this variable to adjust the default timeout of 5m for delete operations
+  # the the ECS service.
+  service_delete_timeout = "5m"
 
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
@@ -558,7 +567,7 @@ module "ecs_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.38.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-service?ref=v0.38.4"
 }
 
 inputs = {
@@ -887,10 +896,19 @@ inputs = {
   # Define runtime platform options
   runtime_platform = null
 
+  # ECS Service Connect configuration for this service to discover and connect
+  # to services, and be discovered by, and connected from, other services within
+  # a namespace
+  service_connect_configuration = null
+
   # Use this variable to adjust the default timeout of 20m for create and update
   # operations the the ECS service. Adjusting the value can be particularly
   # useful when using 'wait_for_steady_state'.
   service_create_update_timeout = "20m"
+
+  # Use this variable to adjust the default timeout of 5m for delete operations
+  # the the ECS service.
+  service_delete_timeout = "5m"
 
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
@@ -1755,6 +1773,64 @@ object({
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="service_connect_configuration" requirement="optional" type="any">
+<HclListItemDescription>
+
+ECS Service Connect configuration for this service to discover and connect to services, and be discovered by, and connected from, other services within a namespace
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   {
+     namespace = string                        : (Optional) Namespace name or ARN of the aws_service_discovery_http_namespace for use with Service Connect.
+     service = list({                          : (Optional) List of Service Connect service objects
+       client_alias = {                        : (Optional) Client aliases for this Service Connect service. You use these to assign names that can be used by client applications. The maximum number of client aliases that you can have in this list is 1. See below.
+         dns_name = string                     : (Optional) Name that you use in the applications of client tasks to connect to this service.
+         port = number                         : (Required) Listening port number for the Service Connect proxy. This port is available inside of all of the tasks within the same namespace.
+       }             
+       discovery_name = string                 : (Optional) Name of the new AWS Cloud Map service that Amazon ECS creates for this Amazon ECS service.
+       ingress_port_override= number           : (Optional) Port number for the Service Connect proxy to listen on.
+       port_name = string                      : (Required) Name of one of the portMappings from all the containers in the task definition of this Amazon ECS service.
+       timeout = {                             : (Optional) Configuration timeouts for Service Connect
+         idle_timeout_seconds = number         : (Optional) Amount of time in seconds a connection will stay active while idle. A value of 0 can be set to disable idleTimeout
+         per_request_timeout_seconds = number  : (Optional) Amount of time in seconds for the upstream to respond with a complete response per request. A value of 0 can be set to disable perRequestTimeout. Can only be set when appProtocol isn't TCP.
+       }
+       tls = {                                 : (Optional) Configuration for enabling Transport Layer Security (TLS)        
+         issuer_cert_authority = {             : (Required) Details of the certificate authority which will issue the certificate.
+            aws_pca_authority_arn = string     : (Required) ARN of the aws_acmpca_certificate_authority used to create the TLS Certificates.
+         }
+         kms_key = string                      : (Optional) KMS key used to encrypt the private key in Secrets Manager.
+         role_arn = string                     : (Optional) ARN of the IAM Role that's associated with the Service Connect TLS.          
+       }
+     })
+     log_configuration = {                     : (Optional)
+       log_driver = string                     : (Required) Log driver to use for the container.
+       options = map(string)                   : (Optional) Configuration options to send to the log driver.
+       secret_option = list({                  : (Optional) Secrets to pass to the log configuration.
+         name = string                         : (Required) Name of the secret.
+         value_from = string                   : (Required) Secret to expose to the container. The supported values are either the full ARN of the AWS Secrets Manager secret or the full ARN of the parameter in the SSM Parameter Store.
+       })
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="service_create_update_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1762,6 +1838,15 @@ Use this variable to adjust the default timeout of 20m for create and update ope
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;20m&quot;"/>
+</HclListItem>
+
+<HclListItem name="service_delete_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Use this variable to adjust the default timeout of 5m for delete operations the the ECS service.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;5m&quot;"/>
 </HclListItem>
 
 <HclListItem name="service_tags" requirement="optional" type="map(string)">
@@ -1967,15 +2052,14 @@ If true, Terraform will wait for the service to reach a steady state — as in, 
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "90fc6d4e98c3e1849758820a2d2bbd6f"
+  "hash": "209360d183e5b5e88b09fce5a02836ca"
 }
 ##DOCS-SOURCER-END -->

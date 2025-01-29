@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.2" lastModifiedVersion="0.74.1"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.6" lastModifiedVersion="0.75.5"/>
 
 # AWS Config Multi Region Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules/aws-config-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-config-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.74.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module wraps the [aws-config core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules/aws-config/README.md) to configure [AWS Config](https://aws.amazon.com/config/) in all enabled regions for the AWS Account, and optionally can aggregate AWS Config across multiple accounts.
+This module wraps the [aws-config core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-config/README.md) to configure [AWS Config](https://aws.amazon.com/config/) in all enabled regions for the AWS Account, and optionally can aggregate AWS Config across multiple accounts.
 
 ![multi account multi region aws config](/img/reference/modules/terraform-aws-security/aws-config-multi-region/multi-account-multi-region-aws-config.png)
 
@@ -45,25 +45,25 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   Learn more about AWS Config in the [aws-config core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules/aws-config/README.adoc).
+*   Learn more about AWS Config in the [aws-config core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-config/README.adoc).
 
-*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/codegen/core-concepts.md#how-to-use-a-multi-region-module)
+*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/codegen/core-concepts.md#how-to-use-a-multi-region-module)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [codegen](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/codegen): Code generation utilities that help generate modules in this repo.
+*   [codegen](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/codegen): Code generation utilities that help generate modules in this repo.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/test): Automated tests for the modules and examples.
 
 ## Deploy
 
 *   [How to configure a production-grade AWS account structure](https://gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/)
 
-*   [How does Config work with multiple AWS accounts and multiple regions?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules/aws-config-multi-region/core-concepts.md#how-does-config-work-with-multiple-aws-accounts-and-multiple-regions)
+*   [How does Config work with multiple AWS accounts and multiple regions?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-config-multi-region/core-concepts.md#how-does-config-work-with-multiple-aws-accounts-and-multiple-regions)
 
 ## Sample Usage
 
@@ -78,7 +78,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 module "aws_config_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.75.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.75.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -392,6 +392,11 @@ module "aws_config_multi_region" {
   # name>:/AWSLogs/<account ID>/Config/*.
   s3_object_prefix = null
 
+  # If set to true, create an IAM role for AWS Config. Customize the name of the
+  # role by setting iam_role_name. If set to false, the name passed in
+  # iam_role_name must already exist.
+  should_create_iam_role = true
+
   # Set this to true to create an S3 bucket in the same region where the global
   # recorder is configured. For multi-account deployments, set this to true for
   # the central account that should host the S3 bucket and SNS topics, and false
@@ -421,6 +426,10 @@ module "aws_config_multi_region" {
   # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
+  # If set to true, use a service-linked role for AWS Config that is already
+  # created. If set to false, use a custom IAM role referenced in iam_role_name.
+  use_service_linked_role = false
+
 }
 
 
@@ -436,7 +445,7 @@ module "aws_config_multi_region" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.75.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-multi-region?ref=v0.75.6"
 }
 
 inputs = {
@@ -753,6 +762,11 @@ inputs = {
   # name>:/AWSLogs/<account ID>/Config/*.
   s3_object_prefix = null
 
+  # If set to true, create an IAM role for AWS Config. Customize the name of the
+  # role by setting iam_role_name. If set to false, the name passed in
+  # iam_role_name must already exist.
+  should_create_iam_role = true
+
   # Set this to true to create an S3 bucket in the same region where the global
   # recorder is configured. For multi-account deployments, set this to true for
   # the central account that should host the S3 bucket and SNS topics, and false
@@ -781,6 +795,10 @@ inputs = {
   # resource for findings. As such, it is important to avoid inline policies
   # when targeting compliance with various security standards.
   use_managed_iam_policies = true
+
+  # If set to true, use a service-linked role for AWS Config that is already
+  # created. If set to false, use a custom IAM role referenced in iam_role_name.
+  use_service_linked_role = false
 
 }
 
@@ -1459,6 +1477,15 @@ A prefix to use when storing Config objects in S3. This will be the beginning of
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="should_create_iam_role" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, create an IAM role for AWS Config. Customize the name of the role by setting iam_role_name. If set to false, the name passed in iam_role_name must already exist.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="should_create_s3_bucket" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1513,6 +1540,15 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="use_service_linked_role" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, use a service-linked role for AWS Config that is already created. If set to false, use a custom IAM role referenced in iam_role_name.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -1554,11 +1590,11 @@ The ARNs of the SNS Topic used by the config notifications.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules/aws-config-multi-region/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules/aws-config-multi-region/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.2/modules/aws-config-multi-region/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-config-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-config-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-config-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d4d65edf6ed3cae58c245c5fc42a8225"
+  "hash": "fee25a69eefdf176a4beacea6f5bf9cd"
 }
 ##DOCS-SOURCER-END -->

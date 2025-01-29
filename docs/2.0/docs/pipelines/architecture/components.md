@@ -1,23 +1,23 @@
 # Components Architecture
 
-There are two major components in pipelines - the orchestrator and the executor. The orchestrator determines the jobs to be executed and the executor actually executes the jobs and makes any necessary updates in AWS.
+Pipelines consists of two main components: the orchestrator and the executor. The orchestrator identifies necessary jobs, while the executor performs those tasks and updates AWS resources accordingly.
 
 ## Orchestrator
 
-The orchestrator identifies each infrastructure change in a pull request or git commit, classifies the type of infrastructure change it is (e.g. `AccountsAdded`, `ModuleChanged`, `EnvCommonChanged`), and determines the right pipelines actions (e.g., `terragrunt plan`, `apply`, or `destroy`) to run based on that infrastructure change.
+The orchestrator analyzes each infrastructure change in a pull request or git commit, categorizes the type of change (e.g., `AccountsAdded`, `ModuleChanged`, `EnvCommonChanged`), and identifies the appropriate pipelines actions (e.g., `terragrunt plan`, `apply`, or `destroy`) to execute based on the type of change.
 
 ## Executor
 
-The executor takes a pipeline action and infra change as input then performs the action on the infra change. In some cases, like responding to `AccountsAdded` events on merge, the executor will create a subsequent pull request in the `infrastructure-live-root` repository with additional IaC code to baseline the account(s) that were just added.
+The executor receives a pipeline action and an infrastructure change as input and executes the specified action on the change. For example, when responding to `AccountsAdded` events on merge, the executor may create a follow-up pull request in the `infrastructure-live-root` repository to include additional IaC code for baselining the newly added accounts.
 
-## Execution Flow
+## Execution flow
 
-Pipelines starts with an event in GitHub - a pull request being created, updated, or re-opened, and a PR being merged to `main` (or any other push to `main`). From there, the orchestrator determines the infra-change set and appropriate action to run for each infra-change. For each change in the infra-change set, the executor runs the appropriate action. The executor then logs the results of the action back in GitHub on the pull request that initiated the flow.
+Pipelines begins with an event in GitHub, such as the creation, update, or reopening of a pull request, or a push to `main` (e.g., merging a pull request). The orchestrator determines the set of infrastructure changes (`infra-change set`) and selects the appropriate action for each change. For every change in the set, the executor performs the necessary action and logs the results in GitHub, attaching them to the pull request that triggered the workflow.
 
-## Trust Boundaries
+## Trust boundaries
 
-Vital to the architecture of Pipelines is understanding of the trust model inherent to the system. Pipelines is designed to be run in a CI/CD system, which means that it has privileged access to your AWS accounts.
+A critical aspect of Pipelines' architecture is understanding its trust model. Since Pipelines runs within a CI/CD system, it has privileged access to your AWS accounts.
 
-One principle to keep in mind is that anyone with trust to edit code on the `main` branch of your repositories is trusted to make the corresponding changes in your AWS accounts. This is why we recommend that you follow the [Repository Access](/2.0/docs/pipelines/installation/viamachineusers#repository-access) guidelines to ensure that only the right people have the right access to your repositories.
+Anyone with the ability to edit code in the `main` branch of your repositories inherently has the authority to make corresponding changes in your AWS accounts. For this reason, it is important to follow the [Repository Access](/2.0/docs/pipelines/installation/viamachineusers#repository-access) guidelines to ensure appropriate access control.
 
-In addition, each AWS IAM role provisioned as part of DevOps Foundations only trusts a single repository (and for apply roles, only a single branch). If you find that you are expanding the permissions of a given role too wide, you should consider creating a new role that has more granular permissions for the specific use-case. Utilize the `infrastructure-live-access-control` repository to support that need.
+Additionally, each AWS IAM role provisioned through DevOps Foundations is configured to trust a single repository (and, for apply roles, a single branch). If a role's permissions become overly broad, consider creating a new role with more granular permissions tailored to the specific use case. Use the `infrastructure-live-access-control` repository to define and manage these roles.
