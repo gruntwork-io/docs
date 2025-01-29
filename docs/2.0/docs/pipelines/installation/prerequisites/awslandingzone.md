@@ -81,7 +81,7 @@ To use Gruntwork Account Factory, begin by setting up a new multi-account enviro
         ![Edit Key Policy](/img/devops-foundations/account/edit-key-policy.png)
         </details>
 
-      - Add the necessary policy statement, replacing <CustomizableValue id="HOMEREGION" />, <CustomizableValue id="MAMANGEMENTACCOUNTID" />, and <CustomizableValue id="KMSKEYID" /> with your account-specific values:
+      - Add the necessary policy statement, replacing <CustomizableValue id="HOMEREGION" />, <CustomizableValue id="MANAGEMENTACCOUNTID" />, and <CustomizableValue id="KMSKEYID" /> with your account-specific values:
 
         ```json
         {
@@ -95,7 +95,7 @@ To use Gruntwork Account Factory, begin by setting up a new multi-account enviro
         }
         ```
 
-      - Add the following CloudTrail policy statement to the list of statements, replacing `YOUR-HOME-REGION`, `YOUR-MANAGEMENT-ACCOUNT-ID`, and `YOUR-KMS-KEY-ID` with your account-specific values:
+      - Add the following CloudTrail policy statement to the list of statements, replacing <CustomizableValue id="HOMEREGION" />, <CustomizableValue id="MANAGEMENTACCOUNTID" />, and <CustomizableValue id="KMSKEYID" /> with your account-specific values:
 
         ```json
         {
@@ -105,13 +105,13 @@ To use Gruntwork Account Factory, begin by setting up a new multi-account enviro
             "Service": "cloudtrail.amazonaws.com"
           },
           "Action": ["kms:GenerateDataKey*", "kms:Decrypt"],
-          "Resource": "arn:aws:kms:YOUR-HOME-REGION:YOUR-MANAGEMENT-ACCOUNT-ID:key/YOUR-KMS-KEY-ID",
+          "Resource": "arn:aws:kms:$$HOMEREGION$$:$$MANAGEMENTACCOUNTID$$:key/$$KMSKEYID$$",
           "Condition": {
             "StringEquals": {
-              "aws:SourceArn": "arn:aws:cloudtrail:YOUR-HOME-REGION:YOUR-MANAGEMENT-ACCOUNT-ID:trail/aws-controltower-BaselineCloudTrail"
+              "aws:SourceArn": "arn:aws:cloudtrail:$$HOMEREGION$$:$$MANAGEMENTACCOUNTID$$:trail/aws-controltower-BaselineCloudTrail"
             },
             "StringLike": {
-              "kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:YOUR-MANAGEMENT-ACCOUNT-ID:trail/*"
+              "kms:EncryptionContext:aws:cloudtrail:arn": "arn:aws:cloudtrail:*:$$MANAGEMENTACCOUNTID$$:trail/*"
             }
           }
         }
