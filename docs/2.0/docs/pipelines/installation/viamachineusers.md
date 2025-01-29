@@ -217,18 +217,20 @@ Grants repository-level insights needed for automation.
 
 </details>
 
+
 :::tip
-For non-Enterprise customers, delete this token after the setup process is complete to minimize security risks.
+If you are not an Enterprise customer, you should delete it after DevOps Foundations setup.
 :::
+
 ### ci-read-only-user
 
 The `ci-read-only-user` is configured to download private software within GitHub Actions workflows. This user is responsible for accessing Gruntwork IaC Library modules, your infrastructure-modules repository, other private custom module repositories, and the Pipelines CLI.
 
-This user should use a single classic Personal Access Token (PAT)(https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with read-only permissions. Since classic PATs offer broad access controls, it’s recommended to assign this user to a GitHub team with READ access limited to the `infrastructure-live-root` repository and any relevant module repositories within your GitHub Organization. Adding this user to the Gruntwork Developer Portal will automatically grant access to the Gruntwork IaC Library.
+This user should use a single classic Personal Access Token (PAT)(https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#personal-access-tokens-classic) with read-only permissions. Since classic PATs offer coarse grained access controls, it’s recommended to assign this user to a GitHub team with READ access limited to the `infrastructure-live-root` repository and any relevant module repositories within your GitHub Organization. Adding this user to the Gruntwork Developer Portal will automatically grant access to the Gruntwork IaC Library.
 
 **Invite ci-read-only-user to your repository**
 
-Grant read access to `infrastructure-live-root`.
+Invite `ci-user-read-only` to your `infrastructure-live-root` repository with read access.
 
 **Checklist:**
 <PersistentCheckbox id="via-machine-users-4" label="ci-read-only-user invited to infrastructure-live-root" />
@@ -246,7 +248,7 @@ Generate the following token for the `ci-read-only-user`:
 
 This [Classic Personal Access Token](#classic-tokens) manages access to private software during GitHub Action runs. 
 
-This token must have `repo` scopes. Gruntwork recommends setting an expiration of 90 days to balance security and token rotation.
+This token must have `repo` scopes. Gruntwork recommends setting expiration to 90 days to balance the concerns of security vs. the burden of rotating tokens and secrets.
 
 ![PIPELINES_READ_TOKEN PAT Configuration](/img/pipelines/security/PIPELINES_READ_TOKEN.png)
 
