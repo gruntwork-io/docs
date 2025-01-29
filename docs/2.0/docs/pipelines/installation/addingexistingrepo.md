@@ -36,7 +36,7 @@ Create an `accounts.yml` file in the root directory of your repository with the 
 Create a file named `.gruntwork/gruntwork.hcl` in the root directory of your repository with the following content. This file is used to configure Pipelines for your repository. Update the specified placeholders with the appropriate values:
 
 - <CustomizableValue id="ENVIRONMENT_NAME" />: Specify a name that represents the environment being deployed, such as `production`, `staging`, or `development`.
-- <CustomizableValue id="PATH_TO_ENVIRONMENT" />: Define the root-relative path to the folder containing the Terragrunt units for the environment. This may match the environment name if a directory in the repository root holds all the Terragrunt units for that environment.
+- <CustomizableValue id="PATH_TO_ENVIRONMENT" />: Define the root-relative path of the folder in your repository that contains the terragrunt units for the environment you are deploying to. This may be the same as the environment name if there is a directory in the root of the repository that contains all the terragrunt units for the environment.
 - <CustomizableValue id="AWS_ACCOUNT_ID" />: Enter the AWS Account ID associated with the deployment of Terragrunt units for the specified environment.
 - <CustomizableValue id="DEPLOY_BRANCH_NAME" />: Specify the branch name used for deployments, such as `main` or `master`. This branch will trigger the Pipelines apply workflow when changes are merged. Pull requests targeting this branch will trigger the Pipelines plan workflow.
 
