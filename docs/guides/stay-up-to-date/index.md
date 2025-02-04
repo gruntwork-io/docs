@@ -17,6 +17,7 @@ import CardGroup from "/src/components/CardGroup"
 <CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
 
 <!-- START_DOCS_SOURCER_DYNAMIC_CONTENT id=gruntwork-releases-cards -->
+<Card title="Update to 2025-01" href="/guides/stay-up-to-date/releases/2025-01" />
 <Card title="Update to 2024-12" href="/guides/stay-up-to-date/releases/2024-12" />
 <Card title="Update to 2024-11" href="/guides/stay-up-to-date/releases/2024-11" />
 <Card title="Update to 2024-10" href="/guides/stay-up-to-date/releases/2024-10" />
@@ -31,7 +32,6 @@ import CardGroup from "/src/components/CardGroup"
 <Card title="Update to 2024-01" href="/guides/stay-up-to-date/releases/2024-01" />
 <Card title="Update to 2023-12" href="/guides/stay-up-to-date/releases/2023-12" />
 <Card title="Update to 2023-11" href="/guides/stay-up-to-date/releases/2023-11" />
-<Card title="Update to 2023-10" href="/guides/stay-up-to-date/releases/2023-10" />
 <Card title="See older releases" href="/guides/stay-up-to-date/releases" />
 <!-- END_DOCS_SOURCER_DYNAMIC_CONTENT -->
 
@@ -115,6 +115,6 @@ href="/guides/stay-up-to-date/cis/cis-1.5.0"
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "763e4dcda9cc8d139714af846b8cf87a"
+  "hash": "48eb2d3bfd4f124951884b0c090abf60"
 }
 ##DOCS-SOURCER-END -->

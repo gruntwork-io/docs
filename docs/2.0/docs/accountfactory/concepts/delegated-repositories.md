@@ -1,21 +1,31 @@
 # Delegated Repositories
 
-:::note
-Account Factory created Delegated Repositories are only available to DevOps Foundations Enterprise customers.
+:::note 
+
+Account Factory-created Delegated Repositories are only available to DevOps Foundations Enterprise customers.
+
 :::
 
-As enterprises scale their usage of IaC across more teams there often arises a need to enforce least-privilege access control to both IaC source code and the CI/CD of that code. Gruntwork's recommendation is to leverage multiple source code repositories to create hard-boundaries that enforce least-privilege access control. The pattern we recommend consists of three parts:
+As enterprises scale their usage of IaC across multiple teams, the need to enforce least-privilege access control to both IaC source code and its CI/CD processes becomes increasingly important. Gruntwork recommends leveraging multiple source code repositories to establish clear boundaries that enforce least-privilege access control. 
 
-1. A single `infrastructure-live-root` repository, ideally governed by the core platform team. This repository includes IaC for security and shared infrastructure including core-account creation, central logging/auditing and networking controls (e.g. GuardDuty, SecurityHub, Macie, Transit Gateway etc.).
-1. Many _delegated_ repositories, often named using the pattern `infrastructure-live-$TEAM_NAME`, where individual teams can manage their own IaC. These repositories are created by the core platform team using the Account Factory and, via `infrastructure-live-access-control`, are granted limited permissions to manage their own infrastructure.
-Using this pattern core platform teams have the ability to:
-* Centrally manage core compliance and security infrastructure
-* Centrally manage which teams have permission to deploy different types of infrastructure, allowing their team to enforce compliance with architecture-board approved plans
-* Centrally manage tags for shared and per-team infrastructure
-* Enforce least-privilege access to IaC, restricting teams to have access only to IaC and deployment capability / role assumptions for resources that they are responsible for.
+This approach involves a structured pattern that includes: 
 
-## Delegated Repository Creation
-Delegated repositories are optionally created by [Account Factory](/2.0/docs/accountfactory/concepts) during account creation. A delegated account vend follows the following (automated) workflow:
+-  **Centralized `infrastructure-live-root` repository**  
+   Governed by the core platform team, this repository contains IaC for essential security and shared infrastructure. Examples include account creation, central logging/auditing, and networking controls (e.g., GuardDuty, SecurityHub, Macie, Transit Gateway).
+
+-  **Team-specific delegated repositories**  
+   Named using a convention such as `infrastructure-live-$TEAM_NAME`, these repositories enable individual teams to manage their own IaC. The core platform team creates delegated repositories through the Account Factory. The `infrastructure-live-access-control` system controls access to these repositories, granting teams permissions specific to their infrastructure responsibilities.
+
+By adopting this pattern, core platform teams can:
+
+- Centrally manage compliance and security infrastructure.
+- Define and enforce which teams are authorized to deploy specific types of infrastructure, ensuring alignment with architecture board-approved plans.
+- Oversee shared and per-team infrastructure tags for consistency and governance.
+- Enforce least-privilege access policies, restricting teams to access only the IaC and deployment capabilities necessary for their responsibilities.
+
+## Delegated repository creation
+
+Delegated repositories can be optionally created by the [Account Factory](/2.0/docs/accountfactory/concepts) as part of the account provisioning process. The workflow for vending a delegated account follows these automated steps:
 
 ```mermaid
 sequenceDiagram

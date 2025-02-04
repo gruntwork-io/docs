@@ -1,8 +1,8 @@
-# Destroying infrastructure with Pipelines
+# Destroying Infrastructure with Pipelines
 
 import CustomizableValue from '/src/components/CustomizableValue';
 
-In this Tutorial, you'll learn how to destroy infrastructure using Gruntwork Pipelines and GitOps workflows.
+This tutorial will help you learn how to destroy infrastructure using Gruntwork Pipelines and GitOps workflows.
 
 ## What you'll get
 
@@ -12,20 +12,21 @@ By the end, you’ll have:
 
 ## Prerequisites
 
-Before you begin, make sure you have:
+Before starting, make sure you have:
 
-- Pipelines installed in a GitHub repository. See [Setup & Installation](/2.0/docs/pipelines/installation/overview) for more information.
-- A sandbox or development AWS account that was set up during the Pipelines installation process
-- Permissions to create a pull request in the GitHub repository where Pipelines is installed
-- An existing AWS resource that you want to destroy which was created using Infrastructure as Code (IaC) and Pipelines. If you don't have an existing resource, you can follow the steps in the [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial to create one and that is what we will destroy in this tutorial.
+- Pipelines installed in a GitHub repository. Refer to [Setup & Installation](/2.0/docs/pipelines/installation/overview) for details.
+- Access to a sandbox or development AWS account configured during the Pipelines installation process.
+- Permissions to create a pull request in the GitHub repository where Pipelines is installed.
+- An existing AWS resource created using Infrastructure as Code (IaC) and Pipelines that you want to destroy. If no resource exists, follow the steps in the [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial to create one, which will then be destroyed in this tutorial.
 
-## Destroying with Pipelines
+## Destroying with pipelines
 
-In this section, you’ll destroy an existing AWS resource using Pipelines and GitOps workflows. We will use the same S3 bucket created in the [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial as an example but you can replace it with any other resource you want to destroy.
+This section explains how to destroy AWS resources using Pipelines and GitOps workflows. The example used is the S3 bucket created in the [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial, but the process applies to any resource you wish to destroy.
 
-### Delete the Infrastructure Code
 
-1. Delete the folder containing the infrastructure code for the resource you want to destroy. In this case, delete the folder containing the S3 bucket code. Replace <CustomizableValue id="ACCOUNT_NAME" /> and <CustomizableValue id="REGION" /> appropriately.
+### Delete the infrastructure code
+
+1. Remove the folder containing the infrastructure code for the resource you want to destroy. For the S3 bucket example, delete the folder containing the S3 bucket code. Replace <CustomizableValue id="ACCOUNT_NAME" /> and <CustomizableValue id="REGION" /> with the appropriate values.
 
     ```bash
     rm -rf $$ACCOUNT_NAME$$/$$REGION$$/$$ACCOUNT_NAME$$/data-storage/s3
@@ -35,22 +36,19 @@ In this section, you’ll destroy an existing AWS resource using Pipelines and G
 
 ### Planning the destruction
 
-Create a Pull Request (PR) for the branch you just pushed against `main`(the default branch in your repository).
+Create a Pull Request (PR) for the branch you just pushed, targeting `main` (the default branch in your repository).
 
 ![Delete Infrastructure Code](/img/pipelines/tutorial/delete-infrastructure-code.png)
 
-Gruntwork Pipelines via the GitHub Action(GHA), will detect the removal of this infrastructure unit's code and trigger a `plan` action in Pipelines that will show you the destructive changes that will be made to your AWS account.
+Gruntwork Pipelines, via GitHub Actions (GHA), will detect the removal of the infrastructure unit's code and trigger a `plan` action in Pipelines. This action will display the destructive changes to be made to your AWS account.
 
 ![Pipelines Destroy Plan Comment](/img/pipelines/tutorial/pipelines-destroy-plan-comment.png)
 
-
 ### Applying the destruction
 
-If you are satisfied with the changes shown in the `plan` action then you are ready to destroy the S3 bucket.
+If you are satisfied with the changes shown in the `plan` action, you can proceed to destroy the S3 bucket.
 
-Approve and merge the PR to trigger an `apply` action that will destroy the resource in your AWS account.
+Approve and merge the pull request to trigger the apply action, permanently deleting the resource from your AWS account.
 
-<!-- Add Image -->
-<!-- ![Pipelines Destroy Apply Comment](/img/pipelines/tutorial/pipelines-destroy-apply-comment.png) -->
 
 Congratulations! You have successfully destroyed an AWS resource using Gruntwork Pipelines and GitOps workflows. To verify the resource has been destroyed, check your AWS management console.

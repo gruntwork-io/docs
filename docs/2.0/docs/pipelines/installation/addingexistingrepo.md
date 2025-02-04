@@ -1,24 +1,26 @@
 import CustomizableValue from '/src/components/CustomizableValue';
 
-# Adding Pipelines to an existing repository
+# Adding Gruntwork Pipelines to an existing repository
 
-This guide will walk you through the process of installing Gruntwork Pipelines in an existing repository that does not yet have Gruntwork Pipelines installed. This is useful for Gruntwork customers who have existing repositories that they would like to manage with Pipelines.
+This guide provides instructions for installing Gruntwork Pipelines in a repository with existing IaC. This guide is for Gruntwork customers looking to integrate Pipelines into their existing repositories for streamlined infrastructure management.
 
 :::info
 
-This process is supported via a new configuration paradigm for Pipelines referred to as ["Pipelines Configuration as Code"](/2.0/reference/pipelines/configurations-as-code) released in July 2024. This new system allows developers to use Gruntwork Pipelines with arbitrary folder layouts inside their IaC repositories. Prior to this system, pipelines required using a specific folder layout in order to map folders in source control to AWS Accounts for authentication. **As of Q4 2024 this new configuration system does not yet support [Gruntwork Account Factory](https://docs.gruntwork.io/2.0/docs/accountfactory/concepts/)** so if you need both Pipelines and Account factory we strongly advise you to [start with a new repository](/2.0/docs/pipelines/installation/addingnewrepo) or contact [Gruntwork support](/support) for assistance.
+This process leverages a new configuration paradigm for Pipelines called ["Pipelines Configuration as Code"](/2.0/reference/pipelines/configurations-as-code), introduced in July 2024. This system allows developers to use Gruntwork Pipelines with any folder structure in their IaC repositories. Previously, Pipelines required a specific folder layout to map source control directories to AWS Accounts for authentication. 
+
+**As of Q4 2024, this new configuration system does not yet support the [Gruntwork Account Factory](https://docs.gruntwork.io/2.0/docs/accountfactory/concepts/).** If you need both Pipelines and the Account Factory, we recommend [starting with a new repository](/2.0/docs/pipelines/installation/addingnewrepo) or contacting [Gruntwork support](/support) for assistance.
 :::
 
 ## Prerequisites
 
-- An active Gruntwork Subscription with access to Pipelines. You can verify you have access by choosing the "View team in GitHub" button in your [Gruntwork Developer Portal's account page](https://app.gruntwork.io/account) if you are an admin of the organization. The link will take you to the GitHub team UI and then you can search for "pipelines" in the repositories tab to verify you have access.
-- AWS credentials with permissions to create resources in the AWS account where you would like to deploy Pipelines. This is necessary to create an OpenID Connect(OIDC) Provider and AWS Identity and Access Management(IAM) roles for Pipelines to use when deploying infrastructure.
+- **Active Gruntwork subscription**: Ensure your account includes access to Pipelines. Verify access by navigating to the "View team in GitHub" option in the [Gruntwork Developer Portal's account page](https://app.gruntwork.io/account) if you are an admin. From the GitHub team UI, search for "pipelines" under the repositories tab to confirm access.
+- **AWS credentials**: You need credentials with permissions to create resources in the AWS account where Pipelines will be deployed. This includes creating an OpenID Connect (OIDC) Provider and AWS Identity and Access Management (IAM) roles for Pipelines to use when deploying infrastructure.
 
-## Setting up the Repository
+## Setting up the repository
 
-### Accounts info
+### Account information
 
-Create an `accounts.yml` file at the root of your repository with the content below. Update the <CustomizableValue id="AWS_ACCOUNT_NAME" />, <CustomizableValue id="AWS_ACCOUNT_ID" />, and <CustomizableValue id="AWS_ACCOUNT_EMAIL" /> with the appropriate values for the account you are deploying to. Add as many accounts as you need to manage with Pipelines.
+Create an `accounts.yml` file in the root directory of your repository with the following content. Replace <CustomizableValue id="AWS_ACCOUNT_NAME" />, <CustomizableValue id="AWS_ACCOUNT_ID" />, and <CustomizableValue id="AWS_ACCOUNT_EMAIL" /> with the appropriate values for the account you are deploying to. Add additional accounts as needed to manage them with Pipelines.
 
     ```yaml title="accounts.yml"
     # required: Name of an account
@@ -29,14 +31,15 @@ Create an `accounts.yml` file at the root of your repository with the content be
       email: "$$AWS_ACCOUNT_EMAIL$$"
     ```
 
-### Pipelines Configurations
+### Pipelines configurations
 
-Create a file called `.gruntwork/gruntwork.hcl` in the root of your repository with the contents below. This file will be used to configure Pipelines for your repository. Update the following values:
+Create a file named `.gruntwork/gruntwork.hcl` in the root directory of your repository with the following content. This file is used to configure Pipelines for your repository. Update the specified placeholders with the appropriate values:
 
-- <CustomizableValue id="ENVIRONMENT_NAME" /> to a name that represents the environment you are deploying to. e.g. `production`, `staging`, `development`, etc.
-- <CustomizableValue id="PATH_TO_ENVIRONMENT" /> to the root-relative path of the folder in your repository that contains the terragrunt units for the environment you are deploying to. This may be the same as the environment name if there is a directory in the root of the repository that contains all the terragrunt units for the environment.
-- <CustomizableValue id="AWS_ACCOUNT_ID" /> to the AWS Account ID where terragrunt units matching the environment will be deployed to.
-- <CustomizableValue id="DEPLOY_BRANCH_NAME" /> to the branch name that you would like to deploy from. This is the branch that will trigger the Pipelines apply workflow when changes are merged to it. e.g `main`, `master`, etc. All other pull requests against this branch will trigger the Pipelines plan workflow.
+- <CustomizableValue id="ENVIRONMENT_NAME" />: Specify a name that represents the environment being deployed, such as `production`, `staging`, or `development`.
+- <CustomizableValue id="PATH_TO_ENVIRONMENT" />: Define the root-relative path of the folder in your repository that contains the terragrunt units for the environment you are deploying to. This may be the same as the environment name if there is a directory in the root of the repository that contains all the terragrunt units for the environment.
+- <CustomizableValue id="AWS_ACCOUNT_ID" />: Enter the AWS Account ID associated with the deployment of Terragrunt units for the specified environment.
+- <CustomizableValue id="DEPLOY_BRANCH_NAME" />: Specify the branch name used for deployments, such as `main` or `master`. This branch will trigger the Pipelines apply workflow when changes are merged. Pull requests targeting this branch will trigger the Pipelines plan workflow.
+
 
 ```hcl title=".gruntwork/gruntwork.hcl"
 # Configurations applicable to the entire repository https://docs.gruntwork.io/2.0/docs/pipelines/installation/addingexistingrepo#repository-blocks
@@ -67,16 +70,15 @@ environment "$$ENVIRONMENT_NAME$$" {
 }
 ```
 
-The IAM roles referenced in the unit configuration above will be created later in [Pipelines OpenID Connect (OIDC) Provider and Roles](#pipelines-openid-connectoidc-provider-and-roles) section.
+The IAM roles mentioned in the unit configuration above will be created in the [Pipelines OpenID Connect (OIDC) Provider and Roles](#pipelines-openid-connectoidc-provider-and-roles) section.
 
-You may add new [environment configurations](/2.0/reference/pipelines/configurations-as-code#environment-configurations) for each additional environment or consider using [unit configuration](/2.0/reference/pipelines/configurations-as-code#unit-configurations) for specific terragrunt units in your repository that do not fit into an environment configuration.
+For additional environments, you can add new [environment configurations](/2.0/reference/pipelines/configurations-as-code#environment-configurations). Alternatively, consider using [unit configuration](/2.0/reference/pipelines/configurations-as-code#unit-configurations) for Terragrunt units in your repository that do not align with an environment configuration.
 
 ### Pipelines GitHub Actions (GHA) workflow
 
-Pipelines is implemented as a GitHub [reusable workflow](https://docs.github.com/en/actions/sharing-automations/reusing-workflows#creating-a-reusable-workflow). This means that the code to implement Pipelines and all of its features lives in an external repository (generally you'll point to [ours](https://github.com/gruntwork-io/pipelines-workflows/)) and the code in your repository simply references it.
+Pipelines is implemented using a GitHub [reusable workflow](https://docs.github.com/en/actions/sharing-automations/reusing-workflows#creating-a-reusable-workflow). The actual code for Pipelines and its features resides in an external repository, typically [Gruntwork's Pipelines Workflows repository](https://github.com/gruntwork-io/pipelines-workflows/). Your repository references this external workflow rather than containing the implementation itself.
 
-
-Create a file named `.github/workflows/pipelines.yml` in the root of your repository with the content below:
+Create a file named `.github/workflows/pipelines.yml` in the root of your repository with the following content:
 
 <details>
 <summary>Pipelines GHA workflow file</summary>
@@ -85,13 +87,13 @@ Create a file named `.github/workflows/pipelines.yml` in the root of your reposi
 ######################################################################################################################
 # INFRASTRUCTURE CI/CD CONFIGURATION
 #
-# This configures GitHub Actions to implement a CI/CD pipeline for infrastructure code.
+# This file configures GitHub Actions to implement a CI/CD pipeline for managing infrastructure code.
 #
-# The following pipeline is implemented in this configuration:
+# The pipeline defined in this configuration includes the following steps:
 #
-# - For any commit on any branch, detect all the terragrunt modules that changed between the `HEAD` of the branch and
-#  `main` and run `terragrunt plan` on each of those modules.
-# - For commits to `main`: Run `terragrunt apply` on each of the updated modules.
+# - For any commit on any branch, identify all Terragrunt modules that have changed between the `HEAD` of the branch and
+#   `main`, and run `terragrunt plan` on each of those modules.
+# - For commits to `main`, execute `terragrunt apply` on each of the updated modules.
 #
 ######################################################################################################################
 
@@ -140,27 +142,25 @@ jobs:
 
 </details>
 
-### Pipelines OpenID Connect (OIDC) Provider and Roles
+### Pipelines OpenID Connect (OIDC) provider and roles
 
-We will create the Infrastructure as Code (IaC) for the [OIDC](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) roles that Pipelines will use to deploy infrastructure.
+This step involves creating the Infrastructure as Code (IaC) configuration for the [OIDC](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) roles required by Pipelines to deploy infrastructure.
 
-Two roles are required:
-- One for plans (`pipelines-plan`)
-- Another for applies (`pipelines-apply`)
+Two roles are needed:
+- `pipelines-plan` for plans
+- `pipelines-apply` for applies
 
-Using two roles like this helps to maintain the principle of least privilege, as the `pipelines-plan` role will be used during pull request open/update and needs largely read-only permissions, and the `pipelines-apply` role will be used during pull request merge, and needs read/write permissions. Note that the two will also have different IAM trust policies. The `apply` role will only trust the deploy branch, while the `plan` role will trust all branches.
+Using two distinct roles upholds the principle of least privilege. The `pipelines-plan` role is used during pull request creation or updates and requires primarily read-only permissions. The `pipelines-apply` role, used during pull request merges, requires read/write permissions. Additionally, these roles have different IAM trust policies. The `apply` role only trusts the deploy branch, while the `plan` role trusts all branches.
 
-This step in the process will require that you have the AWS access with necessary permissions to create the necessary AWS IAM resources for Pipelines to assume when deploying infrastructure.
+This step requires AWS credentials with sufficient permissions to create the necessary IAM resources that Pipelines will assume when deploying infrastructure.
 
+#### Create the Terragrunt units
 
-#### Create the terragrunt units
+Within the *<CustomizableValue id="PATH_TO_ENVIRONMENT" />* directory, create the Terragrunt unit files as described below, updating the following values as needed:
 
-Within the *<CustomizableValue id="PATH_TO_ENVIRONMENT" />* directory, create the terragrunt unit files below and update the following values:
-
-- <CustomizableValue id="AWS_STATE_BUCKET_PATTERN" /> to either the state bucket name or a pattern of the state bucket(s) you would like to use for the environment. The Pipeline roles will need permissions to access the state bucket to store and retrieve state files.
-- <CustomizableValue id="AWS_DYNAMO_DB_TABLE" /> to the DynamoDB table name you use for state locking.
-- <CustomizableValue id="INFRASTRUCTURE_LIVE_REPO_NAME" /> to the exact name of the repository where Pipelines is being configured.
-
+- <CustomizableValue id="AWS_STATE_BUCKET_PATTERN" />: Specify the state bucket name or pattern of the state bucket(s) to be used for the environment. The Pipeline roles must have permissions to access the state bucket for storing and retrieving state files.
+- <CustomizableValue id="AWS_DYNAMO_DB_TABLE" />: Specify the name of the DynamoDB table used for state locking.
+- <CustomizableValue id="INFRASTRUCTURE_LIVE_REPO_NAME" />: Provide the exact name of the repository where Pipelines is being configured.
 
 <details>
 <summary>OIDC Provider</summary>
@@ -197,9 +197,9 @@ include "root" {
   path = find_in_parent_folders()
 }
 
-# The OIDC IAM roles for GitHub actions require a provisioned IAM OpenID Connect Provider for each account.
-# The underlying module used in envcommon can create the OIDC provider. Since we have multiple OIDC roles, we use a
-# dedicated module and all roles depend on its output
+# The OIDC IAM roles for GitHub Actions require an IAM OpenID Connect (OIDC) Provider to be provisioned for each account.
+# The underlying module used in `envcommon` is capable of creating the OIDC provider. Since multiple OIDC roles are required, 
+# a dedicated module is used, and all roles depend on its output
 dependency "github-actions-openid-connect-provider" {
   config_path = "../github-actions-openid-connect-provider"
 
@@ -299,9 +299,9 @@ include "root" {
   path = find_in_parent_folders()
 }
 
-# The OIDC IAM roles for GitHub actions require a provisioned IAM OpenID Connect Provider for each account.
-# The underlying module used in envcommon can create the OIDC provider. Since we have multiple OIDC roles, we use a
-# dedicated module and all roles depend on its output
+# The OIDC IAM roles for GitHub Actions require an IAM OpenID Connect (OIDC) Provider to be provisioned for each account.
+# The underlying module used in `envcommon` is capable of creating the OIDC provider. Since multiple OIDC roles are required, 
+# a dedicated module is used, and all roles depend on its output.
 dependency "github-actions-openid-connect-provider" {
   config_path = "../github-actions-openid-connect-provider"
 
@@ -392,9 +392,9 @@ inputs = {
 
 :::tip
 
-The permissions in the above files are examples and should be updated based on the type of infrastructure contained in the repository so that Pipelines can perform the necessary actions to deploy your infrastructure.
+The permissions in the files above are provided as examples and should be adjusted to align with the specific types of infrastructure managed in the repository. This ensures that Pipelines can execute the required actions to deploy your infrastructure effectively.
 
-Also note that the IAM permissions above do not include permissions to update the role itself for security reasons.
+Additionally, note that the IAM permissions outlined above do not include permissions to modify the role itself, for security purposes.
 
 :::
 
@@ -402,14 +402,14 @@ Repeat this step for each environment you would like to manage with Pipelines.
 
 #### Create the OIDC resources
 
-Using your personal AWS access, run the following commands to deploy the infrastructure for the Terragrunt units we created in the previous step. Repeat this step for each account you would like to manage with Pipelines.
+Use your personal AWS access to execute the following commands to deploy the infrastructure for the Terragrunt units created in the previous step. Repeat this process for each account you plan to manage with Pipelines.
 
     ```bash
     cd $$PATH_TO_ENVIRONMENT$$/_global
     terragrunt run-all plan
     ```
 
-Review the plan output and if it looks good, apply the changes.
+Review the plan output, and if everything appears correct, proceed to apply the changes.
 
 
   ```bash
@@ -418,20 +418,18 @@ Review the plan output and if it looks good, apply the changes.
 
 :::tip
 
-If you encounter issues with the plan or apply steps due to existence of other resources already in the *_global* folder, you can run plan/apply for the terragrunt units individually starting with the `github-actions-openid-connect-provider` unit because the other units depend on it.
+If you encounter issues with the plan or apply steps due to the presence of other resources in the *_global* folder, you can run the plan/apply steps individually for the Terragrunt units. Start with the `github-actions-openid-connect-provider` unit, as other units depend on it.
 
 :::
 
 #### Commit and push the changes
 
-Create a branch, and commit all your changes with a **`[skip ci]`** text included in the commit message to avoid triggering the Pipelines workflow. Push the changes to the repository, create a Pull Request, and merge the changes to the <CustomizableValue id="DEPLOY_BRANCH_NAME" /> branch you specified in the `.github/workflows/pipelines.yml` file.
+Create a new branch and commit all changes, including **`[skip ci]`** in the commit message to prevent triggering the Pipelines workflow. Push the changes to the repository, create a Pull Request, and merge the changes into the <CustomizableValue id="DEPLOY_BRANCH_NAME" /> branch specified in the `.github/workflows/pipelines.yml` file.
 
+## Enable GitHub authentication for pipelines
 
-## Enable GitHub Authentication for Pipelines
+Follow the instructions in [Authenticating via GitHub App](/2.0/docs/pipelines/installation/viagithubapp) to enable GitHub authentication for Pipelines in your repository using the Gruntwork.io GitHub App. This is the recommended authentication method. Alternatively, you can [Authenticate via Machine Users](/2.0/docs/pipelines/installation/viamachineusers) if preferred.
 
-Follow the instructions in [Authenticating via GitHub App](/2.0/docs/pipelines/installation/viagithubapp) to enable GitHub authentication for Pipelines in your repository using the Gruntwork.io GitHub App. This is the recommended way to authenticate Pipelines with GitHub in your repository but you may also [Authenticate via Machine Users](/2.0/docs/pipelines/installation/viamachineusers) if you prefer.
+## Next steps
 
-## Next Steps
-
-You have successfully completed the installation for Gruntwork Pipelines in an existing repository. Follow [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial to test the installation and deploy infrastructure using Gruntwork Pipelines.
-
+You have successfully completed the installation of Gruntwork Pipelines in an existing repository. Proceed to [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change.md) to begin deploying changes.

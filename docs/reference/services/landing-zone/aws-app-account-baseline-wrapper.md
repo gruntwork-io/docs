@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.6" lastModifiedVersion="0.112.8"/>
+<VersionBadge version="0.118.13" lastModifiedVersion="0.118.10"/>
 
 # Account Baseline for app accounts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-app" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -57,13 +57,13 @@ If you’ve never used the Service Catalog before, make sure to read
 
 *   Learn more about each individual module, click the link in the [Features](#features) section.
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
-*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end integrated tech stack on top of the Gruntwork Service Catalog.
@@ -100,7 +100,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "account_baseline_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.118.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.118.13"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -449,6 +449,10 @@ module "account_baseline_app" {
   # want to permanently delete everything!
   config_force_destroy = false
 
+  # The name of an IAM role for Config service to assume. Must be unique within
+  # the AWS account.
+  config_iam_role_name = "AWS_ConfigRole"
+
   # Provide a list of AWS account IDs that will be allowed to send AWS Config
   # data to this account. This is only required if you are aggregating config
   # data in this account (e.g., this is the logs account) from other accounts.
@@ -494,6 +498,11 @@ module "account_baseline_app" {
   # the terraform-aws-security/private-s3-bucket module.
   config_s3_mfa_delete = false
 
+  # If set to true, create an IAM role for AWS Config. Customize the name of the
+  # role by setting iam_role_name. If set to false, the name passed in
+  # iam_role_name must already exist.
+  config_should_create_iam_role = true
+
   # Set to true to create an S3 bucket of name var.config_s3_bucket_name in this
   # account for storing AWS Config data (e.g., if this is the logs account). Set
   # to false to assume the bucket specified in var.config_s3_bucket_name already
@@ -530,6 +539,10 @@ module "account_baseline_app" {
   # A map of tags to apply to the S3 Bucket. The key is the tag name and the
   # value is the tag value.
   config_tags = {}
+
+  # If set to true, use a service-linked role for AWS Config that is already
+  # created. If set to false, use a custom IAM role referenced in iam_role_name.
+  config_use_service_linked_role = false
 
   # The maximum frequency with which AWS Config runs evaluations for the
   # ´PERIODIC´ rules. See
@@ -925,7 +938,7 @@ module "account_baseline_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.118.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.118.13"
 }
 
 inputs = {
@@ -1277,6 +1290,10 @@ inputs = {
   # want to permanently delete everything!
   config_force_destroy = false
 
+  # The name of an IAM role for Config service to assume. Must be unique within
+  # the AWS account.
+  config_iam_role_name = "AWS_ConfigRole"
+
   # Provide a list of AWS account IDs that will be allowed to send AWS Config
   # data to this account. This is only required if you are aggregating config
   # data in this account (e.g., this is the logs account) from other accounts.
@@ -1322,6 +1339,11 @@ inputs = {
   # the terraform-aws-security/private-s3-bucket module.
   config_s3_mfa_delete = false
 
+  # If set to true, create an IAM role for AWS Config. Customize the name of the
+  # role by setting iam_role_name. If set to false, the name passed in
+  # iam_role_name must already exist.
+  config_should_create_iam_role = true
+
   # Set to true to create an S3 bucket of name var.config_s3_bucket_name in this
   # account for storing AWS Config data (e.g., if this is the logs account). Set
   # to false to assume the bucket specified in var.config_s3_bucket_name already
@@ -1358,6 +1380,10 @@ inputs = {
   # A map of tags to apply to the S3 Bucket. The key is the tag name and the
   # value is the tag value.
   config_tags = {}
+
+  # If set to true, use a service-linked role for AWS Config that is already
+  # created. If set to false, use a custom IAM role referenced in iam_role_name.
+  config_use_service_linked_role = false
 
   # The maximum frequency with which AWS Config runs evaluations for the
   # ´PERIODIC´ rules. See
@@ -2484,6 +2510,15 @@ If set to true, when you run 'terraform destroy', delete all objects from the bu
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="config_iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of an IAM role for Config service to assume. Must be unique within the AWS account.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;AWS_ConfigRole&quot;"/>
+</HclListItem>
+
 <HclListItem name="config_linked_accounts" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -2547,6 +2582,15 @@ Enable MFA delete for either 'Change the versioning state of your bucket' or 'Pe
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="config_should_create_iam_role" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, create an IAM role for AWS Config. Customize the name of the role by setting iam_role_name. If set to false, the name passed in iam_role_name must already exist.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="config_should_create_s3_bucket" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2599,6 +2643,15 @@ A map of tags to apply to the S3 Bucket. The key is the tag name and the value i
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="config_use_service_linked_role" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, use a service-linked role for AWS Config that is already created. If set to false, use a custom IAM role referenced in iam_role_name.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="configrules_maximum_execution_frequency" requirement="optional" type="string">
@@ -3985,11 +4038,11 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/modules/landingzone/account-baseline-app/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/modules/landingzone/account-baseline-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.6/modules/landingzone/account-baseline-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules/landingzone/account-baseline-app/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules/landingzone/account-baseline-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules/landingzone/account-baseline-app/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "28aff57ec748c0c495c1edefa8b2a9b6"
+  "hash": "87a365b1dbcbfaa40b86f0822cd3c299"
 }
 ##DOCS-SOURCER-END -->

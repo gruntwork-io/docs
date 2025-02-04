@@ -1,6 +1,6 @@
 # GitHub Workflows
 
-Pipelines integrates via GitHub Workflows in your repositories that integrate with [Reusable Workflows](https://docs.github.com/en/actions/sharing-automations/reusing-workflows) in Gruntwork's [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. The workflows in your repositories depend on the Gruntwork workflows via the `uses` clause within a job, this will appear like:
+Pipelines integrates with your repositories through GitHub Workflows, leveraging [Reusable Workflows](https://docs.github.com/en/actions/sharing-automations/reusing-workflows) from Gruntwork's [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. The workflows in your repositories rely on Gruntwork workflows through the uses clause within a job. This is structured as follows:
 
 ```yml
 jobs:
@@ -8,47 +8,44 @@ jobs:
     uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-root.yml@v3
 ```
 
-## Workflow Versioning
+## Workflow versioning
 
-Gruntwork uses [Semantic Versioning](https://semver.org/) for `pipelines-workflows` releases. We create new git tags to track new releases of the workflows following the `v.MAJOR.MINOR.PATCH` format. We also publish a major tag e.g. `v.MAJOR` that we update to reference the latest release within that version. For example when we publish a patch from `v3.0.1` to `v3.0.2` we will update the `v3` tag to reference the newer version.
+Gruntwork follows [Semantic Versioning](https://semver.org/) for `pipelines-workflows` releases. New releases are tracked using git tags in the `v.MAJOR.MINOR.PATCH` format. A major tag, such as `v.MAJOR`, is also maintained and updated to point to the latest release within that major version. For example, when releasing a patch update from `v3.0.1` to `v3.0.2`, the `v3` tag will be updated to reference the newer version.
 
-When calling a workflow the final part of the `uses` clause contains the version reference. E.g. `pipelines-root.yml@v3`. We recommend using the major version e.g. `v3` within your workflows to receive the latest fixes and performance improvements, but you are also able to pin to a specific tag.
+When referencing a workflow, the version is specified in the `uses` clause. For example: `pipelines-root.yml@v3`. Using the major version, like v3, in your workflows ensures you receive the latest updates and performance enhancements.. However, you can choose to pin to a specific version if needed.
 
-## Modifying Workflows
+## Modifying workflows
 
-If you make modifications to the workflows in _your_ repositories, these changes will only affect that specific repository. E.g. if you want to add a customization to the `pipelines.yml` in your `infrastructure-live-root` repository it will only affect this repository, and not your vended delegated repositories.
+Changes made to workflows in your repositories only affect the specific repository where the modification occurs. For instance, customizing the `pipelines.yml` workflow in your `infrastructure-live-root` repository will not impact workflows in other repositories, such as delegated repositories.
 
-If you choose to [Fork the Gruntwork Workflows](https://docs.gruntwork.io/2.0/docs/pipelines/guides/extending-pipelines#extend-the-github-actions-workflow) you will be able to make changes that affect multiple repositories. It's important to understand exactly which workflows in the `pipelines-workflows` repository affect which of your repositories. See a full list of dependencies below.
+If you [fork the Gruntwork Workflows](https://docs.gruntwork.io/2.0/docs/pipelines/guides/extending-pipelines#extend-the-github-actions-workflow), you can make changes that affect multiple repositories. Be sure to understand the dependencies between workflows in the `pipelines-workflows` repository and your repositories. The dependencies are detailed below.
 
-## Workflow Dependencies
+## Workflow dependencies
 
-The Gruntwork pipelines-workflows repository contains the following reusable workflows:
+The `pipelines-workflows` repository includes the following reusable workflows:
 
-- `pipelines-drift-detection.yml` - A workflow for [Pipelines Drift Detection](/2.0/docs/pipelines/concepts/drift-detection), used by all repositories where Drift Detection is installed.
-- `pipelines-root.yml` - The core Pipelines workflow used only by your `infrastructure-live-root` repository. This workflow provides core plan/apply as well as account vending functionality.
-- `pipelines-unlock.yml` - A workflow used to manually unlock state files, used by all repositories.
-- `pipelines.yml` - The core Pipelines workflow used by your `infrastructure-live-access-control` and delegated repositories for plan/apply operations.
+- `pipelines-drift-detection.yml` - Used for [Pipelines Drift Detection](/2.0/docs/pipelines/concepts/drift-detection) in all repositories with Drift Detection installed.
+- `pipelines-root.yml` - The core Pipelines workflow for the `infrastructure-live-root` repository, providing core plan/apply functionality and account vending.
+- `pipelines-unlock.yml` - Used to manually unlock state files in all repositories.
+- `pipelines.yml` - The core Pipelines workflow for `infrastructure-live-access-control` and delegated repositories, supporting plan/apply operations.
 
-
-In your repositories you will have the following set of workflows:
+In your repositories, the following workflows are typically present:
 
 #### infrastructure-live-root
 
-- `account-factory.yml` - A standalone workflow that does not use a workflow from `pipelines-workflows`.
-- `pipelines-drift-detection.yml` (enterprise only) - Uses the Gruntwork `pipelines-drift-detection.yml` drift detection workflow.
-- `pipelines-unlock.yml` - Uses the Gruntwork `pipelines-unlock.yml` unlock workflow.
+- `account-factory.yml` - A standalone workflow independent of `pipelines-workflows`.
+- `pipelines-drift-detection.yml` (Enterprise only) - Uses the Gruntwork `pipelines-drift-detection.yml` workflow.
+- `pipelines-unlock.yml` - Uses the Gruntwork `pipelines-unlock.yml` workflow.
 - `pipelines.yml` - Uses `pipelines-root.yml`.
-
 #### infrastructure-live-access-control
 
-- `pipelines-drift-detection.yml` - (enterprise only) - Uses the Gruntwork `pipelines-drift-detection.yml` drift detection workflow.
-- `pipelines-unlock.yml` - Uses the Gruntwork `pipelines-unlock.yml` unlock workflow.
+- `pipelines-drift-detection.yml` (Enterprise only) - Uses the Gruntwork `pipelines-drift-detection.yml` workflow.
+- `pipelines-unlock.yml` - Uses the Gruntwork `pipelines-unlock.yml` workflow.
 - `pipelines.yml` - Uses `pipelines.yml`.
 
 #### infrastructure-live-delegated ([Vended Delegated Repositories](/2.0/docs/accountfactory/guides/delegated-repositories))
 
-- `pipelines-drift-detection.yml` - Uses the Gruntwork `pipelines-drift-detection.yml` drift detection workflow.
-- `pipelines-unlock.yml` - Uses the Gruntwork `pipelines-unlock.yml` unlock workflow.
+- `pipelines-drift-detection.yml` - Uses the Gruntwork `pipelines-drift-detection.yml` workflow.
+- `pipelines-unlock.yml` - Uses the Gruntwork `pipelines-unlock.yml` workflow.
 - `pipelines.yml` - Uses `pipelines.yml`.
-
 

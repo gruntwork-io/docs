@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.1" lastModifiedVersion="0.69.2"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.6" lastModifiedVersion="0.75.2"/>
 
 # AWS Organizations
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/aws-organizations" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-organizations" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.69.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module allows you to create and manage your [AWS Organization](https://aws.amazon.com/organizations/) and all child [AWS accounts](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts.html) as code.
 
@@ -39,23 +39,23 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is AWS Organizations?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/aws-organizations/core-concepts.md#what-is-aws-organizations)
+*   [What is AWS Organizations?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-organizations/core-concepts.md#what-is-aws-organizations)
 
-*   [What is a Root account?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/aws-organizations/core-concepts.md#what-is-a-root-account)
+*   [What is a Root account?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-organizations/core-concepts.md#what-is-a-root-account)
 
-*   [What are Organization Accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/aws-organizations/core-concepts.md#what-are-organization-accounts)
+*   [What are Organization Accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-organizations/core-concepts.md#what-are-organization-accounts)
 
-*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/aws-organizations/core-concepts.md#what-resources-does-this-module-create)
+*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-organizations/core-concepts.md#what-resources-does-this-module-create)
 
 *   [How to configure a production-grade AWS account structure](https://gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -63,7 +63,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/aws-organizations](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/examples/aws-organizations): The `examples/aws-organizations` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/aws-organizations](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/examples/aws-organizations): The `examples/aws-organizations` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -77,9 +77,9 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Day-to-day operations
 
-*   [How do I provision new accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/aws-organizations/core-concepts.md#how-do-i-provision-new-accounts)
+*   [How do I provision new accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-organizations/core-concepts.md#how-do-i-provision-new-accounts)
 
-*   [How do I remove accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/aws-organizations/core-concepts.md#how-do-i-remove-accounts)
+*   [How do I remove accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-organizations/core-concepts.md#how-do-i-remove-accounts)
 
 ## Sample Usage
 
@@ -94,7 +94,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aws_organizations" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.75.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.75.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -102,7 +102,14 @@ module "aws_organizations" {
 
   # Map of child accounts to create. The map key is the name of the account and
   # the value is an object containing account configuration variables.
-  child_accounts = <any>
+  child_accounts = <map(object(
+    email                      = string
+    parent_id                  = optional(string)
+    role_name                  = optional(string)
+    iam_user_access_to_billing = optional(string)
+    close_on_deletion          = optional(bool)
+    tags                       = optional(map(string), )
+  ))>
 
   # Flag indicating whether the organization should be created.
   create_organization = <bool>
@@ -153,7 +160,7 @@ module "aws_organizations" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.75.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v0.75.6"
 }
 
 inputs = {
@@ -164,7 +171,14 @@ inputs = {
 
   # Map of child accounts to create. The map key is the name of the account and
   # the value is an object containing account configuration variables.
-  child_accounts = <any>
+  child_accounts = <map(object(
+    email                      = string
+    parent_id                  = optional(string)
+    role_name                  = optional(string)
+    iam_user_access_to_billing = optional(string)
+    close_on_deletion          = optional(bool)
+    tags                       = optional(map(string), )
+  ))>
 
   # Flag indicating whether the organization should be created.
   create_organization = <bool>
@@ -218,7 +232,7 @@ inputs = {
 
 ### Required
 
-<HclListItem name="child_accounts" requirement="required" type="any">
+<HclListItem name="child_accounts" requirement="required" type="map(object(…))">
 <HclListItemDescription>
 
 Map of child accounts to create. The map key is the name of the account and the value is an object containing account configuration variables.
@@ -227,24 +241,18 @@ Map of child accounts to create. The map key is the name of the account and the 
 <HclListItemTypeDetails>
 
 ```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+map(object({
+    email                      = string
+    parent_id                  = optional(string)
+    role_name                  = optional(string)
+    iam_user_access_to_billing = optional(string)
+    close_on_deletion          = optional(bool)
+    tags                       = optional(map(string), {})
+  }))
 ```
 
 </HclListItemTypeDetails>
 <HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Ideally, this would be a map of (string, object), but object does not support optional properties, and we want
-   users to be able to specify, say, tags for some accounts, but not for others. We can't use a map(any) either, as that
-   would require the values to all have the same type, and due to optional parameters, that wouldn't work either. So,
-   we have to lamely fall back to any.
-
-```
-</details>
-
 <details>
 
 
@@ -272,6 +280,10 @@ Any types represent complex values of variable type. For details, please consult
      permissions. If set to ´DENY´, then only the root user of the new account can access account billing information.
      Defaults to ´default_iam_user_access_to_billing´.
   
+   - close_on_deletion:
+     Boolean flag to indicate whether the account should be closed when the resource is deleted, otherwise it will be
+     removed from the organization. Note there are AWS limitations on how many accounts can be closed this way.
+  
    - tags:
      Key-value mapping of resource tags.
   
@@ -284,6 +296,7 @@ Any types represent complex values of variable type. For details, please consult
        parent_id                   = "my-org-unit-id",
        role_name                   = "test-role",
        iam_user_access_to_billing  = "DENY",
+       close_on_deletion           = true,
        tags = {
          Tag-Key = "tag-value"
        }
@@ -423,11 +436,11 @@ Identifier of the root of this organization.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/aws-organizations/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/aws-organizations/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.1/modules/aws-organizations/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-organizations/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-organizations/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-organizations/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "995d7432ee7b562bbad0dbe36ea8183c"
+  "hash": "a8cd83fc122f33b42916a780836d783d"
 }
 ##DOCS-SOURCER-END -->
