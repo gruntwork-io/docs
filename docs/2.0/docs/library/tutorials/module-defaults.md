@@ -62,14 +62,14 @@ An infrastructure unit is the Gruntwork term for deploying an infrastructure-as-
 
 In this section, we’ll outline the approach Gruntwork uses for leveraging defaults modules as infrastructure units. When you purchase a DevOps Foundation, the generated repository containing your infrastructure-as-code is automatically configured to use this approach.  
 
-### The orm block
+### The Terraform block
 
 Gruntwork recommends that infrastructure unit definitions include a `orm` block and the `orm` block defined in the underlying defaults module. By doing so, users can change module versions granularly across environments, avoiding a global change that impacts all environments simultaneously.
 
 To ensure consistency with the defaults module, reference the `source_base_url` value from the defaults module `include` block (explained in the next section) and specify the desired release version after `ref`. In the example below, we reference the `base_source_url` from the defaults module and override the version to `v0.47.0`.  
 
 ```hcl title=/dev/us-east-1/dev/networking/vpc/terragrunt.hcl
-orm {
+terraform {
   source = "${include.Module Defaults.locals.source_base_url}?ref=v0.104.19"
 }
 ```

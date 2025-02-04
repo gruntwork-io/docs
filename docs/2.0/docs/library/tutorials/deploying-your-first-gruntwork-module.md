@@ -220,6 +220,8 @@ Next, run a plan to preview the resources that will be created, followed by an
 
 For this guide, we’ll run `terraform plan` and `terraform apply`locally. When collaborating on infrastructure as code within a team or organization, we recommend running `terraform plan` and `terraform apply` in your CI system in response to pull request creation, synchronization, and merge events. We purpose-built [Pipelines](/2.0/docs/pipelines/concepts/overview) to support this workflow. Refer to the Pipelines documentation to learn more.
 
+:::
+
 ### Init
 
 Before running a `plan` or `apply`, you must run `init`. This command performs a series of initialization steps to prepare the working directory for use with Terraform.
@@ -277,6 +279,15 @@ After running a `plan` and confirming that all expected resources are listed i
 
 ```bash
 terraform apply
+```
+
+</TabItem>
+<TabItem value="Terragrunt" label="Terragrunt" default>
+
+Terragrunt will create resources when using the `apply` action. Like with the `plan` action, Terragrunt will determine which resources need to be created or modified. You should expect to see the same resources to be created when running `apply` that are shown when running `plan`.
+
+```bash
+terragrunt apply
 ```
 
 </TabItem>
