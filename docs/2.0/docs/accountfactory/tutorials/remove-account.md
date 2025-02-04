@@ -39,8 +39,8 @@ After making all necessary code changes, commit them to Git with **[skip ci]** i
 
   ```bash
   cd management/_global/control-tower-multi-account-factory/ # Navigate to the Control Tower module directory
-  terragrunt plan # Observe that targeted accounts are set for destruction
-  terragrunt state rm 'module.accounts["<ACCOUNT_NAME>"].aws_servicecatalog_provisioned_product.control_tower_factory' # Optionally, use 'rm -dry-run' to preview the removal.
+  terragrunt plan # Verify no accounts are set for destruction but outputs are updated
+  terragrunt apply # Apply the changes.
   terragrunt plan # Verify no accounts are set for destruction but outputs are updated
   terragrunt apply # Apply the changes.
   ```

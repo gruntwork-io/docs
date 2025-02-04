@@ -22,13 +22,13 @@ The table below lists common AWS account operations and provides guidance on whe
 |-------------------------------------------------------------------------------------------------------------------------------| ---------------- | ---------------------- |
 | [Create a new Organization Unit](https://docs.aws.amazon.com/controltower/latest/userguide/create-new-ou.html) (OU)           | ❌               | ✅                     |
 | [Request a new account](/2.0/docs/accountfactory/guides/vend-aws-account)                                                                                                         | ✅               | ❌                     |
-| [Create a new account](/2.0/docs/accountfactory/guides/vend-aws-account)                                                                                                          | ✅               | ❌                     |
-| [Remove an account](/2.0/docs/accountfactory/tutorials/remove-account.md)                                                                                       | ✅               | ❌                     |
 | [Rename an account](https://docs.aws.amazon.com/controltower/latest/userguide/change-account-name.html)                       | ❌               | ✅                     |
 | [Update root account e-mail address](https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-root-user.html) | ❌               | ✅                     |
 | [Modify account controls](https://docs.aws.amazon.com/controltower/latest/userguide/enable-controls-on-ou.html)               | ❌               | ✅                     |
 | Moving an account to a new Organizational Unit                                                                                | ✅ (recommended) | ✅ (discouraged)       |
 | Update account admin user in Account Access IAM Identity Center                                                               | ✅ (recommended) | ✅ (discouraged)       |
+| Granting additional users access to accounts in AWS IAM Identity Center                                                       | ✅ (recommended) | ✅ (discouraged)       |
+
 | Granting additional users access to accounts in AWS IAM Identity Center                                                       | ✅ (recommended) | ✅ (discouraged)       |
 
 
