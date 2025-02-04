@@ -63,7 +63,7 @@ This step-by-step guide outlines best practices for implementing custom actions:
             # We recommend pinning this to a specific commit, branch or tag instead of main
             ref: main
     ```
-2. Call your custom action. Ensure you carefully manage the inputs passed to your custom action. Most custom actions require access to tokens (e.g., `PIPELINES_READ_TOKEN`) and the `gruntwork_context` object. This context object contains all relevant [outputs](https://github.com/gruntwork-io/pipelines-actions/blob/main/.github/actions/pipelines-bootstrap/action.yml#L43) from the `pipelines-bootstrap` action, providing valuable metadata about the current workflow execution.
+2. Call your custom action. Ensure you carefully manage the inputs passed to your custom action. Most custom actions require access to tokens (e.g., `PIPELINES_READ_TOKEN`) and the `gruntwork_context` object. This context object contains all relevant [outputs](https://github.com/gruntwork-io/pipelines-actions/blob/main/.github/actions/pipelines-bootstrap/action.yml#L43) from the `pipelines-bootstrap` action, providing useful metadata about the current workflow execution.
 
     ```yml
     - name: "[Baseline]: Pre Provision New Account Custom Action"

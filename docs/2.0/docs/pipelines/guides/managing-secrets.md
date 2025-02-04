@@ -1,9 +1,6 @@
 # Secrets
 
 Continuous Integration systems often require access to sensitive resources, which necessitates the use of secrets such as API keys, passwords, or certificates. Pipelines is designed to minimize the use of long-lived secrets and instead leverages ephemeral credentials whenever possible. This approach reduces the risk of credential leaks and streamlines secret rotation.
-
-The only long-lived credentials you must create, rotate, and maintain for Pipelines are those used to authenticate GitHub Machine Users. For more details, refer to the [GitHub Machine Users documentation](/2.0/docs/pipelines/installation/viamachineusers). We are continuously working to enhance the security of Pipelines and aim to further reduce this requirement over time.
-
 ## Authenticating with GitHub
 
 To interact with the GitHub API, Pipelines uses either a GitHub App or Machine User [Personal Access Tokens (PATs)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens), depending on your installation method. For information on creating and managing these tokens, see the [Machine Users documentation](/2.0/docs/pipelines/installation/viamachineusers).
@@ -57,7 +54,7 @@ EOF
 }
 ```
 
-This provider block is dynamically generated during the execution of any `terragrunt` command and supplies the AWS provider with the required configuration to discover credentials made available by the [configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials) GitHub Action.
+This provider block is dynamically generated during the execution of any `terragrunt` command and supplies the AWS provider with the required configuration to discover credentials made available by the pipelines.
 
 With this approach, no secrets are written to disk. Instead, the AWS provider dynamically retrieves secrets at runtime.
 
