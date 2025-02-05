@@ -20,7 +20,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 This module creates an OpenID Connect Provider for GitLab Pipelines. This allows you to use GitLab Pipelines as an identity
 provider for your AWS account. This is useful if you want to use GitLab Pipelines to deploy your infrastructure. By
 using OpenID Connect, GitLab Pipelines can directly exchange credentials to access AWS without having to store and provide
-GitHub with permanent AWS access credentials. This is useful to prevent credential leaks from progressing undetected.
+GitLab with permanent AWS access credentials. This is useful to prevent credential leaks from progressing undetected.
 
 ## Creating the Provider
 
@@ -41,7 +41,7 @@ The `allowed_groups` parameter is a list of GitLab organizations that are allowe
 Connect Provider. This is a security measure to ensure that only users from the specified organizations can authenticate
 with the OpenID Connect Provider. In addition to this security measure, you should also ensure that all IAM roles
 associated with the OpenID Connect Provider have the appropriate trust policy to only allow assumption of the role by
-the appropriate GitHub Repos on the appropriate refs.
+the appropriate GitLab Repos on the appropriate refs.
 
 See the TODO [GitLab Pipelines IAM Role](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/gitlab-pipelines-iam-role/README.md) module for more information.
 
@@ -177,6 +177,6 @@ Url used for the OIDC provider
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/gitlab-pipelines-openid-connect-provider/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bd5c29763632dae9b2f34abf29f68ccb"
+  "hash": "be943fff5433f70d8817872847e5b2d3"
 }
 ##DOCS-SOURCER-END -->

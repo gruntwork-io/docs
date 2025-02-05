@@ -20,7 +20,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 This Terraform module can be used to create Assume Role policies and IAM Roles such that they can be used with
 GitLab Pipelines. This requires you to provision an IAM OpenID Connect Provider for GitLab Pipelines in your account. By
 using OpenID Connect, GitLab Pipelines can directly exchange credentials to access AWS without having to store and provide
-GitHub with permanent AWS access credentials. This is useful to prevent credential leaks from progressing undetected.
+GitLab with permanent AWS access credentials. This is useful to prevent credential leaks from progressing undetected.
 
 You can use the [OpenID Connect Provider for GitLab Pipelines](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/gitlab-pipelines-openid-connect-provider/README.md) module in the IAM role creation process like so:
 
@@ -58,7 +58,7 @@ module "iam_role" {
 
 ## Security Considerations
 
-The above example will configure the IAM role `example-iam-role` such that it is available to be assumed by GitHub
+The above example will configure the IAM role `example-iam-role` such that it is available to be assumed by GitLab
 Actions if it is run from the `main` branch of the `gruntwork-io/terraform-aws-security` repository. The IAM role would then
 have the ability to call any API in the `ec2` namespace.
 
@@ -499,6 +499,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/gitlab-pipelines-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "10c7e2203fb7100b33953d47fcd33671"
+  "hash": "ffdfb53157054411c1df8b3865abcd90"
 }
 ##DOCS-SOURCER-END -->
