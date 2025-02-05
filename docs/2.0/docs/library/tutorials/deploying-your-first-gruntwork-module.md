@@ -272,10 +272,12 @@ terragrunt plan
 
 ### Apply
 
-After running a `plan` and confirming that all expected resources are listed in the plan, run an `apply` to create the resources. Terraform will provision resources using the `apply` command. Like the `plan` command, Terraform will determine which resources must be created or modified. You should expect to see the same resources created when running apply as those displayed during plan.
+After running a `plan` and confirming that all expected resources are listed in the plan, run an `apply` to create the resources. 
 
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
+
+Terraform will provision resources using the `apply` command. Like the `plan` command, Terraform will determine which resources must be created or modified. You should expect to see the same resources created when running apply as those displayed during plan.
 
 ```bash
 terraform apply
@@ -405,7 +407,7 @@ In this test, we first generate data to ensure that the test run creates resourc
 
 ### Run the test
 
-Finally, run the test you wrote. From the test directory, execute the following command:
+Finally, run the test you wrote. From the `test` directory, execute the following command:
 ```bash
 go test -v
 ```
