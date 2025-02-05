@@ -2,17 +2,17 @@
 
 ## Defining module defaults
 
-Now that you understand [what module defaults are](/2.0/docs/library/concepts/module-defaults), you can develop your own defaults module.  
+Now that you have an understanding of [what module defaults are](/2.0/docs/library/concepts/module-defaults), you can develop your own defaults module.
 
 Begin by placing all default modules in a `_module_defaults` directory. Beyond that, the structure of the code is up to you as a developer. Gruntwork recommends organizing the module defaults directory by creating subdirectories for each resource category (e.g., storage, networking) and naming the terragrunt files to represent the resource(s) they configure. 
 
 For example, if you define a defaults module for an AWS VPC where applications will be deployed, consider placing it in a directory named ‘networking’ and naming the file ‘vpc-app.hcl’. This structure results in `_module_defaults/networking/vpc-app.hcl`.
 
-Next, we’ll define the defaults module. It is important to note that a terragrunt module follows the same structure as a standard terragrunt file. The defaults module defines default variable values and locals that can be reused in any environment.  
+Next, we’ll define the defaults module. It is important to note that a Terragrunt module follows the same structure as a standard terragrunt file. The defaults module defines default variable values and locals that can be reused in any environment.  
 
 ### The Terraform block
 
-First, define a `terraform` block. This block allows you to specify the source URL for the terraform module you are using. Gruntwork recommends using a `local` block to define the source URL. This approach lets you define the module’s source URL once in your defaults module and expose it as a variable to any module that references it. After defining the source URL, specify the desired module version.  
+First, define a `terraform` block. This block allows you to specify the source URL for the Terraform module you are using. Gruntwork recommends using a `local` block to define the source URL. This approach lets you define the module’s source URL once in your defaults module and expose it as a variable to any module that references it. After defining the source URL, specify the desired module version.  
 
 ```hcl title=_module_defaults/networking/vpc-app.hcl
 terraform {
