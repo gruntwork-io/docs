@@ -1,8 +1,10 @@
-# Self-hosting the Library
+# Self-hosting the IaC Library
 
-::: caution:
+:::caution
+
 Self-hosting the Gruntwork IaC Library is only available with a Gruntwork Enterprise subscription.
 
+:::
 
 We recommend accessing the Gruntwork IaC Library directly through our private repositories hosted at [https://github.com/gruntwork-io](https://github.com/gruntwork-io). However, if your organization requires hosting all Terraform modules internally, you can use Gruntwork's [repo-copier](https://github.com/gruntwork-io/repo-copier) to meet this requirement.
 
@@ -13,7 +15,7 @@ Repo Copier is a command-line tool that copies all content from Gruntwork’s pr
 Repo Copier supports the following version control systems:
 
 - Your own GitHub.com organization
-- GitHub Enterprise
+- GitHub Enterprise Server
 - BitBucket Server
 - GitLab.com
 

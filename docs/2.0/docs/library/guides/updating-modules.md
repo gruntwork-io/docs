@@ -10,10 +10,9 @@ We recommend updating module versions in your development environment first, fol
 ## Example: Update a version
 
 <Tabs groupId="tool-choice">
-  
 <TabItem value="Terraform" label="Terraform" default>
 
-Below is a terraform configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
+Below is a Terraform configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
 
 To update to version `0.15.4`, change the value to the right of `ref=` in the `source` attribute. Since the version number indicates a backwards-compatible update, no additional changes should be required.
 
@@ -37,10 +36,9 @@ module "my_instance" {
 After making the change, run `terraform plan`, review the output to confirm it matches your expectations, then execute `terraform apply`.
 
 </TabItem>
-
 <TabItem value="Terragrunt" label="Terragrunt">
 
-Below is a terragrunt configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
+Below is a Terragrunt configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
 
 To update to version `0.15.4`, change the value to the right of `ref=` in the `source` attribute. Since the version number indicates a backwards-compatible update, no additional changes should be required.
 
@@ -76,8 +74,6 @@ inputs = {
 After making the change, run `terragrunt plan`, review the output to confirm it matches your expectations, then execute `terragrunt apply`.
 
 </TabItem>
-
-
 <TabItem value="Terragrunt with _envcommon" label="_envcommon (Terragrunt)">
 
 When using the `_envcommon` pattern, there are two locations where the git tag from the release is referenced: 
@@ -94,6 +90,7 @@ terraform {
   # New
   source = "${local.source_base_url}?ref=v0.15.4"
 }
+
 locals {
   source_base_url = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server"
 }
@@ -133,7 +130,6 @@ After making the change, run `terragrunt plan`, inspect the output to ensure it 
 
 </TabItem>
 </Tabs>
-
 
 ## Patcher
 

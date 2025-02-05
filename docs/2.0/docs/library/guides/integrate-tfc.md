@@ -36,7 +36,7 @@ This method combines TFC's audit and state management with Terragrunt's workflow
 
 ## One time set up
 
-::: caution
+:::caution
 
 If using TFE, first refer to [HashiCorp's installation guide](https://www.terraform.io/docs/enterprise/before-installing/index.html). Adjust any references to `app.terraform.io` to point to your TFE host. 
 
@@ -154,7 +154,7 @@ When the run begins, the following sequence will occur:
 
 Integrating Terraform Cloud (TFC) with the Gruntwork IaC Library is straightforward. All Terraform wrapper modules can be centrally managed within a single repository by leveraging the' infrastructure-modules' approach described in this guide. You can then configure a dedicated workspace for each module and connect them using the [`remote_state` data source](https://www.terraform.io/docs/providers/terraform/d/remote_state.html) to build a comprehensive infrastructure.
 
-This pattern works seamlessly with any of Gruntwork’s Terraform modules, including complex modules like [`terraform-aws-eks`](https://github.com/gruntwork-io/terraform-aws-eks). For modules requiring external dependencies—such as [`kubergrunt`](https://github.com/gruntwork-io/kubergrunt)—Gruntwork employs the [`executable-dependency`](https://github.com/gruntwork-io/package-terraform-utilities/tree/master/modules/executable-dependency) module to dynamically install the required tools within the TFC executor at runtime.
+This pattern works with any of Gruntwork’s Terraform modules, including complex modules like [`terraform-aws-eks`](https://github.com/gruntwork-io/terraform-aws-eks). For modules requiring external dependencies—such as [`kubergrunt`](https://github.com/gruntwork-io/kubergrunt)—Gruntwork employs the [`executable-dependency`](https://github.com/gruntwork-io/package-terraform-utilities/tree/master/modules/executable-dependency) module to dynamically install the required tools within the TFC executor at runtime.
 
 Gruntwork may offer modules through a private Terraform registry in the future, further simplifying workflows by eliminating the SSH key requirement.
 
@@ -223,7 +223,7 @@ credentials "app.terraform.io" {
 
 ### Generating the backend
 
-A' backend' block is required to configure Terragrunt to use Terraform Cloud (TFC) as a remote executor. The backend specifies where Terraform stores state and determines how to handle an execution. Using the Terragrunt [`generate` block](https://terragrunt.gruntwork.io/docs/reference/config-blocks-and-attributes/#generate:), you can dynamically create the backend configuration, eliminating the need to include it in each module.
+A `backend` block is required to configure Terragrunt to use Terraform Cloud (TFC) as a remote executor. The backend specifies where Terraform stores state and determines how to handle an execution. Using the Terragrunt [`generate` block](https://terragrunt.gruntwork.io/docs/reference/config-blocks-and-attributes/#generate:), you can dynamically create the backend configuration, eliminating the need to include it in each module.
 
 
 Terraform [workspaces](https://www.terraform.io/docs/state/workspaces.html) manage state for a specific backend. In the Terragrunt configuration structure described earlier, each module (e.g., `sqs`) must use a unique workspace, and the workspace name is specified in the `backend` block. You must identify all necessary components of the naming convention to define these workspaces.

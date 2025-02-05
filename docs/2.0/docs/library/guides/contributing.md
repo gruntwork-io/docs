@@ -1,7 +1,6 @@
 # Contributing to Gruntwork IaC Library
 
-Contributions to the Gruntwork IaC Library are encouraged and highly valued. <br />
-Gruntwork receives over 1,000 customer [pull requests](https://help.github.com/articles/about-pull-requests/) annually.
+Contributions to Gruntwork IaC Library are welcome and appreciated! In fact, Gruntwork receives over 1,000 customer [pull requests](https://help.github.com/articles/about-pull-requests/) per year.
 
 You can contribute in the following ways:
 
@@ -11,7 +10,7 @@ You can contribute in the following ways:
 
 ## Start by filing a GitHub issue
 
-Before starting work on a new feature, file a GitHub issue in the relevant repository. Doing so gives you the an opportunity to clarify your approach, gather input from maintainers and the community, and address any questions before investing significant time in coding. If you’re uncertain about any part of your contribution, don’t hesitate to ask for guidance.
+Before starting work on a new feature, file a GitHub issue in the relevant repository. Doing so gives you the opportunity to clarify your approach, gather input from maintainers and the community, and address any questions before investing significant time in coding. If you’re uncertain about any part of your contribution, don’t hesitate to ask for guidance.
 
 For minor updates, like adding a variable or output value, you may proceed directly to creating a pull request, as detailed below.
 
