@@ -167,9 +167,9 @@ const sidebar = [
         id: "2.0/docs/pipelines/architecture/audit-logs",
       },
       {
-        label: "GitHub Workflows",
+        label: "CI Workflows",
         type: "doc",
-        id: "2.0/docs/pipelines/architecture/github-workflows",
+        id: "2.0/docs/pipelines/architecture/ci-workflows",
       },
       {
         label: "Usage Data",
