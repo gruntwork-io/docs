@@ -313,6 +313,10 @@ module "public_static_website" {
   # for more details.
   web_acl_id = null
 
+  # The list of website aliases in addition to var.website_domain_name (e.g.
+  # static.foo.com).
+  website_domain_name_aliases = []
+
 }
 
 
@@ -527,6 +531,10 @@ inputs = {
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution#web_acl_id
   # for more details.
   web_acl_id = null
+
+  # The list of website aliases in addition to var.website_domain_name (e.g.
+  # static.foo.com).
+  website_domain_name_aliases = []
 
 }
 
@@ -1024,6 +1032,15 @@ If you're using AWS WAF to filter CloudFront requests, the Id of the AWS WAF web
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="website_domain_name_aliases" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The list of website aliases in addition to <a href="#website_domain_name"><code>website_domain_name</code></a> (e.g. static.foo.com).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -1078,6 +1095,6 @@ The ARN of the created S3 bucket associated with the website.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules/services/public-static-website/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b86352b3432992265341556a9f5bc7cf"
+  "hash": "f5ba205eba16ad89dd1ae32c5aa5d1aa"
 }
 ##DOCS-SOURCER-END -->
