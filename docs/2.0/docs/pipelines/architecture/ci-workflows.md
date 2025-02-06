@@ -19,7 +19,7 @@ jobs:
 
 ```yml
 include:
-  - component: gitlab.com/gruntwork-io/pipelines-workflows/pipelines@main
+  - component: gitlab.com/gruntwork-io/pipelines-workflows/pipelines@3
 ```
 </TabItem>
 </Tabs>
