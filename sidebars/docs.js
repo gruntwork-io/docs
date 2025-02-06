@@ -188,6 +188,11 @@ const sidebar = [
     },
     items: [
       {
+        label: "Platform Differences",
+        type: "doc",
+        id: "2.0/docs/pipelines/installation/scm-comparison",
+      },
+      {
         label: "Prerequisites",
         type: "category",
         collapsed: false,
