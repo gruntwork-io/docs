@@ -1,6 +1,6 @@
 # Authenticating Gruntwork Pipelines
 
-Gruntwork Pipelines requires authentication with GitHub to perform various functions, including:
+Gruntwork Pipelines requires authentication with GitHub/GitLab to perform various functions, including:
 * Downloading Gruntwork code, such as the Pipelines binary and Terraform modules, from the `gruntwork-io` GitHub organization.
 * Interacting with your repositories, such as:
   * Creating pull requests.
@@ -12,7 +12,7 @@ Gruntwork provides two authentication methods: a [GitHub App](/2.0/docs/pipeline
 
 Both approaches support the core functionality of Pipelines. However, the GitHub App provides additional features and benefits, making it the recommended method. While Gruntwork strives to ensure feature parity between the two authentication mechanisms, certain advanced features are exclusive to the GitHub App, and this list is expected to grow over time.
 
-## Summary of authentication mechanisms
+## Summary of authentication mechanisms for GitHub
 
 **Advantages of the GitHub App**:
 - Simplified setup process.
