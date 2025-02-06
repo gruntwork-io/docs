@@ -724,62 +724,6 @@ const sidebar = [
     type: "doc",
     id: "courses",
   },
-  {
-    type: 'category',
-    label: 'Gruntwork Pipelines',
-    link: {
-      type: 'doc',
-      id: 'pipelines/overview'
-    },
-    items: [
-      {
-        type: 'doc',
-        label: 'Platform Comparison',
-        id: 'pipelines/scm-comparison'
-      },
-      {
-        type: 'category',
-        label: 'Installation',
-        items: [
-          {
-            type: 'doc',
-            id: 'pipelines/installation/index',
-            label: 'Installation Overview'
-          },
-          {
-            type: 'doc',
-            id: 'pipelines/installation/authoverview',
-            label: 'Authentication Overview'
-          },
-          {
-            type: 'doc',
-            id: 'pipelines/installation/viagithubapp',
-            label: 'GitHub App Setup'
-          },
-          {
-            type: 'doc',
-            id: 'pipelines/installation/viamachineusers',
-            label: 'Machine User Setup'
-          },
-          {
-            type: 'doc',
-            id: 'pipelines/installation/gitlab',
-            label: 'GitLab Setup'
-          },
-          {
-            type: 'doc',
-            id: 'pipelines/installation/addingexistingrepo',
-            label: 'Adding to Existing Repo'
-          },
-          {
-            type: 'doc',
-            id: 'pipelines/installation/addingnewrepo',
-            label: 'Adding to New Repo'
-          }
-        ]
-      },
-    ]
-  },
 ]
 
 module.exports = sidebar

@@ -1,5 +1,5 @@
 ---
-description: 
+description: Background on how github vs gitlab work
 globs: 
 ---
 
@@ -9,3 +9,7 @@ GitLab does not yet support account factory.
 GitLab does not yet support the same level of customization as GitHub
 GitLab requires one machine user with just one token and does not have a gitlab app.  
 GitLab does require an account in the gruntwork management portal, and the customer has to inform gruntwork as to what groups they are using in GitLab, and gruntwork will authorize those groups
+
+<IMPORTANT>
+Whenever presenting information that diverges between github and gitlab, use the <Tabs> and <TabItem> components to distinguish the two sets of information
+</IMPORTANT>
