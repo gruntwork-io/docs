@@ -52,17 +52,9 @@ For GitLab repositories, similar protection rules should be configured on the de
 - Set **Allowed to push** to "No one" to prevent direct pushes to the protected branch.
 - (Optional) Enable **Require approval from code owners** to ensure designated reviewers approve changes to specific files.
 
-  :::info
-  GitLab also offers the option to "Require all discussions to be resolved". Consider enabling this to ensure all code review comments are addressed before merging.
-  :::
-
 Below is an example of the recommended GitLab branch protection settings:
 
 ![GitLab Branch Protection Settings](/img/pipelines/gitlab_branch_protection.png)
-
-:::info
-Consider enabling **Code owner approval required** under Settings > Merge requests to ensure code owners must approve changes before merging.
-:::
 
 </TabItem>
 </Tabs>
