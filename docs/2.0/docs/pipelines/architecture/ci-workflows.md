@@ -1,6 +1,12 @@
 # CI Workflows
 
-Pipelines integrates with your repositories through GitHub Workflows, leveraging [Reusable Workflows](https://docs.github.com/en/actions/sharing-automations/reusing-workflows) from Gruntwork's [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. The workflows in your repositories rely on Gruntwork workflows through the uses clause within a job. This is structured as follows:
+Pipelines integrates with your repositories through GitHub/GitLab Workflows, leveraging [GitHub Reusable Workflows](https://docs.github.com/en/actions/sharing-automations/reusing-workflows) and [GitLab Shared Components](https://docs.gitlab.com/ee/ci/components/) from Gruntwork's repositories. The workflows in your repositories rely on Gruntwork workflows through the uses clause within a job. This is structured as follows:
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="GitHub" label="GitHub">
 
 ```yml
 jobs:
@@ -8,11 +14,20 @@ jobs:
     uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-root.yml@v3
 ```
 
+</TabItem>
+<TabItem value="GitLab" label="GitLab">
+
+```yml
+include:
+  - component: gitlab.com/gruntwork-io/pipelines-workflows/pipelines@main
+```
+</TabItem>
+</Tabs>
 ## Workflow versioning
 
 Gruntwork follows [Semantic Versioning](https://semver.org/) for `pipelines-workflows` releases. New releases are tracked using git tags in the `v.MAJOR.MINOR.PATCH` format. A major tag, such as `v.MAJOR`, is also maintained and updated to point to the latest release within that major version. For example, when releasing a patch update from `v3.0.1` to `v3.0.2`, the `v3` tag will be updated to reference the newer version.
 
-When referencing a workflow, the version is specified in the `uses` clause. For example: `pipelines-root.yml@v3`. Using the major version, like v3, in your workflows ensures you receive the latest updates and performance enhancements.. However, you can choose to pin to a specific version if needed.
+When referencing a workflow, the version is specified in the `uses` or `component` clause. For example: `pipelines-root.yml@v3`. Using the major version, e.g. v3, in your workflows ensures you receive the latest updates and performance enhancements. However, you can choose to pin to a specific version if needed.
 
 ## Modifying workflows
 
@@ -22,12 +37,16 @@ If you [fork the Gruntwork Workflows](https://docs.gruntwork.io/2.0/docs/pipelin
 
 ## Workflow dependencies
 
+<Tabs>
+<TabItem value="GitHub" label="GitHub">
+
 The `pipelines-workflows` repository includes the following reusable workflows:
 
 - `pipelines-drift-detection.yml` - Used for [Pipelines Drift Detection](/2.0/docs/pipelines/concepts/drift-detection) in all repositories with Drift Detection installed.
 - `pipelines-root.yml` - The core Pipelines workflow for the `infrastructure-live-root` repository, providing core plan/apply functionality and account vending.
 - `pipelines-unlock.yml` - Used to manually unlock state files in all repositories.
 - `pipelines.yml` - The core Pipelines workflow for `infrastructure-live-access-control` and delegated repositories, supporting plan/apply operations.
+
 
 In your repositories, the following workflows are typically present:
 
@@ -48,3 +67,14 @@ In your repositories, the following workflows are typically present:
 - `pipelines-drift-detection.yml` - Uses the Gruntwork `pipelines-drift-detection.yml` workflow.
 - `pipelines-unlock.yml` - Uses the Gruntwork `pipelines-unlock.yml` workflow.
 - `pipelines.yml` - Uses `pipelines.yml`.
+
+
+</TabItem>
+<TabItem value="GitLab" label="GitLab">
+
+Your `.gitlab-ci.yml` file will include the following workflow:
+
+- `GruntworkPipelines` - The core Pipelines workflow for your repository.
+
+</TabItem>
+</Tabs>
