@@ -103,9 +103,12 @@ When creating tokens, carefully consider the expiration date and scope of access
 
 ## Creating machine users
 
+<Tabs>
+<TabItem value="github" label="GitHub" default>
+
 The recommended setup for Pipelines uses two machine users: one for opening pull requests and running workflows (`ci-user`) and another with read-only access to repositories (`ci-read-only-user`). Each user is assigned restrictive permissions based on their tasks. As a result, both users may need to participate at different stages to successfully run a pipeline job.
 
-Both the `ci-user` and the u`ci-read-only-user` must:
+Both the `ci-user` and the `ci-read-only-user` must:
 
 1. Be members of your GitHub Organization.
 
@@ -377,6 +380,67 @@ If you are **not an Enterprise customer**, you should also do the following:
 :::info
 For more information on creating and using GitHub Actions Repository secrets, refer to the [GitHub Documentation](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
 :::
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="gitlab" label="GitLab">
+
+
+For GitLab, Pipelines requires a single machine user with `api` access. This user will be used to authenticate API calls and access repositories within your GitLab group.
+
+### Creating the CI User
+
+1. Create a dedicated GitLab user account to serve as your CI user
+2. Add this user to your GitLab group with appropriate permissions:
+   - Developer access to your infrastructure repositories
+
+**Checklist:**
+<PersistentCheckbox id="via-machine-users-gitlab-1" label="GitLab CI user created" />
+<PersistentCheckbox id="via-machine-users-gitlab-2" label="CI user added to GitLab group" />
+
+### Creating the Access Token
+
+Generate a Personal Access Token for the CI user with the following scopes:
+- `api` - For making API calls to e.g. create comments on merge requests
+
+This token will be stored as the `PIPELINES_GITLAB_TOKEN` in your CI/CD variables.
+
+:::tip
+Set an expiration date according to your organization's security policies. We recommend 90 days as a balance between security and maintenance.
+:::
+
+**Checklist:**
+<PersistentCheckbox id="via-machine-users-gitlab-3" label="PIPELINES_GITLAB_TOKEN created" />
+
+### Configure CI/CD Variables
+
+Add the `PIPELINES_GITLAB_TOKEN` as a CI/CD variable at the group level:
+
+1. Navigate to your GitLab group's **Settings > CI/CD**
+2.  Expand the **Variables** section
+3. Click **Add variable**
+4. Mark the variable as **Masked**
+5. Leave both the "Protect variable" and "Expand variable reference" options unchecked
+6. Select the environments where this variable should be available
+7. Set the key as `PIPELINES_GITLAB_TOKEN`
+8. Set the value as the Personal Access Token generated in the [Creating the Access Token](#creating-the-access-token) section
+
+**Checklist:**
+<PersistentCheckbox id="via-machine-users-gitlab-4" label="PIPELINES_GITLAB_TOKEN added to CI/CD variables" />
+
+:::caution
+Remember to update this token before it expires to prevent pipeline disruptions.
+:::
+
+### Authorize your groups to the Gruntwork Pipelines backend
+
+In order to use the Gruntwork Pipelines backend, you need to authorize your groups to it. To do so, email your Gruntwork account manager or support@gruntwork.io with the following information:
+
+- The group name (s) you want to authorize for Gruntwork Pipelines in GitLab
+- The GitLab instance you want to authorize (e.g. https://gitlab.com)
+- The name of your organization
 
 </TabItem>
 </Tabs>
