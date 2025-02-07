@@ -49,7 +49,7 @@ Refer to the [infrastructure-deployer CLI](https://github.com/gruntwork-io/terra
 
 Note
 
-This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/)!
+This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://docs.gruntwork.io/library/overview/)!
 
 ### Core concepts
 
@@ -1324,6 +1324,6 @@ Security Group ID of the ECS task
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/ecs-deploy-runner/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "611809a67e9a393fcd7c893ad64280dc"
+  "hash": "6c99bcd2b508ecc0be5732c8048813a9"
 }
 ##DOCS-SOURCER-END -->

@@ -37,7 +37,7 @@ NOTE: - These scripts are built for running Go tests, such as \[Terratest]\([htt
 
 Note
 
-This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/)!
+This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://docs.gruntwork.io/library/overview/)!
 
 ### Core concepts
 
@@ -81,6 +81,6 @@ If you just want to try this module out for experimenting and learning, check ou
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/monorepo-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4ef356bb8ccb6ef9cceb57151bfd8458"
+  "hash": "8886d5173159836a955460ef646bae4d"
 }
 ##DOCS-SOURCER-END -->

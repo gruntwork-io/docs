@@ -29,7 +29,7 @@ This module contains a script for deploying arbitrary infrastructure code stored
 
 Note
 
-This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/)!
+This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://docs.gruntwork.io/library/overview/)!
 
 ### Core concepts
 
@@ -65,6 +65,6 @@ If you just want to try this repo out for experimenting and learning, check out 
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/infrastructure-deploy-script/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1c3dc498dcbddb96b8744f29788a766f"
+  "hash": "02c36f129249c32407dff55c12e7986c"
 }
 ##DOCS-SOURCER-END -->

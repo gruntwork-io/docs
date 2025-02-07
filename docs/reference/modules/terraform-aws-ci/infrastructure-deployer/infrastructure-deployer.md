@@ -47,7 +47,7 @@ Refer to the [ecs-deploy-runner module](https://github.com/gruntwork-io/terrafor
 
 Note
 
-This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/)!
+This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://docs.gruntwork.io/library/overview/)!
 
 ### Core concepts
 
@@ -85,6 +85,6 @@ If you just want to try this repo out for experimenting and learning, check out 
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/infrastructure-deployer/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3b787590565b902463b5d3aea2f9c602"
+  "hash": "a9fa70d258c5f158904c1aef70926bb4"
 }
 ##DOCS-SOURCER-END -->
