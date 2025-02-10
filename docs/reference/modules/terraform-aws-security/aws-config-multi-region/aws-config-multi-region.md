@@ -392,11 +392,6 @@ module "aws_config_multi_region" {
   # name>:/AWSLogs/<account ID>/Config/*.
   s3_object_prefix = null
 
-  # If set to true, create an IAM role for AWS Config. Customize the name of the
-  # role by setting iam_role_name. If set to false, the name passed in
-  # iam_role_name must already exist.
-  should_create_iam_role = true
-
   # Set this to true to create an S3 bucket in the same region where the global
   # recorder is configured. For multi-account deployments, set this to true for
   # the central account that should host the S3 bucket and SNS topics, and false
@@ -425,10 +420,6 @@ module "aws_config_multi_region" {
   # resource for findings. As such, it is important to avoid inline policies
   # when targeting compliance with various security standards.
   use_managed_iam_policies = true
-
-  # If set to true, use a service-linked role for AWS Config that is already
-  # created. If set to false, use a custom IAM role referenced in iam_role_name.
-  use_service_linked_role = false
 
 }
 
@@ -762,11 +753,6 @@ inputs = {
   # name>:/AWSLogs/<account ID>/Config/*.
   s3_object_prefix = null
 
-  # If set to true, create an IAM role for AWS Config. Customize the name of the
-  # role by setting iam_role_name. If set to false, the name passed in
-  # iam_role_name must already exist.
-  should_create_iam_role = true
-
   # Set this to true to create an S3 bucket in the same region where the global
   # recorder is configured. For multi-account deployments, set this to true for
   # the central account that should host the S3 bucket and SNS topics, and false
@@ -795,10 +781,6 @@ inputs = {
   # resource for findings. As such, it is important to avoid inline policies
   # when targeting compliance with various security standards.
   use_managed_iam_policies = true
-
-  # If set to true, use a service-linked role for AWS Config that is already
-  # created. If set to false, use a custom IAM role referenced in iam_role_name.
-  use_service_linked_role = false
 
 }
 
@@ -1477,15 +1459,6 @@ A prefix to use when storing Config objects in S3. This will be the beginning of
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="should_create_iam_role" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, create an IAM role for AWS Config. Customize the name of the role by setting iam_role_name. If set to false, the name passed in iam_role_name must already exist.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="should_create_s3_bucket" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1540,15 +1513,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="use_service_linked_role" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, use a service-linked role for AWS Config that is already created. If set to false, use a custom IAM role referenced in iam_role_name.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -1595,6 +1559,6 @@ The ARNs of the SNS Topic used by the config notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-config-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fee25a69eefdf176a4beacea6f5bf9cd"
+  "hash": "0f7ba0c287b65fa2e360d5fbe4df481f"
 }
 ##DOCS-SOURCER-END -->

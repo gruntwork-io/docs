@@ -190,11 +190,6 @@ module "iam_users" {
   # with create_login_profile set to true.
   password_reset_required = true
 
-  # A list of AWS regions and corresponding kms_key_ids where the
-  # programmatic_access secret should be replicated. If enabled, kms_key_id will
-  # not be used.
-  programmatic_access_regions = []
-
 }
 
 
@@ -263,11 +258,6 @@ inputs = {
   # Force the user to reset their password on initial login. Only used for users
   # with create_login_profile set to true.
   password_reset_required = true
-
-  # A list of AWS regions and corresponding kms_key_ids where the
-  # programmatic_access secret should be replicated. If enabled, kms_key_id will
-  # not be used.
-  programmatic_access_regions = []
 
 }
 
@@ -487,25 +477,6 @@ Force the user to reset their password on initial login. Only used for users wit
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="programmatic_access_regions" requirement="optional" type="list(object(…))">
-<HclListItemDescription>
-
-A list of AWS regions and corresponding kms_key_ids where the programmatic_access secret should be replicated. If enabled, kms_key_id will not be used.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(object({
-    region     = string
-    kms_key_id = string
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -560,6 +531,6 @@ A map of usernames to that user's AWS SSH Security Credential ID
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-users/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "39a22663a8c4bc6a4c8541f0e3a72db8"
+  "hash": "1a1cc1b9fe44a499561af289a29af4e5"
 }
 ##DOCS-SOURCER-END -->

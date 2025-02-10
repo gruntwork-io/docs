@@ -102,14 +102,7 @@ module "aws_organizations" {
 
   # Map of child accounts to create. The map key is the name of the account and
   # the value is an object containing account configuration variables.
-  child_accounts = <map(object(
-    email                      = string
-    parent_id                  = optional(string)
-    role_name                  = optional(string)
-    iam_user_access_to_billing = optional(string)
-    close_on_deletion          = optional(bool)
-    tags                       = optional(map(string), )
-  ))>
+  child_accounts = <any>
 
   # Flag indicating whether the organization should be created.
   create_organization = <bool>
@@ -171,14 +164,7 @@ inputs = {
 
   # Map of child accounts to create. The map key is the name of the account and
   # the value is an object containing account configuration variables.
-  child_accounts = <map(object(
-    email                      = string
-    parent_id                  = optional(string)
-    role_name                  = optional(string)
-    iam_user_access_to_billing = optional(string)
-    close_on_deletion          = optional(bool)
-    tags                       = optional(map(string), )
-  ))>
+  child_accounts = <any>
 
   # Flag indicating whether the organization should be created.
   create_organization = <bool>
@@ -232,7 +218,7 @@ inputs = {
 
 ### Required
 
-<HclListItem name="child_accounts" requirement="required" type="map(object(…))">
+<HclListItem name="child_accounts" requirement="required" type="any">
 <HclListItemDescription>
 
 Map of child accounts to create. The map key is the name of the account and the value is an object containing account configuration variables.
@@ -241,18 +227,24 @@ Map of child accounts to create. The map key is the name of the account and the 
 <HclListItemTypeDetails>
 
 ```hcl
-map(object({
-    email                      = string
-    parent_id                  = optional(string)
-    role_name                  = optional(string)
-    iam_user_access_to_billing = optional(string)
-    close_on_deletion          = optional(bool)
-    tags                       = optional(map(string), {})
-  }))
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
 ```
 
 </HclListItemTypeDetails>
 <HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Ideally, this would be a map of (string, object), but object does not support optional properties, and we want
+   users to be able to specify, say, tags for some accounts, but not for others. We can't use a map(any) either, as that
+   would require the values to all have the same type, and due to optional parameters, that wouldn't work either. So,
+   we have to lamely fall back to any.
+
+```
+</details>
+
 <details>
 
 
@@ -280,10 +272,6 @@ map(object({
      permissions. If set to ´DENY´, then only the root user of the new account can access account billing information.
      Defaults to ´default_iam_user_access_to_billing´.
   
-   - close_on_deletion:
-     Boolean flag to indicate whether the account should be closed when the resource is deleted, otherwise it will be
-     removed from the organization. Note there are AWS limitations on how many accounts can be closed this way.
-  
    - tags:
      Key-value mapping of resource tags.
   
@@ -296,7 +284,6 @@ map(object({
        parent_id                   = "my-org-unit-id",
        role_name                   = "test-role",
        iam_user_access_to_billing  = "DENY",
-       close_on_deletion           = true,
        tags = {
          Tag-Key = "tag-value"
        }
@@ -441,6 +428,6 @@ Identifier of the root of this organization.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/aws-organizations/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a8cd83fc122f33b42916a780836d783d"
+  "hash": "55eb5f9c922d352b103ba4f4a7c1ae78"
 }
 ##DOCS-SOURCER-END -->

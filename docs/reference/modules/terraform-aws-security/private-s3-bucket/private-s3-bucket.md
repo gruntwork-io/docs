@@ -137,10 +137,6 @@ module "private_s_3_bucket" {
   # for more info.
   bucket_ownership = "BucketOwnerEnforced"
 
-  # Provides an IAM policy in JSON format to apply to S3 bucket. See more:
-  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html
-  bucket_policy_from_file = null
-
   # The IAM policy to apply to this S3 bucket. You can use this to grant
   # read/write access. This should be a map, where each key is a unique
   # statement ID (SID), and each value is an object that contains the parameters
@@ -186,10 +182,6 @@ module "private_s_3_bucket" {
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role
   iam_role_permissions_boundary = null
-
-  # Set flag to have terraform ignore changes to the S3 bucket policy (if these
-  # are being maniplulated outside of terraform)
-  ignore_s3_bucket_policy_changes = false
 
   # Optional KMS key to use for encrypting data in the S3 bucket. If null, data
   # in S3 will be encrypted using the default aws/s3 key. If provided, the key
@@ -350,10 +342,6 @@ inputs = {
   # for more info.
   bucket_ownership = "BucketOwnerEnforced"
 
-  # Provides an IAM policy in JSON format to apply to S3 bucket. See more:
-  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html
-  bucket_policy_from_file = null
-
   # The IAM policy to apply to this S3 bucket. You can use this to grant
   # read/write access. This should be a map, where each key is a unique
   # statement ID (SID), and each value is an object that contains the parameters
@@ -399,10 +387,6 @@ inputs = {
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role
   iam_role_permissions_boundary = null
-
-  # Set flag to have terraform ignore changes to the S3 bucket policy (if these
-  # are being maniplulated outside of terraform)
-  ignore_s3_bucket_policy_changes = false
 
   # Optional KMS key to use for encrypting data in the S3 bucket. If null, data
   # in S3 will be encrypted using the default aws/s3 key. If provided, the key
@@ -582,40 +566,6 @@ Configure who will be the default owner of objects uploaded to this S3 bucket: m
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;BucketOwnerEnforced&quot;"/>
-</HclListItem>
-
-<HclListItem name="bucket_policy_from_file" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Provides an IAM policy in JSON format to apply to S3 bucket. See more: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    # Path to file
-    file_path = string
-
-    # Variables to substitute in the policy file
-    vars = map(string)
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     Variables to substitute in the policy file
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="bucket_policy_statements" requirement="optional" type="any">
@@ -804,15 +754,6 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ignore_s3_bucket_policy_changes" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set flag to have terraform ignore changes to the S3 bucket policy (if these are being maniplulated outside of terraform)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="kms_key_arn" requirement="optional" type="string">
@@ -1100,6 +1041,6 @@ The name of an IAM role that can be used to configure replication from various s
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/private-s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f4598c3fc8c87294b9f9e3484640e5db"
+  "hash": "415d5a9f8bcb5448b94bee17c5db0e58"
 }
 ##DOCS-SOURCER-END -->
