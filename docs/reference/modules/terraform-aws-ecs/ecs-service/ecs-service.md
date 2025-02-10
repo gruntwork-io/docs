@@ -43,7 +43,7 @@ This module creates an [Elastic Container Service (ECS) Service](http://docs.aws
 
 Note
 
-This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/)!
+This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://docs.gruntwork.io/library/overview/)!
 
 ### Core concepts
 
@@ -2060,6 +2060,6 @@ If true, Terraform will wait for the service to reach a steady state — as in, 
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.4/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "209360d183e5b5e88b09fce5a02836ca"
+  "hash": "6c778872832d095e38803da29a396563"
 }
 ##DOCS-SOURCER-END -->
