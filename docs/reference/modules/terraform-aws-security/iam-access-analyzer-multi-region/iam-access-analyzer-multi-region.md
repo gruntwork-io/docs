@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.6" lastModifiedVersion="0.74.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.7" lastModifiedVersion="0.75.7"/>
 
 # AWS IAM Access Analyzer
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-access-analyzer-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.7/modules/iam-access-analyzer-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.74.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This repo contains a Module for creating and enabling [IAM Access Analyzer](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html)
 
@@ -31,25 +31,25 @@ This module is not meant to be used directly. Instead, it’s used under the hoo
 
 Note
 
-This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/)!
+This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://docs.gruntwork.io/library/overview/)!
 
 ### Core concepts
 
-*   [What is the AWS IAM Access Analyzer?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-access-analyzer-multi-region/core-concepts.md#what-is-the-aws-iam-access-analyzer?)
+*   [What is the AWS IAM Access Analyzer?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.7/modules/iam-access-analyzer-multi-region/core-concepts.md#what-is-the-aws-iam-access-analyzer?)
 
-*   [What resources does IAM Access Analyzer analyze?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-access-analyzer-multi-region/core-concepts.md#what-resources-does-iam-access-analyzer-analyze?)
+*   [What resources does IAM Access Analyzer analyze?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.7/modules/iam-access-analyzer-multi-region/core-concepts.md#what-resources-does-iam-access-analyzer-analyze?)
 
 *   [IAM Access Analyzer documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html)
 
-*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/codegen/core-concepts.md#how-to-use-a-multi-region-module)
+*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.7/codegen/core-concepts.md#how-to-use-a-multi-region-module)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.7/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.7/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.7/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -57,13 +57,13 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.7/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ## Manage
 
-*   [Who can manage the analyzer?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-access-analyzer-multi-region/core-concepts.md#who-can-manage-the-analyzer?)
+*   [Who can manage the analyzer?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.7/modules/iam-access-analyzer-multi-region/core-concepts.md#who-can-manage-the-analyzer?)
 
-*   [What to do with the access analyzer findings?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-access-analyzer-multi-region/core-concepts.md#what-to-do-with-the-access-analyzer-findings?)
+*   [What to do with the access analyzer findings?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.7/modules/iam-access-analyzer-multi-region/core-concepts.md#what-to-do-with-the-access-analyzer-findings?)
 
 ## Sample Usage
 
@@ -78,7 +78,7 @@ If you just want to try this out for experimenting and learning, check out the f
 
 module "iam_access_analyzer_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-access-analyzer-multi-region?ref=v0.75.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-access-analyzer-multi-region?ref=v0.75.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -118,7 +118,7 @@ module "iam_access_analyzer_multi_region" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-access-analyzer-multi-region?ref=v0.75.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-access-analyzer-multi-region?ref=v0.75.7"
 }
 
 inputs = {
@@ -157,11 +157,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-access-analyzer-multi-region/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-access-analyzer-multi-region/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/iam-access-analyzer-multi-region/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.7/modules/iam-access-analyzer-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.7/modules/iam-access-analyzer-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.7/modules/iam-access-analyzer-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "365f90782259d03c7c17cc7777f85964"
+  "hash": "20a7581de1c9f324bedb32d5e3813464"
 }
 ##DOCS-SOURCER-END -->
