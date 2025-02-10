@@ -35,7 +35,7 @@ This Terraform Module configures [AWS CloudTrail](https://aws.amazon.com/cloudtr
 
 Note
 
-This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/)!
+This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://docs.gruntwork.io/library/overview/)!
 
 ### Core concepts
 
@@ -71,7 +71,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [How to configure a production-grade AWS account structure](https://gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/): This guide will walk you through the process of configuring a production-grade AWS account structure, including how to manage multiple environments, users, permissions, audit logging via CloudTrail, and more.
+*   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone): This guide will walk you through the process of configuring a production-grade AWS account structure, including how to manage multiple environments, users, permissions, audit logging via CloudTrail, and more.
 
 *   [cloudtrail module in the example Reference Architecture](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/main/examples/for-production/infrastructure-live/security/\_global/account-baseline): Production-ready example code from the Reference Architecture.
 
@@ -1401,6 +1401,6 @@ The name of the cloudtrail trail.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d878413c6d789da445c001a5128bd2ff"
+  "hash": "8c08a842e7db96292c25f7b3107eef1b"
 }
 ##DOCS-SOURCER-END -->
