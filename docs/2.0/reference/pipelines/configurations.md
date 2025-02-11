@@ -89,22 +89,6 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
-#### enable-terragrunt-provider-cache
-
-<HclListItem name="enable-terragrunt-provider-cache" requirement="optional" type="boolean">
-<HclListItemDescription>
-Enables the <span class="external-link"><a href="https://terragrunt.gruntwork.io/docs/features/provider-cache/">Terragrunt Provider Cache</a></span> for plans and applies.
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-<HclListItemExample>
-
-```yaml
-pipelines:
-  enable-terragrunt-provider-cache: true
-```
-
-</HclListItemExample>
-</HclListItem>
 
 #### env
 
@@ -193,6 +177,25 @@ pipelines:
 </HclListItem>
 
 ## Deprecated Configuration Options
+
+#### enable-terragrunt-provider-cache
+
+<HclListItem name="enable-terragrunt-provider-cache" requirement="optional" type="boolean">
+<HclListItemDescription>
+Enables the <span class="external-link"><a href="https://terragrunt.gruntwork.io/docs/features/provider-cache/">Terragrunt Provider Cache</a></span> for plans and applies.
+
+This option is deprecated in favor of setting `TERRAGRUNT_PROVIDER_CACHE` as an [`env`](#env) option.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  enable-terragrunt-provider-cache: true
+```
+
+</HclListItemExample>
+</HclListItem>
 
 #### cli-version
 
