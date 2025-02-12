@@ -119,7 +119,7 @@ Env blocks are configuration components used by [repository](#repository-blocks)
 repository {
   env {
     TF_VAR_environment = "an_environment_provided_input"
-    TG_TF_PATH         = "opentofu"
+    TG_LOG_FORMAT         = "json"
   }
 }
 ```
