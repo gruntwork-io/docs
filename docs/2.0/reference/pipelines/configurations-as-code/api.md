@@ -278,7 +278,7 @@ Whether or not Pipelines will consolidate deleted resources when running Terragr
 <HclListItem name="tf_binary" requirement="optional" type="string">
 <HclListItemDescription>
 
-The path to the Terraform binary that Pipelines will use when running Terragrunt commands. Valid values are `opentofu` or `terraform`.
+The IaC binary that Pipelines will instruct Terragrunt to use. Valid values are `opentofu` or `terraform`.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="opentofu"/>
