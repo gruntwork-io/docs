@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.40.4" lastModifiedVersion="0.36.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.40.5" lastModifiedVersion="0.40.5"/>
 
 # EFS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.4/modules/efs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/efs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.36.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Elastic File System (EFS) file system that provides NFSv4-compatible storage that can be used with other AWS services, such as EC2 instances.
 
@@ -33,7 +33,7 @@ EFS is also supported in Kubernetes via the [EFS CSI driver](https://github.com/
 
 Note
 
-This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/)!
+This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://docs.gruntwork.io/library/overview/)!
 
 ### Core concepts
 
@@ -45,13 +45,13 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.4/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [efs module variables](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.4/modules/efs/variables.tf): Configuration variables available for the EFS module. At minimum, you should configure the `allow_connections_from_cidr_blocks` and `allow_connections_from_security_groups` values to only allow access from your private VPC(s). You may also want to enable `storage_encrypted` to encrypt data at-rest.
+*   [efs module variables](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/efs/variables.tf): Configuration variables available for the EFS module. At minimum, you should configure the `allow_connections_from_cidr_blocks` and `allow_connections_from_security_groups` values to only allow access from your private VPC(s). You may also want to enable `storage_encrypted` to encrypt data at-rest.
 
 ## Manage
 
@@ -74,7 +74,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "efs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v0.40.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v0.40.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -187,7 +187,7 @@ module "efs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v0.40.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v0.40.5"
 }
 
 inputs = {
@@ -586,11 +586,11 @@ The IDs of the security groups created for the file system.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.4/modules/efs/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.4/modules/efs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.4/modules/efs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/efs/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/efs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/efs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "69ea89470039b549f39b8777726176a1"
+  "hash": "1577f274c6169c7556084a255a60343f"
 }
 ##DOCS-SOURCER-END -->
