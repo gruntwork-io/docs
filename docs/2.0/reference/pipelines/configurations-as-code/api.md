@@ -119,7 +119,7 @@ Env blocks are configuration components used by [repository](#repository-block) 
 repository {
   env {
     TF_VAR_environment = "an_environment_provided_input"
-    TG_LOG_FORMAT         = "json"
+    TG_STRICT_VALIDATE = true
   }
 }
 ```

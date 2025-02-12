@@ -332,8 +332,8 @@ e.g.
 ```hcl
 repository {
   env {
-    TG_LOG_FORMAT         = "json"
     TF_VAR_environment = "an_environment_provided_input"
+    TG_STRICT_VALIDATE = true
   }
 }
 ```
