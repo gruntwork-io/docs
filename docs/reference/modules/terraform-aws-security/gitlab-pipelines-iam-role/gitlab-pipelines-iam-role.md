@@ -1,5 +1,5 @@
 ---
-title: "IAM Role for GitHub Actions"
+title: "IAM Role for GitLab Pipelines"
 hide_title: true
 ---
 
@@ -9,46 +9,43 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.8" lastModifiedVersion="0.73.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.8" lastModifiedVersion="0.75.8"/>
 
-# IAM Role for GitHub Actions
+# IAM Role for GitLab Pipelines
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/github-actions-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/gitlab-pipelines-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.73.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform module can be used to create Assume Role policies and IAM Roles such that they can be used with
-GitHub Actions. This requires you to provision an IAM OpenID Connect Provider for GitHub Actions in your account. By
-using OpenID Connect, GitHub Actions can directly exchange credentials to access AWS without having to store and provide
-GitHub with permanent AWS access credentials. This is useful to prevent credential leaks from progressing undetected.
+GitLab Pipelines. This requires you to provision an IAM OpenID Connect Provider for GitLab Pipelines in your account. By
+using OpenID Connect, GitLab Pipelines can directly exchange credentials to access AWS without having to store and provide
+GitLab with permanent AWS access credentials. This is useful to prevent credential leaks from progressing undetected.
 
-You can either use the
-[account-baseline-app](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/main/modules/landingzone/account-baseline-app)
-or
-[account-baseline-security](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/main/modules/landingzone/account-baseline-security)
-modules (setting `enable_github_actions_access = true`) or by adding the following resource to your Terraform module:
+You can use the [OpenID Connect Provider for GitLab Pipelines](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/gitlab-pipelines-openid-connect-provider/README.md) module in the IAM role creation process like so:
 
 ```hcl
-resource "aws_iam_openid_connect_provider" "github_actions" {
-  url             = "https://token.actions.githubusercontent.com"
-  client_id_list  = ["sts.amazonaws.com"]
-  thumbprint_list = [data.tls_certificate.oidc_thumbprint.certificates[0].sha1_fingerprint]
-}
+module "gitlab_pipelines_openid_connect_provider" {
+  # Update <VERSION> with latest version of the module
+  source = "github.com/gruntwork-io/terraform-aws-security//modules/gitlab-pipelines-openid-connect-provider?ref=<VERSION>"
 
-data "tls_certificate" "oidc_thumbprint" {
-  url = "https://token.actions.githubusercontent.com"
+  # Update <ALLOWED_GROUPS> with the list of GitLab top level groups that are allowed to assume roles in the account
+  allowed_groups = <ALLOWED_GROUPS>
 }
 ```
+
+or use its contents to create a resource directly in the IAM role module.
 
 ## Creating the IAM Role
 
 ```hcl
 module "iam_role" {
   # Update <VERSION> with latest version of the module
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=<VERSION>"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-iam-role?ref=<VERSION>"
 
-  github_actions_openid_connect_provider_arn = aws_iam_openid_connect_provider.github_actions.arn
-  github_actions_openid_connect_provider_url = aws_iam_openid_connect_provider.github_actions.url
+
+  gitlab_pipelines_openid_connect_provider_arn = module.gitlab_pipelines_openid_connect_provider.arn
+  gitlab_pipelines_openid_connect_provider_url = module.gitlab_pipelines_openid_connect_provider.url
 
   allowed_sources = {
     "gruntwork-io/terraform-aws-security" = ["main"]
@@ -61,7 +58,7 @@ module "iam_role" {
 
 ## Security Considerations
 
-The above example will configure the IAM role `example-iam-role` such that it is available to be assumed by GitHub
+The above example will configure the IAM role `example-iam-role` such that it is available to be assumed by GitLab
 Actions if it is run from the `main` branch of the `gruntwork-io/terraform-aws-security` repository. The IAM role would then
 have the ability to call any API in the `ec2` namespace.
 
@@ -80,13 +77,13 @@ allow the `dev` branch on `terraform-aws-security`, as well as the `main` branch
 ```hcl
 module "iam_role" {
   # Update <VERSION> with latest version of the module
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=<VERSION>"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-iam-role?ref=<VERSION>"
 
-  github_actions_openid_connect_provider_arn = aws_iam_openid_connect_provider.github_actions.arn
-  github_actions_openid_connect_provider_url = aws_iam_openid_connect_provider.github_actions.url
+  gitlab_pipelines_openid_connect_provider_arn = module.gitlab_pipelines_openid_connect_provider.arn
+  gitlab_pipelines_openid_connect_provider_url = module.gitlab_pipelines_openid_connect_provider.url
 
   allowed_sources = {
-    "gruntwork-io/terraform-aws-security"              = ["main", "dev"]
+    "gruntwork-io/terraform-aws-security"        = ["main", "dev"]
     "gruntwork-io/terraform-aws-service-catalog" = ["main"]
   }
 
@@ -103,8 +100,8 @@ module "assume_role_policy" {
   # Update <VERSION> with latest version of the module
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=<VERSION>"
 
-  github_actions_openid_connect_provider_arn = aws_iam_openid_connect_provider.github_actions.arn
-  github_actions_openid_connect_provider_url = aws_iam_openid_connect_provider.github_actions.url
+  gitlab_pipelines_openid_connect_provider_arn = module.gitlab_pipelines_openid_connect_provider.arn
+  gitlab_pipelines_openid_connect_provider_url = module.gitlab_pipelines_openid_connect_provider.url
 
   allowed_sources = {
     "gruntwork-io/terraform-aws-security"        = ["main", "dev"]
@@ -120,55 +117,14 @@ resource "aws_iam_role" "example" {
 }
 ```
 
-## Using created IAM Role in GitHub Actions Workflow
+## Using created IAM Role in GitLab Pipelines Workflow
 
-To use the created IAM role in your GitHub Actions Workflow, you need to configure the following:
-
-1.  Attach permissions to write `id-token` at the workflow or job level. To add this permission, add the following as a
-    top level key, or under the `job`:
-
-    permissions:
-    id-token: write
-
-2.  Add the `aws-actions/configure-aws-credentials` to your step. This retrieves a JWT from the GitHub OIDC provider,
-    and then requests an access token from AWS. For more information, see the [AWS
-    documentation](https://github.com/aws-actions/configure-aws-credentials).
+TODO
 
 ```yaml
-       - name: configure aws credentials
-         uses: aws-actions/configure-aws-credentials@master
-         with:
-           role-to-assume: IAM_ROLE_ARN_OUTPUT_OF_MODULE
-           role-session-name: ANY_CUSTOM_SESSION_NAME
-           aws-region: DEFAULT_REGION_TO_USE
-```
-
-With these two settings, your GitHub Action should now be able to assume the IAM role you created in this module. The
-following is a full GitHub Action Workflow example that lists EC2 instances on every push:
-
-```yaml
-# Sample workflow to access AWS resources when workflow is tied to branch
-name: AWS example workflow
-on:
-  push
-permissions:
-  id-token: write
-jobs:
-  ReadEC2Instances:
-    runs-on: ubuntu-latest
-    steps:
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@master
-        with:
-          role-to-assume: IAM_ROLE_ARN_OUTPUT_OF_MODULE
-          role-session-name: ANY_CUSTOM_SESSION_NAME
-          aws-region: us-east-1
-      - name: Whoami?
-        run: |
-          aws sts get-caller-identity
-      - name: Read EC2 Instances
-        run: |
-          aws ec2 describe-instances
+  id_tokens:
+    GITLAB_OIDC_TOKEN:
+      aud: https://gitlab.com/${CI_PROJECT_NAMESPACE}
 ```
 
 ## Sample Usage
@@ -179,50 +135,44 @@ jobs:
 ```hcl title="main.tf"
 
 # ------------------------------------------------------------------------------------------------------
-# DEPLOY GRUNTWORK'S GITHUB-ACTIONS-IAM-ROLE MODULE
+# DEPLOY GRUNTWORK'S GITLAB-PIPELINES-IAM-ROLE MODULE
 # ------------------------------------------------------------------------------------------------------
 
-module "github_actions_iam_role" {
+module "gitlab_pipelines_iam_role" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.75.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-iam-role?ref=v0.75.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Map of github repositories to the list of branches that are allowed to
-  # assume the IAM role. The repository should be encoded as org/repo-name
-  # (e.g., gruntwork-io/terrraform-aws-ci).
+  # Map of GitLab project path to the list of branches that are allowed to
+  # assume the IAM role. The repository should be encoded as
+  # group/subgroup/repo-name (e.g., gruntwork-io/terrraform-aws-ci).
   allowed_sources = <map(list(string))>
+
+  # ARN of the OpenID Connect Provider provisioned for GitLab Pipelines.
+  gitlab_pipelines_openid_connect_provider_arn = <string>
+
+  # URL of the OpenID Connect Provider provisioned for GitLab Pipelines.
+  gitlab_pipelines_openid_connect_provider_url = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # List of additional thumbprints for the OIDC provider.
-  additional_thumbprints = null
-
   # The string operator to use when evaluating the AWS IAM condition for
-  # determining which GitHub repos are allowed to assume the IAM role. Examples:
+  # determining which GitLab repos are allowed to assume the IAM role. Examples:
   # StringEquals, StringLike, etc.
   allowed_sources_condition_operator = "StringEquals"
 
-  # Whether to create the IAM role and attach permissions for GitHub Actions to
-  # assume.
+  # Whether to create the IAM role and attach permissions for GitLab Pipelines
+  # to assume.
   create_iam_role = true
-
-  # Flag to enable/disable the creation of the GitHub OIDC provider.
-  create_oidc_provider = false
 
   # The name to use for the custom inline IAM policy that is attached to the
   # Role/Group when var.iam_policy is configured.
   custom_iam_policy_name = "GrantCustomIAMPolicy"
-
-  # ARN of the OpenID Connect Provider provisioned for GitHub Actions.
-  github_actions_openid_connect_provider_arn = ""
-
-  # URL of the OpenID Connect Provider provisioned for GitHub Actions.
-  github_actions_openid_connect_provider_url = ""
 
   # A list of IAM AWS Managed Policy names to attach to the group.
   iam_aws_managed_policy_names = null
@@ -265,11 +215,11 @@ module "github_actions_iam_role" {
 ```hcl title="terragrunt.hcl"
 
 # ------------------------------------------------------------------------------------------------------
-# DEPLOY GRUNTWORK'S GITHUB-ACTIONS-IAM-ROLE MODULE
+# DEPLOY GRUNTWORK'S GITLAB-PIPELINES-IAM-ROLE MODULE
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.75.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-iam-role?ref=v0.75.8"
 }
 
 inputs = {
@@ -278,39 +228,33 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Map of github repositories to the list of branches that are allowed to
-  # assume the IAM role. The repository should be encoded as org/repo-name
-  # (e.g., gruntwork-io/terrraform-aws-ci).
+  # Map of GitLab project path to the list of branches that are allowed to
+  # assume the IAM role. The repository should be encoded as
+  # group/subgroup/repo-name (e.g., gruntwork-io/terrraform-aws-ci).
   allowed_sources = <map(list(string))>
+
+  # ARN of the OpenID Connect Provider provisioned for GitLab Pipelines.
+  gitlab_pipelines_openid_connect_provider_arn = <string>
+
+  # URL of the OpenID Connect Provider provisioned for GitLab Pipelines.
+  gitlab_pipelines_openid_connect_provider_url = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # List of additional thumbprints for the OIDC provider.
-  additional_thumbprints = null
-
   # The string operator to use when evaluating the AWS IAM condition for
-  # determining which GitHub repos are allowed to assume the IAM role. Examples:
+  # determining which GitLab repos are allowed to assume the IAM role. Examples:
   # StringEquals, StringLike, etc.
   allowed_sources_condition_operator = "StringEquals"
 
-  # Whether to create the IAM role and attach permissions for GitHub Actions to
-  # assume.
+  # Whether to create the IAM role and attach permissions for GitLab Pipelines
+  # to assume.
   create_iam_role = true
-
-  # Flag to enable/disable the creation of the GitHub OIDC provider.
-  create_oidc_provider = false
 
   # The name to use for the custom inline IAM policy that is attached to the
   # Role/Group when var.iam_policy is configured.
   custom_iam_policy_name = "GrantCustomIAMPolicy"
-
-  # ARN of the OpenID Connect Provider provisioned for GitHub Actions.
-  github_actions_openid_connect_provider_arn = ""
-
-  # URL of the OpenID Connect Provider provisioned for GitHub Actions.
-  github_actions_openid_connect_provider_url = ""
 
   # A list of IAM AWS Managed Policy names to attach to the group.
   iam_aws_managed_policy_names = null
@@ -363,7 +307,7 @@ inputs = {
 <HclListItem name="allowed_sources" requirement="required" type="map(list(…))">
 <HclListItemDescription>
 
-Map of github repositories to the list of branches that are allowed to assume the IAM role. The repository should be encoded as org/repo-name (e.g., gruntwork-io/terrraform-aws-ci).
+Map of GitLab project path to the list of branches that are allowed to assume the IAM role. The repository should be encoded as group/subgroup/repo-name (e.g., gruntwork-io/terrraform-aws-ci).
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -375,21 +319,28 @@ map(list(string))
 </HclListItemTypeDetails>
 </HclListItem>
 
-### Optional
-
-<HclListItem name="additional_thumbprints" requirement="optional" type="list(string)">
+<HclListItem name="gitlab_pipelines_openid_connect_provider_arn" requirement="required" type="string">
 <HclListItemDescription>
 
-List of additional thumbprints for the OIDC provider.
+ARN of the OpenID Connect Provider provisioned for GitLab Pipelines.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
+
+<HclListItem name="gitlab_pipelines_openid_connect_provider_url" requirement="required" type="string">
+<HclListItemDescription>
+
+URL of the OpenID Connect Provider provisioned for GitLab Pipelines.
+
+</HclListItemDescription>
+</HclListItem>
+
+### Optional
 
 <HclListItem name="allowed_sources_condition_operator" requirement="optional" type="string">
 <HclListItemDescription>
 
-The string operator to use when evaluating the AWS IAM condition for determining which GitHub repos are allowed to assume the IAM role. Examples: StringEquals, StringLike, etc.
+The string operator to use when evaluating the AWS IAM condition for determining which GitLab repos are allowed to assume the IAM role. Examples: StringEquals, StringLike, etc.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;StringEquals&quot;"/>
@@ -398,19 +349,10 @@ The string operator to use when evaluating the AWS IAM condition for determining
 <HclListItem name="create_iam_role" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Whether to create the IAM role and attach permissions for GitHub Actions to assume.
+Whether to create the IAM role and attach permissions for GitLab Pipelines to assume.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="create_oidc_provider" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Flag to enable/disable the creation of the GitHub OIDC provider.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="custom_iam_policy_name" requirement="optional" type="string">
@@ -420,24 +362,6 @@ The name to use for the custom inline IAM policy that is attached to the Role/Gr
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;GrantCustomIAMPolicy&quot;"/>
-</HclListItem>
-
-<HclListItem name="github_actions_openid_connect_provider_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-ARN of the OpenID Connect Provider provisioned for GitHub Actions.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
-</HclListItem>
-
-<HclListItem name="github_actions_openid_connect_provider_url" requirement="optional" type="string">
-<HclListItemDescription>
-
-URL of the OpenID Connect Provider provisioned for GitHub Actions.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
 <HclListItem name="iam_aws_managed_policy_names" requirement="optional" type="list(string)">
@@ -543,23 +467,7 @@ A list of AWS services for which the IAM role will receive full permissions. See
 <HclListItem name="assume_role_policy_json">
 <HclListItemDescription>
 
-JSON value for IAM Role Assume Role Policy that allows GitHub Actions to inherit IAM Role.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="github_actions_openid_connect_provider_arn">
-<HclListItemDescription>
-
-ARN for the OIDC provider created for GitHub Actions, if <a href="#create_oidc_provider"><code>create_oidc_provider</code></a> is set to true.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="github_actions_openid_connect_provider_url">
-<HclListItemDescription>
-
-Url used for the OIDC provider, if <a href="#create_oidc_provider"><code>create_oidc_provider</code></a> is set to true.
+JSON value for IAM Role Assume Role Policy that allows GitLab Pipelines to inherit IAM Role.
 
 </HclListItemDescription>
 </HclListItem>
@@ -586,11 +494,11 @@ The name of the IAM role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/github-actions-iam-role/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/github-actions-iam-role/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/github-actions-iam-role/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/gitlab-pipelines-iam-role/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/gitlab-pipelines-iam-role/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/gitlab-pipelines-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0e82e5b434171b0cdcf9e8e1f2eb8e0e"
+  "hash": "7539a64595a9a2eccd9f15b6df750fce"
 }
 ##DOCS-SOURCER-END -->
