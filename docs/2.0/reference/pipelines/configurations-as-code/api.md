@@ -278,7 +278,15 @@ Whether or not Pipelines will consolidate deleted resources when running Terragr
 <HclListItem name="tf_binary" requirement="optional" type="string">
 <HclListItemDescription>
 
-The IaC binary that Pipelines will instruct Terragrunt to use. Valid values are `opentofu` or `terraform`.
+The Infrastructure as Code(Iac) binary that Pipelines will instruct Terragrunt to use. Valid values are:
+- `opentofu` (default): Use OpenTofu for managing infrastructure. Recommended for new projects
+- `terraform`: Use Terraform for managing infrastructure. 
+
+  :::note
+
+  Changing this value for existing infrastructure may require additional steps to ensure a successful migration.
+
+  :::
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="opentofu"/>
