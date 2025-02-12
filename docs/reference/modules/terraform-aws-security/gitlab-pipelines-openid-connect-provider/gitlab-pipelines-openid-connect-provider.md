@@ -1,5 +1,5 @@
 ---
-title: "OpenID Connect Provider for GitHub Actions"
+title: "OpenID Connect Provider for GitLab Pipelines"
 hide_title: true
 ---
 
@@ -9,27 +9,27 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.8" lastModifiedVersion="0.73.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.8" lastModifiedVersion="0.75.8"/>
 
-# OpenID Connect Provider for GitHub Actions
+# OpenID Connect Provider for GitLab Pipelines
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/github-actions-openid-connect-provider" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/gitlab-pipelines-openid-connect-provider" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.73.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an OpenID Connect Provider for GitHub Actions. This allows you to use GitHub Actions as an identity
-provider for your AWS account. This is useful if you want to use GitHub Actions to deploy your infrastructure. By
-using OpenID Connect, GitHub Actions can directly exchange credentials to access AWS without having to store and provide
-GitHub with permanent AWS access credentials. This is useful to prevent credential leaks from progressing undetected.
+This module creates an OpenID Connect Provider for GitLab Pipelines. This allows you to use GitLab Pipelines as an identity
+provider for your AWS account. This is useful if you want to use GitLab Pipelines to deploy your infrastructure. By
+using OpenID Connect, GitLab Pipelines can directly exchange credentials to access AWS without having to store and provide
+GitLab with permanent AWS access credentials. This is useful to prevent credential leaks from progressing undetected.
 
 ## Creating the Provider
 
 ```hcl
 module "github_actions_openid_connect_provider" {
   # Update <VERSION> with latest version of the module
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-openid-connect-provider?ref=<VERSION>"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-openid-connect-provider?ref=<VERSION>"
 
-  allowed_organizations = [
+  allowed_groups = [
     "gruntwork-io",
   ]
 }
@@ -37,13 +37,13 @@ module "github_actions_openid_connect_provider" {
 
 ## Security Considerations
 
-The `allowed_organizations` parameter is a list of GitHub organizations that are allowed to authenticate with the OpenID
+The `allowed_groups` parameter is a list of GitLab organizations that are allowed to authenticate with the OpenID
 Connect Provider. This is a security measure to ensure that only users from the specified organizations can authenticate
 with the OpenID Connect Provider. In addition to this security measure, you should also ensure that all IAM roles
 associated with the OpenID Connect Provider have the appropriate trust policy to only allow assumption of the role by
-the appropriate GitHub Repos on the appropriate refs.
+the appropriate GitLab Repos on the appropriate refs.
 
-See the [GitHub Actions IAM Role](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/github-actions-iam-role/README.md) module for more information.
+See the TODO [GitLab Pipelines IAM Role](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/gitlab-pipelines-iam-role/README.md) module for more information.
 
 ## Sample Usage
 
@@ -53,20 +53,20 @@ See the [GitHub Actions IAM Role](https://github.com/gruntwork-io/terraform-aws-
 ```hcl title="main.tf"
 
 # ------------------------------------------------------------------------------------------------------
-# DEPLOY GRUNTWORK'S GITHUB-ACTIONS-OPENID-CONNECT-PROVIDER MODULE
+# DEPLOY GRUNTWORK'S GITLAB-PIPELINES-OPENID-CONNECT-PROVIDER MODULE
 # ------------------------------------------------------------------------------------------------------
 
-module "github_actions_openid_connect_provider" {
+module "gitlab_pipelines_openid_connect_provider" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-openid-connect-provider?ref=v0.75.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-openid-connect-provider?ref=v0.75.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # List of github organizations that are allowed to assume IAM roles in the
+  # List of GitLab top level groups that are allowed to assume IAM roles in the
   # account.
-  allowed_organizations = <list(string)>
+  allowed_groups = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -86,11 +86,11 @@ module "github_actions_openid_connect_provider" {
 ```hcl title="terragrunt.hcl"
 
 # ------------------------------------------------------------------------------------------------------
-# DEPLOY GRUNTWORK'S GITHUB-ACTIONS-OPENID-CONNECT-PROVIDER MODULE
+# DEPLOY GRUNTWORK'S GITLAB-PIPELINES-OPENID-CONNECT-PROVIDER MODULE
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-openid-connect-provider?ref=v0.75.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-openid-connect-provider?ref=v0.75.8"
 }
 
 inputs = {
@@ -99,9 +99,9 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # List of github organizations that are allowed to assume IAM roles in the
+  # List of GitLab top level groups that are allowed to assume IAM roles in the
   # account.
-  allowed_organizations = <list(string)>
+  allowed_groups = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -128,10 +128,10 @@ inputs = {
 
 ### Required
 
-<HclListItem name="allowed_organizations" requirement="required" type="list(string)">
+<HclListItem name="allowed_groups" requirement="required" type="list(string)">
 <HclListItemDescription>
 
-List of github organizations that are allowed to assume IAM roles in the account.
+List of GitLab top level groups that are allowed to assume IAM roles in the account.
 
 </HclListItemDescription>
 </HclListItem>
@@ -153,7 +153,7 @@ List of additional thumbprints for the OIDC provider.
 <HclListItem name="arn">
 <HclListItemDescription>
 
-ARN for the OIDC provider created for GitHub Actions
+ARN for the OIDC provider created for GitLab Pipelines
 
 </HclListItemDescription>
 </HclListItem>
@@ -172,11 +172,11 @@ Url used for the OIDC provider
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/github-actions-openid-connect-provider/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/github-actions-openid-connect-provider/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/github-actions-openid-connect-provider/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/gitlab-pipelines-openid-connect-provider/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/gitlab-pipelines-openid-connect-provider/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/gitlab-pipelines-openid-connect-provider/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ab48bbe9e5445f7012b324ed064dfbde"
+  "hash": "e23337b35183bf8057d69480c4e9d01d"
 }
 ##DOCS-SOURCER-END -->
