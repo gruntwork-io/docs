@@ -110,7 +110,7 @@ repository {
 <HclListItem name="env" requirement="optional" type="block">
 <HclListItemDescription>
 
-Env blocks are configuration components used by [repository](#repository-blocks) blocks to specify environment variables that will be set when executing Terragrunt commands. The block contains a map of environment variable names and their values.
+Env blocks are configuration components used by [repository](#repository-block) blocks to specify environment variables that will be set when executing Terragrunt commands. The block contains a map of environment variable names and their values.
 
 </HclListItemDescription>
 <HclListItemExample>
