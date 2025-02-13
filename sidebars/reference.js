@@ -28,6 +28,11 @@ const sidebar = [
     id: "2.0/reference/pipelines/index",
   },
   {
+    label: "Terragrunt Version Compatibility",
+    type: "doc",
+    id: "2.0/reference/pipelines/terragrunt-version-compatibility",
+  },
+  {
     label: "Configurations (YAML)",
     type: "doc",
     id: "2.0/reference/pipelines/configurations",
