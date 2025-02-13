@@ -2,6 +2,6 @@
 
 | Type        | Terragrunt Version | Pipelines Version | Comments                                                                                                                                                                        |
 | ----------- | ------------------ | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Minimum     | 0.59.7             | v3                | This is the absolute minimum version of terragrunt for pipelines v3                                                                                                             |
-| Recommended | 0.68.13+           | v3                | Pipelines uses new features in Terragrunt to provide enhanced logging, and the [File Dependency](https://docs.gruntwork.io/2.0/docs/pipelines/guides/file-dependencies) feature |
-| Minimum     | 0.59.7             | v2                |                                                                                                                                                                                 |
+| Minimum     | 0.59.7             | v3.y.z            | This is the absolute minimum version of terragrunt for pipelines v3                                                                                                             |
+| Recommended | 0.68.13+           | v3.y.z            | Pipelines uses new features in Terragrunt to provide enhanced logging, and the [File Dependency](https://docs.gruntwork.io/2.0/docs/pipelines/guides/file-dependencies) feature |
+| Minimum     | 0.59.7             | v2.y.z            |                                                                                                                                                                                 |
