@@ -9,6 +9,7 @@ However, there are some cases where you may want to run Pipelines for changes to
 :::note
 
 This feature is available when using Pipelines with Terragrunt version 0.68.13 and later.
+
 :::
 
 Pipelines will automatically detect, based on git commit history, when data files have changed and emit a `FileChanged` change. This will create a new execution in your CI flow that will invoke Terragrunt with the [`queue-include-units-reading`](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-include-units-reading) option set to the files that have changed. Terragrunt will then scan your code for units that depend on the changed files and add them to the plan/apply.
