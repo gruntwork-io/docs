@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="0.20.1" lastModifiedVersion="0.20.1"/>
+<VersionBadge repoTitle="Static Assets Modules" version="0.20.2" lastModifiedVersion="0.20.1"/>
 
 # CloudFront Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.1/modules/cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.2/modules/cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.20.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -21,8 +21,8 @@ This module deploys an [AWS CloudFront](https://aws.amazon.com/cloudfront/) dist
 
 ## Quick Start
 
-*   See the [cloudfront-custom-origin](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.1/examples/cloudfront-custom-origin) example for working sample code.
-*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.1/modules/cloudfront/vars.tf) for all parameters you can set for this module.
+*   See the [cloudfront-custom-origin](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.2/examples/cloudfront-custom-origin) example for working sample code.
+*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.2/modules/cloudfront/vars.tf) for all parameters you can set for this module.
 
 ## Sample Usage
 
@@ -37,7 +37,7 @@ This module deploys an [AWS CloudFront](https://aws.amazon.com/cloudfront/) dist
 
 module "cloudfront" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v0.20.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v0.20.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -316,7 +316,7 @@ module "cloudfront" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v0.20.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v0.20.2"
 }
 
 inputs = {
@@ -2736,11 +2736,11 @@ Unique identifier that specifies the AWS WAF web ACL, if any, to associate with 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.1/modules/cloudfront/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.1/modules/cloudfront/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.1/modules/cloudfront/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.2/modules/cloudfront/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.2/modules/cloudfront/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.2/modules/cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bd6dd061f03f5a036b9777ce67f6dd6b"
+  "hash": "d7dd1e096b8b66fd45c1af6c02d60672"
 }
 ##DOCS-SOURCER-END -->
