@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.40.4" lastModifiedVersion="0.36.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.40.5" lastModifiedVersion="0.36.0"/>
 
 # Organization Backup Policies Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.4/modules/org-backup-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/org-backup-policy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.36.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates
 the [AWS Organizations Backup Policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html).
-You associate your each plan on the backup policies with a [Backup vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.4/modules/backup-vault).
+You associate your each plan on the backup policies with a [Backup vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/backup-vault).
 
 ## What are Backup Policies ?
 
@@ -42,7 +42,7 @@ account. This effective policy instructs AWS Backup how to automatically back up
 
 module "org_backup_policy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/org-backup-policy?ref=v0.40.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/org-backup-policy?ref=v0.40.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -155,7 +155,7 @@ module "org_backup_policy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/org-backup-policy?ref=v0.40.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/org-backup-policy?ref=v0.40.5"
 }
 
 inputs = {
@@ -734,11 +734,11 @@ ID of the backup policies
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.4/modules/org-backup-policy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.4/modules/org-backup-policy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.4/modules/org-backup-policy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/org-backup-policy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/org-backup-policy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/org-backup-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "90bcde86f92fc4df36b698534bdd205a"
+  "hash": "8b86403c18ea4389f9a9ee2ae0c84d39"
 }
 ##DOCS-SOURCER-END -->
