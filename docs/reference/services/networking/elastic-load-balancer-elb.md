@@ -169,13 +169,15 @@ module "alb" {
   # the tag name and the value is the tag value.
   custom_tags = {}
 
+  # Define the default action if a request to the load balancer does not match
+  # any of your listener rules. Currently only 'fixed-response' and 'redirect'
+  # are supported.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
+  default_action = {"fixed-response":{"content_type":"text/plain","message_body":null,"status_code":404}}
+
   # If a request to the load balancer does not match any of your listener rules,
   # the default action will return a fixed response with this body.
   default_action_body = null
-
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this content type.
-  default_action_content_type = "text/plain"
 
   # If a request to the load balancer does not match any of your listener rules,
   # the default action will return a fixed response with this status code.
@@ -207,6 +209,11 @@ module "alb" {
   # The ID of the hosted zone for the DNS A record to add for the ALB. Only used
   # if var.create_route53_entry is true.
   hosted_zone_id = null
+
+  # Define the default action for HTTP listeners. Use this to override the
+  # default_action variable for HTTP listeners. This is particularly useful if
+  # you for example want to redirect all HTTP traffic to HTTPS.
+  http_default_action = null
 
   # A list of ports for which an HTTP Listener should be created on the ALB.
   # Tip: When you define Listener Rules for these Listeners, be sure that, for
@@ -243,6 +250,10 @@ module "alb" {
   # be idle before the ALB closes the TCP connection.
   idle_timeout = 60
 
+  # The type of IP addresses used by the subnets for your load balancer. The
+  # possible values are ipv4 and dualstack.
+  ip_address_type = null
+
   # If true, create a new S3 bucket for access logs with the name in
   # var.access_logs_s3_bucket_name. If false, assume the S3 bucket for access
   # logs with the name in  var.access_logs_s3_bucket_name already exists, and
@@ -253,12 +264,9 @@ module "alb" {
 
   # The AWS predefined TLS/SSL policy for the ALB. A List of policies can be
   # found here:
-  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies.
-  # AWS recommends ELBSecurityPolicy-2016-08 policy for general use but this
-  # policy includes TLSv1.0 which is rapidly being phased out.
-  # ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't include
-  # TLSv1.0.
-  ssl_policy = "ELBSecurityPolicy-2016-08"
+  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/describe-ssl-policies.html.
+  # AWS recommends ELBSecurityPolicy-TLS13-1-2-2021-06 policy for general use.
+  ssl_policy = "ELBSecurityPolicy-TLS13-1-2-2021-06"
 
 }
 
@@ -358,13 +366,15 @@ inputs = {
   # the tag name and the value is the tag value.
   custom_tags = {}
 
+  # Define the default action if a request to the load balancer does not match
+  # any of your listener rules. Currently only 'fixed-response' and 'redirect'
+  # are supported.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
+  default_action = {"fixed-response":{"content_type":"text/plain","message_body":null,"status_code":404}}
+
   # If a request to the load balancer does not match any of your listener rules,
   # the default action will return a fixed response with this body.
   default_action_body = null
-
-  # If a request to the load balancer does not match any of your listener rules,
-  # the default action will return a fixed response with this content type.
-  default_action_content_type = "text/plain"
 
   # If a request to the load balancer does not match any of your listener rules,
   # the default action will return a fixed response with this status code.
@@ -396,6 +406,11 @@ inputs = {
   # The ID of the hosted zone for the DNS A record to add for the ALB. Only used
   # if var.create_route53_entry is true.
   hosted_zone_id = null
+
+  # Define the default action for HTTP listeners. Use this to override the
+  # default_action variable for HTTP listeners. This is particularly useful if
+  # you for example want to redirect all HTTP traffic to HTTPS.
+  http_default_action = null
 
   # A list of ports for which an HTTP Listener should be created on the ALB.
   # Tip: When you define Listener Rules for these Listeners, be sure that, for
@@ -432,6 +447,10 @@ inputs = {
   # be idle before the ALB closes the TCP connection.
   idle_timeout = 60
 
+  # The type of IP addresses used by the subnets for your load balancer. The
+  # possible values are ipv4 and dualstack.
+  ip_address_type = null
+
   # If true, create a new S3 bucket for access logs with the name in
   # var.access_logs_s3_bucket_name. If false, assume the S3 bucket for access
   # logs with the name in  var.access_logs_s3_bucket_name already exists, and
@@ -442,12 +461,9 @@ inputs = {
 
   # The AWS predefined TLS/SSL policy for the ALB. A List of policies can be
   # found here:
-  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies.
-  # AWS recommends ELBSecurityPolicy-2016-08 policy for general use but this
-  # policy includes TLSv1.0 which is rapidly being phased out.
-  # ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't include
-  # TLSv1.0.
-  ssl_policy = "ELBSecurityPolicy-2016-08"
+  # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/describe-ssl-policies.html.
+  # AWS recommends ELBSecurityPolicy-TLS13-1-2-2021-06 policy for general use.
+  ssl_policy = "ELBSecurityPolicy-TLS13-1-2-2021-06"
 
 }
 
@@ -631,6 +647,34 @@ A map of custom tags to apply to the ALB and its Security Group. The key is the 
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="default_action" requirement="optional" type="map(any)">
+<HclListItemDescription>
+
+Define the default action if a request to the load balancer does not match any of your listener rules. Currently only 'fixed-response' and 'redirect' are supported. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener#default_action
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  fixed-response = {
+    content_type = "text/plain",
+    message_body = null,
+    status_code = 404
+  }
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
 <HclListItem name="default_action_body" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -638,15 +682,6 @@ If a request to the load balancer does not match any of your listener rules, the
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="default_action_content_type" requirement="optional" type="string">
-<HclListItemDescription>
-
-If a request to the load balancer does not match any of your listener rules, the default action will return a fixed response with this content type.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;text/plain&quot;"/>
 </HclListItem>
 
 <HclListItem name="default_action_status_code" requirement="optional" type="number">
@@ -710,6 +745,41 @@ The ID of the hosted zone for the DNS A record to add for the ALB. Only used if 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="http_default_action" requirement="optional" type="map(any)">
+<HclListItemDescription>
+
+Define the default action for HTTP listeners. Use this to override the default_action variable for HTTP listeners. This is particularly useful if you for example want to redirect all HTTP traffic to HTTPS.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Example (redirect all HTTP traffic to HTTPS):
+   default = {
+    redirect = {
+      protocol    = "HTTPS"
+      port        = "443"
+      status_code = "HTTP_301"
+    }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="http_listener_ports" requirement="optional" type="list(string)">
@@ -802,6 +872,15 @@ The time in seconds that the client TCP connection to the ALB is allowed to be i
 <HclListItemDefaultValue defaultValue="60"/>
 </HclListItem>
 
+<HclListItem name="ip_address_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The type of IP addresses used by the subnets for your load balancer. The possible values are ipv4 and dualstack.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="should_create_access_logs_bucket" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -814,10 +893,10 @@ If true, create a new S3 bucket for access logs with the name in <a href="#acces
 <HclListItem name="ssl_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
-The AWS predefined TLS/SSL policy for the ALB. A List of policies can be found here: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies. AWS recommends ELBSecurityPolicy-2016-08 policy for general use but this policy includes TLSv1.0 which is rapidly being phased out. ELBSecurityPolicy-TLS-1-1-2017-01 is the next policy up that doesn't include TLSv1.0.
+The AWS predefined TLS/SSL policy for the ALB. A List of policies can be found here: https://docs.aws.amazon.com/elasticloadbalancing/latest/application/describe-ssl-policies.html. AWS recommends ELBSecurityPolicy-TLS13-1-2-2021-06 policy for general use.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;ELBSecurityPolicy-2016-08&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;ELBSecurityPolicy-TLS13-1-2-2021-06&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -922,6 +1001,6 @@ The AWS-managed DNS name assigned to the ALB.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.15/modules/networking/alb/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4787ff8af0b6c7f8db6fe5aecb3971e8"
+  "hash": "c6bed711aa5476d35e322136bd4ffff3"
 }
 ##DOCS-SOURCER-END -->

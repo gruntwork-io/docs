@@ -176,7 +176,7 @@ module "ec_2_instance" {
   # The domain name to use to look up the Route 53 hosted zone. Will be a subset
   # of fully_qualified_domain_name: e.g., my-company.com. Only one of
   # route53_lookup_domain_name or route53_zone_id should be used.
-  route53_lookup_domain_name = <INPUT REQUIRED>
+  route53_lookup_domain_name = <string>
 
   # The ID of the hosted zone to use. Allows specifying the hosted zone directly
   # instead of looking it up via domain name. Only one of
@@ -184,7 +184,8 @@ module "ec_2_instance" {
   route53_zone_id = <string>
 
   # The ID of the subnet in which to deploy the EC2 instance. Must be a subnet
-  # in var.vpc_id.
+  # in var.vpc_id. Required unless default_network_interface_id is set, in which
+  # case subnet_id should be set to null.
   subnet_id = <string>
 
   # The ID of the VPC in which to deploy the EC2 instance.
@@ -195,12 +196,24 @@ module "ec_2_instance" {
   # ----------------------------------------------------------------------------------------------------
 
   # A list of optional additional security group ids to assign to the EC2
-  # instance.
+  # instance. Note: this variable is NOT used if default_network_interface_id is
+  # set.
   additional_security_group_ids = []
 
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
   alarms_sns_topic_arn = []
+
+  # A boolean that specifies whether or not to add a security group rule that
+  # allows all outbound traffic from this server.
+  allow_all_outbound_traffic = true
+
+  # Accept inbound traffic on these port ranges from the specified IPv6 CIDR
+  # blocks
+  allow_port_from_ipv6_cidr_blocks = {}
+
+  # Accept inbound SSH from these IPv6 CIDR blocks
+  allow_ssh_from_ipv6_cidr_blocks = []
 
   # Determines if an Elastic IP (EIP) will be created for this instance.
   attach_eip = true
@@ -233,6 +246,27 @@ module "ec_2_instance" {
   # If true, be sure to set var.fully_qualified_domain_name.
   create_dns_record = true
 
+  # When true, this module will create a new IAM role to bind to the EC2
+  # instance. Set to false if you wish to use a preexisting IAM role. By
+  # default, this module will create an instance profile to pass this IAM role
+  # to the EC2 instance. Preexisting IAM roles created through the AWS console
+  # instead of programatically (e.g. withTerraform) will automatically create an
+  # instance profile with the same name. In that case, set
+  # create_instance_profile to false to avoid errors during Terraform apply.
+  create_iam_role = true
+
+  # When true, this module will create an instance profile to pass the IAM role,
+  # either the one created by this module or one passed externally, to the EC2
+  # instance. Set to false if you wish to use a preexisting instance profile.
+  # For more information see
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
+  create_instance_profile = true
+
+  # The ID of a network interface to use to override the default network
+  # interface for this EC2 instance, attached at eth0 (device index 0). If set,
+  # subnet_id must be set to null.
+  default_network_interface_id = null
+
   # The default OS user for the EC2 instance AMI. For AWS Ubuntu AMIs, which is
   # what the Packer template in ec2-instance.json uses, the default OS user is
   # 'ubuntu'.
@@ -243,6 +277,9 @@ module "ec_2_instance" {
 
   # If true, the launched EC2 Instance will be EBS-optimized.
   ebs_optimized = true
+
+  # If true, the launched EC2 instance will have detailed monitoring enabled.
+  ec2_detailed_monitoring = false
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -285,21 +322,92 @@ module "ec_2_instance" {
   # used if create_dns_record is true.
   fully_qualified_domain_name = ""
 
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  # for the instance.
+  high_instance_cpu_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a CPU utilization percentage above
+  # this threshold.
+  high_instance_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the instance.
+  high_instance_disk_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a root disk utilization percentage
+  # above this threshold.
+  high_instance_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization
+  # percentage for the instance.
+  high_instance_memory_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a Memory utilization percentage
+  # above this threshold.
+  high_instance_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_memory_utilization_treat_missing_data = "missing"
+
+  # The name for the bastion host's IAM role and instance profile. If set to an
+  # empty string, will use var.name. Required when create_iam_role is false.
+  iam_role_name = ""
+
   # The name of a Key Pair that can be used to SSH to this instance. This
   # instance may have ssh-grunt installed. The preferred way to do SSH access is
   # with your own IAM user name and SSH key. This Key Pair is only as a
   # fallback.
   keypair_name = null
 
+  # Whether the metadata service is available. Valid values include enabled or
+  # disabled. Defaults to enabled.
+  metadata_http_endpoint = "enabled"
+
+  # Desired HTTP PUT response hop limit for instance metadata requests. The
+  # larger the number, the further instance metadata requests can travel. Valid
+  # values are integer from 1 to 64. Defaults to 1.
+  metadata_http_put_response_hop_limit = 1
+
+  # Whether or not the metadata service requires session tokens, also referred
+  # to as Instance Metadata Service Version 2 (IMDSv2). Valid values include
+  # optional or required. Defaults to optional.
+  metadata_http_tokens = "optional"
+
+  # Enables or disables access to instance tags from the instance metadata
+  # service. Valid values include enabled or disabled. Defaults to disabled.
+  metadata_tags = "disabled"
+
   # If set to true, the root volume will be deleted when the Instance is
   # terminated.
   root_volume_delete_on_termination = true
+
+  # If set to true, the root volume will be encrypted. Default is set to false
+  root_volume_encrypted = false
 
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
 
   # The root volume type. Must be one of: standard, gp2, io1.
   root_volume_type = "standard"
+
+  # A list of secondary private IPv4 addresses to assign to the instance's
+  # primary network interface (eth0) in a VPC
+  secondary_private_ips = null
 
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
@@ -413,7 +521,7 @@ inputs = {
   # The domain name to use to look up the Route 53 hosted zone. Will be a subset
   # of fully_qualified_domain_name: e.g., my-company.com. Only one of
   # route53_lookup_domain_name or route53_zone_id should be used.
-  route53_lookup_domain_name = <INPUT REQUIRED>
+  route53_lookup_domain_name = <string>
 
   # The ID of the hosted zone to use. Allows specifying the hosted zone directly
   # instead of looking it up via domain name. Only one of
@@ -421,7 +529,8 @@ inputs = {
   route53_zone_id = <string>
 
   # The ID of the subnet in which to deploy the EC2 instance. Must be a subnet
-  # in var.vpc_id.
+  # in var.vpc_id. Required unless default_network_interface_id is set, in which
+  # case subnet_id should be set to null.
   subnet_id = <string>
 
   # The ID of the VPC in which to deploy the EC2 instance.
@@ -432,12 +541,24 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # A list of optional additional security group ids to assign to the EC2
-  # instance.
+  # instance. Note: this variable is NOT used if default_network_interface_id is
+  # set.
   additional_security_group_ids = []
 
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
   alarms_sns_topic_arn = []
+
+  # A boolean that specifies whether or not to add a security group rule that
+  # allows all outbound traffic from this server.
+  allow_all_outbound_traffic = true
+
+  # Accept inbound traffic on these port ranges from the specified IPv6 CIDR
+  # blocks
+  allow_port_from_ipv6_cidr_blocks = {}
+
+  # Accept inbound SSH from these IPv6 CIDR blocks
+  allow_ssh_from_ipv6_cidr_blocks = []
 
   # Determines if an Elastic IP (EIP) will be created for this instance.
   attach_eip = true
@@ -470,6 +591,27 @@ inputs = {
   # If true, be sure to set var.fully_qualified_domain_name.
   create_dns_record = true
 
+  # When true, this module will create a new IAM role to bind to the EC2
+  # instance. Set to false if you wish to use a preexisting IAM role. By
+  # default, this module will create an instance profile to pass this IAM role
+  # to the EC2 instance. Preexisting IAM roles created through the AWS console
+  # instead of programatically (e.g. withTerraform) will automatically create an
+  # instance profile with the same name. In that case, set
+  # create_instance_profile to false to avoid errors during Terraform apply.
+  create_iam_role = true
+
+  # When true, this module will create an instance profile to pass the IAM role,
+  # either the one created by this module or one passed externally, to the EC2
+  # instance. Set to false if you wish to use a preexisting instance profile.
+  # For more information see
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
+  create_instance_profile = true
+
+  # The ID of a network interface to use to override the default network
+  # interface for this EC2 instance, attached at eth0 (device index 0). If set,
+  # subnet_id must be set to null.
+  default_network_interface_id = null
+
   # The default OS user for the EC2 instance AMI. For AWS Ubuntu AMIs, which is
   # what the Packer template in ec2-instance.json uses, the default OS user is
   # 'ubuntu'.
@@ -480,6 +622,9 @@ inputs = {
 
   # If true, the launched EC2 Instance will be EBS-optimized.
   ebs_optimized = true
+
+  # If true, the launched EC2 instance will have detailed monitoring enabled.
+  ec2_detailed_monitoring = false
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -522,21 +667,92 @@ inputs = {
   # used if create_dns_record is true.
   fully_qualified_domain_name = ""
 
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  # for the instance.
+  high_instance_cpu_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a CPU utilization percentage above
+  # this threshold.
+  high_instance_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the instance.
+  high_instance_disk_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a root disk utilization percentage
+  # above this threshold.
+  high_instance_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization
+  # percentage for the instance.
+  high_instance_memory_utilization_period = 60
+
+  # Trigger an alarm if the EC2 instance has a Memory utilization percentage
+  # above this threshold.
+  high_instance_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_instance_memory_utilization_treat_missing_data = "missing"
+
+  # The name for the bastion host's IAM role and instance profile. If set to an
+  # empty string, will use var.name. Required when create_iam_role is false.
+  iam_role_name = ""
+
   # The name of a Key Pair that can be used to SSH to this instance. This
   # instance may have ssh-grunt installed. The preferred way to do SSH access is
   # with your own IAM user name and SSH key. This Key Pair is only as a
   # fallback.
   keypair_name = null
 
+  # Whether the metadata service is available. Valid values include enabled or
+  # disabled. Defaults to enabled.
+  metadata_http_endpoint = "enabled"
+
+  # Desired HTTP PUT response hop limit for instance metadata requests. The
+  # larger the number, the further instance metadata requests can travel. Valid
+  # values are integer from 1 to 64. Defaults to 1.
+  metadata_http_put_response_hop_limit = 1
+
+  # Whether or not the metadata service requires session tokens, also referred
+  # to as Instance Metadata Service Version 2 (IMDSv2). Valid values include
+  # optional or required. Defaults to optional.
+  metadata_http_tokens = "optional"
+
+  # Enables or disables access to instance tags from the instance metadata
+  # service. Valid values include enabled or disabled. Defaults to disabled.
+  metadata_tags = "disabled"
+
   # If set to true, the root volume will be deleted when the Instance is
   # terminated.
   root_volume_delete_on_termination = true
+
+  # If set to true, the root volume will be encrypted. Default is set to false
+  root_volume_encrypted = false
 
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
 
   # The root volume type. Must be one of: standard, gp2, io1.
   root_volume_type = "standard"
+
+  # A list of secondary private IPv4 addresses to assign to the instance's
+  # primary network interface (eth0) in a VPC
+  secondary_private_ips = null
 
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
@@ -730,7 +946,7 @@ The name of the EC2 instance and the other resources created by these templates
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="route53_lookup_domain_name" requirement="required">
+<HclListItem name="route53_lookup_domain_name" requirement="required" type="string">
 <HclListItemDescription>
 
 The domain name to use to look up the Route 53 hosted zone. Will be a subset of fully_qualified_domain_name: e.g., my-company.com. Only one of route53_lookup_domain_name or route53_zone_id should be used.
@@ -749,7 +965,7 @@ The ID of the hosted zone to use. Allows specifying the hosted zone directly ins
 <HclListItem name="subnet_id" requirement="required" type="string">
 <HclListItemDescription>
 
-The ID of the subnet in which to deploy the EC2 instance. Must be a subnet in <a href="#vpc_id"><code>vpc_id</code></a>.
+The ID of the subnet in which to deploy the EC2 instance. Must be a subnet in <a href="#vpc_id"><code>vpc_id</code></a>. Required unless default_network_interface_id is set, in which case subnet_id should be set to null.
 
 </HclListItemDescription>
 </HclListItem>
@@ -767,7 +983,7 @@ The ID of the VPC in which to deploy the EC2 instance.
 <HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of optional additional security group ids to assign to the EC2 instance.
+A list of optional additional security group ids to assign to the EC2 instance. Note: this variable is NOT used if default_network_interface_id is set.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -777,6 +993,45 @@ A list of optional additional security group ids to assign to the EC2 instance.
 <HclListItemDescription>
 
 The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk space usage) should send notifications.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_all_outbound_traffic" requirement="optional" type="bool">
+<HclListItemDescription>
+
+A boolean that specifies whether or not to add a security group rule that allows all outbound traffic from this server.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="allow_port_from_ipv6_cidr_blocks" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Accept inbound traffic on these port ranges from the specified IPv6 CIDR blocks
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    from_port        = number
+    to_port          = number
+    protocol         = string
+    ipv6_cidr_blocks = list(string)
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="allow_ssh_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Accept inbound SSH from these IPv6 CIDR blocks
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -856,6 +1111,33 @@ Set to true to create a DNS record in Route53 pointing to the EC2 instance. If t
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="create_iam_role" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, this module will create a new IAM role to bind to the EC2 instance. Set to false if you wish to use a preexisting IAM role. By default, this module will create an instance profile to pass this IAM role to the EC2 instance. Preexisting IAM roles created through the AWS console instead of programatically (e.g. withTerraform) will automatically create an instance profile with the same name. In that case, set create_instance_profile to false to avoid errors during Terraform apply.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_instance_profile" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, this module will create an instance profile to pass the IAM role, either the one created by this module or one passed externally, to the EC2 instance. Set to false if you wish to use a preexisting instance profile. For more information see https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="default_network_interface_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of a network interface to use to override the default network interface for this EC2 instance, attached at eth0 (device index 0). If set, subnet_id must be set to null.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="default_user" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -881,6 +1163,15 @@ If true, the launched EC2 Instance will be EBS-optimized.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="ec2_detailed_monitoring" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, the launched EC2 instance will have detailed monitoring enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
@@ -955,6 +1246,96 @@ The apex domain of the hostname for the EC2 instance (e.g., example.com). The co
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="high_instance_cpu_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the CPU utilization percentage for the instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_instance_cpu_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the EC2 instance has a CPU utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_instance_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_instance_disk_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the root disk utilization percentage for the instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_instance_disk_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the EC2 instance has a root disk utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_instance_disk_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_instance_memory_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the Memory utilization percentage for the instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_instance_memory_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the EC2 instance has a Memory utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_instance_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name for the bastion host's IAM role and instance profile. If set to an empty string, will use <a href="#name"><code>name</code></a>. Required when create_iam_role is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
 <HclListItem name="keypair_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -964,6 +1345,42 @@ The name of a Key Pair that can be used to SSH to this instance. This instance m
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="metadata_http_endpoint" requirement="optional" type="string">
+<HclListItemDescription>
+
+Whether the metadata service is available. Valid values include enabled or disabled. Defaults to enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;enabled&quot;"/>
+</HclListItem>
+
+<HclListItem name="metadata_http_put_response_hop_limit" requirement="optional" type="number">
+<HclListItemDescription>
+
+Desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. Valid values are integer from 1 to 64. Defaults to 1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="metadata_http_tokens" requirement="optional" type="string">
+<HclListItemDescription>
+
+Whether or not the metadata service requires session tokens, also referred to as Instance Metadata Service Version 2 (IMDSv2). Valid values include optional or required. Defaults to optional.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;optional&quot;"/>
+</HclListItem>
+
+<HclListItem name="metadata_tags" requirement="optional" type="string">
+<HclListItemDescription>
+
+Enables or disables access to instance tags from the instance metadata service. Valid values include enabled or disabled. Defaults to disabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;disabled&quot;"/>
+</HclListItem>
+
 <HclListItem name="root_volume_delete_on_termination" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -971,6 +1388,15 @@ If set to true, the root volume will be deleted when the Instance is terminated.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="root_volume_encrypted" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, the root volume will be encrypted. Default is set to false
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="root_volume_size" requirement="optional" type="number">
@@ -989,6 +1415,15 @@ The root volume type. Must be one of: standard, gp2, io1.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;standard&quot;"/>
+</HclListItem>
+
+<HclListItem name="secondary_private_ips" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of secondary private IPv4 addresses to assign to the instance's primary network interface (eth0) in a VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
@@ -1139,6 +1574,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.15/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c513d484e3b05f347bcccd70870c466a"
+  "hash": "bcb4ace2d95dbc3efc6b1a425de32d42"
 }
 ##DOCS-SOURCER-END -->
