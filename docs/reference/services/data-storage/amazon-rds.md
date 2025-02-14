@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.15" lastModifiedVersion="0.118.14"/>
+<VersionBadge version="0.118.17" lastModifiedVersion="0.118.16"/>
 
 # Amazon Relational Database Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.15/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -69,7 +69,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.15/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,12 +77,12 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.15/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
-*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.15/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
+*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
 
 
 ## Sample Usage
@@ -103,7 +103,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.17"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -551,6 +551,11 @@ module "rds" {
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
 
+  # The storage throughput value for the DB instance. Can only be set when
+  # var.storage_type is 'gp3'. Cannot be specified if the allocated_storage
+  # value is below a per-engine threshold.
+  storage_throughput = null
+
   # The type of storage to use for the primary instance. Must be one of
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
   # SSD that needs iops independently), or 'io1' (provisioned IOPS SSD).
@@ -609,7 +614,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.17"
 }
 
 inputs = {
@@ -1059,6 +1064,11 @@ inputs = {
 
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
+
+  # The storage throughput value for the DB instance. Can only be set when
+  # var.storage_type is 'gp3'. Cannot be specified if the allocated_storage
+  # value is below a per-engine threshold.
+  storage_throughput = null
 
   # The type of storage to use for the primary instance. Must be one of
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
@@ -2320,6 +2330,15 @@ Specifies whether the DB instance is encrypted.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="storage_throughput" requirement="optional" type="number">
+<HclListItemDescription>
+
+The storage throughput value for the DB instance. Can only be set when <a href="#storage_type"><code>storage_type</code></a> is 'gp3'. Cannot be specified if the allocated_storage value is below a per-engine threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="storage_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2574,11 +2593,11 @@ The ID of the Security Group that controls access to the RDS DB instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.15/modules/data-stores/rds/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.15/modules/data-stores/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.15/modules/data-stores/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/modules/data-stores/rds/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/modules/data-stores/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "028e50ba3ed824b51c87ae7fee39b1c6"
+  "hash": "be0fe25d35ddbd1e0d5eb0a4e278e07a"
 }
 ##DOCS-SOURCER-END -->
