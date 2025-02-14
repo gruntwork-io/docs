@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.8" lastModifiedVersion="0.75.7"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.9" lastModifiedVersion="0.75.7"/>
 
 # AWS GuardDuty
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/guardduty" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/guardduty" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -37,29 +37,29 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What Is GuardDuty?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/guardduty/core-concepts.md#what-is-guardduty)
+*   [What Is GuardDuty?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/guardduty/core-concepts.md#what-is-guardduty)
 
-*   [Why Use GuardDuty?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/guardduty/core-concepts.md#why-use-guardduty)
+*   [Why Use GuardDuty?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/guardduty/core-concepts.md#why-use-guardduty)
 
-*   [What Is A Finding?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/guardduty/core-concepts.md#what-is-a-finding)
+*   [What Is A Finding?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/guardduty/core-concepts.md#what-is-a-finding)
 
-*   [Where Should I Enable GuardDuty?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/guardduty/core-concepts.md#where-should-i-enable-guardduty)
+*   [Where Should I Enable GuardDuty?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/guardduty/core-concepts.md#where-should-i-enable-guardduty)
 
-*   [Resources Created](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/guardduty/core-concepts.md#resources-created)
+*   [Resources Created](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/guardduty/core-concepts.md#resources-created)
 
-*   [Gotchas](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/guardduty/core-concepts.md#gotchas)
+*   [Gotchas](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/guardduty/core-concepts.md#gotchas)
 
-*   [Known Issues](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/guardduty/core-concepts.md#known-issues)
+*   [Known Issues](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/guardduty/core-concepts.md#known-issues)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [codegen](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/codegen): Code generation utilities that help generate modules in this repo.
+*   [codegen](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/codegen): Code generation utilities that help generate modules in this repo.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -67,7 +67,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this module out, check out the following resources:
 
-*   [guardduty example](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/examples/guardduty).
+*   [guardduty example](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/examples/guardduty).
 
 ### Production deployment
 
@@ -75,7 +75,7 @@ If you want to deploy this module in production, check out the following resourc
 
 *   ***Coming soon***. We have not yet added this module to the [Acme example Reference Architecture](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme).
 
-*   [Terraform Module to enable GuardDuty in all enabled regions of an AWS Account](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/guardduty-multi-region).
+*   [Terraform Module to enable GuardDuty in all enabled regions of an AWS Account](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/guardduty-multi-region).
 
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone)
 
@@ -92,7 +92,7 @@ If you want to deploy this module in production, check out the following resourc
 
 module "guardduty" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty?ref=v0.75.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty?ref=v0.75.9"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -201,7 +201,7 @@ module "guardduty" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty?ref=v0.75.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty?ref=v0.75.9"
 }
 
 inputs = {
@@ -588,11 +588,11 @@ The ID of the GuardDuty detector.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/guardduty/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/guardduty/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/guardduty/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/guardduty/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/guardduty/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/guardduty/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "07a8d33fc242f95096f9ad2d438ad03a"
+  "hash": "27da269a4655d1c81bc687e0e26f9bd3"
 }
 ##DOCS-SOURCER-END -->
