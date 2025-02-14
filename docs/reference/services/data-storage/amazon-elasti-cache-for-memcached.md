@@ -127,12 +127,6 @@ module "memcached" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  alarm_treat_missing_data = "missing"
-
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
   alarms_sns_topic_arns = []
@@ -225,12 +219,6 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  alarm_treat_missing_data = "missing"
 
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
@@ -338,15 +326,6 @@ The ID of the VPC in which to deploy RDS.
 </HclListItem>
 
 ### Optional
-
-<HclListItem name="alarm_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
 
 <HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
@@ -474,6 +453,6 @@ The configuration endpoint to allow host discovery.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.15/modules/data-stores/memcached/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e680d149d5fa6d4d5449a08ce0901803"
+  "hash": "626f15a509dafc4b5af4f6d295451436"
 }
 ##DOCS-SOURCER-END -->
