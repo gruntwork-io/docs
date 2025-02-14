@@ -283,6 +283,9 @@ module "vpc_app" {
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#ingress-block.
   default_security_group_ingress_rules = {"AllowAllFromSelf":{"from_port":0,"protocol":"-1","self":true,"to_port":0}}
 
+  # The ID of the DHCP Options Set to associate with the VPC.
+  dhcp_options_id = null
+
   # IAM policy to restrict what resources can call this endpoint. For example,
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
   # but no other types of resources. If not specified, all resources will be
@@ -813,6 +816,9 @@ inputs = {
   # same fields as the ingress block in the aws_default_security_group resource:
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#ingress-block.
   default_security_group_ingress_rules = {"AllowAllFromSelf":{"from_port":0,"protocol":"-1","self":true,"to_port":0}}
+
+  # The ID of the DHCP Options Set to associate with the VPC.
+  dhcp_options_id = null
 
   # IAM policy to restrict what resources can call this endpoint. For example,
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
@@ -1561,6 +1567,15 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="dhcp_options_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the DHCP Options Set to associate with the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="dynamodb_endpoint_policy" requirement="optional" type="string">
@@ -2406,6 +2421,6 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.2/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e0438063d3db20f44db1c08892a3efaa"
+  "hash": "81ad8b1c0de23ad06212ab6821c12e42"
 }
 ##DOCS-SOURCER-END -->
