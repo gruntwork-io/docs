@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.72.4" lastModifiedVersion="0.72.1"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.73.0" lastModifiedVersion="0.72.1"/>
 
 # EKS CloudWatch Agent Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.4/modules/eks-cloudwatch-agent" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-cloudwatch-agent" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.72.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -67,7 +67,7 @@ docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerIn
 
 module "eks_cloudwatch_agent" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.72.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.73.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -157,7 +157,7 @@ module "eks_cloudwatch_agent" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.72.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v0.73.0"
 }
 
 inputs = {
@@ -246,11 +246,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.4/modules/eks-cloudwatch-agent/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.4/modules/eks-cloudwatch-agent/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.4/modules/eks-cloudwatch-agent/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-cloudwatch-agent/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-cloudwatch-agent/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-cloudwatch-agent/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8c8a9c7e4b5586ab221561399f839e8c"
+  "hash": "e7185561ff03d57c2cd6974516d1541b"
 }
 ##DOCS-SOURCER-END -->
