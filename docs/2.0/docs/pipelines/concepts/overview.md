@@ -27,11 +27,11 @@ One of the things we've discovered over the years helping customers automate the
 
 A driving design goal of Gruntwork Pipelines is to allow for a minimal setup experience, followed by a very intuitive model for driving infrastructure updates. Most customers can get Pipelines configured in less than an hour, then drive all of their infrastructure changes directly via pull requests to Infrastructure as Code. Most of the time, you do not need to think about how Gruntwork Pipelines works, or how it makes decisions about what to do. You simply update your Infrastructure as Code to reflect the desired state of your infrastructure, have the pull request reviewed and merged, then Gruntwork Pipelines takes care of the rest.
 
-## Runs in GitHub Actions
+## Runs in GitHub Actions or GitLab CI
 
-Gruntwork Pipelines integrates directly with GitHub Actions, using a pull request-centric workflow. All information about a proposed infrastructure change is added as comments to the relevant pull request, and infrastructure changes are applied by interacting with the pull request.
+Gruntwork Pipelines integrates directly with GitHub Actions or GitLab CI, using a pull request-centric workflow. All information about a proposed infrastructure change is added as comments to the relevant pull request, and infrastructure changes are applied by interacting with the pull request.
 
-This approach ensures Gruntwork Pipelines operates independently of Gruntwork servers. All `terragrunt` operations are executed within GitHub Actions, giving you full control over your infrastructure automation. Secrets and state files remain secure within GitHub Actions.
+This approach ensures Gruntwork Pipelines operates independently of Gruntwork servers. All `terragrunt` operations are executed within GitHub Actions or GitLab CI, giving you full control over your infrastructure automation. Secrets and state files remain secure within GitHub Actions or GitLab CI.
 
 We continually update Gruntwork Pipelines, delivering new features and security improvements without requiring any action on your part.
 
@@ -50,4 +50,3 @@ An _infrastructure change set_ refers to pull requests that involve multiple inf
 ### Pipelines actions
 
 _Pipelines actions_ describe the operations triggered by proposed infra-changes, such as running a `terragrunt plan` or estimating costs. Gruntwork Pipelines supports a growing library of actions and continues to expand its capabilities over time.
-

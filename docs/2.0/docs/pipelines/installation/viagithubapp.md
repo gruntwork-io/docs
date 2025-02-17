@@ -8,6 +8,8 @@ toc_max_heading_level: 3
 
 The [Gruntwork.io GitHub App](https://github.com/apps/gruntwork-io) is a [GitHub App](https://docs.github.com/en/apps/overview) introduced to help reduce the burden of integrating Gruntwork products to GitHub resources. The app is designed to be lightweight and flexible, providing a simple way to get started with Gruntwork products.
 
+At this time Gruntwork does not provide an app for GitLab, this page is only relevant for Gruntwork Pipelines users installing to GitHub.
+
 ## Overview
 
 There are three major components to keep in mind when working with the Gruntwork.io GitHub App:

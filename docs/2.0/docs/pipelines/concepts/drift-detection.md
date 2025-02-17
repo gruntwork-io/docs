@@ -1,7 +1,7 @@
 # Pipelines Drift Detection
 
 :::note
-Pipelines Drift Detection is available exclusively to DevOps Foundations Enterprise customers.
+Pipelines Drift Detection is available exclusively to DevOps Foundations Enterprise customers on GitHub.
 :::
 
 ## What is Pipelines Drift Detection

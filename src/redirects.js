@@ -358,12 +358,15 @@ export const redirects = [
         to: '/2.0/docs/overview/concepts/devopsfoundations'
     },
     {
-      from: '/2.0/docs/accountfactory/tutorials/vend-aws-account',
-      to:   '/2.0/docs/accountfactory/guides/vend-aws-account'
+        from: '/2.0/docs/accountfactory/tutorials/vend-aws-account',
+        to: '/2.0/docs/accountfactory/guides/vend-aws-account'
     },
     {
         from: '/guides/index',
         to: '/'
+    },
+    {
+        from: '/2.0/docs/pipelines/architecture/github-workflows',
+        to: '/2.0/docs/pipelines/architecture/ci-workflows'
     }
-
 ]

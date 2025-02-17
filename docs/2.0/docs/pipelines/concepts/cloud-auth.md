@@ -6,9 +6,9 @@ Pipelines automatically determines which AWS account to authenticate to based on
 
 ### How Pipelines authenticates to AWS
 
-To execute the actions detected by Pipelines, each AWS account must assume an AWS IAM Role using [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services). At a high level, OIDC works as follows: AWS recognizes GitHub as an "identity provider," trusts GitHub’s request to assume a temporary IAM Role, and then issues AWS credentials valid for the duration of the GitHub Actions workflow.
+To execute the actions detected by Pipelines, each AWS account must assume an AWS IAM Role using Open ID Connect (OIDC). At a high level, OIDC works as follows: AWS recognizes GitHub or GitLab as an "identity provider," trusts GitHub’s or GitLab’s request to assume a temporary IAM Role, and then issues AWS credentials valid for the duration of the GitHub Actions or GitLab CI workflow.
 
-When creating a new AWS account, it is necessary to update the AWS OIDC configuration to include an IAM role that GitHub can assume. When using the [Gruntwork Account Factory](/2.0/docs/accountfactory/architecture), this update is performed automatically during the process of [adding a new AWS account](/2.0/docs/accountfactory/guides/vend-aws-account).
+When creating a new AWS account, it is necessary to update the AWS OIDC configuration to include an IAM role that GitHub or GitLab can assume. When using the [Gruntwork Account Factory](/2.0/docs/accountfactory/architecture), this update is performed automatically during the process of [adding a new AWS account](/2.0/docs/accountfactory/guides/vend-aws-account).
 
 ### How Pipelines knows what AWS account to authenticate to
 
@@ -68,6 +68,6 @@ The AWS IAM Role in the Management Account must have permissions to provision ne
 
 #### Child accounts
 
-Each child account (e.g., `dev`, `stage`, `prod`, etc.) contains an AWS IAM role that Pipelines can assume from GitHub Actions using OIDC. This role is automatically provisioned during the [account baseline process](/2.0/docs/accountfactory/guides/vend-aws-account). Once the role is established in the child account, users can submit Pull Requests to add, modify, or delete resources in that account.
+Each child account (e.g., `dev`, `stage`, `prod`, etc.) contains an AWS IAM role that Pipelines can assume from GitHub Actions or GitLab CI using OIDC. This role is automatically provisioned during the [account baseline process](/2.0/docs/accountfactory/guides/vend-aws-account). Once the role is established in the child account, users can submit pull requests/merge requests to add, modify, or delete resources in that account.
 
-When a Pull Request is created or synchronized, or when changes are pushed to the `main` branch, Pipelines detects the changes, maps them to the appropriate account, assumes the role in the child account, and executes a `terragrunt plan` (for Pull Requests) or `terragrunt apply` (for pushes to `main`).
+When a pull request/merge request is created or synchronized, or when changes are pushed to the `main` branch, Pipelines detects the changes, maps them to the appropriate account, assumes the role in the child account, and executes a `terragrunt plan` (for pull requests/merge requests) or `terragrunt apply` (for pushes to `main`).
