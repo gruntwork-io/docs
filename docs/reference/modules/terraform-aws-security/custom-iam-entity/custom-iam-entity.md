@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.8" lastModifiedVersion="0.69.2"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.9" lastModifiedVersion="0.69.2"/>
 
 # Custom IAM Entity
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/custom-iam-entity" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/custom-iam-entity" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.69.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This Gruntwork Terraform Module creates an IAM group and/or role and attaches a provided set of IAM managed policies to the group. This can be used in conjunction with the [iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/iam-groups), [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/cross-account-iam-roles), and [saml-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/saml-iam-roles) modules which create a set of groups and roles with smart defaults. Use this module to easily create IAM groups and roles with a defined set of permissions.
+This Gruntwork Terraform Module creates an IAM group and/or role and attaches a provided set of IAM managed policies to the group. This can be used in conjunction with the [iam-groups](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/iam-groups), [cross-account-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/cross-account-iam-roles), and [saml-iam-roles](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/saml-iam-roles) modules which create a set of groups and roles with smart defaults. Use this module to easily create IAM groups and roles with a defined set of permissions.
 
 ### Requirements
 
@@ -25,7 +25,7 @@ This Gruntwork Terraform Module creates an IAM group and/or role and attaches a 
 
 ### Instructions
 
-Check out the [custom-iam-entity example](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/examples/custom-iam-entity) for a working example.
+Check out the [custom-iam-entity example](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/examples/custom-iam-entity) for a working example.
 
 #### Resources Created
 
@@ -36,7 +36,7 @@ If neither role nor group are provided, this module does nothing.
 
 #### Resources NOT Created
 
-*   **IAM users** - This module does not create any IAM Users, nor assign any existing IAM Users to IAM Groups. You can use the [iam-users module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/iam-users) to create users.
+*   **IAM users** - This module does not create any IAM Users, nor assign any existing IAM Users to IAM Groups. You can use the [iam-users module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/iam-users) to create users.
 *   **IAM policies** - This module only attaches policies by ARN or by name. It does not create any new policies.
 
 #### MFA support
@@ -51,7 +51,7 @@ The reason for this difference is difficult to explain, but boils down to limita
 ## Background Information
 
 For background information on IAM, IAM users, IAM policies, and more, check out the [background information docs in
-the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/iam-policies#background-information).
+the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/iam-policies#background-information).
 
 ## Sample Usage
 
@@ -66,7 +66,7 @@ the iam-policies module](https://github.com/gruntwork-io/terraform-aws-security/
 
 module "custom_iam_entity" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/custom-iam-entity?ref=v0.75.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/custom-iam-entity?ref=v0.75.9"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -165,7 +165,7 @@ module "custom_iam_entity" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/custom-iam-entity?ref=v0.75.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/custom-iam-entity?ref=v0.75.9"
 }
 
 inputs = {
@@ -485,11 +485,11 @@ The name of the IAM role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/custom-iam-entity/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/custom-iam-entity/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.8/modules/custom-iam-entity/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/custom-iam-entity/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/custom-iam-entity/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.9/modules/custom-iam-entity/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5331b9f4a5a74bb024f8c9a63cf0ee3a"
+  "hash": "cbd4538f03c4f6ce54e0c0325b2deb7d"
 }
 ##DOCS-SOURCER-END -->
