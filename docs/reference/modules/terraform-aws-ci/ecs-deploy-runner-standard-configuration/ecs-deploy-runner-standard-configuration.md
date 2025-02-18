@@ -9,16 +9,16 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.59.7" lastModifiedVersion="0.52.17"/>
+<VersionBadge repoTitle="CI Modules" version="0.59.8" lastModifiedVersion="0.52.17"/>
 
 # ECS Deploy Runner Standard Configuration module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/ecs-deploy-runner-standard-configuration" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.8/modules/ecs-deploy-runner-standard-configuration" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.52.17" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module provides a streamlined interface to configure the [ecs-deploy-runner
-module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/ecs-deploy-runner) for a standard infrastructure and applications pipeline. This includes:
+module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.8/modules/ecs-deploy-runner) for a standard infrastructure and applications pipeline. This includes:
 
 *   Base pipeline of build image, update variables, deploy infrastructure with Terraform/Terragrunt.
 *   Restricting git repos that can deploy infrastructure.
@@ -100,8 +100,8 @@ for more information).
 
 ## How do I invoke scripts in a given container?
 
-You can use the [infrastructure-deployer CLI](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/infrastructure-deployer) to invoke a deployed ECS deploy runner. Refer
-to [How do I invoke the ECS deploy runner](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/infrastructure-deployer/core-concepts.md#how-do-i-invoke-the-ecs-deploy-runner)
+You can use the [infrastructure-deployer CLI](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.8/modules/infrastructure-deployer) to invoke a deployed ECS deploy runner. Refer
+to [How do I invoke the ECS deploy runner](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.8/modules/infrastructure-deployer/core-concepts.md#how-do-i-invoke-the-ecs-deploy-runner)
 for more information.
 
 ## Sample Usage
@@ -117,7 +117,7 @@ for more information.
 
 module "ecs_deploy_runner_standard_configuration" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.59.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.59.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -223,7 +223,7 @@ module "ecs_deploy_runner_standard_configuration" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.59.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ci.git//modules/ecs-deploy-runner-standard-configuration?ref=v0.59.8"
 }
 
 inputs = {
@@ -953,11 +953,11 @@ Configuration map for the ecs-deploy-runner module that can be passed straight i
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/ecs-deploy-runner-standard-configuration/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/ecs-deploy-runner-standard-configuration/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/ecs-deploy-runner-standard-configuration/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.8/modules/ecs-deploy-runner-standard-configuration/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.8/modules/ecs-deploy-runner-standard-configuration/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.8/modules/ecs-deploy-runner-standard-configuration/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8eaebbd8c0ab5888a20ef25d1b26fc0f"
+  "hash": "f944e65e490a18f7f140546bd5138930"
 }
 ##DOCS-SOURCER-END -->
