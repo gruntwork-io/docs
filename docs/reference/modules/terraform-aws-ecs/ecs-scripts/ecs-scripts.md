@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.38.5" lastModifiedVersion="0.32.1"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.38.6" lastModifiedVersion="0.32.1"/>
 
 # ECS Scripts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.5/modules/ecs-scripts" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.6/modules/ecs-scripts" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.32.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -31,7 +31,7 @@ You can install the helpers using the [Gruntwork Installer](https://github.com/g
 gruntwork-install --module-name "ecs-scripts" --repo "https://github.com/gruntwork-io/terraform-aws-ecs" --tag "0.0.1"
 ```
 
-For an example, see the [Packer](https://www.packer.io/) template under [/examples/example-ecs-instance-ami/build.json](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.5/examples/example-ecs-instance-ami/build.json).
+For an example, see the [Packer](https://www.packer.io/) template under [/examples/example-ecs-instance-ami/build.json](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.6/examples/example-ecs-instance-ami/build.json).
 
 ## Using the configure-ecs-instance helper
 
@@ -79,11 +79,11 @@ Run `configure-ecs-instance --help` to see all available options.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.5/modules/ecs-scripts/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.5/modules/ecs-scripts/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.5/modules/ecs-scripts/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.6/modules/ecs-scripts/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.6/modules/ecs-scripts/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.6/modules/ecs-scripts/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8477c07f6b3736d2399ea071dc2f85f6"
+  "hash": "fa05cfd26f6fec1278d16d52a02d1d32"
 }
 ##DOCS-SOURCER-END -->
