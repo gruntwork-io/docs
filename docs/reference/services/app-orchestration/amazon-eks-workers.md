@@ -179,6 +179,12 @@ module "eks_workers" {
   # groups.
   allow_inbound_ssh_from_security_groups = []
 
+  # Where to get the AMI from. Can be 'auto', 'launch_template', or
+  # 'eks_nodegroup'. WARNING there are limitation on what the value is, check
+  # the documentation for more information
+  # https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
+  ami_source = "auto"
+
   # Custom name for the IAM role for the Self-managed workers. When null, a
   # default name based on worker_name_prefix will be used. One of
   # asg_custom_iam_role_name and asg_iam_role_arn is required (must be non-null)
@@ -192,6 +198,10 @@ module "eks_workers" {
   # Default value for the http_put_response_hop_limit field of
   # autoscaling_group_configurations.
   asg_default_http_put_response_hop_limit = null
+
+  # Default value for the instance_maintenance_policy field of
+  # autoscaling_group_configurations.
+  asg_default_instance_maintenance_policy = null
 
   # Default value for the asg_instance_root_volume_encryption field of
   # autoscaling_group_configurations. Any map entry that does not specify
@@ -308,6 +318,18 @@ module "eks_workers" {
   # your cluster.
   asg_use_resource_name_prefix = true
 
+  # A map of custom tags to apply to the EKS Worker IAM Policies. The key is the
+  # tag name and the value is the tag value.
+  asg_worker_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  asg_worker_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Instance Profile. The
+  # key is the tag name and the value is the tag value.
+  asg_worker_instance_profile_tags = {}
+
   # Adds additional tags to each ASG that allow a cluster autoscaler to
   # auto-discover them. Only used for self-managed workers.
   autoscaling_group_include_autoscaler_discovery_tags = true
@@ -373,6 +395,11 @@ module "eks_workers" {
   # CloudWatch dashboard.
   dashboard_memory_usage_widget_parameters = {"height":6,"period":60,"width":8}
 
+  # A map of default tags to apply to all supported resources in this module.
+  # These tags will be merged with any other resource specific tags. The key is
+  # the tag name and the value is the tag value.
+  default_tags = {}
+
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
@@ -400,6 +427,48 @@ module "eks_workers" {
   # from that account. To omit this variable, set it to an empty string (do NOT
   # use null, or Terraform will complain).
   external_account_ssh_grunt_role_arn = ""
+
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  # for the ASG.
+  high_worker_cpu_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster CPU utilization
+  # percentage above this threshold.
+  high_worker_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_worker_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the ASG.
+  high_worker_disk_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster root disk utilization
+  # percentage above this threshold.
+  high_worker_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_worker_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization
+  # percentage for the ASG.
+  high_worker_memory_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster Memory utilization
+  # percentage above this threshold.
+  high_worker_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_worker_memory_utilization_treat_missing_data = "missing"
 
   # Custom name for the IAM role for the Managed Node Groups. When null, a
   # default name based on worker_name_prefix will be used. One of
@@ -437,6 +506,10 @@ module "eks_workers" {
   # Default value for the instance_root_volume_encryption field of
   # managed_node_group_configurations.
   node_group_default_instance_root_volume_encryption = true
+
+  # Default voume name for the instance_root_volume_name field in
+  # managed_node_group_configurations.
+  node_group_default_instance_root_volume_name = "/dev/xvda"
 
   # Default value for the instance_root_volume_size field of
   # managed_node_group_configurations.
@@ -504,6 +577,10 @@ module "eks_workers" {
   # A map of tags to apply to the Security Group of the ASG for the managed node
   # group pool. The key is the tag name and the value is the tag value.
   node_group_security_group_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  node_group_worker_iam_role_tags = {}
 
   # If you are using ssh-grunt, this is the name of the IAM group from which
   # users will be allowed to SSH to the EKS workers. To omit this variable, set
@@ -645,6 +722,12 @@ inputs = {
   # groups.
   allow_inbound_ssh_from_security_groups = []
 
+  # Where to get the AMI from. Can be 'auto', 'launch_template', or
+  # 'eks_nodegroup'. WARNING there are limitation on what the value is, check
+  # the documentation for more information
+  # https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
+  ami_source = "auto"
+
   # Custom name for the IAM role for the Self-managed workers. When null, a
   # default name based on worker_name_prefix will be used. One of
   # asg_custom_iam_role_name and asg_iam_role_arn is required (must be non-null)
@@ -658,6 +741,10 @@ inputs = {
   # Default value for the http_put_response_hop_limit field of
   # autoscaling_group_configurations.
   asg_default_http_put_response_hop_limit = null
+
+  # Default value for the instance_maintenance_policy field of
+  # autoscaling_group_configurations.
+  asg_default_instance_maintenance_policy = null
 
   # Default value for the asg_instance_root_volume_encryption field of
   # autoscaling_group_configurations. Any map entry that does not specify
@@ -774,6 +861,18 @@ inputs = {
   # your cluster.
   asg_use_resource_name_prefix = true
 
+  # A map of custom tags to apply to the EKS Worker IAM Policies. The key is the
+  # tag name and the value is the tag value.
+  asg_worker_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  asg_worker_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Instance Profile. The
+  # key is the tag name and the value is the tag value.
+  asg_worker_instance_profile_tags = {}
+
   # Adds additional tags to each ASG that allow a cluster autoscaler to
   # auto-discover them. Only used for self-managed workers.
   autoscaling_group_include_autoscaler_discovery_tags = true
@@ -839,6 +938,11 @@ inputs = {
   # CloudWatch dashboard.
   dashboard_memory_usage_widget_parameters = {"height":6,"period":60,"width":8}
 
+  # A map of default tags to apply to all supported resources in this module.
+  # These tags will be merged with any other resource specific tags. The key is
+  # the tag name and the value is the tag value.
+  default_tags = {}
+
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
@@ -866,6 +970,48 @@ inputs = {
   # from that account. To omit this variable, set it to an empty string (do NOT
   # use null, or Terraform will complain).
   external_account_ssh_grunt_role_arn = ""
+
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  # for the ASG.
+  high_worker_cpu_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster CPU utilization
+  # percentage above this threshold.
+  high_worker_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_worker_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the ASG.
+  high_worker_disk_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster root disk utilization
+  # percentage above this threshold.
+  high_worker_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_worker_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization
+  # percentage for the ASG.
+  high_worker_memory_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster Memory utilization
+  # percentage above this threshold.
+  high_worker_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_worker_memory_utilization_treat_missing_data = "missing"
 
   # Custom name for the IAM role for the Managed Node Groups. When null, a
   # default name based on worker_name_prefix will be used. One of
@@ -903,6 +1049,10 @@ inputs = {
   # Default value for the instance_root_volume_encryption field of
   # managed_node_group_configurations.
   node_group_default_instance_root_volume_encryption = true
+
+  # Default voume name for the instance_root_volume_name field in
+  # managed_node_group_configurations.
+  node_group_default_instance_root_volume_name = "/dev/xvda"
 
   # Default value for the instance_root_volume_size field of
   # managed_node_group_configurations.
@@ -970,6 +1120,10 @@ inputs = {
   # A map of tags to apply to the Security Group of the ASG for the managed node
   # group pool. The key is the tag name and the value is the tag value.
   node_group_security_group_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  node_group_worker_iam_role_tags = {}
 
   # If you are using ssh-grunt, this is the name of the IAM group from which
   # users will be allowed to SSH to the EKS workers. To omit this variable, set
@@ -1138,6 +1292,10 @@ Any types represent complex values of variable type. For details, please consult
                                                Per-ASG cloud init scripts to run at boot time on the node.  See var.cloud_init_parts for accepted keys.
    - http_put_response_hop_limit     number  : (Defaults to value from var.asg_default_http_put_response_hop_limit) The
                                                desired HTTP PUT response hop limit for instance metadata requests.
+   - instance_maintenance_policy     object(Health_Percentage)
+      Structure of Health_Percentage object:
+      - min_healthy_percentage  number  : Min healthy percentage forthe  intance maintenance policy
+      - max_healthy_percentage  number  : Max healthy percentage for the intance maintenance policy
   
    Structure of Tag object:
    - key                  string  : The key for the tag to apply to the instance.
@@ -1289,6 +1447,8 @@ Any types represent complex values of variable type. For details, please consult
                                                  var.node_group_default_imds_http_put_response_hop_limit) The desired
                                                  HTTP PUT response hop limit for instance metadata requests from the
                                                  underlying EC2 Instances.
+   - instance_root_volume_name   string     : (Defaults to value from var.node_group_default_instance_root_volume_name)
+                                              The root volume name of instances to use for the ASG (e.g., /dev/xvda)
    - instance_root_volume_size   number     : (Defaults to value from var.node_group_default_instance_root_volume_size)
                                               The root volume size of instances to use for the ASG in GB (e.g., 40).
    - instance_root_volume_type   string     : (Defaults to value from var.node_group_default_instance_root_volume_type)
@@ -1383,6 +1543,15 @@ The list of security group IDs to allow inbound SSH access to the worker groups.
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="ami_source" requirement="optional" type="string">
+<HclListItemDescription>
+
+Where to get the AMI from. Can be 'auto', 'launch_template', or 'eks_nodegroup'. WARNING there are limitation on what the value is, check the documentation for more information https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;auto&quot;"/>
+</HclListItem>
+
 <HclListItem name="asg_custom_iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1407,6 +1576,25 @@ Default value for enable_detailed_monitoring field of autoscaling_group_configur
 Default value for the http_put_response_hop_limit field of autoscaling_group_configurations.
 
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_instance_maintenance_policy" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Default value for the instance_maintenance_policy field of autoscaling_group_configurations.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    min_healthy_percentage = number
+    max_healthy_percentage = number
+  })
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -1667,6 +1855,33 @@ When true, all the relevant resources for self managed workers will be set to us
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="asg_worker_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Policies. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="asg_worker_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="asg_worker_instance_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Instance Profile. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="autoscaling_group_include_autoscaler_discovery_tags" requirement="optional" type="bool">
@@ -2005,6 +2220,15 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of default tags to apply to all supported resources in this module. These tags will be merged with any other resource specific tags. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2048,6 +2272,87 @@ If you are using ssh-grunt and your IAM users / groups are defined in a separate
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_worker_cpu_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the CPU utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_worker_cpu_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_worker_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_worker_disk_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_worker_disk_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_worker_disk_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_worker_memory_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_worker_memory_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster Memory utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_worker_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="managed_node_group_custom_iam_role_name" requirement="optional" type="string">
@@ -2120,6 +2425,15 @@ Default value for the instance_root_volume_encryption field of managed_node_grou
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_instance_root_volume_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default voume name for the instance_root_volume_name field in managed_node_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;/dev/xvda&quot;"/>
 </HclListItem>
 
 <HclListItem name="node_group_default_instance_root_volume_size" requirement="optional" type="number">
@@ -2250,6 +2564,15 @@ The names of the node groups. When null, this value is automatically calculated 
 <HclListItemDescription>
 
 A map of tags to apply to the Security Group of the ASG for the managed node group pool. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="node_group_worker_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag name and the value is the tag value.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
@@ -2479,6 +2802,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e811a11ea2911fb81b7cb6161c9ce602"
+  "hash": "4ceb08e2108e2ca5b40521f32ff677e1"
 }
 ##DOCS-SOURCER-END -->

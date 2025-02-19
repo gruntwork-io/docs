@@ -211,6 +211,10 @@ module "ecs_cluster" {
   # ECS instances.
   allow_ssh_from_security_group_ids = []
 
+  # Enables or disables a graceful shutdown of instances without disturbing
+  # workloads.
+  autoscaling_managed_draining = true
+
   # Protect EC2 instances running ECS tasks from being terminated due to scale
   # in (spot instances do not support lifecycle modifications). Note that the
   # behavior of termination protection differs between clusters with capacity
@@ -271,9 +275,17 @@ module "ecs_cluster" {
   # Whether to associate a public IP address with an instance in a VPC
   cluster_instance_associate_public_ip_address = false
 
+  # Whether the volume should be destroyed on instance termination. Defaults to
+  # false
+  cluster_instance_ebs_delete_on_termination = false
+
   # The name of the Key Pair that can be used to SSH to each instance in the ECS
   # cluster
   cluster_instance_keypair_name = null
+
+  # The volume type for the root volume for each of the ECS Cluster's EC2
+  # Instances. Can be one of standard, gp2, gp3, io1, io2, sc1 or st1.
+  cluster_instance_root_volume_type = "gp2"
 
   # A list of custom tags to apply to the EC2 Instances in this ASG. Each item
   # in this list should be a map with the parameters key, value, and
@@ -352,14 +364,9 @@ module "ecs_cluster" {
   # this threshold. Only used if var.enable_ecs_cloudwatch_alarms is set to true
   high_cpu_utilization_threshold = 90
 
-  # The period, in seconds, over which to measure the disk utilization
-  # percentage. Only used if var.enable_ecs_cloudwatch_alarms is set to true
-  high_disk_utilization_period = 300
-
-  # Trigger an alarm if the EC2 instances in the ECS Cluster have a disk
-  # utilization percentage above this threshold. Only used if
-  # var.enable_ecs_cloudwatch_alarms is set to true
-  high_disk_utilization_threshold = 90
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
 
   # The number of periods over which data is compared to the specified threshold
   high_memory_utilization_evaluation_periods = 2
@@ -376,6 +383,10 @@ module "ecs_cluster" {
   # above this threshold. Only used if var.enable_ecs_cloudwatch_alarms is set
   # to true
   high_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_memory_utilization_treat_missing_data = "missing"
 
   # The desired HTTP PUT response hop limit for instance metadata requests for
   # the workers.
@@ -412,10 +423,10 @@ module "ecs_cluster" {
   tenancy = "default"
 
   # Set this variable to true to enable the use of Instance Metadata Service
-  # Version 1 in this module's aws_launch_configuration. Note that while IMDsv2
-  # is preferred due to its special security hardening, we allow this in order
-  # to support the use case of AMIs built outside of these modules that depend
-  # on IMDSv1.
+  # Version 1 in this module's aws_launch_template. Note that while IMDsv2 is
+  # preferred due to its special security hardening, we allow this in order to
+  # support the use case of AMIs built outside of these modules that depend on
+  # IMDSv1.
   use_imdsv1 = true
 
   # When true, all IAM policies will be managed as dedicated policies rather
@@ -501,6 +512,10 @@ inputs = {
   # ECS instances.
   allow_ssh_from_security_group_ids = []
 
+  # Enables or disables a graceful shutdown of instances without disturbing
+  # workloads.
+  autoscaling_managed_draining = true
+
   # Protect EC2 instances running ECS tasks from being terminated due to scale
   # in (spot instances do not support lifecycle modifications). Note that the
   # behavior of termination protection differs between clusters with capacity
@@ -561,9 +576,17 @@ inputs = {
   # Whether to associate a public IP address with an instance in a VPC
   cluster_instance_associate_public_ip_address = false
 
+  # Whether the volume should be destroyed on instance termination. Defaults to
+  # false
+  cluster_instance_ebs_delete_on_termination = false
+
   # The name of the Key Pair that can be used to SSH to each instance in the ECS
   # cluster
   cluster_instance_keypair_name = null
+
+  # The volume type for the root volume for each of the ECS Cluster's EC2
+  # Instances. Can be one of standard, gp2, gp3, io1, io2, sc1 or st1.
+  cluster_instance_root_volume_type = "gp2"
 
   # A list of custom tags to apply to the EC2 Instances in this ASG. Each item
   # in this list should be a map with the parameters key, value, and
@@ -642,14 +665,9 @@ inputs = {
   # this threshold. Only used if var.enable_ecs_cloudwatch_alarms is set to true
   high_cpu_utilization_threshold = 90
 
-  # The period, in seconds, over which to measure the disk utilization
-  # percentage. Only used if var.enable_ecs_cloudwatch_alarms is set to true
-  high_disk_utilization_period = 300
-
-  # Trigger an alarm if the EC2 instances in the ECS Cluster have a disk
-  # utilization percentage above this threshold. Only used if
-  # var.enable_ecs_cloudwatch_alarms is set to true
-  high_disk_utilization_threshold = 90
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
 
   # The number of periods over which data is compared to the specified threshold
   high_memory_utilization_evaluation_periods = 2
@@ -666,6 +684,10 @@ inputs = {
   # above this threshold. Only used if var.enable_ecs_cloudwatch_alarms is set
   # to true
   high_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
+  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_memory_utilization_treat_missing_data = "missing"
 
   # The desired HTTP PUT response hop limit for instance metadata requests for
   # the workers.
@@ -702,10 +724,10 @@ inputs = {
   tenancy = "default"
 
   # Set this variable to true to enable the use of Instance Metadata Service
-  # Version 1 in this module's aws_launch_configuration. Note that while IMDsv2
-  # is preferred due to its special security hardening, we allow this in order
-  # to support the use case of AMIs built outside of these modules that depend
-  # on IMDSv1.
+  # Version 1 in this module's aws_launch_template. Note that while IMDsv2 is
+  # preferred due to its special security hardening, we allow this in order to
+  # support the use case of AMIs built outside of these modules that depend on
+  # IMDSv1.
   use_imdsv1 = true
 
   # When true, all IAM policies will be managed as dedicated policies rather
@@ -858,6 +880,15 @@ The IDs of security groups from which to allow incoming SSH requests to the ECS 
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="autoscaling_managed_draining" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enables or disables a graceful shutdown of instances without disturbing workloads.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="autoscaling_termination_protection" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -984,6 +1015,15 @@ Whether to associate a public IP address with an instance in a VPC
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="cluster_instance_ebs_delete_on_termination" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether the volume should be destroyed on instance termination. Defaults to false
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="cluster_instance_keypair_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -991,6 +1031,15 @@ The name of the Key Pair that can be used to SSH to each instance in the ECS clu
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_root_volume_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The volume type for the root volume for each of the ECS Cluster's EC2 Instances. Can be one of standard, gp2, gp3, io1, io2, sc1 or st1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
 </HclListItem>
 
 <HclListItem name="custom_tags_ec2_instances" requirement="optional" type="list">
@@ -1162,22 +1211,13 @@ Trigger an alarm if the ECS Cluster has a CPU utilization percentage above this 
 <HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
-<HclListItem name="high_disk_utilization_period" requirement="optional" type="number">
+<HclListItem name="high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
 <HclListItemDescription>
 
-The period, in seconds, over which to measure the disk utilization percentage. Only used if <a href="#enable_ecs_cloudwatch_alarms"><code>enable_ecs_cloudwatch_alarms</code></a> is set to true
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="300"/>
-</HclListItem>
-
-<HclListItem name="high_disk_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the EC2 instances in the ECS Cluster have a disk utilization percentage above this threshold. Only used if <a href="#enable_ecs_cloudwatch_alarms"><code>enable_ecs_cloudwatch_alarms</code></a> is set to true
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="high_memory_utilization_evaluation_periods" requirement="optional" type="number">
@@ -1214,6 +1254,15 @@ Trigger an alarm if the ECS Cluster has a memory utilization percentage above th
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="http_put_response_hop_limit" requirement="optional" type="number">
@@ -1291,7 +1340,7 @@ The tenancy of this server. Must be one of: default, dedicated, or host.
 <HclListItem name="use_imdsv1" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_configuration. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
+Set this variable to true to enable the use of Instance Metadata Service Version 1 in this module's aws_launch_template. Note that while IMDsv2 is preferred due to its special security hardening, we allow this in order to support the use case of AMIs built outside of these modules that depend on IMDSv1.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -1349,10 +1398,10 @@ For configurations with multiple capacity providers, this contains a list of all
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="ecs_cluster_launch_configuration_id">
+<HclListItem name="ecs_cluster_launch_template_id">
 <HclListItemDescription>
 
-The ID of the launch configuration used by the ECS cluster's auto scaling group (ASG)
+The ID of the launch template used by the ECS cluster's auto scaling group (ASG)
 
 </HclListItemDescription>
 </HclListItem>
@@ -1440,6 +1489,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/modules/services/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "37193aab907b9cb6e5aa21275a152e73"
+  "hash": "7daa0956e5bdc71ab06de9c8ba247ed8"
 }
 ##DOCS-SOURCER-END -->
