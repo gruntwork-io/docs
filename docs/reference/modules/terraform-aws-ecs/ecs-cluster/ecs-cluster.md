@@ -336,6 +336,14 @@ module "ecs_cluster" {
   # GroupTotalCapacity, GroupTotalInstances.
   cluster_asg_metrics_enabled = []
 
+  # Amount of time, in seconds, until a newly launched instance can contribute
+  # to the Amazon CloudWatch metrics. This delay lets an instance finish
+  # initializing before Amazon EC2 Auto Scaling aggregates instance metrics,
+  # resulting in more reliable usage data. Set this value equal to the amount of
+  # time that it takes for resource consumption to become stable after an
+  # instance reaches the InService state.
+  cluster_default_instance_warmup = null
+
   # Enables/disables detailed CloudWatch monitoring for EC2 instances
   cluster_detailed_monitoring = true
 
@@ -619,6 +627,14 @@ inputs = {
   # GroupStandbyCapacity, GroupTerminatingCapacity, GroupTerminatingInstances,
   # GroupTotalCapacity, GroupTotalInstances.
   cluster_asg_metrics_enabled = []
+
+  # Amount of time, in seconds, until a newly launched instance can contribute
+  # to the Amazon CloudWatch metrics. This delay lets an instance finish
+  # initializing before Amazon EC2 Auto Scaling aggregates instance metrics,
+  # resulting in more reliable usage data. Set this value equal to the amount of
+  # time that it takes for resource consumption to become stable after an
+  # instance reaches the InService state.
+  cluster_default_instance_warmup = null
 
   # Enables/disables detailed CloudWatch monitoring for EC2 instances
   cluster_detailed_monitoring = true
@@ -975,6 +991,15 @@ A list of metrics to collect. The allowed values are GroupDesiredCapacity, Group
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cluster_default_instance_warmup" requirement="optional" type="number">
+<HclListItemDescription>
+
+Amount of time, in seconds, until a newly launched instance can contribute to the Amazon CloudWatch metrics. This delay lets an instance finish initializing before Amazon EC2 Auto Scaling aggregates instance metrics, resulting in more reliable usage data. Set this value equal to the amount of time that it takes for resource consumption to become stable after an instance reaches the InService state.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cluster_detailed_monitoring" requirement="optional" type="bool">
@@ -1460,6 +1485,6 @@ Set this variable to true to enable the use of Instance Metadata Service Version
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.5/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "356294e32c5364373b250bf884f708d3"
+  "hash": "52591098041b577e68e427ec1d1393dd"
 }
 ##DOCS-SOURCER-END -->
