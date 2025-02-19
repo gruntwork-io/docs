@@ -134,10 +134,6 @@ module "lambda" {
   # when running in a VPC. Only used if var.run_in_vpc is true.
   additional_security_group_ids = []
 
-  # Instruction set architecture for your Lambda function. Valid values are:
-  # x86_64; arm64. When null, defaults to x86_64.
-  architecture = null
-
   # A custom assume role policy for the IAM role for this Lambda function. If
   # not set, the default is a policy that allows the Lambda service to assume
   # the IAM role, which is what most users will need. However, you can use this
@@ -223,11 +219,6 @@ module "lambda" {
   # automatically encrypt these with KMS and decrypt them when running the
   # function.
   environment_variables = {"EnvVarPlaceHolder":"Placeholder"}
-
-  # The amount of Ephemeral storage(/tmp) to allocate for the Lambda Function in
-  # MB. This parameter is used to expand the total amount of Ephemeral storage
-  # available, beyond the default amount of 512MB.
-  ephemeral_storage = null
 
   # The number of periods over which data is compared to the specified
   # threshold.
@@ -363,10 +354,6 @@ module "lambda" {
   # is required for alarms based on static thresholds, but should not be used
   # for alarms based on anomaly detection models.
   threshold = 0
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
-  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  treat_missing_data = "missing"
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -439,10 +426,6 @@ inputs = {
   # when running in a VPC. Only used if var.run_in_vpc is true.
   additional_security_group_ids = []
 
-  # Instruction set architecture for your Lambda function. Valid values are:
-  # x86_64; arm64. When null, defaults to x86_64.
-  architecture = null
-
   # A custom assume role policy for the IAM role for this Lambda function. If
   # not set, the default is a policy that allows the Lambda service to assume
   # the IAM role, which is what most users will need. However, you can use this
@@ -528,11 +511,6 @@ inputs = {
   # automatically encrypt these with KMS and decrypt them when running the
   # function.
   environment_variables = {"EnvVarPlaceHolder":"Placeholder"}
-
-  # The amount of Ephemeral storage(/tmp) to allocate for the Lambda Function in
-  # MB. This parameter is used to expand the total amount of Ephemeral storage
-  # available, beyond the default amount of 512MB.
-  ephemeral_storage = null
 
   # The number of periods over which data is compared to the specified
   # threshold.
@@ -668,10 +646,6 @@ inputs = {
   # is required for alarms based on static thresholds, but should not be used
   # for alarms based on anomaly detection models.
   threshold = 0
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must
-  # be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  treat_missing_data = "missing"
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -752,15 +726,6 @@ A list of Security Group IDs that should be attached to the Lambda function when
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="architecture" requirement="optional" type="string">
-<HclListItemDescription>
-
-Instruction set architecture for your Lambda function. Valid values are: x86_64; arm64. When null, defaults to x86_64.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="assume_role_policy" requirement="optional" type="string">
@@ -935,15 +900,6 @@ A map of environment variables to pass to the Lambda function. AWS will automati
 </details>
 
 </HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="ephemeral_storage" requirement="optional" type="number">
-<HclListItemDescription>
-
-The amount of Ephemeral storage(/tmp) to allocate for the Lambda Function in MB. This parameter is used to expand the total amount of Ephemeral storage available, beyond the default amount of 512MB.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="evaluation_periods" requirement="optional" type="number">
@@ -1241,15 +1197,6 @@ The value against which the specified statistic is compared. This parameter is r
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
-<HclListItem name="treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1428,6 +1375,6 @@ Latest published version of your Lambda Function
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/modules/services/lambda/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "56eb258359e4d435e0b54ac41978477b"
+  "hash": "6fee82af04e77df868bca265774022a0"
 }
 ##DOCS-SOURCER-END -->
