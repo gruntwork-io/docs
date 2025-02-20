@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.17" lastModifiedVersion="0.118.16"/>
+<VersionBadge version="0.118.19" lastModifiedVersion="0.118.19"/>
 
 # Amazon Relational Database Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -69,7 +69,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,12 +77,12 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
-*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
+*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
 
 
 ## Sample Usage
@@ -103,7 +103,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.17"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.19"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -243,6 +243,9 @@ module "rds" {
   # name.
   create_snapshot_cloudwatch_metric_namespace = null
 
+  # Timeout for DB creating
+  creating_timeout = "40m"
+
   # Configure a custom parameter group for the RDS DB. This will create a new
   # parameter group with the given parameters. When null, the database will be
   # launched with the default parameter group.
@@ -297,6 +300,9 @@ module "rds" {
   # Specifies whether to remove automated backups immediately after the DB
   # instance is deleted
   delete_automated_backups = true
+
+  # Timeout for DB deleting
+  deleting_timeout = "60m"
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -594,6 +600,9 @@ module "rds" {
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   too_many_db_connections_treat_missing_data = "missing"
 
+  # Timeout for DB updating
+  updating_timeout = "80m"
+
 }
 
 
@@ -614,7 +623,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.17"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.19"
 }
 
 inputs = {
@@ -757,6 +766,9 @@ inputs = {
   # name.
   create_snapshot_cloudwatch_metric_namespace = null
 
+  # Timeout for DB creating
+  creating_timeout = "40m"
+
   # Configure a custom parameter group for the RDS DB. This will create a new
   # parameter group with the given parameters. When null, the database will be
   # launched with the default parameter group.
@@ -811,6 +823,9 @@ inputs = {
   # Specifies whether to remove automated backups immediately after the DB
   # instance is deleted
   delete_automated_backups = true
+
+  # Timeout for DB deleting
+  deleting_timeout = "60m"
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -1107,6 +1122,9 @@ inputs = {
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   too_many_db_connections_treat_missing_data = "missing"
+
+  # Timeout for DB updating
+  updating_timeout = "80m"
 
 }
 
@@ -1402,6 +1420,15 @@ The namespace to use for the CloudWatch metric we report every time a new RDS sn
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="creating_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Timeout for DB creating
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;40m&quot;"/>
 </HclListItem>
 
 <HclListItem name="custom_parameter_group" requirement="optional" type="object(…)">
@@ -1809,6 +1836,15 @@ Specifies whether to remove automated backups immediately after the DB instance 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="deleting_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Timeout for DB deleting
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;60m&quot;"/>
 </HclListItem>
 
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
@@ -2424,6 +2460,15 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
+<HclListItem name="updating_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Timeout for DB updating
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;80m&quot;"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -2593,11 +2638,11 @@ The ID of the Security Group that controls access to the RDS DB instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/modules/data-stores/rds/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/modules/data-stores/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.17/modules/data-stores/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/modules/data-stores/rds/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/modules/data-stores/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "be0fe25d35ddbd1e0d5eb0a4e278e07a"
+  "hash": "56abaaee353e0437e4ccd6190cad4ee7"
 }
 ##DOCS-SOURCER-END -->
