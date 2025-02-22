@@ -293,12 +293,11 @@ module "aurora" {
   # aurora-postgresql
   engine = "aurora-mysql"
 
-  # The DB engine mode of the DB cluster: either provisioned, serverless,
-  # parallelquery, multimaster or global which only applies for global database
-  # clusters created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL
-  # versions, the clusters in a global database use provisioned engine mode..
-  # Limitations and requirements apply to some DB engine modes. See AWS
-  # documentation:
+  # The DB engine mode of the DB cluster: either provisioned, parallelquery,
+  # multimaster or global which only applies for global database clusters
+  # created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions,
+  # the clusters in a global database use provisioned engine mode.. Limitations
+  # and requirements apply to some DB engine modes. See AWS documentation:
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraSettingUp.html
   engine_mode = "provisioned"
 
@@ -665,12 +664,11 @@ inputs = {
   # aurora-postgresql
   engine = "aurora-mysql"
 
-  # The DB engine mode of the DB cluster: either provisioned, serverless,
-  # parallelquery, multimaster or global which only applies for global database
-  # clusters created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL
-  # versions, the clusters in a global database use provisioned engine mode..
-  # Limitations and requirements apply to some DB engine modes. See AWS
-  # documentation:
+  # The DB engine mode of the DB cluster: either provisioned, parallelquery,
+  # multimaster or global which only applies for global database clusters
+  # created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions,
+  # the clusters in a global database use provisioned engine mode.. Limitations
+  # and requirements apply to some DB engine modes. See AWS documentation:
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraSettingUp.html
   engine_mode = "provisioned"
 
@@ -1187,7 +1185,7 @@ The name of the database engine to be used for this DB cluster. Valid Values: au
 <HclListItem name="engine_mode" requirement="optional" type="string">
 <HclListItemDescription>
 
-The DB engine mode of the DB cluster: either provisioned, serverless, parallelquery, multimaster or global which only applies for global database clusters created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions, the clusters in a global database use provisioned engine mode.. Limitations and requirements apply to some DB engine modes. See AWS documentation: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraSettingUp.html
+The DB engine mode of the DB cluster: either provisioned, parallelquery, multimaster or global which only applies for global database clusters created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions, the clusters in a global database use provisioned engine mode.. Limitations and requirements apply to some DB engine modes. See AWS documentation: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraSettingUp.html
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;provisioned&quot;"/>
@@ -1618,6 +1616,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2c536b0762ec72f28683f933265cf788"
+  "hash": "6ce19d0b3bbe66369db55db41f64b030"
 }
 ##DOCS-SOURCER-END -->
