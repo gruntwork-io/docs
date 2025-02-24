@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.59.7" lastModifiedVersion="0.58.1"/>
+<VersionBadge repoTitle="CI Modules" version="0.59.9" lastModifiedVersion="0.58.1"/>
 
 # GitHub Release Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/github-release-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/github-release-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.58.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -83,11 +83,11 @@ create-release --repo-owner gruntwork-io --repo-name terragrunt-engine-opentofu 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/github-release-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/github-release-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/github-release-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/github-release-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/github-release-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/github-release-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "466472c972c7e3842bb22ae2f04d7684"
+  "hash": "099c4562bdc13845f092b9d917dbfd13"
 }
 ##DOCS-SOURCER-END -->
