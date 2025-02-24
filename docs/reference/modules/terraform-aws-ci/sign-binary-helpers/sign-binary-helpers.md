@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.59.7" lastModifiedVersion="0.57.0"/>
+<VersionBadge repoTitle="CI Modules" version="0.59.9" lastModifiedVersion="0.57.0"/>
 
 # Binary signing Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/sign-binary-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/sign-binary-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.57.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -149,11 +149,11 @@ References:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/sign-binary-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/sign-binary-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/sign-binary-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/sign-binary-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/sign-binary-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/sign-binary-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c4623bd2503bc0445dc8036769e25040"
+  "hash": "f89daae655ec24329b2325ef0263f2a6"
 }
 ##DOCS-SOURCER-END -->
