@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.8.5" lastModifiedVersion="0.7.3"/>
+<VersionBadge repoTitle="Control Tower" version="0.8.6" lastModifiedVersion="0.7.3"/>
 
 # Control Tower Account Factory
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.5/modules/landingzone/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.6/modules/landingzone/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.7.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -89,7 +89,7 @@ This is usually accompanied by this module returning outputs that look like the 
 
 Unfortunately, this is an unrecoverable error from an AWS Provider perspective, as the provider has no insight into the fact that Service Catalog is in a bad state when it fails in this fashion, and retries will not help.
 
-The easiest way to recover from this error is to make a small update to one of the variables that are passed into this module. For example, if you are integrating with this module via the [../control-tower-multi-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.5/modules/control-tower-multi-account-factory) module, you could change the value of something in the relevant file in the directory referenced by the  `account_requests_folder`, then revert your change.
+The easiest way to recover from this error is to make a small update to one of the variables that are passed into this module. For example, if you are integrating with this module via the [../control-tower-multi-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.6/modules/control-tower-multi-account-factory) module, you could change the value of something in the relevant file in the directory referenced by the  `account_requests_folder`, then revert your change.
 
 e.g.
 
@@ -122,7 +122,7 @@ This workaround should only be done to correct up to five Service Catalog provis
 
 module "control_tower_account_factory" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.8.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.8.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -233,7 +233,7 @@ module "control_tower_account_factory" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.8.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.8.6"
 }
 
 inputs = {
@@ -590,11 +590,11 @@ The URL of the AWS SSO login page for this account
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.5/modules/control-tower-account-factory/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.5/modules/control-tower-account-factory/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.5/modules/control-tower-account-factory/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.6/modules/control-tower-account-factory/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.6/modules/control-tower-account-factory/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.6/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "819eb1c26079590562fed6006387bfc6"
+  "hash": "618835bedb02a6eaee651c86670b8164"
 }
 ##DOCS-SOURCER-END -->
