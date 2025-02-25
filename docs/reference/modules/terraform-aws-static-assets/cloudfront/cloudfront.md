@@ -2395,12 +2395,14 @@ map(object({
     # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/standard-logging.html
     record_fields = optional(list(string))
 
-    # [Applicable Only for S3 Bucket ARN] This parameter causes the S3 objects that contain delivered logs to use
+    # This parameter causes the S3 objects that contain delivered logs to use
     # a prefix structure that allows for integration with Apache Hive.
+    # Applicable only for S3 Bucket ARN.
     enable_hive_compatible_path = optional(bool)
 
-    # [Applicable Only for S3 Bucket ARN] This string allows re-configuring the S3 object prefix to contain either static or variable sections.
+    # This string allows re-configuring the S3 object prefix to contain either static or variable sections.
     # The valid variables to use in the suffix path will vary by each log source.
+    # Applicable only for S3 Bucket ARN.
     suffix_path = optional(string)
 
   }))
@@ -2464,8 +2466,9 @@ map(object({
 
 ```hcl
 
-     [Applicable Only for S3 Bucket ARN] This parameter causes the S3 objects that contain delivered logs to use
+     This parameter causes the S3 objects that contain delivered logs to use
      a prefix structure that allows for integration with Apache Hive.
+     Applicable only for S3 Bucket ARN.
 
 ```
 </details>
@@ -2475,8 +2478,9 @@ map(object({
 
 ```hcl
 
-     [Applicable Only for S3 Bucket ARN] This string allows re-configuring the S3 object prefix to contain either static or variable sections.
+     This string allows re-configuring the S3 object prefix to contain either static or variable sections.
      The valid variables to use in the suffix path will vary by each log source.
+     Applicable only for S3 Bucket ARN.
 
 ```
 </details>
@@ -2883,6 +2887,6 @@ Unique identifier that specifies the AWS WAF web ACL, if any, to associate with 
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.2/modules/cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dea971287ca8dd7920a4babcca69a68b"
+  "hash": "1f7209a9c83cf0f865268f28b9e0dfd8"
 }
 ##DOCS-SOURCER-END -->
