@@ -1,7 +1,7 @@
 # Architecture
 
 Gruntwork Pipelines is designed to provide flexibility, enabling you to utilize the components you need to manage your infrastructure in a way that aligns with your organization's requirements.
- 
+
 
 Understanding the components and their structure will help you use Pipelines and associated Infrastructure as Code (IaC) effectively.
 
@@ -15,8 +15,8 @@ All other infrastructure managed with Gruntwork software ultimately depends on r
 
 ### Workflows
 
-- **Account Factory:** Provides an API for interacting with the Gruntwork Account Factory. It uses a [repository dispatch](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#repository_dispatch) to create AWS account requests.
-  
+- **Account Factory:** (GitHub only) Provides an API for interacting with the Gruntwork Account Factory. It uses a [repository dispatch](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#repository_dispatch) to create AWS account requests.
+
   This workflow uses a [repository dispatch](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#repository_dispatch) to create a standard AWS account creation request in the repository.
 
   The workflow payload is a JSON object, which can be constructed using the sample HTML file included in the repository. This file can be customized for organizational needs, such as adding tagging fields or additional context.
