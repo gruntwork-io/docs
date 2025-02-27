@@ -22,9 +22,15 @@ Before starting, ensure you have the following:
 - Permissions to create a pull request/merge request in the GitHub/GitLab repository where Pipelines is installed.
 - Boilerplate installed on your development machine. If you have [mise](https://mise.jdx.dev/getting-started.html) installed that is as simple as `mise use boilerplate`, alternatively you can download it from the [release page](https://github.com/gruntwork-io/boilerplate/releases/)
 
+:::info
+
+This tutorial should take approximately 30 minutes to complete.
+
+:::
+
 ### Necessary Configuration Values
 
-- <CustomizableValue id="ACCOUNT_NAME"/>: The name of the AWS account to deploy to. This name will be used as the name of the environment in Pipelines configuration as well as the folder name in your repository that contains the IaC for the account. Gruntwork recommends that the name match the account name in AWS, however that is not strictly required.
+- <CustomizableValue id="ACCOUNT_NAME"/>: The name of the AWS account to deploy to. This name will be used as the name of the environment in Pipelines configuration, as well as the folder name in your repository that contains the IaC for the account. Gruntwork recommends that the name match the account name in AWS, though that is not strictly required.
 - <CustomizableValue id="ACCOUNT_ID"/>: The AWS account ID for the GovCloud AWS account to deploy to.
 - <CustomizableValue id="GOVCLOUD_REGION"/>: The GovCloud AWS region to deploy to, typically either `us-gov-west-1` or `us-gov-east-1`.
 
@@ -92,7 +98,8 @@ boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architectu
 </Tabs>
 
 Boilerplate will generate a handful of files on your filesystem including:
-```
+
+```text
 - .gruntwork/$$ACCOUNT_NAME$$.hcl -Pipelines configuration for the account, including the IAM roles to assume to deploy to the account.
 - $$ACCOUNT_NAME$$/_global/(scm-host)-oidc-provider/terragrunt.hcl - Terragrunt code for the OIDC Provider.
 - $$ACCOUNT_NAME$$/_global/pipelines-plan-role/terragrunt.hcl - Terragrunt code for the plan IAM role
@@ -105,7 +112,7 @@ Boilerplate will generate a handful of files on your filesystem including:
 ## Applying the Pipelines IAM Configurations
 
 1. Ensure you have access to the AWS GovCloud account on your local machine
-```
+```bash
 aws sts get-caller-identity
 
 {
@@ -140,7 +147,7 @@ terragrunt import "aws_iam_openid_connect_provider.gitlab" "ARN_OF_EXISTING_OIDC
 
 :::
 
-1. You should now commit all of the rendered files and create a pull request/merge request including the `[skip ci]` tag. Before proceeding to the test steps make sure this PR/MR is approved and merged to main so any future branches have the necessary configuration.
+4. Commit all of the rendered files and create a pull request/merge request including the `[skip ci]` tag. Before proceeding to the test steps make sure this PR/MR is approved and merged to main so any future branches have the necessary configuration.
 
 ## Testing Pipelines with the newly added GovCloud account
 
@@ -151,7 +158,7 @@ We'll validate pipelines by creating a new S3 bucket in the GovCloud account.
 mkdir -p $$ACCOUNT_NAME$$/$$GOVCLOUD_REGION$$/s3-bucket-test/
 ```
 
-1. Add the following content to the `terragrunt.hcl` file:
+2. Add the following content to the `terragrunt.hcl` file:
 ```hcl title="$$ACCOUNT_NAME$$/$$GOVCLOUD_REGION$$/s3-bucket-test/terragrunt.hcl"
 terraform {
   source = "git::https://github.com/gruntwork-io/terraform-aws-service-catalog.git//.//modules/data-stores/s3-bucket?ref=v0.118.19"
