@@ -17,7 +17,7 @@ By the end of this tutorial, you will have:
 Before starting, ensure you have the following:
 
 - Pipelines installed in a GitHub or GitLab repository. Refer to [Setup & Installation](/2.0/docs/pipelines/installation/overview) for more details.
-- Familiarity with Pipelines Configuration as Code (HCL). Refer to the [Configurations as Code](/2.0/docs/pipelines/configurations-as-code) documentation for more details.
+- Familiarity with Pipelines Configuration as Code (HCL). Refer to the [Configurations as Code](/2.0/reference/pipelines/configurations-as-code) documentation for more details.
 - Access to & credentials for a sandbox or development AWS account in the AWS GovCloud partition.
 - Permissions to create a pull request/merge request in the GitHub/GitLab repository where Pipelines is installed.
 - Boilerplate installed on your development machine. If you have [mise](https://mise.jdx.dev/getting-started.html) installed that is as simple as `mise use boilerplate`, alternatively you can download it from the [release page](https://github.com/gruntwork-io/boilerplate/releases/)
