@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.59.7" lastModifiedVersion="0.58.0"/>
+<VersionBadge repoTitle="CI Modules" version="0.59.9" lastModifiedVersion="0.58.0"/>
 
 # Install Jenkins Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/install-jenkins" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/install-jenkins" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.58.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -26,8 +26,8 @@ This module contains two scripts for working with [Jenkins CI server](https://je
 
 ## Example code
 
-*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/examples/jenkins) for working sample code.
-*   See [install.sh](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/install-jenkins/install.sh) and [run-jenkins.sh](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/install-jenkins/run-jenkins) for all options you can pass to these scripts.
+*   Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/examples/jenkins) for working sample code.
+*   See [install.sh](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/install-jenkins/install.sh) and [run-jenkins.sh](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/install-jenkins/run-jenkins) for all options you can pass to these scripts.
 
 ## Install Jenkins
 
@@ -45,13 +45,13 @@ gruntwork-install \
 
 The command above will copy `install.sh` to your server, run it, install Jenkins 2.164.3, and copy the `run-jenkins`
 script into `/usr/local/bin`. We recommend running this command in a [Packer template](https://www.packer.io/) so you
-can create an AMI with Jenkins installed. Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/examples/jenkins) for an example of such a
+can create an AMI with Jenkins installed. Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/examples/jenkins) for an example of such a
 Packer template.
 
 ## Run Jenkins
 
 Once you have an AMI with Jenkins installed, you need to deploy it on an EC2 Instance in AWS. The easiest way to do
-this is with the [jenkins-server module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/jenkins-server). When the EC2 Instance is booting, you should
+this is with the [jenkins-server module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/jenkins-server). When the EC2 Instance is booting, you should
 typically do two things in [User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html):
 
 1.  Mount an EBS volume for the Jenkins home directory. You want to use an EBS volume so that your Jenkins data is
@@ -68,16 +68,16 @@ typically do two things in [User Data](https://docs.aws.amazon.com/AWSEC2/latest
       --jenkins-home "/jenkins"
     ```
 
-Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/examples/jenkins) for an example of such a User Data script.
+Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/examples/jenkins) for an example of such a User Data script.
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/install-jenkins/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/install-jenkins/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.7/modules/install-jenkins/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/install-jenkins/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/install-jenkins/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.9/modules/install-jenkins/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9c77613b2e127f4d5ba8aa2d41bc246d"
+  "hash": "ccacfd035f7aa7afe12f1de8bfcd665d"
 }
 ##DOCS-SOURCER-END -->

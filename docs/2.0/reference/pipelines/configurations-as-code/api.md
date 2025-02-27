@@ -105,6 +105,27 @@ repository {
 </HclListItemExample>
 </HclListItem>
 
+### `env` block
+
+<HclListItem name="env" requirement="optional" type="block">
+<HclListItemDescription>
+
+Env blocks are configuration components used by [repository](#repository-block) blocks to specify environment variables that will be set when executing Terragrunt commands. The block contains a map of environment variable names and their values.
+
+</HclListItemDescription>
+<HclListItemExample>
+
+```hcl
+repository {
+  env {
+    TF_VAR_environment = "an_environment_provided_input"
+    TG_STRICT_VALIDATE = true
+  }
+}
+```
+</HclListItemExample>
+</HclListItem>
+
 ### `filter` block
 
 <HclListItem name="filter" requirement="optional" type="block">
@@ -254,7 +275,22 @@ Whether or not Pipelines will consolidate deleted resources when running Terragr
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="tf_binary" requirement="optional" type="string">
+<HclListItemDescription>
 
+The Infrastructure as Code(Iac) binary that Pipelines will instruct Terragrunt to use. Valid values are:
+- `opentofu` (default): Use OpenTofu for managing infrastructure. Gruntwork recommends customers use OpenTofu.
+- `terraform`: Use Terraform for managing infrastructure. 
+
+  :::note
+
+  Changing this value for existing infrastructure may require additional steps to ensure a successful migration.
+
+  :::
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="opentofu"/>
+</HclListItem>
 
 ### `filter` block attributes
 

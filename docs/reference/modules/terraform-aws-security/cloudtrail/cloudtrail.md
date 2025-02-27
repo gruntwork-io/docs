@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.6" lastModifiedVersion="0.74.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.10" lastModifiedVersion="0.75.7"/>
 
 # AWS CloudTrail
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/cloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.74.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module configures [AWS CloudTrail](https://aws.amazon.com/cloudtrail/), a service for logging every API call made against your AWS account.
 
@@ -35,29 +35,29 @@ This Terraform Module configures [AWS CloudTrail](https://aws.amazon.com/cloudtr
 
 Note
 
-This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/)!
+This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://docs.gruntwork.io/library/overview/)!
 
 ### Core concepts
 
-*   [What is CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail/core-concepts.md#what-is-cloudtrail)
+*   [What is CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/cloudtrail/core-concepts.md#what-is-cloudtrail)
 
-*   [Why use CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail/core-concepts.md#why-use-cloudtrail)
+*   [Why use CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/cloudtrail/core-concepts.md#why-use-cloudtrail)
 
-*   [What is a CloudTrail Trail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail/core-concepts.md#what-is-a-cloudtrail-trail)
+*   [What is a CloudTrail Trail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/cloudtrail/core-concepts.md#what-is-a-cloudtrail-trail)
 
-*   [What’s the difference between CloudTrail and AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail/core-concepts.md#whats-the-difference-between-cloudtrail-and-aws-config)
+*   [What’s the difference between CloudTrail and AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/cloudtrail/core-concepts.md#whats-the-difference-between-cloudtrail-and-aws-config)
 
-*   [CloudTrail Threat Model](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail/core-concepts.md#cloudtrail-threat-model)
+*   [CloudTrail Threat Model](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/cloudtrail/core-concepts.md#cloudtrail-threat-model)
 
-*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail/core-concepts.md#resources-created)
+*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/cloudtrail/core-concepts.md#resources-created)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -65,13 +65,13 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/examples/cloudtrail): The `examples/cloudtrail` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/examples/cloudtrail): The `examples/cloudtrail` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [How to configure a production-grade AWS account structure](https://gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/): This guide will walk you through the process of configuring a production-grade AWS account structure, including how to manage multiple environments, users, permissions, audit logging via CloudTrail, and more.
+*   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone): This guide will walk you through the process of configuring a production-grade AWS account structure, including how to manage multiple environments, users, permissions, audit logging via CloudTrail, and more.
 
 *   [cloudtrail module in the example Reference Architecture](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/main/examples/for-production/infrastructure-live/security/\_global/account-baseline): Production-ready example code from the Reference Architecture.
 
@@ -81,15 +81,15 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Day-to-day operations
 
-*   [Where are CloudTrail logs stored?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail/core-concepts.md#where-are-cloudtrail-logs-stored)
+*   [Where are CloudTrail logs stored?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/cloudtrail/core-concepts.md#where-are-cloudtrail-logs-stored)
 
-*   [What kind of data do CloudTrail log entries contain?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail/core-concepts.md#what-kind-of-data-do-cloudtrail-log-entries-contain)
+*   [What kind of data do CloudTrail log entries contain?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/cloudtrail/core-concepts.md#what-kind-of-data-do-cloudtrail-log-entries-contain)
 
-*   [What’s the best way to view CloudTrail Log Data?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail/core-concepts.md#whats-the-best-way-to-view-cloudtrail-log-data)
+*   [What’s the best way to view CloudTrail Log Data?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/cloudtrail/core-concepts.md#whats-the-best-way-to-view-cloudtrail-log-data)
 
 ### Major changes
 
-*   [Can you get alerted when certain API events occur?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail/core-concepts.md#can-you-get-alerted-when-certain-api-events-occur)
+*   [Can you get alerted when certain API events occur?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/cloudtrail/core-concepts.md#can-you-get-alerted-when-certain-api-events-occur)
 
 ## Sample Usage
 
@@ -104,7 +104,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "cloudtrail" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail?ref=v0.75.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail?ref=v0.75.10"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -357,7 +357,7 @@ module "cloudtrail" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail?ref=v0.75.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail?ref=v0.75.10"
 }
 
 inputs = {
@@ -1396,11 +1396,11 @@ The name of the cloudtrail trail.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.6/modules/cloudtrail/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/cloudtrail/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/cloudtrail/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/cloudtrail/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d878413c6d789da445c001a5128bd2ff"
+  "hash": "982df7679cbda62cc0fa05457b552c79"
 }
 ##DOCS-SOURCER-END -->

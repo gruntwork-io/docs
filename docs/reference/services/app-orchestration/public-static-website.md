@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.13" lastModifiedVersion="0.115.2"/>
+<VersionBadge version="0.118.19" lastModifiedVersion="0.115.2"/>
 
 # Public Static Website
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules/services/public-static-website" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/modules/services/public-static-website" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fpublic-static-website" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -60,7 +60,7 @@ If you’ve never used the Service Catalog before, make sure to read
 ### Core concepts
 
 This module deploys a public website, so the S3 bucket and objects with it are readable by the public. It also is
-hosted in a Public Hosted Zone in Route 53. You may provide a `hosted_zone_id` in [variables](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules/services/public-static-website/variables.tf),
+hosted in a Public Hosted Zone in Route 53. You may provide a `hosted_zone_id` in [variables](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/modules/services/public-static-website/variables.tf),
 or you may provide the `base_domain_name` associated with your Public Hosted Zone in Route 53, optionally along with
 any tags that must match that zone in `base_domain_name_tags`. If you do the latter, this module will find the hosted
 zone id for you.
@@ -71,17 +71,17 @@ website, and how to configure SSL, check out the documentation for the
 and [s3-cloudfront](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/master/modules/s3-cloudfront)
 modules.
 
-*   [Quick Start](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules/services/public-static-website/core-concepts.md#quick-start)
+*   [Quick Start](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/modules/services/public-static-website/core-concepts.md#quick-start)
 *   [How to test the website](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-to-test-the-website)
-*   [How to configure HTTPS (SSL) or a CDN?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules/services/public-static-website/core-concepts.md#how-to-configure-https-ssl-or-a-cdn)
+*   [How to configure HTTPS (SSL) or a CDN?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/modules/services/public-static-website/core-concepts.md#how-to-configure-https-ssl-or-a-cdn)
 *   [How to handle www + root domains](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-do-i-handle-www—root-domains)
 *   [How do I configure Cross Origin Resource Sharing (CORS)?](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-do-i-configure-cross-origin-resource-sharing-cors)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -89,7 +89,7 @@ modules.
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -97,7 +97,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/examples/for-learning-and-testing/services/public-static-website/example-website):
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/examples/for-learning-and-testing/services/public-static-website/example-website):
     The `examples/for-production` folder contains sample code optimized for direct usage in production. This is code from
     the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -116,7 +116,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "public_static_website" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/public-static-website?ref=v0.118.13"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/public-static-website?ref=v0.118.19"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -313,6 +313,10 @@ module "public_static_website" {
   # for more details.
   web_acl_id = null
 
+  # The list of website aliases in addition to var.website_domain_name (e.g.
+  # static.foo.com).
+  website_domain_name_aliases = []
+
 }
 
 
@@ -328,7 +332,7 @@ module "public_static_website" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/public-static-website?ref=v0.118.13"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/public-static-website?ref=v0.118.19"
 }
 
 inputs = {
@@ -527,6 +531,10 @@ inputs = {
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution#web_acl_id
   # for more details.
   web_acl_id = null
+
+  # The list of website aliases in addition to var.website_domain_name (e.g.
+  # static.foo.com).
+  website_domain_name_aliases = []
 
 }
 
@@ -1024,6 +1032,15 @@ If you're using AWS WAF to filter CloudFront requests, the Id of the AWS WAF web
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="website_domain_name_aliases" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The list of website aliases in addition to <a href="#website_domain_name"><code>website_domain_name</code></a> (e.g. static.foo.com).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -1073,11 +1090,11 @@ The ARN of the created S3 bucket associated with the website.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules/services/public-static-website/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules/services/public-static-website/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.13/modules/services/public-static-website/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/modules/services/public-static-website/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/modules/services/public-static-website/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.19/modules/services/public-static-website/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b86352b3432992265341556a9f5bc7cf"
+  "hash": "7fcfa27f82d3b894531eaeaf06aebc7c"
 }
 ##DOCS-SOURCER-END -->

@@ -69,16 +69,16 @@ The configuration hierarchy is as follows:
 ### Repository configurations
 
 Repository configurations are overridden by more specific configurations, such as environment or unit configurations, in cases of conflict.
-These configurations are the most general and apply to the entire repository, regardless of the working directory context. They are defined in [global configurations](#global-configurations) using the [repository block](#repository-blocks). 
+These configurations are the most general and apply to the entire repository, regardless of the working directory context. They are defined in [global configurations](#global-configurations) using the [repository block](#repository-blocks).
 
 ### Environment configurations
 
-Environment configurations apply to specific environments within a repository. These are relevant only to units that match a specified [filter](#filter-blocks). They are defined in [global configurations](#global-configurations) using [environment blocks](#environment-blocks). 
+Environment configurations apply to specific environments within a repository. These are relevant only to units that match a specified [filter](#filter-blocks). They are defined in [global configurations](#global-configurations) using [environment blocks](#environment-blocks).
 These configurations are more specific than repository configurations and override them in contexts matching the defined filter.
 
 ### Unit configurations
 
-Unit configurations apply to individual units of IaC within a repository. These are defined in [local configurations](#local-configurations) using [unit blocks](#unit-blocks). 
+Unit configurations apply to individual units of IaC within a repository. These are defined in [local configurations](#local-configurations) using [unit blocks](#unit-blocks).
 
 These configurations are the most specific and take precedence over repository and environment configurations in cases of conflict.
 
@@ -158,7 +158,7 @@ AWS blocks enable the codification and reuse of standard AWS configurations, whi
 
 Only one `aws` block can be defined within [global configurations](#global-configurations).
 
-Within the `aws` block, `accounts` blocks specify configurations for collections of AWS accounts. 
+Within the `aws` block, `accounts` blocks specify configurations for collections of AWS accounts.
 
 The label assigned to an `accounts` block serves as its unique identifier. This label is user-defined and must be distinct within the scope of the enclosing `aws` block.
 
@@ -216,7 +216,7 @@ In this example, the `deploy_branch_name` attribute is configured as `main`, mea
 
   :::info
 
-Job consolidation is a process by which Pipelines merges multiple related jobs (e.g., `ModuleAdded`, `ModuleChanged`) into a single job (e.g., `ModulesAddedOrChanged`) when executing Terragrunt commands. 
+Job consolidation is a process by which Pipelines merges multiple related jobs (e.g., `ModuleAdded`, `ModuleChanged`) into a single job (e.g., `ModulesAddedOrChanged`) when executing Terragrunt commands.
 
 This optimization significantly reduces CI/CD costs by consolidating Terragrunt execution into fewer jobs, spreading the operational expenses more efficiently. Additionally, it enhances accuracy by allowing Terragrunt to leverage a Directed Acyclic Graph (DAG) for proper sequencing of updates.
 
@@ -226,7 +226,7 @@ For example:
   B. `ModuleChanged` (which depends on `ModuleAdded`)
 
 - Pipelines consolidates them into a single job:
-  C. `ModulesAddedOrChanged`  
+  C. `ModulesAddedOrChanged`
 
 Since `ModulesAddedOrChanged` uses the `run-all` Terragrunt command, it respects the DAG to ensure that the `ModuleAdded` operation is completed before the `ModuleChanged` operation.
 
@@ -242,10 +242,10 @@ In rare cases, you might disable job consolidation to allocate maximum resources
 
 Configurations must be specified within a single file named gruntwork.hcl, located in the same directory as the terragrunt.hcl file. These configurations are referred to as local configurations and are generally used to define settings specific to a single unit of Infrastructure as Code (IaC) within a repository. .
 
-These configurations can serve two purposes: 
+These configurations can serve two purposes:
 1. Define all the settings necessary for Pipelines to operate within the scope of a single unit.
 2. Override global configurations defined in the `.gruntwork` directory, tailoring them to the unit's specific needs.
-   
+
 ### Unit blocks
 
 [Full Reference for Unit Blocks](/2.0/reference/pipelines/configurations-as-code/api#unit-block)
@@ -320,3 +320,20 @@ authentication {
 ```
 
 In this example, Pipelines authenticates with AWS using OIDC and assumes the `role-to-assume-for-plans` role within the AWS account identified by `an-aws-account-id` when executing Terragrunt plan commands.
+
+### Environment variables block
+
+[Full Reference for Environment Variables Block](/2.0/reference/pipelines/configurations-as-code/api#env-block)
+
+The environment variables(env) block is a configuration component used by [repository](#repository-blocks) blocks to specify environment variables that will be set when executing Terragrunt commands.
+
+e.g.
+
+```hcl
+repository {
+  env {
+    TF_VAR_environment = "an_environment_provided_input"
+    TG_STRICT_VALIDATE = true
+  }
+}
+```
