@@ -32,6 +32,11 @@ Before starting, ensure you have the following:
 
 Adding a new GovCloud account to Gruntwork Pipelines, similar to a regular AWS account, requires bootstrapping Pipelines's ability to authenticate with AWS and assume appropriate IAM roles. A key distinction for GovCloud accounts is that the AWS partition is `aws-us-gov` instead of `aws`. This guide will walk you through executing a template to generate Terragrunt code for an OIDC Provider and IAM roles, configured to use the `aws-us-gov` partition, and then plan/applying that code to authorize pipelines.  We'll then create a new S3 bucket in the GovCloud account and verify the bucket was created successfully by Gruntwork Pipelines.
 
+Fundamentally, there are three places where the GovCloud partition must be set:
+1. The `aws-us-gov` partition must be present in the ARN for the plan/apply roles configured in [aws_oidc](/2.0/reference/pipelines/configurations-as-code/api#aws_oidc-block-attributes) block for the account, typically in the `.gruntwork/`<CustomizableValue id="ACCOUNT_NAME"/>.hcl file.
+2. A valid GovCloud region must be present in the <CustomizableValue id="ACCOUNT_NAME"/>`/_global/region.hcl` file
+3. The `aws-us-gov` partition in the plan/apply IAM policies in the <CustomizableValue id="ACCOUNT_NAME"/>`/_global/pipelines-plan-role/terragrunt.hcl` and <CustomizableValue id="ACCOUNT_NAME"/>`/_global/pipelines-apply-role/terragrunt.hcl` files
+
 ## Generating Pipelines IAM Configurations
 
 This section covers the Pipelines configuration required to deploy an AWS S3 bucket to AWS GovCloud.
