@@ -102,15 +102,15 @@ This step-by-step guide outlines best practices for implementing custom actions:
     ```
 2. Call your custom action. Ensure you carefully manage the inputs passed to your custom action. Most custom actions require access to tokens (e.g., `PIPELINES_READ_TOKEN`) and the `gruntwork_context` object. This context object contains all relevant [outputs](https://github.com/gruntwork-io/pipelines-actions/blob/main/.github/actions/pipelines-bootstrap/action.yml#L43) from the `pipelines-bootstrap` action, providing useful metadata about the current workflow execution.
 
-```yml
-- name: "[Baseline]: Pre Provision New Account Custom Action"
-    uses: ./pipelines-actions-customizations/.github/actions/pre-provision-new-account
-    if: ${{ steps.gruntwork_context.outputs.action == 'PROVISION_ACCOUNT' }}
-    with:
-        PIPELINES_READ_TOKEN: ${{ secrets.PIPELINES_READ_TOKEN }}
-        INFRA_ROOT_WRITE_TOKEN: ${{ secrets.INFRA_ROOT_WRITE_TOKEN }}
-        gruntwork_context: ${{ toJson(steps.gruntwork_context.outputs) }}
-```
+    ```yml
+    - name: "[Baseline]: Pre Provision New Account Custom Action"
+        uses: ./pipelines-actions-customizations/.github/actions/pre-provision-new-account
+        if: ${{ steps.gruntwork_context.outputs.action == 'PROVISION_ACCOUNT' }}
+        with:
+            PIPELINES_READ_TOKEN: ${{ secrets.PIPELINES_READ_TOKEN }}
+            INFRA_ROOT_WRITE_TOKEN: ${{ secrets.INFRA_ROOT_WRITE_TOKEN }}
+            gruntwork_context: ${{ toJson(steps.gruntwork_context.outputs) }}
+    ```
 
 </TabItem>
 <TabItem value="gitlab" label="GitLab">

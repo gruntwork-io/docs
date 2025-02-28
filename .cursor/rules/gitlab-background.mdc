@@ -18,5 +18,5 @@ GitLab requires one machine user with just one token and does not have a gitlab 
 > Important: Please contact Gruntwork support to initiate the GitLab group authorization process.
 
 <IMPORTANT>
-Whenever presenting information that diverges between github and gitlab, use the <Tabs> and <TabItem> components to distinguish the two sets of information
+Whenever presenting information that diverges between github and gitlab, use the <Tabs> and <TabItem> components to distinguish the two sets of information UNLESS the distinction is just changing one word. For example, GitHub has pull requests and GitLab has merge requests, so we can just say ".... pull/merge requests..." and not need full <Tabs>.
 </IMPORTANT>
