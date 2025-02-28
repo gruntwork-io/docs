@@ -35,4 +35,9 @@ For GitLab CI/CD:
 
 1. [Machine User Authentication](/2.0/docs/pipelines/installation/viamachineusers) is the only supported method
 2. Contact Gruntwork support to authorize your GitLab groups
-3. Note that Account Factory features are not currently available on GitLab
+
+:::note
+
+ Account Factory features are not currently available on GitLab
+ 
+ :::
