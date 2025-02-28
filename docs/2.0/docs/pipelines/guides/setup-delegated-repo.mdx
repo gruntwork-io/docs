@@ -3,7 +3,7 @@ import CustomizableValue from '/src/components/CustomizableValue'
 # Setup a Delegated Repository
 
 :::note
-[Automatic vending of delegated repositories by Account Factory](/2.0/docs/accountfactory/guides/delegated-repositories.md) is an Enterprise-only feature.
+[Automatic vending of delegated repositories by Account Factory](/2.0/docs/accountfactory/guides/delegated-repositories.md) is an Enterprise-only feature.  GitLab support is coming soon.
 
 If you are an Enterprise customer, Account Factory will automatically provision delegated repositories for you, and you may not need to follow the steps in this guide. This guide is intended for customers who want to manually set up delegated repositories or understand how the process operates within Pipelines.
 :::
@@ -116,17 +116,17 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------------------
   # Least privilege is a critical best practice but can be challenging to implement effectively.
   #
-  # The `envcommon` include above provides the foundational permissions necessary to interact with Terraform state. 
+  # The `envcommon` include above provides the foundational permissions necessary to interact with Terraform state.
   # Additional permissions, however, must be defined by the user based on the specific needs of a given workflow.
   #
-  # The permissions should be continuously refined by iteratively granting additional access as workflows in CI evolve 
+  # The permissions should be continuously refined by iteratively granting additional access as workflows in CI evolve
   # and then removing excess permissions through regular reviews.
   #
-  # A typical approach to refining permissions involves running a pipeline with an initial guess of required permissions 
-  # (or none at all), reviewing any access denied errors, and then adding only the permissions necessary to enable 
+  # A typical approach to refining permissions involves running a pipeline with an initial guess of required permissions
+  # (or none at all), reviewing any access denied errors, and then adding only the permissions necessary to enable
   # successful execution of the pipeline.
   #
-  # Over time, as workload patterns stabilize, this repository will serve as a reference for permissions needed to 
+  # Over time, as workload patterns stabilize, this repository will serve as a reference for permissions needed to
   # support similar workflows, streamlining the process for future updates.
   # ----------------------------------------------------------------------------------------------------------------
 

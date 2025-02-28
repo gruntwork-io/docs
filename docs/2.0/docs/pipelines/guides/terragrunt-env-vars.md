@@ -13,7 +13,7 @@ Refer to the complete list of available options in the [Terragrunt CLI documenta
 ## Adding environment variables
 
 :::note
-GitHub workflows do not automatically pass environment variables from your repository's workflows into those included from Gruntwork repositories. To propagate environment variables to Terragrunt executions, you must add them to the Pipelines configuration file.
+GitHub/GitLab workflows do not automatically pass environment variables from your repository's workflows into those included from Gruntwork repositories. To propagate environment variables to Terragrunt executions, you must add them to the Pipelines configuration file.
 :::
 
 You can configure Pipelines to pass additional environment variables to Terragrunt using the [env configuration option](/2.0/reference/pipelines/configurations#env) in `.gruntwork/config.yml`.
