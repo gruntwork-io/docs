@@ -1,6 +1,6 @@
 # CI Workflows
 
-Pipelines integrates with your repositories through GitHub/GitLab Workflows, leveraging [GitHub Reusable Workflows](https://docs.github.com/en/actions/sharing-automations/reusing-workflows) and [GitLab Shared Components](https://docs.gitlab.com/ee/ci/components/) from Gruntwork's repositories. The workflows in your repositories rely on Gruntwork workflows through the uses clause within a job. This is structured as follows:
+Pipelines integrates with your repositories through GitHub/GitLab Workflows, leveraging [GitHub Reusable Workflows](https://docs.github.com/en/actions/sharing-automations/reusing-workflows) and [GitLab Shared Components](https://docs.gitlab.com/ee/ci/components/) from Gruntwork's repositories. The workflows in your repositories rely on Gruntwork workflows through the uses/component clause within the workflow declaration. This is structured as follows:
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
