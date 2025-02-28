@@ -14,7 +14,7 @@ When a pull request is merged, Pipelines will automatically execute either `terr
 
 Sometimes you find it necessary to make a change without going through the full pipelines process. This can be accomplished using built-in CI skip mechanisms:
 
-- **GitHub**: Add `[skip ci]` to your commit message as described in the [GitHub documentation](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs)
+- **GitHub**: Add `[skip ci]` to your commit or pull request message as described in the [GitHub documentation](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs)
 - **GitLab**: Add `[skip ci]`, `[ci skip]`, `skip ci`, or `ci skip` to your commit message as described in the [GitLab documentation](https://docs.gitlab.com/ee/ci/pipelines/index.html#skip-a-pipeline)
 
 ## Other actions
