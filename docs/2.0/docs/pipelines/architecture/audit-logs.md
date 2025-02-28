@@ -31,7 +31,7 @@ Each CloudTrail event linked to API calls from Pipelines [Actions](/2.0/docs/pip
             "sessionIssuer": {
                 "type": "Role",
                 "principalId": "xxxxxxxxxxxxxxxxxxxxx",
-                "arn": "arn:aws:iam::123456789012:role/<platform>",
+                "arn": "arn:aws:iam::123456789012:role/<role-name>",
                 "accountId": "123456789012",
                 "userName": "<platform>"
             },
