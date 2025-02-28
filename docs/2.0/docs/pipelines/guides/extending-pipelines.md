@@ -1,30 +1,64 @@
 # Extending Your Pipeline
 
-Gruntwork Pipelines is designed to be extensible, enabling users to tailor GitHub Actions workflows and underlying custom actions to align with their organization’s unique requirements. This guide explains how to extend your pipeline.
+Gruntwork Pipelines is designed to be extensible, enabling users to tailor CI/CD workflows and underlying custom actions to align with their organization's unique requirements. This guide explains how to extend your pipeline.
 
 ## Pipelines extension architecture
 
-Extending Gruntwork Pipelines requires managing code across three distinct repositories. This architecture segregates customer-specific modifications from Gruntwork-maintained code, minimizing conflicts and simplifying updates. The repositories are as follows:
+Extending Gruntwork Pipelines requires managing code across three distinct repositories/projects. This architecture segregates customer-specific modifications from Gruntwork-maintained code, minimizing conflicts and simplifying updates.
+
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
+<Tabs>
+<TabItem value="github" label="GitHub" default>
+
+The repositories are:
 
 - **`pipelines-workflows`**: Handles the central orchestration of control flow within pipelines. It contains minimal business logic and primarily calls other repositories to perform tasks.
 - **`pipelines-actions`**: Hosts most of the business logic for pipelines.
 - **`pipelines-actions-customization`**: Serves as the primary repository for customer-specific custom logic.
 
-This structure ensures that customers rarely need to modify Gruntwork-managed repositories, such as `pipelines-actions`. Instead, customizations typically involve modifying code references in `pipelines-workflows` to point to customized repositories. This approach minimizes the likelihood of merge conflicts or maintenance issues.
+</TabItem>
+<TabItem value="gitlab" label="GitLab">
 
-## Extend the GitHub Actions workflow
- 
+The groups/projects are:
+
+- **`pipelines-workflows`**: Handles the central orchestration of control flow within pipelines. It contains minimal business logic and primarily calls other projects to perform tasks.
+- **`pipelines-actions`**: Hosts most of the business logic for pipelines.
+- **`pipelines-init`**: A public bootstrap repository that contains code to download pipelines-actions and run preflight checks.
+
+</TabItem>
+</Tabs>
+
+This structure ensures that customers rarely need to modify Gruntwork-managed code. Instead, customizations typically involve modifying code references to point to customized repositories/projects. This approach minimizes the likelihood of merge conflicts or maintenance issues.
+
+## Extend the CI/CD workflow
+
 <img alt="Diagram of Gruntwork Pipelines Repositories" className="img_node_modules-@docusaurus-theme-classic-lib-theme-MDXComponents-Img-styles-module medium-zoom-image" src="/img/pipelines/pipelines_customization_code_locations.svg" />
 
-The Pipelines workflow is implemented as a [Reusable Workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows). This allows you to reference a specific pinned version in your `.github/workflows/pipelines.yml` file without hosting the workflow code yourself.
+<Tabs>
+<TabItem value="github" label="GitHub" default>
 
-To extend this workflow for custom organizational logic, you can either [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) or [mirror](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository) the repository. Common reasons for extending the workflow include:
+Gruntwork Pipelines for GitHub is implemented as a [Reusable Workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows). This allows you to reference a specific pinned version in your `.github/workflows/pipelines.yml` file without hosting the workflow code yourself.
 
-- Adding organization-specific steps to the workflow.
-- Utilizing customized versions of existing actions in the workflow.
+To extend this workflow for custom organizational logic, you can either [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) or [mirror](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository) the repository.
+
+</TabItem>
+<TabItem value="gitlab" label="GitLab">
+
+Gruntwork Pipelines for GitLab is implemented as a [GitLab CI/CD pipeline](https://docs.gitlab.com/ee/ci/pipelines/) using [CI/CD Components](https://docs.gitlab.com/ci/components/) that can be included in your project's `.gitlab-ci.yml` file.
+
+To extend this workflow for custom organizational logic, you can either [fork](https://docs.gitlab.com/ee/user/project/repository/forking_workflow.html) or [duplicate](https://docs.gitlab.com/ee/user/project/settings/import_export.html) the project.
+
+</TabItem>
+</Tabs>
+
+Common reasons for extending the workflow include:
+- Adding organization-specific steps to the workflow
+- Utilizing customized versions of existing actions in the workflow
 
 :::caution
-If you fork Gruntwork's `pipelines-workflows` repository, Gruntwork may have visibility into the forked repository. For privacy concerns, consider mirroring the repository instead. For assistance, contact [support@gruntwork.io](mailto:support@gruntwork.io).
+If you fork Gruntwork's workflow repository, Gruntwork may have visibility into the forked repository. For privacy concerns, consider mirroring/duplicating the repository instead. For assistance, contact [support@gruntwork.io](mailto:support@gruntwork.io).
 
 Avoid including sensitive information in forked repositories, especially if they are public.
 :::
@@ -38,6 +72,9 @@ The recommended approach for customizing `pipelines-workflows` is to inject [cus
 ### Adding custom actions
 
 #### Procedure
+
+<Tabs>
+<TabItem value="github" label="GitHub" default>
 
 This step-by-step guide outlines best practices for implementing custom actions:
 
@@ -65,17 +102,30 @@ This step-by-step guide outlines best practices for implementing custom actions:
     ```
 2. Call your custom action. Ensure you carefully manage the inputs passed to your custom action. Most custom actions require access to tokens (e.g., `PIPELINES_READ_TOKEN`) and the `gruntwork_context` object. This context object contains all relevant [outputs](https://github.com/gruntwork-io/pipelines-actions/blob/main/.github/actions/pipelines-bootstrap/action.yml#L43) from the `pipelines-bootstrap` action, providing useful metadata about the current workflow execution.
 
-    ```yml
-    - name: "[Baseline]: Pre Provision New Account Custom Action"
-        uses: ./pipelines-actions-customizations/.github/actions/pre-provision-new-account
-        if: ${{ steps.gruntwork_context.outputs.action == 'PROVISION_ACCOUNT' }}
-        with:
-            PIPELINES_READ_TOKEN: ${{ secrets.PIPELINES_READ_TOKEN }}
-            INFRA_ROOT_WRITE_TOKEN: ${{ secrets.INFRA_ROOT_WRITE_TOKEN }}
-            gruntwork_context: ${{ toJson(steps.gruntwork_context.outputs) }}
-    ```
+```yml
+- name: "[Baseline]: Pre Provision New Account Custom Action"
+    uses: ./pipelines-actions-customizations/.github/actions/pre-provision-new-account
+    if: ${{ steps.gruntwork_context.outputs.action == 'PROVISION_ACCOUNT' }}
+    with:
+        PIPELINES_READ_TOKEN: ${{ secrets.PIPELINES_READ_TOKEN }}
+        INFRA_ROOT_WRITE_TOKEN: ${{ secrets.INFRA_ROOT_WRITE_TOKEN }}
+        gruntwork_context: ${{ toJson(steps.gruntwork_context.outputs) }}
+```
+
+</TabItem>
+<TabItem value="gitlab" label="GitLab">
+
+<!-- TODO: Add support for GitLab custom actions -->
+Contact Gruntwork support for assistance setting up custom actions for Gruntwork Pipelines on GitLab.
+
+</TabItem>
+</Tabs>
 
 #### Background / Explanation
+
+<Tabs>
+<TabItem value="github" label="GitHub" default>
+
 The `pipelines-root.yml` file includes several sample custom actions by default. Below is an example of the pre-provision new account custom hook:
 
 ```yml
@@ -96,7 +146,7 @@ The `pipelines-root.yml` file includes several sample custom actions by default.
         gruntwork_context: ${{ toJson(steps.gruntwork_context.outputs) }}
 ```
 
-There are two key components to the hook: 
+There are two key components to the hook:
 
 1. **Checking out actions**: Since Pipelines is invoked as a [reusable workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows#calling-a-reusable-workflow), it does not have inherent access to any other code, even within its own repository. To use external code, it must be explicitly included either by checking out the necessary repository or referencing a repository accessible to the workflow.
 
@@ -130,14 +180,18 @@ For example:
         gruntwork_context: ${{ toJson(steps.gruntwork_context.outputs) }}
 ```
 
+</TabItem>
+<TabItem value="gitlab" label="GitLab">
+
+<!-- TODO: Add support for GitLab custom actions -->
+
+</TabItem>
+</Tabs>
+
 ### Support for extending workflows
 
 At Gruntwork, we are committed to addressing real-world business needs with our documentation. If you require assistance in extending the Pipelines Workflow and are not comfortable following the steps outlined above, please reach out to us at [support@gruntwork.io](mailto:support@gruntwork.io).
 
 ## Extending GitHub Actions
 
-Beyond extending the top-level workflow, you can also modify the underlying custom GitHub Actions that the workflow employs. This approach allows for precise customization of the behavior of individual Actions to meet your organization's specific requirements.
-
-:::note
-To customize the behavior of an Action, you must fork the repository that contains the Action. This repository may house another GitHub Action or a Workflow.
-:::
+Beyond extending the top-level workflow, you can also modify the underlying custom Actions that the workflow employs. This approach allows for precise customization of the behavior of individual Actions to meet your organization's specific requirements.
