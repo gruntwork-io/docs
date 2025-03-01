@@ -56,6 +56,19 @@ Here are the repos that were updated:
 ## patcher-cli
 
 
+### [v0.12.1](https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.12.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 1/31/2025 | <a href="https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.12.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  Release duplicated from https://github.com/gruntwork-io/patcher/releases/tag/v0.12.1
+
+</div>
+
+
 ### [v0.12.0](https://github.com/gruntwork-io/patcher-cli/releases/tag/v0.12.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -778,7 +791,7 @@ Added option to use service-linked role. (`account-baseline-app` module)
 ## terraform-aws-static-assets
 
 
-### [v0.20.0](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.20.0)
+### [v.0.20.0](https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.20.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
   <small>Published: 1/17/2025 | Modules affected: cloudfront | <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.20.0">Release notes</a></small>
@@ -854,6 +867,6 @@ Added option to use service-linked role. (`account-baseline-app` module)
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "afd14d104565e1f9d470ab015187585c"
+  "hash": "39efff7ae4ca9bbe09d878bcf901c244"
 }
 ##DOCS-SOURCER-END -->
