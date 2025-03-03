@@ -3,7 +3,7 @@
 import PersistentCheckbox from '/src/components/PersistentCheckbox';
 
 :::note
-Pipelines Drift Detection is exclusively available to DevOps Foundations Enterprise customers.
+Pipelines Drift Detection is exclusively available to DevOps Foundations Enterprise customers on GitHub.  GitLab support is coming soon.
 :::
 
 For new pipelines repositories using the latest version of Pipelines, Drift Detection is installed automatically and requires no additional action.

@@ -12,7 +12,7 @@ The executor receives a pipeline action and an infrastructure change as input an
 
 ## Execution flow
 
-Pipelines begins with an event in GitHub, such as the creation, update, or reopening of a pull request, or a push to `main` (e.g., merging a pull request). The orchestrator determines the set of infrastructure changes (`infra-change set`) and selects the appropriate action for each change. For every change in the set, the executor performs the necessary action and logs the results in GitHub, attaching them to the pull request that triggered the workflow.
+Pipelines begins with an event in GitHub/GitLab, such as the creation, update, or reopening of a merge request/pull request, or a push to `main` (e.g., merging a pull request). The orchestrator determines the set of infrastructure changes (`infra-change set`) and selects the appropriate action for each change. For every change in the set, the executor performs the necessary action and logs the results in GitHub/GitLab, attaching them to the merge request/pull request that triggered the workflow.
 
 ## Trust boundaries
 

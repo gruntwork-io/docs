@@ -5,10 +5,12 @@ toc_max_heading_level: 4
 ---
 # Setting up Pipelines via GitHub Machine Users
 import PersistentCheckbox from '/src/components/PersistentCheckbox';
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
 
-Of the [two methods](/2.0/docs/pipelines/installation/authoverview.md) for installing Gruntwork Pipelines, we strongly recommend using the [GitHub App](/2.0/docs/pipelines/installation/viagithubapp.md). However, if the GitHub App cannot be used or if machine users are required as a [fallback](http://localhost:3000/2.0/docs/pipelines/installation/viagithubapp#fallback), this guide outlines how to set up authentication for Pipelines using access tokens and machine users.
+For GitHub users, of the [two methods](/2.0/docs/pipelines/installation/authoverview.md) for installing Gruntwork Pipelines, we strongly recommend using the [GitHub App](/2.0/docs/pipelines/installation/viagithubapp.md). However, if the GitHub App cannot be used or if machine users are required as a [fallback](http://localhost:3000/2.0/docs/pipelines/installation/viagithubapp#fallback), this guide outlines how to set up authentication for Pipelines using access tokens and machine users.
 
-When using GitHub tokens, Gruntwork recommends setting up CI users specifically for Gruntwork Pipelines, separate from human users in your organization. This separation ensures workflows are not disrupted if an employee leaves the company and allows for more precise permission management. Additionally, using CI users allow you to apply granular permissions that may normally be too restrictive for a normal employee to do their daily work.
+For GitHub or GitLab users, when using tokens, Gruntwork recommends setting up CI users specifically for Gruntwork Pipelines, separate from human users in your organization. This separation ensures workflows are not disrupted if an employee leaves the company and allows for more precise permission management. Additionally, using CI users allow you to apply granular permissions that may normally be too restrictive for a normal employee to do their daily work.
 
 :::info
 
@@ -19,10 +21,10 @@ This guide will take approximately 30 minutes to complete.
 ## Background
 ### Guidance on storing secrets
 
-During this process, you will generate and securely store three GitHub tokens for two GitHub users. Use a temporary but secure location for these sensitive values between generating them and storing them in GitHub Actions. Follow your organization's security best practices and avoid insecure methods (e.g., Slack or sticky notes) during this exercise. 
+During this process, you will generate and securely store several access tokens. Use a temporary but secure location for these sensitive values between generating them and storing them in GitHub or GitLab. Follow your organization's security best practices and avoid insecure methods (e.g., Slack or sticky notes) during this exercise.
 
 :::note
-Organizations are required to rotate GitHub tokens and update all GitHub secrets referencing them.
+Organizations are required to rotate tokens and update all secrets referencing them.
 :::
 
 :::tip
@@ -33,7 +35,9 @@ Gruntwork recommends using a password manager such as [1Password](https://1passw
 If screen sharing while generating tokens, **pause or hide your screen** before selecting the `Generate token` button to prevent exposure.
 :::
 
-### GitHub token types
+### Token types
+<Tabs>
+<TabItem value="github" label="GitHub" default>
 
 GitHub supports two types of tokens:
 
@@ -44,17 +48,11 @@ GitHub supports two types of tokens:
 
 - Classic tokens provide coarse-grained permissions and generally match the access level of the user who created them.
 
-- The restrictions that can be applied to them are few, but they are still useful for some limited use cases.
-
-- For Pipelines, the `ci-read-only-user` requires a Classic token because it must access software across **multiple GitHub organizations**, a capability not available with fine-grained tokens.
-
-:::tip
-The `PIPELINES_READ_TOKEN` token must be created as a **Classic token**.
-:::
+- While they offer limited configuration options, classic tokens can still be useful for basic access control needs.
 
 #### Fine-grained tokens
 
-Fine-grained tokens offer more granular permissions and are recommended where applicable. 
+Fine-grained tokens offer more granular permissions and are recommended where applicable.
 
 However, fine-grained tokens have the following limitations:
 
@@ -62,39 +60,55 @@ However, fine-grained tokens have the following limitations:
 
 2. They have a maximum expiration of one year (Classic tokens can be set to never expire).
 
-In Pipelines, the `ci-user` will need two fine-grained tokens because they allow for very limited access to specific repositories, with minimal permissions to them.
-
-:::tip
-The `INFRA_ROOT_WRITE_TOKEN` and `ORG_REPO_ADMIN_TOKEN` must be created as **fine-grained tokens**.
-:::
-
 :::tip
 Set the **Resource owner** to the GitHub organization associated with the repositories that the tokens will access (e.g., `infrastructure-live-root`).
 :::
 
 ![Resource owner](/img/pipelines/security/resource_owner.png)
 
-:::tip 
+:::tip
 Tokens marked as **pending** after generation may require approval from an organization owner before they can be used.
- 
+
 If you have the necessary permissions, you can approve your token by going to your organization's settings and selecting **Pending requests**.
 
 More information is available [here](https://docs.github.com/en/organizations/managing-programmatic-access-to-your-organization/managing-requests-for-personal-access-tokens-in-your-organization).
-
 :::
 
 ![Pending requests](/img/pipelines/security/pending_requests.png)
 
+</TabItem>
+<TabItem value="gitlab" label="GitLab">
 
-import Tabs from "@theme/Tabs"
-import TabItem from "@theme/TabItem"
+GitLab uses access tokens for authentication. There are several types of access tokens in GitLab:
 
+1. Personal Access Tokens
+2. Project Access Tokens
+3. Group Access Tokens
+
+For Pipelines, we recommend using Personal Access Tokens with carefully scoped permissions.
+
+#### Personal Access Tokens
+
+- Personal Access Tokens provide user-level access and can be scoped to specific APIs and resources.
+
+- They can be created with varying expiration periods or set to never expire.
+
+
+</TabItem>
+</Tabs>
+
+:::caution
+When creating tokens, carefully consider the expiration date and scope of access. Follow your organization's security policies regarding token rotation.
+:::
 
 ## Creating machine users
 
+<Tabs>
+<TabItem value="github" label="GitHub" default>
+
 The recommended setup for Pipelines uses two machine users: one for opening pull requests and running workflows (`ci-user`) and another with read-only access to repositories (`ci-read-only-user`). Each user is assigned restrictive permissions based on their tasks. As a result, both users may need to participate at different stages to successfully run a pipeline job.
 
-Both the `ci-user` and the u`ci-read-only-user` must:
+Both the `ci-user` and the `ci-read-only-user` must:
 
 1. Be members of your GitHub Organization.
 
@@ -136,14 +150,14 @@ Generate the required tokens for the ci-user in their GitHub account.
 
 #### INFRA_ROOT_WRITE_TOKEN
 
-This [fine-grained](#fine-grained) Personal Access Token allows GitHub Actions to clone `infrastructure-live-root`, open pull requests, and update comments. 
+This [fine-grained](#fine-grained) Personal Access Token allows GitHub Actions to clone `infrastructure-live-root`, open pull requests, and update comments.
 
 This token must have the following permissions to the `INFRA_ROOT_WRITE_TOKEN` for the `infrastructure-live-root` repository:
 
-- **Content:** Read & write access — Required to clone the repository and push changes.  
-- **Issues:** Read & write access — Allows Pipelines to open issues when manual intervention is needed.  
-- **Metadata:** Read access — Grants access to repository metadata. 
-- **Pull requests:** Read & write access — Enables Pipelines to automate infrastructure changes through PRs.  
+- **Content:** Read & write access — Required to clone the repository and push changes.
+- **Issues:** Read & write access — Allows Pipelines to open issues when manual intervention is needed.
+- **Metadata:** Read access — Grants access to repository metadata.
+- **Pull requests:** Read & write access — Enables Pipelines to automate infrastructure changes through PRs.
 - **Workflows:** Read & write access — Needed to update workflow files in `.github/workflows` when provisioning new repositories.
 
 ![INFRA_ROOT_WRITE_TOKEN PAT Configuration](/img/pipelines/security/INFRA_ROOT_WRITE_TOKEN.png)
@@ -156,19 +170,19 @@ Below is a detailed breakdown of the permissions needed for the `INFRA_ROOT_WRIT
 
 If you are not an Enterprise customer or prefer Pipelines not to execute certain behaviors, you can opt not to grant the related permissions.
 
-##### Content read & write access  
+##### Content read & write access
 Needed for cloning `infrastructure-live-root` and pushing automated changes. Without this permission, the pull request opened by the GitHub Actions workflow will not trigger automation during account vending.
 
-##### Issues read & write access  
+##### Issues read & write access
 Allows Pipelines to open issues that alert teams when manual action is required.
 
-##### Metadata read access  
+##### Metadata read access
 Grants visibility into repository metadata.
 
-##### Pull requests read & write access  
+##### Pull requests read & write access
 Allows Pipelines to create pull requests to introduce infrastructure changes.
 
-##### Workflows read & write access  
+##### Workflows read & write access
 Required to update workflows when provisioning new repositories.
 
 </details>
@@ -177,10 +191,10 @@ Required to update workflows when provisioning new repositories.
 
 This fine-grained token is used for initial setup and bootstrapping repositories. For Enterprise customers, it also provisions delegated repositories. Assign the following permissions to all accessible repositories:
 
-- **Administration:** Read & write access — Required to create and manage repositories.  
-- **Content:** Read & write access — Necessary for reading and writing repository files.  
-- **Metadata:** Read access — Grants access to repository metadata.  
-- **Pull requests:** Read & write access — Enables automation of infrastructure updates via PRs.  
+- **Administration:** Read & write access — Required to create and manage repositories.
+- **Content:** Read & write access — Necessary for reading and writing repository files.
+- **Metadata:** Read access — Grants access to repository metadata.
+- **Pull requests:** Read & write access — Enables automation of infrastructure updates via PRs.
 - **Workflows:** Read & write access — Required to manage workflow files.
 
   In addition, the token **may** require the following permissions in your organization:
@@ -196,22 +210,22 @@ The following is a breakdown of the permissions needed for the `ORG_REPO_ADMIN_T
 
 If you are not an Enterprise customer or prefer Pipelines not to carry out certain actions, you can choose to withhold the related permissions.
 
-##### Administration read & write access  
+##### Administration read & write access
 Allows the creation of new repositories for delegated infrastructure management.
 
-##### Content read & write access  
+##### Content read & write access
 Used for bootstrapping repositories and populating them with necessary content.
 
-##### Metadata read access  
+##### Metadata read access
 Grants repository-level insights needed for automation.
 
-##### Pull requests read & write access  
+##### Pull requests read & write access
      This is required to open pull requests. When vending delegated repositories for Enterprise customers, Pipelines will open pull requests to automate the process of introducing new Infrastructure as Code changes to drive infrastructure updates.
 
-##### Workflows read & write access  
+##### Workflows read & write access
  This is required to update GitHub Action workflow files. When vending delegated repositories for Enterprise customers, Pipelines will create new repositories, including content in the `.github/workflows` directory. Without this permission, Pipelines would not be able to provision repositories with this content.
 
-##### Members read & write access  
+##### Members read & write access
 
      Required to update GitHub organization team members. When vending delegated repositories for Enterprise customers, Pipelines will add team members to a team that has access to a delegated repository. Without this permission, Pipelines would not be able to provision repositories that are accessible to the correct team members.
 
@@ -246,7 +260,7 @@ Generate the following token for the `ci-read-only-user`:
 
 #### PIPELINES_READ_TOKEN
 
-This [Classic Personal Access Token](#classic-tokens) manages access to private software during GitHub Action runs. 
+This [Classic Personal Access Token](#classic-tokens) manages access to private software during GitHub Action runs.
 
 This token must have `repo` scopes. Gruntwork recommends setting expiration to 90 days to balance the concerns of security vs. the burden of rotating tokens and secrets.
 
@@ -285,7 +299,7 @@ Since this guide uses secrets scoped to specific repositories, the token permiss
   1. Assign the _`PIPELINES_READ_TOKEN`_ token generated by the `ci-read-only-user` in the [secrets section](#ci-read-only-user) as its value.
 
   2. **Repository access**: Select the `Private Repositories` option.
-  
+
   :::info
 
   The `PIPELINES_READ_TOKEN` token is made accessible to **all** private repositories, ensuring every vended `infrastructure-live` repository automatically has access to this secret.
@@ -366,6 +380,67 @@ If you are **not an Enterprise customer**, you should also do the following:
 :::info
 For more information on creating and using GitHub Actions Repository secrets, refer to the [GitHub Documentation](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
 :::
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem value="gitlab" label="GitLab">
+
+
+For GitLab, Pipelines requires a single machine user with `api` access. This user will be used to authenticate API calls and access repositories within your GitLab group.
+
+### Creating the CI User
+
+1. Create a dedicated GitLab user account to serve as your CI user
+2. Add this user to your GitLab group with appropriate permissions:
+   - Developer access to your infrastructure repositories
+
+**Checklist:**
+<PersistentCheckbox id="via-machine-users-gitlab-1" label="GitLab CI user created" />
+<PersistentCheckbox id="via-machine-users-gitlab-2" label="CI user added to GitLab group" />
+
+### Creating the Access Token
+
+Generate a Personal Access Token for the CI user with the following scopes:
+- `api` - For making API calls to e.g. create comments on merge requests
+
+This token will be stored as the `PIPELINES_GITLAB_TOKEN` in your CI/CD variables.
+
+:::tip
+Set an expiration date according to your organization's security policies. We recommend 90 days as a balance between security and maintenance.
+:::
+
+**Checklist:**
+<PersistentCheckbox id="via-machine-users-gitlab-3" label="PIPELINES_GITLAB_TOKEN created" />
+
+### Configure CI/CD Variables
+
+Add the `PIPELINES_GITLAB_TOKEN` as a CI/CD variable at the group level:
+
+1. Navigate to your GitLab group's **Settings > CI/CD**
+2.  Expand the **Variables** section
+3. Click **Add variable**
+4. Mark the variable as **Masked**
+5. Leave both the "Protect variable" and "Expand variable reference" options unchecked
+6. Select the environments where this variable should be available
+7. Set the key as `PIPELINES_GITLAB_TOKEN`
+8. Set the value as the Personal Access Token generated in the [Creating the Access Token](#creating-the-access-token) section
+
+**Checklist:**
+<PersistentCheckbox id="via-machine-users-gitlab-4" label="PIPELINES_GITLAB_TOKEN added to CI/CD variables" />
+
+:::caution
+Remember to update this token before it expires to prevent pipeline disruptions.
+:::
+
+### Authorize your groups to the Gruntwork Pipelines backend
+
+In order to use the Gruntwork Pipelines backend, you need to authorize your groups to it. To do so, email your Gruntwork account manager or support@gruntwork.io with the following information:
+
+- The group name (s) you want to authorize for Gruntwork Pipelines in GitLab
+- The GitLab instance you want to authorize (e.g. https://gitlab.com)
+- The name of your organization
 
 </TabItem>
 </Tabs>

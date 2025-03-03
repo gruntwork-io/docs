@@ -49,4 +49,6 @@ MTTR
 terrapatch
 Terrapatch
 KodeKloud
+preconfigured
+projectprefix
 GOVCLOUD
