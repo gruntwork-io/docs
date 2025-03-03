@@ -58,7 +58,7 @@ By combining this data with a [query service](#querying-data), you can analyze t
 Pipelines employs a naming scheme that integrates the user who triggered the Pipelines [Action](/2.0/docs/pipelines/architecture/actions.md) along with the request or branch that initiated the action. The AWS STS session name is formatted as follows:
 `<UserName>-via-GWPipelines@(PR-<RequestNumber>|<branch name>)`.
 
-#### For merge/pull request events
+#### For merge request/pull request events
 When Pipelines runs in response to a request event (opened, updated, or reopened), the session name includes the user who made the most recent commit on the branch and the request number. For instance:
 - If the user `SomeUserInYourOrg` created request number `123`, the session name would be:
   `SomeUserInYourOrg-via-GWPipelines@PR-123`.

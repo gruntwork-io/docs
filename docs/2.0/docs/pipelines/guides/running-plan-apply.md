@@ -20,7 +20,7 @@ The preferred workflow when working with Pipelines involves creating a new Merge
 
 ## Running plan
 
-To trigger a **Plan**, create an infrastructure change, such as adding or modifying a `terragrunt.hcl` unit, on a new branch. Then, open a new Merge/Pull Request to merge this branch into your Deploy Branch. After merging, Pipelines will comment on the pull request with the Apply output.
+To trigger a **Plan**, create an infrastructure change, such as adding or modifying a `terragrunt.hcl` unit, on a new branch. Then, open a new merge request/pull request to merge this branch into your Deploy Branch. After merging, Pipelines will comment on the pull request with the Apply output.
 
 ![Screenshot of Plan Comment](/img/pipelines/guides/plan-comment.png)
 
@@ -28,7 +28,7 @@ To trigger a **Plan**, create an infrastructure change, such as adding or modify
 
 To initiate an **Apply**, merge your changes into the Deploy Branch. Any commits, including merge commits on the Deploy Branch, will trigger an Apply if infrastructure changes are detected.
 
-Pipelines will add a comment to the merged Merge/Pull Request containing the apply output.
+Pipelines will add a comment to the merged merge request/pull request containing the apply output.
 
 ## Skipping Pipelines plan/apply
 
