@@ -282,6 +282,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/pipelines/tutorials/destroying-infrastructure",
       },
+      {
+        label: "Deploying to AWS GovCloud",
+        type: "doc",
+        id: "2.0/docs/pipelines/tutorials/deploying-to-aws-gov-cloud",
+      },
     ],
   },
   {
