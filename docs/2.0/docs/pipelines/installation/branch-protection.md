@@ -59,13 +59,13 @@ Below is an example of the recommended GitLab branch protection settings:
 </TabItem>
 </Tabs>
 
-## PR/MR Workflow
+## Merge Request/Pull Request Workflow
 
 1. Developers make infrastructure changes on a branch and create a PR (GitHub) or MR (GitLab) against the default branch.
-2. On PR/MR creation, Gruntwork Pipelines runs `plan` for any changes and posts the results as a comment.
+2. On merge request/pull request creation, Gruntwork Pipelines runs `plan` for any changes and posts the results as a comment.
 3. Gruntwork Pipelines re-runs `plan` on every push to the branch and updates the results in a comment.
 4. Gather approvals. If Code Owners is enabled, all relevant code owners must approve the changes.
-5. Once approved, merge the PR/MR into the default branch.
-6. Gruntwork Pipelines runs `apply` for the changes from the PR/MR.
-   - On success, the PR/MR is updated to indicate the successful `apply`.
-   - On failure, the PR/MR is updated to indicate the failure of the `apply`. If the failure cannot be resolved by retrying, a new PR/MR must be created to address the issues.
+5. Once approved, merge the merge request/pull request into the default branch.
+6. Gruntwork Pipelines runs `apply` for the changes from the merge request/pull request.
+   - On success, the merge request/pull request is updated to indicate the successful `apply`.
+   - On failure, the merge request/pull request is updated to indicate the failure of the `apply`. If the failure cannot be resolved by retrying, a new merge request/pull request must be created to address the issues.
