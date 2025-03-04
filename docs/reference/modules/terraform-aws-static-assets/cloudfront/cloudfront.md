@@ -9,20 +9,20 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="0.20.2" lastModifiedVersion="0.20.1"/>
+<VersionBadge repoTitle="Static Assets Modules" version="0.20.3" lastModifiedVersion="0.20.3"/>
 
 # CloudFront Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.2/modules/cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.20.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.20.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module deploys an [AWS CloudFront](https://aws.amazon.com/cloudfront/) distribution to serve content from S3 or custom origins. CloudFront is a Content Delivery Network (CDN) that caches your content at edge locations around the world to reduce latency and improve performance for your users.
 
 ## Quick Start
 
-*   See the [cloudfront-custom-origin](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.2/examples/cloudfront-custom-origin) example for working sample code.
-*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.2/modules/cloudfront/vars.tf) for all parameters you can set for this module.
+*   See the [cloudfront-custom-origin](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/examples/cloudfront) example for working sample code.
+*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/cloudfront/vars.tf) for all parameters you can set for this module.
 
 ## Sample Usage
 
@@ -37,7 +37,7 @@ This module deploys an [AWS CloudFront](https://aws.amazon.com/cloudfront/) dist
 
 module "cloudfront" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v0.20.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v0.20.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -262,9 +262,12 @@ module "cloudfront" {
   # charged only once per month, per metric (up to 8 metrics per distribution).
   is_monitoring_subscription_enabled = false
 
-  # The logging configuration that controls how logs are written to your
-  # distribution (maximum one).
-  logging_config = {"is_logging_enabled":false}
+  # [LEGACY] The logging configuration that controls how logs are written to
+  # your distribution (maximum one).
+  logging_config = {"include_cookies":true,"is_logging_enabled":false}
+
+  # The logging destination for distribution.
+  logging_config_v2 = null
 
   # Ordered list of cache behaviors resource for this distribution. List from
   # top to bottom in order of precedence. The topmost cache behavior will have
@@ -316,7 +319,7 @@ module "cloudfront" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v0.20.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v0.20.3"
 }
 
 inputs = {
@@ -544,9 +547,12 @@ inputs = {
   # charged only once per month, per metric (up to 8 metrics per distribution).
   is_monitoring_subscription_enabled = false
 
-  # The logging configuration that controls how logs are written to your
-  # distribution (maximum one).
-  logging_config = {"is_logging_enabled":false}
+  # [LEGACY] The logging configuration that controls how logs are written to
+  # your distribution (maximum one).
+  logging_config = {"include_cookies":true,"is_logging_enabled":false}
+
+  # The logging destination for distribution.
+  logging_config_v2 = null
 
   # Ordered list of cache behaviors resource for this distribution. List from
   # top to bottom in order of precedence. The topmost cache behavior will have
@@ -2266,7 +2272,7 @@ When you enable additional metrics for a distribution, CloudFront sends up to 8 
 <HclListItem name="logging_config" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-The logging configuration that controls how logs are written to your distribution (maximum one).
+[LEGACY] The logging configuration that controls how logs are written to your distribution (maximum one).
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -2293,12 +2299,26 @@ object({
 
 ```hcl
 {
+  include_cookies = true,
   is_logging_enabled = false
 }
 ```
 
 </HclListItemDefaultValue>
 <HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   There is an additional option to include cookies in standard logging. In the CloudFront API, this is the IncludeCookies parameter.
+   If you configure access logging by using the CloudWatch API and you specify that you want to include cookies,
+   you must use the CloudFront console or CloudFront API to update your distribution to include cookies. Otherwise,
+   CloudFront can’t send cookies to your log destination.
+
+```
+</details>
+
 <details>
 
 
@@ -2335,6 +2355,132 @@ object({
 ```hcl
 
      Whether to include cookies in access logs (default: false).
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="logging_config_v2" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+The logging destination for distribution.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+
+    # ARN of one of: Cloudwatch Log Group, Firehose Delivery Stream or S3 Bucket
+    logs_destination_arn = optional(string)
+
+    # The format of the logs that are sent to this delivery destination.
+    # Valid values:
+    # - for Cloudwatch logs: json, plain
+    # - for Kinesis Data Firehose: json, plain, raw
+    # - for S3 Bucket: json, plain, parquet, w3c
+    output_format = optional(string)
+
+    # The field delimiter to use between record fields.
+    # Only applicable for such output formats:
+    # - plain
+    # - w3c
+    # - raw
+    field_delimiter = optional(string)
+
+    # The list of record fields to be delivered to the destination, in order.
+    # Please refer to the CloudFront documentation for the list of available fields.
+    # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/standard-logging.html
+    record_fields = optional(list(string))
+
+    # This parameter causes the S3 objects that contain delivered logs to use
+    # a prefix structure that allows for integration with Apache Hive.
+    # Applicable only for S3 Bucket ARN.
+    enable_hive_compatible_path = optional(bool)
+
+    # This string allows re-configuring the S3 object prefix to contain either static or variable sections.
+    # The valid variables to use in the suffix path will vary by each log source.
+    # Applicable only for S3 Bucket ARN.
+    suffix_path = optional(string)
+
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     ARN of one of: Cloudwatch Log Group, Firehose Delivery Stream or S3 Bucket
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The format of the logs that are sent to this delivery destination.
+     Valid values:
+     - for Cloudwatch logs: json, plain
+     - for Kinesis Data Firehose: json, plain, raw
+     - for S3 Bucket: json, plain, parquet, w3c
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The field delimiter to use between record fields.
+     Only applicable for such output formats:
+     - plain
+     - w3c
+     - raw
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The list of record fields to be delivered to the destination, in order.
+     Please refer to the CloudFront documentation for the list of available fields.
+     https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/standard-logging.html
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     This parameter causes the S3 objects that contain delivered logs to use
+     a prefix structure that allows for integration with Apache Hive.
+     Applicable only for S3 Bucket ARN.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     This string allows re-configuring the S3 object prefix to contain either static or variable sections.
+     The valid variables to use in the suffix path will vary by each log source.
+     Applicable only for S3 Bucket ARN.
 
 ```
 </details>
@@ -2736,11 +2882,11 @@ Unique identifier that specifies the AWS WAF web ACL, if any, to associate with 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.2/modules/cloudfront/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.2/modules/cloudfront/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.2/modules/cloudfront/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/cloudfront/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/cloudfront/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d7dd1e096b8b66fd45c1af6c02d60672"
+  "hash": "6a64ca6a4e980acfe29f5c81e7ed0230"
 }
 ##DOCS-SOURCER-END -->
