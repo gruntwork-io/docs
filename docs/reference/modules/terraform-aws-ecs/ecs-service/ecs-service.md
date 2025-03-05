@@ -188,6 +188,12 @@ module "ecs_service" {
   # values. Only used if var.elb_target_group_name is set.
   alb_sticky_session_type = "lb_cookie"
 
+  # ECS automatically redistributes tasks within a service across Availability
+  # Zones (AZs) to mitigate the risk of impaired application availability due to
+  # underlying infrastructure failures and task lifecycle activities. The valid
+  # values are ENABLED and DISABLED. Defaults to DISABLED.
+  availability_zone_rebalancing = "DISABLED"
+
   # The capacity provider strategy to use for the service. Note that the
   # capacity providers have to be present on ECS cluster before deploying ECS
   # service. When provided, var.launch_type is ignored.
@@ -611,6 +617,12 @@ inputs = {
   # The type of Sticky Sessions to use. See https://goo.gl/MNwqNu for possible
   # values. Only used if var.elb_target_group_name is set.
   alb_sticky_session_type = "lb_cookie"
+
+  # ECS automatically redistributes tasks within a service across Availability
+  # Zones (AZs) to mitigate the risk of impaired application availability due to
+  # underlying infrastructure failures and task lifecycle activities. The valid
+  # values are ENABLED and DISABLED. Defaults to DISABLED.
+  availability_zone_rebalancing = "DISABLED"
 
   # The capacity provider strategy to use for the service. Note that the
   # capacity providers have to be present on ECS cluster before deploying ECS
@@ -1053,6 +1065,15 @@ The type of Sticky Sessions to use. See https://goo.gl/MNwqNu for possible value
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;lb_cookie&quot;"/>
+</HclListItem>
+
+<HclListItem name="availability_zone_rebalancing" requirement="optional" type="string">
+<HclListItemDescription>
+
+ECS automatically redistributes tasks within a service across Availability Zones (AZs) to mitigate the risk of impaired application availability due to underlying infrastructure failures and task lifecycle activities. The valid values are ENABLED and DISABLED. Defaults to DISABLED.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;DISABLED&quot;"/>
 </HclListItem>
 
 <HclListItem name="capacity_provider_strategy" requirement="optional" type="list(object(…))">
@@ -2060,6 +2081,6 @@ If true, Terraform will wait for the service to reach a steady state — as in, 
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.6/modules/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e5f461c069c80d6c676500230bb36851"
+  "hash": "9d0fcbbaa2129abd5a4cb57c39efcb02"
 }
 ##DOCS-SOURCER-END -->

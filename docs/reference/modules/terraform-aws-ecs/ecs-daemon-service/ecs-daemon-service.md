@@ -110,6 +110,12 @@ module "ecs_daemon_service" {
   # roles
   additional_task_assume_role_policy_principals = []
 
+  # ECS automatically redistributes tasks within a service across Availability
+  # Zones (AZs) to mitigate the risk of impaired application availability due to
+  # underlying infrastructure failures and task lifecycle activities. The valid
+  # values are ENABLED and DISABLED. Defaults to DISABLED.
+  availability_zone_rebalancing = "DISABLED"
+
   # Prefix for name of the IAM role used by the ECS task. If not provide, will
   # be set to var.service_name.
   custom_iam_role_name_prefix = null
@@ -228,6 +234,12 @@ inputs = {
   # A list of additional principals who can assume the task and task execution
   # roles
   additional_task_assume_role_policy_principals = []
+
+  # ECS automatically redistributes tasks within a service across Availability
+  # Zones (AZs) to mitigate the risk of impaired application availability due to
+  # underlying infrastructure failures and task lifecycle activities. The valid
+  # values are ENABLED and DISABLED. Defaults to DISABLED.
+  availability_zone_rebalancing = "DISABLED"
 
   # Prefix for name of the IAM role used by the ECS task. If not provide, will
   # be set to var.service_name.
@@ -353,6 +365,15 @@ A list of additional principals who can assume the task and task execution roles
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="availability_zone_rebalancing" requirement="optional" type="string">
+<HclListItemDescription>
+
+ECS automatically redistributes tasks within a service across Availability Zones (AZs) to mitigate the risk of impaired application availability due to underlying infrastructure failures and task lifecycle activities. The valid values are ENABLED and DISABLED. Defaults to DISABLED.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;DISABLED&quot;"/>
 </HclListItem>
 
 <HclListItem name="custom_iam_role_name_prefix" requirement="optional" type="string">
@@ -571,6 +592,6 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.6/modules/ecs-daemon-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e820e732fdcc21a5215ba6169b7e6687"
+  "hash": "c1c9466436d3cb0c5b94cccb91099b99"
 }
 ##DOCS-SOURCER-END -->
