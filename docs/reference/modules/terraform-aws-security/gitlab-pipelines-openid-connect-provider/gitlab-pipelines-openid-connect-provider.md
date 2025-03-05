@@ -61,19 +61,19 @@ module "gitlab_pipelines_openid_connect_provider" {
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-openid-connect-provider?ref=v0.75.10"
 
   # ----------------------------------------------------------------------------------------------------
-  # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
-
-  # List of GitLab top level groups that are allowed to assume IAM roles in the
-  # account.
-  allowed_groups = <list(string)>
-
-  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
   # List of additional thumbprints for the OIDC provider.
   additional_thumbprints = null
+
+  # List of GitLab top level groups that are allowed to assume IAM roles in the
+  # account. Set either this or `audiences`, but not both.
+  allowed_groups = []
+
+  # List of fully formed URLs to set as audiences that are allowed to assume IAM
+  # roles in the account. Set either this or `allowed_groups`, but not both.
+  audiences = []
 
 }
 
@@ -96,19 +96,19 @@ terraform {
 inputs = {
 
   # ----------------------------------------------------------------------------------------------------
-  # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
-
-  # List of GitLab top level groups that are allowed to assume IAM roles in the
-  # account.
-  allowed_groups = <list(string)>
-
-  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
   # List of additional thumbprints for the OIDC provider.
   additional_thumbprints = null
+
+  # List of GitLab top level groups that are allowed to assume IAM roles in the
+  # account. Set either this or `audiences`, but not both.
+  allowed_groups = []
+
+  # List of fully formed URLs to set as audiences that are allowed to assume IAM
+  # roles in the account. Set either this or `allowed_groups`, but not both.
+  audiences = []
 
 }
 
@@ -126,16 +126,6 @@ inputs = {
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
-### Required
-
-<HclListItem name="allowed_groups" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-List of GitLab top level groups that are allowed to assume IAM roles in the account.
-
-</HclListItemDescription>
-</HclListItem>
-
 ### Optional
 
 <HclListItem name="additional_thumbprints" requirement="optional" type="list(string)">
@@ -145,6 +135,24 @@ List of additional thumbprints for the OIDC provider.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="allowed_groups" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of GitLab top level groups that are allowed to assume IAM roles in the account. Set either this or `audiences`, but not both.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="audiences" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of fully formed URLs to set as audiences that are allowed to assume IAM roles in the account. Set either this or `allowed_groups`, but not both.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 </TabItem>
@@ -177,6 +185,6 @@ Url used for the OIDC provider
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/gitlab-pipelines-openid-connect-provider/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8b3e5cf62bc12e1c5e05f4bd2fcbdf7e"
+  "hash": "750e8bf3656e4d6430bbe29d7a6719d4"
 }
 ##DOCS-SOURCER-END -->
