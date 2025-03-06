@@ -15,11 +15,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.21" lastModifiedVersion="0.114.0"/>
+<VersionBadge version="0.118.22" lastModifiedVersion="0.114.0"/>
 
 # Helm Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.21/modules/services/helm-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.22/modules/services/helm-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fhelm-service" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -63,9 +63,9 @@ If you’ve never used the Service Catalog before, make sure to read
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.21/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.21/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.21/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.22/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.22/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.22/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -73,7 +73,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.21/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.22/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -81,7 +81,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.21/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.22/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -100,7 +100,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "helm_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/helm-service?ref=v0.118.21"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/helm-service?ref=v0.118.22"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -195,7 +195,7 @@ module "helm_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/helm-service?ref=v0.118.21"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/helm-service?ref=v0.118.22"
 }
 
 inputs = {
@@ -482,11 +482,11 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.21/modules/services/helm-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.21/modules/services/helm-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.21/modules/services/helm-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.22/modules/services/helm-service/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.22/modules/services/helm-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.22/modules/services/helm-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2ee890e15b22431f8adf7ab8bbb080d5"
+  "hash": "23145b65d53b79a5cf114c8fd3761ef0"
 }
 ##DOCS-SOURCER-END -->
