@@ -61,19 +61,20 @@ module "github_actions_openid_connect_provider" {
   source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-openid-connect-provider?ref=v0.75.10"
 
   # ----------------------------------------------------------------------------------------------------
-  # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
-
-  # List of github organizations that are allowed to assume IAM roles in the
-  # account.
-  allowed_organizations = <list(string)>
-
-  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
   # List of additional thumbprints for the OIDC provider.
   additional_thumbprints = null
+
+  # List of github organizations that are allowed to assume IAM roles in the
+  # account. Set either this or `audiences`, but not both.
+  allowed_organizations = []
+
+  # List of fully formed URLs to set as audiences that are allowed to assume IAM
+  # roles in the account. Set either this or `allowed_organizations`, but not
+  # both.
+  audiences = []
 
 }
 
@@ -96,19 +97,20 @@ terraform {
 inputs = {
 
   # ----------------------------------------------------------------------------------------------------
-  # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
-
-  # List of github organizations that are allowed to assume IAM roles in the
-  # account.
-  allowed_organizations = <list(string)>
-
-  # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
   # List of additional thumbprints for the OIDC provider.
   additional_thumbprints = null
+
+  # List of github organizations that are allowed to assume IAM roles in the
+  # account. Set either this or `audiences`, but not both.
+  allowed_organizations = []
+
+  # List of fully formed URLs to set as audiences that are allowed to assume IAM
+  # roles in the account. Set either this or `allowed_organizations`, but not
+  # both.
+  audiences = []
 
 }
 
@@ -126,16 +128,6 @@ inputs = {
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
-### Required
-
-<HclListItem name="allowed_organizations" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-List of github organizations that are allowed to assume IAM roles in the account.
-
-</HclListItemDescription>
-</HclListItem>
-
 ### Optional
 
 <HclListItem name="additional_thumbprints" requirement="optional" type="list(string)">
@@ -145,6 +137,24 @@ List of additional thumbprints for the OIDC provider.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="allowed_organizations" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of github organizations that are allowed to assume IAM roles in the account. Set either this or `audiences`, but not both.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="audiences" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of fully formed URLs to set as audiences that are allowed to assume IAM roles in the account. Set either this or `allowed_organizations`, but not both.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 </TabItem>
@@ -177,6 +187,6 @@ Url used for the OIDC provider
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/github-actions-openid-connect-provider/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f8aed8c58bf8d2499a9dbc4045a229a5"
+  "hash": "0844d34132eb9aaea1cb9962c6a9709d"
 }
 ##DOCS-SOURCER-END -->
