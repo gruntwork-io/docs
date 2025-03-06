@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.10" lastModifiedVersion="0.73.0"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.11" lastModifiedVersion="0.75.11"/>
 
 # OpenID Connect Provider for GitHub Actions
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/github-actions-openid-connect-provider" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/github-actions-openid-connect-provider" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.73.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an OpenID Connect Provider for GitHub Actions. This allows you to use GitHub Actions as an identity
 provider for your AWS account. This is useful if you want to use GitHub Actions to deploy your infrastructure. By
@@ -43,7 +43,7 @@ with the OpenID Connect Provider. In addition to this security measure, you shou
 associated with the OpenID Connect Provider have the appropriate trust policy to only allow assumption of the role by
 the appropriate GitHub Repos on the appropriate refs.
 
-See the [GitHub Actions IAM Role](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/github-actions-iam-role/README.md) module for more information.
+See the [GitHub Actions IAM Role](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/github-actions-iam-role/README.md) module for more information.
 
 ## Sample Usage
 
@@ -58,15 +58,7 @@ See the [GitHub Actions IAM Role](https://github.com/gruntwork-io/terraform-aws-
 
 module "github_actions_openid_connect_provider" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-openid-connect-provider?ref=v0.75.10"
-
-  # ----------------------------------------------------------------------------------------------------
-  # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
-
-  # List of github organizations that are allowed to assume IAM roles in the
-  # account.
-  allowed_organizations = <list(string)>
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-openid-connect-provider?ref=v0.75.11"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -74,6 +66,15 @@ module "github_actions_openid_connect_provider" {
 
   # List of additional thumbprints for the OIDC provider.
   additional_thumbprints = null
+
+  # List of github organizations that are allowed to assume IAM roles in the
+  # account. Set either this or `audiences`; audiences wins if both are set.
+  allowed_organizations = []
+
+  # List of fully formed URLs to set as audiences that are allowed to assume IAM
+  # roles in the account. Set either this or `allowed_organizations`; audiences
+  # wins if both are set.
+  audiences = []
 
 }
 
@@ -90,18 +91,10 @@ module "github_actions_openid_connect_provider" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-openid-connect-provider?ref=v0.75.10"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-openid-connect-provider?ref=v0.75.11"
 }
 
 inputs = {
-
-  # ----------------------------------------------------------------------------------------------------
-  # REQUIRED VARIABLES
-  # ----------------------------------------------------------------------------------------------------
-
-  # List of github organizations that are allowed to assume IAM roles in the
-  # account.
-  allowed_organizations = <list(string)>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -109,6 +102,15 @@ inputs = {
 
   # List of additional thumbprints for the OIDC provider.
   additional_thumbprints = null
+
+  # List of github organizations that are allowed to assume IAM roles in the
+  # account. Set either this or `audiences`; audiences wins if both are set.
+  allowed_organizations = []
+
+  # List of fully formed URLs to set as audiences that are allowed to assume IAM
+  # roles in the account. Set either this or `allowed_organizations`; audiences
+  # wins if both are set.
+  audiences = []
 
 }
 
@@ -126,16 +128,6 @@ inputs = {
 <Tabs>
 <TabItem value="inputs" label="Inputs" default>
 
-### Required
-
-<HclListItem name="allowed_organizations" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-List of github organizations that are allowed to assume IAM roles in the account.
-
-</HclListItemDescription>
-</HclListItem>
-
 ### Optional
 
 <HclListItem name="additional_thumbprints" requirement="optional" type="list(string)">
@@ -145,6 +137,24 @@ List of additional thumbprints for the OIDC provider.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="allowed_organizations" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of github organizations that are allowed to assume IAM roles in the account. Set either this or `audiences`; audiences wins if both are set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="audiences" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of fully formed URLs to set as audiences that are allowed to assume IAM roles in the account. Set either this or `allowed_organizations`; audiences wins if both are set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 </TabItem>
@@ -172,11 +182,11 @@ Url used for the OIDC provider
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/github-actions-openid-connect-provider/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/github-actions-openid-connect-provider/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/github-actions-openid-connect-provider/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/github-actions-openid-connect-provider/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/github-actions-openid-connect-provider/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/github-actions-openid-connect-provider/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f8aed8c58bf8d2499a9dbc4045a229a5"
+  "hash": "516eb5e559783aafa92fb607d71b5ffa"
 }
 ##DOCS-SOURCER-END -->
