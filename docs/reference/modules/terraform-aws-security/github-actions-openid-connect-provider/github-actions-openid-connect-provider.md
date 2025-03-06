@@ -68,12 +68,12 @@ module "github_actions_openid_connect_provider" {
   additional_thumbprints = null
 
   # List of github organizations that are allowed to assume IAM roles in the
-  # account. Set either this or `audiences`, but not both.
+  # account. Set either this or `audiences`; audiences wins if both are set.
   allowed_organizations = []
 
   # List of fully formed URLs to set as audiences that are allowed to assume IAM
-  # roles in the account. Set either this or `allowed_organizations`, but not
-  # both.
+  # roles in the account. Set either this or `allowed_organizations`; audiences
+  # wins if both are set.
   audiences = []
 
 }
@@ -104,12 +104,12 @@ inputs = {
   additional_thumbprints = null
 
   # List of github organizations that are allowed to assume IAM roles in the
-  # account. Set either this or `audiences`, but not both.
+  # account. Set either this or `audiences`; audiences wins if both are set.
   allowed_organizations = []
 
   # List of fully formed URLs to set as audiences that are allowed to assume IAM
-  # roles in the account. Set either this or `allowed_organizations`, but not
-  # both.
+  # roles in the account. Set either this or `allowed_organizations`; audiences
+  # wins if both are set.
   audiences = []
 
 }
@@ -142,7 +142,7 @@ List of additional thumbprints for the OIDC provider.
 <HclListItem name="allowed_organizations" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-List of github organizations that are allowed to assume IAM roles in the account. Set either this or `audiences`, but not both.
+List of github organizations that are allowed to assume IAM roles in the account. Set either this or `audiences`; audiences wins if both are set.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -151,7 +151,7 @@ List of github organizations that are allowed to assume IAM roles in the account
 <HclListItem name="audiences" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-List of fully formed URLs to set as audiences that are allowed to assume IAM roles in the account. Set either this or `allowed_organizations`, but not both.
+List of fully formed URLs to set as audiences that are allowed to assume IAM roles in the account. Set either this or `allowed_organizations`; audiences wins if both are set.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -187,6 +187,6 @@ Url used for the OIDC provider
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/github-actions-openid-connect-provider/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0844d34132eb9aaea1cb9962c6a9709d"
+  "hash": "f6cc487267be6744dfc9c525750fd06c"
 }
 ##DOCS-SOURCER-END -->

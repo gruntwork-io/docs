@@ -68,11 +68,12 @@ module "gitlab_pipelines_openid_connect_provider" {
   additional_thumbprints = null
 
   # List of GitLab top level groups that are allowed to assume IAM roles in the
-  # account. Set either this or `audiences`, but not both.
+  # account. Set either this or `audiences`; `audiences` wins if both are set.
   allowed_groups = []
 
   # List of fully formed URLs to set as audiences that are allowed to assume IAM
-  # roles in the account. Set either this or `allowed_groups`, but not both.
+  # roles in the account. Set either this or `allowed_groups`; audiences wins if
+  # both are set.
   audiences = []
 
 }
@@ -103,11 +104,12 @@ inputs = {
   additional_thumbprints = null
 
   # List of GitLab top level groups that are allowed to assume IAM roles in the
-  # account. Set either this or `audiences`, but not both.
+  # account. Set either this or `audiences`; `audiences` wins if both are set.
   allowed_groups = []
 
   # List of fully formed URLs to set as audiences that are allowed to assume IAM
-  # roles in the account. Set either this or `allowed_groups`, but not both.
+  # roles in the account. Set either this or `allowed_groups`; audiences wins if
+  # both are set.
   audiences = []
 
 }
@@ -140,7 +142,7 @@ List of additional thumbprints for the OIDC provider.
 <HclListItem name="allowed_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-List of GitLab top level groups that are allowed to assume IAM roles in the account. Set either this or `audiences`, but not both.
+List of GitLab top level groups that are allowed to assume IAM roles in the account. Set either this or `audiences`; `audiences` wins if both are set.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -149,7 +151,7 @@ List of GitLab top level groups that are allowed to assume IAM roles in the acco
 <HclListItem name="audiences" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-List of fully formed URLs to set as audiences that are allowed to assume IAM roles in the account. Set either this or `allowed_groups`, but not both.
+List of fully formed URLs to set as audiences that are allowed to assume IAM roles in the account. Set either this or `allowed_groups`; audiences wins if both are set.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -185,6 +187,6 @@ Url used for the OIDC provider
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.10/modules/gitlab-pipelines-openid-connect-provider/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "750e8bf3656e4d6430bbe29d7a6719d4"
+  "hash": "d7795bf789f7db88088af41ff8776b11"
 }
 ##DOCS-SOURCER-END -->
