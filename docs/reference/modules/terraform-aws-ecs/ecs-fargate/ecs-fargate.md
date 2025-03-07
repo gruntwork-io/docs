@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.38.6" lastModifiedVersion="0.24.1"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.38.7" lastModifiedVersion="0.24.1"/>
 
 # Fargate Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.6/modules/ecs-fargate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.7/modules/ecs-fargate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.24.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -23,11 +23,11 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.6/modules/ecs-fargate/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.6/modules/ecs-fargate/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.6/modules/ecs-fargate/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.7/modules/ecs-fargate/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.7/modules/ecs-fargate/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.7/modules/ecs-fargate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "63710c30d8aba693078eaf67a3ce4279"
+  "hash": "dca0e44179ea317005e5f5d6172181ca"
 }
 ##DOCS-SOURCER-END -->
