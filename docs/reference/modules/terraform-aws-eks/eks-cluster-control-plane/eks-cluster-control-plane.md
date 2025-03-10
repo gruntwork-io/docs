@@ -9,20 +9,20 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.73.0" lastModifiedVersion="0.72.2"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.74.0" lastModifiedVersion="0.74.0"/>
 
 # EKS Cluster Control Plane Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-cluster-control-plane" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.0/modules/eks-cluster-control-plane" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.72.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.74.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches an [Elastic Container Service for Kubernetes
 Cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html).
 
 This module is responsible for the EKS Control Plane in [the EKS cluster topology](#what-is-an-eks-cluster). You must
 launch worker nodes in order to be able to schedule pods on your cluster. See the [eks-cluster-workers
-module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-cluster-workers) for managing EKS worker nodes.
+module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.0/modules/eks-cluster-workers) for managing EKS worker nodes.
 
 ## What is the EKS Control Plane?
 
@@ -46,7 +46,7 @@ Specifically, the control plane consists of:
     This includes resources like the
     [`LoadBalancers`](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/).
 
-You can read more about the different components of EKS in [the project README](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/core-concepts.md#what-is-an-eks-cluster).
+You can read more about the different components of EKS in [the project README](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.0/core-concepts.md#what-is-an-eks-cluster).
 
 ## What security group rules are created?
 
@@ -134,7 +134,7 @@ role that is being assumed. Specifically, you need to:
         that role).
 
 You can use the
-[eks-iam-role-assume-role-policy-for-service-account module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-iam-role-assume-role-policy-for-service-account) to
+[eks-iam-role-assume-role-policy-for-service-account module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.0/modules/eks-iam-role-assume-role-policy-for-service-account) to
 construct the policy using a more convenient interface. Refer to the module documentation for more info.
 
 Once you have an IAM Role that can be assumed by the Kubernetes Service Account, you can configure your Pods to exchange
@@ -242,7 +242,7 @@ Some additional notes on using Fargate:
     [the `aws_eks_fargate_profile` resource](https://www.terraform.io/docs/providers/aws/r/eks_fargate_profile.html) to
     provision Fargate Profiles with Terraform). The Pod Execution Role created by the module may be reused for other
     Fargate Profiles.
-*   Fargate does not support DaemonSets. This means that you can't rely on the [eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-container-logs)
+*   Fargate does not support DaemonSets. This means that you can't rely on the [eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.0/modules/eks-container-logs)
     module to forward logs to CloudWatch. Instead, you need to manually configure a sidecar `fluentd` container that
     forwards the log entries to CloudWatch Logs. Refer to [this AWS blog
     post](https://aws.amazon.com/blogs/containers/how-to-capture-application-logs-when-using-amazon-eks-on-aws-fargate/)
@@ -284,7 +284,7 @@ If you omit the `addon_version`, correct versions are automatically applied.
 Note that you must update the nodes to use the corresponding `kubelet` version as well. This means that when you update
 minor versions, you will also need to update the AMIs used by the worker nodes to match the version and rotate the
 workers. For more information on rotating worker nodes, refer to [How do I roll out an update to the
-instances?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-cluster-workers/README.md#how-do-i-roll-out-an-update-to-the-instances) in the `eks-cluster-workers`
+instances?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.0/modules/eks-cluster-workers/README.md#how-do-i-roll-out-an-update-to-the-instances) in the `eks-cluster-workers`
 module README.
 
 ### Detailed upgrade steps
@@ -417,7 +417,7 @@ approaches:
 
 module "eks_cluster_control_plane" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.73.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.74.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -473,6 +473,11 @@ module "eks_cluster_control_plane" {
   # Whether or not to bootstrap an access entry with cluster admin permissions
   # for the cluster creator.
   bootstrap_cluster_creator_admin_permissions = true
+
+  # Install default unmanaged add-ons, such as aws-cni, kube-proxy, and CoreDNS
+  # during cluster creation. If false, you must manually install desired
+  # add-ons. Changing this value will force a new cluster to be created.
+  bootstrap_self_managed_addons = true
 
   # Specify the log class of the cloudwatch log group
   cloudwatch_log_group_class = "STANDARD"
@@ -576,7 +581,7 @@ module "eks_cluster_control_plane" {
   eks_addons = {}
 
   # Configuration block with compute configuration for EKS Auto Mode.
-  eks_auto_mode_compute_config = {}
+  eks_auto_mode_compute_config = {"enabled":true,"node_pools":["general-purpose","system"]}
 
   # Whether or not to create an IAM Role for the EKS Worker Nodes when using EKS
   # Auto Mode. If using the built-in NodePools for EKS Auto Mode you must either
@@ -831,7 +836,7 @@ module "eks_cluster_control_plane" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.73.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.74.0"
 }
 
 inputs = {
@@ -890,6 +895,11 @@ inputs = {
   # Whether or not to bootstrap an access entry with cluster admin permissions
   # for the cluster creator.
   bootstrap_cluster_creator_admin_permissions = true
+
+  # Install default unmanaged add-ons, such as aws-cni, kube-proxy, and CoreDNS
+  # during cluster creation. If false, you must manually install desired
+  # add-ons. Changing this value will force a new cluster to be created.
+  bootstrap_self_managed_addons = true
 
   # Specify the log class of the cloudwatch log group
   cloudwatch_log_group_class = "STANDARD"
@@ -993,7 +1003,7 @@ inputs = {
   eks_addons = {}
 
   # Configuration block with compute configuration for EKS Auto Mode.
-  eks_auto_mode_compute_config = {}
+  eks_auto_mode_compute_config = {"enabled":true,"node_pools":["general-purpose","system"]}
 
   # Whether or not to create an IAM Role for the EKS Worker Nodes when using EKS
   # Auto Mode. If using the built-in NodePools for EKS Auto Mode you must either
@@ -1408,6 +1418,15 @@ Whether or not to bootstrap an access entry with cluster admin permissions for t
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="bootstrap_self_managed_addons" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Install default unmanaged add-ons, such as aws-cni, kube-proxy, and CoreDNS during cluster creation. If false, you must manually install desired add-ons. Changing this value will force a new cluster to be created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="cloudwatch_log_group_class" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1694,7 +1713,19 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  enabled = true,
+  node_pools = [
+    "general-purpose",
+    "system"
+  ]
+}
+```
+
+</HclListItemDefaultValue>
 <HclGeneralListItem title="Examples">
 <details>
   <summary>Example</summary>
@@ -1706,6 +1737,18 @@ Any types represent complex values of variable type. For details, please consult
       node_pools: "general-purpose"
       node_role_arn: "arn:aws:eks::aws:role/MyEKSAccessModeWorkerRole"
    }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   We will default to use the default Node Pools provided by AWS
 
 ```
 </details>
@@ -2150,6 +2193,22 @@ The latest available version of the EBS CSI AddOn.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="eks_auto_mode_iam_role_arn">
+<HclListItemDescription>
+
+AWS ARN identifier of the IAM role created for the EKS Auto Mode Nodes.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="eks_auto_mode_iam_role_name">
+<HclListItemDescription>
+
+Name of the IAM role created for the EKS Auto Mode Nodes.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="eks_cluster_addons">
 <HclListItemDescription>
 
@@ -2300,11 +2359,11 @@ The path to the kubergrunt binary, if in use.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-cluster-control-plane/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-cluster-control-plane/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-cluster-control-plane/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.0/modules/eks-cluster-control-plane/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.0/modules/eks-cluster-control-plane/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.0/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b08a29b1d335009e1e1aa78c48f5f685"
+  "hash": "c9d47ff16052a71af2e7a5b72d5c9e14"
 }
 ##DOCS-SOURCER-END -->

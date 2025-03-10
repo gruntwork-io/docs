@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.73.0" lastModifiedVersion="0.73.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.74.0" lastModifiedVersion="0.73.0"/>
 
 # EKS Container Logs Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.0/modules/eks-container-logs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.73.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -25,7 +25,7 @@ Kinesis Firehose.
 This module uses the community helm chart, with a set of best practices inputs.
 
 **This module is for setting up log aggregation for EKS Pods on EC2 workers (self-managed or managed node groups). For
-Fargate pods, take a look at the [eks-fargate-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-fargate-container-logs) module.**
+Fargate pods, take a look at the [eks-fargate-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.0/modules/eks-fargate-container-logs) module.**
 
 ## How does this work?
 
@@ -151,7 +151,7 @@ fields @timestamp, @message
 
 module "eks_container_logs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.73.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.74.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -375,7 +375,7 @@ module "eks_container_logs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.73.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-container-logs?ref=v0.74.0"
 }
 
 inputs = {
@@ -598,11 +598,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-container-logs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-container-logs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.0/modules/eks-container-logs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.0/modules/eks-container-logs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.0/modules/eks-container-logs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.0/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2eed723f06dae3421bc113837fdf267f"
+  "hash": "36d21af9d9be2f28f8f3e3b3eb2e4904"
 }
 ##DOCS-SOURCER-END -->
