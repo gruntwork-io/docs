@@ -16,17 +16,27 @@ Before you begin, make sure you have:
 
 Setting up Gruntwork Pipelines for GitLab involves these main steps:
 
-1. Complete the [Pipelines Auth setup for GitLab](/2.0/docs/pipelines/installation/viamachineusers#gitlab)
+(prerequisite) Complete the [Pipelines Auth setup for GitLab](/2.0/docs/pipelines/installation/viamachineusers#gitlab)
+1. Authorize Your GitLab Group with Gruntwork
 2. Install required tools (mise, boilerplate)
-3. Create authentication tokens for GitLab
-4. Set up the infrastructure-live project
-5. Configure GitLab CI/CD for Pipelines
-6. Create OIDC providers and IAM roles in AWS
-7. Authorize your GitLab group with Gruntwork
+3. Install Gruntwork Pipelines in Your Repository
+4. Install AWS OIDC Provider and IAM Roles for Pipelines
+5. Complete the setup
 
 ## Detailed Setup Instructions
 
-### Step 1: Install Required Tools
+### Step 1: Authorize Your GitLab Group with Gruntwork
+
+To use Gruntwork Pipelines with GitLab, your group needs authorization from Gruntwork:
+
+1. Email your Gruntwork account manager or support@gruntwork.io with:
+   - Your GitLab group name(s)
+   - The GitLab instance URL (e.g., https://gitlab.com)
+   - Your organization name
+
+2. Wait for confirmation that your group has been authorized.
+
+### Step 2: Install Required Tools
 
 First, you'll need to install [mise](https://mise.jdx.dev/), a powerful environment manager that will help set up the required tools:
 
@@ -66,7 +76,7 @@ First, you'll need to install [mise](https://mise.jdx.dev/), a powerful environm
    mise which boilerplate
    ```
 
-### Step 3: Setup Your Infrastructure-Live Repository
+### Step 3: Install Gruntwork Pipelines in Your Repository
 
 1. Create a new project/repository in your GitLab group (or use an existing one)
 
@@ -109,18 +119,8 @@ First, you'll need to install [mise](https://mise.jdx.dev/), a powerful environm
    terragrunt run-all apply
    ```
 
-### Step 5: Authorize Your GitLab Group with Gruntwork
 
-To use Gruntwork Pipelines with GitLab, your group needs authorization from Gruntwork:
-
-1. Email your Gruntwork account manager or support@gruntwork.io with:
-   - Your GitLab group name(s)
-   - The GitLab instance URL (e.g., https://gitlab.com)
-   - Your organization name
-
-2. Wait for confirmation that your group has been authorized.
-
-### Step 6: Complete the Setup
+### Step 5: Complete the Setup
 
 1. Return to GitLab and create a merge request with your changes
 2. Review the configuration with your team
