@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.73.3" lastModifiedVersion="0.72.1"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.74.2" lastModifiedVersion="0.72.1"/>
 
 # EKS EBS CSI Driver Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.3/modules/eks-ebs-csi-driver" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.2/modules/eks-ebs-csi-driver" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.72.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform module installs the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to an EKS cluster as an EKS Managed AddOn. The EBS CSI Driver manages the lifecycle of EBS Volumes when used as Kubernetes Volumes. The EBS CSI Driver is enabled by default in EKS clusters &gt;= `1.23`, but not installed. The EBS CSI Driver was installed by default on earlier versions of EKS. This module will create all of the required resources to run the EBS CSI Driver and can be configured as needed without the bounds of the EBS CSI Driver as a Managed AddOn. See the [official documentation](https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html) for more details.
 
-This module is exposed directly on the [eks-cluster-control](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.3/modules/eks-cluster-control-plane/) module as with the other available EKS AddOns, but this module can also be used independently by toggling the `enable_ebs_csi_driver` to `false` (`false` by default on the `eks-control-plane` module) on the `eks-control-plane` module and instead declaring this module elsewhere within the codebase.
+This module is exposed directly on the [eks-cluster-control](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.2/modules/eks-cluster-control-plane/) module as with the other available EKS AddOns, but this module can also be used independently by toggling the `enable_ebs_csi_driver` to `false` (`false` by default on the `eks-control-plane` module) on the `eks-control-plane` module and instead declaring this module elsewhere within the codebase.
 
 > NOTE: currently enabling/deploying this module in a new cluster will take ~15 mins to deploy due to a limitation on the AWS side. The health status of the AddOn itself isn't reported in a timely manner which causes the deployment to take extra time even though the AddOn is deployed and healthy. Please be aware of this as it will increase the initial deployment time of a new EKS cluster.
 
@@ -36,7 +36,7 @@ This module is exposed directly on the [eks-cluster-control](https://github.com/
 
 module "eks_ebs_csi_driver" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-ebs-csi-driver?ref=v0.73.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-ebs-csi-driver?ref=v0.74.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -110,7 +110,7 @@ module "eks_ebs_csi_driver" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-ebs-csi-driver?ref=v0.73.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-ebs-csi-driver?ref=v0.74.2"
 }
 
 inputs = {
@@ -383,11 +383,11 @@ The latest available version of the EBS CSI AddOn.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.3/modules/eks-ebs-csi-driver/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.3/modules/eks-ebs-csi-driver/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.73.3/modules/eks-ebs-csi-driver/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.2/modules/eks-ebs-csi-driver/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.2/modules/eks-ebs-csi-driver/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.2/modules/eks-ebs-csi-driver/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8e57c24b34db498723401c3f6060aba0"
+  "hash": "fba49494a2ecf594437148ad705653e0"
 }
 ##DOCS-SOURCER-END -->
