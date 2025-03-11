@@ -1,3 +1,5 @@
+import CustomizableValue from '/src/components/CustomizableValue';
+
 # Adding Pipelines to a GitLab Project
 
 This guide walks you through the process of adding Gruntwork Pipelines to a GitLab project. By the end, you'll have a fully configured GitLab CI/CD pipeline that can deploy infrastructure changes automatically.
@@ -6,22 +8,22 @@ This guide walks you through the process of adding Gruntwork Pipelines to a GitL
 
 Before you begin, make sure you have:
 
-- Access to the [Gruntwork Developer Portal](https://app.gruntwork.io/)
 - Basic familiarity with Git, GitLab, and infrastructure as code concepts
-- Access to an AWS account where you can create IAM roles and OIDC providers
-- Completed the [Pipelines Auth setup for GitLab](/2.0/docs/pipelines/installation/viamachineusers#gitlab)
-- Local access to Gruntwork's GitHub repositories, namely [boilerplate](https://github.com/gruntwork-io/boilerplate) and the [architecture catalog](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/)
+- Access to one (or many) AWS account(s) where you have permission to create IAM roles and OIDC providers
+- Completed the [Pipelines Auth setup for GitLab](/2.0/docs/pipelines/installation/viamachineusers#gitlab) and setup a machine user with appropriate PAT tokens
+- Local access to Gruntwork's GitHub repositories, specifically [boilerplate](https://github.com/gruntwork-io/boilerplate) and the [architecture catalog](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/)
 
 ## Setup Process Overview
 
 Setting up Gruntwork Pipelines for GitLab involves these main steps:
 
 (prerequisite) Complete the [Pipelines Auth setup for GitLab](/2.0/docs/pipelines/installation/viamachineusers#gitlab)
-1. Authorize Your GitLab Group with Gruntwork
-2. Install required tools (mise, boilerplate)
-3. Install Gruntwork Pipelines in Your Repository
-4. Install AWS OIDC Provider and IAM Roles for Pipelines
-5. Complete the setup
+
+1. [Authorize Your GitLab Group with Gruntwork](#step-1-authorize-your-gitlab-group-with-gruntwork)
+2. [Install required tools (mise, boilerplate)](#step-2-install-required-tools)
+3. [Install Gruntwork Pipelines in Your Repository](#step-3-install-gruntwork-pipelines-in-your-repository)
+4. [Install AWS OIDC Provider and IAM Roles for Pipelines](#step-4-install-aws-oidc-provider-and-iam-roles-for-pipelines)
+5. [Complete the setup](#step-5-complete-the-setup)
 
 ## Detailed Setup Instructions
 
@@ -30,7 +32,7 @@ Setting up Gruntwork Pipelines for GitLab involves these main steps:
 To use Gruntwork Pipelines with GitLab, your group needs authorization from Gruntwork:
 
 1. Email your Gruntwork account manager or support@gruntwork.io with:
-   - Your GitLab group name(s)
+   - Your GitLab group name(s) e.g. <CustomizableValue id="GITLAB_GROUP_NAME" />
    - The GitLab instance URL (e.g., https://gitlab.com)
    - Your organization name
 
@@ -78,22 +80,26 @@ First, you'll need to install [mise](https://mise.jdx.dev/), a powerful environm
 
 ### Step 3: Install Gruntwork Pipelines in Your Repository
 
-1. Create a new project/repository in your GitLab group (or use an existing one)
+1. Identify where you want to install Gruntwork Pipelines, for example create a new project/repository in your GitLab group (or use an existing one) named <CustomizableValue id="REPOSITORY_NAME" />
 
-2. Clone the repository to your local machine:
+2. Clone the repository to your local machine if it's not already cloned:
    ```bash
-   git clone git@gitlab.com:your-group/infrastructure-live-root.git
-   cd infrastructure-live-root
+   git clone git@gitlab.com:$$GITLAB_GROUP_NAME$$/$$REPOSITORY_NAME$$.git
+   cd $$REPOSITORY_NAME$$
+   ```
+3. Create a new branch for your changes:
+   ```bash
+   git checkout -b gruntwork-pipelines
    ```
 
-3. Download the sample vars.yaml file:
+4. Download the sample vars.yaml file:
    ```bash
    curl -O https://raw.githubusercontent.com/gruntwork-io/terraform-aws-architecture-catalog/main/examples/gitlab-pipelines/vars.yaml
    ```
 
 4. Edit the `vars.yaml` file to customize it for your environment
 
-5. `cd` to the root of the repository where you wish to install Gruntwork Pipelines.  Run the boilerplate tool to generate your repository structure:
+5. `cd` to the root of <CustomizableValue id="REPOSITORY_NAME" /> where you wish to install Gruntwork Pipelines.  Run the boilerplate tool to generate your repository structure:
    ```bash
    boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/gitlab-pipelines-infrastructure-live-root/?ref=v2.12.6" --output-folder . --var-file vars.yaml --non-interactive
    ```
@@ -105,12 +111,21 @@ First, you'll need to install [mise](https://mise.jdx.dev/), a powerful environm
    git clone git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git
    ```
 
+6. Commit the changes:
+   ```bash
+   git add .
+   git commit -m "[skip ci] Add Gruntwork Pipelines"
+   git push origin gruntwork-pipelines
+   ```
+
+7. Create a merge request in GitLab and review the changes. 
+
 ### Step 4: Install AWS OIDC Provider and IAM Roles for Pipelines
 
 
 1. Navigate to the `_global` folder under each account in your repository and review the Terraform files that were created:
    - The GitLab OIDC identity provider in AWS
-   - IAM roles for your infrastructure-live repository (`root-pipelines-plan` and `root-pipelines-apply`)
+   - IAM roles for your the account (`root-pipelines-plan` and `root-pipelines-apply`)
 
 2. Apply these configurations to create the required AWS resources:
    ```bash
@@ -122,15 +137,9 @@ First, you'll need to install [mise](https://mise.jdx.dev/), a powerful environm
 
 ### Step 5: Complete the Setup
 
-1. Return to GitLab and create a merge request with your changes
-2. Review the configuration with your team
-3. Ensure the `PIPELINES_GITLAB_TOKEN` (and optionally, `PIPELINES_GITLAB_READ_TOKEN`) is set as a CI/CD variable to your group if you haven't already (see the [Machine Users setup guide](/2.0/docs/pipelines/installation/viamachineusers#gitlab) for details)
-4. Merge your changes with the `[skip ci]` tag to avoid running the pipeline before it's fully configured:
-   ```bash
-   git commit --amend -m "Add Gruntwork Pipelines configuration [skip ci]"
-   ```
-
-5. Test your setup by creating a new branch with some sample infrastructure code and creating a merge request.
+1. Return to GitLab and merge the merge request with your changes.
+2. Ensure the `PIPELINES_GITLAB_TOKEN` (and optionally, `PIPELINES_GITLAB_READ_TOKEN`) is set as a CI/CD variable to your group if you haven't already (see the [Machine Users setup guide](/2.0/docs/pipelines/installation/viamachineusers#gitlab) for details)
+3. Test your setup by creating a new branch with some sample infrastructure code and creating a merge request.
 
 ## Next Steps
 
