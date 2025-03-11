@@ -1,51 +1,151 @@
-# Initial Setup
+# Adding Pipelines to a GitLab Project
 
-To configure Gruntwork Pipelines in a new GitHub repository, complete the following steps:
+This guide walks you through the process of adding Gruntwork Pipelines to a GitLab project. By the end, you'll have a fully configured GitLab CI/CD pipeline that can deploy infrastructure changes automatically.
 
-1. Create your `infrastructure-live-root` repository using Gruntwork's GitHub template.
-2. Configure the Gruntwork.io GitHub App to authorize your `infrastructure-live-root` repository, or ensure that the appropriate machine user tokens are set up as repository or organization secrets.
-3. Update the Bootstrap Workflow to configure your AWS settings.
-4. Execute the Bootstrap Workflow in your `infrastructure-live-root` repository to generate pull requests and additional repositories.
+## Prerequisites
 
-## Creating the infrastructure-live-root repository
+Before you begin, make sure you have:
 
-Gruntwork provides a pre-configured git repository template that incorporates best practices while allowing for customization.
+- Access to the [Gruntwork Developer Portal](https://app.gruntwork.io/)
+- Basic familiarity with Git, GitLab, and infrastructure as code concepts
+- Access to an AWS account where you can create IAM roles and OIDC providers
+- Completed the [Pipelines Auth setup for GitLab](/2.0/docs/pipelines/installation/viamachineusers#gitlab)
+- Local access to Gruntwork's GitHub repositories, namely [boilerplate](https://github.com/gruntwork-io/boilerplate) and the [architecture catalog](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/)
 
-[infrastructure-live-root-template](https://github.com/gruntwork-io/infrastructure-live-root-template)
+## Setup Process Overview
 
-This template generates an `infrastructure-live-root` repository with a bootstrap workflow designed to scaffold a best-practices Terragrunt configuration. It includes patterns for module defaults, global variables, and account baselines. Additionally, it integrates Gruntwork Pipelines, which can be removed if not required.
+Setting up Gruntwork Pipelines for GitLab involves these main steps:
 
-The workflow can optionally scaffold the `infrastructure-live-access-control` and `infrastructure-catalog` repositories.
+1. Complete the [Pipelines Auth setup for GitLab](/2.0/docs/pipelines/installation/viamachineusers#gitlab)
+2. Install required tools (mise, boilerplate)
+3. Create authentication tokens for GitLab
+4. Set up the infrastructure-live project
+5. Configure GitLab CI/CD for Pipelines
+6. Create OIDC providers and IAM roles in AWS
+7. Authorize your GitLab group with Gruntwork
 
-Navigate to the template repository and select **Use this template** -> **Create a new Repository**. Choose your organization as the owner, add a description if desired, set the repository to **private**, and click **Create repository**.
+## Detailed Setup Instructions
 
-## Configuring Gruntwork app settings
+### Step 1: Install Required Tools
 
-Use the Gruntwork.io GitHub App to [add the repository as an Infra Root repository](/2.0/docs/pipelines/installation/viagithubapp#configuration).
+First, you'll need to install [mise](https://mise.jdx.dev/), a powerful environment manager that will help set up the required tools:
 
-If using the [machine user model](/2.0/docs/pipelines/installation/viamachineusers.md), ensure the `INFRA_ROOT_WRITE_TOKEN` (and `ORG_REPO_ADMIN_TOKEN` for enterprise customers) is added to the repository as a secret or configured as an organization secret.
+1. Install mise by following the [getting started guide](https://mise.jdx.dev/getting-started.html)
 
-## Updating the Bootstrap Workflow
+2. Activate mise in your shell:
+   ```bash
+   # For Bash
+   echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc
 
-Return to your `infrastructure-live-root` repository and follow the `README` instructions to update the bootstrap workflow for IaC Foundations. Provide details about your AWS organization, accounts, and default values for new account provisioning.
+   # For Zsh
+   echo 'eval "$(~/.local/bin/mise activate zsh)"' >> ~/.zshrc
 
-## Running the workflow
+   # For Fish
+   echo 'mise activate fish | source' >> ~/.config/fish/config.fish
+   ```
 
-Follow the instructions in your `infrastructure-live-root` repository to execute the Bootstrap Workflow. Gruntwork support is available to address any questions that arise. During the workflow execution, you can choose to create the `infrastructure-live-access-control` and `infrastructure-catalog` repositories. These repositories will be created in your GitHub organization using values defined in the workflow configuration.
+3. Install the boilerplate tool, which will generate the project structure:
+   ```bash
+   # For mise version BEFORE 2025.2.10
+   mise plugin add boilerplate https://github.com/gruntwork-io/asdf-boilerplate.git
 
-### Infrastructure live access control
+   # For mise version 2025.2.10+
+   mise plugin add boilerplate
 
-This repository is primarily for Enterprise customers but is recommended for all users. When running the Bootstrap Workflow in your `infrastructure-live-root` repository, select the option to "Bootstrap the infrastructure-access-control repository."
+   mise use boilerplate@0.6.0
+   ```
 
-### Infrastructure catalog
+4. Verify the installation:
+   ```bash
+   boilerplate --version
 
-The Bootstrap Workflow also creates an empty `infrastructure-catalog` repository. This repository is used to store Terraform/OpenTofu modules authored by your organization for internal use. During the Bootstrap Workflow execution in your `infrastructure-live-root` repository, select the option to "Bootstrap the infrastructure-catalog repository."
+   # If that doesn't work, try:
+   mise x -- boilerplate --version
 
-## Completing instructions in Bootstrap Pull Requests
+   # If that still doesn't work, check where boilerplate is installed:
+   mise which boilerplate
+   ```
 
-Each of your repositories will contain a Bootstrap Pull Request. Follow the instructions in these Pull Requests to finalize the setup of your IaC repositories.
+### Step 3: Setup Your Infrastructure-Live Repository
 
-:::info
+1. Create a new project/repository in your GitLab group (or use an existing one)
 
-The bootstrapping pull requests include pre-configured files, such as a `mise.toml` file that specifies versions of OpenTofu and Terragrunt. Ensure you review and update these configurations to align with your organization's requirements.
-:::
+2. Clone the repository to your local machine:
+   ```bash
+   git clone git@gitlab.com:your-group/infrastructure-live-root.git
+   cd infrastructure-live-root
+   ```
+
+3. Download the sample vars.yaml file:
+   ```bash
+   curl -O https://raw.githubusercontent.com/gruntwork-io/terraform-aws-architecture-catalog/main/examples/gitlab-pipelines/vars.yaml
+   ```
+
+4. Edit the `vars.yaml` file to customize it for your environment
+
+5. `cd` to the root of the repository where you wish to install Gruntwork Pipelines.  Run the boilerplate tool to generate your repository structure:
+   ```bash
+   boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/gitlab-pipelines-infrastructure-live-root/?ref=v2.12.6" --output-folder . --var-file vars.yaml --non-interactive
+   ```
+
+   If you encounter SSH issues, verify your SSH access to GitHub:
+   ```bash
+   ssh -T git@github.com
+   # or try cloning manually
+   git clone git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git
+   ```
+
+### Step 4: Install AWS OIDC Provider and IAM Roles for Pipelines
+
+
+1. Navigate to the `_global` folder under each account in your repository and review the Terraform files that were created:
+   - The GitLab OIDC identity provider in AWS
+   - IAM roles for your infrastructure-live repository (`root-pipelines-plan` and `root-pipelines-apply`)
+
+2. Apply these configurations to create the required AWS resources:
+   ```bash
+   cd $ACCOUNT/_global/
+   terragrunt run-all plan
+   terragrunt run-all apply
+   ```
+
+### Step 5: Authorize Your GitLab Group with Gruntwork
+
+To use Gruntwork Pipelines with GitLab, your group needs authorization from Gruntwork:
+
+1. Email your Gruntwork account manager or support@gruntwork.io with:
+   - Your GitLab group name(s)
+   - The GitLab instance URL (e.g., https://gitlab.com)
+   - Your organization name
+
+2. Wait for confirmation that your group has been authorized.
+
+### Step 6: Complete the Setup
+
+1. Return to GitLab and create a merge request with your changes
+2. Review the configuration with your team
+3. Ensure the `PIPELINES_GITLAB_TOKEN` (and optionally, `PIPELINES_GITLAB_READ_TOKEN`) is set as a CI/CD variable to your group if you haven't already (see the [Machine Users setup guide](/2.0/docs/pipelines/installation/viamachineusers#gitlab) for details)
+4. Merge your changes with the `[skip ci]` tag to avoid running the pipeline before it's fully configured:
+   ```bash
+   git commit --amend -m "Add Gruntwork Pipelines configuration [skip ci]"
+   ```
+
+5. Test your setup by creating a new branch with some sample infrastructure code and creating a merge request.
+
+## Next Steps
+
+After setting up Pipelines, you can:
+
+- [Deploy your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change)
+- [Learn how to run plan and apply operations](/2.0/docs/pipelines/guides/running-plan-apply)
+- [Extend Pipelines with custom actions](/2.0/docs/pipelines/guides/extending-pipelines)
+
+## Troubleshooting
+
+If you encounter issues during setup:
+
+- Ensure your GitLab CI user has the correct permissions to your group and projects
+- Verify the `PIPELINES_GITLAB_TOKEN` is set correctly as a CI/CD variable and is *NOT* marked as protected
+- Confirm your GitLab group has been authorized by Gruntwork for Pipelines usage
+
+For further assistance, contact [support@gruntwork.io](mailto:support@gruntwork.io).
