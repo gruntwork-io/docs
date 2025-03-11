@@ -254,7 +254,7 @@ Invite `ci-user-read-only` to your `infrastructure-live-root` repository with re
 Generate the following token for the `ci-read-only-user`:
 
 **Checklist:**
-<PersistentCheckbox id="via-machine-users-4" label="PIPELINES_READ_TOKEN created under ci-read-only-user" />
+<PersistentCheckbox id="via-machine-users-5" label="PIPELINES_READ_TOKEN created under ci-read-only-user" />
 
 
 
@@ -271,7 +271,7 @@ This token must have `repo` scopes. Gruntwork recommends setting expiration to 9
 Make sure both machine users are added to your team in Gruntwork’s GitHub Organization. Refer to the [instructions for inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user’s GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id) for guidance.
 
 **Checklist:**
-<PersistentCheckbox id="via-machine-users-4" label="Machine users invited to Gruntwork organization" />
+<PersistentCheckbox id="via-machine-users-6" label="Machine users invited to Gruntwork organization" />
 
 ## Configure secrets for GitHub Actions
 
@@ -388,7 +388,7 @@ For more information on creating and using GitHub Actions Repository secrets, re
 <TabItem value="gitlab" label="GitLab">
 
 
-For GitLab, Pipelines requires a single machine user with `api` access. This user will be used to authenticate API calls and access repositories within your GitLab group.
+For GitLab, Pipelines requires a single machine user with `api` and `read_repository` access. This user will be used to authenticate API calls and access repositories within your GitLab group.
 
 ### Creating the CI User
 
@@ -402,10 +402,13 @@ For GitLab, Pipelines requires a single machine user with `api` access. This use
 
 ### Creating the Access Token
 
-Generate a Personal Access Token for the CI user with the following scopes:
-- `api` - For making API calls to e.g. create comments on merge requests
+Gruntwork recommends [creating](https://docs.gitlab.com/user/profile/personal_access_tokens/#create-a-personal-access-token) two Personal Access Tokens for the CI user as best practice:
+- **PIPELINES_GITLAB_TOKEN** token with `api` scope for making API calls to e.g. create comments on merge requests
+- **PIPELINES_GITLAB_READ_TOKEN** token with `read_repository` scope for accessing GitLab repositories e.g your catalog or infrastructure modules
 
-This token will be stored as the `PIPELINES_GITLAB_TOKEN` in your CI/CD variables.
+You may however generate a single token with both `api` and `read_repository` scopes if you prefer and use it for both purposes.
+
+These tokens will be stored in your CI/CD variables.
 
 :::tip
 Set an expiration date according to your organization's security policies. We recommend 90 days as a balance between security and maintenance.
@@ -413,23 +416,24 @@ Set an expiration date according to your organization's security policies. We re
 
 **Checklist:**
 <PersistentCheckbox id="via-machine-users-gitlab-3" label="PIPELINES_GITLAB_TOKEN created" />
+<PersistentCheckbox id="via-machine-users-gitlab-4" label="PIPELINES_GITLAB_READ_TOKEN created" />
 
 ### Configure CI/CD Variables
 
-Add the `PIPELINES_GITLAB_TOKEN` as a CI/CD variable at the group level:
+Add the `PIPELINES_GITLAB_TOKEN` and `PIPELINES_GITLAB_READ_TOKEN` as CI/CD variables at the group or project level:
 
-1. Navigate to your GitLab group's **Settings > CI/CD**
-2.  Expand the **Variables** section
+1. Navigate to your GitLab group or project's **Settings > CI/CD**
+2. Expand the **Variables** section
 3. Click **Add variable**
-4. Mark the variable as **Masked**
+4. Mark the variables as **Masked**
 5. Leave both the "Protect variable" and "Expand variable reference" options unchecked
 6. Select the environments where this variable should be available
-7. Set the key as `PIPELINES_GITLAB_TOKEN`
+7. Set the key to the name of the token e.g. `PIPELINES_GITLAB_TOKEN` or `PIPELINES_GITLAB_READ_TOKEN`
 8. Set the value as the Personal Access Token generated in the [Creating the Access Token](#creating-the-access-token) section
 
 **Checklist:**
-<PersistentCheckbox id="via-machine-users-gitlab-4" label="PIPELINES_GITLAB_TOKEN added to CI/CD variables" />
-
+<PersistentCheckbox id="via-machine-users-gitlab-5" label="PIPELINES_GITLAB_TOKEN added to CI/CD variables" />
+<PersistentCheckbox id="via-machine-users-gitlab-6" label="PIPELINES_GITLAB_READ_TOKEN added to CI/CD variables" />
 :::caution
 Remember to update this token before it expires to prevent pipeline disruptions.
 :::
