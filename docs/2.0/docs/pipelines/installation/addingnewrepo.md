@@ -1,6 +1,6 @@
 # Initial Setup
 
-To configure Gruntwork Pipelines in a new repository, complete the following steps:
+To configure Gruntwork Pipelines in a new GitHub repository, complete the following steps:
 
 1. Create your `infrastructure-live-root` repository using Gruntwork's GitHub template.
 2. Configure the Gruntwork.io GitHub App to authorize your `infrastructure-live-root` repository, or ensure that the appropriate machine user tokens are set up as repository or organization secrets.

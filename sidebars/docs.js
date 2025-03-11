@@ -232,20 +232,39 @@ const sidebar = [
         collapsed: false,
         items: [
           {
-            label: "Creating a New Repository with Pipelines",
-            type: "doc",
-            id: "2.0/docs/pipelines/installation/addingnewrepo",
+            type: "category",
+            label: "GitHub",
+            collapsed: false,
+            items: [
+              {
+                label: "Creating a New GitHub Repository with Pipelines",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/addingnewrepo",
+              },
+              {
+                label: "Adding Pipelines to an Existing GitHub Repository",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/addingexistingrepo",
+              },
+              {
+                label: "Adding Branch Protection to a Repository",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/branch-protection",
+              },
+            ]
           },
           {
-            label: "Adding Pipelines to an Existing Repository",
-            type: "doc",
-            id: "2.0/docs/pipelines/installation/addingexistingrepo",
-          },
-          {
-            label: "Adding Branch Protection to a Repository",
-            type: "doc",
-            id: "2.0/docs/pipelines/installation/branch-protection",
-          },
+            type: "category",
+            label: "GitLab",
+            collapsed: false,
+            items: [
+              {
+                label: "Adding Pipelines to a GitLab Repository",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/addinggitlabrepo",
+              },
+            ]
+          }
         ],
       },
       {
