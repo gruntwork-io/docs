@@ -22,6 +22,6 @@ Refer to [Component Modules](/2.0/docs/library/concepts/component-modules) for a
 
 Composite modules (previously called "service modules") combine component modules into opinionated, "off-the-shelf" solutions requiring minimal assembly. These modules typically address complete business use cases. For example, the `vpc` composite module deploys a VPC, VPC Flow Logs, and Network ACLs. If the embedded configurations align with your needs, composite modules provide a fast path to production-grade infrastructure.
 
-Composite modules optimize for convenience over control. For example, the `vpc` composite module gives you a fully-configured VPC with all the bells and whistles you need, but it doesn't give you the flexibility to customize every aspect of the VPC.
+Composite modules optimize for convenience over control. For example, the `vpc` composite module gives you a fully configured VPC with all the bells and whistles you need, but it doesn't give you the flexibility to customize every aspect of the VPC.
 
 Refer to [Composite Modules](/2.0/docs/library/concepts/composite-modules) to learn more.

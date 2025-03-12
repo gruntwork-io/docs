@@ -2,7 +2,7 @@
 
 Any OpenTofu/Terraform code that is meant to be reused is called an **OpenTofu module** or **Terraform module**. For example, if you write an OpenTofu file that defines a few resources on AWS that you want to deploy, you can reference that file from a different OpenTofu file using the `module` keyword. In this simple example, it's conventional to say that you've written code to launch an instance of an OpenTofu module.
 
-But it turns out there are two types of OpenTofu/Terraform modules! In this page, we'll talk about **component modules**. We recommend you then read about [composite modules](/composite-modules]. 
+But it turns out there are two types of OpenTofu/Terraform modules! In this page, we'll talk about **component modules**. We recommend you then read about [composite modules](/composite-modules). 
 
 ## About Component Modules
 
