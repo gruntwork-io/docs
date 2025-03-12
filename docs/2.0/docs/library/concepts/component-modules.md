@@ -2,7 +2,7 @@
 
 Any OpenTofu/Terraform code that is meant to be reused is called an **OpenTofu module** or **Terraform module**. For example, if you write an OpenTofu file that defines a few resources on AWS that you want to deploy, you can reference that file from a different OpenTofu file using the `module` keyword. In this simple example, it's conventional to say that you've written code to launch an instance of an OpenTofu module.
 
-But it turns out there are two types of OpenTofu/Terraform modules! In this page, we'll talk about **component modules**. We recommend you then read about [composite modules](/service-modules]. 
+But it turns out there are two types of OpenTofu/Terraform modules! In this page, we'll talk about **component modules**. We recommend you then read about [composite modules](/composite-modules]. 
 
 ## About Component Modules
 
@@ -20,11 +20,11 @@ Consider the [`rds` component module](/reference/modules/terraform-aws-data-stor
 
 While this component module addresses key elements of an RDS deployment, it does not provide a _complete_ solution. It excludes features like backup policies using AWS Backup, RDS Proxy for connection pooling, and CloudWatch alarms for monitoring. These missing elements are available as separate component modules, such as `backup-plan`, `backup-vault`, and `rds-proxy`, which you can use alongside the `rds` module.
 
-To explore complete solutions combining component modules, refer to [Composite Modules](/2.0/docs/library/concepts/service-modules).
+To explore complete solutions combining component modules, refer to [Composite Modules](/2.0/docs/library/concepts/composite-modules).
 
 ## Component modules are optimized for control
 
-Component modules are designed to be small, narrow in scope, and highly reusable. They prioritize _control_ over _convenience_, making them suitable for diverse use cases. Deploying a complete infrastructure solution often requires assembling multiple component modules. Consider [Composite Modules](/2.0/docs/library/concepts/service-modules) when optimizing for greater convenience.
+Component modules are designed to be small, narrow in scope, and highly reusable. They prioritize _control_ over _convenience_, making them suitable for diverse use cases. Deploying a complete infrastructure solution often requires assembling multiple component modules. Consider [Composite Modules](/2.0/docs/library/concepts/composite-modules) when optimizing for greater convenience.
 
 For insights on component versus composite modules, see [Introducing: The Gruntwork Module, Service, and Architecture Catalogs](https://blog.gruntwork.io/introducing-the-gruntwork-module-service-and-architecture-catalogs-eb3a21b99f70).
 
@@ -32,7 +32,7 @@ For insights on component versus composite modules, see [Introducing: The Gruntw
 
 Component modules are typically generic. Instead of deploying a single component module, users write code combining many component modules for specific use cases. For instance, one component module might deploy a Kubernetes control plane while another deploys Kubernetes worker nodes. A Kubernetes cluster requires both component modules.
 
-We recommend using [Composite Modules](/2.0/docs/library/concepts/service-modules) for everyday use cases, reserving the entire module catalog available for more complex needs.
+We recommend using [Composite Modules](/2.0/docs/library/concepts/composite-modules) for everyday use cases, reserving the entire module catalog available for more complex needs.
 
 ## Where to find the component modules
 
