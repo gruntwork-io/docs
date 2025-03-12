@@ -672,6 +672,16 @@ module "eks_cluster_control_plane" {
   # then you must use the endpoint_public_access_cidrs.
   endpoint_private_access_cidrs = []
 
+  # A list of prefix lists that should be allowed network access to the private
+  # Kubernetes API endpoint. Note that worker nodes automatically get access to
+  # the private endpoint, so this controls additional access. Note that this
+  # only restricts network reachability to the API, and does not account for
+  # authentication to the API. Note also that this only controls access to the
+  # private API endpoint, which is used for network access from inside the VPC.
+  # If you want to control access to the Kubernetes API from outside the VPC,
+  # then you must use the endpoint_public_access_cidrs.
+  endpoint_private_access_prefix_lists = []
+
   # Same as endpoint_private_access_cidrs, but exposes access to the provided
   # list of security groups instead of CIDR blocks. The keys in the map are
   # unique user defined identifiers that can be used for resource tracking
@@ -725,6 +735,9 @@ module "eks_cluster_control_plane" {
   # Setting this variable will configure Kubernetes to encrypt Secrets using
   # this KMS key. Can only be used on clusters created after 2020-03-05.
   secret_envelope_encryption_kms_key_arn = null
+
+  # The name of the Security Group to create for the EKS Cluster.
+  security_group_name = null
 
   # When true, precreate the CloudWatch Log Group to use for EKS control plane
   # logging. This is useful if you wish to customize the CloudWatch Log Group
@@ -1094,6 +1107,16 @@ inputs = {
   # then you must use the endpoint_public_access_cidrs.
   endpoint_private_access_cidrs = []
 
+  # A list of prefix lists that should be allowed network access to the private
+  # Kubernetes API endpoint. Note that worker nodes automatically get access to
+  # the private endpoint, so this controls additional access. Note that this
+  # only restricts network reachability to the API, and does not account for
+  # authentication to the API. Note also that this only controls access to the
+  # private API endpoint, which is used for network access from inside the VPC.
+  # If you want to control access to the Kubernetes API from outside the VPC,
+  # then you must use the endpoint_public_access_cidrs.
+  endpoint_private_access_prefix_lists = []
+
   # Same as endpoint_private_access_cidrs, but exposes access to the provided
   # list of security groups instead of CIDR blocks. The keys in the map are
   # unique user defined identifiers that can be used for resource tracking
@@ -1147,6 +1170,9 @@ inputs = {
   # Setting this variable will configure Kubernetes to encrypt Secrets using
   # this KMS key. Can only be used on clusters created after 2020-03-05.
   secret_envelope_encryption_kms_key_arn = null
+
+  # The name of the Security Group to create for the EKS Cluster.
+  security_group_name = null
 
   # When true, precreate the CloudWatch Log Group to use for EKS control plane
   # logging. This is useful if you wish to customize the CloudWatch Log Group
@@ -1941,6 +1967,15 @@ A list of CIDR blocks that should be allowed network access to the private Kuber
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="endpoint_private_access_prefix_lists" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of prefix lists that should be allowed network access to the private Kubernetes API endpoint. Note that worker nodes automatically get access to the private endpoint, so this controls additional access. Note that this only restricts network reachability to the API, and does not account for authentication to the API. Note also that this only controls access to the private API endpoint, which is used for network access from inside the VPC. If you want to control access to the Kubernetes API from outside the VPC, then you must use the endpoint_public_access_cidrs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="endpoint_private_access_security_group_ids" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -2026,6 +2061,15 @@ When true, configures control plane services to run on Fargate so that the clust
 <HclListItemDescription>
 
 ARN for KMS Key to use for envelope encryption of Kubernetes Secrets. By default Secrets in EKS are encrypted at rest using shared AWS managed keys. Setting this variable will configure Kubernetes to encrypt Secrets using this KMS key. Can only be used on clusters created after 2020-03-05.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="security_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the Security Group to create for the EKS Cluster.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -2364,6 +2408,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.74.2/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a1236c42c7f74427468f9695c72e4bdf"
+  "hash": "959099cbc60e12a8c339a8bac98ba509"
 }
 ##DOCS-SOURCER-END -->
