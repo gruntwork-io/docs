@@ -368,5 +368,13 @@ export const redirects = [
     {
         from: '/2.0/docs/pipelines/architecture/github-workflows',
         to: '/2.0/docs/pipelines/architecture/ci-workflows'
+    },
+    {
+        from: '/2.0/docs/library/concepts/modules',
+        to: '/2.0/docs/library/concepts/component-modules'
+    },
+    {
+        from: '/2.0/docs/library/concepts/service-modules',
+        to: '/2.0/docs/library/concepts/composite-modules'
     }
 ]
