@@ -594,14 +594,14 @@ const sidebar = [
     },
     items: [
       {
-        label: "Modules",
+        label: "Component Modules",
         type: "doc",
-        id: "2.0/docs/library/concepts/modules",
+        id: "2.0/docs/library/concepts/component-modules",
       },
       {
-        label: "Service Modules",
+        label: "Composite Modules",
         type: "doc",
-        id: "2.0/docs/library/concepts/service-modules",
+        id: "2.0/docs/library/concepts/composite-modules",
       },
       {
         label: "Module Defaults",
