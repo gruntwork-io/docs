@@ -9,19 +9,19 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.12" lastModifiedVersion="0.75.10"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.13" lastModifiedVersion="0.75.10"/>
 
 # AWS Config Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules/aws-config-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.13/modules/aws-config-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an S3 bucket for storing AWS Config data, including all the appropriate lifecycle, encryption, and
 permission settings for AWS Config.
 
-This module is not meant to be used directly. Instead, it's used under the hood in the [aws-config](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules/aws-config)
-and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules/account-baseline-root) modules. Please see those modules for more information.
+This module is not meant to be used directly. Instead, it's used under the hood in the [aws-config](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.13/modules/aws-config)
+and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.13/modules/account-baseline-root) modules. Please see those modules for more information.
 
 ## Sample Usage
 
@@ -36,7 +36,7 @@ and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-securi
 
 module "aws_config_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v0.75.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v0.75.13"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -153,7 +153,7 @@ module "aws_config_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v0.75.12"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v0.75.13"
 }
 
 inputs = {
@@ -496,11 +496,11 @@ The name of the S3 bucket used by AWS Config to store configuration items.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules/aws-config-bucket/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules/aws-config-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules/aws-config-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.13/modules/aws-config-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.13/modules/aws-config-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.13/modules/aws-config-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "434edddc2b77bd0ff4ea52f6586b2b8f"
+  "hash": "5df53a6ba07b3f9a977c59867875a8c0"
 }
 ##DOCS-SOURCER-END -->
