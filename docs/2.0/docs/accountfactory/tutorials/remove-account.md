@@ -29,19 +29,19 @@ After making all necessary code changes, commit them to Git with **[skip ci]** i
 4. Delete the account request file for each account to be removed
 
     :::danger
-   
-    Make sure you delete the correct account request file and do not attempt to delete more than five accounts at once, as [Control Tower has concurrent operations limit of 5](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/main/modules/landingzone/control-tower-account-factory#resourceinuseexception). 
+
+    Make sure you delete the correct account request file and do not attempt to delete more than five accounts at once, as [Control Tower has concurrent operations limit of 5](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/main/modules/landingzone/control-tower-account-factory#resourceinuseexception).
 
     :::
 
 5. Edit the `accounts.yml` file in the repository to remove data for the accounts being deleted
 6. Remove the targeted account(s) from the Control Tower module in the *management* account by running these commands:
 
-  ```bash
-  cd management/_global/control-tower-multi-account-factory/ # Navigate to the Control Tower module directory
-  terragrunt plan # Verify no accounts are set for destruction but outputs are updated
-  terragrunt apply # Apply the changes.
-  ```
+    ```bash
+    cd management/_global/control-tower-multi-account-factory/ # Navigate to the Control Tower module directory
+    terragrunt plan # Verify no accounts are set for destruction but outputs are updated
+    terragrunt apply # Apply the changes.
+    ```
 7. (Optional)  Remove AWS Transit Gateway (TGW) attachments if the account uses AWS TGW by running:
 
     ```bash
