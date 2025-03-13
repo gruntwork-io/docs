@@ -41,8 +41,6 @@ After making all necessary code changes, commit them to Git with **[skip ci]** i
   cd management/_global/control-tower-multi-account-factory/ # Navigate to the Control Tower module directory
   terragrunt plan # Verify no accounts are set for destruction but outputs are updated
   terragrunt apply # Apply the changes.
-  terragrunt plan # Verify no accounts are set for destruction but outputs are updated
-  terragrunt apply # Apply the changes.
   ```
 7. (Optional)  Remove AWS Transit Gateway (TGW) attachments if the account uses AWS TGW by running:
 
