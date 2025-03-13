@@ -101,7 +101,7 @@ First, you'll need to install [mise](https://mise.jdx.dev/), a powerful environm
 
 5. `cd` to the root of <CustomizableValue id="REPOSITORY_NAME" /> where you wish to install Gruntwork Pipelines.  Run the boilerplate tool to generate your repository structure:
    ```bash
-   boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/gitlab-pipelines-infrastructure-live-root/?ref=v2.12.7" --output-folder . --var-file vars.yaml --non-interactive
+   boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/gitlab-pipelines-infrastructure-live-root/?ref=v2.12.8" --output-folder . --var-file vars.yaml --non-interactive
    ```
 
    If you encounter SSH issues, verify your SSH access to GitHub:
