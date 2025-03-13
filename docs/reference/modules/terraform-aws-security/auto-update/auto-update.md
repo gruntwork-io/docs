@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.11" lastModifiedVersion="0.75.7"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.12" lastModifiedVersion="0.75.7"/>
 
 # Security Modules
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/auto-update" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules/auto-update" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -27,7 +27,7 @@ This module can configure a Linux server to automatically install critical secur
 
 *   Supports Ubuntu 18.04 and 20.04 via [unattended-upgrades](https://help.ubuntu.com/lts/serverguide/automatic-updates.html).
 
-*   Supports Amazon Linux 2, Amazon Linux 2023, and CentOS Stream 9 via [yum-cron](http://man7.org/linux/man-pages/man8/yum-cron.8.html).
+*   Supports Amazon Linux 2, Amazon Linux 2023, and CentOS Stream 9 [yum-cron](http://man7.org/linux/man-pages/man8/yum-cron.8.html).
 
 ## Learn
 
@@ -37,25 +37,23 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [How to install Auto Update](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/auto-update/core-concepts.md#installation)
+*   [How to install Auto Update](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules/auto-update/core-concepts.md#installation)
 
-*   [How Auto Update works on Ubuntu](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/auto-update/core-concepts.md#ubuntu-support)
+*   [How Auto Update works on Ubuntu](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules/auto-update/core-concepts.md#ubuntu-support)
 
-*   [How Auto Update works on Amazon Linux 2](https://github.com/gruntwork-io/terraform-aws-security/blob/v0.75.11/modules/auto-update/core-concepts.md#amazon-linux-2-support)
+*   [How Auto Update works on Amazon Linux 2](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules/auto-update/core-concepts.md#amazon-linux-support)
 
-*   [How Auto Update works on Amazon Linux 2023 and CentOS Stream](https://github.com/gruntwork-io/terraform-aws-security/blob/v0.75.11/modules/auto-update/core-concepts.md#amazon-linux-2023-and-centos-stream-9-support)
+*   [Auto Update Limitations](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules/auto-update/core-concepts.md#limitations)
 
-*   [Auto Update Limitations](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/auto-update/core-concepts.md#limitations)
-
-*   [Core Security Concepts](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/README.adoc#core-concepts)
+*   [Core Security Concepts](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/README.adoc#core-concepts)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -63,7 +61,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [auto-update example](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/examples/auto-update): The `examples/auto-update` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [auto-update example](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/examples/auto-update): The `examples/auto-update` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -74,11 +72,11 @@ If you want to deploy this repo in production, check out the following resources
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/auto-update/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/auto-update/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/auto-update/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules/auto-update/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules/auto-update/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.12/modules/auto-update/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "207b33631c87a1b167c4f961b2163ef9"
+  "hash": "8833bcee17c03e1f5d39270d437001fc"
 }
 ##DOCS-SOURCER-END -->
