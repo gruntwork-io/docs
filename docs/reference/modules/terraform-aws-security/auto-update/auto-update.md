@@ -27,7 +27,7 @@ This module can configure a Linux server to automatically install critical secur
 
 *   Supports Ubuntu 18.04 and 20.04 via [unattended-upgrades](https://help.ubuntu.com/lts/serverguide/automatic-updates.html).
 
-*   Supports Amazon Linux 2, Amazon Linux 2023, and CentOS Stream 9 via [yum-cron](http://man7.org/linux/man-pages/man8/yum-cron.8.html).
+*   Supports Amazon Linux 2, Amazon Linux 2023, and CentOS Stream 9 [yum-cron](http://man7.org/linux/man-pages/man8/yum-cron.8.html).
 
 ## Learn
 
@@ -41,9 +41,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 *   [How Auto Update works on Ubuntu](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/auto-update/core-concepts.md#ubuntu-support)
 
-*   [How Auto Update works on Amazon Linux 2](https://github.com/gruntwork-io/terraform-aws-security/blob/v0.75.11/modules/auto-update/core-concepts.md#amazon-linux-2-support)
-
-*   [How Auto Update works on Amazon Linux 2023 and CentOS Stream](https://github.com/gruntwork-io/terraform-aws-security/blob/v0.75.11/modules/auto-update/core-concepts.md#amazon-linux-2023-and-centos-stream-9-support)
+*   [How Auto Update works on Amazon Linux 2](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/auto-update/core-concepts.md#amazon-linux-support)
 
 *   [Auto Update Limitations](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/auto-update/core-concepts.md#limitations)
 

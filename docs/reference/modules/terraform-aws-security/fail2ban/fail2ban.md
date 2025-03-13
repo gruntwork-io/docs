@@ -18,7 +18,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can configure a Linux server to automatically ban malicious ip addresses from connecting to the server
-via SSH. This module currently supports Ubuntu, Amazon Linux 2, and CentOS (using
+via SSH. This module currently supports Ubuntu, Amazon Linux, and CentOS (using
 [fail2ban](https://www.fail2ban.org)).
 
 The module also optionally creates CloudWatch Metrics to track the number of Banned and Unbanned IP Addresses per AWS
@@ -32,6 +32,6 @@ Instance.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.11/modules/fail2ban/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a67ed50c9549d998b593ca74d58fddb2"
+  "hash": "90dd3c7e255c06a2d52ebd2c0953a767"
 }
 ##DOCS-SOURCER-END -->
