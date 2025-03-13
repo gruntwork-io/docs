@@ -126,11 +126,22 @@ First, you'll need to install [mise](https://mise.jdx.dev/), a powerful environm
 
 2. Apply these configurations to create the required AWS resources:
    ```bash
-   cd $ACCOUNT/_global/
+   cd $$ACCOUNT_NAME$$/_global/
    terragrunt run-all plan
    terragrunt run-all apply
    ```
 
+   :::note
+
+   In the event you already have an OIDC provider for your SCM in the AWS account you can import the existing one:
+
+   ```
+   cd _global/$$ACCOUNT_NAME$$/gitlab-pipelines-openid-connect-provider/
+   terragrunt import "aws_iam_openid_connect_provider.gitlab" "ARN_OF_EXISTING_OIDC_PROVIDER"
+   ```
+
+
+   :::
 
 ### Step 5: Complete the Setup
 
