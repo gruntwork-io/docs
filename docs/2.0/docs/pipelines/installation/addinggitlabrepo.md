@@ -92,10 +92,7 @@ First, you'll need to install [mise](https://mise.jdx.dev/), a powerful environm
    git checkout -b gruntwork-pipelines
    ```
 
-4. Download the sample vars.yaml file:
-   ```bash
-   curl -O https://raw.githubusercontent.com/gruntwork-io/terraform-aws-architecture-catalog/main/examples/gitlab-pipelines/vars.yaml
-   ```
+4. Download the sample [vars.yaml file](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/blob/main/examples/gitlab-pipelines/vars.yaml) to the root of <CustomizableValue id="REPOSITORY_NAME" />
 
 4. Edit the `vars.yaml` file to customize it for your environment
 
