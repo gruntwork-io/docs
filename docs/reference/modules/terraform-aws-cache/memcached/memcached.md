@@ -397,7 +397,6 @@ A set of tags to set for the ElastiCache Replication Group.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -406,6 +405,6 @@ A set of tags to set for the ElastiCache Replication Group.
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/modules/memcached/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b1008ba71f12d548de16150de766054d"
+  "hash": "3840fceb3445208b82f3657d9c02890d"
 }
 ##DOCS-SOURCER-END -->
