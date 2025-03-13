@@ -426,7 +426,7 @@ Add the `PIPELINES_GITLAB_TOKEN` and `PIPELINES_GITLAB_READ_TOKEN` as CI/CD vari
 2. Expand the **Variables** section
 3. Click **Add variable**
 4. Mark the variables as **Masked**
-5. Leave both the "Protect variable" and "Expand variable reference" options unchecked
+5. Leave both the **Protect variable** and **Expand variable reference** options unchecked
 6. Select the environments where this variable should be available
 7. Set the key to the name of the token e.g. `PIPELINES_GITLAB_TOKEN` or `PIPELINES_GITLAB_READ_TOKEN`
 8. Set the value as the Personal Access Token generated in the [Creating the Access Token](#creating-the-access-token) section
