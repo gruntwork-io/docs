@@ -1339,7 +1339,6 @@ Name of the (optionally) created CloudWatch log group for the lambda function.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1348,6 +1347,6 @@ Name of the (optionally) created CloudWatch log group for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d84934d3cea5741a5fe702fda3680153"
+  "hash": "f8da13327af1706792c0ab4846ee826a"
 }
 ##DOCS-SOURCER-END -->

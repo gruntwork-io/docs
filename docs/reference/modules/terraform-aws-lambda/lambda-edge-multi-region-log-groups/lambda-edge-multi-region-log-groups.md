@@ -313,7 +313,6 @@ Map of log group names per region
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -322,6 +321,6 @@ Map of log group names per region
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda-edge-multi-region-log-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6a7f46c477d62fd9dc0b3fe2e971879c"
+  "hash": "f96f58abcd135b923ced7da1fc098239"
 }
 ##DOCS-SOURCER-END -->
