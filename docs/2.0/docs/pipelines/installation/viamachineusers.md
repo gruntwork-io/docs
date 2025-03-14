@@ -398,11 +398,10 @@ For GitLab, Gruntwork Pipelines two CI variables.  The first, the `PIPELINES_GIT
 ### Creating the Access Token
 
 Gruntwork recommends [creating](https://docs.gitlab.com/user/project/settings/project_access_tokens/#create-a-project-access-token) two Project or Group Access Tokens as best practice:
-
-| Token Name                      | Required Scopes                              | Purpose                                                                      |
-| ------------------------------- | -------------------------------------------- | ---------------------------------------------------------------------------- |
-| **PIPELINES_GITLAB_TOKEN**      | `api` (and `ai_features` if using GitLab AI) | Making API calls (e.g., creating comments on merge requests)                 |
-| **PIPELINES_GITLAB_READ_TOKEN** | `read_repository`                            | Accessing GitLab repositories (e.g., your catalog or infrastructure modules) |
+| Token Name                      | Required Scopes                              | Required Role                   | Purpose                                                                      |
+| ------------------------------- | -------------------------------------------- | ------------------------------- | ---------------------------------------------------------------------------- |
+| **PIPELINES_GITLAB_TOKEN**      | `api` (and `ai_features` if using GitLab AI) | Developer, Maintainer, or Owner | Making API calls (e.g., creating comments on merge requests)                 |
+| **PIPELINES_GITLAB_READ_TOKEN** | `read_repository`                            | Any                             | Accessing GitLab repositories (e.g., your catalog or infrastructure modules) |
 
 You may however generate a single token all scopes scopes if you prefer and use it for both purposes.
 
