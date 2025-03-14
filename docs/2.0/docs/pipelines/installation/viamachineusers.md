@@ -85,14 +85,18 @@ GitLab uses access tokens for authentication. There are several types of access 
 2. Project Access Tokens
 3. Group Access Tokens
 
-For Pipelines, we recommend using Personal Access Tokens with carefully scoped permissions.
+For Pipelines, we recommend using Project or Group Access Tokens.
 
-#### Personal Access Tokens
+Note that Project and Group access tokens are only available in certain GitLab licenses.  Specifically:
 
-- Personal Access Tokens provide user-level access and can be scoped to specific APIs and resources.
+[Project Access Tokens](https://docs.gitlab.com/user/project/settings/project_access_tokens/#token-availability)
+* On GitLab SaaS: If you have the Premium or Ultimate license tier, only one project access token is available with a [trial license](https://about.gitlab.com/free-trial/).
+* On GitLab Self-Managed instances: With any license tier. If you have the Free tier, consider [restricting the creation of project access tokens](https://docs.gitlab.com/user/project/settings/project_access_tokens/#restrict-the-creation-of-project-access-tokens) to lower potential abuse.
 
-- They can be created with varying expiration periods or set to never expire.
+[Group Access Tokens](https://docs.gitlab.com/user/group/settings/group_access_tokens/)
 
+* On GitLab.com, you can use group access tokens if you have the Premium or Ultimate license tier. Group access tokens are not available with a [trial license](https://about.gitlab.com/free-trial/).
+* On GitLab Dedicated and self-managed instances, you can use group access tokens with any license tier.
 
 </TabItem>
 </Tabs>
@@ -388,27 +392,25 @@ For more information on creating and using GitHub Actions Repository secrets, re
 <TabItem value="gitlab" label="GitLab">
 
 
-For GitLab, Pipelines requires a single machine user with `api` and `read_repository` access. This user will be used to authenticate API calls and access repositories within your GitLab group.
+For GitLab, Gruntwork Pipelines two CI variables.  The first, the `PIPELINES_GITLAB_TOKEN` requires the `Developer`, `Maintainer` or `Owner` role and the scopes listed below. This token will be used to authenticate API calls and access repositories within your GitLab group.  The second, the `PIPELINES_GITLAB_READ_TOKEN` will be used to access your own code within GitLab.  If not set, Pipelines will default to the `CI_JOB_TOKEN` when accessing internal GitLab hosted code.
 
-### Creating the CI User
-
-1. Create a dedicated GitLab user account to serve as your CI user
-2. Add this user to your GitLab group with appropriate permissions:
-   - Developer access to your infrastructure repositories
-
-**Checklist:**
-<PersistentCheckbox id="via-machine-users-gitlab-1" label="GitLab CI user created" />
-<PersistentCheckbox id="via-machine-users-gitlab-2" label="CI user added to GitLab group" />
 
 ### Creating the Access Token
 
-Gruntwork recommends [creating](https://docs.gitlab.com/user/profile/personal_access_tokens/#create-a-personal-access-token) two Personal Access Tokens for the CI user as best practice:
-- **PIPELINES_GITLAB_TOKEN** token with `api` scope for making API calls to e.g. create comments on merge requests
-- **PIPELINES_GITLAB_READ_TOKEN** token with `read_repository` scope for accessing GitLab repositories e.g your catalog or infrastructure modules
+Gruntwork recommends [creating](https://docs.gitlab.com/user/project/settings/project_access_tokens/#create-a-project-access-token) two Project or Group Access Tokens as best practice:
+| Token Name                      | Required Scopes                              | Required Role                   | Purpose                                                                      |
+| ------------------------------- | -------------------------------------------- | ------------------------------- | ---------------------------------------------------------------------------- |
+| **PIPELINES_GITLAB_TOKEN**      | `api` (and `ai_features` if using GitLab AI) | Developer, Maintainer, or Owner | Making API calls (e.g., creating comments on merge requests)                 |
+| **PIPELINES_GITLAB_READ_TOKEN** | `read_repository`                            | Any                             | Accessing GitLab repositories (e.g., your catalog or infrastructure modules) |
 
-You may however generate a single token with both `api` and `read_repository` scopes if you prefer and use it for both purposes.
+You may however generate a single token all scopes scopes if you prefer and use it for both purposes.
 
 These tokens will be stored in your CI/CD variables.
+
+:::note
+
+If you have GitLab AI installed then you will also need the `ai_features` scope on `PIPELINES_GITLAB_TOKEN`. This requirement to add `ai_features` is driven by the mechanics of how GitLab operates and not because Pipelines itself behaves differently in the presence of GitLab AI.
+:::
 
 :::tip
 Set an expiration date according to your organization's security policies. We recommend 90 days as a balance between security and maintenance.
