@@ -63,8 +63,11 @@ See [Setup via Machine Users](/2.0/docs/pipelines/installation/viamachineusers.m
 <TabItem value="gitlab" label="GitLab">
 Requires the following tokens be created:
 - `PIPELINES_GITLAB_TOKEN`: A GitLab access token with `api` scope
+- `PIPELINES_GITLAB_READ_TOKEN`: A GitLab access token with `read_repository` scope
 
-Pipelines will also require access to GitHub, however those tokens are generated at runtime via the Gruntwork Management Portal.
+See [Setup via Machine Users](/2.0/docs/pipelines/installation/viamachineusers) for more details.
+
+Pipelines will also require access to Gruntwork's GitHub repositories, however those tokens are generated at runtime via the Gruntwork Management Portal.
 
 </TabItem>
 </Tabs>

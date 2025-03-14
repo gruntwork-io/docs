@@ -162,7 +162,7 @@ After setting up Pipelines, you can:
 If you encounter issues during setup:
 
 - Ensure your GitLab CI user has the correct permissions to your group and projects
-- Verify the `PIPELINES_GITLAB_TOKEN` is set correctly as a CI/CD variable and is *NOT* marked as protected
+- Verify that both `PIPELINES_GITLAB_TOKEN` and `PIPELINES_GITLAB_READ_TOKEN` are set correctly as CI/CD variables and are *NOT* marked as protected
 - Confirm your GitLab group has been authorized by Gruntwork for Pipelines usage
 
 For further assistance, contact [support@gruntwork.io](mailto:support@gruntwork.io).
