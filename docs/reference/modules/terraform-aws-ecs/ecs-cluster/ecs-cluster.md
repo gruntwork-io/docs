@@ -493,6 +493,9 @@ module "ecs_cluster" {
   # is disabled
   instance_refresh_strategy = null
 
+  # Whether to update Default Version for the Launch Template with each update.
+  launch_template_update_default_version = true
+
   # Maximum amount of time, in seconds, that an instance can be in service,
   # values must be either equal to 0 or between 86400 and 31536000 seconds.
   max_instance_lifetime = null
@@ -784,6 +787,9 @@ inputs = {
   # Strategy to use for instance refresh. If not specified then instance_refresh
   # is disabled
   instance_refresh_strategy = null
+
+  # Whether to update Default Version for the Launch Template with each update.
+  launch_template_update_default_version = true
 
   # Maximum amount of time, in seconds, that an instance can be in service,
   # values must be either equal to 0 or between 86400 and 31536000 seconds.
@@ -1379,6 +1385,15 @@ Strategy to use for instance refresh. If not specified then instance_refresh is 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="launch_template_update_default_version" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to update Default Version for the Launch Template with each update.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="max_instance_lifetime" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1485,6 +1500,6 @@ Set this variable to true to enable the use of Instance Metadata Service Version
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.7/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fdc00d45f0d12f69c0504fb5d3a04f7f"
+  "hash": "2da366bfe88cebe8c3b0cf3b45b6d4f1"
 }
 ##DOCS-SOURCER-END -->
