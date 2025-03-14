@@ -392,7 +392,7 @@ For more information on creating and using GitHub Actions Repository secrets, re
 <TabItem value="gitlab" label="GitLab">
 
 
-For GitLab, Gruntwork Pipelines two CI variables.  The first, the `PIPELINES_GITLAB_TOKEN` requires the `Developer`, `Maintainer` or `Owner` role and the scopes listed below. This token will be used to authenticate API calls and access repositories within your GitLab group.  The second, the `PIPELINES_GITLAB_READ_TOKEN` will be used to access your own code within GitLab.  If not set, Pipelines will default to the `CI_JOB_TOKEN` when accessing internal GitLab hosted code.
+For GitLab, Gruntwork Pipelines two CI variables. The first, the `PIPELINES_GITLAB_TOKEN` requires the `Developer`, `Maintainer` or `Owner` role and the scopes listed below. This token will be used to authenticate API calls and access repositories within your GitLab group.  The second, the `PIPELINES_GITLAB_READ_TOKEN` will be used to access your own code within GitLab. If not set, Pipelines will default to the `CI_JOB_TOKEN` when accessing internal GitLab hosted code.
 
 
 ### Creating the Access Token
@@ -436,6 +436,7 @@ Add the `PIPELINES_GITLAB_TOKEN` and `PIPELINES_GITLAB_READ_TOKEN` as CI/CD vari
 **Checklist:**
 <PersistentCheckbox id="via-machine-users-gitlab-5" label="PIPELINES_GITLAB_TOKEN added to CI/CD variables" />
 <PersistentCheckbox id="via-machine-users-gitlab-6" label="PIPELINES_GITLAB_READ_TOKEN added to CI/CD variables" />
+
 :::caution
 Remember to update this token before it expires to prevent pipeline disruptions.
 :::
