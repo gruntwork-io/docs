@@ -146,7 +146,7 @@ First, you'll need to install [mise](https://mise.jdx.dev/), a powerful environm
 ### Step 5: Complete the Setup
 
 1. Return to GitLab and merge the merge request with your changes.
-2. Ensure the `PIPELINES_GITLAB_TOKEN` (and optionally, `PIPELINES_GITLAB_READ_TOKEN`) is set as a CI/CD variable to your group if you haven't already (see the [Machine Users setup guide](/2.0/docs/pipelines/installation/viamachineusers#gitlab) for details)
+2. Ensure that `PIPELINES_GITLAB_TOKEN` and `PIPELINES_GITLAB_READ_TOKEN` are set as a CI/CD variables in your group or project if you haven't already (see the [Machine Users setup guide](/2.0/docs/pipelines/installation/viamachineusers#gitlab) for details).
 3. Test your setup by creating a new branch with some sample infrastructure code and creating a merge request.
 
 ## Next Steps
