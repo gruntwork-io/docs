@@ -99,10 +99,9 @@ When excluding modules, be aware of dependencies:
 ## Best Practices
 
 1. **Document exclusions**: Add comments to your `.terragrunt-excludes` file explaining why each directory is excluded.
-2. **Set expiration dates**: Include dates when exclusions should be revisited.
-3. **Track in issue system**: Create tickets for excluded modules that need to be fixed.
-4. **Regular cleanup**: Periodically review and update your excluded directories.
-5. **Validate locally**: Run `terragrunt hcl-validate` or `terragrunt validate` locally before committing changes.
+2. **Track in issue system**: Create tickets for excluded modules that need to be fixed, including any relevant dates/timelines for when they should be revisited.
+3. **Regular cleanup**: Periodically review and update your excluded directories.
+4. **Validate locally**: Run `terragrunt hcl-validate` or `terragrunt validate` locally before committing changes.
 
 ## Troubleshooting
 
