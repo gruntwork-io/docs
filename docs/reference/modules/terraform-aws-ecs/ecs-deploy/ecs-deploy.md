@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.38.7" lastModifiedVersion="0.37.0"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.38.8" lastModifiedVersion="0.37.0"/>
 
 # ECS Deployment Scripts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.7/modules/ecs-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/modules/ecs-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.37.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -48,7 +48,7 @@ The `run-ecs-task` script assumes you already have the following:
     resource](https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html). You'll need to know the family
     name and revision of the ECS Task Definition you want to run.
 
-Check out the [deploy-ecs-task example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.7/examples/deploy-ecs-task) for working sample code of both of the above.
+Check out the [deploy-ecs-task example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/examples/deploy-ecs-task) for working sample code of both of the above.
 
 To run the ECS Task Definition `db-backup` at revision `3` in an ECS Cluster named `ecs-stage` in `us-west-2`, use the
 following command:
@@ -95,11 +95,11 @@ container instead of the command configured in the Task Definition.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.7/modules/ecs-deploy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.7/modules/ecs-deploy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.7/modules/ecs-deploy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/modules/ecs-deploy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/modules/ecs-deploy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/modules/ecs-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e2e50bf388676d1161484578f4b4706c"
+  "hash": "cb3a219b4950cd579b640100af9725ad"
 }
 ##DOCS-SOURCER-END -->
