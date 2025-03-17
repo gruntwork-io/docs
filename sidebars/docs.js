@@ -358,6 +358,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/pipelines/guides/setup-delegated-repo",
       },
+      {
+        label: "Handling Broken IaC",
+        type: "doc",
+        id: "2.0/docs/pipelines/guides/handling-broken-iac",
+      },
     ],
   },
   {
