@@ -129,6 +129,10 @@ module "custom_iam_entity" {
   # is true.
   iam_role_name = null
 
+  # Path to the role. See IAM Identifiers for more information:
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html.
+  iam_role_path = null
+
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role
   iam_role_permissions_boundary = null
@@ -230,6 +234,10 @@ inputs = {
   # The name of an IAM role to create. Required when var.should_create_iam_role
   # is true.
   iam_role_name = null
+
+  # Path to the role. See IAM Identifiers for more information:
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html.
+  iam_role_path = null
 
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role
@@ -399,6 +407,15 @@ The name of an IAM role to create. Required when <a href="#should_create_iam_rol
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="iam_role_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+Path to the role. See IAM Identifiers for more information: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="iam_role_permissions_boundary" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -490,6 +507,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.13/modules/custom-iam-entity/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1f66002d0a88ea3b4a96b2cde7b5179c"
+  "hash": "caacd48648d8d6e913d0e54ce3da7d64"
 }
 ##DOCS-SOURCER-END -->
