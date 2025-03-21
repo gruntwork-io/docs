@@ -465,6 +465,7 @@ module "ecs_cluster" {
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
+  # List of CIDR blocks that will be allowed for egress access.
   egress_allow_outbound_all = ["0.0.0.0/0"]
 
   # Enables additional block device mapping. Change to false if you wish to
@@ -762,6 +763,7 @@ inputs = {
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
+  # List of CIDR blocks that will be allowed for egress access.
   egress_allow_outbound_all = ["0.0.0.0/0"]
 
   # Enables additional block device mapping. Change to false if you wish to
@@ -1311,6 +1313,11 @@ A map of custom tags to apply to the Security Group for this ECS Cluster. The ke
 </HclListItem>
 
 <HclListItem name="egress_allow_outbound_all" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of CIDR blocks that will be allowed for egress access.
+
+</HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[
   &quot;0.0.0.0/0&quot;
 ]"/>
@@ -1510,6 +1517,6 @@ Set this variable to true to enable the use of Instance Metadata Service Version
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fccd9d4c78799f0d3c3b335e51fbef7e"
+  "hash": "b18a3c1601f04a30802fca2fd8b41864"
 }
 ##DOCS-SOURCER-END -->
