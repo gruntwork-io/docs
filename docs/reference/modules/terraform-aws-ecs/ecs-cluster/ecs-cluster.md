@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.38.8" lastModifiedVersion="0.38.8"/>
+<VersionBadge repoTitle="Amazon ECS" version="0.38.9" lastModifiedVersion="0.38.9"/>
 
 # ECS Cluster Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/modules/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.9/modules/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.38.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.38.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches an [EC2 Container Service
 Cluster](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_clusters.html) that you can use to run
-Docker containers and services (see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/modules/ecs-service/README.adoc)).
+Docker containers and services (see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.9/modules/ecs-service/README.adoc)).
 
 **WARNING: Launch Configurations:** [Launch configurations](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-configurations.html) are being phased out in favor of [Launch Templates](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html). Before upgrading to the latest release please be sure to test and plan any changes to infrastructure that may be impacted. Launch templates are being introduced in [PR #371](https://github.com/gruntwork-io/terraform-aws-ecs/pull/371)
 
@@ -32,7 +32,7 @@ ECS and register itself as part of the right cluster.
 
 ## How do you run Docker containers on the cluster?
 
-See the [service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/modules/ecs-service/README.adoc).
+See the [service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.9/modules/ecs-service/README.adoc).
 
 ## How do you add additional security group rules?
 
@@ -97,7 +97,7 @@ currently no way in ECS to manage IAM policies on a per-Docker-container basis.
 
 ## How do you make changes to the EC2 Instances in the cluster?
 
-To deploy an update to an ECS Service, see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/modules/ecs-service). To deploy an update to the
+To deploy an update to an ECS Service, see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.9/modules/ecs-service). To deploy an update to the
 EC2 Instances in your ECS cluster, such as a new AMI, read on.
 
 Terraform and AWS do not provide a way to automatically roll out a change to the Instances in an ECS Cluster. Due to
@@ -127,8 +127,8 @@ To deploy a change such as rolling out a new AMI to all ECS Instances:
     python3 roll-out-ecs-cluster-update.py --asg-name ASG_NAME --cluster-name CLUSTER_NAME --aws-region AWS_REGION
     ```
 
-    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/examples/docker-service-with-elb/outputs.tf)
-    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/examples/docker-service-with-elb), you can use the `terraform output`
+    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.9/examples/docker-service-with-elb/outputs.tf)
+    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.9/examples/docker-service-with-elb), you can use the `terraform output`
     command to fill in most of the arguments automatically:
 
     ```
@@ -181,8 +181,8 @@ To deploy a change such as rolling out a new AMI to all ECS Instances:
     python3 asg-instance-refresh.py --asg-name ASG_NAME --aws-region AWS_REGION
     ```
 
-    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/examples/docker-service-with-elb/outputs.tf)
-    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/examples/docker-service-with-elb), you can use the `terraform output`
+    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.9/examples/docker-service-with-elb/outputs.tf)
+    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.9/examples/docker-service-with-elb), you can use the `terraform output`
     command to fill in most of the arguments automatically:
 
     ```
@@ -235,7 +235,7 @@ enable Capacity Providers on an existing ECS cluster that did not have Capacity 
 instances to ensure all the instances get associated with the new Capacity Provider.
 
 To rotate the instances, you can run the
-[roll-out-ecs-cluster-update.py](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/modules/ecs-cluster/roll-out-ecs-cluster-update.py)
+[roll-out-ecs-cluster-update.py](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.9/modules/ecs-cluster/roll-out-ecs-cluster-update.py)
 script in the `terraform-aws-ecs` module. Refer to the
 [documentation](#how-do-you-make-changes-to-the-ec2-instances-in-the-cluster)
 for more information on the script.
@@ -253,7 +253,7 @@ for more information on the script.
 
 module "ecs_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.38.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.38.9"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -465,6 +465,20 @@ module "ecs_cluster" {
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
+  # List of CIDR blocks that will be allowed for egress access.
+  egress_allow_outbound_all = ["0.0.0.0/0"]
+
+  # The from port range (paired with egress_to_port) to be used for for egress
+  # access.
+  egress_from_port = 0
+
+  # The protocol to be used for for egress access.
+  egress_protocol = "-1"
+
+  # The end port range (paired with egress_from_port) to be used for for egress
+  # access.
+  egress_to_port = 0
+
   # Enables additional block device mapping. Change to false if you wish to
   # disable additional EBS volume attachment to EC2 instances. Defaults to true.
   enable_block_device_mappings = true
@@ -545,7 +559,7 @@ module "ecs_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.38.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.38.9"
 }
 
 inputs = {
@@ -759,6 +773,20 @@ inputs = {
   # A map of custom tags to apply to the Security Group for this ECS Cluster.
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
+
+  # List of CIDR blocks that will be allowed for egress access.
+  egress_allow_outbound_all = ["0.0.0.0/0"]
+
+  # The from port range (paired with egress_to_port) to be used for for egress
+  # access.
+  egress_from_port = 0
+
+  # The protocol to be used for for egress access.
+  egress_protocol = "-1"
+
+  # The end port range (paired with egress_from_port) to be used for for egress
+  # access.
+  egress_to_port = 0
 
   # Enables additional block device mapping. Change to false if you wish to
   # disable additional EBS volume attachment to EC2 instances. Defaults to true.
@@ -1306,6 +1334,44 @@ A map of custom tags to apply to the Security Group for this ECS Cluster. The ke
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="egress_allow_outbound_all" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of CIDR blocks that will be allowed for egress access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[
+  &quot;0.0.0.0/0&quot;
+]"/>
+</HclListItem>
+
+<HclListItem name="egress_from_port" requirement="optional" type="number">
+<HclListItemDescription>
+
+The from port range (paired with egress_to_port) to be used for for egress access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="egress_protocol" requirement="optional" type="string">
+<HclListItemDescription>
+
+The protocol to be used for for egress access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;-1&quot;"/>
+</HclListItem>
+
+<HclListItem name="egress_to_port" requirement="optional" type="number">
+<HclListItemDescription>
+
+The end port range (paired with egress_from_port) to be used for for egress access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
 <HclListItem name="enable_block_device_mappings" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1495,11 +1561,11 @@ Set this variable to true to enable the use of Instance Metadata Service Version
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/modules/ecs-cluster/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/modules/ecs-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/modules/ecs-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.9/modules/ecs-cluster/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.9/modules/ecs-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.9/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2fcc520790e7d2644657c9277e4fcbe4"
+  "hash": "869db00a5c732d3ca1f48f9423eb1f9e"
 }
 ##DOCS-SOURCER-END -->
