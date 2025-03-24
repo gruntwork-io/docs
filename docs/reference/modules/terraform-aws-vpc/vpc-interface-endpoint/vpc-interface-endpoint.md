@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.28.3" lastModifiedVersion="0.27.0"/>
+<VersionBadge repoTitle="VPC Modules" version="0.28.4" lastModifiedVersion="0.28.4"/>
 
 # Interface VPC Endpoint
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.3/modules/vpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.4/modules/vpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.27.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 By default, if code running within your VPCs makes API calls to AWS (e.g., to fetch data from S3 or trigger a Lambda function), those API calls leave the VPC, and are routed via the public Internet. This Terraform Module launches VPC endpoints that allow code running within your VPCs to privately connect to AWS services and APIs without the traffic leaving the VPC and without going over the public Internet. Although all API calls to AWS are encrypted with TLS, VPC endpoints give you one extra layer of security by keeping your API calls within the AWS network.
 
@@ -193,7 +193,7 @@ Not specifying a rule allows all traffic.
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.3/modules//_docs/vpc-core-concepts.md) like subnets and NAT Gateways.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.4/modules//_docs/vpc-core-concepts.md) like subnets and NAT Gateways.
 
 ## Sample Usage
 
@@ -208,7 +208,7 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 module "vpc_interface_endpoint" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.28.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.28.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -1041,6 +1041,29 @@ module "vpc_interface_endpoint" {
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
   # but no other types of resources. If not specified, all resources will be
   # allowed to call this endpoint.
+  elasticache_endpoint_policy = null
+
+  # Set to false if you don't want to associate a private hosted zone with the
+  # specified VPC for the ElastiCache endpoint.
+  elasticache_endpoint_private_dns_enabled = true
+
+  # The ID of one or more security groups to associate with the network
+  # interface for the Elasticache endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
+  elasticache_endpoint_security_group_ids = []
+
+  # The IDs of subnets in which to create a network interface for the
+  # Elasticache endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
+  elasticache_endpoint_subnet_ids = []
+
+  # Tags for the Elasticache endpoint
+  elasticache_endpoint_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   elasticbeanstalk_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
@@ -1241,6 +1264,9 @@ module "vpc_interface_endpoint" {
   # Set to true if you want to provision a Elastic Inference Runtime Endpoint
   # within the VPC
   enable_elastic_inference_runtime_endpoint = false
+
+  # Set to true if you want to provision Elasticache endpoint within the VPC.
+  enable_elasticache_endpoint = false
 
   # Set to true if you want to provision a Elastic Beanstalk Endpoint within the
   # VPC
@@ -2049,7 +2075,7 @@ module "vpc_interface_endpoint" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.28.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.28.4"
 }
 
 inputs = {
@@ -2885,6 +2911,29 @@ inputs = {
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
   # but no other types of resources. If not specified, all resources will be
   # allowed to call this endpoint.
+  elasticache_endpoint_policy = null
+
+  # Set to false if you don't want to associate a private hosted zone with the
+  # specified VPC for the ElastiCache endpoint.
+  elasticache_endpoint_private_dns_enabled = true
+
+  # The ID of one or more security groups to associate with the network
+  # interface for the Elasticache endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
+  elasticache_endpoint_security_group_ids = []
+
+  # The IDs of subnets in which to create a network interface for the
+  # Elasticache endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
+  elasticache_endpoint_subnet_ids = []
+
+  # Tags for the Elasticache endpoint
+  elasticache_endpoint_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   elasticbeanstalk_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
@@ -3085,6 +3134,9 @@ inputs = {
   # Set to true if you want to provision a Elastic Inference Runtime Endpoint
   # within the VPC
   enable_elastic_inference_runtime_endpoint = false
+
+  # Set to true if you want to provision Elasticache endpoint within the VPC.
+  enable_elasticache_endpoint = false
 
   # Set to true if you want to provision a Elastic Beanstalk Endpoint within the
   # VPC
@@ -5453,6 +5505,51 @@ Tags for the Elastic Inference Runtime endpoint
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="elasticache_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="elasticache_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the ElastiCache endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="elasticache_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Elasticache endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="elasticache_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Elasticache endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="elasticache_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Elasticache endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="elasticbeanstalk_endpoint_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -5925,6 +6022,15 @@ Set to true if you want to provision a EFS endpoint within the VPC.
 <HclListItemDescription>
 
 Set to true if you want to provision a Elastic Inference Runtime Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_elasticache_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision Elasticache endpoint within the VPC.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -8436,11 +8542,11 @@ If you have private dns enabled, then your streaming calls would automatically g
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.3/modules/vpc-interface-endpoint/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.3/modules/vpc-interface-endpoint/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.3/modules/vpc-interface-endpoint/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.4/modules/vpc-interface-endpoint/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.4/modules/vpc-interface-endpoint/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.4/modules/vpc-interface-endpoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5df61459e04f42f3c7070c7d4f5f5dd4"
+  "hash": "4e912951125656cc37a8c51dc00b7c7a"
 }
 ##DOCS-SOURCER-END -->
