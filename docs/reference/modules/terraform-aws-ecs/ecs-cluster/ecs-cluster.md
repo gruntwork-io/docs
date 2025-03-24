@@ -468,6 +468,17 @@ module "ecs_cluster" {
   # List of CIDR blocks that will be allowed for egress access.
   egress_allow_outbound_all = ["0.0.0.0/0"]
 
+  # The from port range (paired with egress_to_port) to be used for for egress
+  # access.
+  egress_from_port = 0
+
+  # The protocol to be used for for egress access.
+  egress_protocol = "-1"
+
+  # The end port range (paired with egress_from_port) to be used for for egress
+  # access.
+  egress_to_port = 0
+
   # Enables additional block device mapping. Change to false if you wish to
   # disable additional EBS volume attachment to EC2 instances. Defaults to true.
   enable_block_device_mappings = true
@@ -765,6 +776,17 @@ inputs = {
 
   # List of CIDR blocks that will be allowed for egress access.
   egress_allow_outbound_all = ["0.0.0.0/0"]
+
+  # The from port range (paired with egress_to_port) to be used for for egress
+  # access.
+  egress_from_port = 0
+
+  # The protocol to be used for for egress access.
+  egress_protocol = "-1"
+
+  # The end port range (paired with egress_from_port) to be used for for egress
+  # access.
+  egress_to_port = 0
 
   # Enables additional block device mapping. Change to false if you wish to
   # disable additional EBS volume attachment to EC2 instances. Defaults to true.
@@ -1323,6 +1345,33 @@ List of CIDR blocks that will be allowed for egress access.
 ]"/>
 </HclListItem>
 
+<HclListItem name="egress_from_port" requirement="optional" type="number">
+<HclListItemDescription>
+
+The from port range (paired with egress_to_port) to be used for for egress access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="egress_protocol" requirement="optional" type="string">
+<HclListItemDescription>
+
+The protocol to be used for for egress access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;-1&quot;"/>
+</HclListItem>
+
+<HclListItem name="egress_to_port" requirement="optional" type="number">
+<HclListItemDescription>
+
+The end port range (paired with egress_from_port) to be used for for egress access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
 <HclListItem name="enable_block_device_mappings" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1517,6 +1566,6 @@ Set this variable to true to enable the use of Instance Metadata Service Version
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.8/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b18a3c1601f04a30802fca2fd8b41864"
+  "hash": "dc5d60fa74cf5cfc55f8942b12297b5c"
 }
 ##DOCS-SOURCER-END -->
