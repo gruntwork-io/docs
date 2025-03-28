@@ -76,6 +76,9 @@ module "gitlab_pipelines_openid_connect_provider" {
   # both are set.
   audiences = []
 
+  # GitLab Server URL
+  url = "https://gitlab.com"
+
 }
 
 
@@ -111,6 +114,9 @@ inputs = {
   # roles in the account. Set either this or `allowed_groups`; audiences wins if
   # both are set.
   audiences = []
+
+  # GitLab Server URL
+  url = "https://gitlab.com"
 
 }
 
@@ -157,6 +163,15 @@ List of fully formed URLs to set as audiences that are allowed to assume IAM rol
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="url" requirement="optional" type="string">
+<HclListItemDescription>
+
+GitLab Server URL
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;https://gitlab.com&quot;"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -187,6 +202,6 @@ Url used for the OIDC provider
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.14/modules/gitlab-pipelines-openid-connect-provider/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b551abb2e45e3b852e435c3b6268aa53"
+  "hash": "4c7e59d50607205a78f584ee2d065f77"
 }
 ##DOCS-SOURCER-END -->
