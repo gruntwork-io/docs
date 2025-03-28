@@ -77,7 +77,7 @@ module "gitlab_pipelines_openid_connect_provider" {
   audiences = []
 
   # GitLab Server URL
-  url = "https://gitlab.com"
+  URL = "https://gitlab.com"
 
 }
 
@@ -116,7 +116,7 @@ inputs = {
   audiences = []
 
   # GitLab Server URL
-  url = "https://gitlab.com"
+  URL = "https://gitlab.com"
 
 }
 
@@ -163,7 +163,7 @@ List of fully formed URLs to set as audiences that are allowed to assume IAM rol
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="url" requirement="optional" type="string">
+<HclListItem name="URL" requirement="optional" type="string">
 <HclListItemDescription>
 
 GitLab Server URL
@@ -202,6 +202,6 @@ Url used for the OIDC provider
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.14/modules/gitlab-pipelines-openid-connect-provider/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4c7e59d50607205a78f584ee2d065f77"
+  "hash": "40502d6798a7061a52481d76a02e8f80"
 }
 ##DOCS-SOURCER-END -->
