@@ -228,10 +228,10 @@ module "cloudfront" {
   # Any comments you want to include about the distribution.
   comment = null
 
-  # continuous deployment policy. This argument should only be set on a
-  # production distribution. See the aws_cloudfront_continuous_deployment_policy
-  # resource for additional details.
-  continuous_deployment_policy = {"is_continuous_deployment_policy_enabled":false}
+  # continuous deployment policy. This argument should only be set on a STAGING
+  # distribution. See the aws_cloudfront_continuous_deployment_policy resource
+  # for additional details.
+  continuous_deployment_policy = null
 
   # One or more custom error response elements.
   custom_error_response = []
@@ -246,6 +246,12 @@ module "cloudfront" {
 
   # Whether the distribution is enabled to accept end user requests for content.
   enabled = true
+
+  # The ID of the continuous deployment policy to associate with the
+  # distribution. This argument should only be set on a production distribution.
+  # See the aws_cloudfront_continuous_deployment_policy resource for additional
+  # details.
+  existing_continuous_deployment_policy_id = null
 
   # The restriction configuration for this distribution (geo_restrictions)
   geo_restriction = [{"locations":[],"restriction_type":"none"}]
@@ -513,10 +519,10 @@ inputs = {
   # Any comments you want to include about the distribution.
   comment = null
 
-  # continuous deployment policy. This argument should only be set on a
-  # production distribution. See the aws_cloudfront_continuous_deployment_policy
-  # resource for additional details.
-  continuous_deployment_policy = {"is_continuous_deployment_policy_enabled":false}
+  # continuous deployment policy. This argument should only be set on a STAGING
+  # distribution. See the aws_cloudfront_continuous_deployment_policy resource
+  # for additional details.
+  continuous_deployment_policy = null
 
   # One or more custom error response elements.
   custom_error_response = []
@@ -531,6 +537,12 @@ inputs = {
 
   # Whether the distribution is enabled to accept end user requests for content.
   enabled = true
+
+  # The ID of the continuous deployment policy to associate with the
+  # distribution. This argument should only be set on a production distribution.
+  # See the aws_cloudfront_continuous_deployment_policy resource for additional
+  # details.
+  existing_continuous_deployment_policy_id = null
 
   # The restriction configuration for this distribution (geo_restrictions)
   geo_restriction = [{"locations":[],"restriction_type":"none"}]
@@ -1941,25 +1953,13 @@ Any comments you want to include about the distribution.
 <HclListItem name="continuous_deployment_policy" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-continuous deployment policy. This argument should only be set on a production distribution. See the aws_cloudfront_continuous_deployment_policy resource for additional details.
+continuous deployment policy. This argument should only be set on a STAGING distribution. See the aws_cloudfront_continuous_deployment_policy resource for additional details.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
 object({
-    # Flag to enable continuous deployment policy.
-    is_continuous_deployment_policy_enabled = bool
-
-    # CloudFront domain name of the staging distribution.
-    staging_distribution_dns_names = optional(object({
-      # A list of CloudFront domain names for the staging distribution.
-      items = list(string)
-
-      # Number of CloudFront domain names in the staging distribution.
-      quantity = number
-    }))
-
     # Parameters for routing production traffic from primary to staging distributions.
     traffic_config = optional(object({
       # Type of traffic configuration. Valid values are SingleWeight and SingleHeader.
@@ -1997,46 +1997,8 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue>
-
-```hcl
-{
-  is_continuous_deployment_policy_enabled = false
-}
-```
-
-</HclListItemDefaultValue>
+<HclListItemDefaultValue defaultValue="null"/>
 <HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     CloudFront domain name of the staging distribution.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-       Number of CloudFront domain names in the staging distribution.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     Parameters for routing production traffic from primary to staging distributions.
-
-```
-</details>
-
 <details>
 
 
@@ -2193,6 +2155,15 @@ Whether the distribution is enabled to accept end user requests for content.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="existing_continuous_deployment_policy_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the continuous deployment policy to associate with the distribution. This argument should only be set on a production distribution. See the aws_cloudfront_continuous_deployment_policy resource for additional details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="geo_restriction" requirement="optional" type="list(object(…))">
@@ -2876,6 +2847,9 @@ Unique identifier that specifies the AWS WAF web ACL, if any, to associate with 
 <HclListItem name="cloudfront_distribution">
 </HclListItem>
 
+<HclListItem name="cloudfront_distribution_continuous_deployment_policy">
+</HclListItem>
+
 </TabItem>
 </Tabs>
 
@@ -2887,6 +2861,6 @@ Unique identifier that specifies the AWS WAF web ACL, if any, to associate with 
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6a64ca6a4e980acfe29f5c81e7ed0230"
+  "hash": "661054969c6d89d78512bd5036db8840"
 }
 ##DOCS-SOURCER-END -->
