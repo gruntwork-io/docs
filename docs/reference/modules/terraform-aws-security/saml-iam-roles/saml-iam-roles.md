@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.14" lastModifiedVersion="0.69.2"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.15" lastModifiedVersion="0.69.2"/>
 
 # A best-practices set of IAM roles for SAML access
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.14/modules/saml-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.15/modules/saml-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.69.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -47,7 +47,7 @@ This module creates the following IAM roles (all optional):
 
 *   **allow-ssh-grunt-access-from-saml**: Users authenticated by the SAML providers in
     `var.allow_ssh_grunt_access_from_saml_provider_arns` will get read access to IAM Groups and public SSH keys. This is
-    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.14/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
+    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.15/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
     connections against IAM users defined in this AWS account.
 
 *   **allow-dev-access-from-saml**:Users authenticated by the SAML providers in
@@ -78,7 +78,7 @@ This module creates the following IAM roles (all optional):
 
 module "saml_iam_roles" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v0.75.14"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v0.75.15"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -237,7 +237,7 @@ module "saml_iam_roles" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v0.75.14"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v0.75.15"
 }
 
 inputs = {
@@ -895,11 +895,11 @@ A map of tags to apply to the IAM roles.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.14/modules/saml-iam-roles/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.14/modules/saml-iam-roles/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.14/modules/saml-iam-roles/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.15/modules/saml-iam-roles/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.15/modules/saml-iam-roles/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.15/modules/saml-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6c5fac44ddda2f1514ea987e4d4d7b6f"
+  "hash": "29f3a4676309f0e950e4d68a1b1f8d82"
 }
 ##DOCS-SOURCER-END -->
