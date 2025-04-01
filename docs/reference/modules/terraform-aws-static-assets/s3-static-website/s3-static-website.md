@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="0.20.3" lastModifiedVersion="0.20.2"/>
+<VersionBadge repoTitle="Static Assets Modules" version="0.20.4" lastModifiedVersion="0.20.2"/>
 
 # S3 Static Website
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/s3-static-website" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.4/modules/s3-static-website" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.20.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -29,7 +29,7 @@ This module creates an AWS S3 bucket that can be used to host a static website. 
 
 *   Optionally configure a custom domain name for the website.
 
-*   Optionally deploy a CDN in front of S3 using the [s3-cloudfront module](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/s3-cloudfront).
+*   Optionally deploy a CDN in front of S3 using the [s3-cloudfront module](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.4/modules/s3-cloudfront).
 
 ## Learn
 
@@ -37,23 +37,23 @@ The reason to serve static content from S3 rather than from your own app server 
 
 ### Core concepts
 
-*   [Quick Start](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/s3-static-website/core-concepts.md#quick-start)
+*   [Quick Start](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.4/modules/s3-static-website/core-concepts.md#quick-start)
 
-*   [How to test the website](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/s3-static-website/core-concepts.md#how-to-test-the-website)
+*   [How to test the website](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.4/modules/s3-static-website/core-concepts.md#how-to-test-the-website)
 
-*   [How to configure HTTPS (SSL) or a CDN?](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/s3-static-website/core-concepts.md#how-to-configure-http)
+*   [How to configure HTTPS (SSL) or a CDN?](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.4/modules/s3-static-website/core-concepts.md#how-to-configure-http)
 
-*   [How to handle www + root domains](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/s3-static-website/core-concepts.md#how-to-handle)
+*   [How to handle www + root domains](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.4/modules/s3-static-website/core-concepts.md#how-to-handle)
 
-*   [How do I configure Cross Origin Resource Sharing (CORS)?](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/s3-static-website/core-concepts.md#how-do-i-configure-cross-origin-resource-sharing-cors)
+*   [How do I configure Cross Origin Resource Sharing (CORS)?](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.4/modules/s3-static-website/core-concepts.md#how-do-i-configure-cross-origin-resource-sharing-cors)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.4/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.4/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.4/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -61,7 +61,7 @@ The reason to serve static content from S3 rather than from your own app server 
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [Examples folder](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [Examples folder](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.4/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -82,7 +82,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "s_3_static_website" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-static-website?ref=v0.20.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-static-website?ref=v0.20.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -267,7 +267,7 @@ module "s_3_static_website" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-static-website?ref=v0.20.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-static-website?ref=v0.20.4"
 }
 
 inputs = {
@@ -859,11 +859,11 @@ A value that can be used to chain resources to depend on the website bucket bein
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/s3-static-website/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/s3-static-website/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.3/modules/s3-static-website/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.4/modules/s3-static-website/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.4/modules/s3-static-website/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.20.4/modules/s3-static-website/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "70e63ad1907b26a1d859ba5d135d46da"
+  "hash": "ddc59c6bfd8d9727d0a27bb2172cece2"
 }
 ##DOCS-SOURCER-END -->
