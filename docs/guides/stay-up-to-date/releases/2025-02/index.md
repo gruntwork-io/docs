@@ -1165,7 +1165,7 @@ Fixes a bug was introduced in pipelines [v0.32.0](https://github.com/gruntwork-i
 
   
 
-- SME-2583: Addec default names to S3/DynamoDB endpoints created in vpc-app
+- SME-2583: Added default names to S3/DynamoDB endpoints created in vpc-app
 
 
 </div>
@@ -1173,6 +1173,6 @@ Fixes a bug was introduced in pipelines [v0.32.0](https://github.com/gruntwork-i
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "93c73d9071244f37331358824477fc55"
+  "hash": "18b6630414155ef6bf84e60c5e2870dc"
 }
 ##DOCS-SOURCER-END -->
