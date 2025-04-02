@@ -9,20 +9,20 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.76.1" lastModifiedVersion="0.75.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="0.77.0" lastModifiedVersion="0.77.0"/>
 
 # EKS Cluster Control Plane Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.76.1/modules/eks-cluster-control-plane" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.77.0/modules/eks-cluster-control-plane" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.75.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.77.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches an [Elastic Container Service for Kubernetes
 Cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html).
 
 This module is responsible for the EKS Control Plane in [the EKS cluster topology](#what-is-an-eks-cluster). You must
 launch worker nodes in order to be able to schedule pods on your cluster. See the [eks-cluster-workers
-module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.76.1/modules/eks-cluster-workers) for managing EKS worker nodes.
+module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.77.0/modules/eks-cluster-workers) for managing EKS worker nodes.
 
 ## What is the EKS Control Plane?
 
@@ -46,7 +46,7 @@ Specifically, the control plane consists of:
     This includes resources like the
     [`LoadBalancers`](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/).
 
-You can read more about the different components of EKS in [the project README](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.76.1/core-concepts.md#what-is-an-eks-cluster).
+You can read more about the different components of EKS in [the project README](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.77.0/core-concepts.md#what-is-an-eks-cluster).
 
 ## What security group rules are created?
 
@@ -134,7 +134,7 @@ role that is being assumed. Specifically, you need to:
         that role).
 
 You can use the
-[eks-iam-role-assume-role-policy-for-service-account module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.76.1/modules/eks-iam-role-assume-role-policy-for-service-account) to
+[eks-iam-role-assume-role-policy-for-service-account module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.77.0/modules/eks-iam-role-assume-role-policy-for-service-account) to
 construct the policy using a more convenient interface. Refer to the module documentation for more info.
 
 Once you have an IAM Role that can be assumed by the Kubernetes Service Account, you can configure your Pods to exchange
@@ -242,7 +242,7 @@ Some additional notes on using Fargate:
     [the `aws_eks_fargate_profile` resource](https://www.terraform.io/docs/providers/aws/r/eks_fargate_profile.html) to
     provision Fargate Profiles with Terraform). The Pod Execution Role created by the module may be reused for other
     Fargate Profiles.
-*   Fargate does not support DaemonSets. This means that you can't rely on the [eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.76.1/modules/eks-container-logs)
+*   Fargate does not support DaemonSets. This means that you can't rely on the [eks-container-logs](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.77.0/modules/eks-container-logs)
     module to forward logs to CloudWatch. Instead, you need to manually configure a sidecar `fluentd` container that
     forwards the log entries to CloudWatch Logs. Refer to [this AWS blog
     post](https://aws.amazon.com/blogs/containers/how-to-capture-application-logs-when-using-amazon-eks-on-aws-fargate/)
@@ -284,7 +284,7 @@ If you omit the `addon_version`, correct versions are automatically applied.
 Note that you must update the nodes to use the corresponding `kubelet` version as well. This means that when you update
 minor versions, you will also need to update the AMIs used by the worker nodes to match the version and rotate the
 workers. For more information on rotating worker nodes, refer to [How do I roll out an update to the
-instances?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.76.1/modules/eks-cluster-workers/README.md#how-do-i-roll-out-an-update-to-the-instances) in the `eks-cluster-workers`
+instances?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.77.0/modules/eks-cluster-workers/README.md#how-do-i-roll-out-an-update-to-the-instances) in the `eks-cluster-workers`
 module README.
 
 ### Detailed upgrade steps
@@ -417,7 +417,7 @@ approaches:
 
 module "eks_cluster_control_plane" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.76.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.77.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -710,12 +710,12 @@ module "eks_cluster_control_plane" {
   # The URL from which to download Kubergrunt if it's not installed already.
   # Only used if var.use_kubergrunt_verification and var.auto_install_kubergrunt
   # are true.
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt"
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.17.2/kubergrunt"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.30"
+  kubernetes_version = "1.31"
 
   # The thumbprint to use for the OpenID Connect Provider. You can retrieve the
   # thumbprint by following the instructions in the AWS docs:
@@ -849,7 +849,7 @@ module "eks_cluster_control_plane" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.76.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-control-plane?ref=v0.77.0"
 }
 
 inputs = {
@@ -1145,12 +1145,12 @@ inputs = {
   # The URL from which to download Kubergrunt if it's not installed already.
   # Only used if var.use_kubergrunt_verification and var.auto_install_kubergrunt
   # are true.
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt"
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.17.2/kubergrunt"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.30"
+  kubernetes_version = "1.31"
 
   # The thumbprint to use for the OpenID Connect Provider. You can retrieve the
   # thumbprint by following the instructions in the AWS docs:
@@ -2027,7 +2027,7 @@ Path to the kubectl config file. Defaults to $HOME/.kube/config
 The URL from which to download Kubergrunt if it's not installed already. Only used if <a href="#use_kubergrunt_verification"><code>use_kubergrunt_verification</code></a> and <a href="#auto_install_kubergrunt"><code>auto_install_kubergrunt</code></a> are true.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.17.2/kubergrunt&quot;"/>
 </HclListItem>
 
 <HclListItem name="kubernetes_version" requirement="optional" type="string">
@@ -2036,7 +2036,7 @@ The URL from which to download Kubergrunt if it's not installed already. Only us
 Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.30&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.31&quot;"/>
 </HclListItem>
 
 <HclListItem name="openid_connect_provider_thumbprint" requirement="optional" type="string">
@@ -2403,11 +2403,11 @@ The path to the kubergrunt binary, if in use.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.76.1/modules/eks-cluster-control-plane/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.76.1/modules/eks-cluster-control-plane/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.76.1/modules/eks-cluster-control-plane/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.77.0/modules/eks-cluster-control-plane/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.77.0/modules/eks-cluster-control-plane/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.77.0/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "428e2a79b0c5bb7d406ae34a8687cfdb"
+  "hash": "0df7ebcdd61b5d94e52f3a199ba19126"
 }
 ##DOCS-SOURCER-END -->
