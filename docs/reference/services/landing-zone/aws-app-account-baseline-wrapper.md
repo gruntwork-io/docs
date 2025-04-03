@@ -900,6 +900,9 @@ module "account_baseline_app" {
   #
   recording_mode = null
 
+  # Manages S3 account-level Public Access Block configuration.
+  s3_account_public_access_block = null
+
   # Create service-linked roles for this set of services. You should pass in the
   # URLs of the services, but without the protocol (e.g., http://) in front:
   # e.g., use elasticbeanstalk.amazonaws.com for Elastic Beanstalk or
@@ -1740,6 +1743,9 @@ inputs = {
   # */
   #
   recording_mode = null
+
+  # Manages S3 account-level Public Access Block configuration.
+  s3_account_public_access_block = null
 
   # Create service-linked roles for this set of services. You should pass in the
   # URLs of the services, but without the protocol (e.g., http://) in front:
@@ -3676,6 +3682,27 @@ object({
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="s3_account_public_access_block" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Manages S3 account-level Public Access Block configuration.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+        block_public_acls       = optional(bool)
+        ignore_public_acls      = optional(bool)
+        block_public_policy     = optional(bool)
+        restrict_public_buckets = optional(bool)
+    })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="service_linked_roles" requirement="optional" type="set(string)">
 <HclListItemDescription>
 
@@ -4043,6 +4070,6 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.121.1/modules/landingzone/account-baseline-app/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f844510e1791b8787f86385d709ec8b7"
+  "hash": "74ec0479610bba70b219fede2b5af47f"
 }
 ##DOCS-SOURCER-END -->

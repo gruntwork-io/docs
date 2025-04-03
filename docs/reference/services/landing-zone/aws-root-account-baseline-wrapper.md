@@ -892,6 +892,9 @@ module "account_baseline_root" {
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
+  # Manages S3 account-level Public Access Block configuration.
+  s3_account_public_access_block = null
+
   # Should we create the IAM Group for auto-deploy? Allows automated deployment
   # by granting the permissions specified in var.auto_deploy_permissions. (true
   # or false)
@@ -1761,6 +1764,9 @@ inputs = {
   # KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
+
+  # Manages S3 account-level Public Access Block configuration.
+  s3_account_public_access_block = null
 
   # Should we create the IAM Group for auto-deploy? Allows automated deployment
   # by granting the permissions specified in var.auto_deploy_permissions. (true
@@ -3775,6 +3781,27 @@ KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS stor
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="s3_account_public_access_block" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Manages S3 account-level Public Access Block configuration.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    block_public_acls       = optional(bool)
+    ignore_public_acls      = optional(bool)
+    block_public_policy     = optional(bool)
+    restrict_public_buckets = optional(bool)
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="should_create_iam_group_auto_deploy" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -4435,6 +4462,6 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.121.1/modules/landingzone/account-baseline-root/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "40528eb2870df50fceb52db51fe5afed"
+  "hash": "94cd269b232100800c83cf6227b2ada0"
 }
 ##DOCS-SOURCER-END -->
