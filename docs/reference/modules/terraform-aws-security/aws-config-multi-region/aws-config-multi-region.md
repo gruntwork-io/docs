@@ -419,6 +419,11 @@ module "aws_config_multi_region" {
   # value is the tag value.
   tags = {}
 
+  # Toggle if the recording_group should be setup using the
+  # var.global_recorder_region (true) or if the recording_group will be setup
+  # for each entry in var.recording_groups (false). Defaults to true.
+  use_global_record_region = true
+
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
   # are friendlier to automated policy checkers, which may scan a single
@@ -788,6 +793,11 @@ inputs = {
   # A map of tags to apply to the S3 Bucket. The key is the tag name and the
   # value is the tag value.
   tags = {}
+
+  # Toggle if the recording_group should be setup using the
+  # var.global_recorder_region (true) or if the recording_group will be setup
+  # for each entry in var.recording_groups (false). Defaults to true.
+  use_global_record_region = true
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -1531,6 +1541,15 @@ A map of tags to apply to the S3 Bucket. The key is the tag name and the value i
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="use_global_record_region" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Toggle if the recording_group should be setup using the <a href="#global_recorder_region"><code>global_recorder_region</code></a> (true) or if the recording_group will be setup for each entry in <a href="#recording_groups"><code>recording_groups</code></a> (false). Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1595,6 +1614,6 @@ The ARNs of the SNS Topic used by the config notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.15/modules/aws-config-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f80fe929eaaa60b511fcfa1c918c3ab5"
+  "hash": "45234f33c9f14558fefbf34877859ee1"
 }
 ##DOCS-SOURCER-END -->
