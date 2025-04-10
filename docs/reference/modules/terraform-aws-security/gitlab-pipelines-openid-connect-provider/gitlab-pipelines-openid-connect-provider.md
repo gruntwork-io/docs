@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.15" lastModifiedVersion="0.75.15"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.16" lastModifiedVersion="0.75.15"/>
 
 # OpenID Connect Provider for GitLab Pipelines
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.15/modules/gitlab-pipelines-openid-connect-provider" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/gitlab-pipelines-openid-connect-provider" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.15" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -43,7 +43,7 @@ with the OpenID Connect Provider. In addition to this security measure, you shou
 associated with the OpenID Connect Provider have the appropriate trust policy to only allow assumption of the role by
 the appropriate GitLab Repos on the appropriate refs.
 
-See the TODO [GitLab Pipelines IAM Role](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.15/modules/gitlab-pipelines-iam-role/README.md) module for more information.
+See the TODO [GitLab Pipelines IAM Role](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/gitlab-pipelines-iam-role/README.md) module for more information.
 
 ## Sample Usage
 
@@ -58,7 +58,7 @@ See the TODO [GitLab Pipelines IAM Role](https://github.com/gruntwork-io/terrafo
 
 module "gitlab_pipelines_openid_connect_provider" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-openid-connect-provider?ref=v0.75.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-openid-connect-provider?ref=v0.75.16"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -94,7 +94,7 @@ module "gitlab_pipelines_openid_connect_provider" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-openid-connect-provider?ref=v0.75.15"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-openid-connect-provider?ref=v0.75.16"
 }
 
 inputs = {
@@ -197,11 +197,11 @@ Url used for the OIDC provider
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.15/modules/gitlab-pipelines-openid-connect-provider/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.15/modules/gitlab-pipelines-openid-connect-provider/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.15/modules/gitlab-pipelines-openid-connect-provider/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/gitlab-pipelines-openid-connect-provider/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/gitlab-pipelines-openid-connect-provider/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/gitlab-pipelines-openid-connect-provider/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9e9add2ceb0ec46887e6d74417ac9c35"
+  "hash": "4ef5a0553d0f23219b5029c716a4baed"
 }
 ##DOCS-SOURCER-END -->
