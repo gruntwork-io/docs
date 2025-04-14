@@ -30,7 +30,9 @@ We recommend using your `infrastructure-catalog` repository to define your reusa
 
 Within your `infrastructure-live-root` repositories, add `terragrunt.stack.hcl` files to define your Terragrunt Stacks. You should not commit the generated `.terragrunt-stack` directories to source control, pipelines will generate these directories automatically during execution.
 
-If you have already committed the `.terragrunt-stack` directory to source control and want to remove it, we recommend adding `[skip-ci]` in your commit message to prevent unintended infrastructure destruction. If your changes remove tracked files, but do not modify the stack file, the stack will not be generated and Pipelines will assume that the infrastructure is being removed.
+#### Removing .terragrunt-stack directories
+
+If you have already committed a `.terragrunt-stack` directory to source control and want to remove it, we recommend adding `[skip-ci]` in your commit message to prevent unintended infrastructure destruction. If your changes remove tracked files, but do not modify the stack file, the stack will not be generated and Pipelines will assume that the infrastructure is being removed.
 
 ### Migration from _envcommon
 
