@@ -6,7 +6,7 @@ This guide provides instructions for installing Gruntwork Pipelines in a reposit
 
 :::info
 
-This process leverages a new configuration paradigm for Pipelines called ["Pipelines Configuration as Code"](/2.0/reference/pipelines/configurations-as-code), introduced in July 2024. This system allows developers to use Gruntwork Pipelines with any folder structure in their IaC repositories. Previously, Pipelines required a specific folder layout to map source control directories to AWS Accounts for authentication. 
+This process leverages a new configuration paradigm for Pipelines called ["Pipelines Configuration as Code"](/2.0/reference/pipelines/configurations-as-code), introduced in July 2024. This system allows developers to use Gruntwork Pipelines with any folder structure in their IaC repositories. Previously, Pipelines required a specific folder layout to map source control directories to AWS Accounts for authentication.
 
 **As of Q4 2024, this new configuration system does not yet support the [Gruntwork Account Factory](https://docs.gruntwork.io/2.0/docs/accountfactory/concepts/).** If you need both Pipelines and the Account Factory, we recommend [starting with a new repository](/2.0/docs/pipelines/installation/addingnewrepo) or contacting [Gruntwork support](/support) for assistance.
 :::
@@ -198,7 +198,7 @@ include "root" {
 }
 
 # The OIDC IAM roles for GitHub Actions require an IAM OpenID Connect (OIDC) Provider to be provisioned for each account.
-# The underlying module used in `envcommon` is capable of creating the OIDC provider. Since multiple OIDC roles are required, 
+# The underlying module used in `envcommon` is capable of creating the OIDC provider. Since multiple OIDC roles are required,
 # a dedicated module is used, and all roles depend on its output
 dependency "github-actions-openid-connect-provider" {
   config_path = "../github-actions-openid-connect-provider"
@@ -300,7 +300,7 @@ include "root" {
 }
 
 # The OIDC IAM roles for GitHub Actions require an IAM OpenID Connect (OIDC) Provider to be provisioned for each account.
-# The underlying module used in `envcommon` is capable of creating the OIDC provider. Since multiple OIDC roles are required, 
+# The underlying module used in `envcommon` is capable of creating the OIDC provider. Since multiple OIDC roles are required,
 # a dedicated module is used, and all roles depend on its output.
 dependency "github-actions-openid-connect-provider" {
   config_path = "../github-actions-openid-connect-provider"
@@ -317,8 +317,7 @@ dependency "github-actions-openid-connect-provider" {
 
 locals {
   # Automatically load account-level variables
-  account_vars         = read_terragrunt_config(find_in_parent_folders("account.hcl"))
-  state_bucket_pattern = local.account_vars.locals.state_bucket_pattern
+  state_bucket_pattern = lower("$$AWS_STATE_BUCKET_PATTERN$$")
 }
 
 inputs = {
@@ -326,7 +325,7 @@ inputs = {
   github_actions_openid_connect_provider_url = dependency.github-actions-openid-connect-provider.outputs.url
 
   allowed_sources = {
-    "$$GITHUB_ORG_NAME$$/$$INFRASTRUCTURE_LIVE_REPO_NAME$$" : ["main"]
+    "$$GITHUB_ORG_NAME$$/$$INFRASTRUCTURE_LIVE_REPO_NAME$$" : ["$$DEPLOY_BRANCH_NAME$$"]
   }
 
   # Policy for OIDC role assumed from GitHub in the "$$GITHUB_ORG_NAME$$/$$INFRASTRUCTURE_LIVE_REPO_NAME$$" repo
@@ -336,52 +335,167 @@ inputs = {
   # Policy based on these docs:
   # https://terragrunt.gruntwork.io/docs/features/aws-auth/#aws-iam-policies
   iam_policy = {
-    # State permissions
+    "IamPassRole" = {
+      resources = ["*"]
+      actions   = ["iam:*"]
+      effect    = "Allow"
+    }
+    "IamCreateRole" = {
+      resources = [
+        "arn:aws:iam::*:role/aws-service-role/orgsdatasync.servicecatalog.amazonaws.com/AWSServiceRoleForServiceCatalogOrgsDataSync"
+      ]
+      actions = ["iam:CreateServiceLinkedRole"]
+      effect  = "Allow"
+    }
+    "S3BucketAccess" = {
+      resources = ["*"]
+      actions   = ["s3:*"]
+      effect    = "Allow"
+    }
     "DynamoDBLocksTableAccess" = {
-      effect = "Allow"
-      actions = [
-        "dynamodb:PutItem",
-        "dynamodb:GetItem",
-        "dynamodb:DescribeTable",
-        "dynamodb:DeleteItem",
-        "dynamodb:CreateTable",
-      ]
-      resources = ["arn:aws:dynamodb:*:*:table/$$AWS_DYNAMO_DB_TABLE$$"]
+      resources = ["arn:aws:dynamodb:*:*:table/terraform-locks"]
+      actions   = ["dynamodb:*"]
+      effect    = "Allow"
     }
-    "S3StateBucketAccess" = {
-      effect = "Allow"
-      actions = [
-        "s3:ListBucket",
-        "s3:GetBucketVersioning",
-        "s3:GetBucketAcl",
-        "s3:GetBucketLogging",
-        "s3:CreateBucket",
-        "s3:PutBucketPublicAccessBlock",
-        "s3:PutBucketTagging",
-        "s3:PutBucketPolicy",
-        "s3:PutBucketVersioning",
-        "s3:PutEncryptionConfiguration",
-        "s3:PutBucketAcl",
-        "s3:PutBucketLogging",
-        "s3:GetEncryptionConfiguration",
-        "s3:GetBucketPolicy",
-        "s3:GetBucketPublicAccessBlock",
-        "s3:PutLifecycleConfiguration",
-        "s3:PutBucketOwnershipControls",
-      ]
-      resources = [
-        "arn:aws:s3:::${local.state_bucket_pattern}",
-      ]
+    "OrganizationsDeployAccess" = {
+      resources = ["*"]
+      actions   = ["organizations:*"]
+      effect    = "Allow"
     }
-    "S3StateBucketObjectAccess" = {
-      effect = "Allow"
-      actions = [
-        "s3:PutObject",
-        "s3:GetObject"
-      ]
-      resources = [
-        "arn:aws:s3:::${local.state_bucket_pattern}/*",
-      ]
+    "ControlTowerDeployAccess" = {
+      resources = ["*"]
+      actions   = ["controltower:*"]
+      effect    = "Allow"
+    }
+    "IdentityCenterDeployAccess" = {
+      resources = ["*"]
+      actions   = ["sso:*", "ds:*", "sso-directory:*"]
+      effect    = "Allow"
+    }
+    "ECSDeployAccess" = {
+      resources = ["*"]
+      actions   = ["ecs:*"]
+      effect    = "Allow"
+    }
+    "ACMDeployAccess" = {
+      resources = ["*"]
+      actions   = ["acm:*"]
+      effect    = "Allow"
+    }
+    "AutoScalingDeployAccess" = {
+      resources = ["*"]
+      actions   = ["autoscaling:*"]
+      effect    = "Allow"
+    }
+    "CloudTrailDeployAccess" = {
+      resources = ["*"]
+      actions   = ["cloudtrail:*"]
+      effect    = "Allow"
+    }
+    "CloudWatchDeployAccess" = {
+      resources = ["*"]
+      actions   = ["cloudwatch:*", "logs:*"]
+      effect    = "Allow"
+    }
+    "CloudFrontDeployAccess" = {
+      resources = ["*"]
+      actions   = ["cloudfront:*"]
+      effect    = "Allow"
+    }
+    "ConfigDeployAccess" = {
+      resources = ["*"]
+      actions   = ["config:*"]
+      effect    = "Allow"
+    }
+    "EC2DeployAccess" = {
+      resources = ["*"]
+      actions   = ["ec2:*"]
+      effect    = "Allow"
+    }
+    "ECRDeployAccess" = {
+      resources = ["*"]
+      actions   = ["ecr:*"]
+      effect    = "Allow"
+    }
+    "ELBDeployAccess" = {
+      resources = ["*"]
+      actions   = ["elasticloadbalancing:*"]
+      effect    = "Allow"
+    }
+    "GuardDutyDeployAccess" = {
+      resources = ["*"]
+      actions   = ["guardduty:*"]
+      effect    = "Allow"
+    }
+    "IAMDeployAccess" = {
+      resources = ["*"]
+      actions   = ["iam:*", "access-analyzer:*"]
+      effect    = "Allow"
+    }
+    "KMSDeployAccess" = {
+      resources = ["*"]
+      actions   = ["kms:*"]
+      effect    = "Allow"
+    }
+    "LambdaDeployAccess" = {
+      resources = ["*"]
+      actions   = ["lambda:*"]
+      effect    = "Allow"
+    }
+    "Route53DeployAccess" = {
+      resources = ["*"]
+      actions   = ["route53:*", "route53domains:*", "route53resolver:*"]
+      effect    = "Allow"
+    }
+    "SecretsManagerDeployAccess" = {
+      resources = ["*"]
+      actions   = ["secretsmanager:*"]
+      effect    = "Allow"
+    }
+    "SNSDeployAccess" = {
+      resources = ["*"]
+      actions   = ["sns:*"]
+      effect    = "Allow"
+    }
+    "SQSDeployAccess" = {
+      resources = ["*"]
+      actions   = ["sqs:*"]
+      effect    = "Allow"
+    }
+    "SecurityHubDeployAccess" = {
+      resources = ["*"]
+      actions   = ["securityhub:*"]
+      effect    = "Allow"
+    }
+    "MacieDeployAccess" = {
+      resources = ["*"]
+      actions   = ["macie2:*"]
+      effect    = "Allow"
+    }
+    "ServiceQuotaDeployAccess" = {
+      resources = ["*"]
+      actions   = ["servicequotas:*"]
+      effect    = "Allow"
+    }
+    "EKSAccess" = {
+      resources = ["*"]
+      actions   = ["eks:*"]
+      effect    = "Allow"
+    }
+    "EventBridgeAccess" = {
+      resources = ["*"]
+      actions   = ["events:*"]
+      effect    = "Allow"
+    }
+    "ApplicationAutoScalingAccess" = {
+      resources = ["*"]
+      actions   = ["application-autoscaling:*"]
+      effect    = "Allow"
+    }
+    "ApiGatewayAccess" = {
+      resources = ["*"]
+      actions   = ["apigateway:*"]
+      effect    = "Allow"
     }
   }
 }
