@@ -1216,7 +1216,6 @@ Version number of valkey to use (e.g. 7.2).
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1225,6 +1224,6 @@ Version number of valkey to use (e.g. 7.2).
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v0.23.0/modules/valkey/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b73c268e9ccd8d5bb2111c7ad492af14"
+  "hash": "3a7548a8d0dc566b295d1d90548448bf"
 }
 ##DOCS-SOURCER-END -->
