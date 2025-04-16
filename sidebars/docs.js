@@ -364,7 +364,7 @@ const sidebar = [
         id: "2.0/docs/pipelines/guides/handling-broken-iac",
       },
       {
-        label: "Running Pipelines with Terragrunt Stacks",
+        label: "Using Terragrunt Stacks",
         type: "doc",
         id: "2.0/docs/pipelines/guides/stacks",
       },
