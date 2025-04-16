@@ -37,9 +37,11 @@ When you create, update, or remove a `terragrunt.stack.hcl` file, Pipelines will
 2. Detect any changes to units and values defined in the stack
 3. Plan and apply the changes as part of your existing pipelines process
 
-::note
+:::note
+
 Note that the stack will only be generated if there are changes to the stack file. If you make changes to the remote units defined in the stack, these changes will not be reflected in pipeline runs until the stack file is updated.
-::
+
+:::
 
 ### Repository Structure
 
@@ -47,18 +49,26 @@ We recommend using your `infrastructure-catalog` repository to define your reusa
 
 Within your `infrastructure-live-root` repositories, add `terragrunt.stack.hcl` files to define your Terragrunt Stacks.
 
-::warning
+:::warning
+
 You should not commit the generated `.terragrunt-stack` directories to source control, pipelines will generate these directories automatically during execution.
-::
+
+:::
 
 #### Removing .terragrunt-stack directories
 
-::note
+:::note
+
 The following is only necessary if you've accidentally committed `.terragrunt-stack` directories to source control, which should be avoided.
-::
+
+:::
 
 If you find yourself in the situation where `.terragrunt-stack` directories have been committed to your repository, you'll need to remove them carefully. When doing so, add `[skip-ci]` to your commit message to prevent unintended infrastructure destruction. Without this flag, if Pipelines detects removed tracked files but doesn't see corresponding stack file modifications, it may interpret this as infrastructure that should be destroyed.
 
 ### Migration from _envcommon
 
-The _envcommon pattern can be gradually replaced with Terragrunt Stacks while maintaining your existing workflows. Stacks provide a more structured and version-controlled alternative to _envcommon. Instead of updating shared files that immediately affect all dependent units across your repository, Stacks enable incremental rollouts of infrastructure changes through explicit versioning. This allows you to deploy changes to development environments first, then progressively to staging and production environments as confidence builds. For step-by-step migration instructions, see the <span class="external-link"><a href="https://terragrunt.gruntwork.io/docs/migrate/terragrunt-stacks/">Terragrunt Migration Guide</a></span>.
+Terragrunt Stacks provide a more structured and version-controlled alternative to `_envcommon`. Instead of updating shared files that immediately affect all dependent units across your repository, Terragrunt Stacks enable incremental rollouts of infrastructure changes through explicit versioning. This allows you to deploy changes to development environments first, then progressively to staging and production environments as confidence builds.
+
+The `_envcommon` pattern can be gradually replaced with Terragrunt Stacks while maintaining your existing workflows.
+
+For step-by-step migration instructions, see the <span class="external-link"><a href="https://terragrunt.gruntwork.io/docs/migrate/terragrunt-stacks/">Terragrunt Migration Guide</a></span>.
