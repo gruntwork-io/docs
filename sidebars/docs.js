@@ -363,6 +363,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/pipelines/guides/handling-broken-iac",
       },
+      {
+        label: "Using Terragrunt Stacks",
+        type: "doc",
+        id: "2.0/docs/pipelines/guides/stacks",
+      },
     ],
   },
   {
