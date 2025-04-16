@@ -289,6 +289,8 @@ inputs = {
 <details>
 <summary>Pipelines Apply</summary>
 
+<!-- spell-checker: disable -->
+
 ```hcl title="$$PATH_TO_ENVIRONMENT$$/_global/pipelines-apply-role/terragrunt.hcl"
 terraform {
   source = "git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.74.5"
@@ -500,6 +502,8 @@ inputs = {
   }
 }
 ```
+
+<!-- spell-checker: enable -->
 
 </details>
 
