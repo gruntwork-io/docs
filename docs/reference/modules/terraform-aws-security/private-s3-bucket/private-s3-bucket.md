@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.16" lastModifiedVersion="0.75.3"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.18" lastModifiedVersion="0.75.18"/>
 
 # Private S3 Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/private-s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/private-s3-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.18" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to create and manage an [Amazon S3](https://aws.amazon.com/s3/) bucket that enforces
 best practices for private access:
@@ -86,7 +86,7 @@ aws-vault exec --no-session root-prod -- ./mfa-delete.sh --account-id 2264865421
 
 module "private_s_3_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.75.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.75.18"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -274,6 +274,14 @@ module "private_s_3_bucket" {
   # value is the tag value.
   tags = {}
 
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior.
+  transition_default_minimum_object_size = null
+
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
   # are friendlier to automated policy checkers, which may scan a single
@@ -296,7 +304,7 @@ module "private_s_3_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.75.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/private-s3-bucket?ref=v0.75.18"
 }
 
 inputs = {
@@ -486,6 +494,14 @@ inputs = {
   # A map of tags to apply to the S3 Bucket. The key is the tag name and the
   # value is the tag value.
   tags = {}
+
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior.
+  transition_default_minimum_object_size = null
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -1013,6 +1029,15 @@ A map of tags to apply to the S3 Bucket. The key is the tag name and the value i
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="transition_default_minimum_object_size" requirement="optional" type="string">
+<HclListItemDescription>
+
+The default minimum object size behavior applied to the lifecycle configuration. Valid values: all_storage_classes_128K (default), varies_by_storage_class. To customize the minimum object size for any transition you can add a filter that specifies a custom object_size_greater_than or object_size_less_than value. Custom filters always take precedence over the default transition behavior.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1095,11 +1120,11 @@ The name of an IAM role that can be used to configure replication from various s
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/private-s3-bucket/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/private-s3-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/private-s3-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/private-s3-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/private-s3-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/private-s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d5928700d22ffdf131d8f126f700e4b0"
+  "hash": "cb06617cbcfc1bfa0c8632b8413970ca"
 }
 ##DOCS-SOURCER-END -->
