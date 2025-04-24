@@ -337,11 +337,11 @@ Configuration block for the connection pool for the RDS proxy.
 
 ```hcl
 object({
-    connection_borrow_timeout    = number    # The number of seconds for a proxy to wait for a connection to become available in the connection pool
-    init_query                   = string    # One or more SQL statements for the proxy to run when opening each new database connection
-    max_connections_percent      = number    # The maximum size of the connection pool for each target in a target group (1-100)
-    max_idle_connections_percent = number    # Controls how actively the proxy closes idle database connections in the connection pool (0-100)
-    session_pinning_filters      = list(string)  # Each item in the list represents a class of SQL operations that normally cause all later statements in a session using a proxy to be pinned to the same underlying database connection
+    connection_borrow_timeout    = number       # The number of seconds for a proxy to wait for a connection to become available in the connection pool
+    init_query                   = string       # One or more SQL statements for the proxy to run when opening each new database connection
+    max_connections_percent      = number       # The maximum size of the connection pool for each target in a target group (1-100)
+    max_idle_connections_percent = number       # Controls how actively the proxy closes idle database connections in the connection pool (0-100)
+    session_pinning_filters      = list(string) # Each item in the list represents a class of SQL operations that normally cause all later statements in a session using a proxy to be pinned to the same underlying database connection
   })
 ```
 
@@ -410,10 +410,10 @@ Configuration block for authentication and authorization mechanisms to connect t
 ```hcl
 map(object({
     auth_scheme               = optional(string, "SECRETS")  # The type of authentication that the proxy uses for connections from the proxy to the underlying database. Valid values: SECRETS
-    secret_arn                = string                      # The ARN of the Secrets Manager secret containing the database credentials
-    description               = optional(string)            # A user-specified description about the authentication used by a proxy to connect to the underlying database
+    secret_arn                = string                       # The ARN of the Secrets Manager secret containing the database credentials
+    description               = optional(string)             # A user-specified description about the authentication used by a proxy to connect to the underlying database
     iam_auth                  = optional(string, "DISABLED") # Whether to require or disallow AWS Identity and Access Management (IAM) authentication for connections to the proxy. Valid values: REQUIRED, DISABLED
-    client_password_auth_type = optional(string)           # The type of authentication the proxy uses for connections from clients. Valid values: MYSQL_NATIVE_PASSWORD, POSTGRES_SCRAM_SHA_256, POSTGRES_MD5
+    client_password_auth_type = optional(string)             # The type of authentication the proxy uses for connections from clients. Valid values: MYSQL_NATIVE_PASSWORD, POSTGRES_SCRAM_SHA_256, POSTGRES_MD5
   }))
 ```
 
@@ -513,6 +513,6 @@ The ID of the security group associated with the RDS proxy. This security group 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "07abff5960a5ac3b6f8aa6612331d2fd"
+  "hash": "689d9f294430347ae06c67a9e45eadd9"
 }
 ##DOCS-SOURCER-END -->
