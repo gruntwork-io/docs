@@ -29,6 +29,28 @@ establishes and manages the database connections on behalf of the application, p
 multiplexing requests to reduce overhead and improve performance. It also provides features like connection
 pooling, read/write splitting, and automatic failover to improve database availability and resilience.
 
+## Features
+
+This module provides the following features:
+
+*   Creates an RDS Proxy with configurable connection pooling settings
+*   Sets up IAM roles and policies for accessing Secrets Manager and KMS
+*   Configures security groups with customizable ingress rules
+*   Supports both RDS instances and Aurora clusters
+*   Configurable authentication methods including IAM authentication
+*   TLS encryption enforcement option
+*   Configurable idle client timeout
+*   Customizable connection pool settings
+
+## Prerequisites
+
+Before using this module, you need to:
+
+1.  Have an existing RDS instance or Aurora cluster
+2.  Store database credentials in AWS Secrets Manager
+3.  Have appropriate VPC and subnet configuration
+4.  Have necessary IAM permissions to create RDS proxies and related resources
+
 ## How to use the RDS Proxy Module
 
 In order to setup a RDS proxy, you need to setup database credentials in AWS Secrets Manager and pass it to this module.
@@ -39,19 +61,74 @@ using the `db_secret_kms_key_arn` parameter.
 
 Setting up a RDS proxy requires the following steps, which is handled by this module:
 
-*   Setting up network prerequisites
-*   Setting up database credentials
+*   Setting up network prerequisites (VPC, subnets, security groups)
+*   Setting up database credentials in Secrets Manager
 *   Setting up AWS Identity and Access Management (IAM) policies
+*   Configuring connection pooling and authentication settings
 
 ## Configuring access to RDS Proxy
 
-If you don't provide the `allow_connections_from_cidr_blocks` variable, you will need to provision your own access. To
-do that create an ingress rule on the security group that this module creates. The security group ID will be available
-from the [`security_group_id`](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/rds-proxy/outputs.tf#L9) output variable.
+The module provides two ways to configure access to the RDS Proxy:
+
+1.  Using `allow_connections_from_cidr_blocks` variable to specify CIDR blocks that can connect to the proxy
+2.  Manually configuring the security group by using the `security_group_id` output and adding your own ingress rules
+
+The security group created by this module:
+
+*   Allows all outbound traffic
+*   Can be configured with custom ingress rules for the specified port (default: 3306)
+*   Is associated with the VPC specified in `vpc_id`
 
 ## Testing the connection to RDS Proxy
 
-You connect to an RDS DB instance through a proxy in generally the same way as you connect directly to the database. The main difference is that you specify the proxy endpoint instead of the DB endpoint. When using this module, the proxy endpoint will be avaialable from the [`rds_proxy_endpoint`](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/rds-proxy/outputs.tf#L5) output variable. Note that RDS Proxy [can't be publicly accessible](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html#rds-proxy.limitations), so you might need to use provision EC2 instance inside the same VPC to test the connection.
+You connect to an RDS DB instance through a proxy in generally the same way as you connect directly to the database. The main difference is that you specify the proxy endpoint instead of the DB endpoint. When using this module, the proxy endpoint will be available from the `rds_proxy_endpoint` output variable.
+
+Important notes:
+
+*   RDS Proxy cannot be publicly accessible
+*   You must connect from within the same VPC
+*   You can use an EC2 instance in the same VPC to test the connection
+*   The connection will use the port specified in the `port` variable (default: 3306)
+
+## Required IAM Permissions
+
+The module creates and manages the following IAM resources:
+
+*   An IAM role for the RDS Proxy to access Secrets Manager
+*   IAM policies for accessing secrets and KMS keys
+*   Additional user-specific IAM policies if authentication is configured
+
+The IAM role has permissions to:
+
+*   Get secret values from Secrets Manager
+*   Decrypt secrets using KMS (if KMS key ARN is provided)
+*   Assume the RDS service role
+
+## Connection Pool Configuration
+
+The module allows you to configure connection pooling through the `connection_pool_config` variable, which supports:
+
+*   Connection borrow timeout
+*   Initial query execution
+*   Maximum connections percentage
+*   Maximum idle connections percentage
+*   Session pinning filters
+
+## Authentication Configuration
+
+The module supports multiple authentication methods through the `auth` variable:
+
+*   SECRETS-based authentication (default)
+*   IAM authentication (optional)
+*   Custom client password authentication types
+
+Each authentication method can be configured with:
+
+*   Authentication scheme
+*   Secret ARN
+*   Description
+*   IAM authentication setting
+*   Client password authentication type
 
 ## Sample Usage
 
@@ -72,75 +149,72 @@ module "rds_proxy" {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The number of seconds that a connection to the proxy can be inactive before
-  # the proxy disconnects it. You can set this value higher or lower than the
-  # connection timeout limit for the associated database.
+  # Configuration block for the connection pool for the RDS proxy.
   connection_pool_config = <object(
-    connection_borrow_timeout    = number
-    init_query                   = string
-    max_connections_percent      = number
-    max_idle_connections_percent = number
-    session_pinning_filters      = list(string)
   )>
 
-  # The DB secret should contain username and password for the DB as a key-value
-  # pairs. Otherwise, you can insert plaintext secret with the format should
-  # look like {"username":"your_username","password":"your_password"}.
+  # The ARN of the Secrets Manager secret containing the database credentials.
+  # The secret should contain username and password as key-value pairs in the
+  # format {"username":"your_username","password":"your_password"}.
   db_secret_arn = <string>
 
-  # The kinds of databases that the proxy can connect to. This value determines
-  # which database network protocol the proxy recognizes when it interprets
-  # network traffic to and from the database. The engine family applies to MySQL
-  # and PostgreSQL for both RDS and Aurora. Valid values are MYSQL and
-  # POSTGRESQL.
+  # The kind of database engine that the proxy will connect to. Valid values are
+  # MYSQL or POSTGRESQL. This value determines which database network protocol
+  # the proxy recognizes when it interprets network traffic to and from the
+  # database.
   engine_family = <string>
 
-  # The identifier for the proxy.
+  # The identifier for the proxy. This name must be unique for all proxies owned
+  # by your AWS account in the specified AWS Region. An identifier must begin
+  # with a letter and must contain only ASCII letters, digits, and hyphens; it
+  # can't end with a hyphen or contain two consecutive hyphens.
   name = <string>
 
-  # A list of subnet ids where the database instances should be deployed. In the
-  # standard Gruntwork VPC setup, these should be the private persistence subnet
-  # ids. This is ignored if create_subnet_group=false.
+  # A list of VPC subnet IDs to associate with the RDS proxy. These must be
+  # private subnets in different Availability Zones.
   subnet_ids = <list(string)>
 
-  # The id of the VPC in which this DB should be deployed.
+  # The ID of the VPC in which to create the RDS proxy.
   vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A list of CIDR-formatted IP address ranges that can connect to this DB.
-  # Should typically be the CIDR blocks of the private app subnet in this VPC
-  # plus the private subnet in the mgmt VPC.
+  # A list of CIDR blocks that are allowed to connect to the proxy. These should
+  # typically be the CIDR blocks of the private application subnets in the VPC
+  # plus any other networks that need access.
   allow_connections_from_cidr_blocks = []
 
-  # Configuration block(s) with authorization mechanisms to connect to the
-  # associated instances or clusters
+  # Configuration block for authentication and authorization mechanisms to
+  # connect to the associated instances or clusters.
   auth = {}
 
-  # The DB cluster identifier. Note that one of `db_instance_identifier` or
-  # `db_cluster_identifier` is required.
+  # The identifier of the Aurora DB cluster to be associated with the proxy.
+  # Required if connecting to an Aurora cluster. Either db_instance_identifier
+  # or db_cluster_identifier must be set, but not both.
   db_cluster_identifier = null
 
-  # The DB instance identifier. Note that one of `db_instance_identifier` or
-  # `db_cluster_identifier` is required.
+  # The identifier of the RDS DB instance to be associated with the proxy.
+  # Required if connecting to a RDS instance. Either db_instance_identifier or
+  # db_cluster_identifier must be set, but not both.
   db_instance_identifier = null
 
-  # The KMS key used to encrypt the DB secret.
+  # The ARN of the KMS key used to encrypt the database secret in AWS Secrets
+  # Manager.
   db_secret_kms_key_arn = null
 
   # The number of seconds that a connection to the proxy can be inactive before
-  # the proxy disconnects it. You can set this value higher or lower than the
-  # connection timeout limit for the associated database.
+  # the proxy disconnects it. Minimum: 1, Maximum: 7200.
   idle_client_timeout = null
 
-  # The port the RDS proxy will listen on (e.g. 3306)
+  # The port that the proxy will listen on. If not specified, the default port
+  # for the engine family will be used (3306 for MySQL, 5432 for PostgreSQL).
   port = 3306
 
-  # The number of seconds that a connection to the proxy can be inactive before
-  # the proxy disconnects it. You can set this value higher or lower than the
-  # connection timeout limit for the associated database.
+  # A boolean parameter that specifies whether Transport Layer Security (TLS)
+  # encryption is required for connections to the proxy. By enabling this
+  # setting, you can enforce encrypted TLS connections to the proxy.
   require_tls = null
 
 }
@@ -167,75 +241,72 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The number of seconds that a connection to the proxy can be inactive before
-  # the proxy disconnects it. You can set this value higher or lower than the
-  # connection timeout limit for the associated database.
+  # Configuration block for the connection pool for the RDS proxy.
   connection_pool_config = <object(
-    connection_borrow_timeout    = number
-    init_query                   = string
-    max_connections_percent      = number
-    max_idle_connections_percent = number
-    session_pinning_filters      = list(string)
   )>
 
-  # The DB secret should contain username and password for the DB as a key-value
-  # pairs. Otherwise, you can insert plaintext secret with the format should
-  # look like {"username":"your_username","password":"your_password"}.
+  # The ARN of the Secrets Manager secret containing the database credentials.
+  # The secret should contain username and password as key-value pairs in the
+  # format {"username":"your_username","password":"your_password"}.
   db_secret_arn = <string>
 
-  # The kinds of databases that the proxy can connect to. This value determines
-  # which database network protocol the proxy recognizes when it interprets
-  # network traffic to and from the database. The engine family applies to MySQL
-  # and PostgreSQL for both RDS and Aurora. Valid values are MYSQL and
-  # POSTGRESQL.
+  # The kind of database engine that the proxy will connect to. Valid values are
+  # MYSQL or POSTGRESQL. This value determines which database network protocol
+  # the proxy recognizes when it interprets network traffic to and from the
+  # database.
   engine_family = <string>
 
-  # The identifier for the proxy.
+  # The identifier for the proxy. This name must be unique for all proxies owned
+  # by your AWS account in the specified AWS Region. An identifier must begin
+  # with a letter and must contain only ASCII letters, digits, and hyphens; it
+  # can't end with a hyphen or contain two consecutive hyphens.
   name = <string>
 
-  # A list of subnet ids where the database instances should be deployed. In the
-  # standard Gruntwork VPC setup, these should be the private persistence subnet
-  # ids. This is ignored if create_subnet_group=false.
+  # A list of VPC subnet IDs to associate with the RDS proxy. These must be
+  # private subnets in different Availability Zones.
   subnet_ids = <list(string)>
 
-  # The id of the VPC in which this DB should be deployed.
+  # The ID of the VPC in which to create the RDS proxy.
   vpc_id = <string>
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # A list of CIDR-formatted IP address ranges that can connect to this DB.
-  # Should typically be the CIDR blocks of the private app subnet in this VPC
-  # plus the private subnet in the mgmt VPC.
+  # A list of CIDR blocks that are allowed to connect to the proxy. These should
+  # typically be the CIDR blocks of the private application subnets in the VPC
+  # plus any other networks that need access.
   allow_connections_from_cidr_blocks = []
 
-  # Configuration block(s) with authorization mechanisms to connect to the
-  # associated instances or clusters
+  # Configuration block for authentication and authorization mechanisms to
+  # connect to the associated instances or clusters.
   auth = {}
 
-  # The DB cluster identifier. Note that one of `db_instance_identifier` or
-  # `db_cluster_identifier` is required.
+  # The identifier of the Aurora DB cluster to be associated with the proxy.
+  # Required if connecting to an Aurora cluster. Either db_instance_identifier
+  # or db_cluster_identifier must be set, but not both.
   db_cluster_identifier = null
 
-  # The DB instance identifier. Note that one of `db_instance_identifier` or
-  # `db_cluster_identifier` is required.
+  # The identifier of the RDS DB instance to be associated with the proxy.
+  # Required if connecting to a RDS instance. Either db_instance_identifier or
+  # db_cluster_identifier must be set, but not both.
   db_instance_identifier = null
 
-  # The KMS key used to encrypt the DB secret.
+  # The ARN of the KMS key used to encrypt the database secret in AWS Secrets
+  # Manager.
   db_secret_kms_key_arn = null
 
   # The number of seconds that a connection to the proxy can be inactive before
-  # the proxy disconnects it. You can set this value higher or lower than the
-  # connection timeout limit for the associated database.
+  # the proxy disconnects it. Minimum: 1, Maximum: 7200.
   idle_client_timeout = null
 
-  # The port the RDS proxy will listen on (e.g. 3306)
+  # The port that the proxy will listen on. If not specified, the default port
+  # for the engine family will be used (3306 for MySQL, 5432 for PostgreSQL).
   port = 3306
 
-  # The number of seconds that a connection to the proxy can be inactive before
-  # the proxy disconnects it. You can set this value higher or lower than the
-  # connection timeout limit for the associated database.
+  # A boolean parameter that specifies whether Transport Layer Security (TLS)
+  # encryption is required for connections to the proxy. By enabling this
+  # setting, you can enforce encrypted TLS connections to the proxy.
   require_tls = null
 
 }
@@ -259,18 +330,18 @@ inputs = {
 <HclListItem name="connection_pool_config" requirement="required" type="object(…)">
 <HclListItemDescription>
 
-The number of seconds that a connection to the proxy can be inactive before the proxy disconnects it. You can set this value higher or lower than the connection timeout limit for the associated database.
+Configuration block for the connection pool for the RDS proxy.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
 object({
-    connection_borrow_timeout    = number
-    init_query                   = string
-    max_connections_percent      = number
-    max_idle_connections_percent = number
-    session_pinning_filters      = list(string)
+    connection_borrow_timeout    = number    # The number of seconds for a proxy to wait for a connection to become available in the connection pool
+    init_query                   = string    # One or more SQL statements for the proxy to run when opening each new database connection
+    max_connections_percent      = number    # The maximum size of the connection pool for each target in a target group (1-100)
+    max_idle_connections_percent = number    # Controls how actively the proxy closes idle database connections in the connection pool (0-100)
+    session_pinning_filters      = list(string)  # Each item in the list represents a class of SQL operations that normally cause all later statements in a session using a proxy to be pinned to the same underlying database connection
   })
 ```
 
@@ -280,7 +351,7 @@ object({
 <HclListItem name="db_secret_arn" requirement="required" type="string">
 <HclListItemDescription>
 
-The DB secret should contain username and password for the DB as a key-value pairs. Otherwise, you can insert plaintext secret with the format should look like &#123;'username':'your_username','password':'your_password'&#125;.
+The ARN of the Secrets Manager secret containing the database credentials. The secret should contain username and password as key-value pairs in the format &#123;'username':'your_username','password':'your_password'&#125;.
 
 </HclListItemDescription>
 </HclListItem>
@@ -288,7 +359,7 @@ The DB secret should contain username and password for the DB as a key-value pai
 <HclListItem name="engine_family" requirement="required" type="string">
 <HclListItemDescription>
 
-The kinds of databases that the proxy can connect to. This value determines which database network protocol the proxy recognizes when it interprets network traffic to and from the database. The engine family applies to MySQL and PostgreSQL for both RDS and Aurora. Valid values are MYSQL and POSTGRESQL.
+The kind of database engine that the proxy will connect to. Valid values are MYSQL or POSTGRESQL. This value determines which database network protocol the proxy recognizes when it interprets network traffic to and from the database.
 
 </HclListItemDescription>
 </HclListItem>
@@ -296,7 +367,7 @@ The kinds of databases that the proxy can connect to. This value determines whic
 <HclListItem name="name" requirement="required" type="string">
 <HclListItemDescription>
 
-The identifier for the proxy.
+The identifier for the proxy. This name must be unique for all proxies owned by your AWS account in the specified AWS Region. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it can't end with a hyphen or contain two consecutive hyphens.
 
 </HclListItemDescription>
 </HclListItem>
@@ -304,7 +375,7 @@ The identifier for the proxy.
 <HclListItem name="subnet_ids" requirement="required" type="list(string)">
 <HclListItemDescription>
 
-A list of subnet ids where the database instances should be deployed. In the standard Gruntwork VPC setup, these should be the private persistence subnet ids. This is ignored if create_subnet_group=false.
+A list of VPC subnet IDs to associate with the RDS proxy. These must be private subnets in different Availability Zones.
 
 </HclListItemDescription>
 </HclListItem>
@@ -312,7 +383,7 @@ A list of subnet ids where the database instances should be deployed. In the sta
 <HclListItem name="vpc_id" requirement="required" type="string">
 <HclListItemDescription>
 
-The id of the VPC in which this DB should be deployed.
+The ID of the VPC in which to create the RDS proxy.
 
 </HclListItemDescription>
 </HclListItem>
@@ -322,7 +393,7 @@ The id of the VPC in which this DB should be deployed.
 <HclListItem name="allow_connections_from_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of CIDR-formatted IP address ranges that can connect to this DB. Should typically be the CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
+A list of CIDR blocks that are allowed to connect to the proxy. These should typically be the CIDR blocks of the private application subnets in the VPC plus any other networks that need access.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -331,18 +402,18 @@ A list of CIDR-formatted IP address ranges that can connect to this DB. Should t
 <HclListItem name="auth" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
-Configuration block(s) with authorization mechanisms to connect to the associated instances or clusters
+Configuration block for authentication and authorization mechanisms to connect to the associated instances or clusters.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
 map(object({
-    auth_scheme               = optional(string, "SECRETS")
-    secret_arn                = string
-    description               = optional(string)
-    iam_auth                  = optional(string, "DISABLED") # REQUIRED or DISABLED
-    client_password_auth_type = optional(string)
+    auth_scheme               = optional(string, "SECRETS")  # The type of authentication that the proxy uses for connections from the proxy to the underlying database. Valid values: SECRETS
+    secret_arn                = string                      # The ARN of the Secrets Manager secret containing the database credentials
+    description               = optional(string)            # A user-specified description about the authentication used by a proxy to connect to the underlying database
+    iam_auth                  = optional(string, "DISABLED") # Whether to require or disallow AWS Identity and Access Management (IAM) authentication for connections to the proxy. Valid values: REQUIRED, DISABLED
+    client_password_auth_type = optional(string)           # The type of authentication the proxy uses for connections from clients. Valid values: MYSQL_NATIVE_PASSWORD, POSTGRES_SCRAM_SHA_256, POSTGRES_MD5
   }))
 ```
 
@@ -353,7 +424,7 @@ map(object({
 <HclListItem name="db_cluster_identifier" requirement="optional" type="string">
 <HclListItemDescription>
 
-The DB cluster identifier. Note that one of `db_instance_identifier` or `db_cluster_identifier` is required.
+The identifier of the Aurora DB cluster to be associated with the proxy. Required if connecting to an Aurora cluster. Either db_instance_identifier or db_cluster_identifier must be set, but not both.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -362,7 +433,7 @@ The DB cluster identifier. Note that one of `db_instance_identifier` or `db_clus
 <HclListItem name="db_instance_identifier" requirement="optional" type="string">
 <HclListItemDescription>
 
-The DB instance identifier. Note that one of `db_instance_identifier` or `db_cluster_identifier` is required.
+The identifier of the RDS DB instance to be associated with the proxy. Required if connecting to a RDS instance. Either db_instance_identifier or db_cluster_identifier must be set, but not both.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -371,7 +442,7 @@ The DB instance identifier. Note that one of `db_instance_identifier` or `db_clu
 <HclListItem name="db_secret_kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-The KMS key used to encrypt the DB secret.
+The ARN of the KMS key used to encrypt the database secret in AWS Secrets Manager.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -380,7 +451,7 @@ The KMS key used to encrypt the DB secret.
 <HclListItem name="idle_client_timeout" requirement="optional" type="number">
 <HclListItemDescription>
 
-The number of seconds that a connection to the proxy can be inactive before the proxy disconnects it. You can set this value higher or lower than the connection timeout limit for the associated database.
+The number of seconds that a connection to the proxy can be inactive before the proxy disconnects it. Minimum: 1, Maximum: 7200.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -389,7 +460,7 @@ The number of seconds that a connection to the proxy can be inactive before the 
 <HclListItem name="port" requirement="optional" type="number">
 <HclListItemDescription>
 
-The port the RDS proxy will listen on (e.g. 3306)
+The port that the proxy will listen on. If not specified, the default port for the engine family will be used (3306 for MySQL, 5432 for PostgreSQL).
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="3306"/>
@@ -398,7 +469,7 @@ The port the RDS proxy will listen on (e.g. 3306)
 <HclListItem name="require_tls" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The number of seconds that a connection to the proxy can be inactive before the proxy disconnects it. You can set this value higher or lower than the connection timeout limit for the associated database.
+A boolean parameter that specifies whether Transport Layer Security (TLS) encryption is required for connections to the proxy. By enabling this setting, you can enforce encrypted TLS connections to the proxy.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -408,12 +479,27 @@ The number of seconds that a connection to the proxy can be inactive before the 
 <TabItem value="outputs" label="Outputs">
 
 <HclListItem name="rds_proxy_arn">
+<HclListItemDescription>
+
+The Amazon Resource Name (ARN) for the RDS proxy. This ARN uniquely identifies the proxy across all AWS accounts and regions.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="rds_proxy_endpoint">
+<HclListItemDescription>
+
+The endpoint that you can use to connect to the RDS proxy. This endpoint includes the hostname and port number that clients should use to connect to the proxy.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="security_group_id">
+<HclListItemDescription>
+
+The ID of the security group associated with the RDS proxy. This security group controls inbound and outbound traffic to the proxy.
+
+</HclListItemDescription>
 </HclListItem>
 
 </TabItem>
@@ -427,6 +513,6 @@ The number of seconds that a connection to the proxy can be inactive before the 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e381d4ab0da299aebf786b34106ce8df"
+  "hash": "07abff5960a5ac3b6f8aa6612331d2fd"
 }
 ##DOCS-SOURCER-END -->
