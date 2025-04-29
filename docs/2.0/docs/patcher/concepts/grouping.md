@@ -113,6 +113,3 @@ for each $environment e.g., glob patterns like dev-* or prod-*)
   for each $target output 
     run patcher update --target=$target
 ```
-
-
-**Pseudocode:**

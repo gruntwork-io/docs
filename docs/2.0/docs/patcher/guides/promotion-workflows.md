@@ -55,6 +55,12 @@ The initial GitHub Actions workflow file, `update-dev.yml` in this example, high
     * The `patcher update` command reads the `spec` file, checks out the repository code, commits the changes, and pushes a pull request. 
     * For the pull request workflow to function correctly, the `pull_request_branch` must follow the format `$PREFIX$DEPENDENCYID`. This format allows the workflow to track and process updates accurately. The `trigger-next-env` job strips out the prefix.
 
+:::info
+As of `v0.14.x` (`patcher-action` `v2.10.x`), Patcher has deprecated support of checking in the spec output file from a `patcher report` run into your codebase. 
+This output is intended as a temporary reference between `report` and `update` runs, and is treated as a temp file, going forward. 
+If you have this file in your codebase, it is recommended that you delete it and/or include it in the `.gitignore` file.
+:::
+
 <!-- spell-checker: disable -->
 ```yml
 name: Update Dev Dependencies
@@ -113,7 +119,7 @@ jobs:
           github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
           include_dirs: "{*dev*}/**"
           working_dir: ./
-          spec_file: patcher-spec.json
+          spec_file: /tmp/patcher-spec.json
 
   update-env:
     needs: [patcher-report]
@@ -128,7 +134,7 @@ jobs:
       - name: Create the spec file
         shell: bash
         run: |
-          echo '${{ needs.patcher-report.outputs.spec }}' > patcher-spec.json
+          echo '${{ needs.patcher-report.outputs.spec }}' > /tmp/patcher-spec.json
 
       - uses: gruntwork-io/patcher-action@main
         with:
@@ -136,7 +142,7 @@ jobs:
           github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
           working_dir: ${{ env.ENV_FOLDER_NAME }}
           dependency: ${{ matrix.dependency.ID }}
-          spec_file: patcher-spec.json
+          spec_file: /tmp/patcher-spec.json
           pull_request_title: "[Patcher] [dev] Update ${{ matrix.dependency.ID }}"
           pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
 ```
@@ -203,7 +209,7 @@ jobs:
           github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
           patcher_command: report
           working_dir: ./
-          spec_file: patcher-spec.json
+          spec_file: /tmp/patcher-spec.json
           include_dirs: "{*stage*}/**"
 
   update-env:
@@ -219,14 +225,14 @@ jobs:
       - name: Create the spec file
         shell: bash
         run: |
-          echo '${{ needs.patcher-report.outputs.spec }}' > patcher-spec.json
+          echo '${{ needs.patcher-report.outputs.spec }}' > /tmp/patcher-spec.json
 
       - uses: gruntwork-io/patcher-action@main
         with:
           github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
           dependency: ${{ matrix.dependency.ID }}
           patcher_command: update
-          spec_file: patcher-spec.json
+          spec_file: /tmp/patcher-spec.json
           pull_request_title: "[Patcher] [stage] Update ${{ matrix.dependency.ID }}"
           pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
 ```
@@ -271,7 +277,7 @@ jobs:
           patcher_command: report
           working_dir: ./
           dependency: ${{ github.event.client_payload.dependency }}
-          spec_file: patcher-spec.json
+          spec_file: /tmp/patcher-spec.json
           include_dirs: "{*prod*}/**"
 
   update-env:
@@ -287,14 +293,14 @@ jobs:
       - name: Create the spec file
         shell: bash
         run: |
-          echo '${{ needs.patcher-report.outputs.spec }}' > patcher-spec.json
+          echo '${{ needs.patcher-report.outputs.spec }}' > /tmp/patcher-spec.json
 
       - uses: gruntwork-io/patcher-action@main
         with:
           github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
           dependency: ${{ matrix.dependency.ID }}
           patcher_command: update
-          spec_file: patcher-spec.json
+          spec_file: /tmp/patcher-spec.json
           pull_request_title: "[Patcher] [prod] Update ${{ matrix.dependency.ID }}"
           pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
 ```
