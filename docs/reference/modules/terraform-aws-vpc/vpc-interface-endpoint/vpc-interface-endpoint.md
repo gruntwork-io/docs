@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.28.4" lastModifiedVersion="0.28.4"/>
+<VersionBadge repoTitle="VPC Modules" version="0.28.5" lastModifiedVersion="0.28.5"/>
 
 # Interface VPC Endpoint
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.4/modules/vpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.5/modules/vpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 By default, if code running within your VPCs makes API calls to AWS (e.g., to fetch data from S3 or trigger a Lambda function), those API calls leave the VPC, and are routed via the public Internet. This Terraform Module launches VPC endpoints that allow code running within your VPCs to privately connect to AWS services and APIs without the traffic leaving the VPC and without going over the public Internet. Although all API calls to AWS are encrypted with TLS, VPC endpoints give you one extra layer of security by keeping your API calls within the AWS network.
 
@@ -193,7 +193,7 @@ Not specifying a rule allows all traffic.
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.4/modules//_docs/vpc-core-concepts.md) like subnets and NAT Gateways.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.5/modules//_docs/vpc-core-concepts.md) like subnets and NAT Gateways.
 
 ## Sample Usage
 
@@ -208,7 +208,7 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 module "vpc_interface_endpoint" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.28.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.28.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -1303,6 +1303,9 @@ module "vpc_interface_endpoint" {
   # Set to true if you want to provision a Lambda endpoint within the VPC.
   enable_lambda_endpoint = false
 
+  # Set to true if you want to provision Pinpoint endpoint within the VPC.
+  enable_pinpoint_endpoint = false
+
   # Set to true if you want to provision a QLDB Session Endpoint within the VPC
   enable_qldb_session_endpoint = false
 
@@ -1525,6 +1528,29 @@ module "vpc_interface_endpoint" {
 
   # Tags for the Lambda endpoint
   lambda_endpoint_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  pinpoint_endpoint_policy = null
+
+  # Set to false if you don't want to associate a private hosted zone with the
+  # specified VPC for the Pinpoint endpoint.
+  pinpoint_endpoint_private_dns_enabled = true
+
+  # The ID of one or more security groups to associate with the network
+  # interface for the Pinpoint endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
+  pinpoint_endpoint_security_group_ids = []
+
+  # The IDs of subnets in which to create a network interface for the Pinpoint
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
+  pinpoint_endpoint_subnet_ids = []
+
+  # Tags for the Pinpoint endpoint
+  pinpoint_endpoint_tags = {}
 
   # IAM policy to restrict what resources can call this endpoint. For example,
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
@@ -2075,7 +2101,7 @@ module "vpc_interface_endpoint" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.28.4"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.28.5"
 }
 
 inputs = {
@@ -3173,6 +3199,9 @@ inputs = {
   # Set to true if you want to provision a Lambda endpoint within the VPC.
   enable_lambda_endpoint = false
 
+  # Set to true if you want to provision Pinpoint endpoint within the VPC.
+  enable_pinpoint_endpoint = false
+
   # Set to true if you want to provision a QLDB Session Endpoint within the VPC
   enable_qldb_session_endpoint = false
 
@@ -3395,6 +3424,29 @@ inputs = {
 
   # Tags for the Lambda endpoint
   lambda_endpoint_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  pinpoint_endpoint_policy = null
+
+  # Set to false if you don't want to associate a private hosted zone with the
+  # specified VPC for the Pinpoint endpoint.
+  pinpoint_endpoint_private_dns_enabled = true
+
+  # The ID of one or more security groups to associate with the network
+  # interface for the Pinpoint endpoint. If none is provided, AWS will associate
+  # the default security group for the VPC.
+  pinpoint_endpoint_security_group_ids = []
+
+  # The IDs of subnets in which to create a network interface for the Pinpoint
+  # endpoint. Only a single subnet within an AZ is supported. If omitted, only
+  # subnet_ids will be used.
+  pinpoint_endpoint_subnet_ids = []
+
+  # Tags for the Pinpoint endpoint
+  pinpoint_endpoint_tags = {}
 
   # IAM policy to restrict what resources can call this endpoint. For example,
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
@@ -6126,6 +6178,15 @@ Set to true if you want to provision a Lambda endpoint within the VPC.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_pinpoint_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision Pinpoint endpoint within the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="enable_qldb_session_endpoint" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -6616,6 +6677,51 @@ The IDs of subnets in which to create a network interface for the Lambda endpoin
 <HclListItemDescription>
 
 Tags for the Lambda endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="pinpoint_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="pinpoint_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Pinpoint endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="pinpoint_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Pinpoint endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="pinpoint_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Pinpoint endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="pinpoint_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Pinpoint endpoint
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
@@ -8256,6 +8362,20 @@ If you have private dns enabled, then your API calls would automatically go thro
 <HclListItem name="lambda_network_interface_ids">
 </HclListItem>
 
+<HclListItem name="pinpoint_endpoint_id">
+</HclListItem>
+
+<HclListItem name="pinpoint_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="pinpoint_network_interface_ids">
+</HclListItem>
+
 <HclListItem name="qldb_session_endpoint_id">
 </HclListItem>
 
@@ -8542,11 +8662,11 @@ If you have private dns enabled, then your streaming calls would automatically g
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.4/modules/vpc-interface-endpoint/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.4/modules/vpc-interface-endpoint/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.4/modules/vpc-interface-endpoint/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.5/modules/vpc-interface-endpoint/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.5/modules/vpc-interface-endpoint/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.5/modules/vpc-interface-endpoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4e912951125656cc37a8c51dc00b7c7a"
+  "hash": "e66f7b681b2093bce5ab52eba4901753"
 }
 ##DOCS-SOURCER-END -->
