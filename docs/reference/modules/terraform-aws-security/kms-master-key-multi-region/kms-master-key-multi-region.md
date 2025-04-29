@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.16" lastModifiedVersion="0.75.7"/>
+<VersionBadge repoTitle="Security Modules" version="0.75.18" lastModifiedVersion="0.75.7"/>
 
 # AWS KMS Customer Master Keys (CMK)
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/kms-master-key-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/kms-master-key-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -37,23 +37,23 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is KMS?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/kms-master-key/README.md#what-is-kms)
+*   [What is KMS?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/kms-master-key/README.md#what-is-kms)
 
-*   [What is the difference between creating one key in all regions and creating a single all-region key?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/kms-master-key-multi-region/core-concepts.md#what-is-the-difference-between-creating-one-key-in-all-regions-and-creating-a-single-all-region-key)
+*   [What is the difference between creating one key in all regions and creating a single all-region key?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/kms-master-key-multi-region/core-concepts.md#what-is-the-difference-between-creating-one-key-in-all-regions-and-creating-a-single-all-region-key)
 
-*   [What is a Customer Master Key?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/kms-master-key/README.md#what-is-a-customer-master-key)
+*   [What is a Customer Master Key?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/kms-master-key/README.md#what-is-a-customer-master-key)
 
 *   [KMS documentation](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html): Amazon’s docs for KMS that cover core concepts such as various key types, how to encrypt and decrypt, deletion of keys, and automatic key rotation.
 
-*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/codegen/core-concepts.md#how-to-use-a-multi-region-module)
+*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/codegen/core-concepts.md#how-to-use-a-multi-region-module)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -61,17 +61,17 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this out for experimenting and learning, check out the following resources:
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples folder](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ## Manage
 
-*   [Differences between CMK Administrators vs. CMK Users](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/kms-master-key/README.md#cmk-administrators-vs-cmk-users)
+*   [Differences between CMK Administrators vs. CMK Users](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/kms-master-key/README.md#cmk-administrators-vs-cmk-users)
 
-*   [Differences between managing access control with KMS key policies vs. IAM policies](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/kms-master-key/README.md#managing-a-keys-permissions-with-the-key-policy-vs-iam-policies)
+*   [Differences between managing access control with KMS key policies vs. IAM policies](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/kms-master-key/README.md#managing-a-keys-permissions-with-the-key-policy-vs-iam-policies)
 
-*   [What is the difference between KMS Grants and Key Policies?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/kms-grant-multi-region/core-concepts.md#what-is-the-difference-between-kms-grants-and-key-policies)
+*   [What is the difference between KMS Grants and Key Policies?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/kms-grant-multi-region/core-concepts.md#what-is-the-difference-between-kms-grants-and-key-policies)
 
-*   [How do I use KMS Grants to share encrypted AMIs across accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/kms-grant-multi-region/core-concepts.md#how-do-i-use-kms-grants-to-share-encrypted-amis-across-accounts)
+*   [How do I use KMS Grants to share encrypted AMIs across accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/kms-grant-multi-region/core-concepts.md#how-do-i-use-kms-grants-to-share-encrypted-amis-across-accounts)
 
 ## Sample Usage
 
@@ -86,7 +86,7 @@ If you just want to try this out for experimenting and learning, check out the f
 
 module "kms_master_key_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key-multi-region?ref=v0.75.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key-multi-region?ref=v0.75.18"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -153,7 +153,7 @@ module "kms_master_key_multi_region" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key-multi-region?ref=v0.75.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key-multi-region?ref=v0.75.18"
 }
 
 inputs = {
@@ -521,11 +521,11 @@ A map from region to IDs of the replica KMS CMKs that were created. The value wi
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/kms-master-key-multi-region/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/kms-master-key-multi-region/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.16/modules/kms-master-key-multi-region/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/kms-master-key-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/kms-master-key-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/kms-master-key-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7827c6a43584f0aa12e8f67b0dbe44f1"
+  "hash": "aa23e49701f0b0e2f21cb97dd354b721"
 }
 ##DOCS-SOURCER-END -->
