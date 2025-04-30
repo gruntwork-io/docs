@@ -251,7 +251,7 @@ const sidebar = [
                 type: "doc",
                 id: "2.0/docs/pipelines/installation/branch-protection",
               },
-            ]
+            ],
           },
           {
             type: "category",
@@ -259,12 +259,12 @@ const sidebar = [
             collapsed: false,
             items: [
               {
-                label: "Adding Pipelines to a GitLab Repository",
+                label: "Adding Pipelines to a GitLab Project",
                 type: "doc",
                 id: "2.0/docs/pipelines/installation/addinggitlabrepo",
               },
-            ]
-          }
+            ],
+          },
         ],
       },
       {
@@ -417,7 +417,7 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/accountfactory/concepts/delegated-repositories",
       },
-    ]
+    ],
   },
   {
     label: "Architecture",
