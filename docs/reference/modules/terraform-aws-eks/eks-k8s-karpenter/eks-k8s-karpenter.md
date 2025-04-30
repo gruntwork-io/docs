@@ -203,6 +203,10 @@ module "eks_k_8_s_karpenter" {
   # Policies if enabled. The key is the tag name and the value is the tag value.
   karpenter_deprovisioning_queue_iam_policy_tags = {}
 
+  # Optional Name for the Karpenter SQS Deprovisioning Queue. If omitted, a name
+  # will be generated.
+  karpenter_deprovisioning_queue_name = null
+
   # Additional tags to add to the Karpenter Deprovisioning Queue.
   karpenter_deprovisioning_queue_tags = {}
 
@@ -388,6 +392,10 @@ inputs = {
   # A map of custom tags to apply to the Karpenter Deprovisioning Queue IAM
   # Policies if enabled. The key is the tag name and the value is the tag value.
   karpenter_deprovisioning_queue_iam_policy_tags = {}
+
+  # Optional Name for the Karpenter SQS Deprovisioning Queue. If omitted, a name
+  # will be generated.
+  karpenter_deprovisioning_queue_name = null
 
   # Additional tags to add to the Karpenter Deprovisioning Queue.
   karpenter_deprovisioning_queue_tags = {}
@@ -736,6 +744,15 @@ A map of custom tags to apply to the Karpenter Deprovisioning Queue IAM Policies
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="karpenter_deprovisioning_queue_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Optional Name for the Karpenter SQS Deprovisioning Queue. If omitted, a name will be generated.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="karpenter_deprovisioning_queue_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -907,6 +924,6 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.78.0/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e307e2ca84506f5344c72613f7aa4744"
+  "hash": "cca7f45e9b9a958a266abfa0e20b31aa"
 }
 ##DOCS-SOURCER-END -->
