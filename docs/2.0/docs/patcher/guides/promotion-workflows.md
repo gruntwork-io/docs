@@ -57,7 +57,7 @@ The initial GitHub Actions workflow file, `update-dev.yml` in this example, high
 
 :::info
 As of `v0.14.x` (`patcher-action` `v2.10.x`), Patcher has deprecated support of checking in the spec output file from a `patcher report` run into your codebase. 
-This output is intended as a temporary reference between `report` and `update` runs, and is treated as a temp file, going forward. 
+This file, similar to an OpenTofu plan file, is intended to be a temporary artifact to capture run details between `report` and `update`.   
 If you have this file in your codebase, it is recommended that you delete it and/or include it in the `.gitignore` file.
 :::
 
