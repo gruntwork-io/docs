@@ -13,6 +13,15 @@ Before you begin, make sure you have:
 - Completed the [Pipelines Auth setup for GitLab](/2.0/docs/pipelines/installation/viamachineusers#gitlab) and setup a machine user with appropriate PAT tokens
 - Local access to Gruntwork's GitHub repositories, specifically [boilerplate](https://github.com/gruntwork-io/boilerplate) and the [architecture catalog](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/)
 
+:::info
+
+**For custom GitLab instances only**: You must [fork](https://docs.gitlab.com/user/project/repository/forking_workflow/#create-a-fork) Gruntwork's public [Pipelines workflow project](https://gitlab.com/gruntwork-io/pipelines-workflows) into your own GitLab instance.
+
+This is necessary because Gruntwork Pipelines uses [GitLab CI/CD components](2.0/docs/pipelines/architecture/ci-workflows), and GitLab requires components to reside within the [same GitLab instance as the project referencing them](https://docs.gitlab.com/ci/components/#use-a-component).
+
+When creating the fork, we recommend configuring it as a public mirror of the original Gruntwork project and ensuring that tags are included.
+:::
+
 ## Setup Process Overview
 
 Setting up Gruntwork Pipelines for GitLab involves these main steps:
@@ -32,9 +41,12 @@ Setting up Gruntwork Pipelines for GitLab involves these main steps:
 To use Gruntwork Pipelines with GitLab, your group needs authorization from Gruntwork:
 
 1. Email your Gruntwork account manager or support@gruntwork.io with:
-   - Your GitLab group name(s) e.g. <CustomizableValue id="GITLAB_GROUP_NAME" />
-   - The GitLab instance URL (e.g., https://gitlab.com)
-   - Your organization name
+
+      ```
+      GitLab group name(s): $$GITLAB_GROUP_NAME$$ (e.g. acme-io)
+      GitLab instance URL: $$GITLAB_INSTANCE$$ (e.g., https://gitlab.acme.io)
+      Organization name: $$ORGANIZATION_NAME$$ (e.g. Acme, Inc.)
+      ```
 
 2. Wait for confirmation that your group has been authorized.
 
@@ -94,11 +106,11 @@ First, you'll need to install [mise](https://mise.jdx.dev/), a powerful environm
 
 4. Download the sample [vars.yaml file](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/blob/main/examples/gitlab-pipelines/vars.yaml) to the root of <CustomizableValue id="REPOSITORY_NAME" />
 
-4. Edit the `vars.yaml` file to customize it for your environment
+4. Edit the `vars.yaml` file to customize it for your environment. If using a custom GitLab instance, update any custom instance variables.
 
 5. `cd` to the root of <CustomizableValue id="REPOSITORY_NAME" /> where you wish to install Gruntwork Pipelines.  Run the boilerplate tool to generate your repository structure:
    ```bash
-   boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/gitlab-pipelines-infrastructure-live-root/?ref=v2.12.10" --output-folder . --var-file vars.yaml --non-interactive
+   boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/gitlab-pipelines-infrastructure-live-root/?ref=v2.13.0" --output-folder . --var-file vars.yaml --non-interactive
    ```
 
    If you encounter SSH issues, verify your SSH access to GitHub:
@@ -119,9 +131,8 @@ First, you'll need to install [mise](https://mise.jdx.dev/), a powerful environm
 
 ### Step 4: Install AWS OIDC Provider and IAM Roles for Pipelines
 
-
-1. Navigate to the `_global` folder under each account in your repository and review the Terraform files that were created:
-   - The GitLab OIDC identity provider in AWS
+1. Navigate to the `_global` folder under each account in your repository and review the Terragrunt files that were created:
+   - The GitLab OIDC identity provider in AWS. **Note:** If using a custom GitLab instance, ensure the `URL` and `audiences` inputs in this configuration are correct.
    - IAM roles for your the account (`root-pipelines-plan` and `root-pipelines-apply`)
 
 2. Apply these configurations to create the required AWS resources:
