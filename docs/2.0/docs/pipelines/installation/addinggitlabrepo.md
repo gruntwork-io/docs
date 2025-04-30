@@ -17,7 +17,7 @@ Before you begin, make sure you have:
 
 **For custom GitLab instances only**: You must [fork](https://docs.gitlab.com/user/project/repository/forking_workflow/#create-a-fork) Gruntwork's public [Pipelines workflow project](https://gitlab.com/gruntwork-io/pipelines-workflows) into your own GitLab instance.
 
-This is necessary because Gruntwork Pipelines uses [GitLab CI/CD components](2.0/docs/pipelines/architecture/ci-workflows), and GitLab requires components to reside within the [same GitLab instance as the project referencing them](https://docs.gitlab.com/ci/components/#use-a-component).
+This is necessary because Gruntwork Pipelines uses [GitLab CI/CD components](/2.0/docs/pipelines/architecture/ci-workflows), and GitLab requires components to reside within the [same GitLab instance as the project referencing them](https://docs.gitlab.com/ci/components/#use-a-component).
 
 When creating the fork, we recommend configuring it as a public mirror of the original Gruntwork project and ensuring that tags are included.
 :::
