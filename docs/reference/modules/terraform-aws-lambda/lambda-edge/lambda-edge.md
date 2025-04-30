@@ -29,7 +29,7 @@ for the full details):
 *   The function must be versioned in order to be a target for Cloudfront events.
 *   The function must be deployed in the `us-east-1` region.
 *   The function runtime must be one of:
-    *   `nodejs18.x` or newer
+    *   `nodejs22.x` or newer
     *   `python3.9` or newer
 
 ## What is AWS Lambda?
@@ -205,9 +205,9 @@ module "lambda_edge" {
   # The runtime environment for the Lambda function (e.g. nodejs, python3.9,
   # java8). See
   # https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime
-  # for all possible values. Currently Lambda@Edge supports only nodejs18.x and
+  # for all possible values. Currently Lambda@Edge supports only nodejs22.x and
   # python3.9.
-  runtime = "nodejs18.x"
+  runtime = "nodejs22.x"
 
   # An S3 bucket location containing the function's deployment package. Exactly
   # one of var.source_path or the var.s3_xxx variables must be specified.
@@ -400,9 +400,9 @@ inputs = {
   # The runtime environment for the Lambda function (e.g. nodejs, python3.9,
   # java8). See
   # https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime
-  # for all possible values. Currently Lambda@Edge supports only nodejs18.x and
+  # for all possible values. Currently Lambda@Edge supports only nodejs22.x and
   # python3.9.
-  runtime = "nodejs18.x"
+  runtime = "nodejs22.x"
 
   # An S3 bucket location containing the function's deployment package. Exactly
   # one of var.source_path or the var.s3_xxx variables must be specified.
@@ -716,10 +716,10 @@ The amount of reserved concurrent executions for this lambda function or -1 if u
 <HclListItem name="runtime" requirement="optional" type="string">
 <HclListItemDescription>
 
-The runtime environment for the Lambda function (e.g. nodejs, python3.9, java8). See https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime for all possible values. Currently Lambda@Edge supports only nodejs18.x and python3.9.
+The runtime environment for the Lambda function (e.g. nodejs, python3.9, java8). See https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime for all possible values. Currently Lambda@Edge supports only nodejs22.x and python3.9.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;nodejs18.x&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;nodejs22.x&quot;"/>
 </HclListItem>
 
 <HclListItem name="s3_bucket" requirement="optional" type="string">
@@ -865,7 +865,6 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -874,6 +873,6 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda-edge/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "be5ce8cd0da451c654be1065c85e4cb7"
+  "hash": "6b3d3f5fa2a013fdb1bb2d0df1e6cac7"
 }
 ##DOCS-SOURCER-END -->
