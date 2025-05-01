@@ -16,13 +16,13 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.125.1" lastModifiedVersion="0.114.0"/>
+<VersionBadge version="0.125.2" lastModifiedVersion="0.114.0"/>
 
 # Gruntwork GitOps "GruntOps"
 
 GitOps is an operational framework that is built around DevOps best practices for a standardized approach to managing the lifecycle of Kubernetes based deployments. GitOps provides a unified approach to the deployment and management of container workloads, with Git being the single source of truth for the state of the container infrastructure. GitOps is a very developer-centric workflow that works best when adopted by individuals and teams that follow a git based development lifecycle. The core principles of GitOps have been at the center of Gruntwork from the beginning!
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.1/modules/services/eks-argocd" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.2/modules/services/eks-argocd" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-argocd" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -40,7 +40,7 @@ GitOps is an operational framework that is built around DevOps best practices fo
 
 module "eks_argocd" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-argocd?ref=v0.125.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-argocd?ref=v0.125.2"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -137,7 +137,7 @@ module "eks_argocd" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-argocd?ref=v0.125.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-argocd?ref=v0.125.2"
 }
 
 inputs = {
@@ -438,11 +438,11 @@ A list of the subnets into which the Argo CD pods will be launched. These should
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.1/modules/services/eks-argocd/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.1/modules/services/eks-argocd/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.1/modules/services/eks-argocd/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.2/modules/services/eks-argocd/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.2/modules/services/eks-argocd/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.2/modules/services/eks-argocd/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "eb9d8ad659bbe5e5b4de9620d4a35a60"
+  "hash": "7c7a3f7b7c34382ed886702035266c3c"
 }
 ##DOCS-SOURCER-END -->
