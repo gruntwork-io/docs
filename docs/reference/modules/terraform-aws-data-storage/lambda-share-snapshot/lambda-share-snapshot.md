@@ -9,23 +9,23 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.40.5" lastModifiedVersion="0.38.1"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.40.6" lastModifiedVersion="0.38.1"/>
 
 # Share Snapshot Lambda Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/lambda-share-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/lambda-share-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.38.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an [AWS Lambda](https://aws.amazon.com/lambda/) function that can share snapshots of an [Amazon
 Relational Database (RDS)](https://aws.amazon.com/rds/) database with another AWS account. Typically, the snapshots
-are created by the [lambda-create-snapshot module](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/lambda-create-snapshot), which can be configured to
+are created by the [lambda-create-snapshot module](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/lambda-create-snapshot), which can be configured to
 automatically trigger this lambda function after each run.
 
 ## Background info
 
 For more info on how to backup RDS snapshots to a separate AWS account, check out the [lambda-create-snapshot module
-documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/lambda-create-snapshot).
+documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/lambda-create-snapshot).
 
 ## Sample Usage
 
@@ -40,7 +40,7 @@ documentation](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v
 
 module "lambda_share_snapshot" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-share-snapshot?ref=v0.40.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-share-snapshot?ref=v0.40.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -85,7 +85,7 @@ module "lambda_share_snapshot" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-share-snapshot?ref=v0.40.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-share-snapshot?ref=v0.40.6"
 }
 
 inputs = {
@@ -197,11 +197,11 @@ The amount of time, in seconds, between retries.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/lambda-share-snapshot/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/lambda-share-snapshot/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/lambda-share-snapshot/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/lambda-share-snapshot/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/lambda-share-snapshot/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/lambda-share-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c9ad993213a0bd3ef648f8fd8b3016e5"
+  "hash": "49000308e121fcddcc9493d983b98b32"
 }
 ##DOCS-SOURCER-END -->

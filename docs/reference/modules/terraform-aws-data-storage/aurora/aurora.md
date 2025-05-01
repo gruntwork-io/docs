@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.40.5" lastModifiedVersion="0.40.2"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.40.6" lastModifiedVersion="0.40.6"/>
 
 # Aurora Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Aurora, a MySQL and PostgreSQL compatible relational database built for the cloud.
 
@@ -59,7 +59,7 @@ Cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Managing.h
 ## How do you configure this module?
 
 This module allows you to configure a number of parameters, such as backup windows, maintenance window, port number,
-and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/aurora/variables.tf).
+and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/aurora/variables.tf).
 
 ## How do you create a cross-region read replica cluster?
 
@@ -77,7 +77,7 @@ module "replica" {
 }
 ```
 
-See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/examples/aurora-with-cross-region-replica) for more details.
+See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/examples/aurora-with-cross-region-replica) for more details.
 
 ## How do you destroy a cross-region read replica?
 
@@ -137,7 +137,7 @@ see [Limitations of Aurora Serverless](https://docs.aws.amazon.com/AmazonRDS/lat
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.40.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.40.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -240,6 +240,20 @@ module "aurora" {
   # instances
   cluster_instances_minutes_between_maintenance_windows = 180
 
+  # Specifies whether cluster level Performance Insights is enabled or not. On
+  # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
+  # instance classes.
+  cluster_performance_insights_enabled = false
+
+  # The ARN for the KMS key to encrypt cluster level Performance Insights data.
+  cluster_performance_insights_kms_key_id = null
+
+  # Specifies the amount of time to retain cluster level Performance Insights
+  # data for. Defaults to 7 days if Performance Insights are enabled. Valid
+  # values are 7, month = 31 (where month is a number of months from 1-23), and
+  # 731
+  cluster_performance_insights_retention_period = null
+
   # A map of tags to apply to the Aurora RDS Cluster. The key is the tag name
   # and the value is the tag value.
   cluster_tags = {}
@@ -293,12 +307,11 @@ module "aurora" {
   # aurora-postgresql
   engine = "aurora-mysql"
 
-  # The DB engine mode of the DB cluster: either provisioned, serverless,
-  # parallelquery, multimaster or global which only applies for global database
-  # clusters created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL
-  # versions, the clusters in a global database use provisioned engine mode..
-  # Limitations and requirements apply to some DB engine modes. See AWS
-  # documentation:
+  # The DB engine mode of the DB cluster: either provisioned, parallelquery,
+  # multimaster or global which only applies for global database clusters
+  # created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions,
+  # the clusters in a global database use provisioned engine mode.. Limitations
+  # and requirements apply to some DB engine modes. See AWS documentation:
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraSettingUp.html
   engine_mode = "provisioned"
 
@@ -506,7 +519,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.40.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.40.6"
 }
 
 inputs = {
@@ -612,6 +625,20 @@ inputs = {
   # instances
   cluster_instances_minutes_between_maintenance_windows = 180
 
+  # Specifies whether cluster level Performance Insights is enabled or not. On
+  # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
+  # instance classes.
+  cluster_performance_insights_enabled = false
+
+  # The ARN for the KMS key to encrypt cluster level Performance Insights data.
+  cluster_performance_insights_kms_key_id = null
+
+  # Specifies the amount of time to retain cluster level Performance Insights
+  # data for. Defaults to 7 days if Performance Insights are enabled. Valid
+  # values are 7, month = 31 (where month is a number of months from 1-23), and
+  # 731
+  cluster_performance_insights_retention_period = null
+
   # A map of tags to apply to the Aurora RDS Cluster. The key is the tag name
   # and the value is the tag value.
   cluster_tags = {}
@@ -665,12 +692,11 @@ inputs = {
   # aurora-postgresql
   engine = "aurora-mysql"
 
-  # The DB engine mode of the DB cluster: either provisioned, serverless,
-  # parallelquery, multimaster or global which only applies for global database
-  # clusters created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL
-  # versions, the clusters in a global database use provisioned engine mode..
-  # Limitations and requirements apply to some DB engine modes. See AWS
-  # documentation:
+  # The DB engine mode of the DB cluster: either provisioned, parallelquery,
+  # multimaster or global which only applies for global database clusters
+  # created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions,
+  # the clusters in a global database use provisioned engine mode.. Limitations
+  # and requirements apply to some DB engine modes. See AWS documentation:
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraSettingUp.html
   engine_mode = "provisioned"
 
@@ -1067,6 +1093,33 @@ Amount of time, in minutes, between maintenance windows of the cluster instances
 <HclListItemDefaultValue defaultValue="180"/>
 </HclListItem>
 
+<HclListItem name="cluster_performance_insights_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether cluster level Performance Insights is enabled or not. On Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB instance classes.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="cluster_performance_insights_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN for the KMS key to encrypt cluster level Performance Insights data.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_performance_insights_retention_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+Specifies the amount of time to retain cluster level Performance Insights data for. Defaults to 7 days if Performance Insights are enabled. Valid values are 7, month = 31 (where month is a number of months from 1-23), and 731
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="cluster_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -1187,7 +1240,7 @@ The name of the database engine to be used for this DB cluster. Valid Values: au
 <HclListItem name="engine_mode" requirement="optional" type="string">
 <HclListItemDescription>
 
-The DB engine mode of the DB cluster: either provisioned, serverless, parallelquery, multimaster or global which only applies for global database clusters created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions, the clusters in a global database use provisioned engine mode.. Limitations and requirements apply to some DB engine modes. See AWS documentation: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraSettingUp.html
+The DB engine mode of the DB cluster: either provisioned, parallelquery, multimaster or global which only applies for global database clusters created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions, the clusters in a global database use provisioned engine mode.. Limitations and requirements apply to some DB engine modes. See AWS documentation: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraSettingUp.html
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;provisioned&quot;"/>
@@ -1613,11 +1666,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/aurora/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/aurora/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2c536b0762ec72f28683f933265cf788"
+  "hash": "fdb921f8de3c227da0f5127529955d13"
 }
 ##DOCS-SOURCER-END -->

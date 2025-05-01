@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.40.5" lastModifiedVersion="0.40.3"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.40.6" lastModifiedVersion="0.40.6"/>
 
 # RDS Read Replicas Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/rds-replicas" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/rds-replicas" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates a read replica (read-only copy) of a DB instance.
 
@@ -77,7 +77,7 @@ terraform import aws_db_instance.<identifier> <primary_instance_arn>
 
 module "rds_replicas" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-replicas?ref=v0.40.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-replicas?ref=v0.40.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -315,7 +315,7 @@ module "rds_replicas" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-replicas?ref=v0.40.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds-replicas?ref=v0.40.6"
 }
 
 inputs = {
@@ -1006,11 +1006,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/rds-replicas/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/rds-replicas/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.5/modules/rds-replicas/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/rds-replicas/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/rds-replicas/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c81e8e385f9efa6e62cb7976c9df8442"
+  "hash": "077ab7b1aa9a34e58253b2fca79d83fc"
 }
 ##DOCS-SOURCER-END -->
