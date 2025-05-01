@@ -365,10 +365,10 @@ If `pipelines-execute` exits with non-zero return code we now forward stderr to 
 ## terraform-aws-cis-service-catalog
 
 
-### [v0.57.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.56.2)
+### [v0.57.0](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.57.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 3/3/2025 | Modules affected: networking | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.56.2">Release notes</a></small>
+  <small>Published: 3/3/2025 | Modules affected: networking | <a href="https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/releases/tag/v0.57.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -539,7 +539,7 @@ If `pipelines-execute` exits with non-zero return code we now forward stderr to 
 
   
 
-- Updated SG name.
+- Updated EKS Security Group name to address potential issue with Security Group name collisions with other modules.
 
 
 
@@ -548,6 +548,32 @@ If `pipelines-execute` exits with non-zero return code we now forward stderr to 
 
 
 ## terraform-aws-security
+
+
+### [v0.75.15](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.15)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 3/31/2025 | Modules affected: gitlab-pipelines-openid-connect-provider | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.15">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+- `gitlab-pipelines-openid-connect-provider`
+
+
+
+
+- Add configurable GitLab URL for self-hosted GitLab instances
+
+
+
+- https://github.com/gruntwork-io/terraform-aws-security/pull/878
+
+
+
+
+</div>
 
 
 ### [v0.75.14](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.14)
@@ -865,6 +891,6 @@ If `pipelines-execute` exits with non-zero return code we now forward stderr to 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "eb8c101cd963b7022a86e67a26603141"
+  "hash": "1c9d9b56fc77ee5601d4ad80dbbb8114"
 }
 ##DOCS-SOURCER-END -->
