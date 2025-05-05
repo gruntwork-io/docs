@@ -16,6 +16,8 @@ We recommend a two-step process to close AWS accounts managed by DevOps Foundati
 We recommend using ClickOps to close accounts instead of Gruntwork Pipelines. Removing the account through Pipelines by deleting the account request file often fails due to the unreliable AWS Service Catalog used with Control Tower (see [issue](https://github.com/hashicorp/terraform-provider-aws/issues/31705)), which frequently requires multiple retries. This procedure addresses those reliability issues.
 
 
+From a state management perspective, the recommended process will only remove the account from the control-tower module and leave other resources to be terminated when the [account is closed](#2-close-the-accounts-in-aws-organizations). However, if you want to destroy resources prior to closing the account, in each of the repositories addressed below, follow the instructions to [destroy resources](#optional-destroy-resources-in-account-before-closing) prior to following the cleanup instructions.
+
 ### 1. Clean up infrastructure code
 
 After making all necessary code changes, commit them to Git with **[skip ci]** in the message to avoid triggering Gruntwork Pipelines CI workflows.
@@ -49,7 +51,7 @@ After making all necessary code changes, commit them to Git with **[skip ci]** i
     terragrunt plan
     terragrunt apply
     ```
-This is a plan/apply operation because the TGW module reads the `accounts.yml` file to determine which accounts are attached to the TGW.
+    This is a plan/apply operation because the TGW module reads the `accounts.yml` file to determine which accounts are attached to the TGW.
 8. Delete the folders for the targeted accounts from the repository
 9. Commit the changes to your branch, including `[skip ci]` in the commit message
 10. Open a Pull Request and verify that `Pipelines Plan` is absent
@@ -64,7 +66,7 @@ For accounts created in a separate delegated infrastructure repository:
 3. If delegated repositories were removed, **and** you have a setup that includes an `infrastructure-pipelines` repository; update the `infrastructure-pipelines` repository by removing references to the deleted repositories in the `.gruntwork/config` file via a Pull Request
 
 ##### Access control infrastructure repository (Enterprise-only)
- 
+
 If an `infrastructure-access-control` repository is part of your setup:
 
 1. Remove the deleted account references from the accounts.yml file
@@ -82,12 +84,12 @@ You may need to delete resources if you encounter issues with coordination betwe
 3. Commit changes and create a Pull Request, which will trigger Gruntwork Pipelines to destroy the resources upon merging
 
 :::danger
-   
+
    Make sure you delete the correct resources and back up any data needed for future use.
 
    Do not delete the AWS IAM OIDC provider or IAM roles used by Pipelines in the account to ensure Pipelines can manage resources, including destroying them, before the account is fully closed.
-   
-  ::
+
+:::
 
 ### 2. Close the account(s) in AWS Organizations
 
