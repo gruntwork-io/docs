@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="1.0.2" lastModifiedVersion="1.0.0"/>
+<VersionBadge repoTitle="AWS Lambda" version="1.1.0" lastModifiedVersion="1.0.0"/>
 
 # Lambda Function URL Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda-function-url" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.1.0/modules/lambda-function-url" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v1.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -30,7 +30,7 @@ https://<url-id>.lambda-url.<region>.on.aws
 ## Background info
 
 For more information on AWS Lambda, how it works, and how to configure your functions, check out the [lambda module
-documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda).
+documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.1.0/modules/lambda).
 
 ## Sample Usage
 
@@ -45,7 +45,7 @@ documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/
 
 module "lambda_function_url" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-function-url?ref=v1.0.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-function-url?ref=v1.1.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -110,7 +110,7 @@ module "lambda_function_url" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-function-url?ref=v1.0.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-function-url?ref=v1.1.0"
 }
 
 inputs = {
@@ -316,15 +316,14 @@ A generated ID for the endpoint.
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda-function-url/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda-function-url/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.0.2/modules/lambda-function-url/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.1.0/modules/lambda-function-url/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.1.0/modules/lambda-function-url/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.1.0/modules/lambda-function-url/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9464bdf3000663f5b37532e584a06993"
+  "hash": "b164b83a100b799f6a81cdc458a669a1"
 }
 ##DOCS-SOURCER-END -->
