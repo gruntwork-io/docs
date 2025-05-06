@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.125.3" lastModifiedVersion="0.118.0"/>
+<VersionBadge version="0.125.5" lastModifiedVersion="0.125.5"/>
 
 # Application Load Balancer
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.3/modules/networking/alb" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.5/modules/networking/alb" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Falb" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -62,7 +62,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.3/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.5/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -70,7 +70,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.3/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.5/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -89,7 +89,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/alb?ref=v0.125.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/alb?ref=v0.125.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -156,6 +156,12 @@ module "alb" {
 
   # The list of IDs of security groups that should have access to the ALB
   allow_inbound_from_security_group_ids = []
+
+  # The CIDR-formatted IP Address ranges from which this ALB will allow outgoing
+  # requests. If var.allow_all_outbound is false, no outbound traffic is
+  # allowed.If var.allow_all_outbound is true, then the cidr blocks passed in
+  # through this var are allowed for outbound traffic.
+  allow_outbound_to_cidr_blocks = ["0.0.0.0/0"]
 
   # Set to true to create a Route 53 DNS A record for this ALB?
   create_route53_entry = false
@@ -283,7 +289,7 @@ module "alb" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/alb?ref=v0.125.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/alb?ref=v0.125.5"
 }
 
 inputs = {
@@ -353,6 +359,12 @@ inputs = {
 
   # The list of IDs of security groups that should have access to the ALB
   allow_inbound_from_security_group_ids = []
+
+  # The CIDR-formatted IP Address ranges from which this ALB will allow outgoing
+  # requests. If var.allow_all_outbound is false, no outbound traffic is
+  # allowed.If var.allow_all_outbound is true, then the cidr blocks passed in
+  # through this var are allowed for outbound traffic.
+  allow_outbound_to_cidr_blocks = ["0.0.0.0/0"]
 
   # Set to true to create a Route 53 DNS A record for this ALB?
   create_route53_entry = false
@@ -618,6 +630,17 @@ The list of IDs of security groups that should have access to the ALB
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_outbound_to_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The CIDR-formatted IP Address ranges from which this ALB will allow outgoing requests. If <a href="#allow_all_outbound"><code>allow_all_outbound</code></a> is false, no outbound traffic is allowed.If <a href="#allow_all_outbound"><code>allow_all_outbound</code></a> is true, then the cidr blocks passed in through this var are allowed for outbound traffic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[
+  &quot;0.0.0.0/0&quot;
+]"/>
 </HclListItem>
 
 <HclListItem name="create_route53_entry" requirement="optional" type="bool">
@@ -996,11 +1019,11 @@ The AWS-managed DNS name assigned to the ALB.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.3/modules/networking/alb/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.3/modules/networking/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.3/modules/networking/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.5/modules/networking/alb/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.5/modules/networking/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.5/modules/networking/alb/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c20fad0a7a12bfccd57cfdba4b4782b1"
+  "hash": "a654934c603a35544b6547f830f141fe"
 }
 ##DOCS-SOURCER-END -->
