@@ -9,19 +9,19 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.75.18" lastModifiedVersion="0.75.7"/>
+<VersionBadge repoTitle="Security Modules" version="1.0.0" lastModifiedVersion="0.75.7"/>
 
 # AWS GuardDuty Multi Region Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/guardduty-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/modules/guardduty-multi-region" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module wraps the [guardduty core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/guardduty/README.adoc) to configure [AWS GuardDuty](https://aws.amazon.com/guardduty/) in all enabled regions for the AWS Account.
+This module wraps the [guardduty core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/modules/guardduty/README.adoc) to configure [AWS GuardDuty](https://aws.amazon.com/guardduty/) in all enabled regions for the AWS Account.
 
 ## Features
 
-*   Uses the [guardduty module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/guardduty) to enable AWS GuardDuty across all regions (recommended best practice) on your AWS account
+*   Uses the [guardduty module](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/modules/guardduty) to enable AWS GuardDuty across all regions (recommended best practice) on your AWS account
 
 *   Continuously monitor your AWS account for malicious activity and unauthorized behavior
 
@@ -37,19 +37,19 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   Learn more about GuardDuty in the [guardduty core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/guardduty/README.adoc).
+*   Learn more about GuardDuty in the [guardduty core module](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/modules/guardduty/README.adoc).
 
-*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/codegen/core-concepts.md#how-to-use-a-multi-region-module)
+*   [How to use a multi-region module](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/codegen/core-concepts.md#how-to-use-a-multi-region-module)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [codegen](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/codegen): Code generation utilities that help generate modules in this repo.
+*   [codegen](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/codegen): Code generation utilities that help generate modules in this repo.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -74,7 +74,7 @@ This module depends on Python being available on your system. Python 2.7, 3.5+ a
 
 module "guardduty_multi_region" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-multi-region?ref=v0.75.18"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-multi-region?ref=v1.0.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -212,7 +212,7 @@ module "guardduty_multi_region" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-multi-region?ref=v0.75.18"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-multi-region?ref=v1.0.0"
 }
 
 inputs = {
@@ -657,11 +657,11 @@ The IDs of the GuardDuty detectors.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/guardduty-multi-region/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/guardduty-multi-region/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.75.18/modules/guardduty-multi-region/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/modules/guardduty-multi-region/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/modules/guardduty-multi-region/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/modules/guardduty-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6b53cb59ffbd557c29ac9e2b810ff738"
+  "hash": "7bc24b7ef2253aa2ba1c8a77806227ce"
 }
 ##DOCS-SOURCER-END -->
