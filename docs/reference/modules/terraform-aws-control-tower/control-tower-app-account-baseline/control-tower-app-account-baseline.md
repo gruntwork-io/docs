@@ -21,6 +21,12 @@ A CIS compliant security baseline for AWS Landing Zone for configuring the app a
 other similar child accounts), as part of a Control Tower integration. This module fills in features NOT supported by
 Control Tower, including setting up Amazon Guard Duty, Macie, IAM roles, IAM password policy, and more.
 
+## Interactions with `AWS-GR_CONFIG_CHANGE_PROHIBITED`
+
+If you are receiving errors that you do not have permissions to edit AWS Config rules while making modifications while consuming this module, you might need to assume the `AWSControlTowerExecution` role to bypass the SCP restriction, as the control has an exception for the `AWSControlTowerExecution` role, which is assumed when baselining AWS accounts.
+
+Once you assume the `AWSControlTowerExecution` role, you should be able to complete the update to this module, and future updates aren't likely to be blocked by the SCP (unless you make different changes to AWS Config). If you are still having issues, please reach out to Gruntwork support.
+
 ## Sample Usage
 
 <Tabs>
@@ -2902,6 +2908,6 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.6/modules/control-tower-app-account-baseline/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5dc9e1105402b173b9ae89ea12600fb6"
+  "hash": "1443d21fb58b903540257d075bf5385b"
 }
 ##DOCS-SOURCER-END -->
