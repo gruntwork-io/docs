@@ -304,6 +304,14 @@ module "s_3_bucket" {
   # the value is the tag value.
   tags = {}
 
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior.
+  transition_default_minimum_object_size = null
+
 }
 
 
@@ -537,6 +545,14 @@ inputs = {
   # the access logging and replica buckets (if any). The key is the tag name and
   # the value is the tag value.
   tags = {}
+
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior.
+  transition_default_minimum_object_size = null
 
 }
 
@@ -1169,6 +1185,15 @@ A map of tags to apply to the S3 Bucket. These tags will also be applied to the 
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="transition_default_minimum_object_size" requirement="optional" type="string">
+<HclListItemDescription>
+
+The default minimum object size behavior applied to the lifecycle configuration. Valid values: all_storage_classes_128K (default), varies_by_storage_class. To customize the minimum object size for any transition you can add a filter that specifies a custom object_size_greater_than or object_size_less_than value. Custom filters always take precedence over the default transition behavior.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -1239,6 +1264,6 @@ The name of the replica S3 bucket.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.3/modules/data-stores/s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f62971dfbf01a2fd9c281f2dd513f59f"
+  "hash": "da67e482b403f0732d1c623f0d4002db"
 }
 ##DOCS-SOURCER-END -->
