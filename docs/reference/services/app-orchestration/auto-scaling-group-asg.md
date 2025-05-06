@@ -54,7 +54,7 @@ Under the hood, this is all implemented using Terraform modules from the Gruntwo
 access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 *   [ASG Documentation](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html):
-    Amazon’s docs for ASG that cover core concepts such as launch templates and auto scaling groups.
+    Amazon’s docs for ASG that cover core concepts such as launch templates, launch configuration and auto scaling groups.
 *   [User Data](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.3/modules/services/asg-service/core-concepts.md)
 
 ## Deploy
@@ -165,21 +165,6 @@ module "asg_service" {
   # The security group IDs from which to allow SSH access
   allow_ssh_security_group_ids = []
 
-  # The name of the device to mount the volume on the instance.
-  block_device_mappings_device_name = "/dev/xvda"
-
-  # Whether the root volume should be encrypted.
-  block_device_mappings_root_volume_encrypted = null
-
-  # The number of IOPS to provision for the root volume.
-  block_device_mappings_root_volume_iops = null
-
-  # The size of the root volume in GB.
-  block_device_mappings_root_volume_size = null
-
-  # The throughput to provision for the root volume.
-  block_device_mappings_root_volume_throughput = null
-
   # Cloud init scripts to run on the ASG instances during boot. See the part
   # blocks in
   # https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for
@@ -207,12 +192,6 @@ module "asg_service" {
   # propagate_at_launch.
   custom_tags = []
 
-  # Optional override that can be used to specify a custom user data. Note that
-  # setting this will disable the module's cloud_init user data. This override
-  # is useful for deploying Windows servers that may need custom user data
-  # scripts not covered by this module's user_data.sh.
-  custom_user_data_override = null
-
   # The ARN of the Target Group to which to route traffic.
   default_forward_target_group_arns = []
 
@@ -229,10 +208,6 @@ module "asg_service" {
   # The domain name to register in var.hosted_zone_id (e.g. foo.example.com).
   # Only used if var.create_route53_entry is true.
   domain_name = null
-
-  # Specify volumes to attach to the instance besides the volumes specified by
-  # the AMI
-  ebs_block_device_mappings = {}
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -286,48 +261,6 @@ module "asg_service" {
   # health.
   health_check_grace_period = 300
 
-  # The period, in seconds, over which to measure the CPU utilization percentage
-  # for the ASG.
-  high_asg_cpu_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster CPU utilization
-  # percentage above this threshold.
-  high_asg_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_asg_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the root disk utilization
-  # percentage for the ASG.
-  high_asg_disk_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster root disk utilization
-  # percentage above this threshold.
-  high_asg_disk_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_asg_disk_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the Memory utilization
-  # percentage for the ASG.
-  high_asg_memory_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster Memory utilization
-  # percentage above this threshold.
-  high_asg_memory_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_asg_memory_utilization_treat_missing_data = "missing"
-
   # The ID of the Route 53 Hosted Zone in which to create a DNS A record for the
   # Auto Scaling Group. Optional if create_route53_entry = false.
   hosted_zone_id = null
@@ -344,10 +277,6 @@ module "asg_service" {
   # ASG. Set to null if you don't want to enable Key Pair auth.
   key_pair_name = null
 
-  # When true, the launch template will be updated to the default version. When
-  # false, the launch template will be updated to the latest version.
-  launch_template_update_default_version = true
-
   # The ID of the Route 53 Hosted Zone in which to create a DNS A record for the
   # Auto Scaling Group. Optional if create_route53_entry = false.
   lb_hosted_zone_id = null
@@ -362,24 +291,6 @@ module "asg_service" {
   # A list of Elastic Load Balancer (ELB) names to associate with this ASG. If
   # you're using the Application Load Balancer (ALB), see var.target_group_arns.
   load_balancers = []
-
-  # Whether the metadata service is available. Valid values include enabled or
-  # disabled. Defaults to enabled.
-  metadata_http_endpoint = "enabled"
-
-  # Desired HTTP PUT response hop limit for instance metadata requests. The
-  # larger the number, the further instance metadata requests can travel. Valid
-  # values are integer from 1 to 64. Defaults to 1.
-  metadata_http_put_response_hop_limit = 1
-
-  # Whether or not the metadata service requires session tokens, also referred
-  # to as Instance Metadata Service Version 2 (IMDSv2). Valid values include
-  # optional or required. Defaults to optional.
-  metadata_http_tokens = "optional"
-
-  # Enables or disables access to instance tags from the instance metadata
-  # service. Valid values include enabled or disabled. Defaults to disabled.
-  metadata_tags = "disabled"
 
   # List of users on the ASG EC2 instances that should be permitted access to
   # the EC2 metadata.
@@ -575,21 +486,6 @@ inputs = {
   # The security group IDs from which to allow SSH access
   allow_ssh_security_group_ids = []
 
-  # The name of the device to mount the volume on the instance.
-  block_device_mappings_device_name = "/dev/xvda"
-
-  # Whether the root volume should be encrypted.
-  block_device_mappings_root_volume_encrypted = null
-
-  # The number of IOPS to provision for the root volume.
-  block_device_mappings_root_volume_iops = null
-
-  # The size of the root volume in GB.
-  block_device_mappings_root_volume_size = null
-
-  # The throughput to provision for the root volume.
-  block_device_mappings_root_volume_throughput = null
-
   # Cloud init scripts to run on the ASG instances during boot. See the part
   # blocks in
   # https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for
@@ -617,12 +513,6 @@ inputs = {
   # propagate_at_launch.
   custom_tags = []
 
-  # Optional override that can be used to specify a custom user data. Note that
-  # setting this will disable the module's cloud_init user data. This override
-  # is useful for deploying Windows servers that may need custom user data
-  # scripts not covered by this module's user_data.sh.
-  custom_user_data_override = null
-
   # The ARN of the Target Group to which to route traffic.
   default_forward_target_group_arns = []
 
@@ -639,10 +529,6 @@ inputs = {
   # The domain name to register in var.hosted_zone_id (e.g. foo.example.com).
   # Only used if var.create_route53_entry is true.
   domain_name = null
-
-  # Specify volumes to attach to the instance besides the volumes specified by
-  # the AMI
-  ebs_block_device_mappings = {}
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -696,48 +582,6 @@ inputs = {
   # health.
   health_check_grace_period = 300
 
-  # The period, in seconds, over which to measure the CPU utilization percentage
-  # for the ASG.
-  high_asg_cpu_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster CPU utilization
-  # percentage above this threshold.
-  high_asg_cpu_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_asg_cpu_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the root disk utilization
-  # percentage for the ASG.
-  high_asg_disk_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster root disk utilization
-  # percentage above this threshold.
-  high_asg_disk_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_asg_disk_utilization_treat_missing_data = "missing"
-
-  # The period, in seconds, over which to measure the Memory utilization
-  # percentage for the ASG.
-  high_asg_memory_utilization_period = 60
-
-  # Trigger an alarm if the ASG has an average cluster Memory utilization
-  # percentage above this threshold.
-  high_asg_memory_utilization_threshold = 90
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_asg_memory_utilization_treat_missing_data = "missing"
-
   # The ID of the Route 53 Hosted Zone in which to create a DNS A record for the
   # Auto Scaling Group. Optional if create_route53_entry = false.
   hosted_zone_id = null
@@ -754,10 +598,6 @@ inputs = {
   # ASG. Set to null if you don't want to enable Key Pair auth.
   key_pair_name = null
 
-  # When true, the launch template will be updated to the default version. When
-  # false, the launch template will be updated to the latest version.
-  launch_template_update_default_version = true
-
   # The ID of the Route 53 Hosted Zone in which to create a DNS A record for the
   # Auto Scaling Group. Optional if create_route53_entry = false.
   lb_hosted_zone_id = null
@@ -772,24 +612,6 @@ inputs = {
   # A list of Elastic Load Balancer (ELB) names to associate with this ASG. If
   # you're using the Application Load Balancer (ALB), see var.target_group_arns.
   load_balancers = []
-
-  # Whether the metadata service is available. Valid values include enabled or
-  # disabled. Defaults to enabled.
-  metadata_http_endpoint = "enabled"
-
-  # Desired HTTP PUT response hop limit for instance metadata requests. The
-  # larger the number, the further instance metadata requests can travel. Valid
-  # values are integer from 1 to 64. Defaults to 1.
-  metadata_http_put_response_hop_limit = 1
-
-  # Whether or not the metadata service requires session tokens, also referred
-  # to as Instance Metadata Service Version 2 (IMDSv2). Valid values include
-  # optional or required. Defaults to optional.
-  metadata_http_tokens = "optional"
-
-  # Enables or disables access to instance tags from the instance metadata
-  # service. Valid values include enabled or disabled. Defaults to disabled.
-  metadata_tags = "disabled"
 
   # List of users on the ASG EC2 instances that should be permitted access to
   # the EC2 metadata.
@@ -1070,51 +892,6 @@ The security group IDs from which to allow SSH access
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="block_device_mappings_device_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the device to mount the volume on the instance.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;/dev/xvda&quot;"/>
-</HclListItem>
-
-<HclListItem name="block_device_mappings_root_volume_encrypted" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether the root volume should be encrypted.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="block_device_mappings_root_volume_iops" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of IOPS to provision for the root volume.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="block_device_mappings_root_volume_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-The size of the root volume in GB.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="block_device_mappings_root_volume_throughput" requirement="optional" type="number">
-<HclListItemDescription>
-
-The throughput to provision for the root volume.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="cloud_init_parts" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
@@ -1214,15 +991,6 @@ list(object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="custom_user_data_override" requirement="optional" type="string">
-<HclListItemDescription>
-
-Optional override that can be used to specify a custom user data. Note that setting this will disable the module's cloud_init user data. This override is useful for deploying Windows servers that may need custom user data scripts not covered by this module's user_data.sh.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="default_forward_target_group_arns" requirement="optional" type="list(any)">
 <HclListItemDescription>
 
@@ -1280,123 +1048,6 @@ The domain name to register in <a href="#hosted_zone_id"><code>hosted_zone_id</c
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="ebs_block_device_mappings" requirement="optional" type="map(object(…))">
-<HclListItemDescription>
-
-Specify volumes to attach to the instance besides the volumes specified by the AMI
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(object({
-    # Whether the volume should be destroyed on instance termination.
-    delete_on_termination = optional(bool)
-
-    # Enables EBS encryption on the volume.
-    encrypted = optional(bool)
-
-    # The amount of provisioned IOPS. This must be set with a volume_type of "io1/io2/gp3".
-    iops = optional(number)
-
-    # The ARN of the AWS KMS customer master key (CMK) to use when creating the encrypted volume.
-    # "encrypted" must be set to true when this is set.
-    kms_key_id = optional(string)
-
-    # The throughput to provision for a gp3 volume in MiB/s (specified as an integer, e.g., 500), with a maximum of 1,000 MiB/s.
-    throughput = optional(number)
-
-    # The size of the volume in gigabytes.
-    volume_size = optional(number)
-
-    # The volume type.
-    # Allowed values: standard, gp2, gp3, io1, io2, sc1 or st1.
-    volume_type = optional(string)
-
-    # The Snapshot ID to mount.
-    snapshot_id = optional(string)
-
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     Enables EBS encryption on the volume.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     The amount of provisioned IOPS. This must be set with a volume_type of "io1/io2/gp3".
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     The ARN of the AWS KMS customer master key (CMK) to use when creating the encrypted volume.
-     "encrypted" must be set to true when this is set.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     The throughput to provision for a gp3 volume in MiB/s (specified as an integer, e.g., 500), with a maximum of 1,000 MiB/s.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     The size of the volume in gigabytes.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     The volume type.
-     Allowed values: standard, gp2, gp3, io1, io2, sc1 or st1.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     The Snapshot ID to mount.
-
-```
-</details>
-
-</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
@@ -1703,87 +1354,6 @@ Time, in seconds, after an EC2 Instance comes into service before checking healt
 <HclListItemDefaultValue defaultValue="300"/>
 </HclListItem>
 
-<HclListItem name="high_asg_cpu_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the CPU utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_cpu_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_disk_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_period" requirement="optional" type="number">
-<HclListItemDescription>
-
-The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="60"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_threshold" requirement="optional" type="number">
-<HclListItemDescription>
-
-Trigger an alarm if the ASG has an average cluster Memory utilization percentage above this threshold.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="90"/>
-</HclListItem>
-
-<HclListItem name="high_asg_memory_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1845,15 +1415,6 @@ The name of a Key Pair that can be used to SSH to the EC2 Instances in the ASG. 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="launch_template_update_default_version" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, the launch template will be updated to the default version. When false, the launch template will be updated to the latest version.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="lb_hosted_zone_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1888,42 +1449,6 @@ A list of Elastic Load Balancer (ELB) names to associate with this ASG. If you'r
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="metadata_http_endpoint" requirement="optional" type="string">
-<HclListItemDescription>
-
-Whether the metadata service is available. Valid values include enabled or disabled. Defaults to enabled.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;enabled&quot;"/>
-</HclListItem>
-
-<HclListItem name="metadata_http_put_response_hop_limit" requirement="optional" type="number">
-<HclListItemDescription>
-
-Desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. Valid values are integer from 1 to 64. Defaults to 1.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="1"/>
-</HclListItem>
-
-<HclListItem name="metadata_http_tokens" requirement="optional" type="string">
-<HclListItemDescription>
-
-Whether or not the metadata service requires session tokens, also referred to as Instance Metadata Service Version 2 (IMDSv2). Valid values include optional or required. Defaults to optional.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;optional&quot;"/>
-</HclListItem>
-
-<HclListItem name="metadata_tags" requirement="optional" type="string">
-<HclListItemDescription>
-
-Enables or disables access to instance tags from the instance metadata service. Valid values include enabled or disabled. Defaults to disabled.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;disabled&quot;"/>
 </HclListItem>
 
 <HclListItem name="metadata_users" requirement="optional" type="list(string)">
@@ -2292,18 +1817,18 @@ The Fully Qualified Domain Name built using the zone domain and name.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="launch_template_id">
+<HclListItem name="launch_configuration_id">
 <HclListItemDescription>
 
-The ID of the launch template used for the ASG.
+The ID of the launch configuration used for the ASG.
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="launch_template_name">
+<HclListItem name="launch_configuration_name">
 <HclListItemDescription>
 
-The name of the launch template used for the ASG.
+The name of the launch configuration used for the ASG.
 
 </HclListItemDescription>
 </HclListItem>
@@ -2351,6 +1876,6 @@ The ID of the Security Group that belongs to the ASG.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.125.3/modules/services/asg-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "76ec2d81b80a6cef74ba63d37a4bbaa6"
+  "hash": "997372e033efb8b14e995c88a1ab5586"
 }
 ##DOCS-SOURCER-END -->
