@@ -273,6 +273,12 @@ module "alb" {
   # https://github.com/hashicorp/terraform/pull/11482
   allow_inbound_from_security_group_ids_num = 0
 
+  # The CIDR-formatted IP Address ranges from which this ALB will allow outgoing
+  # requests. If var.allow_all_outbound is false, no outbound traffic is
+  # allowed.If var.allow_all_outbound is true, then the cidr blocks passed in
+  # through this var are allowed for outbound traffic.
+  allow_outbound_to_cidr_blocks = ["0.0.0.0/0"]
+
   # Prefix to use for access logs to create a sub-folder in S3 Bucket name where
   # ALB logs should be stored. Only used if
   # var.enable_custom_alb_access_logs_s3_prefix is true.
@@ -496,6 +502,12 @@ inputs = {
   # var.allow_inbound_from_security_group_ids, then we won't be able to:
   # https://github.com/hashicorp/terraform/pull/11482
   allow_inbound_from_security_group_ids_num = 0
+
+  # The CIDR-formatted IP Address ranges from which this ALB will allow outgoing
+  # requests. If var.allow_all_outbound is false, no outbound traffic is
+  # allowed.If var.allow_all_outbound is true, then the cidr blocks passed in
+  # through this var are allowed for outbound traffic.
+  allow_outbound_to_cidr_blocks = ["0.0.0.0/0"]
 
   # Prefix to use for access logs to create a sub-folder in S3 Bucket name where
   # ALB logs should be stored. Only used if
@@ -778,6 +790,17 @@ The number of elements in <a href="#allow_inbound_from_security_group_ids"><code
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="allow_outbound_to_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The CIDR-formatted IP Address ranges from which this ALB will allow outgoing requests. If <a href="#allow_all_outbound"><code>allow_all_outbound</code></a> is false, no outbound traffic is allowed.If <a href="#allow_all_outbound"><code>allow_all_outbound</code></a> is true, then the cidr blocks passed in through this var are allowed for outbound traffic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[
+  &quot;0.0.0.0/0&quot;
+]"/>
 </HclListItem>
 
 <HclListItem name="custom_alb_access_logs_s3_prefix" requirement="optional" type="string">
@@ -1321,6 +1344,6 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v0.30.4/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "08ed8092d68c3d1b71f763dcd2bc4154"
+  "hash": "cea53bcd195bed58b8e90bbdd1351eef"
 }
 ##DOCS-SOURCER-END -->
