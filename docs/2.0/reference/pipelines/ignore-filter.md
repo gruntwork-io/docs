@@ -4,9 +4,9 @@ Pipelines supports ignoring files by setting the `PIPELINES_IGNORE_FILTER` envir
 
 ## Syntax
 
-The Ignore Filter can contain multiple patterns separated by the `:` character.
+The Ignore Filter can contain multiple patterns separated by the `,` character.
 
-- `:` Is used as a separator between filters
+- `,` Is used as a separator between filters
 - `*` Matches any character except `/`, for matches within a specific directory.
 - `**` Matches any character, for matches across multiple directories.
 
@@ -16,7 +16,7 @@ The Ignore Filter can contain multiple patterns separated by the `:` character.
 
 `myfile.yml` - Matches the exact path to this file at the root level.
 
-`myfile.yml:a/b/c/myfile.yml` - Matches both of these specific paths. Multiple patterns can be specified by separating them with `:`.
+`myfile.yml,a/b/c/myfile.yml` - Matches both of these specific paths. Multiple patterns can be specified by separating them with `,`.
 
 ### Ignore all files with extension .md
 
@@ -24,7 +24,7 @@ The Ignore Filter can contain multiple patterns separated by the `:` character.
 
 ### Ignore README.md everywhere
 
-`README.md:**/README.md` - Matches the root README.md as well as any README.md in any directory.
+`README.md,**/README.md` - Matches the root README.md as well as any README.md in any directory.
 
 ### Ignore all files in a directory
 
