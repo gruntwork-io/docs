@@ -53,3 +53,5 @@ preconfigured
 projectprefix
 GOVCLOUD
 rollouts
+myvars
+myfile
