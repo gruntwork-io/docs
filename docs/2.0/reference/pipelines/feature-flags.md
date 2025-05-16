@@ -5,12 +5,23 @@ Pipelines include feature flags that allow you to enable or disable specific beh
 
 ## Available Flags
 
-#### `PIPELINES_FEATURE_CONSOLIDATE_ALL_EXCLUDE_EXTERNAL_DEPENDENCIES`
+#### `PIPELINES_FEATURE_EXPERIMENT_ALL`
+<ul>
+<li>
+Enables all experiment flags.
+</li>
+<li>
+**Default Value**: Disabled
+</li>
+<li>
+**How to Enable**: Set to `"true"`
+</li>
+</ul>
+
+#### `PIPELINES_FEATURE_EXPERIMENT_AGGRESSIVE_CONSOLIDATION`
 <ul>
 <li>
 When [consolidate_added_or_changed](/2.0/reference/pipelines/configurations-as-code/api#consolidate_added_or_changed) is enabled, enables Pipelines to consolidate as many Terragrunt plan/apply changes as possible into a single `run-all` job. This leads to less duplicated work e.g. when both FileChanged and a ModuleChanged should trigger a plan in the same unit.
-
-Additionally pipelines will execute terragrunt with [`queue-exclude-external`](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-exclude-external) to reduce the blast radius of per-unit changes.
 
 This behavior will likely become the default in a major release of Pipelines but is currently opt-in due to being a breaking change to functionality.
 </li>
@@ -20,7 +31,7 @@ This behavior will likely become the default in a major release of Pipelines but
 <li>**How to Enable**: Set to `"true"`</li>
 </ul>
 
-#### `PIPELINES_FEATURE_MODULE_CHANGE_ON_UNIT_FILE`
+#### `PIPELINES_FEATURE_EXPERIMENT_COLOCATED_FILE_UNIT_CHANGE_DETECTION`
 <ul>
 <li>
 Enables changes to files within a Terragrunt Unit to be detected as a ModuleChanged job instead of a FileChanged job. A Terragrunt Unit is any directory excluding the root of the repository containing a `terragrunt.hcl` file.
@@ -33,6 +44,21 @@ dir1/myvars.json
 ```
 
 When this flag is enabled Pipelines will detect changes to `dir1/myvars.json` as a ModuleChanged for `dir1` and run Terragrunt Plan/Apply for this directory. While `tags.yml` will be detected as as a FileChanged event and Pipelines will run Terragrunt with [queue-include-units-reading](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-include-units-reading) for this file.
+
+This behavior will likely become the default in a major release of Pipelines but is currently opt-in due to being a breaking change to functionality.
+</li>
+<li>
+**Default Value**: Disabled
+</li>
+<li>
+**How to Enable**: Set to `"true"`
+</li>
+</ul>
+
+#### `PIPELINES_FEATURE_EXPERIMENT_MINIMIZE_BLAST_RADIUS`
+<ul>
+<li>
+Enables Terragrunt features to reduce the potential changes during a run-all. Terragrunt [queue-strict-include](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-strict-include) and [queue-exclude-external](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-exclude-external) which exclude dependencies from being planned/applied during run-all, and closer matches the behavior of a single unit change.
 
 This behavior will likely become the default in a major release of Pipelines but is currently opt-in due to being a breaking change to functionality.
 </li>

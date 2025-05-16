@@ -1,10 +1,10 @@
-# Pipelines Ignore Filter
+# Pipelines Ignore List
 
-Pipelines supports ignoring files by setting the `PIPELINES_IGNORE_FILTER` environment variable within your [HCL](/2.0/reference/pipelines/configurations-as-code/api#env-block) or [YAML](/2.0/reference/pipelines/configurations#env) configuration files.
+Pipelines supports ignoring files by setting the Ignore List [HCL](/2.0/reference/pipelines/configurations-as-code/api#ignore_list) or [YAML](/2.0/reference/pipelines/configurations#ignore-list) configuration value.
 
 ## Syntax
 
-The Ignore Filter can contain multiple patterns separated by the `,` character.
+The Ignore List can contain multiple filter patterns separated by the `,` character.
 
 - `,` Is used as a separator between filters
 - `*` Matches any character except `/`, for matches within a specific directory.

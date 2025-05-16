@@ -54,9 +54,9 @@ const sidebar = [
     ],
   },
   {
-    label: "Ignore Filter",
+    label: "Ignore List",
     type: "doc",
-    id: "2.0/reference/pipelines/ignore-filter",
+    id: "2.0/reference/pipelines/ignore-list",
   },
   {
     label: "Feature Flags",

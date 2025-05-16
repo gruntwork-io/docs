@@ -89,7 +89,6 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
-
 #### env
 
 <HclListItem name="env" requirement="optional" type="sequence(mapping)">
@@ -171,6 +170,22 @@ The IaC runtime binary, valid options are opentofu or terraform.
 ```yaml
 pipelines:
   tf-binary: opentofu
+```
+
+</HclListItemExample>
+</HclListItem>
+
+#### ignore-list
+
+<HclListItem name="ignore-list" requirement="required" type="string">
+<HclListItemDescription>
+A comma separate list of ignore filters to exclude from pipelines runs. See the full documentation [here](/2.0/reference/pipelines/ignore-list)
+</HclListItemDescription>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  ignore-list: README.md,**/README.md
 ```
 
 </HclListItemExample>
