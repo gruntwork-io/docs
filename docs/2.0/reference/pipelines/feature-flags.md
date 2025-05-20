@@ -8,7 +8,7 @@ Pipelines supports optional feature flags that allow you to enable or disable sp
 #### `PIPELINES_FEATURE_EXPERIMENT_ALL`
 <ul>
 <li>
-Enables all experiment flags.
+Enables all Pipelines experiment flags.
 </li>
 <li>
 **Default Value**: Disabled
@@ -58,7 +58,7 @@ This behavior will likely become the default in a major release of Pipelines but
 #### `PIPELINES_FEATURE_EXPERIMENT_MINIMIZE_BLAST_RADIUS`
 <ul>
 <li>
-Enables Terragrunt features to reduce the potential changes during a run-all. Terragrunt [queue-strict-include](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-strict-include) and [queue-exclude-external](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-exclude-external) are enabled by default which exclude dependencies from being planned/applied during run-all, and closer matches the behavior of a single unit change.
+Enables Terragrunt features to reduce the potential changes during a run-all. Terragrunt [queue-strict-include](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-strict-include) and [queue-exclude-external](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-exclude-external) are enabled by default which excludes dependencies from being planned/applied during run-all, and more closely matches the behavior of a single unit change.
 
 This behavior will likely become the default in a major release of Pipelines but is currently opt-in due to being a breaking change to functionality.
 </li>
@@ -73,7 +73,7 @@ This behavior will likely become the default in a major release of Pipelines but
 #### `PIPELINES_FEATURE_TERRAGRUNT_INCLUDE_UNITS_READING`
 <ul>
 <li>
-Enables FileChanged jobs where changes to non HCL files are executed by Terragrunt using [queue-include-units-reading](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-include-units-reading).
+Enables FileChanged jobs where changes to non HCL files trigger Terragrunt runs using [queue-include-units-reading](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-include-units-reading).
 
 This is a break-glass feature flag and can be used to disable this functionality if it is causing issues.
 </li>
