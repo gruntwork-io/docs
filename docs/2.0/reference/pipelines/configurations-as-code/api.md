@@ -292,6 +292,14 @@ The Infrastructure as Code(Iac) binary that Pipelines will instruct Terragrunt t
 <HclListItemDefaultValue defaultValue="opentofu"/>
 </HclListItem>
 
+<HclListItem name="ignore_list" requirement="optional" type="string">
+<HclListItemDescription>
+
+A comma separate list of ignore filters to exclude from pipelines runs. See the full documentation [here](/2.0/reference/pipelines/ignore-list)
+
+</HclListItemDescription>
+</HclListItem>
+
 ### `filter` block attributes
 
 <HclListItem name="paths" requirement="required" type="array[string]">

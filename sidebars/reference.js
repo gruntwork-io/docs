@@ -54,6 +54,16 @@ const sidebar = [
     ],
   },
   {
+    label: "Ignore List",
+    type: "doc",
+    id: "2.0/reference/pipelines/ignore-list",
+  },
+  {
+    label: "Feature Flags",
+    type: "doc",
+    id: "2.0/reference/pipelines/feature-flags",
+  },
+  {
     value: "Gruntwork Patcher",
     type: "html",
     className: "sidebar-header",
