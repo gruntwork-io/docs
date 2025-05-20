@@ -1,6 +1,6 @@
 # Feature Flags
 
-Pipelines include feature flags that allow you to enable or disable specific behaviors. You can configure these flags by setting them as environment variables within your [HCL](/2.0/reference/pipelines/configurations-as-code/api#env-block) or [YAML](/2.0/reference/pipelines/configurations#env) configuration files.
+Pipelines supports optional feature flags that allow you to enable or disable specific behaviors. You can configure these flags by setting them as environment variables within your [HCL](/2.0/reference/pipelines/configurations-as-code/api#env-block) or [YAML](/2.0/reference/pipelines/configurations#env) configuration files.
 
 
 ## Available Flags
@@ -21,7 +21,7 @@ Enables all experiment flags.
 #### `PIPELINES_FEATURE_EXPERIMENT_AGGRESSIVE_CONSOLIDATION`
 <ul>
 <li>
-When [consolidate_added_or_changed](/2.0/reference/pipelines/configurations-as-code/api#consolidate_added_or_changed) is enabled, enables Pipelines to consolidate as many Terragrunt plan/apply changes as possible into a single `run-all` job. This leads to less duplicated work e.g. when both FileChanged and a ModuleChanged should trigger a plan in the same unit.
+Enables Pipelines to consolidate as many Terragrunt plan/apply changes as possible into a single `run-all` job. This leads to less duplicated work e.g. when both FileChanged and a EnvCommonChanged should trigger a plan in the same unit. When [consolidate_added_or_changed](/2.0/reference/pipelines/configurations-as-code/api#consolidate_added_or_changed) is enabled this will include Module Changed / Added jobs.
 
 This behavior will likely become the default in a major release of Pipelines but is currently opt-in due to being a breaking change to functionality.
 </li>
@@ -58,7 +58,7 @@ This behavior will likely become the default in a major release of Pipelines but
 #### `PIPELINES_FEATURE_EXPERIMENT_MINIMIZE_BLAST_RADIUS`
 <ul>
 <li>
-Enables Terragrunt features to reduce the potential changes during a run-all. Terragrunt [queue-strict-include](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-strict-include) and [queue-exclude-external](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-exclude-external) which exclude dependencies from being planned/applied during run-all, and closer matches the behavior of a single unit change.
+Enables Terragrunt features to reduce the potential changes during a run-all. Terragrunt [queue-strict-include](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-strict-include) and [queue-exclude-external](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-exclude-external) are enabled by default which exclude dependencies from being planned/applied during run-all, and closer matches the behavior of a single unit change.
 
 This behavior will likely become the default in a major release of Pipelines but is currently opt-in due to being a breaking change to functionality.
 </li>
