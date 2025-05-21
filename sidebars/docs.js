@@ -368,6 +368,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/pipelines/guides/stacks",
       },
+      {
+        label: "Ignoring Files & Directories",
+        type: "doc",
+        id: "2.0/docs/pipelines/guides/ignore-files-directories",
+      },
     ],
   },
   {
