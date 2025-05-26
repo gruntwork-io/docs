@@ -1,6 +1,117 @@
 {
   "module": "aws-helpers",
   "releases": {
+    "v0.60.0": {
+      "contains_changes": false
+    },
+    "v0.59.9": {
+      "contains_changes": false
+    },
+    "v0.59.8": {
+      "contains_changes": false
+    },
+    "v0.59.7": {
+      "contains_changes": false
+    },
+    "v0.59.6": {
+      "contains_changes": false
+    },
+    "v0.59.5": {
+      "contains_changes": false
+    },
+    "v0.59.4": {
+      "contains_changes": false
+    },
+    "v0.59.3": {
+      "contains_changes": false
+    },
+    "v0.59.2": {
+      "contains_changes": false
+    },
+    "v0.59.1": {
+      "contains_changes": false
+    },
+    "v0.59.0": {
+      "contains_changes": false
+    },
+    "v0.58.2": {
+      "contains_changes": false
+    },
+    "v0.58.1": {
+      "contains_changes": false
+    },
+    "v0.58.0": {
+      "contains_changes": false
+    },
+    "v0.57.3": {
+      "contains_changes": false
+    },
+    "v0.57.2": {
+      "contains_changes": false
+    },
+    "v0.57.1": {
+      "contains_changes": false
+    },
+    "v0.57.0": {
+      "contains_changes": false
+    },
+    "v0.56.0": {
+      "contains_changes": false
+    },
+    "v0.55.1": {
+      "contains_changes": false
+    },
+    "v0.55.0": {
+      "contains_changes": false
+    },
+    "v0.54.3": {
+      "contains_changes": false
+    },
+    "v0.54.2": {
+      "contains_changes": false
+    },
+    "v0.54.1": {
+      "contains_changes": false
+    },
+    "v0.54.0": {
+      "contains_changes": false
+    },
+    "v0.53.5": {
+      "contains_changes": false
+    },
+    "v0.53.4": {
+      "contains_changes": false
+    },
+    "v0.53.3": {
+      "contains_changes": false
+    },
+    "v0.53.2": {
+      "contains_changes": false
+    },
+    "v0.53.1": {
+      "contains_changes": false
+    },
+    "v0.53.0": {
+      "contains_changes": false
+    },
+    "v0.52.19": {
+      "contains_changes": false
+    },
+    "v0.52.18": {
+      "contains_changes": false
+    },
+    "v0.52.17": {
+      "contains_changes": false
+    },
+    "v0.52.16": {
+      "contains_changes": false
+    },
+    "v0.52.15": {
+      "contains_changes": false
+    },
+    "v0.52.14": {
+      "contains_changes": false
+    },
     "v0.52.13": {
       "contains_changes": false
     },

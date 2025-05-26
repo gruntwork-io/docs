@@ -1,6 +1,141 @@
 {
   "module": "aws-config",
   "releases": {
+    "v1.0.0": {
+      "contains_changes": false
+    },
+    "v0.75.18": {
+      "contains_changes": false
+    },
+    "v0.75.17": {
+      "contains_changes": true
+    },
+    "v0.75.16": {
+      "contains_changes": false
+    },
+    "v0.75.15": {
+      "contains_changes": false
+    },
+    "v0.75.14": {
+      "contains_changes": false
+    },
+    "v0.75.13": {
+      "contains_changes": false
+    },
+    "v0.75.12": {
+      "contains_changes": false
+    },
+    "v0.75.11": {
+      "contains_changes": false
+    },
+    "v0.75.10": {
+      "contains_changes": false
+    },
+    "v0.75.9": {
+      "contains_changes": false
+    },
+    "v0.75.8": {
+      "contains_changes": false
+    },
+    "v0.75.7": {
+      "contains_changes": true
+    },
+    "v0.75.6": {
+      "contains_changes": false
+    },
+    "v0.75.5": {
+      "contains_changes": false
+    },
+    "v0.75.4": {
+      "contains_changes": false
+    },
+    "v0.75.3": {
+      "contains_changes": false
+    },
+    "v0.75.2": {
+      "contains_changes": false
+    },
+    "v0.75.1": {
+      "contains_changes": false
+    },
+    "v0.75.0": {
+      "contains_changes": true
+    },
+    "v0.74.6": {
+      "contains_changes": false
+    },
+    "v0.74.5": {
+      "contains_changes": false
+    },
+    "v0.74.4": {
+      "contains_changes": false
+    },
+    "v0.74.3": {
+      "contains_changes": false
+    },
+    "v0.74.2": {
+      "contains_changes": true
+    },
+    "v0.74.1": {
+      "contains_changes": true
+    },
+    "v0.74.0": {
+      "contains_changes": true
+    },
+    "v0.73.2": {
+      "contains_changes": false
+    },
+    "v0.73.1": {
+      "contains_changes": false
+    },
+    "v0.73.0": {
+      "contains_changes": true
+    },
+    "v0.72.1": {
+      "contains_changes": true
+    },
+    "v0.72.0": {
+      "contains_changes": false
+    },
+    "v0.71.6": {
+      "contains_changes": false
+    },
+    "v0.71.5": {
+      "contains_changes": false
+    },
+    "v0.71.4": {
+      "contains_changes": false
+    },
+    "v0.71.3": {
+      "contains_changes": false
+    },
+    "v0.71.2": {
+      "contains_changes": false
+    },
+    "v0.71.1": {
+      "contains_changes": false
+    },
+    "v0.71.0": {
+      "contains_changes": false
+    },
+    "v0.70.2": {
+      "contains_changes": false
+    },
+    "v0.70.1": {
+      "contains_changes": false
+    },
+    "v0.70.0": {
+      "contains_changes": true
+    },
+    "v0.69.3": {
+      "contains_changes": false
+    },
+    "v0.69.2": {
+      "contains_changes": true
+    },
+    "v0.69.1": {
+      "contains_changes": true
+    },
     "v0.69.0": {
       "contains_changes": false
     },

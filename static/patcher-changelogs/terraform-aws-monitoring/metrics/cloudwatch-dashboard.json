@@ -1,6 +1,87 @@
 {
   "module": "metrics/cloudwatch-dashboard",
   "releases": {
+    "v1.0.0": {
+      "contains_changes": false
+    },
+    "v0.36.29": {
+      "contains_changes": false
+    },
+    "v0.36.28": {
+      "contains_changes": false
+    },
+    "v0.36.27": {
+      "contains_changes": false
+    },
+    "v0.36.26": {
+      "contains_changes": false
+    },
+    "v0.36.25": {
+      "contains_changes": false
+    },
+    "v0.36.24": {
+      "contains_changes": false
+    },
+    "v0.36.23": {
+      "contains_changes": false
+    },
+    "v0.36.22": {
+      "contains_changes": false
+    },
+    "v0.36.21": {
+      "contains_changes": false
+    },
+    "v0.36.20": {
+      "contains_changes": false
+    },
+    "v0.36.19": {
+      "contains_changes": false
+    },
+    "v0.36.18": {
+      "contains_changes": false
+    },
+    "v0.36.17": {
+      "contains_changes": false
+    },
+    "v0.36.16": {
+      "contains_changes": false
+    },
+    "v0.36.15": {
+      "contains_changes": false
+    },
+    "v0.36.14": {
+      "contains_changes": false
+    },
+    "v0.36.13": {
+      "contains_changes": false
+    },
+    "v0.36.12": {
+      "contains_changes": false
+    },
+    "v0.36.11": {
+      "contains_changes": false
+    },
+    "v0.36.10": {
+      "contains_changes": false
+    },
+    "v0.36.9": {
+      "contains_changes": false
+    },
+    "v0.36.8": {
+      "contains_changes": false
+    },
+    "v0.36.7": {
+      "contains_changes": false
+    },
+    "v0.36.6": {
+      "contains_changes": true
+    },
+    "v0.36.5": {
+      "contains_changes": true
+    },
+    "v0.36.4": {
+      "contains_changes": false
+    },
     "v0.36.3": {
       "contains_changes": true
     },

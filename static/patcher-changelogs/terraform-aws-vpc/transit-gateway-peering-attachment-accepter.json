@@ -1,6 +1,93 @@
 {
   "module": "transit-gateway-peering-attachment-accepter",
   "releases": {
+    "v0.28.5": {
+      "contains_changes": false
+    },
+    "v0.28.4": {
+      "contains_changes": false
+    },
+    "v0.28.3": {
+      "contains_changes": false
+    },
+    "v0.28.2": {
+      "contains_changes": false
+    },
+    "v0.28.1": {
+      "contains_changes": false
+    },
+    "v0.28.0": {
+      "contains_changes": false
+    },
+    "v0.27.0": {
+      "contains_changes": true
+    },
+    "v0.26.27": {
+      "contains_changes": false
+    },
+    "v0.26.26": {
+      "contains_changes": false
+    },
+    "v0.26.25": {
+      "contains_changes": false
+    },
+    "v0.26.24": {
+      "contains_changes": false
+    },
+    "v0.26.23": {
+      "contains_changes": false
+    },
+    "v0.26.22": {
+      "contains_changes": false
+    },
+    "v0.26.21": {
+      "contains_changes": false
+    },
+    "v0.26.20": {
+      "contains_changes": false
+    },
+    "v0.26.19": {
+      "contains_changes": false
+    },
+    "v0.26.18": {
+      "contains_changes": false
+    },
+    "v0.26.17": {
+      "contains_changes": false
+    },
+    "v0.26.16": {
+      "contains_changes": false
+    },
+    "v0.26.15": {
+      "contains_changes": false
+    },
+    "v0.26.14": {
+      "contains_changes": false
+    },
+    "v0.26.13": {
+      "contains_changes": false
+    },
+    "v0.26.12": {
+      "contains_changes": false
+    },
+    "v0.26.11": {
+      "contains_changes": false
+    },
+    "v0.26.10": {
+      "contains_changes": false
+    },
+    "v0.26.9": {
+      "contains_changes": false
+    },
+    "v0.26.8": {
+      "contains_changes": true
+    },
+    "v0.26.7": {
+      "contains_changes": true
+    },
+    "v0.26.6": {
+      "contains_changes": false
+    },
     "v0.26.5": {
       "contains_changes": false
     },

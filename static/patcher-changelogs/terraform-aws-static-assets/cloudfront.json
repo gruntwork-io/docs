@@ -1,0 +1,245 @@
+{
+  "module": "cloudfront",
+  "releases": {
+    "v1.0.1": {
+      "contains_changes": true
+    },
+    "v1.0.0": {
+      "contains_changes": false
+    },
+    "v0.20.5": {
+      "contains_changes": false
+    },
+    "v0.20.4": {
+      "contains_changes": true
+    },
+    "v0.20.3": {
+      "contains_changes": true
+    },
+    "v0.20.2": {
+      "contains_changes": false
+    },
+    "v0.20.1": {
+      "contains_changes": true
+    },
+    "v0.20.0": {
+      "contains_changes": true
+    },
+    "v0.19.2": {
+      "contains_changes": false
+    },
+    "v0.19.1": {
+      "contains_changes": false
+    },
+    "v0.19.0": {
+      "contains_changes": true
+    },
+    "v0.18.5": {
+      "contains_changes": false
+    },
+    "v0.18.4": {
+      "contains_changes": false
+    },
+    "v0.18.3": {
+      "contains_changes": false
+    },
+    "v0.18.2": {
+      "contains_changes": false
+    },
+    "v0.18.1": {
+      "contains_changes": false
+    },
+    "v0.18.0": {
+      "contains_changes": false
+    },
+    "v0.17.5": {
+      "contains_changes": false
+    },
+    "v0.17.4": {
+      "contains_changes": false
+    },
+    "v0.17.3": {
+      "contains_changes": false
+    },
+    "v0.17.2": {
+      "contains_changes": false
+    },
+    "v0.17.1": {
+      "contains_changes": false
+    },
+    "v0.17.0": {
+      "contains_changes": false
+    },
+    "v0.16.1": {
+      "contains_changes": false
+    },
+    "v0.16.0": {
+      "contains_changes": false
+    },
+    "v0.15.9": {
+      "contains_changes": false
+    },
+    "v0.15.8": {
+      "contains_changes": false
+    },
+    "v0.15.7": {
+      "contains_changes": false
+    },
+    "v0.15.6": {
+      "contains_changes": false
+    },
+    "v0.15.5": {
+      "contains_changes": false
+    },
+    "v0.15.4": {
+      "contains_changes": false
+    },
+    "v0.15.3": {
+      "contains_changes": false
+    },
+    "v0.15.2": {
+      "contains_changes": false
+    },
+    "v0.15.1": {
+      "contains_changes": false
+    },
+    "v0.15.0": {
+      "contains_changes": false
+    },
+    "v0.14.1": {
+      "contains_changes": false
+    },
+    "v0.14.0": {
+      "contains_changes": false
+    },
+    "v0.13.2": {
+      "contains_changes": false
+    },
+    "v0.13.1": {
+      "contains_changes": false
+    },
+    "v0.13.0": {
+      "contains_changes": false
+    },
+    "v0.12.3": {
+      "contains_changes": false
+    },
+    "v0.12.2": {
+      "contains_changes": false
+    },
+    "v0.12.1": {
+      "contains_changes": false
+    },
+    "v0.12.0": {
+      "contains_changes": false
+    },
+    "v0.11.0": {
+      "contains_changes": false
+    },
+    "v0.10.1": {
+      "contains_changes": false
+    },
+    "v0.10.0": {
+      "contains_changes": false
+    },
+    "v0.9.1": {
+      "contains_changes": false
+    },
+    "v0.9.0": {
+      "contains_changes": false
+    },
+    "v0.8.1": {
+      "contains_changes": false
+    },
+    "v0.8.0": {
+      "contains_changes": false
+    },
+    "v0.7.1": {
+      "contains_changes": false
+    },
+    "v0.7.0": {
+      "contains_changes": false
+    },
+    "v0.6.5": {
+      "contains_changes": false
+    },
+    "v0.6.4": {
+      "contains_changes": false
+    },
+    "v0.6.3": {
+      "contains_changes": false
+    },
+    "v0.6.2": {
+      "contains_changes": false
+    },
+    "v0.6.1": {
+      "contains_changes": false
+    },
+    "v0.6.0": {
+      "contains_changes": false
+    },
+    "v0.5.8": {
+      "contains_changes": false
+    },
+    "v0.5.7": {
+      "contains_changes": false
+    },
+    "v0.5.6": {
+      "contains_changes": false
+    },
+    "v0.5.5": {
+      "contains_changes": false
+    },
+    "v0.5.4": {
+      "contains_changes": false
+    },
+    "v0.5.3": {
+      "contains_changes": false
+    },
+    "v0.5.2": {
+      "contains_changes": false
+    },
+    "v0.5.1": {
+      "contains_changes": false
+    },
+    "v0.4.4": {
+      "contains_changes": false
+    },
+    "v0.5.0": {
+      "contains_changes": false
+    },
+    "v0.4.3": {
+      "contains_changes": false
+    },
+    "v0.4.2": {
+      "contains_changes": false
+    },
+    "v0.4.1": {
+      "contains_changes": false
+    },
+    "v0.4.0": {
+      "contains_changes": false
+    },
+    "v0.3.4": {
+      "contains_changes": false
+    },
+    "v0.3.3": {
+      "contains_changes": false
+    },
+    "v0.3.2": {
+      "contains_changes": false
+    },
+    "v0.3.1": {
+      "contains_changes": false
+    },
+    "v0.3.0": {
+      "contains_changes": false
+    },
+    "v0.2.0": {
+      "contains_changes": false
+    },
+    "v0.1.0": {
+      "contains_changes": false
+    }
+  }
+}

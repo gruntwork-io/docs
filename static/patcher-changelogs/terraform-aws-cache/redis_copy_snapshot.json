@@ -1,6 +1,45 @@
 {
   "module": "redis_copy_snapshot",
   "releases": {
+    "v1.0.0": {
+      "contains_changes": false
+    },
+    "v0.23.1": {
+      "contains_changes": false
+    },
+    "v0.23.0": {
+      "contains_changes": false
+    },
+    "v0.22.9": {
+      "contains_changes": false
+    },
+    "v0.22.8": {
+      "contains_changes": true
+    },
+    "v0.22.7": {
+      "contains_changes": false
+    },
+    "v0.22.6": {
+      "contains_changes": false
+    },
+    "v0.22.5": {
+      "contains_changes": false
+    },
+    "v0.22.4": {
+      "contains_changes": false
+    },
+    "v0.22.3": {
+      "contains_changes": false
+    },
+    "v0.22.2": {
+      "contains_changes": false
+    },
+    "v0.22.1": {
+      "contains_changes": true
+    },
+    "v0.22.0": {
+      "contains_changes": true
+    },
     "v0.21.0": {
       "contains_changes": true
     },
