@@ -1,6 +1,18 @@
 {
   "module": "sqs-lambda-connection",
   "releases": {
+    "v0.13.0": {
+      "contains_changes": true
+    },
+    "v0.12.5": {
+      "contains_changes": false
+    },
+    "v0.12.4": {
+      "contains_changes": true
+    },
+    "v0.12.3": {
+      "contains_changes": true
+    },
     "v0.12.2": {
       "contains_changes": true
     },

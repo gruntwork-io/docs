@@ -1,6 +1,78 @@
 {
   "module": "lambda-copy-shared-snapshot",
   "releases": {
+    "v0.40.6": {
+      "contains_changes": false
+    },
+    "v0.40.5": {
+      "contains_changes": false
+    },
+    "v0.40.4": {
+      "contains_changes": false
+    },
+    "v0.40.3": {
+      "contains_changes": false
+    },
+    "v0.40.2": {
+      "contains_changes": false
+    },
+    "v0.40.1": {
+      "contains_changes": false
+    },
+    "v0.40.0": {
+      "contains_changes": false
+    },
+    "v0.39.0": {
+      "contains_changes": false
+    },
+    "v0.38.1": {
+      "contains_changes": true
+    },
+    "v0.38.0": {
+      "contains_changes": false
+    },
+    "v0.37.3": {
+      "contains_changes": false
+    },
+    "v0.37.2": {
+      "contains_changes": false
+    },
+    "v0.37.1": {
+      "contains_changes": false
+    },
+    "v0.37.0": {
+      "contains_changes": false
+    },
+    "v0.36.0": {
+      "contains_changes": false
+    },
+    "v0.35.0": {
+      "contains_changes": false
+    },
+    "v0.34": {
+      "contains_changes": false
+    },
+    "v0.33": {
+      "contains_changes": false
+    },
+    "v0.32": {
+      "contains_changes": false
+    },
+    "v0.31.4": {
+      "contains_changes": true
+    },
+    "v0.31.3": {
+      "contains_changes": false
+    },
+    "v0.31.2": {
+      "contains_changes": true
+    },
+    "v0.31.1": {
+      "contains_changes": false
+    },
+    "v0.31.0": {
+      "contains_changes": false
+    },
     "v0.30.0": {
       "contains_changes": true
     },

@@ -1,6 +1,39 @@
 {
   "module": "asg-rolling-deploy",
   "releases": {
+    "v1.0.0": {
+      "contains_changes": false
+    },
+    "v0.21.20": {
+      "contains_changes": false
+    },
+    "v0.21.19": {
+      "contains_changes": false
+    },
+    "v0.21.18": {
+      "contains_changes": false
+    },
+    "v0.21.17": {
+      "contains_changes": true
+    },
+    "v0.21.16": {
+      "contains_changes": false
+    },
+    "v0.21.15": {
+      "contains_changes": true
+    },
+    "v0.21.13": {
+      "contains_changes": false
+    },
+    "v0.21.12": {
+      "contains_changes": false
+    },
+    "v0.21.11": {
+      "contains_changes": true
+    },
+    "v0.21.10": {
+      "contains_changes": true
+    },
     "v0.21.9": {
       "contains_changes": true
     },

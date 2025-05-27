@@ -1,6 +1,42 @@
 {
   "module": "lambda-edge-log-group",
   "releases": {
+    "v1.1.0": {
+      "contains_changes": false
+    },
+    "v1.0.2": {
+      "contains_changes": false
+    },
+    "v1.0.1": {
+      "contains_changes": false
+    },
+    "v1.0.0": {
+      "contains_changes": false
+    },
+    "v0.23.0": {
+      "contains_changes": false
+    },
+    "v0.22.0": {
+      "contains_changes": true
+    },
+    "v0.21.19": {
+      "contains_changes": false
+    },
+    "v0.21.18": {
+      "contains_changes": false
+    },
+    "v0.21.17": {
+      "contains_changes": false
+    },
+    "v0.21.16": {
+      "contains_changes": false
+    },
+    "v0.21.15": {
+      "contains_changes": true
+    },
+    "v0.21.14": {
+      "contains_changes": true
+    },
     "v0.21.13": {
       "contains_changes": true
     },

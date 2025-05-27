@@ -1,6 +1,33 @@
 {
   "module": "request-quota-increase",
   "releases": {
+    "v0.10.6": {
+      "contains_changes": false
+    },
+    "v0.10.5": {
+      "contains_changes": false
+    },
+    "v0.10.4": {
+      "contains_changes": false
+    },
+    "v0.10.3": {
+      "contains_changes": false
+    },
+    "v0.10.2": {
+      "contains_changes": false
+    },
+    "v0.10.1": {
+      "contains_changes": false
+    },
+    "v0.10.0": {
+      "contains_changes": true
+    },
+    "v0.9.6": {
+      "contains_changes": true
+    },
+    "v0.9.5": {
+      "contains_changes": true
+    },
     "v0.9.4": {
       "contains_changes": true
     },

@@ -1,6 +1,192 @@
 {
   "module": "eks-cluster-workers",
   "releases": {
+    "v1.0.2": {
+      "contains_changes": false
+    },
+    "v1.0.1": {
+      "contains_changes": false
+    },
+    "v1.0.0": {
+      "contains_changes": false
+    },
+    "v0.79.0": {
+      "contains_changes": false
+    },
+    "v0.78.1": {
+      "contains_changes": false
+    },
+    "v0.78.0": {
+      "contains_changes": false
+    },
+    "v0.77.1": {
+      "contains_changes": false
+    },
+    "v0.77.0": {
+      "contains_changes": false
+    },
+    "v0.76.1": {
+      "contains_changes": false
+    },
+    "v0.76.0": {
+      "contains_changes": false
+    },
+    "v0.75.0": {
+      "contains_changes": false
+    },
+    "v0.74.2": {
+      "contains_changes": false
+    },
+    "v0.74.1": {
+      "contains_changes": false
+    },
+    "v0.74.0": {
+      "contains_changes": false
+    },
+    "v0.73.2": {
+      "contains_changes": false
+    },
+    "v0.73.1": {
+      "contains_changes": false
+    },
+    "v0.73.0": {
+      "contains_changes": false
+    },
+    "v0.72.5": {
+      "contains_changes": false
+    },
+    "v0.72.4": {
+      "contains_changes": false
+    },
+    "v0.72.3": {
+      "contains_changes": false
+    },
+    "v0.72.2": {
+      "contains_changes": false
+    },
+    "v0.72.1": {
+      "contains_changes": true
+    },
+    "v0.72.0": {
+      "contains_changes": false
+    },
+    "v0.71.0": {
+      "contains_changes": false
+    },
+    "v0.70.2": {
+      "contains_changes": false
+    },
+    "v0.70.1": {
+      "contains_changes": false
+    },
+    "v0.70.0": {
+      "contains_changes": false
+    },
+    "v0.69.2": {
+      "contains_changes": false
+    },
+    "v0.69.1": {
+      "contains_changes": false
+    },
+    "v0.69.0": {
+      "contains_changes": false
+    },
+    "v0.68.1": {
+      "contains_changes": false
+    },
+    "v0.68.0": {
+      "contains_changes": false
+    },
+    "v0.67.12": {
+      "contains_changes": true
+    },
+    "v0.67.11": {
+      "contains_changes": false
+    },
+    "v0.67.10": {
+      "contains_changes": false
+    },
+    "v0.67.9": {
+      "contains_changes": false
+    },
+    "v0.67.8": {
+      "contains_changes": false
+    },
+    "v0.67.7": {
+      "contains_changes": false
+    },
+    "v0.67.6": {
+      "contains_changes": false
+    },
+    "v0.67.5": {
+      "contains_changes": false
+    },
+    "v0.67.4": {
+      "contains_changes": false
+    },
+    "v0.67.3": {
+      "contains_changes": true
+    },
+    "v0.67.2": {
+      "contains_changes": false
+    },
+    "v0.67.1": {
+      "contains_changes": false
+    },
+    "v0.67.0": {
+      "contains_changes": false
+    },
+    "v0.66.2": {
+      "contains_changes": false
+    },
+    "v0.66.1": {
+      "contains_changes": false
+    },
+    "v0.66.0": {
+      "contains_changes": false
+    },
+    "v0.65.7": {
+      "contains_changes": false
+    },
+    "v0.65.6": {
+      "contains_changes": false
+    },
+    "v0.65.5": {
+      "contains_changes": false
+    },
+    "v0.65.4": {
+      "contains_changes": false
+    },
+    "v0.65.3": {
+      "contains_changes": false
+    },
+    "v0.65.2": {
+      "contains_changes": false
+    },
+    "v0.65.1": {
+      "contains_changes": false
+    },
+    "v0.65.0": {
+      "contains_changes": false
+    },
+    "v0.64.4": {
+      "contains_changes": false
+    },
+    "v0.64.3": {
+      "contains_changes": true
+    },
+    "v0.64.2": {
+      "contains_changes": true
+    },
+    "v0.64.1": {
+      "contains_changes": false
+    },
+    "v0.64.0": {
+      "contains_changes": false
+    },
+    "v0.63.0": {
+      "contains_changes": false
+    },
     "v0.62.0": {
       "contains_changes": true
     },
