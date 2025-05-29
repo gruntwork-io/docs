@@ -394,6 +394,9 @@ module "msk" {
   # Prefix to append to the folder name.
   s3_logs_prefix = null
 
+  # The name of the Security Group to create for the MSK Cluster.
+  security_group_name = null
+
   # Contents of the server.properties file. Supported properties are documented
   # in the MSK Developer Guide
   # (https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html).
@@ -564,6 +567,9 @@ inputs = {
 
   # Prefix to append to the folder name.
   s3_logs_prefix = null
+
+  # The name of the Security Group to create for the MSK Cluster.
+  security_group_name = null
 
   # Contents of the server.properties file. Supported properties are documented
   # in the MSK Developer Guide
@@ -936,6 +942,15 @@ Prefix to append to the folder name.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="security_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the Security Group to create for the MSK Cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="server_properties" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -1111,6 +1126,6 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.13.0/modules/msk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a70c6f9e128d60b694c3ec0883524c17"
+  "hash": "b3f9974be3dd4385bc44044476eeaba1"
 }
 ##DOCS-SOURCER-END -->
