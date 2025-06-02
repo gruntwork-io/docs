@@ -328,6 +328,22 @@ You can freely mix changes to `terragrunt.stack.hcl` and `terragrunt.hcl` files 
 ## terraform-aws-architecture-catalog
 
 
+### [v2.13.0](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v2.13.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 4/30/2025 | <a href="https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v2.13.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Update landing zone template to support custom gitlab instance by @oredavids in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/1143
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-architecture-catalog/compare/v2.12.11...v2.13.0
+
+</div>
+
+
 ### [v2.12.11](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v2.12.11)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -712,6 +728,6 @@ Default EKS version is 1.31 with this release! Please see the links below for fu
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b1c2e9fa4f387bb16bd2f6a955f1fec4"
+  "hash": "7803886bd1c402808852ec61e6db31e0"
 }
 ##DOCS-SOURCER-END -->

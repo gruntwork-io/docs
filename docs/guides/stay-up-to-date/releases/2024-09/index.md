@@ -333,6 +333,8 @@ This introduces a change in how tags are managed for AWS Accounts. Now, any tag 
         - Override the default Helm Chart version and use a newer version of the chart which resolves the issue. This can be accomplished by setting `aws_for_fluent_bit_chart_version` to `0.1.32`.
         - Upgrade to [v0.73.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.73.0) of the `terraform-aws-eks` library module which uses a newer chart version as well as contains several enhancements to the module.
 
+
+
 </div>
 
 
