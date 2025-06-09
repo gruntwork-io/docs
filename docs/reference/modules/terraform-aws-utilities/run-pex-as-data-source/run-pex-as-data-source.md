@@ -9,19 +9,19 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.10.6" lastModifiedVersion="0.9.6"/>
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.10.7" lastModifiedVersion="0.9.6"/>
 
 # Run PEX as Data Source
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.6/modules/run-pex-as-data-source" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/run-pex-as-data-source" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.9.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module runs the provided PEX binary in a portable manner that works with multiple platforms and python versions, to
 be used as an [external data source](https://www.terraform.io/docs/providers/external/data_source.html) in Terraform.
 
-This module uses [`prepare-pex-environment`](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.6/modules/prepare-pex-environment) under the hood. See [What is
-PEX?](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.6/modules/prepare-pex-environment/README.md#what-is-pex) for more details on what is a PEX file and how to construct one
+This module uses [`prepare-pex-environment`](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/prepare-pex-environment) under the hood. See [What is
+PEX?](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/prepare-pex-environment/README.md#what-is-pex) for more details on what is a PEX file and how to construct one
 for use with this module.
 
 ## Data Source vs Resource
@@ -34,7 +34,7 @@ allow you to call out to arbitrary binaries available on the operator machine. T
 *   [local-exec Provisioners](https://www.terraform.io/docs/provisioners/local-exec.html), where you can run the binary to
     provision a resource.
 
-This module uses the data source approach (you can see the [run-pex-as-resource module](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.6/modules/run-pex-as-resource) for
+This module uses the data source approach (you can see the [run-pex-as-resource module](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/run-pex-as-resource) for
 running it as a data source). Which approach to use depends on your needs:
 
 *   Data sources are calculated every time a terraform state needs to be refreshed. This includes all `plan` and `apply`
@@ -60,7 +60,7 @@ running it as a data source). Which approach to use depends on your needs:
 
 module "run_pex_as_data_source" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/run-pex-as-data-source?ref=v0.10.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/run-pex-as-data-source?ref=v0.10.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -112,7 +112,7 @@ module "run_pex_as_data_source" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/run-pex-as-data-source?ref=v0.10.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/run-pex-as-data-source?ref=v0.10.7"
 }
 
 inputs = {
@@ -252,11 +252,11 @@ Data source result of executing the PEX binary.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.6/modules/run-pex-as-data-source/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.6/modules/run-pex-as-data-source/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.6/modules/run-pex-as-data-source/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/run-pex-as-data-source/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/run-pex-as-data-source/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/run-pex-as-data-source/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "77170f8b16e30f07490e383db00c122c"
+  "hash": "8dd6f3f2279abd05579ad608b0dca78f"
 }
 ##DOCS-SOURCER-END -->
