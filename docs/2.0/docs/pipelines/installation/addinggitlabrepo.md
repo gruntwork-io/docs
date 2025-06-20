@@ -132,7 +132,12 @@ First, you'll need to install [mise](https://mise.jdx.dev/), a powerful environm
 ### Step 4: Install AWS OIDC Provider and IAM Roles for Pipelines
 
 1. Navigate to the `_global` folder under each account in your repository and review the Terragrunt files that were created:
-   - The GitLab OIDC identity provider in AWS. **Note:** If using a custom GitLab instance, ensure the `URL` and `audiences` inputs in this configuration are correct.
+   - The GitLab OIDC identity provider in AWS.
+
+      :::note
+      If using a custom GitLab instance, ensure the `URL` and `audiences` inputs in this configuration are correct.
+      :::
+
    - IAM roles for your the account (`root-pipelines-plan` and `root-pipelines-apply`)
 
 2. Apply these configurations to create the required AWS resources:
