@@ -181,6 +181,10 @@ module "transit_gateway" {
   # gateway. Default is true.
   enable_vpn_ecmp_support = true
 
+  # Whether Security Group Referencing Support is enabled. Valid values:
+  # disable, enable. Default value: disable.
+  security_group_referencing_support = "disable"
+
   # List of IPv4 or IPv6 CIDR blocks to use for the transit gateway. Must be a
   # size /24 CIDR block or larger for IPv4, or a size /64 CIDR block or larger
   # for IPv6.
@@ -252,6 +256,10 @@ inputs = {
   # Whether VPN Equal Cost Multipath Protocol support is enabled on the transit
   # gateway. Default is true.
   enable_vpn_ecmp_support = true
+
+  # Whether Security Group Referencing Support is enabled. Valid values:
+  # disable, enable. Default value: disable.
+  security_group_referencing_support = "disable"
 
   # List of IPv4 or IPv6 CIDR blocks to use for the transit gateway. Must be a
   # size /24 CIDR block or larger for IPv4, or a size /64 CIDR block or larger
@@ -367,6 +375,15 @@ Whether VPN Equal Cost Multipath Protocol support is enabled on the transit gate
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="security_group_referencing_support" requirement="optional" type="string">
+<HclListItemDescription>
+
+Whether Security Group Referencing Support is enabled. Valid values: disable, enable. Default value: disable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;disable&quot;"/>
+</HclListItem>
+
 <HclListItem name="transit_gateway_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -430,6 +447,6 @@ Identifier of the Transit Gateway's default propagation route table.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.5/modules/transit-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7b1ef89a6c5a9521c8d2021d7dd621be"
+  "hash": "51f025bfaad1c4e3471576edef432d7d"
 }
 ##DOCS-SOURCER-END -->
