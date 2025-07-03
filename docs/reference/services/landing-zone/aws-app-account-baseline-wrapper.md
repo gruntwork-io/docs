@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.127.2" lastModifiedVersion="0.125.1"/>
+<VersionBadge version="0.127.5" lastModifiedVersion="0.125.1"/>
 
 # Account Baseline for app accounts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.2/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-app" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -57,13 +57,13 @@ If you’ve never used the Service Catalog before, make sure to read
 
 *   Learn more about each individual module, click the link in the [Features](#features) section.
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
-*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.2/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.2/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.2/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.2/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.2/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end integrated tech stack on top of the Gruntwork Service Catalog.
@@ -100,7 +100,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "account_baseline_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.127.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.127.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -465,11 +465,6 @@ module "account_baseline_app" {
   # After this number of days, log files should be deleted from S3. Enter 0 to
   # never delete log data.
   config_num_days_after_which_delete_log_data = 730
-
-  # Recording Groups to define in AWS Config. See the upstream module for how to
-  # define the variable, the default of null will use the module's default:
-  # https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
-  config_recording_groups = null
 
   # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket,
   # when the S3 bucket is created within this module
@@ -946,7 +941,7 @@ module "account_baseline_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.127.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.127.5"
 }
 
 inputs = {
@@ -1314,11 +1309,6 @@ inputs = {
   # After this number of days, log files should be deleted from S3. Enter 0 to
   # never delete log data.
   config_num_days_after_which_delete_log_data = 730
-
-  # Recording Groups to define in AWS Config. See the upstream module for how to
-  # define the variable, the default of null will use the module's default:
-  # https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
-  config_recording_groups = null
 
   # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket,
   # when the S3 bucket is created within this module
@@ -2560,32 +2550,6 @@ After this number of days, log files should be deleted from S3. Enter 0 to never
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="730"/>
-</HclListItem>
-
-<HclListItem name="config_recording_groups" requirement="optional" type="map(object(…))">
-<HclListItemDescription>
-
-Recording Groups to define in AWS Config. See the upstream module for how to define the variable, the default of null will use the module's default: https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(object({
-    all_supported                 = bool
-    include_global_resource_types = bool
-    resource_types                = list(string)
-    recording_strategy = object({
-      use_only = string
-    })
-    exclusion_by_resource_types = optional(object({
-      resource_types = list(string)
-    }))
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="config_s3_bucket_kms_key_arn" requirement="optional" type="string">
@@ -4101,11 +4065,11 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.2/modules/landingzone/account-baseline-app/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.2/modules/landingzone/account-baseline-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.2/modules/landingzone/account-baseline-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/landingzone/account-baseline-app/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/landingzone/account-baseline-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/landingzone/account-baseline-app/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e7484ea803ce6ad12c74638612da542e"
+  "hash": "72b2fa9ba586583d4105e0ca58061a13"
 }
 ##DOCS-SOURCER-END -->
