@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.0.0" lastModifiedVersion="0.75.12"/>
+<VersionBadge repoTitle="Security Modules" version="1.0.1" lastModifiedVersion="1.0.1"/>
 
 # Fail2Ban Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/modules/fail2ban" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.1/modules/fail2ban" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.12" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.0.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can configure a Linux server to automatically ban malicious ip addresses from connecting to the server
 via SSH. This module currently supports Ubuntu, Amazon Linux, and CentOS (using
@@ -27,11 +27,11 @@ Instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/modules/fail2ban/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/modules/fail2ban/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.0/modules/fail2ban/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.1/modules/fail2ban/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.1/modules/fail2ban/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.1/modules/fail2ban/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "11681547c28111aba8dc457f55bf9492"
+  "hash": "f2bfbb7b5a07605f20b700a9da8ac288"
 }
 ##DOCS-SOURCER-END -->
