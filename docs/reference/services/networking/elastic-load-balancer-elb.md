@@ -157,12 +157,6 @@ module "alb" {
   # The list of IDs of security groups that should have access to the ALB
   allow_inbound_from_security_group_ids = []
 
-  # The CIDR-formatted IP Address ranges from which this ALB will allow outgoing
-  # requests. If var.allow_all_outbound is false, no outbound traffic is
-  # allowed.If var.allow_all_outbound is true, then the cidr blocks passed in
-  # through this var are allowed for outbound traffic.
-  allow_outbound_to_cidr_blocks = ["0.0.0.0/0"]
-
   # Set to true to create a Route 53 DNS A record for this ALB?
   create_route53_entry = false
 
@@ -359,12 +353,6 @@ inputs = {
 
   # The list of IDs of security groups that should have access to the ALB
   allow_inbound_from_security_group_ids = []
-
-  # The CIDR-formatted IP Address ranges from which this ALB will allow outgoing
-  # requests. If var.allow_all_outbound is false, no outbound traffic is
-  # allowed.If var.allow_all_outbound is true, then the cidr blocks passed in
-  # through this var are allowed for outbound traffic.
-  allow_outbound_to_cidr_blocks = ["0.0.0.0/0"]
 
   # Set to true to create a Route 53 DNS A record for this ALB?
   create_route53_entry = false
@@ -630,17 +618,6 @@ The list of IDs of security groups that should have access to the ALB
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_outbound_to_cidr_blocks" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The CIDR-formatted IP Address ranges from which this ALB will allow outgoing requests. If <a href="#allow_all_outbound"><code>allow_all_outbound</code></a> is false, no outbound traffic is allowed.If <a href="#allow_all_outbound"><code>allow_all_outbound</code></a> is true, then the cidr blocks passed in through this var are allowed for outbound traffic.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[
-  &quot;0.0.0.0/0&quot;
-]"/>
 </HclListItem>
 
 <HclListItem name="create_route53_entry" requirement="optional" type="bool">
@@ -1024,6 +1001,6 @@ The AWS-managed DNS name assigned to the ALB.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/networking/alb/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f684edbc0d4e8c27d49ea351238102a4"
+  "hash": "659dfd4d10e8fb55d3e992c13103d5db"
 }
 ##DOCS-SOURCER-END -->
