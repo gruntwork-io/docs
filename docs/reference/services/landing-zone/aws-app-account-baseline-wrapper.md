@@ -466,11 +466,6 @@ module "account_baseline_app" {
   # never delete log data.
   config_num_days_after_which_delete_log_data = 730
 
-  # Recording Groups to define in AWS Config. See the upstream module for how to
-  # define the variable, the default of null will use the module's default:
-  # https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
-  config_recording_groups = null
-
   # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket,
   # when the S3 bucket is created within this module
   # (var.config_should_create_s3_bucket is true). For encrypting S3 objects on
@@ -1314,11 +1309,6 @@ inputs = {
   # After this number of days, log files should be deleted from S3. Enter 0 to
   # never delete log data.
   config_num_days_after_which_delete_log_data = 730
-
-  # Recording Groups to define in AWS Config. See the upstream module for how to
-  # define the variable, the default of null will use the module's default:
-  # https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
-  config_recording_groups = null
 
   # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket,
   # when the S3 bucket is created within this module
@@ -2560,32 +2550,6 @@ After this number of days, log files should be deleted from S3. Enter 0 to never
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="730"/>
-</HclListItem>
-
-<HclListItem name="config_recording_groups" requirement="optional" type="map(object(…))">
-<HclListItemDescription>
-
-Recording Groups to define in AWS Config. See the upstream module for how to define the variable, the default of null will use the module's default: https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(object({
-    all_supported                 = bool
-    include_global_resource_types = bool
-    resource_types                = list(string)
-    recording_strategy = object({
-      use_only = string
-    })
-    exclusion_by_resource_types = optional(object({
-      resource_types = list(string)
-    }))
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="config_s3_bucket_kms_key_arn" requirement="optional" type="string">
@@ -4106,6 +4070,6 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/landingzone/account-baseline-app/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5e32b8584387f47fe6d66feb6e562ac5"
+  "hash": "72b2fa9ba586583d4105e0ca58061a13"
 }
 ##DOCS-SOURCER-END -->

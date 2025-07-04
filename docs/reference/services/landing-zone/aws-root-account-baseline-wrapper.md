@@ -467,11 +467,6 @@ module "account_baseline_root" {
   # never delete log data.
   config_num_days_after_which_delete_log_data = 730
 
-  # Recording Groups to define in AWS Config. See the upstream module for how to
-  # define the variable, the default of null will use the module's default:
-  # https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
-  config_recording_groups = null
-
   # Optional KMS key (in logs account) to use for encrypting S3 objects on the
   # AWS Config bucket, when the S3 bucket is created within this module
   # (var.config_should_create_s3_bucket is true). For encrypting S3 objects on
@@ -896,40 +891,6 @@ module "account_baseline_root" {
   # KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
-
-  # The mode for AWS Config to record configuration changes.
-  #
-  # recording_frequency:
-  # The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
-  # - CONTINUOUS
-  # - DAILY
-  #
-  # You can also override the recording frequency for specific resource types.
-  # recording_mode_override:
-  #   description:
-  #     A description for the override.
-  #   recording_frequency:
-  #     The frequency with which AWS Config records configuration changes for the specified resource types.
-  #     - CONTINUOUS
-  #     - DAILY
-  #   resource_types:
-  #     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-  #
-  # See the following for more information:
-  # https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
-  #
-  # /*
-  # recording_mode = {
-  #   recording_frequency = "DAILY"
-  #   recording_mode_override = {
-  #     description         = "Override for specific resource types"
-  #     recording_frequency = "CONTINUOUS"
-  #     resource_types      = ["AWS::EC2::Instance"]
-  #   }
-  # }
-  # */
-  #
-  recording_mode = null
 
   # Manages S3 account-level Public Access Block configuration.
   s3_account_public_access_block = null
@@ -1379,11 +1340,6 @@ inputs = {
   # never delete log data.
   config_num_days_after_which_delete_log_data = 730
 
-  # Recording Groups to define in AWS Config. See the upstream module for how to
-  # define the variable, the default of null will use the module's default:
-  # https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
-  config_recording_groups = null
-
   # Optional KMS key (in logs account) to use for encrypting S3 objects on the
   # AWS Config bucket, when the S3 bucket is created within this module
   # (var.config_should_create_s3_bucket is true). For encrypting S3 objects on
@@ -1808,40 +1764,6 @@ inputs = {
   # KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
-
-  # The mode for AWS Config to record configuration changes.
-  #
-  # recording_frequency:
-  # The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
-  # - CONTINUOUS
-  # - DAILY
-  #
-  # You can also override the recording frequency for specific resource types.
-  # recording_mode_override:
-  #   description:
-  #     A description for the override.
-  #   recording_frequency:
-  #     The frequency with which AWS Config records configuration changes for the specified resource types.
-  #     - CONTINUOUS
-  #     - DAILY
-  #   resource_types:
-  #     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-  #
-  # See the following for more information:
-  # https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
-  #
-  # /*
-  # recording_mode = {
-  #   recording_frequency = "DAILY"
-  #   recording_mode_override = {
-  #     description         = "Override for specific resource types"
-  #     recording_frequency = "CONTINUOUS"
-  #     resource_types      = ["AWS::EC2::Instance"]
-  #   }
-  # }
-  # */
-  #
-  recording_mode = null
 
   # Manages S3 account-level Public Access Block configuration.
   s3_account_public_access_block = null
@@ -2853,32 +2775,6 @@ After this number of days, log files should be deleted from S3. Enter 0 to never
 <HclListItemDefaultValue defaultValue="730"/>
 </HclListItem>
 
-<HclListItem name="config_recording_groups" requirement="optional" type="map(object(…))">
-<HclListItemDescription>
-
-Recording Groups to define in AWS Config. See the upstream module for how to define the variable, the default of null will use the module's default: https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(object({
-    all_supported                 = bool
-    include_global_resource_types = bool
-    resource_types                = list(string)
-    recording_strategy = object({
-      use_only = string
-    })
-    exclusion_by_resource_types = optional(object({
-      resource_types = list(string)
-    }))
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="config_s3_bucket_kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -3885,60 +3781,6 @@ KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS stor
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="recording_mode" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-The mode for AWS Config to record configuration changes.
-
-recording_frequency:
-The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
-- CONTINUOUS
-- DAILY
-
-You can also override the recording frequency for specific resource types.
-recording_mode_override:
-  description:
-    A description for the override.
-  recording_frequency:
-    The frequency with which AWS Config records configuration changes for the specified resource types.
-    - CONTINUOUS
-    - DAILY
-  resource_types:
-    A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-
-See the following for more information:
-https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
-
-```
-recording_mode = &#123;
-  recording_frequency = 'DAILY'
-  recording_mode_override = &#123;
-    description         = 'Override for specific resource types'
-    recording_frequency = 'CONTINUOUS'
-    resource_types      = ['AWS::EC2::Instance']
-  &#125;
-&#125;
-```
-
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    recording_frequency = string
-    recording_mode_override = optional(object({
-      description         = string
-      recording_frequency = string
-      resource_types      = list(string)
-    }))
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="s3_account_public_access_block" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
@@ -4620,6 +4462,6 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/landingzone/account-baseline-root/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "cd9b54ff66ab499a2e6d015e51132f11"
+  "hash": "b33f7dfff8aa5e9575675631d6f31ade"
 }
 ##DOCS-SOURCER-END -->

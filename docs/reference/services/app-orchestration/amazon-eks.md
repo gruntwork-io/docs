@@ -669,13 +669,13 @@ module "eks_cluster" {
   # The URL from which to download Kubergrunt if it's not installed already. Use
   # to specify a version of kubergrunt that is compatible with your specified
   # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.17.3/kubergrunt_<platform>'
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.17.3/kubergrunt_<platform>"
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>'
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.32"
+  kubernetes_version = "1.30"
 
   # Configure one or more Node Groups to manage the EC2 instances in this
   # cluster. Set to empty object ({}) if you do not wish to configure managed
@@ -1520,13 +1520,13 @@ inputs = {
   # The URL from which to download Kubergrunt if it's not installed already. Use
   # to specify a version of kubergrunt that is compatible with your specified
   # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.17.3/kubergrunt_<platform>'
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.17.3/kubergrunt_<platform>"
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>'
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.32"
+  kubernetes_version = "1.30"
 
   # Configure one or more Node Groups to manage the EC2 instances in this
   # cluster. Set to empty object ({}) if you do not wish to configure managed
@@ -3560,10 +3560,10 @@ map(list(string))
 <HclListItem name="kubergrunt_download_url" requirement="optional" type="string">
 <HclListItemDescription>
 
-The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.17.3/kubergrunt_&lt;platform>'
+The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_&lt;platform>'
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.17.3/kubergrunt_<platform>&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.16.0/kubergrunt_<platform>&quot;"/>
 </HclListItem>
 
 <HclListItem name="kubernetes_version" requirement="optional" type="string">
@@ -3572,7 +3572,7 @@ The URL from which to download Kubergrunt if it's not installed already. Use to 
 Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.32&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.30&quot;"/>
 </HclListItem>
 
 <HclListItem name="managed_node_group_configurations" requirement="optional" type="any">
@@ -4309,6 +4309,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e01ddb6e84ac82a089e4e95fc8672728"
+  "hash": "ea94d54cb7010fd744d02108190e7954"
 }
 ##DOCS-SOURCER-END -->
