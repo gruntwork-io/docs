@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.28.5" lastModifiedVersion="0.27.0"/>
+<VersionBadge repoTitle="VPC Modules" version="0.28.6" lastModifiedVersion="0.27.0"/>
 
 # vpc-peering-cross-accounts-accepter
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.5/modules/vpc-peering-cross-accounts-accepter" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.6/modules/vpc-peering-cross-accounts-accepter" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.27.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -78,7 +78,7 @@ No modules.
 
 module "vpc_peering_cross_accounts_accepter" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-accepter?ref=v0.28.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-accepter?ref=v0.28.6"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -136,7 +136,7 @@ module "vpc_peering_cross_accounts_accepter" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-accepter?ref=v0.28.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-accepter?ref=v0.28.6"
 }
 
 inputs = {
@@ -296,11 +296,11 @@ Peering connection ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.5/modules/vpc-peering-cross-accounts-accepter/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.5/modules/vpc-peering-cross-accounts-accepter/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.5/modules/vpc-peering-cross-accounts-accepter/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.6/modules/vpc-peering-cross-accounts-accepter/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.6/modules/vpc-peering-cross-accounts-accepter/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.6/modules/vpc-peering-cross-accounts-accepter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8aa6b817fea44c178cecdc28d2614db4"
+  "hash": "6d1164f67752ce7443b65b33c101967b"
 }
 ##DOCS-SOURCER-END -->
