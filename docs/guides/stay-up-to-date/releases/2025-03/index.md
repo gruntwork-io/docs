@@ -540,6 +540,7 @@ If `pipelines-execute` exits with non-zero return code we now forward stderr to 
   
 
 - Updated EKS Security Group name to address potential issue with Security Group name collisions with other modules.
+    - New variable added `security_group_name` for the ability to provide a name for the Security Group.
 
 
 
@@ -684,7 +685,8 @@ If `pipelines-execute` exits with non-zero return code we now forward stderr to 
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+  &gt; [!CAUTION]
+&gt; This release has a critical bug that a fix is currently being put in place. This release causes the recreation of the EKS Cluster Security Group which will cause an error due to dependent objects that will prevent the recreation of the Security Group. A new variable is available that allows the existing Security Group name to be provided, but it has not been exposed in the Service Catalog. Because of this, upgrading to this version of the Service Catalog will cause an update error where a rollback will be required. This banner will be updated as soon as the fix is available with information on how to mitigate this issue. 
 
 - Changed source module version `modules/eks-cluster-control-plane` from `v0.73.2` to `v0.74.0`.
 
@@ -891,6 +893,6 @@ If `pipelines-execute` exits with non-zero return code we now forward stderr to 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "1c9d9b56fc77ee5601d4ad80dbbb8114"
+  "hash": "feb9b261154d7979b87a9c1fdab249f4"
 }
 ##DOCS-SOURCER-END -->
