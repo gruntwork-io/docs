@@ -332,7 +332,15 @@ This introduces a change in how tags are managed for AWS Accounts. Now, any tag 
         - Set the variables to empty strings which will override the default values set in the upstream.
         - Override the default Helm Chart version and use a newer version of the chart which resolves the issue. This can be accomplished by setting `aws_for_fluent_bit_chart_version` to `0.1.32`.
         - Upgrade to [v0.73.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.73.0) of the `terraform-aws-eks` library module which uses a newer chart version as well as contains several enhancements to the module.
-```yaml
+          ```yaml
+          # Default values in upstream Helm Chart
+          logGroupTemplate: /aws/eks/fluentbit-cloudwatch/workload/$kubernetes[&apos;namespace_name&apos;]
+          logStreamTemplate: $kubernetes[&apos;pod_name&apos;].$kubernetes[&apos;container_name&apos;]
+          ```
+- Bump github.com/hashicorp/go-getter from 1.7.1 to 1.7.5 in /test
+- Bump golang.org/x/net from 0.17.0 to 0.23.0 in /test
+
+
 
 </div>
 
@@ -769,6 +777,6 @@ Default version of EKS is `1.30` with this release! Please see the links below f
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "5bc26fd397602b0654b8f6b5a4d34d13"
+  "hash": "3beb9ec84e60041fa01bf0bb383d9596"
 }
 ##DOCS-SOURCER-END -->
