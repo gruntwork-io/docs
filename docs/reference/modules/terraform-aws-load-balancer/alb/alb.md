@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="1.0.0" lastModifiedVersion="0.30.5"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="1.0.1" lastModifiedVersion="1.0.1"/>
 
 # Application Load Balancer (ALB) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.0.0/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.0.1/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v0.30.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v1.0.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an [Application Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
 that you can use as a load balancer for any [ALB Target Group](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html).
@@ -191,7 +191,7 @@ There are two ways for you to override this behavior:
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v1.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v1.0.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -261,6 +261,11 @@ module "alb" {
   # or something even more restrictive.
   allow_inbound_from_cidr_blocks = ["0.0.0.0/0"]
 
+  # The IPv6 CIDR blocks from which the ALB will allow inbound HTTP/HTTPS
+  # requests. Use the default value to allow any IPv6 address to make requests.
+  # Only used if var.is_internal_alb is false.
+  allow_inbound_from_ipv6_cidr_blocks = []
+
   # The IDs of security groups from which this ALB will allow incoming requests.
   # . If you update this variable, make sure to update
   # var.allow_inbound_from_security_group_ids_num too!
@@ -278,6 +283,10 @@ module "alb" {
   # allowed.If var.allow_all_outbound is true, then the cidr blocks passed in
   # through this var are allowed for outbound traffic.
   allow_outbound_to_cidr_blocks = ["0.0.0.0/0"]
+
+  # The IPv6 CIDR blocks to which the ALB will allow outbound traffic. Only used
+  # if var.allow_all_outbound is true.
+  allow_outbound_to_ipv6_cidr_blocks = ["::/0"]
 
   # Prefix to use for access logs to create a sub-folder in S3 Bucket name where
   # ALB logs should be stored. Only used if
@@ -418,7 +427,7 @@ module "alb" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v1.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v1.0.1"
 }
 
 inputs = {
@@ -491,6 +500,11 @@ inputs = {
   # or something even more restrictive.
   allow_inbound_from_cidr_blocks = ["0.0.0.0/0"]
 
+  # The IPv6 CIDR blocks from which the ALB will allow inbound HTTP/HTTPS
+  # requests. Use the default value to allow any IPv6 address to make requests.
+  # Only used if var.is_internal_alb is false.
+  allow_inbound_from_ipv6_cidr_blocks = []
+
   # The IDs of security groups from which this ALB will allow incoming requests.
   # . If you update this variable, make sure to update
   # var.allow_inbound_from_security_group_ids_num too!
@@ -508,6 +522,10 @@ inputs = {
   # allowed.If var.allow_all_outbound is true, then the cidr blocks passed in
   # through this var are allowed for outbound traffic.
   allow_outbound_to_cidr_blocks = ["0.0.0.0/0"]
+
+  # The IPv6 CIDR blocks to which the ALB will allow outbound traffic. Only used
+  # if var.allow_all_outbound is true.
+  allow_outbound_to_ipv6_cidr_blocks = ["::/0"]
 
   # Prefix to use for access logs to create a sub-folder in S3 Bucket name where
   # ALB logs should be stored. Only used if
@@ -774,6 +792,15 @@ The CIDR-formatted IP Address ranges from which this ALB will allow incoming req
 ]"/>
 </HclListItem>
 
+<HclListItem name="allow_inbound_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IPv6 CIDR blocks from which the ALB will allow inbound HTTP/HTTPS requests. Use the default value to allow any IPv6 address to make requests. Only used if <a href="#is_internal_alb"><code>is_internal_alb</code></a> is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="allow_inbound_from_security_group_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -800,6 +827,17 @@ The CIDR-formatted IP Address ranges from which this ALB will allow outgoing req
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[
   &quot;0.0.0.0/0&quot;
+]"/>
+</HclListItem>
+
+<HclListItem name="allow_outbound_to_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IPv6 CIDR blocks to which the ALB will allow outbound traffic. Only used if <a href="#allow_all_outbound"><code>allow_all_outbound</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[
+  &quot;::/0&quot;
 ]"/>
 </HclListItem>
 
@@ -1339,11 +1377,11 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.0.0/modules/alb/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.0.0/modules/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.0.0/modules/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.0.1/modules/alb/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.0.1/modules/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.0.1/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "77b2328634f7e1489344990a8923309b"
+  "hash": "4f7c6cba3fb8cd668a7fddf93cbbc909"
 }
 ##DOCS-SOURCER-END -->
