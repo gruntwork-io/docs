@@ -74,7 +74,14 @@ When a pull request/merge request is created or synchronized, or when changes ar
 
 ### Fundamentals of OIDC for Publicly Available and Private CI/CD platforms
 
-The below diagrams illustrate how CI/CD Platforms use OIDC to authenticate to cloud accounts (AWS in these examples).  There is a difference in how this is done for publicly available CI/CD platforms (like GitHub.com and GitLab Cloud) and non-publicly available CI/CD platforms (like some self-hosted GitLab Ultimate, GitHub Enterprise etc. instances).
+### JWT Token Issuers
+A JWT token is a base64-encoded JSON object that contains three parts: a header, a payload, and a signature. The header typically contains metadata about the token, such as the algorithm used to sign it. The payload contains the claims or assertions made by the issuer, such as the subject (user), audience (intended recipient), and expiration time. The signature is used to verify that the token was issued by a trusted authority and has not been tampered with.
+
+Critically, the issuer is a URL that is both specified inside the token, and is used by consumers of the token to fetch the public key used to validate the signature of that same token. Assuming the public key is fetched via HTTPS, there is a valid trust chain that the token was in fact issued by the expected issuer and you have typical cryptographic guarantees it wasn't substituted or tampered with.
+
+Typically the issuer is the hostname of the CI/CD platform, such as `https://gitlab.com`, and thus oidc configuration (and public keys) can be fetched from the publicly available route, `https://gitlab.com/.well-known/openid-configuration` etc.
+
+If, however, your CI/CD platform is hosted privately, you will need to host the public key and OIDC configuration in a publicly accessible location, such as an S3 bucket, and update the issuer in your CI/CD configuration to point to that location.  The diagrams below illustrate both approaches.
 
 
 #### Publicly Available CI/CD Platforms
