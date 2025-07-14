@@ -9,20 +9,20 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="1.0.1" lastModifiedVersion="1.0.1"/>
+<VersionBadge repoTitle="Static Assets Modules" version="1.1.0" lastModifiedVersion="1.1.0"/>
 
 # CloudFront Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.0.1/modules/cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.0/modules/cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v1.0.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v1.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module deploys an [AWS CloudFront](https://aws.amazon.com/cloudfront/) distribution to serve content from S3 or custom origins. CloudFront is a Content Delivery Network (CDN) that caches your content at edge locations around the world to reduce latency and improve performance for your users.
 
 ## Quick Start
 
-*   See the [cloudfront-custom-origin](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.0.1/examples/cloudfront) example for working sample code.
-*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.0.1/modules/cloudfront/vars.tf) for all parameters you can set for this module.
+*   See the [cloudfront-custom-origin](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.0/examples/cloudfront) example for working sample code.
+*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.0/modules/cloudfront/vars.tf) for all parameters you can set for this module.
 
 ## Sample Usage
 
@@ -37,7 +37,7 @@ This module deploys an [AWS CloudFront](https://aws.amazon.com/cloudfront/) dist
 
 module "cloudfront" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v1.0.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v1.1.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -145,7 +145,7 @@ module "cloudfront" {
           access_control_max_age_sec = string
           override = bool
           include_subdomains = optional(bool)
-          preload = optional(string)
+          preload = optional(bool)
         ))
         xss_protection = optional(object(
           protection = bool
@@ -325,7 +325,7 @@ module "cloudfront" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v1.0.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v1.1.0"
 }
 
 inputs = {
@@ -436,7 +436,7 @@ inputs = {
           access_control_max_age_sec = string
           override = bool
           include_subdomains = optional(bool)
-          preload = optional(string)
+          preload = optional(bool)
         ))
         xss_protection = optional(object(
           protection = bool
@@ -899,7 +899,7 @@ object({
           include_subdomains = optional(bool)
 
           # Whether CloudFront includes the preload directive in the Strict-Transport-Security HTTP response header.
-          preload = optional(string)
+          preload = optional(bool)
         }))
 
         # Determine whether CloudFront includes the X-XSS-Protection HTTP response header and the header’s value.
@@ -2560,7 +2560,7 @@ map(object({
           access_control_max_age_sec = string
           override                   = bool
           include_subdomains         = optional(bool)
-          preload                    = optional(string)
+          preload                    = optional(bool)
         }))
         xss_protection = optional(object({
           protection = bool
@@ -2856,11 +2856,11 @@ Unique identifier that specifies the AWS WAF web ACL, if any, to associate with 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.0.1/modules/cloudfront/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.0.1/modules/cloudfront/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.0.1/modules/cloudfront/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.0/modules/cloudfront/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.0/modules/cloudfront/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.0/modules/cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a086362f24cae2f12d29c955cf2c70b7"
+  "hash": "aa82fda919caf8bc9f1e2adb12bfca12"
 }
 ##DOCS-SOURCER-END -->
