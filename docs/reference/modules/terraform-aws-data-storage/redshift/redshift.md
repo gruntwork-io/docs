@@ -177,7 +177,7 @@ module "redshift" {
   # be associated to the cluster at any time.
   iam_roles = null
 
-  # The instance type to use for the db (e.g. dc2.large). This field is
+  # The instance type to use for the db (e.g. ra3.large). This field is
   # mandatory for provisioned Redshift.
   instance_type = null
 
@@ -204,6 +204,9 @@ module "redshift" {
   # Required when log_destination_type is s3. Prefix applied to the log file
   # names.
   logging_s3_key_prefix = null
+
+  # The name of the maintenance track to apply to the cluster.
+  maintenance_track_name = null
 
   # The weekly day and time range during which system maintenance can occur
   # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
@@ -407,7 +410,7 @@ inputs = {
   # be associated to the cluster at any time.
   iam_roles = null
 
-  # The instance type to use for the db (e.g. dc2.large). This field is
+  # The instance type to use for the db (e.g. ra3.large). This field is
   # mandatory for provisioned Redshift.
   instance_type = null
 
@@ -434,6 +437,9 @@ inputs = {
   # Required when log_destination_type is s3. Prefix applied to the log file
   # names.
   logging_s3_key_prefix = null
+
+  # The name of the maintenance track to apply to the cluster.
+  maintenance_track_name = null
 
   # The weekly day and time range during which system maintenance can occur
   # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
@@ -747,7 +753,7 @@ A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can be as
 <HclListItem name="instance_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The instance type to use for the db (e.g. dc2.large). This field is mandatory for provisioned Redshift.
+The instance type to use for the db (e.g. ra3.large). This field is mandatory for provisioned Redshift.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -802,6 +808,15 @@ Required when log_destination_type is cloudwatch. Collection of exported log typ
 <HclListItemDescription>
 
 Required when log_destination_type is s3. Prefix applied to the log file names.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="maintenance_track_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the maintenance track to apply to the cluster.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1044,6 +1059,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e641728f4fdc09ee7c67eab5808a64fc"
+  "hash": "9266ef2ffba5c03f441846156d2de3b3"
 }
 ##DOCS-SOURCER-END -->
