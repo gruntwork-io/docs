@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="1.0.0" lastModifiedVersion="0.13.1"/>
+<VersionBadge repoTitle="AWS Messaging" version="1.0.1" lastModifiedVersion="1.0.1"/>
 
 # Amazon Managed Streaming for Apache Kafka (Amazon MSK) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.0/modules/msk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.1/modules/msk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.13.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v1.0.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform module configures and launches an [Amazon MSK](https://aws.amazon.com/msk/) cluster.
 
@@ -145,7 +145,7 @@ The MSK module supports the following authentication and authorization methods:
 
 *   [IAM access control](https://docs.aws.amazon.com/msk/latest/developerguide/iam-access-control.html)
     using `var.enable_client_sasl_iam`. You can refer
-    to the [msk-with-iam-auth example module](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.0/examples/msk-with-iam-auth).
+    to the [msk-with-iam-auth example module](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.1/examples/msk-with-iam-auth).
 *   [TLS](https://docs.aws.amazon.com/msk/latest/developerguide/msk-authentication.html) using `var.enable_client_tls`
     and `var.client_tls_certificate_authority_arns`
 *   [Apache Kafka ACLs](https://docs.aws.amazon.com/msk/latest/developerguide/msk-acls.html)
@@ -164,6 +164,20 @@ cluster. You can deliver Apache Kafka broker logs to one or more of the followin
 *   Amazon Kinesis Data Firehose: `var.enable_firehose_logs`, `var.firehose_delivery_stream`).
 
 You can read more about MSK logging here: https://docs.aws.amazon.com/msk/latest/developerguide/msk-logging.html
+
+## Privatelink
+
+Privatelink (provided by multi vpc connectivity) provides a method for connecting to msk clusters from a seperate
+account in the same region.
+
+*   TLS endpoints can be enabled by setting `var.enable_privatelink_tls` to `true`
+*   SCRAM endpoints can be enabled by setting `var.enable_privatelink_scram` to `true`
+*   IAM endpoints can be enabled by setting `var.enable_privatelink_iam` to `true`
+
+The associated authenticion type enabled for privatelink must also be enabled for the cluster itself.
+
+the default cluster policy will be present, you can manage that external to the module by utilizing the
+terraform resource [aws_msk_cluster_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_cluster_policy)
 
 ## Connecting to Kafka brokers
 
@@ -250,7 +264,7 @@ It's only supported for the provisioned cluster type (non-serverless mode).
 
 module "msk" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v1.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v1.0.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -330,6 +344,15 @@ module "msk" {
   # Indicates whether you want to enable or disable streaming broker logs to
   # Kinesis Data Firehose.
   enable_firehose_logs = false
+
+  # Whether privatelink with IAM auth should be enabled
+  enable_privatelink_iam = null
+
+  # Whether privatelink with SCRAM auth should be enabled
+  enable_privatelink_scram = null
+
+  # Whether privatelink with TLS auth should be enabled
+  enable_privatelink_tls = null
 
   # Indicates whether you want to enable or disable streaming broker logs to S3.
   enable_s3_logs = false
@@ -421,7 +444,7 @@ module "msk" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v1.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v1.0.1"
 }
 
 inputs = {
@@ -504,6 +527,15 @@ inputs = {
   # Indicates whether you want to enable or disable streaming broker logs to
   # Kinesis Data Firehose.
   enable_firehose_logs = false
+
+  # Whether privatelink with IAM auth should be enabled
+  enable_privatelink_iam = null
+
+  # Whether privatelink with SCRAM auth should be enabled
+  enable_privatelink_scram = null
+
+  # Whether privatelink with TLS auth should be enabled
+  enable_privatelink_tls = null
 
   # Indicates whether you want to enable or disable streaming broker logs to S3.
   enable_s3_logs = false
@@ -805,6 +837,33 @@ Indicates whether you want to enable or disable streaming broker logs to Kinesis
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_privatelink_iam" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether privatelink with IAM auth should be enabled
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="enable_privatelink_scram" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether privatelink with SCRAM auth should be enabled
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="enable_privatelink_tls" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether privatelink with TLS auth should be enabled
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="enable_s3_logs" requirement="optional" type="bool">
@@ -1121,11 +1180,11 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.0/modules/msk/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.0/modules/msk/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.0/modules/msk/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.1/modules/msk/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.1/modules/msk/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.1/modules/msk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "89365a88471796de31fa1baa9c860a8a"
+  "hash": "cf346e484f206c0460a646da0491f710"
 }
 ##DOCS-SOURCER-END -->
