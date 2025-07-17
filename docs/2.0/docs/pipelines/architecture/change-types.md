@@ -221,7 +221,7 @@ rm -rf staging/old-service/
 #### Requesting a New Account
 **What you do**: Create a new YAML file in `_new-account-requests/`
 ```bash
-# Create _new-account-requests/new-team-account.yml
+# Create _new-account-requests/account-new-team.yml
 ```
 
 **What pipelines does**:
