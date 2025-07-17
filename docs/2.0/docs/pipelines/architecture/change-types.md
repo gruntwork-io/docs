@@ -74,7 +74,7 @@ As of July 2025 pipelines emits events using the word Module.  This is an outdat
 - **Behavior**:
   - **PR**: `terragrunt run --all plan  --queue-include-dir=<changed_directory>`
   - **Merge**: `terragrunt run --all apply   --queue-include-dir=<changed_directory>`
-- **Use Case**: When you modify shared HCL configurations, variables, or other HCL-based settings and want to propegate those changes to units that read and include those files.
+- **Use Case**: When you modify shared HCL configurations, variables, or other HCL-based settings and want to propagate those changes to units that read and include those files.
 
 ### Account Factory Changes
 
@@ -96,7 +96,7 @@ As of July 2025 pipelines emits events using the word Module.  This is an outdat
 **Trigger**: Modifications to existing account requests
 - **Files**: Modified `.yml` or `.yaml` files in the `_new-account-requests/` directory
 - **Behavior**: Triggers account update workflows
-- **Use Case**: This should be a very rare usecase where one of the fundamental configuration properties of an account is changed.
+- **Use Case**: This should be a very rare use-case where one of the fundamental configuration properties of an account is changed.
 
 #### `AccountsDeleted`
 **Trigger**: Removal of account request files
