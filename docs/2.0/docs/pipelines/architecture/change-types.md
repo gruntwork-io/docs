@@ -42,8 +42,8 @@ As of July 2025 pipelines emits events using the word Module.  This is an outdat
 **Trigger**: Removal of existing Terragrunt units
 - **Files**: Deleted `terragrunt.hcl` files
 - **Behavior**:
-  - **PR**: `terragrunt plan -destroy `
-  - **Merge**: `terragrunt destroy  `
+  - **PR**: `terragrunt plan -destroy`
+  - **Merge**: `terragrunt destroy`
 - **Use Case**: When you want to remove units
 
 #### `ModuleDriftedAndChanged`
@@ -329,7 +329,7 @@ Pipelines uses two main types of Terragrunt commands:
 #### Single Unit Commands (`plan`, `apply`, `destroy`)
 - **Used for**: Direct unit changes (`ModuleChanged`, `ModuleAdded`, `ModuleDeleted`, `DriftDetected`)
 - **Scope**: Operates on a single Terragrunt unit (directory with `terragrunt.hcl`)
-- **Example**: `terragrunt plan `
+- **Example**: `terragrunt plan`
 
 #### Multi-Unit Commands (`run --all`)
 - **Used for**: Changes that affect multiple units (`EnvCommonChanged`, `HCLChanged`, `FileChanged`, `AccountsAdded`)
