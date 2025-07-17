@@ -1,5 +1,5 @@
 ---
-id: pipelines-change-types
+id: change-types
 title: Pull Request Behaviors – Change Types
 sidebar_label: Pull Request Behaviors
 description: How the Pipelines change-detection engine maps repo changes to Terragrunt commands.
