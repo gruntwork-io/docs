@@ -14,51 +14,57 @@ The change detection system analyzes file changes between two Git references (ty
 
 ## Change Type Categories
 
-### Module-Related Changes
+:::note
+
+As of July 2025 pipelines emits events using the word Module.  This is an outdated term, the updated term in the Terragrunt ecosystem is Unit.  The next major release of pipelines will rename these events and this document will be updated at that time.
+
+:::
+
+### Unit Related Changes
 
 #### `ModuleChanged`
-**Trigger**: Changes to existing Terragrunt modules
+**Trigger**: Changes to existing Terragrunt units
 - **Files**: `terragrunt.hcl` files in existing directories
 - **Behavior**:
-  - **PR**: `terragrunt plan --non-interactive`
-  - **Merge**: `terragrunt apply --non-interactive -auto-approve`
-- **Use Case**: When you modify configuration values, add new resources, or change existing resources in a module
+  - **PR**: `terragrunt plan`
+  - **Merge**: `terragrunt apply`
+- **Use Case**: When you modify configuration values, add new resources, or change existing resources in a unit
 
 #### `ModuleAdded`
-**Trigger**: Addition of new Terragrunt modules
+**Trigger**: Addition of new Terragrunt units
 - **Files**: New `terragrunt.hcl` files in new directories
 - **Behavior**:
-  - **PR**: `terragrunt plan --non-interactive`
-  - **Merge**: `terragrunt apply --non-interactive -auto-approve`
+  - **PR**: `terragrunt plan`
+  - **Merge**: `terragrunt apply`
 - **Use Case**: When you create a new infrastructure component or environment
 
 #### `ModuleDeleted`
-**Trigger**: Removal of existing Terragrunt modules
+**Trigger**: Removal of existing Terragrunt units
 - **Files**: Deleted `terragrunt.hcl` files
 - **Behavior**:
-  - **PR**: `terragrunt plan -destroy --non-interactive`
-  - **Merge**: `terragrunt destroy --non-interactive -auto-approve`
-- **Use Case**: When you want to remove infrastructure components
+  - **PR**: `terragrunt plan -destroy `
+  - **Merge**: `terragrunt destroy  `
+- **Use Case**: When you want to remove units
 
 #### `ModuleDriftedAndChanged`
-**Trigger**: Modules that have both drift and configuration changes
-- **Behavior**: Special handling for modules that need both drift correction and configuration updates
+**Trigger**: Units that have both drift and configuration changes
+- **Behavior**: Special handling for units that need both drift correction and configuration updates
 - **Use Case**: Complex scenarios where infrastructure has drifted from desired state and also has new changes
 
 #### `ModulesAddedOrChanged`
-**Trigger**: Aggregated change type for multiple module modifications
-- **Behavior**: Handles scenarios with multiple module changes
+**Trigger**: Aggregated change type for multiple unit modifications
+- **Behavior**: Handles scenarios with multiple unit changes
 - **Use Case**: Large refactoring or bulk infrastructure updates
 
-### Environment Common Changes
+### "Envcommon" Changes
 
 #### `EnvCommonChanged`
 **Trigger**: Changes to environment common configuration
 - **Files**: `.hcl` files in the `_envcommon/` directory
 - **Behavior**:
-  - **PR**: `terragrunt run --all plan --non-interactive --units-that-include=<changed_file>`
-  - **Merge**: `terragrunt run --all apply --non-interactive -auto-approve --units-that-include=<changed_file>`
-- **Use Case**: When you modify shared configuration that affects multiple environments
+  - **PR**: `terragrunt run --all plan  --units-that-include=<changed_file>`
+  - **Merge**: `terragrunt run --all apply   --units-that-include=<changed_file>`
+- **Use Case**: When you modify shared configuration that affects multiple units
 
 ### HCL Configuration Changes
 
@@ -66,37 +72,37 @@ The change detection system analyzes file changes between two Git references (ty
 **Trigger**: Changes to HCL configuration files
 - **Files**: Any `.hcl` file (excluding `terragrunt.hcl` and certain excluded files)
 - **Behavior**:
-  - **PR**: `terragrunt run --all plan --non-interactive --queue-include-dir=<changed_directory>`
-  - **Merge**: `terragrunt run --all apply --non-interactive -auto-approve --queue-include-dir=<changed_directory>`
-- **Use Case**: When you modify shared HCL configurations, variables, or other HCL-based settings
+  - **PR**: `terragrunt run --all plan  --queue-include-dir=<changed_directory>`
+  - **Merge**: `terragrunt run --all apply   --queue-include-dir=<changed_directory>`
+- **Use Case**: When you modify shared HCL configurations, variables, or other HCL-based settings and want to propegate those changes to units that read and include those files.
 
-### Account Management Changes
+### Account Factory Changes
 
 #### `AccountsRequested`
-**Trigger**: New account request files
+**Trigger**: A new account is being requested
 - **Files**: New `.yml` or `.yaml` files in the `_new-account-requests/` directory
 - **Behavior**: Triggers account provisioning workflows
-- **Use Case**: When requesting new AWS accounts or other cloud accounts
+- **Use Case**: When requesting new AWS accounts
 
 #### `AccountsAdded`
 **Trigger**: New account directories
-- **Files**: New root-level directories (when account factory is enabled)
+- **Files**: New root-level directories (when Account Factory is enabled)
 - **Behavior**:
-  - **PR**: `terragrunt run --all plan --non-interactive`
-  - **Merge**: `terragrunt run --all apply --non-interactive -auto-approve`
-- **Use Case**: When creating new account environments
+  - **PR**: `terragrunt run --all plan`
+  - **Merge**: `terragrunt run --all apply`
+- **Use Case**: Baselining newly provisioned accounts as part of the Account Factory workflow
 
 #### `AccountsChanged`
 **Trigger**: Modifications to existing account requests
 - **Files**: Modified `.yml` or `.yaml` files in the `_new-account-requests/` directory
 - **Behavior**: Triggers account update workflows
-- **Use Case**: When modifying account configurations or settings
+- **Use Case**: This should be a very rare usecase where one of the fundamental configuration properties of an account is changed.
 
 #### `AccountsDeleted`
 **Trigger**: Removal of account request files
 - **Files**: Deleted `.yml` or `.yaml` files in the `_new-account-requests/` directory
 - **Behavior**: Triggers account cleanup workflows
-- **Use Case**: When removing account requests or decommissioning accounts
+- **Use Case**: Deletion of an account that was previously provisioned with Account Factory
 
 ### Drift Detection
 
@@ -104,31 +110,31 @@ The change detection system analyzes file changes between two Git references (ty
 **Trigger**: Changes to drift detection files
 - **Files**: `.drift-history.json` files in directories with `terragrunt.hcl`
 - **Behavior**:
-  - **PR**: `terragrunt plan --non-interactive`
-  - **Merge**: `terragrunt apply --non-interactive -auto-approve`
+  - **PR**: `terragrunt plan`
+  - **Merge**: `terragrunt apply`
 - **Use Case**: When infrastructure has drifted from the desired state
 
 ### General File Changes
 
 #### `FileChanged`
 **Trigger**: Changes to files that are read by HCL functions
-- **Files**: Any file that might be referenced by Terragrunt configurations (excluding certain directories)
+- **Files**: Any file that might be referenced by Terragrunt units (excluding certain directories)
 - **Behavior**:
-  - **PR**: `terragrunt run --all plan --non-interactive --queue-include-units-reading=<changed_file>`
-  - **Merge**: `terragrunt run --all apply --non-interactive -auto-approve --queue-include-units-reading=<changed_file>`
-- **Use Case**: When you modify files that are referenced by Terragrunt configurations
+  - **PR**: `terragrunt run --all plan  --queue-include-units-reading=<changed_file>`
+  - **Merge**: `terragrunt run --all apply   --queue-include-units-reading=<changed_file>`
+- **Use Case**: When you modify files (e.g. shared configurations) that are referenced by Terragrunt units
 
 ## Change Detection Order
 
 The change detection system processes changes in a specific order to ensure accurate categorization:
 
-1. **Ignore Files**: Filters out files that should be ignored
+1. **Ignore Files**: Filters out files that should be ignored based on configuration
 2. **Account Added**: Detects new account directories
 3. **Configuration Files**: Filters configuration files
 4. **Environment Common**: Detects changes in `_envcommon/` directory
 5. **Account Requests**: Detects changes in `_new-account-requests/` directory
 6. **Drift Detection**: Detects drift detection files
-7. **Modules**: Detects Terragrunt module changes
+7. **Modules**: Detects Terragrunt unit changes
 8. **HCL Changes**: Detects general HCL file changes
 9. **File Changes**: Detects other file changes
 
@@ -140,30 +146,32 @@ When `AccountsAdded` changes are detected, they must be isolated in their own pu
 ### Module Change Detection Features
 The system supports a feature flag `moduleChangeOnUnitFile` that enables detecting module changes when any file within a Terragrunt unit (directory with `terragrunt.hcl`) is modified.
 
+For more information about how Pipelines handles changes to non-IaC file dependencies, see the [File Dependencies guide](/2.0/docs/pipelines/guides/file-dependencies).
+
 ### Stack Values Files
-Changes to `terragrunt.values.hcl` files are treated as module changes and trigger the appropriate Terragrunt commands for the containing module.
+Changes to `terragrunt.values.hcl` files are treated as module changes and trigger the appropriate Terragrunt commands for the containing unit.
 
 ## Example Scenarios
 
-### Scenario 1: Adding a New Environment
+### Scenario 1: Adding a New Unit
 - **Changes**: New directory with `terragrunt.hcl`
 - **Detected Type**: `ModuleAdded`
 - **Action**: `terragrunt plan` and `terragrunt apply`
 
-### Scenario 2: Modifying Shared Configuration
+### Scenario 2: Modifying Shared Configuration via the Envcommon pattern
 - **Changes**: File in `_envcommon/` directory
 - **Detected Type**: `EnvCommonChanged`
-- **Action**: Updates across all affected modules
+- **Action**: Updates across all affected modules that use the changed envcommon file
 
-### Scenario 3: Requesting New Account
+### Scenario 3: Requesting New Account via Account Factory
 - **Changes**: New `.yml` file in `_new-account-requests/`
 - **Detected Type**: `AccountsRequested`
 - **Action**: Account provisioning workflow
 
-### Scenario 4: Infrastructure Drift
-- **Changes**: `.drift-history.json` file
-- **Detected Type**: `DriftDetected`
-- **Action**: Drift detection and correction
+### Scenario 4: Changing a Data File Used by Units
+- **Changes**: Modified `.json` file (e.g., `tags.json`, `config.json`) that is read by Terragrunt units
+- **Detected Type**: `FileChanged`
+- **Action**: `terragrunt run --all plan --queue-include-units-reading=<changed_file>` and `terragrunt run --all apply --queue-include-units-reading=<changed_file>` for all units that read the changed file
 
 This change detection system ensures that pipelines runs the appropriate Terragrunt commands for each type of infrastructure change, maintaining consistency and reliability in your infrastructure deployments.
 
@@ -252,94 +260,56 @@ mkdir new-team-account/
 - Runs: Appropriate Terragrunt commands based on context
 - Result: Changes are applied to affected modules
 
-#### Infrastructure Drift
-**What you do**: Pipelines detects drift automatically via `.drift-history.json` files
-```bash
-# No action needed - drift detection runs automatically
-```
-
-**What pipelines does**:
-- Detects: `DriftDetected`
-- Runs: Drift detection and correction workflows
-- Result: Infrastructure is brought back to desired state
-
 ### What Commands Are Actually Run
 
-#### For Module Changes (`ModuleChanged`, `ModuleAdded`)
+#### For Unit Changes (`ModuleChanged`, `ModuleAdded`)
 **Pull Request:**
 ```bash
-terragrunt plan --non-interactive
+terragrunt plan
 ```
 **After Merge:**
 ```bash
-terragrunt apply --non-interactive -auto-approve
+terragrunt apply
 ```
 
-#### For Module Deletion (`ModuleDeleted`)
+#### For Unit Deletion (`ModuleDeleted`)
 **Pull Request:**
 ```bash
-terragrunt plan -destroy --non-interactive
+terragrunt plan -destroy
 ```
 **After Merge:**
 ```bash
-terragrunt destroy --non-interactive -auto-approve
+terragrunt destroy
 ```
 
-#### For Environment Common Changes (`EnvCommonChanged`)
+#### For EnvCommon Changes (`EnvCommonChanged`)
 **Pull Request:**
 ```bash
-terragrunt run --all plan --non-interactive --units-that-include=_envcommon/changed-file.hcl
+terragrunt run --all plan  --units-that-include=_envcommon/changed-file.hcl
 ```
 **After Merge:**
 ```bash
-terragrunt run --all apply --non-interactive -auto-approve --units-that-include=_envcommon/changed-file.hcl
+terragrunt run --all apply   --units-that-include=_envcommon/changed-file.hcl
 ```
 
 #### For HCL Configuration Changes (`HCLChanged`)
 **Pull Request:**
 ```bash
-terragrunt run --all plan --non-interactive --queue-include-dir=path/to/changed/directory
+terragrunt run --all plan  --queue-include-dir=path/to/changed/directory
 ```
 **After Merge:**
 ```bash
-terragrunt run --all apply --non-interactive -auto-approve --queue-include-dir=path/to/changed/directory
+terragrunt run --all apply   --queue-include-dir=path/to/changed/directory
 ```
 
 #### For File Changes (`FileChanged`)
 **Pull Request:**
 ```bash
-terragrunt run --all plan --non-interactive --queue-include-units-reading=path/to/changed/file
+terragrunt run --all plan  --queue-include-units-reading=path/to/changed/file
 ```
 **After Merge:**
 ```bash
-terragrunt run --all apply --non-interactive -auto-approve --queue-include-units-reading=path/to/changed/file
-```
-
-#### For Account Management
-**Account Requests (`AccountsRequested`, `AccountsChanged`, `AccountsDeleted`):**
-```bash
-# Account provisioning workflows (varies by platform)
-# May include: account creation, IAM setup, baseline configuration
-```
-
-**Account Added (`AccountsAdded`):**
-**Pull Request:**
-```bash
-terragrunt run --all plan --non-interactive
-```
-**After Merge:**
-```bash
-terragrunt run --all apply --non-interactive -auto-approve
-```
-
-#### For Drift Detection (`DriftDetected`)
-**Pull Request:**
-```bash
-terragrunt plan --non-interactive
-```
-**After Merge:**
-```bash
-terragrunt apply --non-interactive -auto-approve
+terragrunt run --all apply   --queue-include-units-reading=path/to/changed/file
 ```
 
 ### Understanding the Workflow
@@ -357,23 +327,23 @@ terragrunt apply --non-interactive -auto-approve
 Pipelines uses two main types of Terragrunt commands:
 
 #### Single Unit Commands (`plan`, `apply`, `destroy`)
-- **Used for**: Direct module changes (`ModuleChanged`, `ModuleAdded`, `ModuleDeleted`, `DriftDetected`)
+- **Used for**: Direct unit changes (`ModuleChanged`, `ModuleAdded`, `ModuleDeleted`, `DriftDetected`)
 - **Scope**: Operates on a single Terragrunt unit (directory with `terragrunt.hcl`)
-- **Example**: `terragrunt plan --non-interactive`
+- **Example**: `terragrunt plan `
 
 #### Multi-Unit Commands (`run --all`)
-- **Used for**: Changes that affect multiple modules (`EnvCommonChanged`, `HCLChanged`, `FileChanged`, `AccountsAdded`)
+- **Used for**: Changes that affect multiple units (`EnvCommonChanged`, `HCLChanged`, `FileChanged`, `AccountsAdded`)
 - **Scope**: Operates across multiple Terragrunt units that are affected by the change
 - **Key Flags**:
   - `--units-that-include=<file>`: Runs on all units that include the specified file
   - `--queue-include-dir=<directory>`: Runs on all units in the specified directory
   - `--queue-include-units-reading=<file>`: Runs on all units that read the specified file
-- **Example**: `terragrunt run --all plan --non-interactive --units-that-include=_envcommon/network.hcl`
+- **Example**: `terragrunt run --all plan  --units-that-include=_envcommon/network.hcl`
 
 #### Key Differences
-- **Single unit commands** are more targeted and efficient for direct module changes
-- **Multi-unit commands** ensure that all affected modules are updated when shared configurations change
-- **Multi-unit commands** use Terragrunt's dependency resolution to determine which modules need updates
+- **Single unit commands** are more targeted and efficient for direct unit changes
+- **Multi-unit commands** ensure that all affected units are updated when shared configurations change
+- **Multi-unit commands** use Terragrunt's dependency resolution to determine which units need updates
 
 ### Best Practices
 
@@ -381,6 +351,5 @@ Pipelines uses two main types of Terragrunt commands:
 - **Review plans carefully**: Always review the `terragrunt plan` output before approving
 - **Use descriptive commit messages**: This helps with change tracking and debugging
 - **Test in staging first**: Make changes in staging environments before applying to production
-- **Monitor drift**: Regularly check for infrastructure drift and address it promptly
 
 This system ensures that your infrastructure changes are applied consistently and safely, with appropriate validation at each step.
