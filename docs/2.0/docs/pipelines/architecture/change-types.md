@@ -62,8 +62,8 @@ As of July 2025 pipelines emits events using the word Module.  This is an outdat
 **Trigger**: Changes to environment common configuration
 - **Files**: `.hcl` files in the `_envcommon/` directory
 - **Behavior**:
-  - **PR**: `terragrunt run --all plan  --units-that-include=<changed_file>`
-  - **Merge**: `terragrunt run --all apply   --units-that-include=<changed_file>`
+  - **PR**: `terragrunt run --all --units-that-include=<changed_file> plan`
+  - **Merge**: `terragrunt run --all --units-that-include=<changed_file> apply`
 - **Use Case**: When you modify shared configuration that affects multiple units
 
 ### HCL Configuration Changes
@@ -72,8 +72,8 @@ As of July 2025 pipelines emits events using the word Module.  This is an outdat
 **Trigger**: Changes to HCL configuration files
 - **Files**: Any `.hcl` file (excluding `terragrunt.hcl` and certain excluded files)
 - **Behavior**:
-  - **PR**: `terragrunt run --all plan  --queue-include-dir=<changed_directory>`
-  - **Merge**: `terragrunt run --all apply   --queue-include-dir=<changed_directory>`
+  - **PR**: `terragrunt run --all --queue-include-dir=<changed_directory> plan`
+  - **Merge**: `terragrunt run --all --queue-include-dir=<changed_directory> apply`
 - **Use Case**: When you modify shared HCL configurations, variables, or other HCL-based settings and want to propagate those changes to units that read and include those files.
 
 ### Account Factory Changes
@@ -120,8 +120,8 @@ As of July 2025 pipelines emits events using the word Module.  This is an outdat
 **Trigger**: Changes to files that are read by HCL functions
 - **Files**: Any file that might be referenced by Terragrunt units (excluding certain directories)
 - **Behavior**:
-  - **PR**: `terragrunt run --all plan  --queue-include-units-reading=<changed_file>`
-  - **Merge**: `terragrunt run --all apply   --queue-include-units-reading=<changed_file>`
+  - **PR**: `terragrunt run --all --queue-include-units-reading=<changed_file> plan`
+  - **Merge**: `terragrunt run --all --queue-include-units-reading=<changed_file> apply`
 - **Use Case**: When you modify files (e.g. shared configurations) that are referenced by Terragrunt units
 
 ## Change Detection Order
@@ -171,7 +171,7 @@ Changes to `terragrunt.values.hcl` files are treated as module changes and trigg
 ### Scenario 4: Changing a Data File Used by Units
 - **Changes**: Modified `.json` file (e.g., `tags.json`, `config.json`) that is read by Terragrunt units
 - **Detected Type**: `FileChanged`
-- **Action**: `terragrunt run --all plan --queue-include-units-reading=<changed_file>` and `terragrunt run --all apply --queue-include-units-reading=<changed_file>` for all units that read the changed file
+- **Action**: `terragrunt run --all --queue-include-units-reading=<changed_file> plan` and `terragrunt run --all --queue-include-units-reading=<changed_file> apply` for all units that read the changed file
 
 This change detection system ensures that pipelines runs the appropriate Terragrunt commands for each type of infrastructure change, maintaining consistency and reliability in your infrastructure deployments.
 
@@ -285,31 +285,31 @@ terragrunt destroy
 #### For EnvCommon Changes (`EnvCommonChanged`)
 **Pull Request:**
 ```bash
-terragrunt run --all plan  --units-that-include=_envcommon/changed-file.hcl
+terragrunt run --all --units-that-include=_envcommon/changed-file.hcl plan
 ```
 **After Merge:**
 ```bash
-terragrunt run --all apply   --units-that-include=_envcommon/changed-file.hcl
+terragrunt run --all --units-that-include=_envcommon/changed-file.hcl apply
 ```
 
 #### For HCL Configuration Changes (`HCLChanged`)
 **Pull Request:**
 ```bash
-terragrunt run --all plan  --queue-include-dir=path/to/changed/directory
+terragrunt run --all --queue-include-dir=path/to/changed/directory plan
 ```
 **After Merge:**
 ```bash
-terragrunt run --all apply   --queue-include-dir=path/to/changed/directory
+terragrunt run --all --queue-include-dir=path/to/changed/directory apply
 ```
 
 #### For File Changes (`FileChanged`)
 **Pull Request:**
 ```bash
-terragrunt run --all plan  --queue-include-units-reading=path/to/changed/file
+terragrunt run --all --queue-include-units-reading=path/to/changed/file plan
 ```
 **After Merge:**
 ```bash
-terragrunt run --all apply   --queue-include-units-reading=path/to/changed/file
+terragrunt run --all --queue-include-units-reading=path/to/changed/file apply
 ```
 
 ### Understanding the Workflow
@@ -338,7 +338,7 @@ Pipelines uses two main types of Terragrunt commands:
   - `--units-that-include=<file>`: Runs on all units that include the specified file
   - `--queue-include-dir=<directory>`: Runs on all units in the specified directory
   - `--queue-include-units-reading=<file>`: Runs on all units that read the specified file
-- **Example**: `terragrunt run --all plan  --units-that-include=_envcommon/network.hcl`
+- **Example**: `terragrunt run --all --units-that-include=_envcommon/network.hcl plan`
 
 #### Key Differences
 - **Single unit commands** are more targeted and efficient for direct unit changes
