@@ -1,5 +1,12 @@
-# Pull Request Behaviors - Change Types
+---
+id: pipelines-change-types
+title: Pull Request Behaviors – Change Types
+slug: /pipelines/architecture/change-types
+sidebar_label: Pull Request Behaviors
+description: How the Pipelines change-detection engine maps repo changes to Terragrunt commands.
+---
 
+# Pull Request Behaviors - Change Types
 Pipelines implements a sophisticated change detection system that categorizes different types of infrastructure changes. This system determines which Terragrunt commands to run based on the specific changes detected in a pull request.
 
 ## Overview
