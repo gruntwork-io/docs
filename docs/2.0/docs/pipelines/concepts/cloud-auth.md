@@ -81,7 +81,7 @@ Critically, the issuer is a URL that is both specified inside the token, and is 
 
 Typically the issuer is the hostname of the CI/CD platform, such as `https://gitlab.com`, and thus oidc configuration (and public keys) can be fetched from the publicly available route, `https://gitlab.com/.well-known/openid-configuration` etc.
 
-If, however, your CI/CD platform is hosted privately, you will need to host the public key and OIDC configuration in a publicly accessible location, such as an S3 bucket, and update the issuer in your CI/CD configuration to point to that location.  The diagrams below illustrate both approaches.
+If, however, your CI/CD platform is hosted privately, you will need to host the public key and OIDC configuration in a publicly accessible location, such as an S3 bucket, and update the issuer in your CI/CD configuration to point to that location.  The diagrams below illustrate both approaches - fetching the keys directly from your CI/CD platform via a public route, or fetching the keys from a public S3 bucket.
 
 
 #### Publicly Available CI/CD Platforms
