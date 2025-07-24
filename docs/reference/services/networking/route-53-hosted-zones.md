@@ -193,6 +193,32 @@ map(object({
     tags = map(string)
     # Whether to destroy all records (possibly managed ouside of Terraform) in the zone when destroying the zone
     force_destroy = bool
+    # Create the following subdomain entries on the domain. Use this for managing records that are not associated with any
+    # terraform module, like MX and TXT domains.
+    # Map keys are the relevant subdomain record you wish to create.
+    #   subdomains = map(object({
+    #     # Name of the record to create instead of the key. Useful when creating multiple records for the same subdomain.
+    #     # This defaults to the map key + domain name of the hosted zone.
+    #     fqdn = string
+    #
+    #     # The record type. Valid values are A, AAAA, CAA, CNAME, DS, MX, NAPTR, NS, PTR, SOA, SPF, SRV and TXT.
+    #     type = string
+    #
+    #     # The TTL of the record.
+    #     ttl = number
+    #
+    #     # A string list of records. To specify a single record value longer than 255 characters such as a TXT record for
+    #     # DKIM, add \"\" inside the Terraform configuration string (e.g. "first255characters\"\"morecharacters").
+    #     records = list(string)
+    #
+    #     # The alias block for the subdomain.
+    #     alias = object({
+    #       zone_id                = string
+    #       name                   = string
+    #       evaluate_target_health = bool
+    #     })
+    #   }))
+    subdomains = any
   }))
 ```
 
@@ -544,6 +570,6 @@ A map of domains to resource arns and hosted zones of the created Service Discov
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/networking/route53/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7f3d7e7f116e249980f3297081677a1f"
+  "hash": "89efff5103417a8a4b487763a44dec77"
 }
 ##DOCS-SOURCER-END -->
