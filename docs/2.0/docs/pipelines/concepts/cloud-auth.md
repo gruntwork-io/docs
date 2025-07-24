@@ -111,7 +111,7 @@ A common alternative approach to re-hosting the public key and OIDC configuratio
 ```mermaid
 sequenceDiagram
   participant SCM as SCM (GitLab/GitHub etc.)
-  participant SCMPublicRoute as Public S3 Bucket (e.g. acmepublic.s3.com)
+  participant SCMPublicRoute as Public S3 Bucket (e.g. acme-public.s3.com)
   participant AWSIdP as AWS IdP & STS
 
 
