@@ -157,6 +157,11 @@ const sidebar = [
         id: "2.0/docs/pipelines/architecture/actions",
       },
       {
+        label: "Pull Request Behaviors",
+        type: "doc",
+        id: "2.0/docs/pipelines/architecture/change-types",
+      },
+      {
         label: "Security Controls",
         type: "doc",
         id: "2.0/docs/pipelines/architecture/security-controls",
