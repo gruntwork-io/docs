@@ -166,11 +166,6 @@ module "aurora" {
   # 35
   backup_retention_period = 30
 
-  # List of IAM role ARNs to attach to the cluster. Be sure these roles exists.
-  # They will not be created here. Serverless aurora does not support attaching
-  # IAM roles.
-  cluster_iam_roles = []
-
   # Copy all the Aurora cluster tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
 
@@ -548,11 +543,6 @@ inputs = {
   # How many days to keep backup snapshots around before cleaning them up. Max:
   # 35
   backup_retention_period = 30
-
-  # List of IAM role ARNs to attach to the cluster. Be sure these roles exists.
-  # They will not be created here. Serverless aurora does not support attaching
-  # IAM roles.
-  cluster_iam_roles = []
 
   # Copy all the Aurora cluster tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
@@ -970,15 +960,6 @@ How many days to keep backup snapshots around before cleaning them up. Max: 35
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
-</HclListItem>
-
-<HclListItem name="cluster_iam_roles" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-List of IAM role ARNs to attach to the cluster. Be sure these roles exists. They will not be created here. Serverless aurora does not support attaching IAM roles.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="copy_tags_to_snapshot" requirement="optional" type="bool">
@@ -2108,6 +2089,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7c4cbf711af0f4f4645168176fc3bd20"
+  "hash": "9146d0ba8edb4b6e87b3bc2973685c6d"
 }
 ##DOCS-SOURCER-END -->
