@@ -210,7 +210,7 @@ map(object({
     #     # A string list of records. To specify a single record value longer than 255 characters such as a TXT record for
     #     # DKIM, add \"\" inside the Terraform configuration string (e.g. "first255characters\"\"morecharacters").
     #     records = list(string)
-    #
+    #     
     #     # The alias block for the subdomain.
     #     alias = object({
     #       zone_id                = string
@@ -335,6 +335,15 @@ Any types represent complex values of variable type. For details, please consult
                type    = "SPF"
                ttl     = 3600
                records = ["hello-world"]
+             }
+             txt-test-docs = {
+               fqdn  = "docs.example.com"
+               type  = "A"
+               alias = {
+                 name                   = aws_elb.main.dns_name
+                 zone_id                = aws_elb.main.zone_id
+                 evaluate_target_health = true
+               }
              }
            }
        }
@@ -570,6 +579,6 @@ A map of domains to resource arns and hosted zones of the created Service Discov
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/networking/route53/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "89efff5103417a8a4b487763a44dec77"
+  "hash": "2657789b2aaa764509ab2555193962eb"
 }
 ##DOCS-SOURCER-END -->
