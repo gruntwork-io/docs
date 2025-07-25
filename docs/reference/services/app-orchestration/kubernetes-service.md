@@ -30,7 +30,7 @@ This service contains [Terraform](https://www.terraform.io) code to deploy your 
 [the k8-service Gruntwork Helm Chart](https://github.com/gruntwork-io/helm-kubernetes-services/) on to
 [Kubernetes](https://kubernetes.io/) following best practices.
 
-If you want to deploy third-party applications already packaged as Helm Charts, such as those available in [bitnami](https://bitnami.com/stacks/helm), see the [`helm-service`](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/services/helm-service) module.
+If you want to deploy third-party applications already packaged as Helm Charts, such as those available in [bitnami](https://bitnami.com/stacks/helm), see the [`helm-service`](/reference/services/app-orchestration/helm-service) module.
 
 ![Kubernetes Service architecture](/img/reference/services/app-orchestration/k8s-service-architecture.png)
 
@@ -2067,6 +2067,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/services/k8s-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c05091ba67768591e81def19e23dec3e"
+  "hash": "79700dde6a30f3b742ec2b5077cce716"
 }
 ##DOCS-SOURCER-END -->
