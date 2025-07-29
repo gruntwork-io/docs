@@ -5,7 +5,7 @@ Pipelines automatically detects infrastructure changes in your committed IaC and
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 The preferred workflow when working with Pipelines involves creating a new Pull Request with the desired changes, then reviewing the Terragrunt Plan output to ensure the infrastructure changes align with expectations. It is advisable to enforce [Branch Protection](/2.0/docs/pipelines/installation/branch-protection/#recommended-settings), particularly the [Require branches to be up to date](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-status-checks-before-merging) status check. This ensures the PR cannot be merged if the Plan is outdated.
@@ -32,7 +32,7 @@ Pipelines will add a comment to the merged merge request/pull request containing
 
 ## Skipping Pipelines plan/apply
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 In certain scenarios, it may be necessary to skip Pipelines for specific commits. To do this, include one of the [workflow skip messages](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs), such as `[no ci]`, in the commit message.

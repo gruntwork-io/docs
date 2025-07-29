@@ -64,7 +64,7 @@ This section covers creating a resource in your AWS account using Pipelines and 
 
 ### Planning the changes
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 1. Create a new branch for your changes.
@@ -98,7 +98,7 @@ Click the *View Pipeline Logs* link to see the complete output of the Gruntwork 
 
 ### Applying the changes
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 If you are satisfied with the `terragrunt plan` output, proceed to merge the PR to create the S3 bucket.

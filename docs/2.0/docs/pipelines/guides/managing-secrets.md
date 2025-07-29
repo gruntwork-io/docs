@@ -7,7 +7,7 @@ Continuous Integration systems often require access to sensitive resources, whic
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 To interact with the GitHub API, Pipelines uses either a GitHub App or Machine User [Personal Access Tokens (PATs)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens), depending on your installation method. For information on creating and managing these tokens, see the [Machine Users documentation](/2.0/docs/pipelines/installation/viamachineusers).
@@ -27,7 +27,7 @@ Pipelines requires authentication with AWS but avoids long-lived credentials by 
 The role assumption process operates as follows:
 
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 ```mermaid
@@ -176,7 +176,7 @@ terraform {
 
 When configuring providers and Pipelines, it's important to store secrets in a secure and accessible location. Several options are available for managing secrets, each with its advantages and trade-offs.
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 #### GitHub Secrets

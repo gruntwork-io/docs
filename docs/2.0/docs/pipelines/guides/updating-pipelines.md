@@ -5,7 +5,7 @@ Keeping Gruntwork Pipelines updated is straightforward. Regular updates are rele
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 Regular updates are released for the Pipelines CLI, associated GitHub Actions Workflows, and custom GitHub Actions. To apply the latest updates across these components, modify the `pipelines.yml` file located in the `.github/workflows` directory of any repository integrated with Gruntwork Pipelines. Update the file to reference the latest version of the Pipelines GitHub Actions Workflow:
