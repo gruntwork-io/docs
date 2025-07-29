@@ -37,7 +37,7 @@ This section explains how to destroy AWS resources using Pipelines and GitOps wo
 
 ### Planning the destruction
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 Create a Pull Request (PR) for the branch you just pushed, targeting `main` (the default branch in your repository).

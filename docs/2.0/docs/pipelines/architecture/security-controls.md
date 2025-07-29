@@ -13,7 +13,7 @@ By default, the only repository/group required to interact with infrastructure u
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 - The AWS IAM role assumed via OIDC when pull requests are opened or updated has a trust policy that restricts access to the repository itself and provides read-only permissions
@@ -45,7 +45,7 @@ Unlike the infrastructure-live-root repository, this repository focuses on manag
 
 ## Token Strategy
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 ### GitHub App Installation Strategy (Recommended)
@@ -83,7 +83,7 @@ Pipelines provisions an OpenID Connect identity provider in AWS IAM for each acc
 
 For more details, see the [official AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html). Below is an example of a trust policy used by Pipelines.
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 ```json

@@ -9,7 +9,7 @@ Extending Gruntwork Pipelines requires managing code across three distinct repos
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 The repositories are:
@@ -36,7 +36,7 @@ This structure ensures that customers rarely need to modify Gruntwork-managed co
 
 <img alt="Diagram of Gruntwork Pipelines Repositories" className="img_node_modules-@docusaurus-theme-classic-lib-theme-MDXComponents-Img-styles-module medium-zoom-image" src="/img/pipelines/pipelines_customization_code_locations.svg" />
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 Gruntwork Pipelines for GitHub is implemented as a [Reusable Workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows). This allows you to reference a specific pinned version in your `.github/workflows/pipelines.yml` file without hosting the workflow code yourself.
@@ -73,7 +73,7 @@ The recommended approach for customizing `pipelines-workflows` is to inject [cus
 
 #### Procedure
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 This step-by-step guide outlines best practices for implementing custom actions:
@@ -123,7 +123,7 @@ Contact Gruntwork support for assistance setting up custom actions for Gruntwork
 
 #### Background / Explanation
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 The `pipelines-root.yml` file includes several sample custom actions by default. Below is an example of the pre-provision new account custom hook:
