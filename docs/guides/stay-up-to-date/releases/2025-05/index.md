@@ -740,7 +740,6 @@ Each release will include detailed notes indicating whether changes are breaking
     - Update AWS LB Controller Module IAM Permissions to include `elasticloadbalancing:SetRulePriorities` to address 403 errors.
 
 
-
 </div>
 
 
@@ -757,7 +756,6 @@ Each release will include detailed notes indicating whether changes are breaking
 - Bump `terraform-aws-eks` to [v0.79.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.79.0)
     - Expose new variable `karpenter_deprovisioning_queue_name` in `services/eks-karpenter` module. 
     - **NOTE:** This version of `terraform-aws-eks` uses the `name_prefix` attribute instead of the `name` attribute for Karpenter AWS CloudWatch Event Rule resources to avoid name length errors when using de-provisioning queues. The `aws_cloudwatch_event_rule` resources that are created for Karpenter de-provisioning queues will be recreated with this change as moving from `name` -&gt; `name_prefix` is a destructive action for the resource. Please see the underlying [EKS Library module release](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.79.0) for details of the change
-
 
 
 </div>
@@ -785,7 +783,6 @@ Default EKS version is 1.32 with this release! Please see the links below for fu
 
 
 
-
 </div>
 
 
@@ -800,7 +797,6 @@ Default EKS version is 1.32 with this release! Please see the links below for fu
   
 
 - Updated modules/networking/alb to expose the allowed outbound CIDRs via a new variable allow_outbound_to_cidr_blocks
-
 
 
 </div>
@@ -833,9 +829,6 @@ Default EKS version is 1.32 with this release! Please see the links below for fu
   
 
 - services/lambda: update to latest version of modules
-
-
-
 
 
 </div>
@@ -911,6 +904,6 @@ Each release will include detailed notes indicating whether changes are breaking
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "debfb7f42cf0d51cf0a7ab42306b216a"
+  "hash": "e9bc244866c1a8f71d30e04e38daedc1"
 }
 ##DOCS-SOURCER-END -->

@@ -553,7 +553,6 @@ Updated `aws-config-multi-region` to handle `var.recording_groups`
 - Add variables `config_recording_groups` and `recording_mode` to `account-baseline-*`
 
 
-
 </div>
 
 
@@ -594,7 +593,6 @@ Default EKS version is 1.31 with this release! Please see the links below for fu
 [Kubernetes 1.31 Release Notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.31.md)
 
 
-
 </div>
 
 
@@ -610,7 +608,6 @@ Default EKS version is 1.31 with this release! Please see the links below for fu
 
 - Bump Library Module `terraform-aws-eks` to `v0.76.0`
     - This version upgrades the `eks-aws-auth-merger` Go version from `1.18` to `1.23`
-
 
 
 </div>
@@ -630,7 +627,6 @@ Default EKS version is 1.31 with this release! Please see the links below for fu
 - Bump `terraform-aws-eks` to `v0.75.0` (this version of the library module contains support for the AWS EKS Auto Mode feature).
 
 
-
 </div>
 
 
@@ -647,7 +643,6 @@ Default EKS version is 1.31 with this release! Please see the links below for fu
 - Update `terraform-aws-eks` library modules to `v0.74.2`
 
 
-
 </div>
 
 
@@ -662,7 +657,6 @@ Default EKS version is 1.31 with this release! Please see the links below for fu
   
 
 - `modules/landingzone`: Added account-level S3 account access block
-
 
 
 </div>
@@ -728,6 +722,6 @@ Default EKS version is 1.31 with this release! Please see the links below for fu
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "7803886bd1c402808852ec61e6db31e0"
+  "hash": "2a284b541be88f711f2d441d6a82c38f"
 }
 ##DOCS-SOURCER-END -->

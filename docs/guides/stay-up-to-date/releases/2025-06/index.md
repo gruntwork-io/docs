@@ -135,6 +135,18 @@ Fixed a regression in Account Factory when baselining new accounts with PIPELINE
 
 **Full Changelog**: https://github.com/gruntwork-io/repo-copier/compare/v0.5.5...v0.6.0
 
+* Bitbucket test doc update by @lev-ok in https://github.com/gruntwork-io/repo-copier/pull/276
+* Update required Azure token permission for integration test by @lev-ok in https://github.com/gruntwork-io/repo-copier/pull/277
+* chore: Offboarding Levko by @yhakbar in https://github.com/gruntwork-io/repo-copier/pull/281
+* feat: Add pre-push script hook functionality by @odgrim in https://github.com/gruntwork-io/repo-copier/pull/282
+* Fix integration tests by @Resonance1584 in https://github.com/gruntwork-io/repo-copier/pull/286
+
+* @yhakbar made their first contribution in https://github.com/gruntwork-io/repo-copier/pull/281
+* @odgrim made their first contribution in https://github.com/gruntwork-io/repo-copier/pull/282
+* @Resonance1584 made their first contribution in https://github.com/gruntwork-io/repo-copier/pull/286
+
+**Full Changelog**: https://github.com/gruntwork-io/repo-copier/compare/v0.5.5...v0.6.0
+
 </div>
 
 
@@ -354,7 +366,6 @@ Each release will include detailed notes indicating whether changes are breaking
 
 
 
-
 </div>
 
 
@@ -369,7 +380,6 @@ Each release will include detailed notes indicating whether changes are breaking
   
 
 - data-stores/s3-bucket: Updated modules/data-stores/s3-bucket to use module v1.0.0 and set transition_default_minimum_object_size for s3_bucket_logs and s3_bucket_replica.
-
 
 
 
@@ -399,6 +409,6 @@ Each release will include detailed notes indicating whether changes are breaking
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "1bf50af2731098dd256230f1604426c6"
+  "hash": "522aa0bdae5b6ea312d5b32d0b4c25a7"
 }
 ##DOCS-SOURCER-END -->
