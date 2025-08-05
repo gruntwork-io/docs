@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.0.1" lastModifiedVersion="0.75.8"/>
+<VersionBadge repoTitle="Security Modules" version="1.0.2" lastModifiedVersion="0.75.8"/>
 
 # IAM Role for GitLab Pipelines
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.1/modules/gitlab-pipelines-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.2/modules/gitlab-pipelines-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -22,7 +22,7 @@ GitLab Pipelines. This requires you to provision an IAM OpenID Connect Provider 
 using OpenID Connect, GitLab Pipelines can directly exchange credentials to access AWS without having to store and provide
 GitLab with permanent AWS access credentials. This is useful to prevent credential leaks from progressing undetected.
 
-You can use the [OpenID Connect Provider for GitLab Pipelines](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.1/modules/gitlab-pipelines-openid-connect-provider/README.md) module in the IAM role creation process like so:
+You can use the [OpenID Connect Provider for GitLab Pipelines](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.2/modules/gitlab-pipelines-openid-connect-provider/README.md) module in the IAM role creation process like so:
 
 ```hcl
 module "gitlab_pipelines_openid_connect_provider" {
@@ -140,7 +140,7 @@ TODO
 
 module "gitlab_pipelines_iam_role" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-iam-role?ref=v1.0.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-iam-role?ref=v1.0.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -219,7 +219,7 @@ module "gitlab_pipelines_iam_role" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-iam-role?ref=v1.0.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-iam-role?ref=v1.0.2"
 }
 
 inputs = {
@@ -494,11 +494,11 @@ The name of the IAM role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.1/modules/gitlab-pipelines-iam-role/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.1/modules/gitlab-pipelines-iam-role/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.1/modules/gitlab-pipelines-iam-role/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.2/modules/gitlab-pipelines-iam-role/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.2/modules/gitlab-pipelines-iam-role/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.2/modules/gitlab-pipelines-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ddc88b0d2b607b18fd3ad8bb58fdfec0"
+  "hash": "cf794524257c47ae80557de3c82ed707"
 }
 ##DOCS-SOURCER-END -->

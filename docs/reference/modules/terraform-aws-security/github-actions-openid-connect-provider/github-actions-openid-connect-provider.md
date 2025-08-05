@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.0.1" lastModifiedVersion="0.75.11"/>
+<VersionBadge repoTitle="Security Modules" version="1.0.2" lastModifiedVersion="0.75.11"/>
 
 # OpenID Connect Provider for GitHub Actions
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.1/modules/github-actions-openid-connect-provider" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.2/modules/github-actions-openid-connect-provider" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -43,7 +43,7 @@ with the OpenID Connect Provider. In addition to this security measure, you shou
 associated with the OpenID Connect Provider have the appropriate trust policy to only allow assumption of the role by
 the appropriate GitHub Repos on the appropriate refs.
 
-See the [GitHub Actions IAM Role](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.1/modules/github-actions-iam-role/README.md) module for more information.
+See the [GitHub Actions IAM Role](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.2/modules/github-actions-iam-role/README.md) module for more information.
 
 ## Sample Usage
 
@@ -58,7 +58,7 @@ See the [GitHub Actions IAM Role](https://github.com/gruntwork-io/terraform-aws-
 
 module "github_actions_openid_connect_provider" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-openid-connect-provider?ref=v1.0.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-openid-connect-provider?ref=v1.0.2"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -91,7 +91,7 @@ module "github_actions_openid_connect_provider" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-openid-connect-provider?ref=v1.0.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-openid-connect-provider?ref=v1.0.2"
 }
 
 inputs = {
@@ -182,11 +182,11 @@ Url used for the OIDC provider
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.1/modules/github-actions-openid-connect-provider/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.1/modules/github-actions-openid-connect-provider/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.1/modules/github-actions-openid-connect-provider/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.2/modules/github-actions-openid-connect-provider/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.2/modules/github-actions-openid-connect-provider/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.2/modules/github-actions-openid-connect-provider/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "98bba0009eed3c0e40b951b586b26ff6"
+  "hash": "28b8be69cb07f50a16fc850aefef3479"
 }
 ##DOCS-SOURCER-END -->
