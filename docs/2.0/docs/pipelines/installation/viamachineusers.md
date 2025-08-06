@@ -36,7 +36,7 @@ If screen sharing while generating tokens, **pause or hide your screen** before 
 :::
 
 ### Token types
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 GitHub supports two types of tokens:
@@ -107,7 +107,7 @@ When creating tokens, carefully consider the expiration date and scope of access
 
 ## Creating machine users
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 The recommended setup for Pipelines uses two machine users: one for opening pull requests and running workflows (`ci-user`) and another with read-only access to repositories (`ci-read-only-user`). Each user is assigned restrictive permissions based on their tasks. As a result, both users may need to participate at different stages to successfully run a pipeline job.
