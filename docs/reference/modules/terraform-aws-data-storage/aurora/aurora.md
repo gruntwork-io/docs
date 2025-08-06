@@ -287,6 +287,11 @@ module "aurora" {
   # you are creating.
   db_name = null
 
+  # If true, delete all automated backups when the DB cluster is deleted. If
+  # false, automated backups are retained until the retention period expires.
+  # Defaults to true.
+  delete_automated_backups = null
+
   # Timeout for DB deleting
   deleting_timeout = "120m"
 
@@ -671,6 +676,11 @@ inputs = {
   # not provide a name, Amazon RDS will not create a database in the DB cluster
   # you are creating.
   db_name = null
+
+  # If true, delete all automated backups when the DB cluster is deleted. If
+  # false, automated backups are retained until the retention period expires.
+  # Defaults to true.
+  delete_automated_backups = null
 
   # Timeout for DB deleting
   deleting_timeout = "120m"
@@ -1192,6 +1202,15 @@ The name for your database of up to 8 alpha-numeric characters. If you do not pr
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="delete_automated_backups" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, delete all automated backups when the DB cluster is deleted. If false, automated backups are retained until the retention period expires. Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="deleting_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1671,6 +1690,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fdb921f8de3c227da0f5127529955d13"
+  "hash": "65d7793530bcf2abb38d103d6af1efd8"
 }
 ##DOCS-SOURCER-END -->

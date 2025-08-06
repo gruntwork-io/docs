@@ -453,6 +453,9 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
 <HclListItem name="lambda_function_arn">
 </HclListItem>
 
+<HclListItem name="lambda_function_name">
+</HclListItem>
+
 <HclListItem name="lambda_iam_role_id">
 </HclListItem>
 
@@ -467,6 +470,6 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/lambda-create-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "af88f67f1edd6af9f9acb65b8a0722f9"
+  "hash": "478e18ab871cb5072c9235a58a2e4b8f"
 }
 ##DOCS-SOURCER-END -->
