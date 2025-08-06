@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.40.6" lastModifiedVersion="0.40.6"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.40.7" lastModifiedVersion="0.40.7"/>
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.7/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle,
 or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups,
@@ -104,6 +104,25 @@ Note that low-downtime updates are only supported for MySQL, MariaDB, and Postgr
 
 Set `multi_az=true`. When setting up a multi-AZ (Availability Zone) RDS deployment in AWS, both the primary and standby RDS instances are created in different Availability Zones for high availability. However, this doesn't mean they will have different endpoints. Both instances will have the same DNS endpoint, and AWS's internal infrastructure will handle the failover process transparently for you. AWS RDS provides automatic failover support for DB instances using Multi-AZ deployments for the supported database engines. Failover is automatically handled by RDS without any manual intervention.
 
+## Password Management
+
+This module supports multiple approaches for managing the master user password:
+
+### Regular Password Management
+
+*   Use `master_password` to specify the password directly
+
+### AWS Managed Passwords
+
+*   Set `manage_master_user_password = true` to have AWS manage the password in Secrets Manager
+*   Optionally specify `master_user_secret_kms_key_id` for custom KMS encryption of the secret
+
+### Password Without State Storage (MySQL/PostgreSQL only)
+
+*   Use `password_wo` instead of `master_password` to provide a password without storing the value in Terraform state
+*   Use `password_wo_version` to specify the version number of the password
+*   These parameters are only available for MySQL and PostgreSQL engines and provide enhanced security by preventing password storage in state files
+
 ## Sample Usage
 
 <Tabs>
@@ -113,11 +132,16 @@ Set `multi_az=true`. When setting up a multi-AZ (Availability Zone) RDS deployme
 
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S RDS MODULE
+#
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE".
+# When using values other than defaults for these variables, set them through environment variables or
+# another secure method.
+#
 # ------------------------------------------------------------------------------------------------------
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.40.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.40.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -406,6 +430,14 @@ module "rds" {
   # Defaults to var.parameter_group_name if not set.
   parameter_group_name_for_read_replicas = null
 
+  # The password for the master user without storing the value in Terraform
+  # state. This option is only available for MySQL and PostgreSQL engines.
+  password_wo = null # SENSITIVE
+
+  # The version number of the master user password. This option is only
+  # available for MySQL and PostgreSQL engines.
+  password_wo_version = null
+
   # Specifies whether Performance Insights are enabled. Performance Insights can
   # be enabled for specific versions of database engines. See
   # https://aws.amazon.com/rds/performance-insights/ for more details.
@@ -501,10 +533,15 @@ module "rds" {
 
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S RDS MODULE
+#
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE".
+# When using values other than defaults for these variables, set them through environment variables or
+# another secure method.
+#
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.40.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.40.7"
 }
 
 inputs = {
@@ -795,6 +832,14 @@ inputs = {
   # Name of a DB parameter group to associate with read replica instances.
   # Defaults to var.parameter_group_name if not set.
   parameter_group_name_for_read_replicas = null
+
+  # The password for the master user without storing the value in Terraform
+  # state. This option is only available for MySQL and PostgreSQL engines.
+  password_wo = null # SENSITIVE
+
+  # The version number of the master user password. This option is only
+  # available for MySQL and PostgreSQL engines.
+  password_wo_version = null
 
   # Specifies whether Performance Insights are enabled. Performance Insights can
   # be enabled for specific versions of database engines. See
@@ -1537,6 +1582,24 @@ Name of a DB parameter group to associate with read replica instances. Defaults 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="password_wo" requirement="optional" type="string">
+<HclListItemDescription>
+
+The password for the master user without storing the value in Terraform state. This option is only available for MySQL and PostgreSQL engines.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="password_wo_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The version number of the master user password. This option is only available for MySQL and PostgreSQL engines.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="performance_insights_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1755,11 +1818,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.7/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.7/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.7/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d07e0f7f958fbd61ae543e64404624fa"
+  "hash": "bafa5db9cbe5b7e6a686934342847b0f"
 }
 ##DOCS-SOURCER-END -->
