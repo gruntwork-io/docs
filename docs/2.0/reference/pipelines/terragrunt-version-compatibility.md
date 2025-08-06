@@ -2,6 +2,7 @@
 
 | Type | Terragrunt Ver | Pipelines Ver | Comments |
 | ---- | -------------- | ------------- | -------- |
+| Maximum | 0.84.z | v3.y.z | Pipelines v3.y.z is not compatible with Terragrunt 0.85.0 and above. Future major versions will be compatible. |
 | Recommended | 0.77.11 | v3.y.z | Pipelines is actively tested with this version of Terragrunt |
 | | 0.71.3+ | v3.y.z | Pipelines automatically supports [Terragrunt Stacks](/2.0/docs/pipelines/guides/stacks) |
 | | 0.68.13+ | v3.y.z | Pipelines uses new features in Terragrunt to provide enhanced logging, and the [File Dependency](https://docs.gruntwork.io/2.0/docs/pipelines/guides/file-dependencies) feature |
