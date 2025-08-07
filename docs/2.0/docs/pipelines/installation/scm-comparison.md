@@ -8,6 +8,7 @@ Gruntwork Pipelines supports both GitHub Actions and GitLab CI/CD as CI/CD platf
 | -------------------------------- | --------------------------- | ---------------------------- |
 | Infrastructure as Code Pipelines | ✅                           | ✅                            |
 | Account Factory Integration      | ✅                           | ✅                            |
+| Enterprise Account Factory       | ✅                           | ❌                            |
 | App-based Authentication         | ✅                           | ❌                            |
 | Machine User Authentication      | ✅                           | ✅                            |
 | Customizable Workflows           | ✅                           | ✅                            |

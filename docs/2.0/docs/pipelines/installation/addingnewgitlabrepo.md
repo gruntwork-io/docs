@@ -59,7 +59,7 @@ Continue with the rest of the guide while you await confirmation when your group
 
 ### Create a new GitLab project
 
-1. Navigate to the GitLab group you want to create the project in.
+1. Navigate to the <CustomizableValue id="GITLAB_GROUP_NAME" /> group.
 1. Click the **New Project** button.
 1. Enter a name for the project. e.g. infrastructure-live-root
 1. Click **Create Project**.
@@ -95,62 +95,68 @@ Continue with the rest of the guide while you await confirmation when your group
 
 1. Run `mise install`.
 
-### Configure the variables required to run the boilerplate template
 
-Copy the following variables to a `vars.yaml` file in the root of your project and update the `<REPLACE>` values with your own.
+### Bootstrap the repository
+
+Gruntwork provides a boilerplate [template](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/tree/main/templates/devops-foundations-infrastructure-live-root) that incorporates best practices while allowing for customization. The template is designed to scaffold a best-practices Terragrunt configurations. It includes patterns for module defaults, global variables, and account baselines. Additionally, it integrates Gruntwork Pipelines.
+
+#### Configure the variables required to run the boilerplate template
+
+Copy the content below to a `vars.yaml` file in the root of your project and update the `<REPLACE>` values with your own.
 
 ```yaml title="vars.yaml"
 SCMProvider: GitLab
 
 # The GitLab group to use for the infrastructure repositories. This should include any additional sub-groups in the name
 # Example: acme/prod
-SCMProviderGroup: <REPLACE>
+SCMProviderGroup: $$GITLAB_GROUP_NAME$$
 
 # The GitLab project to use for the infrastructure-live repository.
 SCMProviderRepo: infrastructure-live-root
 
 # The name of the branch to deploy to.
-DeployBranchName: main
+# Example: main
+DeployBranchName: $$DEPLOY_BRANCH_NAME$$
 
 # The AWS account ID for the management account
 # Example: "123456789012"
-AwsManagementAccountId: <REPLACE>
+AwsManagementAccountId: $$AWS_MANAGEMENT_ACCOUNT_ID$$
 
 # The AWS account ID for the security account
 # Example: "123456789013"
-AwsSecurityAccountId: <REPLACE>
+AwsSecurityAccountId: $$AWS_SECURITY_ACCOUNT_ID$$
 
 # The AWS account ID for the logs account
 # Example: "123456789014"
-AwsLogsAccountId: <REPLACE>
+AwsLogsAccountId: $$AWS_LOGS_ACCOUNT_ID$$
 
 # The AWS account ID for the shared account
 # Example: "123456789015"
-AwsSharedAccountId: <REPLACE>
+AwsSharedAccountId: $$AWS_SHARED_ACCOUNT_ID$$
 
 # The AWS account Email for the logs account
 # Example: logs@acme.com
-AwsLogsAccountEmail: <REPLACE>
+AwsLogsAccountEmail: $$AWS_LOGS_ACCOUNT_EMAIL$$
 
 # The AWS account Email for the management account
 # Example: management@acme.com
-AwsManagementAccountEmail: <REPLACE>
+AwsManagementAccountEmail: $$AWS_MANAGEMENT_ACCOUNT_EMAIL$$
 
 # The AWS account Email for the security account
 # Example: security@acme.com
-AwsSecurityAccountEmail: <REPLACE>
+AwsSecurityAccountEmail: $$AWS_SECURITY_ACCOUNT_EMAIL$$
 
 # The AWS account Email for the shared account
 # Example: shared@acme.com
-AwsSharedAccountEmail: <REPLACE>
+AwsSharedAccountEmail: $$AWS_SHARED_ACCOUNT_EMAIL$$
 
 # The name prefix to use for creating resources e.g S3 bucket for OpenTofu state files
 # Example: acme
-OrgNamePrefix: <REPLACE>
+OrgNamePrefix: $$ORG_NAME_PREFIX$$
 
 # The default region for AWS Resources
 # Example: us-east-1
-DefaultRegion: <REPLACE>
+DefaultRegion: $$DEFAULT_REGION$$
 
 ################################################################################
 # OPTIONAL VARIABLES WITH THEIR DEFAULT VALUES. UNCOMMENT AND MODIFY IF NEEDED.
@@ -176,25 +182,24 @@ DefaultRegion: <REPLACE>
 # The version for terraform-aws-security module to use for OIDC provider and roles provisioning
 # SecurityModulesVersion: v0.75.18
 
-# The URL of the custom SCM provider instance. Set this if you are using a custom instance of GitLab or GitHub.
+# The URL of the custom SCM provider instance. Set this if you are using a custom instance of GitLab.
 # CustomSCMProviderInstanceURL: https://gitlab.example.io
 
 # The relative path from the host server to the custom pipelines workflow repository. Set this if you are using a custom/forked instance of the pipelines workflow.
 # CustomWorkflowHostRelativePath: pipelines-workflows
 ```
 
-### Bootstrap the repository
-
-Gruntwork provides a boilerplate [template](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/tree/main/templates/devops-foundations-infrastructure-live-root) that incorporates best practices while allowing for customization. The template is designed to scaffold a best-practices Terragrunt configurations. It includes patterns for module defaults, global variables, and account baselines. Additionally, it integrates Gruntwork Pipelines
+#### Generate the repository contents
 
 1. Run the following command, from the root of your project, to generate the `infrastructure-live-root` repository contents:
 
     <!-- TODO: Update template version before merging -->
     ```bash
-    boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/devops-foundations-infrastructure-live-root/?ref=ore/dev-1024-extend-account-factory-templates-for-gitlab" --output-folder . --var-file vars.yaml --non-interactive
+    boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/devops-foundations-infrastructure-live-root/?ref=main" --output-folder . --var-file vars.yaml --non-interactive
     ```
 
     This command adds all code required to set up your `infrastructure-live-root` repository.
+1. Remove the boilerplate dependency from the `mise.toml` file. It is no longer needed.
 
 1. Commit your local changes and push them to the `bootstrap-repository` branch.
 
@@ -204,9 +209,14 @@ Gruntwork provides a boilerplate [template](https://github.com/gruntwork-io/terr
     git push origin bootstrap-repository
     ```
 
-    We are skipping CI/CD in this step, as we will manually apply the infrastructure baselines to your AWS accounts.
+    Skipping the CI/CD process for now; you will manually apply the infrastructure baselines to your AWS accounts in a later step.
 
-1. Create a new merge request for the `bootstrap-repository` branch. Review the changes to understand what will be applied to your AWS accounts.
+1. Create a new merge request for the `bootstrap-repository` branch. Review the changes to understand what will be applied to your AWS accounts. The generated files fall under the following categories:
+
+        - GitLab Pipelines workflow file
+        - Gruntwork Pipelines configuration files
+        - Module defaults files for infrastructure code
+        - Account baselines and GitLab OIDC module scaffolding files for your core AWS accounts: management, security, logs and shared.
 
 ### Apply the account baselines to your AWS accounts
 
@@ -255,7 +265,7 @@ You can utilize the AWS SSO Portal to obtain temporary AWS credentials necessary
 
             Access to the portfolio is separate from IAM access, it **must** be granted in the Service Catalog console.
 
-            ### **Steps to grant access**
+            #### **Steps to grant access**
 
             To grant access to the Account Factory Portfolio, you **must** be an individual with Service Catalog administrative permissions.
 
@@ -378,4 +388,157 @@ You can utilize the AWS SSO Portal to obtain temporary AWS credentials necessary
 1. - [ ] Merge the open merge request. **Ensure [skip ci] is present in the commit message.**
 
 
-###
+## Create a new infrastructure-live-access-control (optional)
+
+### Create a new GitLab project
+
+1. Navigate to the <CustomizableValue id="GITLAB_GROUP_NAME" /> group.
+1. Click the **New Project** button.
+1. Enter the name for the project as `infrastructure-live-access-control`.
+1. Click **Create Project**.
+1. Clone the project to your local machine.
+1. Navigate to the project directory.
+1. Create a new branch `bootstrap-repository`.
+
+### Install dependencies
+
+Run `mise install boilerplate@0.8.1` to install the boilerplate tool.
+
+### Bootstrap the repository
+
+#### Configure the variables required to run the boilerplate template
+
+Copy the content below to a `vars.yaml` file in the root of your project and update the customizable values as needed.
+
+```yaml title="vars.yaml"
+SCMProvider: GitLab
+
+# The GitLab group to use for the infrastructure repositories. This should include any additional sub-groups in the name
+# Example: acme/prod
+SCMProviderGroup: $$GITLAB_GROUP_NAME$$
+
+# The GitLab project to use for the infrastructure-live repository.
+SCMProviderRepo: infrastructure-live-access-control
+
+# The name of the branch to deploy to.
+# Example: main
+DeployBranchName: $$DEPLOY_BRANCH_NAME$$
+
+# The name prefix to use for creating resources e.g S3 bucket for OpenTofu state files
+# Example: acme
+OrgNamePrefix: $$ORG_NAME_PREFIX$$
+
+# The default region for AWS Resources
+# Example: us-east-1
+DefaultRegion: $$DEFAULT_REGION$$
+
+################################################################################
+# OPTIONAL VARIABLES WITH THEIR DEFAULT VALUES. UNCOMMENT AND MODIFY IF NEEDED.
+################################################################################
+
+# The AWS partition to use.
+# AWSPartition: aws
+```
+
+#### Generate the repository contents
+
+1. Run the following command, from the root of your project, to generate the `infrastructure-live-access-control` repository contents:
+
+    <!-- TODO: Update template version before merging -->
+    ```bash
+    boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/devops-foundations-infrastructure-live-access-control/?ref=main" --output-folder . --var-file vars.yaml --non-interactive
+    ```
+
+    This command adds all code required to set up your `infrastructure-live-access-control` repository. The generated files fall under the following categories:
+
+    - GitLab Pipelines workflow file
+    - Gruntwork Pipelines configuration files
+    - Module defaults files for GitLab OIDC roles and policies
+
+
+2. Commit your local changes and push them to the `bootstrap-repository` branch.
+
+    ```bash
+    git add .
+    git commit -m "Bootstrap infrastructure-live-access-control repository [skip ci]"
+    git push origin bootstrap-repository
+    ```
+
+    Skipping the CI/CD process now because there is no infrastructure to apply; repository simply contains the GitLab OIDC role module defaults to enable GitLab OIDC authentication from repositories other than `infrastructure-live-root`.
+
+3. Create a new merge request for the `bootstrap-repository` branch. Review the changes to understand the GitLab OIDC role module defaults.
+4. Merge the open merge request. **Ensure [skip ci] is present in the commit message.**
+
+## Create a new infrastructure-catalog (optional)
+
+The `infrastructure-catalog` repository is a collection of modules that can be used to build your infrastructure. It is a great way to share modules with your team and across your organization. Learn more about the [Developer Self-Service](/2.0/docs/overview/concepts/developer-self-service) concept.
+
+### Create a new GitLab project
+
+1. Navigate to the <CustomizableValue id="GITLAB_GROUP_NAME" /> group.
+1. Click the **New Project** button.
+1. Enter the name for the project as `infrastructure-catalog`.
+1. Click **Create Project**.
+1. Clone the project to your local machine.
+1. Navigate to the project directory.
+1. Create a new branch `bootstrap-repository`.
+
+### Install dependencies
+
+Run `mise install boilerplate@0.8.1` to install the boilerplate tool.
+
+### Bootstrap the repository
+
+#### Configure the variables required to run the boilerplate template
+
+Copy the content below to a `vars.yaml` file in the root of your project and update the customizable values as needed.
+
+```yaml title="vars.yaml"
+# The name of the repository to use for the catalog.
+InfraModulesRepoName: infrastructure-catalog
+
+# The version of the Gruntwork Service Catalog to use. https://github.com/gruntwork-io/terraform-aws-service-catalog
+ServiceCatalogVersion: v0.111.2
+
+# The version of the Gruntwork VPC module to use. https://github.com/gruntwork-io/terraform-aws-vpc
+VpcVersion: v0.26.22
+
+# The default region for AWS Resources
+# Example: us-east-1
+DefaultRegion: $$DEFAULT_REGION$$
+
+################################################################################
+# OPTIONAL VARIABLES WITH THEIR DEFAULT VALUES. UNCOMMENT AND MODIFY IF NEEDED.
+################################################################################
+
+# The base URL of the Organization to use for the catalog.
+# If you are using Gruntwork's RepoCopier tool, this should be the base URL of the repository you are copying from.
+# RepoBaseUrl: github.com/gruntwork-io
+
+# The name prefix to use for the Gruntwork RepoCopier copied repositories.
+# Example: gruntwork-io-
+# GWCopiedReposNamePrefix:
+```
+
+
+#### Generate the repository contents
+
+1. Run the following command, from the root of your project, to generate the `infrastructure-catalog` repository contents:
+
+    <!-- TODO: Update template version before merging -->
+    ```bash
+    boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/devops-foundations-infrastructure-modules/?ref=main" --output-folder . --var-file vars.yaml --non-interactive
+    ```
+
+    This command adds some code required to set up your `infrastructure-catalog` repository. The generated files are some usable modules for your infrastructure.
+
+1. Commit your local changes and push them to the `bootstrap-repository` branch.
+
+    ```bash
+    git add .
+    git commit -m "Bootstrap infrastructure-catalog repository"
+    git push origin bootstrap-repository
+    ```
+
+1. Create a new merge request for the `bootstrap-repository` branch. Review the changes to understand the example Service Catalog modules.
+1. Merge the open merge request.
