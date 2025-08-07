@@ -19,9 +19,15 @@ Set up authentication for Pipelines to enable secure automation of infrastructur
 
 <PersistentCheckbox id="install-df-3" label="Pipelines Auth Configured" />
 
-### Step 4: [Create new Pipelines repositories](/2.0/docs/pipelines/installation/addingnewrepo)
+### Step 4: Create new Pipelines repositories
 
-Alternatively, you can [add Pipelines to an existing repository](/2.0/docs/pipelines/installation/addingexistingrepo).
+- [New GitHub repository](/2.0/docs/pipelines/installation/addingnewrepo)
+- [New GitLab repository](/2.0/docs/pipelines/installation/addingnewgitlabrepo)
+
+Alternatively, you can add Pipelines to an existing repository:
+
+- [Existing GitHub repository](/2.0/docs/pipelines/installation/addingexistingrepo)
+- [Existing GitLab repository](/2.0/docs/pipelines/installation/addingexistinggitlabrepo)
 
 <PersistentCheckbox id="install-df-4" label="Pipelines Repositories Ready" />
 

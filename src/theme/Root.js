@@ -7,6 +7,9 @@
  */
 
 import React, { useState, useEffect } from "react"
+import { useLocation } from "@docusaurus/router"
+import { interactivePersistentCheckboxes } from "/utils/checkbox"
+import { scrollToAnchorInClosedSection } from "/utils/anchor"
 import { getRepos } from "/utils"
 import {
   SubscribersOnlyModal,
@@ -143,6 +146,15 @@ function Root({ children }) {
   const [subscriberNoticeLink, setSubscriberNoticeLink] = useState("")
   const [cisNoticeLink, setCisNoticeLink] = useState("")
   const [enterpriseNoticeLink, setEnterpriseNoticeLink] = useState("")
+  const location = useLocation()
+
+  useEffect(() => {
+    interactivePersistentCheckboxes()
+  }, [location.pathname])
+
+  useEffect(() => {
+    scrollToAnchorInClosedSection(location)
+  }, [location.hash])
 
   useEffect(function showModalForPrivateGithubLinks() {
     const listener = (event) => {

@@ -264,7 +264,7 @@ const sidebar = [
             collapsed: false,
             items: [
               {
-                label: "Creating a New GitLab repository with Pipelines",
+                label: "Creating a New GitLab Project with Pipelines",
                 type: "doc",
                 id: "2.0/docs/pipelines/installation/addingnewgitlabrepo",
               },
