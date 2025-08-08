@@ -38,6 +38,62 @@ This service contains code to deploy [Route 53 Hosted Zones](https://aws.amazon.
 *   Automatic health checks to route traffic only to healthy endpoints
 *   Automatic integration with other AWS services, such as ELBs
 
+### Private hosted zone record management
+
+This module now supports creating records (including A/AAAA and alias) inside Private Hosted Zones, mirroring the
+existing capabilities for Public Hosted Zones. You can define both apex-level records and subdomain records in the
+`private_zones` input by specifying `apex_records` and `subdomains`.
+
+Example:
+
+```hcl
+module "route53" {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=<VERSION>"
+
+  private_zones = {
+    "corp.internal" = {
+      comment       = "Private zone with records"
+      vpcs          = [{ id = "vpc-0123456789abcdef0", region = null }]
+      tags          = { Env = "dev" }
+      force_destroy = true
+
+      # Apex record (e.g., corp.internal)
+      apex_records = [
+        {
+          type    = "A"
+          ttl     = 60
+          records = ["10.0.0.5"]
+        }
+      ]
+
+      # Subdomain records (e.g., app.corp.internal)
+      subdomains = {
+        app = {
+          type    = "A"
+          ttl     = 300
+          records = ["10.0.1.10"]
+        }
+
+        # Alias to an internal ALB/NLB
+        svc = {
+          type = "A"
+          alias = {
+            name                   = aws_lb.internal.dns_name
+            zone_id                = aws_lb.internal.zone_id
+            evaluate_target_health = true
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Notes:
+
+*   Alias targets must be resolvable within the associated VPC(s) (e.g., internal ALB/NLB).
+*   Query private records from within the VPC(s) that are associated to the Private Hosted Zone.
+
 ## Learn
 
 :::note
@@ -95,7 +151,8 @@ module "route_53" {
   # ----------------------------------------------------------------------------------------------------
 
   # A map of private Route 53 Hosted Zones. In this map, the key should be the
-  # domain name. See examples below.
+  # domain name. Supports optional record management similar to public zones.
+  # See examples below.
   private_zones = {}
 
   # A map of public Route 53 Hosted Zones. In this map, the key should be the
@@ -136,7 +193,8 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # A map of private Route 53 Hosted Zones. In this map, the key should be the
-  # domain name. See examples below.
+  # domain name. Supports optional record management similar to public zones.
+  # See examples below.
   private_zones = {}
 
   # A map of public Route 53 Hosted Zones. In this map, the key should be the
@@ -170,64 +228,79 @@ inputs = {
 
 ### Optional
 
-<HclListItem name="private_zones" requirement="optional" type="map(object(…))">
+<HclListItem name="private_zones" requirement="optional" type="any">
 <HclListItemDescription>
 
-A map of private Route 53 Hosted Zones. In this map, the key should be the domain name. See examples below.
+A map of private Route 53 Hosted Zones. In this map, the key should be the domain name. Supports optional record management similar to public zones. See examples below.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
-map(object({
-    # An optional, arbitrary comment to attach to the private Hosted Zone
-    comment = string
-    # The list of VPCs to associate with the private Hosted Zone. You must provide at least one VPC in this list.
-    vpcs = list(object({
-      # The ID of the VPC.
-      id = string
-      # The region of the VPC. If null, defaults to the region configured on the provider.
-      region = string
-    }))
-    # A mapping of tags to assign to the private Hosted Zone
-    tags = map(string)
-    # Whether to destroy all records (possibly managed ouside of Terraform) in the zone when destroying the zone
-    force_destroy = bool
-  }))
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
 ```
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
+<HclGeneralListItem title="More Details">
 <details>
-  <summary>Example</summary>
 
 
 ```hcl
+
+   Allow empty maps to be passed by default - since we sometimes define only public zones or only private zones in a given module call
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Example (basic private zone only):
+  
    private_zones = {
-       "backend.com" = {
-           comment = "Use for arbitrary comments"
-           vpcs = [{
-             id = "19233983937"
-             region = null
-           }]
-           tags = {
-               CanDelete = true
+     "backend.local" = {
+       comment       = "Use for arbitrary comments"
+       vpcs          = [{ id = "vpc-1234567890", region = null }]
+       tags          = { CanDelete = true }
+       force_destroy = true
+     }
+   }
+  
+   Example (with private A records):
+  
+   private_zones = {
+     "corp.internal" = {
+       comment       = "Private zone with records"
+       vpcs          = [{ id = "vpc-1234567890", region = null }]
+       tags          = { Env = "dev" }
+       force_destroy = true
+       subdomains = {
+         api = {
+           type    = "A"
+           ttl     = 300
+           records = ["10.0.1.10"]
+         }
+          Alternatively, alias to an internal NLB/ALB etc
+         app = {
+           type = "A"
+           alias = {
+             name                   = aws_lb.internal.dns_name
+             zone_id                = aws_lb.internal.zone_id
+             evaluate_target_health = true
            }
-           force_destroy = true
+         }
        }
-       "database.com" = {
-           comment = "This is prod - don't delete!"
-           vpcs = [{
-             id = "129734967447"
-             region = null
-           }]
-           tags = {
-               Application = "redis"
-               Team = "apps"
-           }
-           force_destroy = false
-       }
+       apex_records = [
+         {
+           type    = "A"
+           ttl     = 60
+           records = ["10.0.0.5"]
+         }
+       ]
+     }
    }
 
 ```
@@ -553,6 +626,6 @@ A map of domains to resource arns and hosted zones of the created Service Discov
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.6/modules/networking/route53/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "45c13427dcbdd5ff766e9ae853e5e72e"
+  "hash": "c68d70d695ad84e5b8882fd2b345a1f4"
 }
 ##DOCS-SOURCER-END -->
