@@ -324,6 +324,10 @@ module "single_server" {
   # The IOPS to allocate for the root volume.
   root_volume_iops = null
 
+  # Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting
+  # the volume
+  root_volume_kms_key_id = null
+
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
 
@@ -611,6 +615,10 @@ inputs = {
 
   # The IOPS to allocate for the root volume.
   root_volume_iops = null
+
+  # Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting
+  # the volume
+  root_volume_kms_key_id = null
 
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
@@ -1142,6 +1150,15 @@ The IOPS to allocate for the root volume.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="root_volume_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting the volume
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1306,6 +1323,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.1/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a5bc0b32df8f5cb7a27758b96645c94b"
+  "hash": "d9dbc15095f44c2ef5c5f7a19b50dada"
 }
 ##DOCS-SOURCER-END -->
