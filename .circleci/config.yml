@@ -15,7 +15,7 @@ orbs:
 references:
   base_container: &base_container
     docker:
-      - image: cimg/node:18.17.1
+      - image: cimg/node:22.11.0
 
   ######################################################################################################################
   # Build steps
