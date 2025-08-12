@@ -9,16 +9,16 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.28.6" lastModifiedVersion="0.26.21"/>
+<VersionBadge repoTitle="VPC Modules" version="0.28.7" lastModifiedVersion="0.26.21"/>
 
 # VPC-App Lookup Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.6/modules/vpc-app-lookup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.7/modules/vpc-app-lookup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.26.21" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains a Terraform module which can use data sources to fetch all the data about a VPC created by the
-[`vpc-app` module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.6/modules/vpc-app), including the VPC ID, subnet IDs, route table IDs, NAT Gateway IDs, and so on.
+[`vpc-app` module](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.7/modules/vpc-app), including the VPC ID, subnet IDs, route table IDs, NAT Gateway IDs, and so on.
 Normally, you can look up this data using either a `dependency` block in Terragrunt or a `terraform_remote_state` data
 source in Terraform, but in some cases, the team that needs the VPC data does not have access to the code or Terraform
 state for the VPC module, perhaps because networking is managed by a separate team, maybe in a separate repo.
@@ -40,7 +40,7 @@ This module attempts to match the output variables API of `vpc-app` exactly.
 
 module "vpc_app_lookup" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app-lookup?ref=v0.28.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app-lookup?ref=v0.28.7"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -118,7 +118,7 @@ module "vpc_app_lookup" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app-lookup?ref=v0.28.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app-lookup?ref=v0.28.7"
 }
 
 inputs = {
@@ -618,11 +618,11 @@ The name configured for VPC.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.6/modules/vpc-app-lookup/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.6/modules/vpc-app-lookup/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.6/modules/vpc-app-lookup/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.7/modules/vpc-app-lookup/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.7/modules/vpc-app-lookup/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.7/modules/vpc-app-lookup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "95693f03020c53fa1e3846d10187896d"
+  "hash": "4447d8cbf23b0f0d646e71edf13b320f"
 }
 ##DOCS-SOURCER-END -->
