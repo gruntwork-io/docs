@@ -269,7 +269,7 @@ const sidebar = [
                 id: "2.0/docs/pipelines/installation/addingnewgitlabrepo",
               },
               {
-                label: "Adding Pipelines to a GitLab Project",
+                label: "Adding Pipelines to an Existing GitLab Project",
                 type: "doc",
                 id: "2.0/docs/pipelines/installation/addinggitlabrepo",
               },

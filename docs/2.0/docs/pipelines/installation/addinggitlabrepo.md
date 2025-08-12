@@ -1,6 +1,6 @@
 import CustomizableValue from '/src/components/CustomizableValue';
 
-# Adding Pipelines to a GitLab Project
+# Adding Pipelines to an existing GitLab Project
 
 This guide walks you through the process of adding Gruntwork Pipelines to a GitLab project. By the end, you'll have a fully configured GitLab CI/CD pipeline that can deploy infrastructure changes automatically.
 
