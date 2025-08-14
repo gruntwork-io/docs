@@ -99,6 +99,12 @@ module "control_tower_multi_account_factory_async" {
   # provisioning_artifact_id updates.
   lambda_batch_size = 5
 
+  # KMS key for encrypting Lambda log group
+  lambda_kms_key_id = null
+
+  # Number of days to retain logs for Lambda functions
+  lambda_log_retention_in_days = 30
+
   # Sets the memory_size in MB for the lambda function used for async
   # provisioning_artifact_id updates.
   lambda_memory_size = 256
@@ -218,6 +224,12 @@ inputs = {
   # Sets the batch size for the lambda function used for async
   # provisioning_artifact_id updates.
   lambda_batch_size = 5
+
+  # KMS key for encrypting Lambda log group
+  lambda_kms_key_id = null
+
+  # Number of days to retain logs for Lambda functions
+  lambda_log_retention_in_days = 30
 
   # Sets the memory_size in MB for the lambda function used for async
   # provisioning_artifact_id updates.
@@ -341,6 +353,24 @@ Sets the batch size for the lambda function used for async provisioning_artifact
 <HclListItemDefaultValue defaultValue="5"/>
 </HclListItem>
 
+<HclListItem name="lambda_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+KMS key for encrypting Lambda log group
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="lambda_log_retention_in_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+Number of days to retain logs for Lambda functions
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
 <HclListItem name="lambda_memory_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -426,6 +456,6 @@ The data from all the AWS accounts created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-multi-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2aa044a5a14444a50225448a775da961"
+  "hash": "e1f45e5bfb822db26db6febffcd5844f"
 }
 ##DOCS-SOURCER-END -->
