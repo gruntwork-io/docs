@@ -188,6 +188,9 @@ The amount of time, in seconds, between retries.
 <HclListItem name="lambda_function_arn">
 </HclListItem>
 
+<HclListItem name="lambda_function_name">
+</HclListItem>
+
 <HclListItem name="lambda_iam_role_id">
 </HclListItem>
 
@@ -202,6 +205,6 @@ The amount of time, in seconds, between retries.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.7/modules/lambda-share-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "46bf2714a32dbe6ce493f426e2e06ea8"
+  "hash": "bce4f2d01843152c3b74672efa6565ea"
 }
 ##DOCS-SOURCER-END -->

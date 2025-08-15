@@ -283,6 +283,9 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
 <HclListItem name="lambda_function_arn">
 </HclListItem>
 
+<HclListItem name="lambda_function_name">
+</HclListItem>
+
 <HclListItem name="lambda_iam_role_id">
 </HclListItem>
 
@@ -297,6 +300,6 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.7/modules/lambda-cleanup-snapshots/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a71af2ac43a6b1514c3c733c03f89035"
+  "hash": "79abe50d025c454a4518793b44e5e134"
 }
 ##DOCS-SOURCER-END -->

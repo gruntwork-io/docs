@@ -51,6 +51,25 @@ module "backup_vault" {
 }
 ```
 
+## How do you create a logically air-gapped vault?
+
+AWS Backup supports logically air-gapped vaults that provide additional protection against ransomware and malicious actors. Air-gapped vaults can only receive recovery points from copy jobs and enforce strict retention policies. To create an air-gapped vault, set the `air_gapped` attribute to true:
+
+```hcl
+module "backup_vault" {
+
+  vaults = {
+    "air-gapped-vault" = {
+      air_gapped         = true
+      min_retention_days = 30
+      max_retention_days = 120
+    }
+  }
+}
+```
+
+Note: Air-gapped vaults cannot be locked using the vault lock feature and can only receive recovery points through copy actions from other vaults.
+
 ## How do you enable vault notifications?
 
 Backup vaults can publish notifications to an SNS topic. This is useful when you want to monitor for any problems with your backup workflows. To enable notifications for a vault when configuring a new vault with this module, set the `enable_notifications` attribute to true like so:
@@ -308,6 +327,6 @@ A map of tags assigned to the vault resources, including those inherited from th
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.7/modules/backup-vault/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c5d2cd07ebcbddc7834580f0fb0cd0c8"
+  "hash": "caef1793dc224be34ca425449fe06a4b"
 }
 ##DOCS-SOURCER-END -->
