@@ -25,7 +25,7 @@ Under the hood, this module uses AWS Service Catalog to trigger Control Tower, a
 
 This module introduces support for an asynchronous update pattern by exposing the current and desired `provisioning_artifact_id` values without attempting to apply them directly. This behavior allows an external or upstream module to detect when an update is needed and queue it for out-of-band processing via a Lambda function, Step Function, or similar orchestration system. An example of this out-of-band processing can be found in the [control-tower-provisioned-product-artifact-updater](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-provisioned-product-artifact-updater/) module that implements an EventBridge rule to trigger a Lambda function.
 
-To support this asynchronous pattern, this module extends a lifecycle block to ignore changes to the `provisioning_artifact_id` attribute of the underlying Service Catalog `aws_servicecatalog_provisioned_product` resource. This prevents Terraform/OpenTofu from trying to update the resource directly, which would otherwise result in a long-running operation or potential failure.
+To support this asynchronous pattern, this module uses a lifecycle block to ignore changes to the `provisioning_artifact_id` attribute of the underlying Service Catalog `aws_servicecatalog_provisioned_product` resource. This prevents Terraform/OpenTofu from trying to update the resource directly, which would otherwise result in a long-running operation or potential failure.
 
 This separation of detection and execution ensures better resilience, speed, and scalability.
 
@@ -555,6 +555,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cea1e6796e00ca8ba9d8145b0a768d0c"
+  "hash": "df57ceb2bd32b589be115eb2eff5eff4"
 }
 ##DOCS-SOURCER-END -->
