@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="1.0.1" lastModifiedVersion="0.13.0"/>
+<VersionBadge repoTitle="AWS Messaging" version="1.0.2" lastModifiedVersion="0.13.0"/>
 
 # Simple Notification Service (SNS) Topic Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.1/modules/sns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.13.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -42,7 +42,7 @@ including:
 
 module "sns" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v1.0.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v1.0.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -126,7 +126,7 @@ module "sns" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v1.0.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v1.0.2"
 }
 
 inputs = {
@@ -395,11 +395,11 @@ A map of key value pairs to apply as tags to the SNS topic.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.1/modules/sns/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.1/modules/sns/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.1/modules/sns/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sns/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sns/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c72c3a1b4417491504c5d4a1cb577e3e"
+  "hash": "1832cdd513fbf69e7c6c539310f7d560"
 }
 ##DOCS-SOURCER-END -->
