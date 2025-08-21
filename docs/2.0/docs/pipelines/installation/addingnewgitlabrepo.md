@@ -83,9 +83,9 @@ Continue with the rest of the guide while you await confirmation when your group
     echo 'mise activate fish | source' >> ~/.config/fish/config.fish
     ```
 
-1. Add the following to a mise.toml file in the root of your project:
+1. Add the following to a .mise.toml file in the root of your project:
 
-    ```toml title="mise.toml"
+    ```toml title=".mise.toml"
     [tools]
     boilerplate = "0.8.1"
     opentofu = "1.10.0"
@@ -113,6 +113,9 @@ SCMProviderGroup: $$GITLAB_GROUP_NAME$$
 
 # The GitLab project to use for the infrastructure-live repository.
 SCMProviderRepo: infrastructure-live-root
+
+# The base URL of your GitLab group repos. E.g., gitlab.com/<group>
+RepoBaseUrl: $$GITLAB_GROUP_REPO_BASE_URL$$
 
 # The name of the branch to deploy to.
 # Example: main
@@ -166,7 +169,7 @@ DefaultRegion: $$DEFAULT_REGION$$
 # CatalogRepositories:
 #   - github.com/gruntwork-io/terraform-aws-service-catalog
 
-# The AWS partition to use.
+# The AWS partition to use. Options: aws, aws-us-gov
 # AWSPartition: aws
 
 # The name of the IAM role to use for the plan job.
@@ -253,10 +256,10 @@ You can utilize the AWS SSO Portal to obtain temporary AWS credentials necessary
             terragrunt run --all apply --terragrunt-non-interactive
             ```
 
-    1. - [ ] After applying the changes, make sure to lock providers in your `.terraform.lock.hcl` files. e.g.
+    1. - [ ] After applying the changes, make sure to lock providers in your `.terraform.lock.hcl` files. The lock files will be committed in the final step of the setup. e.g.
 
             ```bash
-            terragrunt run --all providers lock -platform=darwin_amd64 -platform=linux_amd64
+            terragrunt run --all providers -- lock -platform=darwin_amd64 -platform=linux_amd64
             ```
 
     1. - [ ] Update Permissions for Account Factory Portfolio
