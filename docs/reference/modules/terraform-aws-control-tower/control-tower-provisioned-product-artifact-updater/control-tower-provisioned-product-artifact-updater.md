@@ -93,6 +93,9 @@ module "control_tower_provisioned_product_artifact_updater" {
   # provisioning_artifact_id updates.
   lambda_ingest_memory_size = 256
 
+  # The runtime for the lambda ingest function
+  lambda_ingest_runtime = "python3.11"
+
   # Sets the timeout in seconds for the ingest lambda function used for async
   # provisioning_artifact_id updates.
   lambda_ingest_timeout = 900
@@ -107,9 +110,19 @@ module "control_tower_provisioned_product_artifact_updater" {
   # Number of days to retain logs for worker lambda functions
   lambda_worker_log_retention_in_days = 30
 
+  # Service Catalog supports a maximum of 5 account updates currently. This
+  # variable controls the maximum concurrent operations that the worker lambda
+  # can initiate. It should not exceed 5 due to AWS Service Catalog limits, but
+  # some users may want to set it lower than 5 to provide enough overhead for
+  # other actions such as new account creation. Default value is 4.
+  lambda_worker_max_concurrent_operations = 4
+
   # Sets the memory_size in MB for the worker lambda function used for async
   # provisioning_artifact_id updates.
   lambda_worker_memory_size = 256
+
+  # The runtime for the lambda worker function
+  lambda_worker_runtime = "python3.11"
 
   # Sets the timeout in seconds for the worker lambda function used for async
   # provisioning_artifact_id updates.
@@ -159,6 +172,9 @@ inputs = {
   # provisioning_artifact_id updates.
   lambda_ingest_memory_size = 256
 
+  # The runtime for the lambda ingest function
+  lambda_ingest_runtime = "python3.11"
+
   # Sets the timeout in seconds for the ingest lambda function used for async
   # provisioning_artifact_id updates.
   lambda_ingest_timeout = 900
@@ -173,9 +189,19 @@ inputs = {
   # Number of days to retain logs for worker lambda functions
   lambda_worker_log_retention_in_days = 30
 
+  # Service Catalog supports a maximum of 5 account updates currently. This
+  # variable controls the maximum concurrent operations that the worker lambda
+  # can initiate. It should not exceed 5 due to AWS Service Catalog limits, but
+  # some users may want to set it lower than 5 to provide enough overhead for
+  # other actions such as new account creation. Default value is 4.
+  lambda_worker_max_concurrent_operations = 4
+
   # Sets the memory_size in MB for the worker lambda function used for async
   # provisioning_artifact_id updates.
   lambda_worker_memory_size = 256
+
+  # The runtime for the lambda worker function
+  lambda_worker_runtime = "python3.11"
 
   # Sets the timeout in seconds for the worker lambda function used for async
   # provisioning_artifact_id updates.
@@ -207,6 +233,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-provisioned-product-artifact-updater/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8da51e7595f7cd1714367641513551f4"
+  "hash": "fb0e4d8c8d6112e469179cc9062a7c33"
 }
 ##DOCS-SOURCER-END -->
