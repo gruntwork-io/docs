@@ -140,6 +140,13 @@ module "control_tower_multi_account_factory_async" {
   # Number of days to retain logs for worker lambda functions
   lambda_worker_log_retention_in_days = 30
 
+  # Service Catalog supports a maximum of 5 account updates currently. This
+  # variable controls the maximum concurrent operations that the worker lambda
+  # can initiate. It should not exceed 5 due to AWS Service Catalog limits, but
+  # some users may want to set it lower than 5 to provide enough overhead for
+  # other actions such as new account creation. Default value is 4.
+  lambda_worker_max_concurrent_operations = 4
+
   # Sets the memory_size in MB for the worker lambda function used for async
   # provisioning_artifact_id updates.
   lambda_worker_memory_size = 256
@@ -257,6 +264,13 @@ inputs = {
 
   # Number of days to retain logs for worker lambda functions
   lambda_worker_log_retention_in_days = 30
+
+  # Service Catalog supports a maximum of 5 account updates currently. This
+  # variable controls the maximum concurrent operations that the worker lambda
+  # can initiate. It should not exceed 5 due to AWS Service Catalog limits, but
+  # some users may want to set it lower than 5 to provide enough overhead for
+  # other actions such as new account creation. Default value is 4.
+  lambda_worker_max_concurrent_operations = 4
 
   # Sets the memory_size in MB for the worker lambda function used for async
   # provisioning_artifact_id updates.
@@ -413,6 +427,15 @@ Number of days to retain logs for worker lambda functions
 <HclListItemDefaultValue defaultValue="30"/>
 </HclListItem>
 
+<HclListItem name="lambda_worker_max_concurrent_operations" requirement="optional" type="number">
+<HclListItemDescription>
+
+Service Catalog supports a maximum of 5 account updates currently. This variable controls the maximum concurrent operations that the worker lambda can initiate. It should not exceed 5 due to AWS Service Catalog limits, but some users may want to set it lower than 5 to provide enough overhead for other actions such as new account creation. Default value is 4.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="4"/>
+</HclListItem>
+
 <HclListItem name="lambda_worker_memory_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -498,6 +521,6 @@ The data from all the AWS accounts created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-multi-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "528f4b6503b07bab2b063b1e283f8beb"
+  "hash": "b552e939d8d17e7724c273975a08612b"
 }
 ##DOCS-SOURCER-END -->
