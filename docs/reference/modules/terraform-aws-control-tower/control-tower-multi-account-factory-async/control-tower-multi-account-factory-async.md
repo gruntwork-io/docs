@@ -57,11 +57,9 @@ By queuing and applying these updates asynchronously:
 
 ### Controlling Concurrency
 
-AWS Service Catalog currently enforces a hard limit of 5 concurrent account updates across an AWS account. Exceeding this limit may result in throttling errors or failed updates.
+AWS Service Catalog currently enforces a [hard limit of 5 account-related operations concurrently](https://docs.aws.amazon.com/controltower/latest/userguide/provision-and-manage-accounts.html#:~:text=You%20can%20perform%20up%20to%20five%20\(5\)%20account%2Drelated%20operations%20concurrently%2C%20including%20provisioning%2C%20updating%2C%20and%20enrolling.) that includes provisioning, updating, and enrolling. Exceeding this limit may result in throttling errors or failed updates.
 
-To respect this limitation and offer flexibility, this module provides a configurable variable `lambda_worker_max_concurrent_operations`.
-
-This setting governs how many updates the Worker Lambda will perform in parallel. While the upper limit is 5 (per AWS constraints), setting it lower may be preferred in environments where other Service Catalog actions must occur concurrently (such as provisioning new accounts). This ensures that background remediation work does not block critical operations or trigger rate limiting.
+To respect this limitation and offer flexibility, this module provides a configurable variable `lambda_worker_max_concurrent_operations` that governs how many updates will be performed in parallel. While the upper limit is 5 (per AWS constraints), setting it lower may be preferred in environments where other Service Catalog actions must occur concurrently (such as provisioning new accounts). This ensures that background remediation work does not block critical operations or trigger rate limiting.
 
 ## Sample Usage
 
@@ -529,6 +527,6 @@ The data from all the AWS accounts created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-multi-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fb256280199496b8b3cf376c11d9651b"
+  "hash": "cc01d8a5853cb1ba2b59bf515b37c718"
 }
 ##DOCS-SOURCER-END -->
