@@ -94,7 +94,7 @@ module "control_tower_provisioned_product_artifact_updater" {
   lambda_ingest_memory_size = 256
 
   # The runtime for the lambda ingest function
-  lambda_ingest_runtime = "python3.11"
+  lambda_ingest_runtime = "python3.13"
 
   # Sets the timeout in seconds for the ingest lambda function used for async
   # provisioning_artifact_id updates.
@@ -122,7 +122,7 @@ module "control_tower_provisioned_product_artifact_updater" {
   lambda_worker_memory_size = 256
 
   # The runtime for the lambda worker function
-  lambda_worker_runtime = "python3.11"
+  lambda_worker_runtime = "python3.13"
 
   # Sets the timeout in seconds for the worker lambda function used for async
   # provisioning_artifact_id updates.
@@ -173,7 +173,7 @@ inputs = {
   lambda_ingest_memory_size = 256
 
   # The runtime for the lambda ingest function
-  lambda_ingest_runtime = "python3.11"
+  lambda_ingest_runtime = "python3.13"
 
   # Sets the timeout in seconds for the ingest lambda function used for async
   # provisioning_artifact_id updates.
@@ -201,7 +201,7 @@ inputs = {
   lambda_worker_memory_size = 256
 
   # The runtime for the lambda worker function
-  lambda_worker_runtime = "python3.11"
+  lambda_worker_runtime = "python3.13"
 
   # Sets the timeout in seconds for the worker lambda function used for async
   # provisioning_artifact_id updates.
@@ -233,6 +233,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-provisioned-product-artifact-updater/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fb0e4d8c8d6112e469179cc9062a7c33"
+  "hash": "a135c23a8a9747a5ba914afe72d05d62"
 }
 ##DOCS-SOURCER-END -->
