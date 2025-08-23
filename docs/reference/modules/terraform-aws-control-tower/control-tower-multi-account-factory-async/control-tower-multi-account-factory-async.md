@@ -55,6 +55,14 @@ By queuing and applying these updates asynchronously:
 *   Worker Lambda: Triggered by messages from the SQS queue, it applies the necessary provisioned_product_id updates by calling UpdateProvisionedProduct. It then initiates a Step Function execution to track the update.
 *   Step Function State Machine: Periodically checks the status of the Service Catalog update record to verify that it has succeeded or failed, ensuring the update is fully completed.
 
+### Controlling Concurrency
+
+AWS Service Catalog currently enforces a hard limit of 5 concurrent account updates across an AWS account. Exceeding this limit may result in throttling errors or failed updates.
+
+To respect this limitation and offer flexibility, this module provides a configurable variable `lambda_worker_max_concurrent_operations`.
+
+This setting governs how many updates the Worker Lambda will perform in parallel. While the upper limit is 5 (per AWS constraints), setting it lower may be preferred in environments where other Service Catalog actions must occur concurrently (such as provisioning new accounts). This ensures that background remediation work does not block critical operations or trigger rate limiting.
+
 ## Sample Usage
 
 <Tabs>
@@ -521,6 +529,6 @@ The data from all the AWS accounts created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-multi-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b552e939d8d17e7724c273975a08612b"
+  "hash": "fb256280199496b8b3cf376c11d9651b"
 }
 ##DOCS-SOURCER-END -->
