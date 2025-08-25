@@ -100,10 +100,6 @@ module "control_tower_provisioned_product_artifact_updater" {
   # provisioning_artifact_id updates.
   lambda_ingest_timeout = 900
 
-  # Sets the batch size for the worker lambda function used for async
-  # provisioning_artifact_id updates.
-  lambda_worker_batch_size = 5
-
   # KMS key for encrypting worker lambda log group
   lambda_worker_kms_key_id = null
 
@@ -179,10 +175,6 @@ inputs = {
   # provisioning_artifact_id updates.
   lambda_ingest_timeout = 900
 
-  # Sets the batch size for the worker lambda function used for async
-  # provisioning_artifact_id updates.
-  lambda_worker_batch_size = 5
-
   # KMS key for encrypting worker lambda log group
   lambda_worker_kms_key_id = null
 
@@ -233,6 +225,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-provisioned-product-artifact-updater/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e27485fc4885b5593ae9aa1b83cf8645"
+  "hash": "0092ac41aaf1aa19fcc786f6572aa7fb"
 }
 ##DOCS-SOURCER-END -->

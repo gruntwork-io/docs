@@ -136,10 +136,6 @@ module "control_tower_multi_account_factory_async" {
   # provisioning_artifact_id updates.
   lambda_ingest_timeout = 900
 
-  # Sets the batch size for the worker lambda function used for async
-  # provisioning_artifact_id updates.
-  lambda_worker_batch_size = 5
-
   # KMS key for encrypting worker lambda log group
   lambda_worker_kms_key_id = null
 
@@ -260,10 +256,6 @@ inputs = {
   # Sets the timeout in seconds for the ingest lambda function used for async
   # provisioning_artifact_id updates.
   lambda_ingest_timeout = 900
-
-  # Sets the batch size for the worker lambda function used for async
-  # provisioning_artifact_id updates.
-  lambda_worker_batch_size = 5
 
   # KMS key for encrypting worker lambda log group
   lambda_worker_kms_key_id = null
@@ -406,15 +398,6 @@ Sets the timeout in seconds for the ingest lambda function used for async provis
 <HclListItemDefaultValue defaultValue="900"/>
 </HclListItem>
 
-<HclListItem name="lambda_worker_batch_size" requirement="optional" type="number">
-<HclListItemDescription>
-
-Sets the batch size for the worker lambda function used for async provisioning_artifact_id updates.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="5"/>
-</HclListItem>
-
 <HclListItem name="lambda_worker_kms_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -527,6 +510,6 @@ The data from all the AWS accounts created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-multi-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cc01d8a5853cb1ba2b59bf515b37c718"
+  "hash": "4c34314091dfc72376a2706a40719473"
 }
 ##DOCS-SOURCER-END -->
