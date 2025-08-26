@@ -1,5 +1,5 @@
 ---
-title: "Control Tower Account Factory"
+title: "Control Tower Account Factory Async"
 hide_title: true
 ---
 
@@ -11,24 +11,27 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <VersionBadge repoTitle="Control Tower" version="0.8.8" lastModifiedVersion="0.8.8"/>
 
-# Control Tower Account Factory
+# Control Tower Account Factory Async
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/landingzone/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/landingzone/control-tower-account-factory-async" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.8.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This is a Terraform module that will trigger the creation of a new AWS account by using Control Tower.
+This is a OpenTofu/Terraform module that will trigger the creation of a new AWS account by using Control Tower. This module differs from [control-tower-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-account-factory) by introducing an [asynchrous pattern](#asynchrous-pattern) to help better handle certain types of drift.
 
-Under the hood, this module uses AWS Service Catalog to trigger Control Tower, as Control Tower does not currently
-expose any APIs to trigger it directly.
+Under the hood, this module uses AWS Service Catalog to trigger Control Tower, as Control Tower does not currently expose any APIs to trigger it directly.
+
+## Asynchrous Pattern
+
+To support this asynchronous pattern, this module uses a lifecycle block to ignore changes to the `provisioning_artifact_id` attribute of the underlying Service Catalog `aws_servicecatalog_provisioned_product` resource. This prevents OpenTofu/Terraform from trying to update the resource directly, which would otherwise result in a long-running operation or potential failure.
+
+This separation of detection and execution ensures better resilience, speed, and scalability.
 
 ## Control Tower Service Catalog YAML
 
-The below YAML is copied from the Control Tower product in AWS Service Catalog. It is useful in knowing what
-parameters to pass to this Service Catalog product:
+The below YAML is copied from the Control Tower product in AWS Service Catalog. It is useful in knowing what parameters to pass to this Service Catalog product:
 
-*Note: some of the data below (e.g., the `AllowedValues` for `ManagedOrganizationalUnit`) is auto-generated for each
-AWS organization, so it will vary from org to org.*
+*Note: some of the data below (e.g., the `AllowedValues` for `ManagedOrganizationalUnit`) is auto-generated for each AWS organization, so it will vary from org to org.*
 
 ```yaml
 AWSTemplateFormatVersion: 2010-09-09
@@ -117,12 +120,12 @@ This workaround should only be done to correct up to five Service Catalog provis
 ```hcl title="main.tf"
 
 # ------------------------------------------------------------------------------------------------------
-# DEPLOY GRUNTWORK'S CONTROL-TOWER-ACCOUNT-FACTORY MODULE
+# DEPLOY GRUNTWORK'S CONTROL-TOWER-ACCOUNT-FACTORY-ASYNC MODULE
 # ------------------------------------------------------------------------------------------------------
 
-module "control_tower_account_factory" {
+module "control_tower_account_factory_async" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.8.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory-async?ref=v0.8.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -180,31 +183,6 @@ module "control_tower_account_factory" {
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
   delete_operation_timeout = "60m"
 
-  # If set to true, this module will use a Bash script to try to find the
-  # Control Tower provisioning artifact ID automatically. Due to a Terraform bug
-  # (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the
-  # aws_servicecatalog_provisioned_product resource doesn't always find the AWS
-  # Service Catalog provisioning artifact ID correctly, so using this Bash
-  # script is our temporary workaround. This way, you don't have to set
-  # provisioning_artifact_id manually—and update it every time it changes! Note
-  # that this script requires the AWS CLI to be installed and on the PATH.
-  find_provisioning_artifact_id_using_script = true
-
-  # The ID of the AWS Control Tower Account Factory provisioning artifact in AWS
-  # Service Catalog to use. If find_provisioning_artifact_id_using_script is set
-  # to true, we will look up the ID automatically, and you don't need to set
-  # this parameter. However, if find_provisioning_artifact_id_using_script is
-  # false, you should set this parameter, as, due to a Terraform bug
-  # (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the
-  # aws_servicecatalog_provisioned_product resource fails to look this up
-  # automatically. You can find the ID manually by going to the Product List in
-  # the AWS Service Catalog console
-  # (https://console.aws.amazon.com/servicecatalog/home#admin-products),
-  # clicking the 'AWS Control Tower Account Factory' product, and grabbing the
-  # ID of the latest 'active' product version from the Product Versions table at
-  # the bottom.
-  provisioning_artifact_id = null
-
   # The amount of time allowed for the read operation to take before being
   # considered to have failed.
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
@@ -229,11 +207,11 @@ module "control_tower_account_factory" {
 ```hcl title="terragrunt.hcl"
 
 # ------------------------------------------------------------------------------------------------------
-# DEPLOY GRUNTWORK'S CONTROL-TOWER-ACCOUNT-FACTORY MODULE
+# DEPLOY GRUNTWORK'S CONTROL-TOWER-ACCOUNT-FACTORY-ASYNC MODULE
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v0.8.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory-async?ref=v0.8.8"
 }
 
 inputs = {
@@ -293,31 +271,6 @@ inputs = {
   # considered to have failed.
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
   delete_operation_timeout = "60m"
-
-  # If set to true, this module will use a Bash script to try to find the
-  # Control Tower provisioning artifact ID automatically. Due to a Terraform bug
-  # (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the
-  # aws_servicecatalog_provisioned_product resource doesn't always find the AWS
-  # Service Catalog provisioning artifact ID correctly, so using this Bash
-  # script is our temporary workaround. This way, you don't have to set
-  # provisioning_artifact_id manually—and update it every time it changes! Note
-  # that this script requires the AWS CLI to be installed and on the PATH.
-  find_provisioning_artifact_id_using_script = true
-
-  # The ID of the AWS Control Tower Account Factory provisioning artifact in AWS
-  # Service Catalog to use. If find_provisioning_artifact_id_using_script is set
-  # to true, we will look up the ID automatically, and you don't need to set
-  # this parameter. However, if find_provisioning_artifact_id_using_script is
-  # false, you should set this parameter, as, due to a Terraform bug
-  # (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the
-  # aws_servicecatalog_provisioned_product resource fails to look this up
-  # automatically. You can find the ID manually by going to the Product List in
-  # the AWS Service Catalog console
-  # (https://console.aws.amazon.com/servicecatalog/home#admin-products),
-  # clicking the 'AWS Control Tower Account Factory' product, and grabbing the
-  # ID of the latest 'active' product version from the Product Versions table at
-  # the bottom.
-  provisioning_artifact_id = null
 
   # The amount of time allowed for the read operation to take before being
   # considered to have failed.
@@ -472,24 +425,6 @@ The amount of time allowed for the delete operation to take before being conside
 <HclListItemDefaultValue defaultValue="&quot;60m&quot;"/>
 </HclListItem>
 
-<HclListItem name="find_provisioning_artifact_id_using_script" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, this module will use a Bash script to try to find the Control Tower provisioning artifact ID automatically. Due to a Terraform bug (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the aws_servicecatalog_provisioned_product resource doesn't always find the AWS Service Catalog provisioning artifact ID correctly, so using this Bash script is our temporary workaround. This way, you don't have to set provisioning_artifact_id manually—and update it every time it changes! Note that this script requires the AWS CLI to be installed and on the PATH.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="provisioning_artifact_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of the AWS Control Tower Account Factory provisioning artifact in AWS Service Catalog to use. If find_provisioning_artifact_id_using_script is set to true, we will look up the ID automatically, and you don't need to set this parameter. However, if find_provisioning_artifact_id_using_script is false, you should set this parameter, as, due to a Terraform bug (https://github.com/hashicorp/terraform-provider-aws/issues/24362), the aws_servicecatalog_provisioned_product resource fails to look this up automatically. You can find the ID manually by going to the Product List in the AWS Service Catalog console (https://console.aws.amazon.com/servicecatalog/home#admin-products), clicking the 'AWS Control Tower Account Factory' product, and grabbing the ID of the latest 'active' product version from the Product Versions table at the bottom.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="read_operation_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -536,12 +471,31 @@ The ID of the newly created account
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="current_provisioning_artifact_id">
+<HclListItemDescription>
+
+Current provisioning_artifact_id
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="new_provisioning_artifact_id">
+<HclListItemDescription>
+
+Detected provisioning_artifact_id
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="organizational_unit_id">
 <HclListItemDescription>
 
 The ID of the Organizational Unit (OU) this account was created in.
 
 </HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="provisioned_product_id">
 </HclListItem>
 
 <HclListItem name="service_catalog_provisioned_product_arn">
@@ -590,11 +544,11 @@ The URL of the AWS SSO login page for this account
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-account-factory/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-account-factory/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-account-factory/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-account-factory-async/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-account-factory-async/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "40aeb2aae1c052f1d6ad97b3ef3cbd63"
+  "hash": "4983b5b30d591dabaa1edb6e88a0d4ed"
 }
 ##DOCS-SOURCER-END -->
