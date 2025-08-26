@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.8.8" lastModifiedVersion="0.8.8"/>
+<VersionBadge repoTitle="Control Tower" version="1.0.0" lastModifiedVersion="0.8.8"/>
 
 # Control Tower Provisioned Product Artifact Updater
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/landingzone/control-tower-provisioned-product-artifact-updater" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/landingzone/control-tower-provisioned-product-artifact-updater" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.8.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -77,7 +77,7 @@ When a new Provisioning Artifact is published in AWS Service Catalog, any accoun
 
 module "control_tower_provisioned_product_artifact_updater" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-provisioned-product-artifact-updater?ref=v0.8.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-provisioned-product-artifact-updater?ref=v1.0.0"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -149,7 +149,7 @@ module "control_tower_provisioned_product_artifact_updater" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-provisioned-product-artifact-updater?ref=v0.8.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-provisioned-product-artifact-updater?ref=v1.0.0"
 }
 
 inputs = {
@@ -220,11 +220,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-provisioned-product-artifact-updater/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-provisioned-product-artifact-updater/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-provisioned-product-artifact-updater/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-provisioned-product-artifact-updater/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-provisioned-product-artifact-updater/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-provisioned-product-artifact-updater/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9941b0a5e9e2440895b2d89fc9121459"
+  "hash": "1d2ccf23618523aaeaa7faf7c8990e47"
 }
 ##DOCS-SOURCER-END -->
