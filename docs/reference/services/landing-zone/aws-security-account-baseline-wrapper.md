@@ -261,6 +261,10 @@ module "account_baseline_security" {
   # you don't have to pass around the KMS key ARN.
   cloudtrail_allow_kms_describe_key_to_external_aws_accounts = false
 
+  # After cloudtrail_num_days_after_which_archive_log_data it will
+  # moved/archived to this storage class
+  cloudtrail_archive_storage_class = "GLACIER"
+
   # Specify the name of the CloudWatch Logs group to publish the CloudTrail logs
   # to. This log group exists in the current account. Set this value to `null`
   # to avoid publishing the trail logs to the logs group. The recommended
@@ -342,7 +346,7 @@ module "account_baseline_security" {
   cloudtrail_kms_key_user_iam_arns = []
 
   # After this number of days, log files should be transitioned from S3 to
-  # Glacier. Enter 0 to never archive log data.
+  # var.cloudtrail_archive_storage_class. Enter 0 to never archive log data.
   cloudtrail_num_days_after_which_archive_log_data = 30
 
   # After this number of days, log files should be deleted from S3. Enter 0 to
@@ -1226,6 +1230,10 @@ inputs = {
   # you don't have to pass around the KMS key ARN.
   cloudtrail_allow_kms_describe_key_to_external_aws_accounts = false
 
+  # After cloudtrail_num_days_after_which_archive_log_data it will
+  # moved/archived to this storage class
+  cloudtrail_archive_storage_class = "GLACIER"
+
   # Specify the name of the CloudWatch Logs group to publish the CloudTrail logs
   # to. This log group exists in the current account. Set this value to `null`
   # to avoid publishing the trail logs to the logs group. The recommended
@@ -1307,7 +1315,7 @@ inputs = {
   cloudtrail_kms_key_user_iam_arns = []
 
   # After this number of days, log files should be transitioned from S3 to
-  # Glacier. Enter 0 to never archive log data.
+  # var.cloudtrail_archive_storage_class. Enter 0 to never archive log data.
   cloudtrail_num_days_after_which_archive_log_data = 30
 
   # After this number of days, log files should be deleted from S3. Enter 0 to
@@ -2323,6 +2331,15 @@ Whether or not to allow kms:DescribeKey to external AWS accounts with write acce
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="cloudtrail_archive_storage_class" requirement="optional" type="string">
+<HclListItemDescription>
+
+After cloudtrail_num_days_after_which_archive_log_data it will moved/archived to this storage class
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;GLACIER&quot;"/>
+</HclListItem>
+
 <HclListItem name="cloudtrail_cloudwatch_logs_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2534,7 +2551,7 @@ All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key) tha
 <HclListItem name="cloudtrail_num_days_after_which_archive_log_data" requirement="optional" type="number">
 <HclListItemDescription>
 
-After this number of days, log files should be transitioned from S3 to Glacier. Enter 0 to never archive log data.
+After this number of days, log files should be transitioned from S3 to <a href="#cloudtrail_archive_storage_class"><code>cloudtrail_archive_storage_class</code></a>. Enter 0 to never archive log data.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
@@ -4738,6 +4755,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.8/modules/landingzone/account-baseline-security/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8a11378cd897f28eb5a726142342bbc7"
+  "hash": "23dcd9a04644d322dadcd4af618d0cbc"
 }
 ##DOCS-SOURCER-END -->

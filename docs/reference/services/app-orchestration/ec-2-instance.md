@@ -399,6 +399,10 @@ module "ec_2_instance" {
   # If set to true, the root volume will be encrypted. Default is set to false
   root_volume_encrypted = false
 
+  # Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting
+  # the volume
+  root_volume_kms_key_id = null
+
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
 
@@ -743,6 +747,10 @@ inputs = {
 
   # If set to true, the root volume will be encrypted. Default is set to false
   root_volume_encrypted = false
+
+  # Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting
+  # the volume
+  root_volume_kms_key_id = null
 
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
@@ -1399,6 +1407,15 @@ If set to true, the root volume will be encrypted. Default is set to false
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="root_volume_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting the volume
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1574,6 +1591,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.8/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "01e5f1750a6271271e58df2deae97bce"
+  "hash": "ab05f807e1d5132720cdaa9f29454464"
 }
 ##DOCS-SOURCER-END -->
