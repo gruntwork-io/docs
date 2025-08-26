@@ -284,6 +284,11 @@ module "eks_cluster_workers" {
   # autoscaling_group_configurations.
   asg_default_enable_detailed_monitoring = true
 
+  # Default value for the extra_block_device_mappings field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # extra_block_device_mappings will use this value.
+  asg_default_extra_block_device_mappings = []
+
   # Default value for the http_put_response_hop_limit field of
   # autoscaling_group_configurations.
   asg_default_http_put_response_hop_limit = null
@@ -588,6 +593,11 @@ inputs = {
   # Default value for the enable_detailed_monitoring field of
   # autoscaling_group_configurations.
   asg_default_enable_detailed_monitoring = true
+
+  # Default value for the extra_block_device_mappings field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # extra_block_device_mappings will use this value.
+  asg_default_extra_block_device_mappings = []
 
   # Default value for the http_put_response_hop_limit field of
   # autoscaling_group_configurations.
@@ -945,7 +955,17 @@ Any types represent complex values of variable type. For details, please consult
                                                When using a multi_instances_policy the maximum price per unit hour that the user is willing to pay for the Spot instances.
    - http_put_response_hop_limit     number  : (Defaults to value from var.asg_default_http_put_response_hop_limit) The
                                                desired HTTP PUT response hop limit for instance metadata requests.
-  
+   - extra_block_device_mappings             : (Defaults to value from var.asg_default_extra_block_device_mappings) Additional block device mappings
+                                                to attach to instances. Useful for Bottlerocket or custom storage configs.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
    - instance_maintenance_policy     object(Health_Percentage)
   
    Structure of Health_Percentage object:
@@ -1018,6 +1038,35 @@ Default value for the enable_detailed_monitoring field of autoscaling_group_conf
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="asg_default_extra_block_device_mappings" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Default value for the extra_block_device_mappings field of autoscaling_group_configurations. Any map entry that does not specify extra_block_device_mappings will use this value.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    device_name  = string
+    no_device    = optional(string)
+    virtual_name = optional(string)
+    ebs = optional(object({
+      volume_size           = optional(number)
+      volume_type           = optional(string)
+      iops                  = optional(number)
+      throughput            = optional(number)
+      delete_on_termination = optional(bool)
+      encrypted             = optional(bool)
+      kms_key_id            = optional(string)
+    }))
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="asg_default_http_put_response_hop_limit" requirement="optional" type="number">
@@ -1627,6 +1676,6 @@ AWS ID of the security group created for the EKS worker nodes.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v1.2.0/modules/eks-cluster-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c56baa4094507fb52b5d068562a8220e"
+  "hash": "580b827cbab3af2f9f4c5c2bbbb78096"
 }
 ##DOCS-SOURCER-END -->
