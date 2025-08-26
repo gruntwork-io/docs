@@ -17,7 +17,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=control-tower-provisioned-product-artifact-updater" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This OpenTofu/Terraform module automates the detection and update of AWS Service Catalog provisioned products in response to [UpdateProvisioningArtifact](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpdateProvisioningArtifact.html) or [UpdateProvisionedProduct](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpgradeProduct.html) API calls. AWS EventBridge, SQS, Lambda, and AWS Step Functions state machine to create a scalable, asynchronous update mechanism that safely propagates new artifact versions to affected accounts.
+This OpenTofu/Terraform module automates the detection and update of AWS Service Catalog provisioned products in response to [UpdateProvisioningArtifact](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpdateProvisioningArtifact.html) or [UpdateProvisionedProduct](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpgradeProduct.html) API calls. AWS EventBridge, SQS, Lambda, and AWS Step Functions to create a scalable, asynchronous update mechanism that safely propagates new artifact versions to affected accounts.
 
 ## Use Cases
 
@@ -225,6 +225,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-provisioned-product-artifact-updater/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0edf0426628b8e1f4fca463f4d5e17b5"
+  "hash": "47803dc6130abc24fc9b5834fe10c875"
 }
 ##DOCS-SOURCER-END -->

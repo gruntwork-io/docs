@@ -17,13 +17,13 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=control-tower-multi-account-factory-async" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This OpenTofu/Terraform module provisions multiple AWS accounts using AWS Control Tower Account Factory. Under the hood, it leverages the [control-tower-account-factory-async](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-account-factory-async) module for account creation. It also includes a separate mechanism to detect and remediate drifted or outdated AWS Service Catalog products asynchronously, outside of OpenTofu/Terraform, using an EventBridge rule, SQS, Lambda, and AWS Step Functions state machine.
+This OpenTofu/Terraform module provisions multiple AWS accounts using AWS Control Tower Account Factory. Under the hood, it leverages the [control-tower-account-factory-async](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-account-factory-async) module for account creation. It also includes a separate mechanism to detect and remediate drifted or outdated AWS Service Catalog products asynchronously, outside of OpenTofu/Terraform, using an EventBridge rule, SQS, Lambda, and AWS Step Functions.
 
 ## Background and Justification
 
 The standard synchronous approach to provisioning or updating AWS accounts via Control Tower can lead to lengthy OpenTofu/Terraform runs, especially when Control Tower APIs are slow or when updating a large number of accounts. More importantly, certain types of "drift" caused by Control Tower changes are difficult to reconcile using OpenTofu/Terraform alone.
 
-This module takes an asynchronous approach by deploying infrastructure (EventBridge, SQS, Lambda, and AWS Step Functions state machine) that monitors for certain API calls. When relevant API calls are made (`UpdateProvisioningArtifact` and `UpgradeProduct`), the Lambda is triggered to complete the update process independently of OpenTofu/Terraform.
+This module takes an asynchronous approach by deploying infrastructure (EventBridge, SQS, Lambda, and AWS Step Functions) that monitors for certain API calls. When relevant API calls are made (`UpdateProvisioningArtifact` and `UpgradeProduct`), the Lambda is triggered to complete the update process independently of OpenTofu/Terraform.
 
 This leads to:
 
@@ -510,6 +510,6 @@ The data from all the AWS accounts created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-multi-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "205ae53dd9e5b0371c0b011aece31249"
+  "hash": "888dac2f848468936c2fecc992c7fa11"
 }
 ##DOCS-SOURCER-END -->
