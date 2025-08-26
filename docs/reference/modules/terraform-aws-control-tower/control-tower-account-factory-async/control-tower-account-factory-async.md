@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.8.8" lastModifiedVersion="0.8.8"/>
+<VersionBadge repoTitle="Control Tower" version="1.0.0" lastModifiedVersion="0.8.8"/>
 
 # Control Tower Account Factory Async
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/landingzone/control-tower-account-factory-async" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/landingzone/control-tower-account-factory-async" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.8.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This is a OpenTofu/Terraform module that will trigger the creation of a new AWS account by using Control Tower. This module differs from [control-tower-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-account-factory) by introducing an [asynchrous pattern](#asynchrous-pattern) to help better handle certain types of drift.
+This is a OpenTofu/Terraform module that will trigger the creation of a new AWS account by using Control Tower. This module differs from [control-tower-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-account-factory) by introducing an [asynchrous pattern](#asynchrous-pattern) to help better handle certain types of drift.
 
 Under the hood, this module uses AWS Service Catalog to trigger Control Tower, as Control Tower does not currently expose any APIs to trigger it directly.
 
@@ -92,7 +92,7 @@ This is usually accompanied by this module returning outputs that look like the 
 
 Unfortunately, this is an unrecoverable error from an AWS Provider perspective, as the provider has no insight into the fact that Service Catalog is in a bad state when it fails in this fashion, and retries will not help.
 
-The easiest way to recover from this error is to make a small update to one of the variables that are passed into this module. For example, if you are integrating with this module via the [../control-tower-multi-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-multi-account-factory) module, you could change the value of something in the relevant file in the directory referenced by the  `account_requests_folder`, then revert your change.
+The easiest way to recover from this error is to make a small update to one of the variables that are passed into this module. For example, if you are integrating with this module via the [../control-tower-multi-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-multi-account-factory) module, you could change the value of something in the relevant file in the directory referenced by the  `account_requests_folder`, then revert your change.
 
 e.g.
 
@@ -125,7 +125,7 @@ This workaround should only be done to correct up to five Service Catalog provis
 
 module "control_tower_account_factory_async" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory-async?ref=v0.8.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory-async?ref=v1.0.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -211,7 +211,7 @@ module "control_tower_account_factory_async" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory-async?ref=v0.8.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory-async?ref=v1.0.0"
 }
 
 inputs = {
@@ -544,11 +544,11 @@ The URL of the AWS SSO login page for this account
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-account-factory-async/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-account-factory-async/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/control-tower-account-factory-async/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-account-factory-async/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-account-factory-async/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4983b5b30d591dabaa1edb6e88a0d4ed"
+  "hash": "4d809b2353be80e53bfdd48b96276cf0"
 }
 ##DOCS-SOURCER-END -->
