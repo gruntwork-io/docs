@@ -17,13 +17,13 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=control-tower-multi-account-factory-async" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This OpenTofu/Terraform module provisions multiple AWS accounts using AWS Control Tower Account Factory. Under the hood, it leverages the [control-tower-account-factory-async](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-account-factory-async) module for account creation. It also includes a separate mechanism to detect and remediate drifted or outdated AWS Service Catalog products asynchronously, outside of OpenTofu/Terraform, using an EventBridge rule, SQS, Lambda, and Step Functions.
+This OpenTofu/Terraform module provisions multiple AWS accounts using AWS Control Tower Account Factory. Under the hood, it leverages the [control-tower-account-factory-async](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-account-factory-async) module for account creation. It also includes a separate mechanism to detect and remediate drifted or outdated AWS Service Catalog products asynchronously, outside of OpenTofu/Terraform, using an EventBridge rule, SQS, Lambda, and AWS Step Functions state machine.
 
 ## Background and Justification
 
 The standard synchronous approach to provisioning or updating AWS accounts via Control Tower can lead to lengthy OpenTofu/Terraform runs, especially when Control Tower APIs are slow or when updating a large number of accounts. More importantly, certain types of "drift" caused by Control Tower changes are difficult to reconcile using OpenTofu/Terraform alone.
 
-This module takes an asynchronous approach by deploying infrastructure (EventBridge, SQS, Lambda, and Step Functions) that monitors for certain API calls. When relevant API calls are made (`UpdateProvisioningArtifact` and `UpgradeProduct`), the Lambda is triggered to complete the update process independently of OpenTofu/Terraform.
+This module takes an asynchronous approach by deploying infrastructure (EventBridge, SQS, Lambda, and AWS Step Functions state machine) that monitors for certain API calls. When relevant API calls are made (`UpdateProvisioningArtifact` and `UpgradeProduct`), the Lambda is triggered to complete the update process independently of OpenTofu/Terraform.
 
 This leads to:
 
@@ -52,8 +52,8 @@ By queuing and applying these updates asynchronously:
 *   EventBridge Rule: Listens via CloudTrail for UpdateProvisioningArtifact or UpgradeProduct API calls.
 *   Ingest Lambda: Triggered by the EventBridge rule, it finds all provisioned products that need an update and queues them in an SQS FIFO queue. This ensures order and prevents race conditions.
 *   SQS Queue: Serves as a reliable, asynchronous work queue. It is configured as a FIFO queue with content-based deduplication and a Dead-Letter Queue (DLQ).
-*   Worker Lambda: Triggered by messages from the SQS queue, it applies the necessary provisioned_product_id updates by calling UpdateProvisionedProduct. It then initiates a Step Function execution to track the update.
-*   Step Function State Machine: Periodically checks the status of the Service Catalog update record to verify that it has succeeded or failed, ensuring the update is fully completed.
+*   Worker Lambda: Triggered by messages from the SQS queue, it applies the necessary provisioned_product_id updates by calling UpdateProvisionedProduct. It then initiates an AWS Step Functions state machine to track the update.
+*   AWS Step Functions state machine: Periodically checks the status of the Service Catalog update record to verify that it has succeeded or failed, ensuring the update is fully completed.
 
 ### Controlling Concurrency
 
@@ -510,6 +510,6 @@ The data from all the AWS accounts created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-multi-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4c34314091dfc72376a2706a40719473"
+  "hash": "205ae53dd9e5b0371c0b011aece31249"
 }
 ##DOCS-SOURCER-END -->

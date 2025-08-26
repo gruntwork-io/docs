@@ -17,7 +17,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=control-tower-provisioned-product-artifact-updater" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This OpenTofu/Terraform module automates the detection and update of AWS Service Catalog provisioned products in response to [UpdateProvisioningArtifact](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpdateProvisioningArtifact.html) or [UpdateProvisionedProduct](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpgradeProduct.html) API calls. AWS EventBridge, SQS, Lambda, and Step Functions to create a scalable, asynchronous update mechanism that safely propagates new artifact versions to affected accounts.
+This OpenTofu/Terraform module automates the detection and update of AWS Service Catalog provisioned products in response to [UpdateProvisioningArtifact](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpdateProvisioningArtifact.html) or [UpdateProvisionedProduct](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpgradeProduct.html) API calls. AWS EventBridge, SQS, Lambda, and AWS Step Functions state machine to create a scalable, asynchronous update mechanism that safely propagates new artifact versions to affected accounts.
 
 ## Use Cases
 
@@ -27,14 +27,14 @@ When a new Provisioning Artifact is published in AWS Service Catalog, any accoun
 *   Finds impacted provisioned products across your organization.
 *   Queues update jobs in SQS with deduplication and a dead-letter queue.
 *   Applies the new provisioning artifact via a worker Lambda.
-*   Verifies and tracks the update status using a Step Function state machine.
+*   Verifies and tracks the update status using an AWS Step Functions state machine.
 
 ## Components
 
 ### Lambda Functions
 
 *   ingest_lambda: Triggered by Service Catalog update events from EventBridge. It finds provisioned products that need an update and queues them in an SQS FIFO queue.
-*   worker_lambda: Triggered by messages from the SQS queue. It applies the update using UpdateProvisionedProduct and then initiates a Step Function execution to track the update's progress.
+*   worker_lambda: Triggered by messages from the SQS queue. It applies the update using UpdateProvisionedProduct and then initiates an AWS Step Functions state machine to track the update's progress.
 
 ### SQS Queue
 
@@ -43,7 +43,7 @@ When a new Provisioning Artifact is published in AWS Service Catalog, any accoun
 *   Content-based deduplication is enabled.
 *   A Dead-Letter Queue (DLQ) is configured for failed messages.
 
-### Step Function
+### AWS Step Functions state machine
 
 *   A state machine that tracks the status of the Service Catalog update record.
 *   It uses a Wait state and a loop to periodically check the status of the update until it is SUCCEEDED or FAILED.
@@ -60,7 +60,7 @@ When a new Provisioning Artifact is published in AWS Service Catalog, any accoun
     *   Service Catalog (search/describe provisioned products, update products, describe records)
     *   Identity Store (list/describe users)
     *   Organizations (list parents/describe OUs)
-    *   Step Functions (start execution)
+    *   AWS Step Functions state machine (start execution)
     *   CloudWatch Logs
 *   Associated with the AWS Control Tower Account Factory Portfolio for Service Catalog access.
 
@@ -225,6 +225,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/control-tower-provisioned-product-artifact-updater/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0092ac41aaf1aa19fcc786f6572aa7fb"
+  "hash": "0edf0426628b8e1f4fca463f4d5e17b5"
 }
 ##DOCS-SOURCER-END -->
