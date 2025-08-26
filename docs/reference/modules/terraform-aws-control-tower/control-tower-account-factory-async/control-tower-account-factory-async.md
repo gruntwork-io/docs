@@ -19,6 +19,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 This is a OpenTofu/Terraform module that will trigger the creation of a new AWS account by using Control Tower. This module differs from [control-tower-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-account-factory) by introducing an [asynchrous pattern](#asynchrous-pattern) to help better handle certain types of drift.
 
+
 Under the hood, this module uses AWS Service Catalog to trigger Control Tower, as Control Tower does not currently expose any APIs to trigger it directly.
 
 ## Asynchrous Pattern
