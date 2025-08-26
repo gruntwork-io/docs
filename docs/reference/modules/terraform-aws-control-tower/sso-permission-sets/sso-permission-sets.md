@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="0.8.7" />
+<VersionBadge repoTitle="Control Tower" version="0.8.8" />
 
 # SSO Permission Sets
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/aws-sso/sso-permission-sets" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/aws-sso/sso-permission-sets" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=sso-permission-sets" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -79,7 +79,7 @@ access to the AWS Account with the IAM permissions defined on the Permission Set
 
 Permission sets are normally bound to groups using your IDP.
 
-For an example of a manual binding see the [sso-groups module](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/aws-sso/sso-groups).
+For an example of a manual binding see the [sso-groups module](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/aws-sso/sso-groups).
 
 ### What are permission boundaries?
 
@@ -113,7 +113,7 @@ For more information on permission boundaries, see the [official documentation](
 
 module "sso_permission_sets" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.8.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.8.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -168,7 +168,7 @@ module "sso_permission_sets" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.8.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/aws-sso/sso-permission-sets?ref=v0.8.8"
 }
 
 inputs = {
@@ -335,11 +335,11 @@ The name of the permission set that was created.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/sso-permission-sets/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/sso-permission-sets/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.7/modules/sso-permission-sets/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/sso-permission-sets/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/sso-permission-sets/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v0.8.8/modules/sso-permission-sets/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d77ecb68552b85f8d53c44af6f700221"
+  "hash": "e0dca811d7ef7747052bacef219d0064"
 }
 ##DOCS-SOURCER-END -->
