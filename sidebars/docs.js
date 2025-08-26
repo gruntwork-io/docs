@@ -490,6 +490,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/accountfactory/guides/iam-roles",
       },
+      {
+        label: "Automatically Remediate AWS Control Tower Drift with Async Multi-Account Factory Module",
+        type: "doc",
+        id: "2.0/docs/accountfactory/guides/drift-remediation-with-async-module",
+      },
     ],
   },
   {
