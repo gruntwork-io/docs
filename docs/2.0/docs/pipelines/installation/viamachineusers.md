@@ -36,7 +36,7 @@ If screen sharing while generating tokens, **pause or hide your screen** before 
 :::
 
 ### Token types
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
 GitHub supports two types of tokens:
@@ -77,7 +77,7 @@ More information is available [here](https://docs.github.com/en/organizations/ma
 ![Pending requests](/img/pipelines/security/pending_requests.png)
 
 </TabItem>
-<TabItem value="gitlab" label="GitLab">
+<TabItem value="GitLab" label="GitLab">
 
 GitLab uses access tokens for authentication. There are several types of access tokens in GitLab:
 
@@ -107,8 +107,8 @@ When creating tokens, carefully consider the expiration date and scope of access
 
 ## Creating machine users
 
-<Tabs>
-<TabItem value="github" label="GitHub" default>
+<Tabs groupId="platform">
+<TabItem value="GitHub" label="GitHub" default>
 
 The recommended setup for Pipelines uses two machine users: one for opening pull requests and running workflows (`ci-user`) and another with read-only access to repositories (`ci-read-only-user`). Each user is assigned restrictive permissions based on their tasks. As a result, both users may need to participate at different stages to successfully run a pipeline job.
 
@@ -389,7 +389,7 @@ For more information on creating and using GitHub Actions Repository secrets, re
 </Tabs>
 
 </TabItem>
-<TabItem value="gitlab" label="GitLab">
+<TabItem value="GitLab" label="GitLab">
 
 
 For GitLab, Gruntwork Pipelines two CI variables. The first, the `PIPELINES_GITLAB_TOKEN` requires the `Developer`, `Maintainer` or `Owner` role and the scopes listed below. This token will be used to authenticate API calls and access repositories within your GitLab group.  The second, the `PIPELINES_GITLAB_READ_TOKEN` will be used to access your own code within GitLab. If not set, Pipelines will default to the `CI_JOB_TOKEN` when accessing internal GitLab hosted code.

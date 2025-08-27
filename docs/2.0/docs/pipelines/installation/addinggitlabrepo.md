@@ -1,6 +1,6 @@
 import CustomizableValue from '/src/components/CustomizableValue';
 
-# Adding Pipelines to a GitLab Project
+# Adding Pipelines to an existing GitLab Project
 
 This guide walks you through the process of adding Gruntwork Pipelines to a GitLab project. By the end, you'll have a fully configured GitLab CI/CD pipeline that can deploy infrastructure changes automatically.
 
@@ -11,7 +11,7 @@ Before you begin, make sure you have:
 - Basic familiarity with Git, GitLab, and infrastructure as code concepts
 - Access to one (or many) AWS account(s) where you have permission to create IAM roles and OIDC providers
 - Completed the [Pipelines Auth setup for GitLab](/2.0/docs/pipelines/installation/viamachineusers#gitlab) and setup a machine user with appropriate PAT tokens
-- Local access to Gruntwork's GitHub repositories, specifically [boilerplate](https://github.com/gruntwork-io/boilerplate) and the [architecture catalog](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/)
+- Local access to Gruntwork's GitHub repositories, specifically the [architecture catalog](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/)
 
 :::info
 
