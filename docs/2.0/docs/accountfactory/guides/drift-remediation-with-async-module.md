@@ -104,19 +104,95 @@ terraform {
 
 _Note: No state migration is needed — this is a drop-in replacement._
 
-2. Apply your changes
+2. Update IAM Permissions
 
-Run `terragrunt apply` either directly or through GitHub Actions. This will deploy:
+The new infrastructure created by the async module will require additional permissions be added to the roles [root-pipelines-apply-role](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/blob/v3.1.2/templates/gruntwork-landing-zone/_envcommon/landingzone/root-pipelines-apply-role.hcl) and [root-pipelines-plan-role](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/blob/v3.1.2/templates/gruntwork-landing-zone/_envcommon/landingzone/root-pipelines-plan-role.hcl). The necessary IAM role changes are included below and can also be found in [v3.1.2 (or later) of terraform-aws-architecture-catalog](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/tree/v3.1.2/templates/gruntwork-landing-zone/_envcommon/landingzone).
+
+
+For `_envcommon/landingzone/root-pipelines-apply-role.hcl`, ensure that you have at least the following permissions:
+
+```hcl
+    "EventBridgeAccess" = {
+      resources = ["*"]
+      actions   = ["events:*"]
+      effect    = "Allow"
+    }
+    "LambdaDeployAccess" = {
+      resources = ["*"]
+      actions   = ["lambda:*"]
+      effect    = "Allow"
+    }
+    "SQSDeployAccess" = {
+      resources = ["*"]
+      actions   = ["sqs:*"]
+      effect    = "Allow"
+    }
+   "StatesDeployAccess" = {
+     resources = ["*"]
+     actions   = ["states:*"]
+     effect    = "Allow"
+   }
+```
+
+For `_envcommon/landingzone/root-pipelines-plan-role.hcl`, ensure that you have at leasat the following permissions:
+
+```hcl
+    "CloudWatchEventsReadOnlyAccess" = {
+      effect    = "Allow"
+      actions   = ["events:Describe*", "events:List*"]
+      resources = ["*"]
+    }
+    "CloudWatchLogsReadOnlyAccess" = {
+      effect = "Allow"
+      actions = [
+        "logs:Get*",
+        "logs:Describe*",
+        "logs:List*",
+        "logs:Filter*",
+        "logs:ListTagsLogGroup"
+      ]
+      resources = ["*"]
+    }
+    "LambdaReadOnlyAccess" = {
+      effect = "Allow"
+      actions = [
+        "lambda:Get*",
+        "lambda:List*",
+        "lambda:InvokeFunction"
+      ]
+      resources = ["*"]
+    }
+    "SQSReadOnlyAccess" = {
+      effect = "Allow"
+      actions = [
+        "sqs:Get*",
+        "sqs:List*",
+      ]
+      resources = ["*"]
+    }
+   "StatesReadOnlyAccess" = {
+     resources = ["*"]
+     actions   = [
+       "states:List*",
+       "states:Describe*",
+       "states:GetExecutionHistory"
+     ]
+     effect    = "Allow"
+   }
+```
+
+3. Apply your changes
+
+Next, run `terragrunt apply` either directly or through GitHub Actions. This will deploy:
 
 - The new Lambda functions
 - SQS FIFO queue + DLQ
 - EventBridge rules for Service Catalog API monitoring
 - AWS Step Functions state machine
 
-After apply, drifted `provisioned_product_id` values will be remediated whenever [UpdateProvisioningArtifact](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpdateProvisioningArtifact.html) or [UpdateProvisionedProduct](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpdateProvisionedProduct.html) API calls occur.
+Once applied, drifted `provisioned_product_id` values will be remediated when [UpdateProvisioningArtifact](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpdateProvisioningArtifact.html) or [UpdateProvisionedProduct](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpdateProvisionedProduct.html) API calls occur.
 
-
-_Note: If your environment is already in a drifted state, you will need to trigger UpdateProvisioningArtifact or UpdateProvisionedProduct to initiate drift remediation. The simplest way to do this is to deactivate and reactivate the current provisioning artifact version._
+_Note: If your environment is already in a drifted state, you may need to manually trigger one of these API calls. The simplest way to do this is to deactivate and reactivate the current provisioning artifact version._
 
 ## Optional: Control Concurrency with lambda_worker_max_concurrent_operations
 
