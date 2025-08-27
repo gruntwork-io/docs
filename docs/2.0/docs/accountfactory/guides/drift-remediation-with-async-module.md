@@ -126,7 +126,7 @@ To avoid hitting that limit (and prevent failed updates), you can configure the 
 
 ```hcl
 inputs = {
-  lambda_worker_max_concurrent_operations = X
+  lambda_worker_max_concurrent_operations = X # default is 4
 }
 ```
 
@@ -135,5 +135,6 @@ This variable tells the worker Lambda to never initiate more than X updates at a
 |Value |   Behavior |
 | --   | -- |
 |`5`     | Max concurrency allowed by AWS (use with caution) |
+|`4`     | The default set by the async module |
 |`<5`    | Safe concurrency with headroom for other ops |
 |`1`     | Serialized updates, safest but slowest |
