@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.127.8" />
+<VersionBadge version="0.127.8" lastModifiedVersion="0.20.0"/>
 
 # Gruntwork Access
 
@@ -300,6 +300,6 @@ The name of the IAM role
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.8/modules/landingzone/gruntwork-access/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1dbed9cfca39d60ec610066ecfedd1a2"
+  "hash": "04cbcacd21c9af60e6042b7a021352fc"
 }
 ##DOCS-SOURCER-END -->
