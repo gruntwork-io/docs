@@ -127,6 +127,10 @@ module "control_tower_provisioned_product_artifact_updater" {
   # The name of your AWS Control Tower Account Factory Portfolio
   portfolio_name = "AWS Control Tower Account Factory Portfolio"
 
+  # The region where the portfolio exists. This is passed to the
+  # lookup-portfolio-id.sh script. Can be overriden by the env var AWS_REGION.
+  portfolio_region = "us-east-1"
+
   # The number of seconds for the Step Function 'Wait' state.
   sfn_wait_time_seconds = 30
 
@@ -202,6 +206,10 @@ inputs = {
   # The name of your AWS Control Tower Account Factory Portfolio
   portfolio_name = "AWS Control Tower Account Factory Portfolio"
 
+  # The region where the portfolio exists. This is passed to the
+  # lookup-portfolio-id.sh script. Can be overriden by the env var AWS_REGION.
+  portfolio_region = "us-east-1"
+
   # The number of seconds for the Step Function 'Wait' state.
   sfn_wait_time_seconds = 30
 
@@ -225,6 +233,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-provisioned-product-artifact-updater/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1d2ccf23618523aaeaa7faf7c8990e47"
+  "hash": "cb48d51edaad97622b10a369932109e5"
 }
 ##DOCS-SOURCER-END -->

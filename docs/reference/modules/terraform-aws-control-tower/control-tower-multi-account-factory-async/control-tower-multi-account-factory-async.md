@@ -160,6 +160,10 @@ module "control_tower_multi_account_factory_async" {
   # The name of your AWS Control Tower Account Factory Portfolio
   portfolio_name = "AWS Control Tower Account Factory Portfolio"
 
+  # The region where the portfolio exists. This is passed to the
+  # lookup-portfolio-id.sh script. Can be overriden by the env var AWS_REGION.
+  portfolio_region = null
+
   # The amount of time allowed for the read operation to take before being
   # considered to have failed.
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
@@ -280,6 +284,10 @@ inputs = {
 
   # The name of your AWS Control Tower Account Factory Portfolio
   portfolio_name = "AWS Control Tower Account Factory Portfolio"
+
+  # The region where the portfolio exists. This is passed to the
+  # lookup-portfolio-id.sh script. Can be overriden by the env var AWS_REGION.
+  portfolio_region = null
 
   # The amount of time allowed for the read operation to take before being
   # considered to have failed.
@@ -452,6 +460,15 @@ The name of your AWS Control Tower Account Factory Portfolio
 <HclListItemDefaultValue defaultValue="&quot;AWS Control Tower Account Factory Portfolio&quot;"/>
 </HclListItem>
 
+<HclListItem name="portfolio_region" requirement="optional" type="string">
+<HclListItemDescription>
+
+The region where the portfolio exists. This is passed to the lookup-portfolio-id.sh script. Can be overriden by the env var AWS_REGION.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="read_operation_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -510,6 +527,6 @@ The data from all the AWS accounts created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-multi-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e0b96406b2c60428a32c3a527c8404e4"
+  "hash": "ac1ae47810d8c81596d26b7de8a566a9"
 }
 ##DOCS-SOURCER-END -->
