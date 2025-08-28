@@ -162,7 +162,7 @@ module "control_tower_multi_account_factory_async" {
 
   # The region where the portfolio exists. This is passed to the
   # lookup-portfolio-id.sh script. Can be overriden by the env var AWS_REGION.
-  portfolio_region = null
+  portfolio_region = "us-east-1"
 
   # The amount of time allowed for the read operation to take before being
   # considered to have failed.
@@ -287,7 +287,7 @@ inputs = {
 
   # The region where the portfolio exists. This is passed to the
   # lookup-portfolio-id.sh script. Can be overriden by the env var AWS_REGION.
-  portfolio_region = null
+  portfolio_region = "us-east-1"
 
   # The amount of time allowed for the read operation to take before being
   # considered to have failed.
@@ -466,7 +466,7 @@ The name of your AWS Control Tower Account Factory Portfolio
 The region where the portfolio exists. This is passed to the lookup-portfolio-id.sh script. Can be overriden by the env var AWS_REGION.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="&quot;us-east-1&quot;"/>
 </HclListItem>
 
 <HclListItem name="read_operation_timeout" requirement="optional" type="string">
@@ -527,6 +527,6 @@ The data from all the AWS accounts created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.1/modules/control-tower-multi-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0e9cb540fbb6fd3c66307fc5e532ed74"
+  "hash": "488f6d31d0d5b0268c1a902c3935cb3c"
 }
 ##DOCS-SOURCER-END -->
