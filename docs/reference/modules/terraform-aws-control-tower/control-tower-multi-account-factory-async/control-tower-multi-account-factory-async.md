@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="1.0.0" lastModifiedVersion="0.8.8"/>
+<VersionBadge repoTitle="Control Tower" version="1.0.1" lastModifiedVersion="1.0.1"/>
 
 # Control Tower Multi-Account Factory Async
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/landingzone/control-tower-multi-account-factory-async" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.1/modules/landingzone/control-tower-multi-account-factory-async" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.8.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v1.0.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This OpenTofu/Terraform module provisions multiple AWS accounts using AWS Control Tower Account Factory. Under the hood, it leverages the [control-tower-account-factory-async](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-account-factory-async) module for account creation. It also includes a separate mechanism to detect and remediate drifted or outdated AWS Service Catalog products asynchronously, outside of OpenTofu/Terraform, using an EventBridge rule, SQS, Lambda, and AWS Step Functions.
+This OpenTofu/Terraform module provisions multiple AWS accounts using AWS Control Tower Account Factory. Under the hood, it leverages the [control-tower-account-factory-async](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.1/modules/control-tower-account-factory-async) module for account creation. It also includes a separate mechanism to detect and remediate drifted or outdated AWS Service Catalog products asynchronously, outside of OpenTofu/Terraform, using an EventBridge rule, SQS, Lambda, and AWS Step Functions.
 
 ## Background and Justification
 
@@ -74,7 +74,7 @@ To respect this limitation and offer flexibility, this module provides a configu
 
 module "control_tower_multi_account_factory_async" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory-async?ref=v1.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory-async?ref=v1.0.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -160,6 +160,10 @@ module "control_tower_multi_account_factory_async" {
   # The name of your AWS Control Tower Account Factory Portfolio
   portfolio_name = "AWS Control Tower Account Factory Portfolio"
 
+  # The region where the portfolio exists. This is passed to the
+  # lookup-portfolio-id.sh script. Can be overriden by the env var AWS_REGION.
+  portfolio_region = "us-east-1"
+
   # The amount of time allowed for the read operation to take before being
   # considered to have failed.
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
@@ -192,7 +196,7 @@ module "control_tower_multi_account_factory_async" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory-async?ref=v1.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory-async?ref=v1.0.1"
 }
 
 inputs = {
@@ -280,6 +284,10 @@ inputs = {
 
   # The name of your AWS Control Tower Account Factory Portfolio
   portfolio_name = "AWS Control Tower Account Factory Portfolio"
+
+  # The region where the portfolio exists. This is passed to the
+  # lookup-portfolio-id.sh script. Can be overriden by the env var AWS_REGION.
+  portfolio_region = "us-east-1"
 
   # The amount of time allowed for the read operation to take before being
   # considered to have failed.
@@ -452,6 +460,15 @@ The name of your AWS Control Tower Account Factory Portfolio
 <HclListItemDefaultValue defaultValue="&quot;AWS Control Tower Account Factory Portfolio&quot;"/>
 </HclListItem>
 
+<HclListItem name="portfolio_region" requirement="optional" type="string">
+<HclListItemDescription>
+
+The region where the portfolio exists. This is passed to the lookup-portfolio-id.sh script. Can be overriden by the env var AWS_REGION.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;us-east-1&quot;"/>
+</HclListItem>
+
 <HclListItem name="read_operation_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -505,11 +522,11 @@ The data from all the AWS accounts created.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-multi-account-factory-async/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-multi-account-factory-async/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-multi-account-factory-async/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.1/modules/control-tower-multi-account-factory-async/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.1/modules/control-tower-multi-account-factory-async/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.1/modules/control-tower-multi-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e0b96406b2c60428a32c3a527c8404e4"
+  "hash": "488f6d31d0d5b0268c1a902c3935cb3c"
 }
 ##DOCS-SOURCER-END -->
