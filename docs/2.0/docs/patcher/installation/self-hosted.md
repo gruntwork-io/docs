@@ -4,7 +4,9 @@
 
 If your organization has strict network restrictions or security policies, you may need to host all dependencies internally rather than downloading them directly from external sources like github.com/gruntwork-io. The Patcher GitHub Action supports self-hosted binaries to accommodate these requirements.
 
-When you use self-hosted binaries, only the Patcher and Terrapatch CLI tools need to be hosted internally—the runtime environment and GitHub Action itself can still run in your standard CI/CD infrastructure. This approach provides a balance between security compliance and operational simplicity.
+When you use self-hosted binaries, only the Patcher and Terrapatch CLI binaries need to be hosted internally—the runtime environment and GitHub Action itself can still run in your standard CI/CD infrastructure. This approach provides a balance between security compliance and operational simplicity.
+
+Patcher is a binary that scans your code and updates your files. Terrapatch is a binary that does code transformations. Patcher runs scripts that run Terrapatch. All Patcher customers have access to the github.com/gruntwork-io/patcher-cli repository, and if you use repo-copier, this repository will be available in your own private GitHub or GitLab repository.
 
 You might want to self-host the Patcher binary because:
 - Your corporate firewall blocks access to external GitHub repositories
@@ -45,6 +47,20 @@ Gruntwork's `repo-copier` tool enables you to create complete, self-hosted copie
 
 ### Repo-copier usage
 
+```bash
+# Copy patcher-cli repository
+repo-copier \
+  --source-url https://github.com/gruntwork-io/patcher-cli \
+  --dest-url https://github.company.com/my-org/patcher-cli \
+  --dest-branch main
+
+# Copy terrapatch-cli repository  
+repo-copier \
+  --source-url https://github.com/gruntwork-io/terrapatch-cli \
+  --dest-url https://github.company.com/my-org/terrapatch-cli \
+  --dest-branch main
+```
+
 For detailed `repo-copier` configuration options, authentication setup, and advanced usage patterns, refer to the [Library self-hosting documentation](/2.0/docs/library/guides/self-hosting) and the [repo-copier GitHub repository](https://github.com/gruntwork-io/repo-copier).
 
 ## Configuring the GitHub Action
@@ -70,7 +86,7 @@ You can use the following parameters to specify custom source locations for down
 - For GitHub Enterprise, use a Personal Access Token with appropriate repository access
 - Ensure your token has access to both patcher and terrapatch repositories
 
-## Example configuration
+## Example configurations
 
 ### GitHub Enterprise example
 
@@ -123,7 +139,7 @@ If your organization structure requires hosting patcher and terrapatch in differ
 
 ### GitLab self-hosted
 
-For using Patcher with GitLab self-hosted, please email us at [support@gruntwork.io](mailto:support@gruntwork.io).
+GitLab is supported with Patcher but support is new, so please email [support@gruntwork.io](mailto:support@gruntwork.io) for assistance with GitLab configuration.
 
 ## Alternative approaches
 
