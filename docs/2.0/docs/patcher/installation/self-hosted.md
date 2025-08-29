@@ -212,7 +212,7 @@ While waiting for potential Artifactory support, consider these alternatives:
 ### Getting help
 
 If you continue to experience issues:
-- Review the [Patcher troubleshooting guide](/2.0/docs/patcher/guides/troubleshooting) for general Patcher issues
+- Review the Patcher documentation for general troubleshooting guidance
 - Check the [repo-copier documentation](https://github.com/gruntwork-io/repo-copier) for repository copying issues
 - Contact [support@gruntwork.io](mailto:support@gruntwork.io) for assistance with Enterprise-specific configurations
 
