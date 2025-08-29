@@ -25,7 +25,28 @@ The primary recommended approach for self-hosting Patcher binaries is to use Gru
 
 Repo-copier automatically copies all content from Gruntwork's private repositories—including releases and binary assets—to your internal version control system. This ensures that Patcher binaries are available in your environment while maintaining automatic updates.
 
-For detailed setup instructions, see the [IaC Library self-hosting guide](/2.0/docs/library/guides/self-hosting).
+#### Required repositories for Patcher self-hosting
+
+You need to configure repo-copier to copy the following Patcher-related repositories:
+
+- [`gruntwork-io/patcher-cli`](https://github.com/gruntwork-io/patcher-cli) - The main Patcher binary
+- [`gruntwork-io/patcher-action`](https://github.com/gruntwork-io/patcher-action) - GitHub Action for running Patcher
+- [`gruntwork-io/terrapatch-cli`](https://github.com/gruntwork-io/terrapatch-cli) - Terrapatch binary for Terraform patching
+
+#### GitHub Actions permissions configuration
+
+After copying these repositories to your internal GitHub organization or GitHub Enterprise instance, you must configure GitHub Actions permissions for each repository to allow other repositories to access them.
+
+For each of the three repositories above, navigate to the repository's Actions settings:
+- Go to `https://your-github-instance.com/your-org/REPO_NAME/settings/actions`
+- Scroll down to the "Access" section
+- Select one of the following options (do **not** select "Not accessible"):
+  - **"Accessible from repositories in the 'your-org' organization"** - Allows access from repositories within your organization
+  - **"Accessible from repositories in the 'Your-Enterprise' enterprise"** - Allows access from repositories across your entire GitHub Enterprise
+
+This configuration ensures that your other repositories can use the self-hosted Patcher actions and download the necessary binaries during CI/CD workflows.
+
+For detailed repo-copier setup instructions, see the [IaC Library self-hosting guide](/2.0/docs/library/guides/self-hosting).
 
 **Supported with repo-copier:**
 - Your own GitHub.com organization
