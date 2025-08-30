@@ -27,6 +27,43 @@ Your codebase should be structured as infrastructure as code (IaC) using tools l
 - You'll need a GitHub token with appropriate permissions to create pull requests
 - For Gruntwork customers, you'll need a `PIPELINES_READ_TOKEN` to access Patcher
 
+### GitHub Fine-Grained Personal Access Token Setup
+
+For GitHub Enterprise users, you'll need to create a fine-grained personal access token with specific permissions. Follow these steps:
+
+1. **Navigate to GitHub Settings**
+   - Go to your GitHub Enterprise instance
+   - Click your profile picture → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens**
+
+2. **Create New Token**
+   - Click **Generate new token**
+   - Select **Fine-grained personal access token**
+
+3. **Configure Token Settings**
+   - **Token name**: Choose a descriptive name (e.g., "Patcher CI Token")
+   - **Expiration**: Set to **90 days** or longer based on your security policy
+   - **Resource owner**: Select your organization
+
+4. **Repository Access**
+   Configure access to the following repositories:
+   - **Your organization's patcher-cli repository** (typically `gruntwork-io/patcher-cli` or your custom org)
+   - **Your organization's terrapatch-cli repository** (typically `gruntwork-io/terrapatch-cli` or your custom org)
+
+5. **Set Required Permissions**
+   Under "Permissions", configure these **Repository permissions**:
+   - **Contents**: **Read** access
+   - **Metadata**: **Read** access  
+   - **Actions**: **Read** access (for downloading releases)
+
+6. **Generate and Store Token**
+   - Click **Generate token**
+   - **Copy the token immediately** (you won't be able to see it again)
+   - Store it securely as a GitHub secret named `PIPELINES_READ_TOKEN` in your repository
+
+:::warning
+Keep your token secure and never commit it to your repository. Always store it as a GitHub secret.
+:::
+
 ## Implementation
 
 The GitHub Actions workflow consists of two main jobs:
