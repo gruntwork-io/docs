@@ -17,48 +17,83 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an Amazon Elastic File System (EFS) file system that provides NFSv4-compatible storage that can be used
-with other AWS services, such as EC2 instances.
+This module creates an Amazon Elastic File System (EFS) with mount targets across multiple availability zones for NFSv4-compatible shared storage.
 
-EFS is also supported in Kubernetes via the [EFS CSI driver](https://github.com/kubernetes-sigs/aws-efs-csi-driver).
-Among other features, it supports `ReadWriteMany` and `ReadOnlyMany` access modes in Kubernetes, allowing a volume to be attached
-to multiple pods (even across AZs) for failover/redundancy purposes. It also supports [encryption-in-transit](https://github.com/kubernetes-sigs/aws-efs-csi-driver#encryption-in-transit)
-for an additional layer of security.
+## What This Module Creates
 
-## Features
+*   EFS file system
+*   Mount targets in specified subnets
+*   Security group for access control
+*   Optional KMS encryption
+*   Optional lifecycle policies
+*   Optional backup policies
 
-*   Create a managed NFSv4-compliant file system
-*   Supports encryption-at-rest and encryption-in-transit
-*   Automatic failover to another availability zone
+## Usage
 
-## Learn
+```hcl
+module "efs" {
+  source = "../modules/efs"
+  
+  name       = "my-efs"
+  vpc_id     = var.vpc_id
+  subnet_ids = var.private_subnet_ids
+  
+  # Security
+  allow_connections_from_security_groups = [var.app_security_group_id]
+  allow_connections_from_cidr_blocks     = ["10.0.0.0/16"]
+  
+  # Encryption
+  storage_encrypted = true
+  kms_key_arn      = var.kms_key_arn
+  
+  # Performance
+  performance_mode = "generalPurpose"
+  throughput_mode  = "bursting"
+}
+```
 
-**Note:** This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you've never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://docs.gruntwork.io/library/overview/)!
+## Key Variables
 
-### Core concepts
+### Required
 
-*   [EFS documentation](https://docs.aws.amazon.com/efs/latest/ug/index.html): Amazon's docs for EFS that cover core concepts such as performance modes, throughput modes, mounting file systems, etc.
+*   `name` - EFS file system name
+*   `vpc_id` - VPC for deployment
+*   `subnet_ids` - Subnets for mount targets (one per AZ)
 
-## Deploy
+### Security
 
-### Non-production deployment (quick start for learning)
+*   `allow_connections_from_security_groups` - Security groups that can mount
+*   `allow_connections_from_cidr_blocks` - CIDR blocks that can mount
+*   `storage_encrypted` - Enable encryption at rest
+*   `kms_key_arn` - Custom KMS key for encryption
 
-If you just want to try this repo out for experimenting and learning, check out the following resources:
+### Performance
 
-*   [examples folder](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/examples): The `examples` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   `performance_mode` - generalPurpose or maxIO
+*   `throughput_mode` - bursting, provisioned, or elastic
+*   `provisioned_throughput_in_mibps` - For provisioned mode
 
-### Production deployment
+## Outputs
 
-If you want to deploy this repo in production, check out the following resources:
+*   `file_system_id` - EFS file system ID
+*   `file_system_dns_name` - DNS name for mounting
+*   `file_system_arn` - EFS ARN
+*   `security_group_id` - Security group ID
+*   `mount_target_ids` - List of mount target IDs
 
-*   [efs module variables](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/efs/variables.tf): Configuration variables available for the EFS module. At minimum, you should configure the `allow_connections_from_cidr_blocks` and `allow_connections_from_security_groups` values to only allow access from your private VPC(s). You may also want to enable `storage_encrypted` to encrypt data at-rest.
+## Mounting
 
-## Manage
+```bash
+# Mount using DNS name
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-12345678.efs.us-east-1.amazonaws.com:/ /mnt/efs
+```
 
-### Day-to-day operations
+## Common Issues
 
-*   [How to mount an EFS file system](https://docs.aws.amazon.com/efs/latest/ug/mounting-fs.html)
-*   [How to configure backups](https://docs.aws.amazon.com/efs/latest/ug/efs-backup-solutions.html)
+*   **Mount hangs**: Check security group rules allow NFS (port 2049)
+*   **Performance**: Use maxIO mode for workloads with &gt;7000 ops/sec
+*   **Cross-AZ costs**: Data transfer between AZs incurs charges
+*   **Kubernetes**: Use [EFS CSI driver](https://github.com/kubernetes-sigs/aws-efs-csi-driver) for EKS integration
 
 ## Sample Usage
 
@@ -590,6 +625,6 @@ The IDs of the security groups created for the file system.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/efs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6b43c2bfd600064b95a9fda7eefe2ebb"
+  "hash": "361f4d6923a85b68a2a5ddfa118a6f84"
 }
 ##DOCS-SOURCER-END -->

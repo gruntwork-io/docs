@@ -17,105 +17,102 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an Amazon Database Migration Service (DMS) that makes it possible to migrate data from one source database to another target database. You can use this module to migrate your data into the AWS Cloud or between combinations of cloud and on-premise setups.
+This module creates AWS Database Migration Service (DMS) resources for database migration and replication.
 
-## About AWS DMS
+## What This Module Creates
 
-AWS Database Migration Service helps you migrate databases to AWS quickly and securely. The source database remains fully operational during the migration, minimizing downtime to applications that rely on the database. DMS can migrate your data to and from most widely used commercial and open-source databases.
+*   DMS replication instance
+*   Source and target endpoints
+*   Replication tasks
+*   Required IAM roles and policies
+*   CloudWatch log groups
+*   Security groups for network access
 
-### Key Features
+## Supported Engines
 
-*   **Minimal downtime migration**: Keep your source database running during migration
-*   **Heterogeneous migrations**: Migrate between different database engines (e.g., Oracle to Aurora)
-*   **Continuous data replication**: Keep databases synchronized with ongoing replication
-*   **Schema conversion**: Use AWS Schema Conversion Tool for heterogeneous migrations
-*   **Monitoring and alerts**: Track migration progress with CloudWatch metrics
+Currently supports:
 
-### Supported Database Engines
+*   MySQL
+*   MariaDB
+*   Aurora MySQL
 
-Currently, this module supports:
+(As source and target)
 
-*   MySQL (source and target)
-*   MariaDB (source and target)
-*   Aurora MySQL (source and target)
+## Migration Types
 
-Additional database engine support will be added in future releases.
+The module supports three migration types via `migration_type` variable:
 
-## Architecture Overview
+*   `full-load` - One-time migration
+*   `cdc` - Ongoing replication only
+*   `full-load-and-cdc` - Full migration plus ongoing replication
 
-DMS uses a replication instance to connect to your source database, read the source data, format the data for consumption by the target database, and load the data into the target database. The migration process includes:
-
-1.  **Full load**: DMS loads data from tables on the source database to tables on the target database
-2.  **Change data capture (CDC)**: DMS captures changes to the source database that occur during the full load
-3.  **Ongoing replication**: DMS applies the captured changes to keep source and target synchronized
-
-## How to Use This Module
-
-### Prerequisites
-
-Before using this module, ensure you have:
-
-*   Source and target databases configured and accessible
-*   Appropriate network connectivity between DMS and your databases
-*   Proper security groups and IAM permissions
-
-### Basic Usage
+## Usage
 
 ```hcl
 module "dms" {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v1.0.0"
+  source = "../modules/dms"
   
-  # Configure your replication instance
+  name = "my-database-migration"
+  
+  # Replication instance
   replication_instance_class = "dms.t3.medium"
   allocated_storage         = 100
   
-  # Define source and target endpoints
+  # Source endpoint
   source_endpoint_config = {
-    # ... source database configuration
+    endpoint_id   = "source-mysql"
+    endpoint_type = "source"
+    engine_name   = "mysql"
+    server_name   = "source.example.com"
+    port          = 3306
+    username      = var.source_username
+    password      = var.source_password
   }
   
+  # Target endpoint  
   target_endpoint_config = {
-    # ... target database configuration
+    endpoint_id   = "target-aurora"
+    endpoint_type = "target"
+    engine_name   = "aurora"
+    server_name   = "target.cluster.amazonaws.com"
+    port          = 3306
+    username      = var.target_username
+    password      = var.target_password
   }
   
-  # Set up replication task
   migration_type = "full-load-and-cdc"
 }
 ```
 
-### Configuration
+## Configuration
 
 *   See the [root README](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/README.adoc) for instructions on using Terraform modules.
 *   See the [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/dms/variables.tf) for all the variables you can set on this module.
 *   See the [dms-mysql examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/examples/dms-mysql/) folder for instruction on how to setup the modules to migrate data from an AWS RDS MySQL Instance to another AWS RDS MySQL Instance.
 *   See the [dms-aurora examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/examples/dms-aurora/) folder for instructions on how to setup the modules to migrate data from an AWS RDS MySQL Instance to another AWS RDS MySQL Instance.
 
-## Common Gotchas
+## Key Variables
 
-*   **Network connectivity**: Ensure your replication instance can reach both source and target databases
-*   **Storage size**: Allocate sufficient storage for the replication instance based on your data volume
-*   **Instance class**: Choose an appropriate instance class based on your migration workload
-*   **LOB columns**: Large Object columns require special handling and may impact performance
-*   **Primary keys**: Tables without primary keys may experience performance issues during CDC
+*   `name` - Name prefix for all DMS resources
+*   `replication_instance_class` - Instance size (e.g., dms.t3.medium)
+*   `allocated_storage` - Storage in GB
+*   `vpc_id` - VPC for deployment
+*   `subnet_ids` - Subnets for replication instance
+*   `migration_type` - full-load, cdc, or full-load-and-cdc
 
-## Monitoring and Troubleshooting
+## Common Issues
 
-Monitor your DMS migration using:
+*   **Network**: Ensure replication instance can reach both databases
+*   **Storage**: Allocate enough for your data volume
+*   **Primary keys**: Required for CDC performance
+*   **LOB columns**: May need special handling
 
-*   CloudWatch metrics for replication instance CPU, memory, and network
-*   DMS task status and progress indicators
-*   CloudWatch logs for detailed error messages
-*   Table statistics to track individual table migration progress
+## Outputs
 
-## Best Practices
-
-1.  **Test migrations**: Always test with a subset of data before full migration
-2.  **Monitor performance**: Watch CloudWatch metrics during migration
-3.  **Plan maintenance windows**: Schedule migrations during low-traffic periods
-4.  **Validate data**: Verify data integrity after migration completes
-5.  **Use appropriate instance sizes**: Right-size your replication instance for optimal performance
-
-For more information, see the [AWS DMS Documentation](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html).
+*   `replication_instance_arn` - ARN of replication instance
+*   `source_endpoint_arn` - Source endpoint ARN
+*   `target_endpoint_arn` - Target endpoint ARN
+*   `replication_task_arn` - Task ARN
 
 ## Sample Usage
 
@@ -1185,6 +1182,6 @@ A map of maps containing the replication tasks created and their full output of 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/dms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1e303c245bc748be9f9f1054bc044b4f"
+  "hash": "1c0777c7ac264de053fdb9b0cb3a53cd"
 }
 ##DOCS-SOURCER-END -->
