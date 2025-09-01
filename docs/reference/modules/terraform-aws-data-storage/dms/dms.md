@@ -86,7 +86,7 @@ module "dms" {
 
 ## Configuration
 
-*   See the [root README](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/README.adoc) for instructions on using Terraform modules.
+*   See the [root README](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/README.md) for instructions on using Terraform modules.
 *   See the [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/dms/variables.tf) for all the variables you can set on this module.
 *   See the [dms-mysql examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/examples/dms-mysql/) folder for instruction on how to setup the modules to migrate data from an AWS RDS MySQL Instance to another AWS RDS MySQL Instance.
 *   See the [dms-aurora examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/examples/dms-aurora/) folder for instructions on how to setup the modules to migrate data from an AWS RDS MySQL Instance to another AWS RDS MySQL Instance.
@@ -1182,6 +1182,6 @@ A map of maps containing the replication tasks created and their full output of 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/dms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1c0777c7ac264de053fdb9b0cb3a53cd"
+  "hash": "1a4da6cff5a99f943f0c2859db6a1234"
 }
 ##DOCS-SOURCER-END -->
