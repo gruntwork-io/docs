@@ -17,7 +17,105 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an Amazon Database Migration Service (DMS) that makes it possible to migrate data from one source database to another target database. You can use this module to migrate your data into the AWS Cloud or between combinations of cloud and on-premise setups. Currently, this module only support MySQL, MariaDB, and Aurora MySQL engines as source and target databases. Additional support for more database engines will be added in the future.
+This module creates an Amazon Database Migration Service (DMS) that makes it possible to migrate data from one source database to another target database. You can use this module to migrate your data into the AWS Cloud or between combinations of cloud and on-premise setups.
+
+## About AWS DMS
+
+AWS Database Migration Service helps you migrate databases to AWS quickly and securely. The source database remains fully operational during the migration, minimizing downtime to applications that rely on the database. DMS can migrate your data to and from most widely used commercial and open-source databases.
+
+### Key Features
+
+*   **Minimal downtime migration**: Keep your source database running during migration
+*   **Heterogeneous migrations**: Migrate between different database engines (e.g., Oracle to Aurora)
+*   **Continuous data replication**: Keep databases synchronized with ongoing replication
+*   **Schema conversion**: Use AWS Schema Conversion Tool for heterogeneous migrations
+*   **Monitoring and alerts**: Track migration progress with CloudWatch metrics
+
+### Supported Database Engines
+
+Currently, this module supports:
+
+*   MySQL (source and target)
+*   MariaDB (source and target)
+*   Aurora MySQL (source and target)
+
+Additional database engine support will be added in future releases.
+
+## Architecture Overview
+
+DMS uses a replication instance to connect to your source database, read the source data, format the data for consumption by the target database, and load the data into the target database. The migration process includes:
+
+1.  **Full load**: DMS loads data from tables on the source database to tables on the target database
+2.  **Change data capture (CDC)**: DMS captures changes to the source database that occur during the full load
+3.  **Ongoing replication**: DMS applies the captured changes to keep source and target synchronized
+
+## How to Use This Module
+
+### Prerequisites
+
+Before using this module, ensure you have:
+
+*   Source and target databases configured and accessible
+*   Appropriate network connectivity between DMS and your databases
+*   Proper security groups and IAM permissions
+
+### Basic Usage
+
+```hcl
+module "dms" {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v1.0.0"
+  
+  # Configure your replication instance
+  replication_instance_class = "dms.t3.medium"
+  allocated_storage         = 100
+  
+  # Define source and target endpoints
+  source_endpoint_config = {
+    # ... source database configuration
+  }
+  
+  target_endpoint_config = {
+    # ... target database configuration
+  }
+  
+  # Set up replication task
+  migration_type = "full-load-and-cdc"
+}
+```
+
+### Configuration
+
+*   See the [root README](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/README.adoc) for instructions on using Terraform modules.
+*   See the [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/dms/variables.tf) for all the variables you can set on this module.
+*   See the [dms-mysql examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/examples/dms-mysql/) folder for instruction on how to setup the modules to migrate data from an AWS RDS MySQL Instance to another AWS RDS MySQL Instance.
+*   See the [dms-aurora examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/examples/dms-aurora/) folder for instructions on how to setup the modules to migrate data from an AWS RDS MySQL Instance to another AWS RDS MySQL Instance.
+
+## Common Gotchas
+
+*   **Network connectivity**: Ensure your replication instance can reach both source and target databases
+*   **Storage size**: Allocate sufficient storage for the replication instance based on your data volume
+*   **Instance class**: Choose an appropriate instance class based on your migration workload
+*   **LOB columns**: Large Object columns require special handling and may impact performance
+*   **Primary keys**: Tables without primary keys may experience performance issues during CDC
+
+## Monitoring and Troubleshooting
+
+Monitor your DMS migration using:
+
+*   CloudWatch metrics for replication instance CPU, memory, and network
+*   DMS task status and progress indicators
+*   CloudWatch logs for detailed error messages
+*   Table statistics to track individual table migration progress
+
+## Best Practices
+
+1.  **Test migrations**: Always test with a subset of data before full migration
+2.  **Monitor performance**: Watch CloudWatch metrics during migration
+3.  **Plan maintenance windows**: Schedule migrations during low-traffic periods
+4.  **Validate data**: Verify data integrity after migration completes
+5.  **Use appropriate instance sizes**: Right-size your replication instance for optimal performance
+
+For more information, see the [AWS DMS Documentation](https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html).
 
 ## Sample Usage
 
@@ -1087,6 +1185,6 @@ A map of maps containing the replication tasks created and their full output of 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/dms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "202e7e55677c11ee2ddaaec7f20f5e06"
+  "hash": "1e303c245bc748be9f9f1054bc044b4f"
 }
 ##DOCS-SOURCER-END -->

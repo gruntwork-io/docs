@@ -17,27 +17,27 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module creates an Amazon Elastic File System (EFS) file system that provides NFSv4-compatible storage that can be used with other AWS services, such as EC2 instances.
+This module creates an Amazon Elastic File System (EFS) file system that provides NFSv4-compatible storage that can be used
+with other AWS services, such as EC2 instances.
 
-EFS is also supported in Kubernetes via the [EFS CSI driver](https://github.com/kubernetes-sigs/aws-efs-csi-driver). Among other features, it supports `ReadWriteMany` and `ReadOnlyMany` access modes in Kubernetes, allowing a volume to be attached to multiple pods (even across AZs) for failover/redundancy purposes. It also supports [encryption-in-transit](https://github.com/kubernetes-sigs/aws-efs-csi-driver#encryption-in-transit) for an additional layer of security.
+EFS is also supported in Kubernetes via the [EFS CSI driver](https://github.com/kubernetes-sigs/aws-efs-csi-driver).
+Among other features, it supports `ReadWriteMany` and `ReadOnlyMany` access modes in Kubernetes, allowing a volume to be attached
+to multiple pods (even across AZs) for failover/redundancy purposes. It also supports [encryption-in-transit](https://github.com/kubernetes-sigs/aws-efs-csi-driver#encryption-in-transit)
+for an additional layer of security.
 
 ## Features
 
 *   Create a managed NFSv4-compliant file system
-
 *   Supports encryption-at-rest and encryption-in-transit
-
 *   Automatic failover to another availability zone
 
 ## Learn
 
-Note
-
-This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://docs.gruntwork.io/library/overview/)!
+**Note:** This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you've never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://docs.gruntwork.io/library/overview/)!
 
 ### Core concepts
 
-*   [EFS documentation](https://docs.aws.amazon.com/efs/latest/ug/index.html): Amazon’s docs for EFS that cover core concepts such as performance modes, throughput modes, mounting file systems, etc.
+*   [EFS documentation](https://docs.aws.amazon.com/efs/latest/ug/index.html): Amazon's docs for EFS that cover core concepts such as performance modes, throughput modes, mounting file systems, etc.
 
 ## Deploy
 
@@ -58,7 +58,6 @@ If you want to deploy this repo in production, check out the following resources
 ### Day-to-day operations
 
 *   [How to mount an EFS file system](https://docs.aws.amazon.com/efs/latest/ug/mounting-fs.html)
-
 *   [How to configure backups](https://docs.aws.amazon.com/efs/latest/ug/efs-backup-solutions.html)
 
 ## Sample Usage
@@ -586,11 +585,11 @@ The IDs of the security groups created for the file system.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/efs/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/efs/readme.md",
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/efs/variables.tf",
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/efs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5b940f3ad7b97933d68bf3df3d2103c4"
+  "hash": "6b43c2bfd600064b95a9fda7eefe2ebb"
 }
 ##DOCS-SOURCER-END -->
