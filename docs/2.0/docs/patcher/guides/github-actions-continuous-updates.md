@@ -43,6 +43,9 @@ For GitHub Enterprise users, you'll need to create a fine-grained personal acces
    - **Token name**: Choose a descriptive name (e.g., "Patcher CI Token")
    - **Expiration**: Set to **90 days** or longer based on your security policy
    - **Resource owner**: Select your organization
+     :::warning
+     It's easy to not select the right organization! Be sure to select the GitHub org -- not your username -- that actually holds the repos you're looking to access.
+     :::
 
 4. **Repository Access**
    Configure access to the following repositories:
