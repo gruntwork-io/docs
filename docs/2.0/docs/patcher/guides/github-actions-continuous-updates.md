@@ -97,11 +97,11 @@ jobs:
       spec: ${{ steps.get-spec.outputs.spec }}
     steps:
       - uses: actions/checkout@v4
-      - uses: gruntwork-io/patcher-action@v2
+      - uses: gruntwork-io/patcher-action@v3
         id: get-spec
         with:
           patcher_command: report
-          github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
+          auth_token: ${{ secrets.PIPELINES_READ_TOKEN }}
           working_dir: ./
           spec_file: /tmp/patcher-spec.json
 
@@ -120,16 +120,105 @@ jobs:
         run: |
           echo '${{ needs.patcher-report.outputs.spec }}' > /tmp/patcher-spec.json
 
-      - uses: gruntwork-io/patcher-action@v2
+      - uses: gruntwork-io/patcher-action@v3
         with:
           patcher_command: update
-          github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
+          auth_token: ${{ secrets.PIPELINES_READ_TOKEN }}
           working_dir: ./
           dependency: ${{ matrix.dependency.ID }}
           spec_file: /tmp/patcher-spec.json
-          pull_request_title: "[Patcher] Update ${{ matrix.dependency.ID }}"
-          pull_request_branch: "patcher-updates-${{ matrix.dependency.ID }}"
+          pr_title: "[Patcher] Update ${{ matrix.dependency.ID }}"
+          pr_target_branch: "patcher-updates-${{ matrix.dependency.ID }}"
 ```
+
+## Migrating from v2 to v3
+
+:::info
+Patcher Action v3 introduces breaking changes that require updating your workflow configuration. This section helps you migrate from v2 to v3.
+:::
+
+### Key Breaking Changes
+
+**1. Token Consolidation**
+- **v2**: Used separate `github_token`, `read_token`, and `update_token` inputs
+- **v3**: Uses a single `auth_token` input for all authentication
+
+**2. Parameter Renames**
+- `pull_request_branch` → `pr_target_branch`
+- `pull_request_title` → `pr_title`
+
+**3. New Custom Organization Support**
+- `github_org`: Specify custom organization (defaults to "gruntwork-io")
+- `github_base_url`: Support for GitHub Enterprise instances
+- `patcher_git_repo` / `terrapatch_git_repo`: Custom repository names
+- `terrapatch_github_org`: Separate organization for terrapatch
+
+### Migration Examples
+
+**Before (v2):**
+```yml
+- uses: gruntwork-io/patcher-action@v2
+  with:
+    patcher_command: report
+    github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
+    working_dir: ./
+    spec_file: /tmp/patcher-spec.json
+
+- uses: gruntwork-io/patcher-action@v2
+  with:
+    patcher_command: update
+    github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
+    dependency: ${{ matrix.dependency.ID }}
+    spec_file: /tmp/patcher-spec.json
+    pull_request_title: "[Patcher] Update ${{ matrix.dependency.ID }}"
+    pull_request_branch: "patcher-updates-${{ matrix.dependency.ID }}"
+```
+
+**After (v3):**
+```yml
+- uses: gruntwork-io/patcher-action@v3
+  with:
+    patcher_command: report
+    auth_token: ${{ secrets.PIPELINES_READ_TOKEN }}
+    working_dir: ./
+    spec_file: /tmp/patcher-spec.json
+
+- uses: gruntwork-io/patcher-action@v3
+  with:
+    patcher_command: update
+    auth_token: ${{ secrets.PIPELINES_READ_TOKEN }}
+    dependency: ${{ matrix.dependency.ID }}
+    spec_file: /tmp/patcher-spec.json
+    pr_title: "[Patcher] Update ${{ matrix.dependency.ID }}"
+    pr_target_branch: "patcher-updates-${{ matrix.dependency.ID }}"
+```
+
+### Custom Organization Setup (v3 Only)
+
+For GitHub Enterprise or custom organizations:
+
+```yml
+- uses: gruntwork-io/patcher-action@v3
+  with:
+    patcher_command: report
+    auth_token: ${{ secrets.PIPELINES_READ_TOKEN }}
+    github_base_url: "https://github.company.com"
+    github_org: "my-custom-org"
+    patcher_git_repo: "patcher-cli"
+    terrapatch_git_repo: "terrapatch-cli"
+    terrapatch_github_org: "my-custom-org"  # Optional: defaults to github_org
+    working_dir: ./
+    spec_file: /tmp/patcher-spec.json
+```
+
+### Migration Checklist
+
+- [ ] Replace `github_token` with `auth_token` in all patcher-action steps
+- [ ] Update `pull_request_branch` to `pr_target_branch`
+- [ ] Update `pull_request_title` to `pr_title`
+- [ ] Update action version from `@v2` to `@v3`
+- [ ] Configure custom organization settings if needed (GitHub Enterprise users)
+- [ ] Test the updated workflow with a manual trigger
 
 ## Key Configuration Options
 
@@ -158,10 +247,10 @@ The workflow is configured to run:
 If you want to exclude certain directories or files, you can add filtering:
 
 ```yml
-- uses: gruntwork-io/patcher-action@v2
+- uses: gruntwork-io/patcher-action@v3
   with:
     patcher_command: report
-    github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
+    auth_token: ${{ secrets.PIPELINES_READ_TOKEN }}
     exclude_dirs: "examples/**,tests/**"
     working_dir: ./
     spec_file: /tmp/patcher-spec.json
@@ -171,7 +260,7 @@ If you want to exclude certain directories or files, you can add filtering:
 Control how aggressively Patcher updates dependencies:
 
 ```yml
-- uses: gruntwork-io/patcher-action@v2
+- uses: gruntwork-io/patcher-action@v3
   with:
     patcher_command: update
     update_strategy: next-safe  # or "next-breaking"
@@ -182,7 +271,7 @@ Control how aggressively Patcher updates dependencies:
 Test your workflow without creating actual pull requests:
 
 ```yml
-- uses: gruntwork-io/patcher-action@v2
+- uses: gruntwork-io/patcher-action@v3
   with:
     patcher_command: update
     dry_run: true
