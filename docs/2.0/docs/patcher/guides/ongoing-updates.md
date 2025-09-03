@@ -50,10 +50,10 @@ Most of the time when users have challenges getting Patcher to work, it's becaus
 #### 3. Choose when to run Patcher
 - There are three non-mutually exclusive options for when Patcher will run:
   1. Schedule (recommended): Run Patcher on a weekly basis (or other cadence that fits your workflow).
-  2. Manual: Use `workflow_dispatch` for ad-hoc runs. TODO: Clarify what this means and why it's useful.
+  2. Manual: Use `workflow_dispatch` for ad-hoc runs. This lets you trigger Patcher on demand from the GitHub UI to test changes, validate permissions, or run outside your normal schedule.
   3. New module release: Use the `repository_dispatch` trigger to run when a new module release is published.
 
-  TODO: Give examples of how to configure this, or generally more detail so users know what to do here. If the example below already has a schedule, just reference that.
+  See the examples below for a scheduled run and a repository_dispatch trigger you can reuse. For most teams, a weekly schedule plus the ability to run manually works well.
 
 :::info
 Almost all customers opt for the scheduled approach, with a periodic manual run.
@@ -63,7 +63,7 @@ Almost all customers opt for the scheduled approach, with a periodic manual run.
 - Manually run the GitHub Actions workflow the first time to validate configuration.
 - Review the generated PRs and merge as desired.
 
-TODO: Give users more guidance on how to manually run the GitHub Actions workflow.
+To run manually: in your repo, go to Actions → select “Patcher Updates” → Run workflow → choose the branch → Run workflow.
 
 ### Step-by-step setup for GitHub Enterprise users
 
@@ -76,7 +76,7 @@ The first step is to [self-host the IaC Library](../../library/guides/self-hosti
 To run Patcher locally, you'll need to configure repo-copier to mirror each of the following repos:
 
 1. https://github.com/gruntwork-io/patcher-cli
-2. https://github.com/gruntwork-io/terragrunt-cli
+2. https://github.com/gruntwork-io/terrapatch-cli
 3. https://github.com/gruntwork-io/patcher-action
 
 #### 2. Follow the steps above
@@ -146,7 +146,7 @@ jobs:
         with:
           # Make sure Patcher has enough Git history to correctly determine changes
           fetch-depth: 0
-      
+
       - uses: gruntwork-io/patcher-action@v2
         with:
           patcher_command: update
@@ -156,30 +156,48 @@ jobs:
           pull_request_title: "[Patcher] Update ${{ matrix.dependency }}"
           pull_request_branch: "patcher-updates-${{ matrix.dependency }}"
 ```
+### For GitHub Enterprise users
 
-### For GitHub Enterprise Users
+Use the same GitHub Action above, but configure two jobs within the same workflow and point to your GitHub Enterprise instance and organization via the enterprise inputs. If you mirror the action internally, replace the action reference to your mirrored copy.
 
-Use the same GitHub Action above, but replace each of the `uses: gruntwork-io/patcher-action@v2` as follows:
-
-TODO: Double-check this; is this the right way to do this?
+Here is an example showing two jobs in a single workflow:
 
 ```yml
-# TODO: Make it clear where this gets swapped in
-# TODO: Make it clear the user should specify their own copy of gruntwork-io/patcher-action, not ours.
-- uses: gruntwork-io/patcher-action@v2
-  with:
-    patcher_command: report
-    read_token: ${{ secrets.PATCHER_CI_TOKEN }}
-    github_base_url: "https://github.company.com"
-    github_org: "my-custom-org"
-    patcher_git_repo: "patcher-cli"
-    terrapatch_git_repo: "terrapatch-cli"
-    working_dir: ./
+jobs:
+  # 1) Report job (Enterprise): discover outdated dependencies
+  patcher-report:
+    runs-on: ubuntu-latest
+    outputs:
+      dependencies: ${{ steps.get-deps.outputs.dependencies }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: get-deps
+        uses: my-enterprise-org/patcher-action@v2
+        with:
+          patcher_command: report
+          read_token: ${{ secrets.PATCHER_CI_TOKEN }}
+          github_base_url: "https://github.company.com"
+          github_org: "my-enterprise-org"
+          patcher_git_repo: "patcher-cli"
+          terrapatch_git_repo: "terrapatch-cli"
+          # Optional: defaults to github_org if not provided
+          terrapatch_github_org: "my-enterprise-org"
+          working_dir: ./
 
-...
-
-  # TODO: udpate these values to be correct for GitHUb Enterprise
- - uses: gruntwork-io/patcher-action@v2
+  # 2) Update job (Enterprise): open one PR per dependency
+  patcher-update:
+    needs: [patcher-report]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        dependency: ${{ fromJson(needs.patcher-report.outputs.dependencies) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Ensure enough history for accurate diffs
+          fetch-depth: 0
+    - uses: gruntwork-io/patcher-action@v2
         with:
           patcher_command: update
           update_token: ${{ secrets.PATCHER_CI_TOKEN }}
@@ -187,7 +205,6 @@ TODO: Double-check this; is this the right way to do this?
           dependency: ${{ matrix.dependency }}
           pull_request_title: "[Patcher] Update ${{ matrix.dependency }}"
           pull_request_branch: "patcher-updates-${{ matrix.dependency }}"
-
 ```
 
 ## GitHub Personal Access Token Setup
@@ -210,7 +227,7 @@ You could create either a [fine-grained or classic token](https://docs.github.co
      - If you are accessing these via GitHub.com, the organization is `gruntwork-io`.
      - If you are accessing these via self-hosted GitHub Enterprise, the organization is whatever GitHub organization has the `patcher-cli` and `terrapatch-cli` repos.
 
-     :::warning
+     :::warn
      It's easy to not select the right organization! Be sure to select the right GitHub org -- not your username -- that actually holds the repos you're looking to access.
      :::
 
@@ -222,7 +239,7 @@ You could create either a [fine-grained or classic token](https://docs.github.co
 #### 5. Set Required Permissions
    Under "Permissions", configure these **Repository permissions**:
    - **Contents**: **Read** access
-   - **Metadata**: **Read** access  
+   - **Metadata**: **Read** access
    - **Actions**: **Read** access (for downloading releases)
 
    :::info
@@ -232,10 +249,9 @@ You could create either a [fine-grained or classic token](https://docs.github.co
 #### 6. Generate and Store Token
    - Click **Generate token**
    - **Copy the token immediately** (you won't be able to see it again)
-   - Store it securely as a GitHub secret named `PATCHER_CI_TOKEN` in your repository
-     TODO: Give more guidance on where to store this.
+   - Store it as a GitHub Actions secret named `PATCHER_CI_TOKEN` in the repository where the workflow runs.
 
-    :::warning
+    :::warn
     Keep your token secure and never commit it to your repository. Always store it as a GitHub secret.
     :::
 
@@ -251,7 +267,7 @@ For more information on the configuration options in our standard GitHub Action,
 If you want to exclude certain directories or files, you can add filtering:
 
 ```yml
-- uses: gruntwork-io/patcher-action@v3
+- uses: gruntwork-io/patcher-action@v2
   with:
     patcher_command: report
     read_token: ${{ secrets.PATCHER_CI_TOKEN }}
@@ -263,7 +279,7 @@ If you want to exclude certain directories or files, you can add filtering:
 Control how aggressively Patcher updates dependencies:
 
 ```yml
-- uses: gruntwork-io/patcher-action@v3
+- uses: gruntwork-io/patcher-action@v2
   with:
     patcher_command: update
     update_token: ${{ secrets.PATCHER_CI_TOKEN }}
@@ -275,7 +291,7 @@ Control how aggressively Patcher updates dependencies:
 Test your workflow without creating actual pull requests:
 
 ```yml
-- uses: gruntwork-io/patcher-action@v3
+- uses: gruntwork-io/patcher-action@v2
   with:
     patcher_command: update
     update_token: ${{ secrets.PATCHER_CI_TOKEN }}
