@@ -33,19 +33,19 @@ This module creates an Amazon Elastic File System (EFS) with mount targets acros
 ```hcl
 module "efs" {
   source = "../modules/efs"
-  
+
   name       = "my-efs"
   vpc_id     = var.vpc_id
   subnet_ids = var.private_subnet_ids
-  
+
   # Security
   allow_connections_from_security_groups = [var.app_security_group_id]
   allow_connections_from_cidr_blocks     = ["10.0.0.0/16"]
-  
+
   # Encryption
   storage_encrypted = true
   kms_key_arn      = var.kms_key_arn
-  
+
   # Performance
   performance_mode = "generalPurpose"
   throughput_mode  = "bursting"
@@ -625,6 +625,6 @@ The IDs of the security groups created for the file system.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/efs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "361f4d6923a85b68a2a5ddfa118a6f84"
+  "hash": "171024750de6e73d20d0438cb64edb41"
 }
 ##DOCS-SOURCER-END -->

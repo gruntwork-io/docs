@@ -69,7 +69,7 @@ module "dms" {
     password      = var.source_password
   }
   
-  # Target endpoint  
+  # Target endpoint
   target_endpoint_config = {
     endpoint_id   = "target-aurora"
     endpoint_type = "target"
@@ -1182,6 +1182,6 @@ A map of maps containing the replication tasks created and their full output of 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/dms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1a4da6cff5a99f943f0c2859db6a1234"
+  "hash": "802e7e1e82ea80bd93cf11737029cfa3"
 }
 ##DOCS-SOURCER-END -->
