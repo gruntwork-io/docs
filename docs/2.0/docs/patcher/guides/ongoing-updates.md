@@ -58,16 +58,15 @@ jobs:
   patcher-report:
     runs-on: ubuntu-latest
     outputs:
-      spec: ${{ steps.get-spec.outputs.spec }}
+      dependencies: ${{ steps.get-deps.outputs.dependencies }}
     steps:
       - uses: actions/checkout@v4
-      - uses: gruntwork-io/patcher-action@v2
-        id: get-spec
+      - id: get-deps
+        uses: gruntwork-io/patcher-action@v3
         with:
           patcher_command: report
-          github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
+          read_token: ${{ secrets.PIPELINES_READ_TOKEN }}
           working_dir: ./
-          spec_file: /tmp/patcher-spec.json
 
   update-dependencies:
     needs: [patcher-report]
@@ -75,27 +74,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dependency: ${{ fromJson(needs.patcher-report.outputs.spec).Dependencies }}
+        dependency: ${{ fromJson(needs.patcher-report.outputs.dependencies) }}
     steps:
       - uses: actions/checkout@v4
         with:
           # Make sure Patcher has enough Git history to correctly determine changes
           fetch-depth: 0
 
-      - name: Create the spec file
-        shell: bash
-        run: |
-          echo '${{ needs.patcher-report.outputs.spec }}' > /tmp/patcher-spec.json
-
-      - uses: gruntwork-io/patcher-action@v2
+      - uses: gruntwork-io/patcher-action@v3
         with:
           patcher_command: update
-          github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
+          update_token: ${{ secrets.PIPELINES_READ_TOKEN }}
           working_dir: ./
-          dependency: ${{ matrix.dependency.ID }}
-          spec_file: /tmp/patcher-spec.json
-          pull_request_title: "[Patcher] Update ${{ matrix.dependency.ID }}"
-          pull_request_branch: "patcher-updates-${{ matrix.dependency.ID }}"
+          dependency: ${{ matrix.dependency }}
+          pull_request_title: "[Patcher] Update ${{ matrix.dependency }}"
+          pull_request_branch: "patcher-updates-${{ matrix.dependency }}"
 ```
 
 ### Custom Organization Setup (v3 Only)
@@ -106,14 +99,14 @@ For GitHub Enterprise or custom organizations:
 - uses: gruntwork-io/patcher-action@v3
   with:
     patcher_command: report
-    auth_token: ${{ secrets.PIPELINES_READ_TOKEN }}
+    read_token: ${{ secrets.PIPELINES_READ_TOKEN }}
     github_base_url: "https://github.company.com"
     github_org: "my-custom-org"
     patcher_git_repo: "patcher-cli"
     terrapatch_git_repo: "terrapatch-cli"
-    terrapatch_github_org: "my-custom-org"  # Optional: defaults to github_org
+    # Optional: defaults to github_org if not provided
+    terrapatch_github_org: "my-custom-org"
     working_dir: ./
-    spec_file: /tmp/patcher-spec.json
 ```
 
 ## Key Configuration Options
@@ -146,10 +139,9 @@ If you want to exclude certain directories or files, you can add filtering:
 - uses: gruntwork-io/patcher-action@v3
   with:
     patcher_command: report
-    auth_token: ${{ secrets.PIPELINES_READ_TOKEN }}
+    read_token: ${{ secrets.PIPELINES_READ_TOKEN }}
     exclude_dirs: "examples/**,tests/**"
     working_dir: ./
-    spec_file: /tmp/patcher-spec.json
 ```
 
 ### Update Strategies
@@ -159,6 +151,7 @@ Control how aggressively Patcher updates dependencies:
 - uses: gruntwork-io/patcher-action@v3
   with:
     patcher_command: update
+    update_token: ${{ secrets.PIPELINES_READ_TOKEN }}
     update_strategy: next-safe  # or "next-breaking"
     # ... other parameters
 ```
@@ -170,6 +163,7 @@ Test your workflow without creating actual pull requests:
 - uses: gruntwork-io/patcher-action@v3
   with:
     patcher_command: update
+    update_token: ${{ secrets.PIPELINES_READ_TOKEN }}
     dry_run: true
     # ... other parameters
 ```
