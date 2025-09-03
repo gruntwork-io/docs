@@ -572,9 +572,9 @@ const sidebar = [
     collapsed: true,
     items: [
       {
-        label: "GitHub Actions for Continuous Updates",
+        label: "Ongoing Updates",
         type: "doc",
-        id: "2.0/docs/patcher/guides/github-actions-continuous-updates",
+        id: "2.0/docs/patcher/guides/ongoing-updates",
       },
       {
         label: "Setting up Promotion Workflows",
