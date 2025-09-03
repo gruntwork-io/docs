@@ -35,37 +35,6 @@ The GitHub Actions workflow consists of two main jobs:
 1. **`patcher-report`**: Scans your entire repository for outdated dependencies
 2. **`update-dependencies`**: Creates individual pull requests for each dependency that needs updating
 ### Step-by-step setup
-### Step-by-step setup
-
-1) Configure repository permissions
-- Ensure the workflow has permissions:
-  permissions:
-    contents: write
-    pull-requests: write
-
-2) Create a fine-grained token
-- Create a token that can read patcher-cli and terrapatch-cli releases in your org (see “GitHub Fine-Grained Personal Access Token Setup” below).
-- Save it as a repository secret named PIPELINES_READ_TOKEN.
-
-3) Choose when to run
-- Schedule (recommended): weekly or at a cadence that fits your change velocity.
-- Manual: use workflow_dispatch for ad-hoc runs.
-- repository_dispatch: trigger when a new module release is published (optional).
-
-4) Add the workflow file
-- Create .github/workflows/patcher-continuous-updates.yml using the example below.
-- The workflow has two jobs:
-  - patcher-report: discovers outdated dependencies and outputs them as JSON (dependencies).
-  - update-dependencies: iterates those dependencies and opens one PR per dependency.
-
-5) Confirm branch protections
-- Ensure the workflow can push branches and open PRs on your target repo (branch protection may require status checks).
-
-6) Run and review
-- Manually run the workflow the first time to validate configuration.
-- Review the generated PRs and merge as desired.
-
-### Step-by-step setup
 
 1) Configure repository permissions
 - Ensure the workflow has permissions:
@@ -96,35 +65,6 @@ The GitHub Actions workflow consists of two main jobs:
 - Review the generated PRs and merge as desired.
 
 
-1) Configure repository permissions
-- Ensure the workflow has permissions:
-  permissions:
-    contents: write
-    pull-requests: write
-
-2) Create a fine-grained token
-- Create a token that can read patcher-cli and terrapatch-cli releases in your org (see “GitHub Fine-Grained Personal Access Token Setup” below).
-- Save it as a repository secret named PIPELINES_READ_TOKEN.
-
-3) Choose when to run
-- Schedule (recommended): weekly or at a cadence that fits your change velocity.
-- Manual: use workflow_dispatch for ad-hoc runs.
-- repository_dispatch: trigger when a new module release is published (optional).
-
-4) Add the workflow file
-- Create .github/workflows/patcher-continuous-updates.yml using the example below.
-- The workflow has two jobs:
-  - patcher-report: discovers outdated dependencies and outputs them as JSON (dependencies).
-  - update-dependencies: iterates those dependencies and opens one PR per dependency.
-
-5) Confirm branch protections
-- Ensure the workflow can push branches and open PRs on your target repo (branch protection may require status checks).
-
-6) Run and review
-- Manually run the workflow the first time to validate configuration.
-- Review the generated PRs and merge as desired.
-
-### Step-by-step setup
 
 1) Configure repository permissions
 - Ensure the workflow has permissions:
@@ -153,6 +93,7 @@ The GitHub Actions workflow consists of two main jobs:
 6) Run and review
 - Manually run the workflow the first time to validate configuration.
 - Review the generated PRs and merge as desired.
+
 
 
 
