@@ -97,6 +97,10 @@ Our published `patcher-action` specifies the GitHub Actions workflow will `runs-
 1. Change the GitHub Actions workflow `runs-on:` value to a runner you have internaly, or
 2. Tag your existing runners with `ubuntu-latest` so it gets picked up by the new GitHub Action.
 
+#### 5. Make your internal GitHub Action accessible 
+
+By default, repos in GitHub Enterprise are not accessible to GitHub Actions run in other repos. We will need to change this setting by going to your internal `patcher-action` rep → click Settings → click Actions, then General → scroll down to "Access" and select the desired access level (we recommend "Accessible from repositories in the 'your_org' organization").
+
 ## GitHub Actions Workflow Examples
 
 We've included example GitHub Actions workflow files both for GitHub.com users and GitHub Enterprise users (both hosted and self-hosted).
