@@ -2,7 +2,7 @@
 
 Gruntwork is a co-founder and active maintainer of [OpenTofu](https://opentofu.org/), the open source successor to HashiCorp Terraform. We proudly support OpenTofu because we believe that core infrastructure is too critical to run on anything but proven open source technology. In line with this philosophy, Gruntwork IaC Library aims to provide first-class OpenTofu support.
 
- But in the real world, platform engineers face endless module and tooling upgrades, [yak shaves](https://softwareengineering.stackexchange.com/a/388236) and competiting priorities. This means we must balance our desire to embrace the latest OpenTofu functionality with our separate principle of [being judicious with new features](be-judicious-with-new-features.md).
+ But in the real world, platform engineers face endless module and tooling upgrades, [yak shaves](https://softwareengineering.stackexchange.com/a/388236) and competing priorities. This means we must balance our desire to embrace the latest OpenTofu functionality with our separate principle of [being judicious with new features](be-judicious-with-new-features.md).
  
 ## Core principle
 
@@ -13,8 +13,8 @@ Given our need to balance embracing the latest OpenTofu functionality while keep
 ### High-level approach
 
 1. We support modern OpenTofu versions in our modules.
-2. However, we strongly prefer language features that work identically in both OpenTofu and Terraform.
-4. We avoid OpenTofu-specific syntax unless there is a compelling reason and clear customer benefit.
+1. However, we strongly prefer language features that work identically in both OpenTofu and Terraform.
+1. We avoid OpenTofu-specific syntax unless there is a compelling reason and clear customer benefit.
 
 ### OpenTofu/Terraform version support
 
@@ -28,7 +28,7 @@ When we upgrade a module to require a newer version of OpenTofu, we explicitly r
 When evaluating new OpenTofu language features for use in Gruntwork modules:
 
 1. **Dual-compatible features (Preferred)**: Features that work identically in both OpenTofu and Terraform should be placed in `.tf` files. (e.g. see [cross-variable validation](#cross-variable-validation) below.)
-2. **OpenTofu-specific Features (Discouraged)**: Features that only work in OpenTofu should be placed in `.tofu` files and used sparingly. This way, Terraform users will ignore these files, while OpenTofu users will automatically use them instead of the corresponding `.tf` files. But doing this means extra mintenance, so we will use this approach sparingly, if at all.
+2. **OpenTofu-specific Features (Discouraged)**: Features that only work in OpenTofu should be placed in `.tofu` files and used sparingly. Terraform ignores `.tofu` files, while OpenTofu reads both `.tf` and `.tofu`. Avoid duplicating the same blocks across both extensions; prefer additive enhancements in `.tofu`. This approach increases maintenance cost, so we will use it only when the user benefit is clear.
 3. **Terraform-specific Features**: We do not support Terraform-specific features.
 
 ## Current feature adoption
@@ -42,7 +42,7 @@ We now support cross-variable validation (the ability to reference the values of
 
 ## Future evolution
 
-Theis principle will evolve as the Terraform and OpenTofu ecosystems develop. We will:
-- Regularly review compatibility requirements based on customer needs
-- Update our supported feature list as new stable releases become available
-- Maintain clear communication about any changes to our compatibility strategy
+-This principle will evolve as the Terraform and OpenTofu ecosystems develop. We will:
+-- Regularly review compatibility and our support policy based on customer needs
+-- Update our supported feature list as new stable releases become available
+-- Clearly communicate any changes to our compatibility strategy
