@@ -1,27 +1,24 @@
-# Support Smooth OpenTofu Adoption
+# Prefer OpenTofu; Minimize Friction
 
-Gruntwork is a co-founder and active maintainer of [OpenTofu](https://opentofu.org/), the open source successor to HashiCorp Terraform. We proudly support OpenTofu because we believe that core infrastructure is too critical to run on anything but proven open source technology. In line with this philosophy, Gruntwork IaC Library aims to provide first-class OpenTofu support.
+Gruntwork is a co-founder and active maintainer of [OpenTofu](https://opentofu.org/), the open source successor to HashiCorp Terraform. We proudly support OpenTofu because we believe that core infrastructure should run on proven open source technology. In line with this philosophy, Gruntwork IaC Library aims to provide first-class OpenTofu support.
 
- But in the real world, platform engineers face endless module and tooling upgrades, [yak shaves](https://softwareengineering.stackexchange.com/a/388236) and competing priorities. This means we must balance our desire to embrace the latest OpenTofu functionality with our separate principle of [being judicious with new features](be-judicious-with-new-features.md).
+But we also know that platform teams may be on very early versions of Terraform (pre-1.0) or still on Terraform 1.5.7, and that upgrading to the latest OpenTofu is yet another item on their plate of competing priorities. This means we must balance the benefits of embracing the latest OpenTofu functionality with the real-world costs of migration.
  
 ## Core principle
 
-Given our need to balance embracing the latest OpenTofu functionality while keeping real-world maintenance as easy as possible, we must make it easy for customers to transition from Terraform to OpenTofu without requiring them to learn new syntax or extensively modify their existing configurations.
+We prefer OpenTofu over Terraform but design our modules to work seamlessly with both, ensuring customers can adopt OpenTofu without syntax changes or configuration rewrites.
 
 ## Implementation
 
-### High-level approach
+### Approach
 
-1. We support modern OpenTofu versions in our modules.
-1. However, we strongly prefer language features that work identically in both OpenTofu and Terraform.
-1. We avoid OpenTofu-specific syntax unless there is a compelling reason and clear customer benefit.
+1. We design our modules to work with both OpenTofu and Terraform, prioritizing features that work identically in both tools.
+2. When we do adopt OpenTofu-specific features, we use `.tofu` files and provide clear migration guidance.
 
 ### OpenTofu/Terraform version support
 
 - **OpenTofu**: We support OpenTofu 1.9 for new features that provide significant customer value.
-- **Terraform**: We maintain compatibility with Terraform versions that support the same language features we use, but do not explicitly test or support Terraform versions beyond 1.5.7
-
-When we upgrade a module to require a newer version of OpenTofu, we explicitly require that version in the `terraform` block of the module, publish a major module version release in the related git repo, and include clear migration guidance, if applicable.
+- **Terraform**: We maintain compatibility with Terraform versions that support the same OpenTofu language features we use, but do not explicitly test or support Terraform versions beyond 1.5.7.
 
 ### OpenTofu feature adoption
 
@@ -42,7 +39,7 @@ We now support cross-variable validation (the ability to reference the values of
 
 ## Future evolution
 
--This principle will evolve as the Terraform and OpenTofu ecosystems develop. We will:
--- Regularly review compatibility and our support policy based on customer needs
--- Update our supported feature list as new stable releases become available
--- Clearly communicate any changes to our compatibility strategy
+This principle will evolve as the Terraform and OpenTofu ecosystems develop. We will:
+- Regularly review compatibility and our support policy based on customer needs
+- Update our supported feature list as new stable releases become available
+- Clearly communicate any changes to our compatibility strategy
