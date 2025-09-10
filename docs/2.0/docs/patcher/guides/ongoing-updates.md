@@ -36,7 +36,7 @@ Individual pull requests can quickly get overwhelming. Once you've got this work
 ### Step-by-step setup for GitHub.com users
 
 #### 1. Create a GitHub token
-- Create a token that can read patcher-cli and terrapatch-cli releases in your org (see [GitHub Personal Access Token Setup](#github-personal-access-token-setup) below).
+- Create a token that can read patcher-cli and terrapatch-cli releases in your org (or `gruntwork-io`) (see [GitHub Personal Access Token Setup](#github-personal-access-token-setup) below).
 - Save it as a GitHub Actions secret named `PATCHER_CI_TOKEN`.
 
 :::warn
