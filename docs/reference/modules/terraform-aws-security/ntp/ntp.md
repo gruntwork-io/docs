@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.0.3" lastModifiedVersion="0.74.2"/>
+<VersionBadge repoTitle="Security Modules" version="1.0.4" lastModifiedVersion="0.74.2"/>
 
 # NTP Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.3/modules/ntp" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.4/modules/ntp" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.74.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -34,11 +34,11 @@ Originally, Amazon recommended installing `ntpd` to prevent clock drift. Today, 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.3/modules/ntp/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.3/modules/ntp/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.3/modules/ntp/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.4/modules/ntp/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.4/modules/ntp/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.4/modules/ntp/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "77b61a4c9f73e0af80025e20b9603bc8"
+  "hash": "54d151650d85b65d0759fef0c7d9f522"
 }
 ##DOCS-SOURCER-END -->
