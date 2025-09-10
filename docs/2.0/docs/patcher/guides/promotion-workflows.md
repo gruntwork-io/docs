@@ -1,12 +1,25 @@
 # Using Patcher Promotion Workflows
 
 :::info
+This guide covers setting up promotion workflows to move updates across multiple environments (dev → stage → prod). If you want to keep your entire codebase up to date without environment-specific promotion, see [GitHub Actions for Continuous Updates](/2.0/docs/patcher/guides/github-actions-continuous-updates).
+:::
+
+:::info
 As of July 2024, Gruntwork officially supports Patcher Promotion Workflows using GitHub Actions. Support for other CI systems will be introduced in future releases.
 :::
 
 **Related content**: 
 * [Concepts - Patcher Workflows](/2.0/docs/patcher/concepts/promotion-workflows) 
-* [Architecture - Overview](/2.0/docs/patcher/architecture) 
+* [Architecture - Overview](/2.0/docs/patcher/architecture)
+
+## When to Use Promotion Workflows
+
+Patcher supports two primary use cases:
+
+1. **Upgrading very out-of-date infrastructure code**: For codebases that haven't been updated in a while
+2. **Keeping infrastructure code up to date over time**: For ongoing maintenance and security
+
+Patcher excels at the second use case. Promotion workflows are specifically designed for teams that need to validate changes across multiple environments before reaching production. If you simply want to keep your entire codebase current without environment-specific validation, consider using the [simpler continuous updates approach](/2.0/docs/patcher/guides/github-actions-continuous-updates) instead.
 
 ## Prerequisites
 ### Infrastructure as Code 

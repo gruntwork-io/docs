@@ -572,6 +572,11 @@ const sidebar = [
     collapsed: true,
     items: [
       {
+        label: "Ongoing Updates",
+        type: "doc",
+        id: "2.0/docs/patcher/guides/ongoing-updates",
+      },
+      {
         label: "Setting up Promotion Workflows",
         type: "doc",
         id: "2.0/docs/patcher/guides/promotion-workflows",
