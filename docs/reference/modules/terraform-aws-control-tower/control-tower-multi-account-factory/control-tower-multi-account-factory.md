@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="1.0.2" lastModifiedVersion="1.0.2"/>
+<VersionBadge repoTitle="Control Tower" version="1.0.2" lastModifiedVersion="1.0.1"/>
 
 # Control Tower Multi-Account Factory
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.2/modules/landingzone/control-tower-multi-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v1.0.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v1.0.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a Terraform module that will trigger the creation of multiple new AWS accounts by using Control Tower. Under
 the hood, this module uses the [control-tower-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.2/modules/control-tower-account-factory) module.
@@ -339,6 +339,6 @@ The data from all the AWS accounts created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.2/modules/control-tower-multi-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4490807b504bc013b2bcbc950dc5c7cb"
+  "hash": "153dd2fc359ece4b3ac7c6aec9c61405"
 }
 ##DOCS-SOURCER-END -->

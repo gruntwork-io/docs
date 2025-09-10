@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="1.0.2" lastModifiedVersion="0.8.8"/>
+<VersionBadge repoTitle="Control Tower" version="1.0.2" lastModifiedVersion="1.0.2"/>
 
 # Control Tower Provisioned Product Artifact Updater
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.2/modules/landingzone/control-tower-provisioned-product-artifact-updater" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.8.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v1.0.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This OpenTofu/Terraform module automates the detection and update of AWS Service Catalog provisioned products in response to [UpdateProvisioningArtifact](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpdateProvisioningArtifact.html) or [UpdateProvisionedProduct](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpgradeProduct.html) API calls. AWS EventBridge, SQS, Lambda, and AWS Step Functions to create a scalable, asynchronous update mechanism that safely propagates new artifact versions to affected accounts.
 
@@ -233,6 +233,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.2/modules/control-tower-provisioned-product-artifact-updater/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "950a8d4bf26670d4884ff146cb3e8c97"
+  "hash": "588b1efbeecf13a55e933f3844ddd130"
 }
 ##DOCS-SOURCER-END -->
