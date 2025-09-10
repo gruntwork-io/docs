@@ -175,7 +175,8 @@ For `_envcommon/landingzone/root-pipelines-plan-role.hcl`, ensure that you have 
      actions   = [
        "states:List*",
        "states:Describe*",
-       "states:GetExecutionHistory"
+       "states:GetExecutionHistory",
+       "states:ValidateStateMachineDefinition"
      ]
      effect    = "Allow"
    }
