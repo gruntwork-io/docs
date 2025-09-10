@@ -26,7 +26,7 @@ When most teams think about updating their infrastructure code, there are two co
 
 Patcher can help with both of these use cases.
 
-For legacy upgrades, the Patcher CLI offers an [interactive mode[(guides/update)] where you can browse all modules in the current working directory and below, request available updates, and upgrade modules one at a time. We've found this approach works well with a modest set of updates, however for significantly out of date repos or files or a large number of files, you may wish to consider alternative approaches.
+For legacy upgrades, the Patcher CLI offers an [interactive mode[(guides/update)] where you can browse all modules in the current working directory and below, browse available updates, and upgrade modules one at a time. We've found this approach works well with a modest set of updates, however for significantly out of date repos or files or a large number of files, you may wish to consider alternative approaches.
 
 For ongoing updates, you can use Patcher in conjunction with our published GitHub Action to automatically scan your repo's modules and [open pull requests](guides/ongoing-updates) with updated module versions. Opening one pull request for every update would be cumbersome, so Patcher supports a variety of [grouping modes](/concepts/grouping) that allow you to streamline your workflow.
 
