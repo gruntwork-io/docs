@@ -8,7 +8,7 @@ We use the term "Patcher" to refer to the [Patcher CLI](https://github.com/grunt
 
 Manually identifying updates and assessing whether they can be safely applied can consume significant engineering time for each module dependency. Patcher eliminates this inefficiency by streamlining the update process.
 
-Patcher supports keeping any set of OpenTofu/Terraform modules up to date, whether they be your inhouse modules, third-party open source modules, or modules from the  [Gruntwork IaC Library](library/concepts/overview).
+Patcher supports keeping any set of OpenTofu/Terraform modules up to date, whether they be your inhouse modules, third-party open source modules, or modules from the [Gruntwork IaC Library](library/concepts/overview).
 
 Patcher specializes in keeping infrastructure code up to date and currently supports automatic udpates for:
 
