@@ -19,7 +19,7 @@ Patcher specializes in keeping infrastructure code up to date and currently supp
 
 ## Two update modes
 
-When most teams think about updating their infrastructure mode, there are two core use cases they look to solve:
+When most teams think about updating their infrastructure code, there are two core use cases they look to solve:
 
 1. **Legacy upgrade.** You wish to take a repo or set of files that are significantly out of date and bring them up to date with the latest OpenTofu/Terraform module versions.
 2. **Ongoing updates.** You wish to streamline the process of keeping a repo or set of files up to date over time.
