@@ -592,6 +592,11 @@ const sidebar = [
         id: "2.0/docs/patcher/guides/upgrade",
       },
       {
+        label: "Self-hosting Patcher",
+        type: "doc",
+        id: "2.0/docs/patcher/guides/self-hosting",
+      },
+      {
         label: "Disable Telemetry",
         type: "doc",
         id: "2.0/docs/patcher/guides/telemetry",

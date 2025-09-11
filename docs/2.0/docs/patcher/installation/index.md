@@ -21,6 +21,10 @@ $ echo $PATH
 $ mv patcher /usr/local/bin
 ```
 
+## Self-hosting Patcher
+
+If your organization requires hosting Patcher binaries internally rather than downloading them directly from GitHub, see our [self-hosting guide](/2.0/docs/patcher/guides/self-hosting) for detailed instructions on using repo-copier and other self-hosting approaches.
+
 ## Before running Patcher
 
 ### GitHub Personal Access Token
