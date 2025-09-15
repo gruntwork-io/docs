@@ -2,7 +2,7 @@
 
 Gruntwork Patcher automates the process of keeping your infrastructure code ([Terragrunt](https://terragrunt.gruntwork.io/), [OpenTofu](https://opentofu.org/), and [Terraform](https://terraform.io)) up to date, including applying patches to ensure compatibility with backward-incompatible module releases.
 
-We use the term "Patcher" to refer to the [Patcher CLI](https://github.com/gruntwork-io/patcher-cli), the public [Patcher GitHub Action](https://github.com/gruntwork-io/patcher-action), and the collection of tools (like Terrapatch[https://github.com/gruntwork-io/terrapatch-cli]) that enable Patcher to be useful.
+We use the term "Patcher" to refer to the [Patcher CLI](https://github.com/gruntwork-io/patcher-cli), the public [Patcher GitHub Action](https://github.com/gruntwork-io/patcher-action), and the collection of tools (like [Terrapatch](https://github.com/gruntwork-io/terrapatch-cli)) that enable Patcher to be useful.
 
 ## Why use Patcher?
 
