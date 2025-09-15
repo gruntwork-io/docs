@@ -1,25 +1,46 @@
 # Using Patcher Promotion Workflows
 
-:::info
-As of July 2024, Gruntwork officially supports Patcher Promotion Workflows using GitHub Actions. Support for other CI systems will be introduced in future releases.
-:::
+This guide covers setting up promotion workflows to move updates across multiple environments (dev → stage → prod). You should use this guide only after you have Patcher set up for [ongoing updates](./ongoing-updates.md).
 
-**Related content**: 
-* [Concepts - Patcher Workflows](/2.0/docs/patcher/concepts/promotion-workflows) 
-* [Architecture - Overview](/2.0/docs/patcher/architecture) 
+## What are promotion workflows?
+
+Rolling out updates to infrastructure-as-code is already painful. But it becomes doubly so when you need to roll out changes across many environments (e.g. from dev to stage to prod). In that case, you must choose between two unsatisfying options:
+
+1. Update many environments at once and hope that prod doesn't break
+2. Incrementally roll out your updates (e.g. open a pull request updating dev, then stage, then prod), but manually re-create effectively the same pull request many times.
+
+In short, you can choose between confidence and efficiency, but historically you can't get both.
+
+With promotion workflows, we aim to bridge that gap in a small way. You can now open a pull request that updates OpenTofu/Terraform/Terragrunt code only your intial rollout environment (e.g. dev). Once you merge that pull request, Patcher promotion workflows automatically open a corresponding pull request that updates all the same dependencies for your next rollout environment (e.g. stage). The process continues until you reach prod.
+
+This way, you can incrementally roll out your changes, but you lessen the pain of doing so because the pull requests for each subsequence environment are created automatically for you.
+
+### Limitations
+
+Promotion workflows define their subsequent updates based on the initial `patcher report` run. If you make manual updates to an individual pull request (e.g. by removing a dependency update), Patcher promotion workflows do not currently recognize that.
+
+Of course, you can always just manually update the subsequent pull requestions, so this isn't a blocker, but it's admittedly a limitation.
 
 ## Prerequisites
-### Infrastructure as Code 
-Before implementing Patcher Promotion Workflows, ensure your codebase is structured as infrastructure as code (IaC) using tools like Terraform, OpenTofu, or Terragrunt. This setup allows Patcher to automate updates across environments.
+
+### Supported CI systems
+
+Gruntwork officially supports Patcher Promotion Workflows using GitHub Actions.
 
 ### Organizing environments as folder structures 
+
 To support multiple environments (such as `dev`, `stage`, and `prod`), your codebase must represent these environments with a consistent folder structure that can be grouped using glob pattern matching.
 
-If your environments were organized like this:
+For example, if your environments were organized like this:
 
 ```sh
-ls
-dev-account1  dev-account2  prod-account1  prod-account2  stage-account1  stage-account2
+$ ll
+dev-account1
+dev-account2
+prod-account1
+prod-account2
+stage-account1
+stage-account2
 ```
 
 You could define your Patcher environments as `dev-*`, `stage-*`, and `prod-*`. 
@@ -304,3 +325,8 @@ jobs:
           pull_request_title: "[Patcher] [prod] Update ${{ matrix.dependency.ID }}"
           pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
 ```
+
+## Related content
+
+* [Concepts - Patcher Workflows](/2.0/docs/patcher/concepts/promotion-workflows) 
+* [Architecture - Overview](/2.0/docs/patcher/architecture) 
