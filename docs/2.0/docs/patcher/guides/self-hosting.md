@@ -2,7 +2,7 @@
 
 ## Introduction to Patcher self-hosting
 
-Patcher runs in GitHub Actions or GitLab CI environments to automate dependency updates for your Terraform and Terragrunt infrastructure. While the Patcher service itself runs in CI/CD pipelines, you might want to self-host the Patcher and Terrapatch binaries rather than downloading them directly from github.com/gruntwork-io.
+Patcher runs in GitHub Actions or GitLab CI environments to automate dependency updates for your OpenTofu/Terraform and Terragrunt infrastructure. While the Patcher service itself runs in CI/CD pipelines, you might want to self-host the Patcher and Terrapatch binaries rather than downloading them directly from github.com/gruntwork-io.
 
 You might want to self-host Patcher binaries because:
 
