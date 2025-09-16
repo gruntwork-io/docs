@@ -1,8 +1,8 @@
 # Self-hosting Patcher
 
-When you run Patcher to automate [ongoing updates](./ongoing-updates.md), Patcher runs in your own action GitHub Actions runners, giving you full control over where and how they run. In that sense, Patcher only works in self-hosted mode!
+When you run Patcher to automate [ongoing updates](./ongoing-updates.md), Patcher runs in your own action GitHub Actions runners, giving you full control over where and how they run. In that sense, Patcher works _only_ in self-hosted mode!
 
-However, to set up Patcher to run in your GitHub Runners, our standard workflows involve calling a GitHub Action published by Gruntwork at GitHub.com, downloading Gruntwork binaries (including Patcher) from our GitHub org, and downloading third-party tools from public GitHub repos. To fully self-host Patcher, you will need to self-host each of these items.
+However, to set up Patcher to run in your GitHub Actions Runners, our standard workflows involve calling a GitHub Action published by Gruntwork at GitHub.com, downloading Gruntwork binaries (including Patcher) from our GitHub org, and downloading third-party tools from public GitHub repos. To fully self-host Patcher, you will need to self-host each of these items.
 
 ## How Patcher works by default
 
@@ -28,7 +28,7 @@ In the rest of this document, we'll explore the different ways you might accompl
 
 We recommend using Gruntwork's [repo-copier](https://github.com/gruntwork-io/repo-copier) tool with GitHub Actions or GitHub Enterprise to self-host Patcher binaries.
 
-Repo-copier automatically copies all content from Gruntwork's private repositories—including releases and binary assets—to your internal version control system. This keeps Patcher binaries available in your environment while maintaining automatic updates.
+Repo-copier automatically copies all content from Gruntwork's private repositories—including releases and binary assets—to your internal version control system. This keeps Patcher binaries and our published GitHub Action available in your environment while maintaining automatic updates.
 
 See [ongoing updates](./ongoing-updates.md) for detailed instructions on how to configure GitHub Enterprise self-hosted.
 
