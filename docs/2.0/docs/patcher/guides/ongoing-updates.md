@@ -1,6 +1,6 @@
 # Ongoing Updates
 
-As we mentioned in the [Patcher overview](/2.0/docs/patcher/concepts/index), Patcher supports two primary modes of working:
+As we mentioned in the [Patcher overview](/2.0/docs/patcher/concepts/index.md), Patcher supports two primary modes of working:
 
 1. **Legacy upgrade.** You wish to take a repo or set of files that are significantly out of date and bring them up to date with the latest OpenTofu/Terraform module versions.
 2. **Ongoing updates.** You wish to streamline the process of keeping a repo or set of files up to date over time.
