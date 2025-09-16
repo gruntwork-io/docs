@@ -1,21 +1,26 @@
 # Self-hosting Patcher
 
-## Introduction to Patcher self-hosting
+When you run Patcher to automate [ongoing updates](./ongoing-updates.md), Patcher runs in your own action GitHub Actions runners, giving you full control over where and how they run. In that sense, Patcher only works in self-hosted mode!
 
-Patcher runs in GitHub Actions or GitLab CI environments to automate dependency updates for your OpenTofu/Terraform and Terragrunt infrastructure. While the Patcher service itself runs in CI/CD pipelines, you might want to self-host the Patcher and Terrapatch binaries rather than downloading them directly from github.com/gruntwork-io.
+However, to set up Patcher to run in your GitHub Runners, our standard workflows involve calling a GitHub Action published by Gruntwork at GitHub.com, downloading Gruntwork binaries (including Patcher) from our GitHub org, and downloading third-party tools from public GitHub repos. To fully self-host Patcher, you will need to self-host each of these items.
 
-You might want to self-host Patcher binaries because:
+## How Patcher works by default
 
-- **Security requirements**: Your organization requires all external dependencies to be vetted and hosted internally
-- **Air-gapped environments**: Your infrastructure operates in environments without direct internet access
-- **Compliance policies**: Internal policies mandate that all tools must be sourced from approved internal repositories
-- **Network restrictions**: Corporate firewalls or proxy configurations prevent direct access to GitHub releases
+Before we review the options for self-hosting Patcher, let's discuss in more detail how Patcher works in a standard setup.
 
-:::info
+First, you can run Patcher either as an interactive CLI tool (to interactively upgrade a legacy codebase), or as part of a CI job (e.g. with GitHub Actions) to automatically update infrastructure code on a scheduled basis or when certain events happen.
 
-Only the Patcher and Terrapatch binaries need to be self-hosted. The Patcher service itself continues to run within your existing CI/CD infrastructure (GitHub Actions or GitLab CI).
+When you run Patcher as an interactive CLI tool,  you are already running everything locally, so no change is needed.
 
-:::
+When you run Patcher as part of a CI job, you create your own custom GitHub Actions workflow based on our [examples](./ongoing-updates.md). Our example workflow typically calls our [published GitHub Action](https://github.com/gruntwork-io/patcher-action), which in turn downloads the Patcher binary and Terrapatch binary from Gruntwork's github org. These binaries are not publicly available so you must use a GitHub.com token to access these binaries. In addition, the GitHub Action downloads a small number of tools using pinned releases on public GitHub repos.
+
+Therefore, if you wish to fully self-host Patcher, you will need to:
+
+1. Call a GitHub Action hosted by you
+1. Download Patcher and Terrapatch binaries from mirrored repos in your GitHub org
+1. Download third-party tooling from mirrored repos in your GitHub org (or permit public downloads from GitHub.com)
+
+In the rest of this document, we'll explore the different ways you might accomplish this.
 
 ## Self-hosting options
 

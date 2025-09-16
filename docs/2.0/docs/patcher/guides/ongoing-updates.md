@@ -37,10 +37,16 @@ Individual pull requests can quickly get overwhelming. Once you've got this work
 - Save it as a GitHub Actions secret named `PATCHER_CI_TOKEN`.
 
 :::note
-We've just insructed you to create a single GitHub token for both "read" privileges (when Patcher wants to read dependencies from other repos) and "write" privileges (when Patcher wants to open a pull request on a repo). But per the principle of least privilege, you can improve your security posture by creating one token for read privileges and one write privileges, and then saving them each as a separate secret, e.g.:
+We've just instructed you to create a single GitHub token for "read" privileges (so that Patcher can read dependencies from other repos). For "write" privileges (when Patcher wants to open a pull request on a repo), we will use the `GITHUB_TOKEN` that gets created automatically with each GitHub Actions run. We'll use each token as shown below:
 
-- `PATCHER_READ_TOKEN`
-- `PATCHER_WRITE_TOKEN`
+```yaml
+# Do not copy/paste this example; we're only showing how the read_token and write_token is used with your GitHub Actions secrets.
+- name: Run Patcher
+  uses: gruntwork-io/patcher-action@v2
+  with:
+    read_token: ${{ secrets.PATCHER_CI_TOKEN_READ_ONLY }} 
+    update_token: ${{ secrets.GITHUB_TOKEN }}
+```
 :::
 
 :::warning
@@ -135,6 +141,7 @@ on:
     # Run every Monday at 04:15 UTC
     - cron: "15 4 * * 1"
 
+# Update permissions for your secrets.GITHUB_TOKEN token.
 permissions:
   contents: write
   pull-requests: write
@@ -169,7 +176,7 @@ jobs:
       - uses: gruntwork-io/patcher-action@v2
         with:
           patcher_command: update
-          update_token: ${{ secrets.PATCHER_CI_TOKEN }}
+          update_token: ${{ secrets.GITHUB_TOKEN }}
           working_dir: ./
           dependency: ${{ matrix.dependency }}
           pull_request_title: "[Patcher] Update ${{ matrix.dependency }}"
@@ -197,6 +204,7 @@ on:
     # Run every Monday at 04:15 UTC
     - cron: "15 4 * * 1"
 
+# Update permissions for your secrets.GITHUB_TOKEN token.
 permissions:
   contents: write
   pull-requests: write
@@ -238,7 +246,7 @@ jobs:
       - uses: my-enterprise-org/patcher-action@v2
         with:
           patcher_command: update
-          update_token: ${{ secrets.PATCHER_CI_TOKEN }}
+          update_token: ${{ secrets.GITHUB_TOKEN }}
           working_dir: ./
           dependency: ${{ matrix.dependency }}
           pull_request_title: "[Patcher] Update ${{ matrix.dependency }}"
