@@ -8,7 +8,7 @@ We use the term "Patcher" to refer to the [Patcher CLI](https://github.com/grunt
 
 Manually identifying updates and assessing whether they can be safely applied can consume significant engineering time for each module dependency. Patcher eliminates this inefficiency by streamlining the update process.
 
-Patcher supports keeping any set of OpenTofu/Terraform modules up to date, whether they be your inhouse modules, third-party open source modules, or modules from the [Gruntwork IaC Library](library/concepts/overview).
+Patcher supports keeping any set of OpenTofu/Terraform modules up to date, whether they be your inhouse modules, third-party open source modules, or modules from the [Gruntwork IaC Library](/2.0/docs/library/concepts/overview).
 
 Patcher specializes in keeping infrastructure code up to date and currently supports automatic updates for:
 
@@ -26,9 +26,9 @@ When most teams think about updating their infrastructure code, there are two co
 
 Patcher can help with both of these use cases.
 
-For legacy upgrades, the Patcher CLI offers an [interactive mode](guides/update) where you can browse all modules in the current working directory and below, browse available updates, and upgrade modules one at a time. We've found this approach works well with a modest set of updates, however for significantly out of date repos or files or a large number of files, you may wish to consider alternative approaches.
+For legacy upgrades, the Patcher CLI offers an [interactive mode](../guides/update) where you can browse all modules in the current working directory and below, browse available updates, and upgrade modules one at a time. We've found this approach works well with a modest set of updates, however for significantly out of date repos or files or a large number of files, you may wish to consider alternative approaches.
 
-For ongoing updates, you can use Patcher in conjunction with our [published GitHub Action](https://github.com/gruntwork-io/patcher-action) to automatically scan your repo's modules and [open pull requests](guides/ongoing-updates) with updated module versions. Opening one pull request for every update can get cumbersome, so Patcher also supports a variety of [grouping modes](/concepts/grouping) that allow you to streamline your workflow.
+For ongoing updates, you can use Patcher in conjunction with our [published GitHub Action](https://github.com/gruntwork-io/patcher-action) to automatically scan your repo's modules and [open pull requests](../guides/ongoing-updates) with updated module versions. Opening one pull request for every update can get cumbersome, so Patcher also supports a variety of [grouping modes](../concepts/grouping) that allow you to streamline your workflow.
 
 ## How does Patcher work?
 

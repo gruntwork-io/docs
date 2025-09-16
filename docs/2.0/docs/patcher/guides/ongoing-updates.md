@@ -42,7 +42,7 @@ We've just instructed you to create a single GitHub token for "read" privileges 
 - name: Run Patcher
   uses: gruntwork-io/patcher-action@v2
   with:
-    read_token: ${{ secrets.PATCHER_CI_TOKEN_READ_ONLY }} 
+    read_token: ${{ secrets.PATCHER_CI_TOKEN }} 
     update_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 :::
@@ -84,9 +84,9 @@ Many GitHub Enterprise users self-host GitHub Enterprise and wish to host all bi
 
 The first step is to self-host the following repos:
 
-1. https://github.com/gruntwork-io/patcher-cli
-2. https://github.com/gruntwork-io/terrapatch-cli
-3. https://github.com/gruntwork-io/patcher-action
+1. [gruntwork-io/patcher-cli](https://github.com/gruntwork-io/patcher-cli)
+2. [gruntwork-io/terrapatch-cli](https://github.com/gruntwork-io/terrapatch-cli)
+3. [gruntwork-io/patcher-action](https://github.com/gruntwork-io/patcher-action)
 
 To set up local copies of these repos in your own organization and automatically keep them up to date as Gruntwork issues new releases, we can use our [repo-copier](https://github.com/gruntwork-io/repo-copier) tool. We originally built repo-copier to enable customers to [self-host the IaC Library](../../library/guides/self-hosting.md), but even if you don't use any Gruntwork IaC Library modules, repo-copier does exactly what we want here -- On a nightly basis, it copies all git history, issues, pull requests, and release assets of each specified github.com/gruntwork-io repo to your local repo copy.
 
@@ -94,7 +94,7 @@ Complete this step by following guidance in [self-host-the IaC Library](../../li
 
 #### 2. Follow the steps above
 
-Now follow all but the final step in [Step-by-step setup for GitHub.com users](#step-by-step-setup-for-githubcom-users). The final step above is to test that everything is working, but we don't wnat to do that until you've made the modifications below. Once you've completed steps 1 - 3 above, return here, and go to step 3 below.
+Now follow all but the final step in the [steps for GitHub.com users](#for-githubcom-users). The final step above is to test that everything is working, but we don't want to do that until you've made the modifications below. Once you've completed steps 1 - 3 above, return here, and go to step 3 below.
 
 #### 3. Confirm your GitHub Enterprise settings
 
@@ -107,7 +107,7 @@ Confirm that you updated the GitHub Action workflow as described in [For GitHub 
 
 Our published `patcher-action` specifies the GitHub Actions workflow will run on GitHub-hosted `ubuntu-latest` runners. But in the GitHub Enterprise self-hosted environment, this exact runner tag might not be available for you. If it's not, you'll either need to:
 
-1. Change the GitHub Actions workflow `runs-on` value to a runner you have internaly, or
+1. Change the GitHub Actions workflow `runs-on` value to a runner you have internally, or
 2. Tag your existing runners with `ubuntu-latest` so it gets picked up by the new GitHub Action.
 
 #### 5. Make your internal GitHub Action accessible 
@@ -256,53 +256,53 @@ jobs:
 You'll need to manually create a GitHub token that has permission to access the Patcher CLI and Terrapatch CLI tools.
 You could create either a [fine-grained or classic token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#types-of-personal-access-tokens), and we recommend creating a fine-grained token as follows:
 
-#### 1. Navigate to GitHub Settings
-   - Click your profile picture → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens**
+### 1. Navigate to GitHub Settings
+- Click your profile picture → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens**
 
-#### 2. Create New Token
-   - Click **Generate new token**
-   - Select **Fine-grained personal access token**
+### 2. Create New Token
+- Click **Generate new token**
+- Select **Fine-grained personal access token**
 
-#### 3. Configure Token Settings
-   - **Token name**: Choose a descriptive name (e.g., `PATCHER_CI_TOKEN`)
-   - **Expiration**: Set to **90 days** or shorter or longer, depending on your internal security policy.
-   - **Resource owner**: Select the GitHub organization that holds the patcher-cli and terrapatch-cli tools.
-     - If you are accessing these via GitHub.com, the organization is `gruntwork-io`.
-     - If you are accessing these via self-hosted GitHub Enterprise, the organization is whatever GitHub organization has the `patcher-cli` and `terrapatch-cli` repos.
+### 3. Configure Token Settings
+- **Token name**: Choose a descriptive name (e.g., `PATCHER_CI_TOKEN`)
+- **Expiration**: Set to **90 days** or shorter or longer, depending on your internal security policy.
+- **Resource owner**: Select the GitHub organization that holds the patcher-cli and terrapatch-cli tools.
+    - If you are accessing these via GitHub.com, the organization is `gruntwork-io`.
+    - If you are accessing these via self-hosted GitHub Enterprise, the organization is whatever GitHub organization has the `patcher-cli` and `terrapatch-cli` repos.
 
-     :::warning
-     It's easy to not select the right organization! Be sure to select the right GitHub org -- not your username -- that actually holds the repos you're looking to access.
-     :::
-
-#### 4. Configure Repository Access
-   Configure access to the following repositories:
-   - The **patcher-cli repository** (typically `gruntwork-io/patcher-cli` or your custom org)
-   - The **terrapatch-cli repository** (typically `gruntwork-io/terrapatch-cli` or your custom org)
-
-#### 5. Set Required Permissions
-   Under "Permissions", configure these **Repository permissions**:
-   - **Contents**: **Read** access
-   - **Metadata**: **Read** access
-   - **Actions**: **Read** access (for downloading releases)
-
-   :::info
-   The GitHub Action will also need the permission to open pull requests, however it will get that from the `GITHUB_TOKEN` that is automatically generated for each GitHub Actions workflow run. Therefore this token can be read-only.
-   :::
-
-#### 6. Generate and Store Token
-   - Click **Generate token**
-   - **Copy the token immediately** (you won't be able to see it again)
-   - Store it as a GitHub Actions secret named `PATCHER_CI_TOKEN` in the repository where the workflow runs.
-
-    :::warn
-    Keep your token secure and never commit it to your repository. Always store it as a GitHub secret.
+    :::warning
+    It's easy to not select the right organization! Be sure to select the right GitHub org -- not your username -- that actually holds the repos you're looking to access.
     :::
+
+### 4. Configure Repository Access
+Configure access to the following repositories:
+- The **patcher-cli repository** (typically `gruntwork-io/patcher-cli` or your custom org)
+- The **terrapatch-cli repository** (typically `gruntwork-io/terrapatch-cli` or your custom org)
+
+### 5. Set Required Permissions
+Under "Permissions", configure these **Repository permissions**:
+- **Contents**: **Read** access
+- **Metadata**: **Read** access
+- **Actions**: **Read** access (for downloading releases)
+
+:::info
+The GitHub Action will also need the permission to open pull requests, however it will get that from the `GITHUB_TOKEN` that is automatically generated for each GitHub Actions workflow run. Therefore this token can be read-only.
+:::
+
+### 6. Generate and Store Token
+- Click **Generate token**
+- **Copy the token immediately** (you won't be able to see it again)
+- Store it as a GitHub Actions secret named `PATCHER_CI_TOKEN` in the repository where the workflow runs.
+
+:::warning
+Keep your token secure and never commit it to your repository. Always store it as a GitHub secret.
+:::
 
 Your `PATCHER_CI_TOKEN` token is now ready for use!
 
 ## Configuration Options
 
-For more information on the configuration options in our standard GitHub Action, see the README at https://github.com/gruntwork-io/patcher-action.
+For more information on the configuration options in our standard GitHub Action, see the [patcher-action README](https://github.com/gruntwork-io/patcher-action).
 
 ## Environment-Specific Updates
 

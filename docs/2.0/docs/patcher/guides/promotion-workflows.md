@@ -11,15 +11,15 @@ Rolling out updates to infrastructure-as-code is already painful. But it becomes
 
 In short, you can choose between confidence and efficiency, but historically you can't get both.
 
-With promotion workflows, we aim to bridge that gap in a small way. You can now open a pull request that updates OpenTofu/Terraform/Terragrunt code only your intial rollout environment (e.g. dev). Once you merge that pull request, Patcher promotion workflows automatically open a corresponding pull request that updates all the same dependencies for your next rollout environment (e.g. stage). The process continues until you reach prod.
+With promotion workflows, we aim to bridge that gap in a small way. You can now open a pull request that updates OpenTofu/Terraform/Terragrunt code only your initial rollout environment (e.g. dev). Once you merge that pull request, Patcher promotion workflows automatically open a corresponding pull request that updates all the same dependencies for your next rollout environment (e.g. stage). The process continues until you reach prod.
 
-This way, you can incrementally roll out your changes, but you lessen the pain of doing so because the pull requests for each subsequence environment are created automatically for you.
+This way, you can incrementally roll out your changes, but you lessen the pain of doing so because the pull requests for each subsequent environment are created automatically for you.
 
 ### Limitations
 
 Promotion workflows define their subsequent updates based on the initial `patcher report` run. If you make manual updates to an individual pull request (e.g. by removing a dependency update), Patcher promotion workflows do not currently recognize that.
 
-Of course, you can always just manually update the subsequent pull requestions, so this isn't a blocker, but it's admittedly a limitation.
+Of course, you can always just manually update the subsequent pull requests, so this isn't a blocker, but it's admittedly a limitation.
 
 ## Prerequisites
 
@@ -100,6 +100,7 @@ on:
 
 permissions:
   contents: write
+  pull_requests: write
 
 env:
   ENV_FOLDER_NAME: dev
@@ -150,14 +151,14 @@ jobs:
       matrix:
         dependency: ${{ fromJson(needs.patcher-report.outputs.spec).Dependencies }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Create the spec file
         shell: bash
         run: |
           echo '${{ needs.patcher-report.outputs.spec }}' > /tmp/patcher-spec.json
 
-      - uses: gruntwork-io/patcher-action@main
+      - uses: gruntwork-io/patcher-action@v2
         with:
           patcher_command: update
           github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
@@ -210,7 +211,7 @@ jobs:
           dep=${BRANCH#"$PR_BRANCH_PREFIX"}
           echo "dependency=$dep" >> "$GITHUB_OUTPUT"
 
-      - uses: peter-evans/repository-dispatch@main
+      - uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
@@ -224,7 +225,7 @@ jobs:
       spec: ${{ steps.run-report.outputs.spec }}
     steps:
       - uses: actions/checkout@v4
-      - uses: gruntwork-io/patcher-action@main
+      - uses: gruntwork-io/patcher-action@v2
         id: run-report
         with:
           github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
@@ -248,7 +249,7 @@ jobs:
         run: |
           echo '${{ needs.patcher-report.outputs.spec }}' > /tmp/patcher-spec.json
 
-      - uses: gruntwork-io/patcher-action@main
+      - uses: gruntwork-io/patcher-action@v2
         with:
           github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
           dependency: ${{ matrix.dependency.ID }}
@@ -291,7 +292,7 @@ jobs:
       spec: ${{ steps.run-report.outputs.spec }}
     steps:
       - uses: actions/checkout@v4
-      - uses: gruntwork-io/patcher-action@main
+      - uses: gruntwork-io/patcher-action@v2
         id: run-report
         with:
           github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
@@ -316,7 +317,7 @@ jobs:
         run: |
           echo '${{ needs.patcher-report.outputs.spec }}' > /tmp/patcher-spec.json
 
-      - uses: gruntwork-io/patcher-action@main
+      - uses: gruntwork-io/patcher-action@v2
         with:
           github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
           dependency: ${{ matrix.dependency.ID }}

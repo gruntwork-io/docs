@@ -12,7 +12,7 @@ First, you can run Patcher either as an interactive CLI tool (to interactively u
 
 When you run Patcher as an interactive CLI tool,  you are already running everything locally, so no change is needed.
 
-When you run Patcher as part of a CI job, you create your own custom GitHub Actions workflow based on our [examples](./ongoing-updates.md). Our example workflow typically calls our [published GitHub Action](https://github.com/gruntwork-io/patcher-action), which in turn downloads the Patcher binary and Terrapatch binary from Gruntwork's github org. These binaries are not publicly available so you must use a GitHub.com token to access these binaries. In addition, the GitHub Action downloads a small number of tools using pinned releases on public GitHub repos.
+When you run Patcher as part of a CI job, you create your own custom GitHub Actions workflow based on our [examples](./ongoing-updates.md). Our example workflow typically calls our [published GitHub Action](https://github.com/gruntwork-io/patcher-action), which in turn downloads the Patcher binary and Terrapatch binary from Gruntwork's github org. These binaries are only available to Gruntwork customers so you must use a GitHub.com token to access these binaries. In addition, the GitHub Action downloads a small number of tools using pinned releases on public GitHub repos.
 
 Therefore, if you wish to fully self-host Patcher, as of September 2025, you will need to:
 
