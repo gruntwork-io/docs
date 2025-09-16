@@ -1,6 +1,6 @@
 # Self-hosting Patcher
 
-When you run Patcher to automate [ongoing updates](./ongoing-updates.md), Patcher runs in your own action GitHub Actions runners, giving you full control over where and how they run. In that sense, Patcher works _only_ in self-hosted mode!
+When you run Patcher to automate [ongoing updates](/2.0/docs/patcher/guides/ongoing-updates), Patcher runs in your own action GitHub Actions runners, giving you full control over where and how they run. In that sense, Patcher works _only_ in self-hosted mode!
 
 However, to set up Patcher to run in your GitHub Actions Runners, our standard workflows involve calling a GitHub Action published by Gruntwork at GitHub.com, downloading Gruntwork binaries (including Patcher) from our GitHub org, and downloading third-party tools from public GitHub repos. To fully self-host Patcher, you will need to self-host each of these items.
 
@@ -12,7 +12,7 @@ First, you can run Patcher either as an interactive CLI tool (to interactively u
 
 When you run Patcher as an interactive CLI tool,  you are already running everything locally, so no change is needed.
 
-When you run Patcher as part of a CI job, you create your own custom GitHub Actions workflow based on our [examples](./ongoing-updates.md). Our example workflow typically calls our [published GitHub Action](https://github.com/gruntwork-io/patcher-action), which in turn downloads the Patcher binary and Terrapatch binary from Gruntwork's github org. These binaries are only available to Gruntwork customers so you must use a GitHub.com token to access these binaries. In addition, the GitHub Action downloads a small number of tools using pinned releases on public GitHub repos.
+When you run Patcher as part of a CI job, you create your own custom GitHub Actions workflow based on our [examples](/2.0/docs/patcher/guides/ongoing-updates). Our example workflow typically calls our [published GitHub Action](https://github.com/gruntwork-io/patcher-action), which in turn downloads the Patcher binary and Terrapatch binary from Gruntwork's github org. These binaries are only available to Gruntwork customers so you must use a GitHub.com token to access these binaries. In addition, the GitHub Action downloads a small number of tools using pinned releases on public GitHub repos.
 
 Therefore, if you wish to fully self-host Patcher, as of September 2025, you will need to:
 
@@ -30,7 +30,7 @@ We recommend using Gruntwork's [repo-copier](https://github.com/gruntwork-io/rep
 
 Repo-copier automatically copies all content from Gruntwork's private repositories—including releases and binary assets—to your internal version control system. This keeps Patcher binaries and our published GitHub Action available in your environment while maintaining automatic updates.
 
-See [ongoing updates](./ongoing-updates.md) for detailed instructions on how to configure GitHub Enterprise self-hosted.
+See [ongoing updates](/2.0/docs/patcher/guides/ongoing-updates) for detailed instructions on how to configure GitHub Enterprise self-hosted.
 
 ### Forking repositories (Alternative)
 

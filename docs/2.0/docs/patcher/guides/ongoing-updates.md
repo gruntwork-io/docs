@@ -1,6 +1,6 @@
 # Ongoing Updates
 
-As we mentioned in the [Patcher overview](../concepts/index.md), Patcher supports two primary modes of working:
+As we mentioned in the [Patcher overview](/2.0/docs/patcher/concepts/index), Patcher supports two primary modes of working:
 
 1. **Legacy upgrade.** You wish to take a repo or set of files that are significantly out of date and bring them up to date with the latest OpenTofu/Terraform module versions.
 2. **Ongoing updates.** You wish to streamline the process of keeping a repo or set of files up to date over time.
@@ -24,7 +24,7 @@ We're about to create a single GitHub Actions workflow that consists of two main
 2. **`patcher-update`**: Creates individual pull requests for each dependency that needs updating
 
 :::info
-Individual pull requests can quickly get overwhelming. Once you've got this working, check out our page on [grouping](../concepts/grouping.md) to see how to consolidate many updates into a single pull request.
+Individual pull requests can quickly get overwhelming. Once you've got this working, check out our page on [grouping](/2.0/docs/patcher/concepts/grouping) to see how to consolidate many updates into a single pull request.
 :::
 
 ### For GitHub.com users
@@ -78,7 +78,7 @@ If you'd like to explicitly validate that your GitHub token is configured correc
 Self-hosting Patcher is extra work. Only follow this approach if your organization will not allow accessing Patcher via GitHub.com.
 :::
 
-Many GitHub Enterprise users self-host GitHub Enterprise and wish to host all binaries internally. If you'd like to fully [self-host Patcher](./self-hosting.md), then follow the steps below to set up ongoing updates:
+Many GitHub Enterprise users self-host GitHub Enterprise and wish to host all binaries internally. If you'd like to fully [self-host Patcher](/2.0/docs/patcher/guides/self-hosting), then follow the steps below to set up ongoing updates:
 
 #### 1. Self-host the relevant Gruntwork repos
 
@@ -88,9 +88,9 @@ The first step is to self-host the following repos:
 2. [gruntwork-io/terrapatch-cli](https://github.com/gruntwork-io/terrapatch-cli)
 3. [gruntwork-io/patcher-action](https://github.com/gruntwork-io/patcher-action)
 
-To set up local copies of these repos in your own organization and automatically keep them up to date as Gruntwork issues new releases, we can use our [repo-copier](https://github.com/gruntwork-io/repo-copier) tool. We originally built repo-copier to enable customers to [self-host the IaC Library](../../library/guides/self-hosting.md), but even if you don't use any Gruntwork IaC Library modules, repo-copier does exactly what we want here -- On a nightly basis, it copies all git history, issues, pull requests, and release assets of each specified github.com/gruntwork-io repo to your local repo copy.
+To set up local copies of these repos in your own organization and automatically keep them up to date as Gruntwork issues new releases, we can use our [repo-copier](https://github.com/gruntwork-io/repo-copier) tool. We originally built repo-copier to enable customers to [self-host the IaC Library](/2.0/docs/library/guides/self-hosting), but even if you don't use any Gruntwork IaC Library modules, repo-copier does exactly what we want here -- On a nightly basis, it copies all git history, issues, pull requests, and release assets of each specified github.com/gruntwork-io repo to your local repo copy.
 
-Complete this step by following guidance in [self-host-the IaC Library](../../library/guides/self-hosting.md), and configure repo-copier to copy the above repos. Once you have local copies of these repos, we will set up a GitHub Actions workflow to make use of them.
+Complete this step by following guidance in [self-host-the IaC Library](/2.0/docs/library/guides/self-hosting), and configure repo-copier to copy the above repos. Once you have local copies of these repos, we will set up a GitHub Actions workflow to make use of them.
 
 #### 2. Follow the steps above
 

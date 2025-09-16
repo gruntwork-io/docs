@@ -1,6 +1,6 @@
 # Using Patcher Promotion Workflows
 
-This guide covers setting up promotion workflows to move updates across multiple environments (dev → stage → prod). You should use this guide only after you have Patcher set up for [ongoing updates](./ongoing-updates.md).
+This guide covers setting up promotion workflows to move updates across multiple environments (dev → stage → prod). You should use this guide only after you have Patcher set up for [ongoing updates](/2.0/docs/patcher/guides/ongoing-updates).
 
 ## What are promotion workflows?
 
