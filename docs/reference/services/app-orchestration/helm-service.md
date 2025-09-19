@@ -127,6 +127,9 @@ module "helm_service" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Whether or not Helm should create the namespace to deploy the helm chart to.
+  create_namespace = false
+
   # Configuration for using the IAM role with Service Accounts feature to
   # provide permissions to the applications. This expects a map with two
   # properties: `openid_connect_provider_arn` and `openid_connect_provider_url`.
@@ -224,6 +227,9 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # Whether or not Helm should create the namespace to deploy the helm chart to.
+  create_namespace = false
 
   # Configuration for using the IAM role with Service Accounts feature to
   # provide permissions to the applications. This expects a map with two
@@ -329,6 +335,15 @@ The Kubernetes Namespace to deploy the helm chart into.
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="create_namespace" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not Helm should create the namespace to deploy the helm chart to.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
 <HclListItem name="eks_iam_role_for_service_accounts_config" requirement="optional" type="object(…)">
 <HclListItemDescription>
@@ -487,6 +502,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules/services/helm-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9ed9c884991ca74b0eea38b633732e66"
+  "hash": "a26f7ef4b9a464d47606aac0b43ad68b"
 }
 ##DOCS-SOURCER-END -->
