@@ -82,6 +82,11 @@ const sidebar = [
     id: "support",
   },
   {
+    label: "SLA Policy",
+    type: "doc",
+    id: "sla-policy",
+  },
+  {
     value: "Getting Started",
     type: "html",
     className: "sidebar-header emoji-rocket",
