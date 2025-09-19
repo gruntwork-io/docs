@@ -126,9 +126,21 @@ const sidebar = [
     },
     items: [
       {
-        label: "Authenticating with Cloud Providers",
-        type: "doc",
-        id: "2.0/docs/pipelines/concepts/cloud-auth",
+        label: "Authenticating to the Cloud",
+        type: "category",
+        collapsed: false,
+        items: [
+          {
+            label: "Overview",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/index",
+          },
+          {
+            label: "Authenticating to AWS",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/aws",
+          },
+        ],
       },
       {
         label: "Drift Detection",

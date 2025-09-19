@@ -110,8 +110,12 @@ export const redirects = [
         from: "/foundations/overview"
     },
     {
-        to: "/2.0/docs/pipelines/concepts/cloud-auth",
+        to: "/2.0/docs/pipelines/concepts/cloud-auth/aws",
         from: "/foundations/pipelines/aws-authentication"
+    },
+    {
+        to: "/2.0/docs/pipelines/concepts/cloud-auth/aws",
+        from: "/2.0/docs/pipelines/concepts/cloud-auth"
     },
     {
         to: "/2.0/docs/pipelines/concepts/overview",
