@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="1.0.2" lastModifiedVersion="0.13.4"/>
+<VersionBadge repoTitle="Module Server" version="1.0.3" lastModifiedVersion="0.13.4"/>
 
 # Disable Instance Metadata Access script
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.2/modules/disable-instance-metadata" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/disable-instance-metadata" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.13.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -26,7 +26,7 @@ Once that is done, you can call this script to further secure your instance by d
 `disable-instance-metadata`: This script can be run on an EC2 instance to disable further access to the Instance Metadata service from that instance. It uses
 the AWS API to disable access to the endpoint.
 
-Check out the [route53-helpers example](https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.2/examples/route53-helpers) for how to use these scripts with Packer and Terraform.
+Check out the [route53-helpers example](https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/examples/route53-helpers) for how to use these scripts with Packer and Terraform.
 
 ## Installing the scripts
 
@@ -42,7 +42,7 @@ The `disable-instance-metadata` script has the following prerequisites:
 
 1.  It must be run on an EC2 instance
 2.  The EC2 instance must have an IAM role with permissions to modify the Instance Metadata service's options. See the
-    [route53-helpers example](https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.2/examples/route53-helpers)) for a reference implementation.
+    [route53-helpers example](https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/examples/route53-helpers)) for a reference implementation.
 3.  The EC2 instance must have the AWS CLI (version 2.2.37 or higher), unzip and jq installed.
 
 Run the `disable-instance-metadata` script in the User Data of your EC2 instances, after any required calls to the Instance Metadata service have been made. This way, your instances will still be able to access the Instance Metadata service when needed, but will also disable further access to the service upon boot.
@@ -74,11 +74,11 @@ This will result in subsequent calls to the Instance Metadata service to fail.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.2/modules/disable-instance-metadata/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.2/modules/disable-instance-metadata/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.2/modules/disable-instance-metadata/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/disable-instance-metadata/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/disable-instance-metadata/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/disable-instance-metadata/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f6ed10e4eff146b6dbd35d4cd277b72b"
+  "hash": "21f295f8f1046662c91263b195afec55"
 }
 ##DOCS-SOURCER-END -->
