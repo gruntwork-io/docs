@@ -13,7 +13,7 @@ At a high level, OIDC works as follows: AWS recognizes GitHub or GitLab as an "i
 
 When creating a new AWS account, it is necessary to update the AWS OIDC configuration to include an IAM role that GitHub or GitLab can assume. When using the [Gruntwork Account Factory](/2.0/docs/accountfactory/architecture), this update is performed automatically during the process of [vending a new AWS account](/2.0/docs/accountfactory/guides/vend-aws-account).
 
-## How Pipelines knows what AWS account to authenticate to
+## How Pipelines knows what AWS principals to authenticate as
 
 <Tabs>
 <TabItem value="legacy" label="Legacy YAML Configuration" default>
