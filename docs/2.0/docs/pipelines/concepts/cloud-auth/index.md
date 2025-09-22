@@ -17,7 +17,7 @@ Cloud authentication in Pipelines is built on the principle of least privilege a
 
 Currently, Pipelines supports authentication to the following cloud providers:
 
-- [AWS](./aws.md) - AWS authentication using OIDC
+- [AWS](./aws.mdx) - AWS authentication using OIDC
 - [Azure](./azure.md) - Azure authentication using OIDC
 - [Custom](./custom.md) - Custom authentication you can implement yourself
 
