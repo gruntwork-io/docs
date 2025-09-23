@@ -7,7 +7,7 @@ Pipelines automatically determines which AWS account(s) to authenticate with, an
 
 ## How Pipelines authenticates to AWS
 
-To execute the actions detected by Pipelines, each AWS account must have an AWS IAM Role that Pipelines can assume using Open ID Connect (OIDC).
+To execute the infrastructure changes detected by Pipelines, each AWS account must have an AWS IAM Role that Pipelines can assume using Open ID Connect (OIDC).
 
 At a high level, OIDC works as follows: AWS recognizes GitHub or GitLab as an "identity provider," trusts GitHub's or GitLab's request to assume a temporary IAM Role, and then issues AWS credentials valid for the duration of the GitHub Actions or GitLab CI workflow.
 
