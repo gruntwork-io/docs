@@ -136,14 +136,19 @@ const sidebar = [
             id: "2.0/docs/pipelines/concepts/cloud-auth/index",
           },
           {
-            label: "Authenticating to AWS",
+            label: "AWS",
             type: "doc",
             id: "2.0/docs/pipelines/concepts/cloud-auth/aws",
           },
           {
-            label: "Authenticating to Azure",
+            label: "Azure",
             type: "doc",
             id: "2.0/docs/pipelines/concepts/cloud-auth/azure",
+          },
+          {
+            label: "Custom",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/custom",
           }
         ],
       },
