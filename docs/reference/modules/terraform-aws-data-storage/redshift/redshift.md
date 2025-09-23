@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.40.6" lastModifiedVersion="0.39.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.41.0" lastModifiedVersion="0.40.7"/>
 
 # Redshift Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.39.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Redshift cluster that you can use as a data warehouse. The cluster is managed by AWS and
 automatically handles leader nodes, worker nodes, backups, patching, and encryption.
@@ -60,7 +60,7 @@ workaround, you can re-run the destroy command once the workspace gets deleted c
 
 module "redshift" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.40.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.41.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -177,7 +177,7 @@ module "redshift" {
   # be associated to the cluster at any time.
   iam_roles = null
 
-  # The instance type to use for the db (e.g. dc2.large). This field is
+  # The instance type to use for the db (e.g. ra3.large). This field is
   # mandatory for provisioned Redshift.
   instance_type = null
 
@@ -204,6 +204,9 @@ module "redshift" {
   # Required when log_destination_type is s3. Prefix applied to the log file
   # names.
   logging_s3_key_prefix = null
+
+  # The name of the maintenance track to apply to the cluster.
+  maintenance_track_name = null
 
   # The weekly day and time range during which system maintenance can occur
   # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
@@ -287,7 +290,7 @@ module "redshift" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.40.6"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.41.0"
 }
 
 inputs = {
@@ -407,7 +410,7 @@ inputs = {
   # be associated to the cluster at any time.
   iam_roles = null
 
-  # The instance type to use for the db (e.g. dc2.large). This field is
+  # The instance type to use for the db (e.g. ra3.large). This field is
   # mandatory for provisioned Redshift.
   instance_type = null
 
@@ -434,6 +437,9 @@ inputs = {
   # Required when log_destination_type is s3. Prefix applied to the log file
   # names.
   logging_s3_key_prefix = null
+
+  # The name of the maintenance track to apply to the cluster.
+  maintenance_track_name = null
 
   # The weekly day and time range during which system maintenance can occur
   # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
@@ -747,7 +753,7 @@ A list of IAM Role ARNs to associate with the cluster. A Maximum of 10 can be as
 <HclListItem name="instance_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The instance type to use for the db (e.g. dc2.large). This field is mandatory for provisioned Redshift.
+The instance type to use for the db (e.g. ra3.large). This field is mandatory for provisioned Redshift.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -802,6 +808,15 @@ Required when log_destination_type is cloudwatch. Collection of exported log typ
 <HclListItemDescription>
 
 Required when log_destination_type is s3. Prefix applied to the log file names.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="maintenance_track_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the maintenance track to apply to the cluster.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1039,11 +1054,11 @@ The ID of the Security Group that controls access to the cluster
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/redshift/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/redshift/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.6/modules/redshift/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/redshift/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/redshift/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e641728f4fdc09ee7c67eab5808a64fc"
+  "hash": "10c45a6ea1ae6818c4817bb1ec6216ca"
 }
 ##DOCS-SOURCER-END -->
