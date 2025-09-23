@@ -403,6 +403,12 @@ module "alb" {
   # possible values are ipv4 and dualstack.
   ip_address_type = null
 
+  # (Optional) Informs browsers that the site should only be accessed using
+  # HTTPS, and that any future attempts to access it using HTTP should
+  # automatically be converted to HTTPS. Example: 'max-age=31536000;
+  # includeSubDomains; preload'.
+  routing_http_response_strict_transport_security_header_value = null
+
   # DEPRECATED. The VPC ID in which this ALB will be placed.
   vpc_id = ""
 
@@ -641,6 +647,12 @@ inputs = {
   # The type of IP addresses used by the subnets for your load balancer. The
   # possible values are ipv4 and dualstack.
   ip_address_type = null
+
+  # (Optional) Informs browsers that the site should only be accessed using
+  # HTTPS, and that any future attempts to access it using HTTP should
+  # automatically be converted to HTTPS. Example: 'max-age=31536000;
+  # includeSubDomains; preload'.
+  routing_http_response_strict_transport_security_header_value = null
 
   # DEPRECATED. The VPC ID in which this ALB will be placed.
   vpc_id = ""
@@ -1270,6 +1282,15 @@ The type of IP addresses used by the subnets for your load balancer. The possibl
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="routing_http_response_strict_transport_security_header_value" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Optional) Informs browsers that the site should only be accessed using HTTPS, and that any future attempts to access it using HTTP should automatically be converted to HTTPS. Example: 'max-age=31536000; includeSubDomains; preload'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="vpc_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1382,6 +1403,6 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.0.2/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "78f511998f6061a8c723f1156c476682"
+  "hash": "59ed4c55cc0fdd7d5ea888fbdd1de515"
 }
 ##DOCS-SOURCER-END -->
