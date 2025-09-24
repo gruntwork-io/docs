@@ -165,7 +165,7 @@ environment "cloudflare_environment" {
 
 1. **Store scripts in version control**: Keep your authentication scripts in the `.gruntwork/scripts/` directory so they're versioned with your infrastructure code
 2. **Handle errors gracefully**: Ensure your authentication scripts exit with non-zero status codes on failure
-3. **Use secure credential storage**: Don't hardcode secrets in your scripts; use secure secret management systems
+3. **Use secure credential storage**: Don't hardcode secrets in your scripts; use secure secret management systems such as GitHub Actions Secrets, GitLab Secrets, AWS Secrets Manager, etc.
 4. **Test your scripts**: Validate that your authentication scripts work in both development and CI/CD environments
 5. **Document requirements**: Clearly document any prerequisites (installed tools, environment variables, etc.) needed for your authentication scripts, and test for them.
 6. **If possible, use OIDC**: Use OIDC when possible to avoid storing long-lived credentials in your CI/CD environment.
