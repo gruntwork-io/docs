@@ -2,6 +2,16 @@
 
 Pipelines supports custom authentication mechanisms through the `custom` authentication block, allowing you to integrate with any cloud provider or service that Terragrunt needs to interact with.
 
+:::warning
+
+This is a more advanced feature, and is not recommended for most users if they have a viable alternative listed in [Authenticating to the Cloud](/2.0/docs/pipelines/concepts/cloud-auth/index.md).
+
+Using custom authentication exposes more flexibility in how authentication is handled, but it also requires more responsibility from the user to ensure that the authentication script is secure and does not expose sensitive information.
+
+If you are not sure if custom authentication is right for you, please contact Gruntwork support.
+
+:::
+
 ## How custom authentication works
 
 Pipelines supports custom authentication via Terragrunt's [auth provider command](https://terragrunt.gruntwork.io/docs/features/authentication/#auth-provider-command) feature. When you configure a `custom` authentication block, Pipelines sets the `TG_AUTH_PROVIDER_CMD` environment variable, which Terragrunt uses to execute your custom authentication script or command.
@@ -163,12 +173,12 @@ environment "cloudflare_environment" {
 
 ## Best practices
 
-1. **Store scripts in version control**: Keep your authentication scripts in the `.gruntwork/scripts/` directory so they're versioned with your infrastructure code
-2. **Handle errors gracefully**: Ensure your authentication scripts exit with non-zero status codes on failure
-3. **Use secure credential storage**: Don't hardcode secrets in your scripts; use secure secret management systems such as GitHub Actions Secrets, GitLab Secrets, AWS Secrets Manager, etc.
-4. **Test your scripts**: Validate that your authentication scripts work in both development and CI/CD environments
-5. **Document requirements**: Clearly document any prerequisites (installed tools, environment variables, etc.) needed for your authentication scripts, and test for them.
-6. **If possible, use OIDC**: Use OIDC when possible to avoid storing long-lived credentials in your CI/CD environment.
+1. **If possible, use OIDC**: Use OIDC when possible to avoid storing long-lived credentials in your CI/CD environment.
+2. **Store scripts in version control**: Keep your authentication scripts in the `.gruntwork/scripts/` directory so they're versioned with your infrastructure code
+3. **Handle errors gracefully**: Ensure your authentication scripts exit with non-zero status codes on failure
+4. **Use secure credential storage**: Don't hardcode secrets in your scripts; use secure secret management systems such as GitHub Actions Secrets, GitLab Secrets, AWS Secrets Manager, etc.
+5. **Test your scripts**: Validate that your authentication scripts work in both development and CI/CD environments
+6. **Document requirements**: Clearly document any prerequisites (installed tools, environment variables, etc.) needed for your authentication scripts, and test for them.
 
 ## Troubleshooting
 
@@ -177,5 +187,5 @@ If your custom authentication isn't working:
 1. **Check script permissions**: Ensure your authentication script is executable (`chmod +x`)
 2. **Validate JSON output**: Test your script manually and verify it outputs valid JSON
 3. **Check PATH**: If using commands in PATH, ensure they're available in your CI/CD environment
-4. **Review logs**: Check Terragrunt logs for authentication-related error messages
+4. **Review logs**: Check Pipelines and Terragrunt logs for authentication-related error messages
 5. **Test locally**: Run your authentication script in the same environment where Terragrunt executes
