@@ -55,7 +55,7 @@ The `auth_provider_cmd` attribute supports flexible path resolution:
 
 #### 1. Relative paths (recommended)
 
-When you specify a relative path, Pipelines first looks for the file relative to your `.gruntwork` directory:
+When you specify a relative path, Pipelines first looks for the file relative to your `.gruntwork` directory at the root of your repository:
 
 ```hcl
 custom {
