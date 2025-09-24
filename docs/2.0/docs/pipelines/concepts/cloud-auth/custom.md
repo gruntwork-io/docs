@@ -174,6 +174,8 @@ environment "cloudflare_environment" {
 
 ## Best practices
 
+These are some general best practices you should keep in mind as you implement custom authentication.
+
 1. **If possible, use OIDC**: Use OIDC when possible to avoid storing long-lived credentials in your CI/CD environment.
 2. **Store scripts in version control**: Keep your authentication scripts in the `.gruntwork/scripts/` directory so they're versioned with your infrastructure code
 3. **Handle errors gracefully**: Ensure your authentication scripts exit with non-zero status codes on failure
