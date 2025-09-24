@@ -6,7 +6,7 @@ Pipelines supports custom authentication mechanisms through the `custom` authent
 
 This is a more advanced feature, and is not recommended for most users if they have a viable alternative listed in [Authenticating to the Cloud](/2.0/docs/pipelines/concepts/cloud-auth/index.md).
 
-Using custom authentication exposes more flexibility in how authentication is handled, but it also requires more responsibility from the user to ensure that the authentication script is secure and does not expose sensitive information.
+Using custom authentication provides more flexibility in how authentication is handled, but it also requires more responsibility from users to ensure that the authentication being used is secure and does not expose sensitive information.
 
 If you are not sure if custom authentication is right for you, please contact Gruntwork support.
 
@@ -14,7 +14,7 @@ If you are not sure if custom authentication is right for you, please contact Gr
 
 ## How custom authentication works
 
-Pipelines supports custom authentication via Terragrunt's [auth provider command](https://terragrunt.gruntwork.io/docs/features/authentication/#auth-provider-command) feature. When you configure a `custom` authentication block, Pipelines sets the `TG_AUTH_PROVIDER_CMD` environment variable, which Terragrunt uses to execute your custom authentication script or command.
+Pipelines supports custom authentication via Terragrunt's [auth provider command](https://terragrunt.gruntwork.io/docs/features/authentication/#auth-provider-command) feature. When you configure a `custom` authentication block, Pipelines will execute the command specified in the `auth_provider_cmd` attribute, and pass the output of that command to Terragrunt (with the output expected to match the schema documented in Terragrunt's documentation for the auth provider command feature).
 
 Your authentication provider command should output a JSON response to stdout that follows the schema expected by Terragrunt:
 
@@ -41,7 +41,7 @@ All top-level objects are optional, and you can provide multiple. The `envs` obj
 
 ## Configuring custom authentication
 
-Custom authentication is defined using environments specified in HCL configuration files in the `.gruntwork` directory.
+Custom authentication is defined using environments specified in HCL configuration files in the `.gruntwork` directory at the root of your repository.
 
 ### Basic configuration
 
@@ -89,11 +89,11 @@ custom {
 
 #### 3. Commands in PATH
 
-You can reference commands available in your system's PATH:
+You can also reference commands available in your system's PATH:
 
 ```hcl
 custom {
-  auth_provider_cmd = "custom-auth-provider --method=gcp --project=my-project"
+  auth_provider_cmd = "my-custom-auth-provider --method=gcp --project=my-project"
 }
 ```
 
@@ -142,7 +142,8 @@ set -e
 
 # Acquire a Cloudflare API token
 # This is just an example of how to acquire a Cloudflare API token from a secrets manager.
-# You can use any method you like to set environment variables like this, but you are encouraged never to hardcode secrets in your repository.
+# You can use any method you like to set environment variables like this,
+# but you are encouraged never to hardcode secrets in your repository.
 CLOUDFLARE_API_TOKEN=$(aws secretsmanager get-secret-value --secret-id cloudflare-api-token --query SecretString --output text)
 
 # Output credentials in the format expected by Terragrunt
