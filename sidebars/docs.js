@@ -82,9 +82,9 @@ const sidebar = [
     id: "support",
   },
   {
-    label: "SLA Policy",
+    label: "SLO Policy",
     type: "doc",
-    id: "sla-policy",
+    id: "slo-policy",
   },
   {
     value: "Getting Started",
