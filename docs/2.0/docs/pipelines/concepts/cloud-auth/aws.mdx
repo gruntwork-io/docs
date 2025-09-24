@@ -16,37 +16,9 @@ When creating a new AWS account, it is necessary to update the AWS OIDC configur
 ## How Pipelines knows what AWS principals to authenticate as
 
 <Tabs>
-<TabItem value="legacy" label="Legacy YAML Configuration" default>
+<TabItem value="hcl" label="HCL">
 
-For legacy YAML configurations (you are using these if you see a `.gruntwork/config.yml` file in your repository), account mappings are defined using a combination of the `accounts.yml` file at the root of your repository, and the names of top-level directories in your `infrastructure-live` repository.
-
-Pipelines assumes that each top-level directory in your `infrastructure-live` repository corresponds to a single AWS account, excluding the directory reserved for [module defaults](/2.0/docs/library/concepts/module-defaults) (the one named `_envcommon`). Each account-mapped directory must have an entry in the account configuration. The entry should include a key matching the directory name and key/value pairs for the AWS account ID and the root user email address of the account.
-
-For instance, the following `accounts.yml` entry maps to a directory named `my-cool-account` in your `infrastructure-live` repository:
-
-```yml title=accounts.yml
-"my-cool-account":
-  "email": "my-root-account-email@example.com"
-  "id": "123456789012"
-```
-
-```bash title="Infrastructure Live"
-.
-├── accounts.yml
-├── _envcommon
-│   └── services
-│       └── my-app.hcl
-├── my-cool-account
-│   └── us-east-1
-│       └── dev
-│           └── database
-│               └── terragrunt.hcl
-```
-
-</TabItem>
-<TabItem value="modern" label="HCL">
-
-For the modern HCL configuration, account mappings are defined using environments specified in HCL configuration files in the `.gruntwork` directory (you are using these if you see `.hcl` files in your `.gruntwork` directory).
+For HCL configurations, account mappings are defined using environments specified in HCL configuration files in the `.gruntwork` directory (you are using these if you see `.hcl` files in your `.gruntwork` directory).
 
 Whenever Pipelines attempts to authenticate to AWS for a given unit, it will check to see if the unit matches any of the environments specified in your Pipelines HCL configurations. If any do, it will use the corresponding `authentication` block to determine how to authenticate to AWS.
 
@@ -124,6 +96,34 @@ environment "my_cool_environment" {
 :::info
 The HCL configuration approach provides more flexibility for complex authentication scenarios and enables the use of [Configurations as Code](/2.0/reference/pipelines/configurations-as-code/) features.
 :::
+
+</TabItem>
+<TabItem value="yaml" label="Legacy YAML Configuration" default>
+
+For legacy YAML configurations (you are using these if you see a `.gruntwork/config.yml` file in your repository), account mappings are defined using a combination of the `accounts.yml` file at the root of your repository, and the names of top-level directories in your `infrastructure-live` repository.
+
+Pipelines assumes that each top-level directory in your `infrastructure-live` repository corresponds to a single AWS account, excluding the directory reserved for [module defaults](/2.0/docs/library/concepts/module-defaults) (the one named `_envcommon`). Each account-mapped directory must have an entry in the account configuration. The entry should include a key matching the directory name and key/value pairs for the AWS account ID and the root user email address of the account.
+
+For instance, the following `accounts.yml` entry maps to a directory named `my-cool-account` in your `infrastructure-live` repository:
+
+```yml title=accounts.yml
+"my-cool-account":
+  "email": "my-root-account-email@example.com"
+  "id": "123456789012"
+```
+
+```bash title="Infrastructure Live"
+.
+├── accounts.yml
+├── _envcommon
+│   └── services
+│       └── my-app.hcl
+├── my-cool-account
+│   └── us-east-1
+│       └── dev
+│           └── database
+│               └── terragrunt.hcl
+```
 
 </TabItem>
 </Tabs>
