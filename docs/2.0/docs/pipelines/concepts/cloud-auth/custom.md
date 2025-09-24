@@ -4,7 +4,7 @@ Pipelines supports custom authentication mechanisms through the `custom` authent
 
 ## How custom authentication works
 
-Custom authentication in Pipelines leverages Terragrunt's [auth provider command](https://terragrunt.gruntwork.io/docs/features/authentication/#auth-provider-command) feature. When you configure a `custom` authentication block, Pipelines sets the `TG_AUTH_PROVIDER_CMD` environment variable, which Terragrunt uses to execute your custom authentication script or command.
+Pipelines supports custom authentication via Terragrunt's [auth provider command](https://terragrunt.gruntwork.io/docs/features/authentication/#auth-provider-command) feature. When you configure a `custom` authentication block, Pipelines sets the `TG_AUTH_PROVIDER_CMD` environment variable, which Terragrunt uses to execute your custom authentication script or command.
 
 Your authentication provider command should output a JSON response to stdout that follows the schema expected by Terragrunt:
 
