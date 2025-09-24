@@ -4,7 +4,7 @@ toc_max_heading_level: 2
 
 # Service Level Objective (SLO) Policy
 
-We are committed to providing reliable, high-quality services to our customers. This Service Level Objective (SLO) outlines our availability commitments, incident response procedures, and the transparency measures we employ to keep you informed about the health of our services.
+We are committed to providing reliable, high-quality services to our customers. 
 
 ## Incident Classification & Response Times
 
@@ -15,14 +15,13 @@ We are committed to providing reliable, high-quality services to our customers. 
 | **Severity 3 (Medium)** | Minor service degradation or non-critical functionality unavailable | 4 hours | 24 hours | As needed |
 | **Severity 4 (Low)** | Cosmetic issues or minor bugs with workarounds available | 1 business day | Best effort | As needed |
 
-## How We Catch Problems Fast
+## Incident Detection Procedures
 
-We've set up several systems to catch issues before you even notice them:
+We've set up several systems to identify incidents:
 
-- **Real-time Monitoring**: Our systems watch critical endpoints 24/7 and alert us the moment something goes wrong
-- **Automated Testing**: We regularly test authentication and pipeline workflows to catch issues before they affect you
-- **Error Tracking**: We use tools like Sentry to get instant notifications when errors occur
-- **Support Monitoring**: Our team watches support channels during business hours to catch issues you report
+- **Real-time Monitoring**: We have observability and monitoring on our core infrastructure.
+- **Error Tracking**: We use tools like Sentry to aggregate and produce notifications of errors.
+- **Support Monitoring**: Our team watches support channels during business hours to catch issues you report.
 
 ## Communication & Transparency
 
@@ -34,7 +33,7 @@ Here's what you can expect from us during an incident:
    - We've found the problem and are working on it
    - How bad it is and who's affected
    - When you'll hear from us next
-2. **Regular Updates** (every 2 hours for critical issues)
+2. **Regular Updates**
    - What's happening right now
    - What we're doing to fix it
    - Updated timeline if things change
@@ -45,7 +44,7 @@ Here's what you can expect from us during an incident:
 
 ### After We Fix It
 
-For serious incidents (Severity 1 & 2), we'll publish a full report within 5 business days that includes:
+For serious incidents (Severity 1 & 2), we'll create a Root Cause Analysis that, upon request, will be shared with customers, including:
 
 - **What Happened**: Step-by-step timeline of the incident
 - **Who Was Affected**: How many customers and what services were impacted
@@ -58,7 +57,7 @@ For serious incidents (Severity 1 & 2), we'll publish a full report within 5 bus
 This SLO doesn't apply to:
 
 - Beta or preview features (they're still experimental)
-- Scheduled maintenance (we'll give you 72 hours notice)
+- Scheduled maintenance 
 - Issues outside our control (internet outages, AWS problems, etc.)
 - Problems you caused (wrong configuration, hitting rate limits, etc.)
 - Third-party service failures
