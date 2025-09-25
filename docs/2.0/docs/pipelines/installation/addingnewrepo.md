@@ -1,23 +1,47 @@
 # Initial Setup
 
-To configure Gruntwork Pipelines in a new GitHub repository, complete the following steps:
+To configure Gruntwork Pipelines in a new GitHub repository, complete the following steps (which are explained in detail below):
 
-1. Create your `infrastructure-live-root` repository using Gruntwork's GitHub template.
-2. Configure the Gruntwork.io GitHub App to authorize your `infrastructure-live-root` repository, or ensure that the appropriate machine user tokens are set up as repository or organization secrets.
-3. Update the Bootstrap Workflow to configure your AWS settings.
-4. Execute the Bootstrap Workflow in your `infrastructure-live-root` repository to generate pull requests and additional repositories.
+1. Create an `infrastructure-live` repository.
+2. Configure the Gruntwork.io GitHub App to authorize your `infrastructure-live` repository, or ensure that the appropriate machine user tokens are set up as repository or organization secrets.
+3. Create `.gruntwork` HCL configurations to tell Pipelines how to authenticate in your environments.
+4. Create `.github/workflows/pipelines.yml` to tell your GitHub Actions workflow how to run your pipelines.
+5. Commit and push your changes to your repository.
 
-## Creating the infrastructure-live-root repository
+## Creating the infrastructure-live repository
 
-Gruntwork provides a pre-configured git repository template that incorporates best practices while allowing for customization.
+Creating an `infrastructure-live` repository is fairly straightforward. First, create a new repository using the official GitHub documentation for [creating repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository). Name the repository something like `infrastructure-live` and make it private (or internal).
 
-[infrastructure-live-root-template](https://github.com/gruntwork-io/infrastructure-live-root-template)
+Clone the repository to your local machine using [Git](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
-This template generates an `infrastructure-live-root` repository with a bootstrap workflow designed to scaffold a best-practices Terragrunt configuration. It includes patterns for module defaults, global variables, and account baselines. Additionally, it integrates Gruntwork Pipelines, which can be removed if not required.
+For example:
 
-The workflow can optionally scaffold the `infrastructure-live-access-control` and `infrastructure-catalog` repositories.
+```bash
+git clone git@github.com:acme/infrastructure-live.git
+```
 
-Navigate to the template repository and select **Use this template** -> **Create a new Repository**. Choose your organization as the owner, add a description if desired, set the repository to **private**, and click **Create repository**.
+Once the repository is created, you'll want to create a `.mise.toml` file in the root of the repository to tell Pipelines what version of Terragrunt and OpenTofu to use.
+
+For example:
+
+```toml title=".mise.toml"
+[tools]
+terragrunt = "0.87.6"
+opentofu = "1.10.6"
+```
+
+:::tip
+
+You can get `mise` to lookup the versions available for a given tool by using the `ls-remote` command.
+
+Follow the official [mise installation guide](https://mise.jdx.dev/getting-started.html) to install it locally.
+
+```bash
+mise ls-remote terragrunt
+mise ls-remote opentofu
+```
+
+:::
 
 ## Configuring Gruntwork app settings
 
@@ -25,27 +49,110 @@ Use the Gruntwork.io GitHub App to [add the repository as an Infra Root reposito
 
 If using the [machine user model](/2.0/docs/pipelines/installation/viamachineusers.md), ensure the `INFRA_ROOT_WRITE_TOKEN` (and `ORG_REPO_ADMIN_TOKEN` for enterprise customers) is added to the repository as a secret or configured as an organization secret.
 
-## Updating the Bootstrap Workflow
+## Creating `.gruntwork` HCL configurations
 
-Return to your `infrastructure-live-root` repository and follow the `README` instructions to update the bootstrap workflow for IaC Foundations. Provide details about your AWS organization, accounts, and default values for new account provisioning.
+Create [HCL configurations](/2.0/reference/pipelines/configurations-as-code/) in the `.gruntwork` directory in the root of your `infrastructure-live` repository to tell Pipelines how you plan to organize your infrastructure, and how you plan to have Pipelines authenticate with your cloud provider(s).
 
-## Running the workflow
+For example:
 
-Follow the instructions in your `infrastructure-live-root` repository to execute the Bootstrap Workflow. Gruntwork support is available to address any questions that arise. During the workflow execution, you can choose to create the `infrastructure-live-access-control` and `infrastructure-catalog` repositories. These repositories will be created in your GitHub organization using values defined in the workflow configuration.
+```hcl title=".gruntwork/repository.hcl"
+repository {
+  deploy_branch_name = "main"
+}
+```
 
-### Infrastructure live access control
+```hcl title=".gruntwork/environment.hcl"
+environment "dev" {
+  filter {
+    paths = ["dev/*"]
+  }
 
-This repository is primarily for Enterprise customers but is recommended for all users. When running the Bootstrap Workflow in your `infrastructure-live-root` repository, select the option to "Bootstrap the infrastructure-access-control repository."
+  authentication {
+    aws_oidc {
+      account_id = "123456789012"
+      plan_iam_role_arn = "arn:aws:iam::123456789012:role/pipelines-plan"
+      apply_iam_role_arn = "arn:aws:iam::123456789012:role/pipelines-apply"
+    }
+  }
+}
 
-### Infrastructure catalog
+environment "prod" {
+  filter {
+    paths = ["prod/*"]
+  }
 
-The Bootstrap Workflow also creates an empty `infrastructure-catalog` repository. This repository is used to store Terraform/OpenTofu modules authored by your organization for internal use. During the Bootstrap Workflow execution in your `infrastructure-live-root` repository, select the option to "Bootstrap the infrastructure-catalog repository."
+  authentication {
+    aws_oidc {
+      account_id = "987654321098"
+      plan_iam_role_arn = "arn:aws:iam::987654321098:role/pipelines-plan"
+      apply_iam_role_arn = "arn:aws:iam::987654321098:role/pipelines-apply"
+    }
+  }
+}
+```
 
-## Completing instructions in Bootstrap Pull Requests
+:::tip
 
-Each of your repositories will contain a Bootstrap Pull Request. Follow the instructions in these Pull Requests to finalize the setup of your IaC repositories.
+Check out the [aws block](/2.0/reference/pipelines/configurations-as-code/#aws-blocks) for more information on how to configure Pipelines to authenticate with AWS conveniently.
 
-:::info
-
-The bootstrapping pull requests include pre-configured files, such as a `mise.toml` file that specifies versions of OpenTofu and Terragrunt. Ensure you review and update these configurations to align with your organization's requirements.
 :::
+
+## Creating `.github/workflows/pipelines.yml`
+
+Create a `.github/workflows/pipelines.yml` file in the root of your `infrastructure-live` repository with the following content:
+
+```yaml title=".github/workflows/pipelines.yml"
+name: Pipelines
+run-name: "[GWP]: ${{ github.event.commits[0].message || github.event.pull_request.title || 'No commit message' }}"
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - ".github/**"
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths-ignore:
+      - ".github/**"
+
+# Permissions to assume roles and create pull requests
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+
+jobs:
+  GruntworkPipelines:
+    uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines.yml@main
+```
+
+:::tip
+
+You can read the [Pipelines GitHub Actions Workflow](https://github.com/gruntwork-io/pipelines-workflows/blob/main/.github/workflows/pipelines.yml) to learn how this GitHub Actions workflow calls the Pipelines CLI to run your pipelines.
+
+:::
+
+## Commit and push your changes
+
+Commit and push your changes to your repository.
+
+:::note
+
+You should include `[skip ci]` in your commit message here to prevent triggering the Pipelines workflow.
+
+:::
+
+```bash
+git add .
+git commit -m "Add Pipelines GitHub Actions workflow [skip ci]"
+git push
+```
+
+🚀 You've successfully added Gruntwork Pipelines to your new repository!
+
+## Next steps
+
+You have successfully completed the installation of Gruntwork Pipelines in a new repository. Proceed to [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change.md) to begin deploying changes.
