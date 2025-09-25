@@ -4,6 +4,8 @@ Gruntwork Account Factory employs a defense-in-depth approach to secure workflow
 
 Account Factory relies on Pipelines to drive infrastructure changes via GitOps workflows, so make sure to read the [Pipelines security controls](/2.0/docs/pipelines/architecture/security-controls) for more details on how Pipelines secures workflows.
 
+Account Factory relies on Pipelines to drive infrastructure changes via GitOps workflows, so make sure to read the [Pipelines security controls](/2.0/docs/pipelines/architecture/security-controls) for more details on how Pipelines secures workflows.
+
 ## Least privilege principle
 
 Account Factory adheres to the principle of least privilege, configuring the AWS IAM roles vended as part of Account Factory onboarding to grant only the necessary permissions for infrastructure actions relevant for Account Factory to operate correctly, and to only trust the `infrastructure-live-root` repository for role assumption.
