@@ -205,3 +205,15 @@ A read/write apply role for delegated repositories.
 :::note
 The `delegated-pipelines-plan` and `delegated-pipelines-apply` roles are automatically provisioned for new delegated accounts. Enterprise customers will see pull requests created in the `infrastructure-live-access-control` repository to vend these roles with proper configurations.
 :::
+
+## Trust boundaries
+
+A critical aspect of Pipelines' architecture is understanding its trust model. Since Pipelines runs within a CI/CD system, it has privileged access to your infrastructure resources (e.g. AWS accounts, VPCs, EC2 instances, etc.).
+
+Anyone with the ability to edit code in the `main` branch of your repositories inherently has the authority to make corresponding changes in your infrastructure resources. For this reason, it is important to follow the [Repository Access](/2.0/docs/pipelines/installation/viamachineusers#repository-access) guidelines to ensure appropriate access control.
+
+:::tip
+
+Each AWS IAM role provisioned through setup of [Gruntwork Account Factory](https://docs.gruntwork.io/account-factory/overview) is configured to trust a single repository (and, for apply roles, a single branch). If a role's permissions become overly broad, consider creating a new role with more granular permissions tailored to the specific use case. Use the `infrastructure-live-access-control` repository to define and manage these roles.
+
+:::
