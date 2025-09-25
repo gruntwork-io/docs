@@ -6,12 +6,11 @@ Gruntwork Pipelines supports both GitHub Actions and GitLab CI/CD as CI/CD platf
 
 | Feature                          | GitHub                      | GitLab (Beta)                |
 | -------------------------------- | --------------------------- | ---------------------------- |
-| Infrastructure as Code Pipelines | ✅                           | ✅                            |
-| Account Factory Integration      | ✅                           | ❌                            |
-| App-based Authentication         | ✅                           | ❌                            |
-| Machine User Authentication      | ✅                           | ✅                            |
-| Customizable Workflows           | ✅                           | ✅                            |
+| Infrastructure as Code Pipelines | ✅                          | ✅                           |
+| Account Factory Integration      | ✅                          | ✅                           |
+| App-based Authentication         | ✅                          | ❌                           |
+| Machine User Authentication      | ✅                          | ✅                           |
+| Customizable Workflows           | ✅                          | ✅                           |
 | Pull Request Comments            | Rich formatting             | Rich formatting              |
 | Repository/Group Authorization   | Self-service via GitHub App | Manual via Gruntwork Support |
 | Required Setup Time              | ~30 minutes                 | ~30 minutes                  |
-
