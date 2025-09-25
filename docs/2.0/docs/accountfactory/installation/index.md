@@ -2,7 +2,7 @@
 
 ## Overview
 
-Account Factory is automatically integrated into [new Pipelines root repositories](/2.0/docs/pipelines/installation/addingnewrepo) during the bootstrapping process.
+Account Factory is automatically integrated into [new Pipelines root repositories](/2.0/docs/accountfactory/installation/addingnewrepo) during the bootstrapping process.
 
 By default, Account Factory includes the following components:
 
