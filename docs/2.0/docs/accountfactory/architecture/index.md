@@ -28,13 +28,14 @@ sequenceDiagram
   Infra Live Repository ->> Pipelines: Trigger Account Added
   Pipelines ->> Core Accounts: Execute terragrunt to baseline account
 ```
+
 ## IAM roles
 
 Newly created accounts include IAM policies that define the scope of changes Pipelines is authorized to perform within AWS. Pipelines automatically assumes the necessary roles for each account when it detects changes. Detailed information about the provisioned roles can be found [here](/2.0/docs/pipelines/architecture/security-controls#roles-provisioned-by-devops-foundations).
 
 ## Delegated repositories
 
-Delegated repositories enhance the architecture of infrastructure management by introducing additional layers of access control. When delegated repositories are created, Pipelines continues to manage new account security baselines within the `infrastructure-live-root` repository, while other infrastructure resources are managed in a new repository specific to the delegated account(s). 
+Delegated repositories enhance the architecture of infrastructure management by introducing additional layers of access control. When delegated repositories are created, Pipelines continues to manage new account security baselines within the `infrastructure-live-root` repository, while other infrastructure resources are managed in a new repository specific to the delegated account(s).
 
 Pipelines uses IAM roles from the `infrastructure-live-access-control` repository to deploy infrastructure in these delegated repositories. This setup enables the central platform team to define and restrict the scope of changes individual teams can make via Pipelines in delegated repositories.
 

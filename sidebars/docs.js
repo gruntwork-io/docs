@@ -480,6 +480,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/accountfactory/architecture/network-topology",
       },
+      {
+        label: "Repository Topology",
+        type: "doc",
+        id: "2.0/docs/accountfactory/architecture/repository-topology",
+      },
     ],
   },
   {
