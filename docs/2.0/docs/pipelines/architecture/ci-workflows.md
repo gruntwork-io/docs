@@ -48,7 +48,7 @@ The `pipelines-workflows` repository includes the following reusable workflows:
 - `pipelines-unlock.yml` - (AWS only) Used to manually unlock state files in all repositories.
 - `pipelines.yml` - The core Pipelines workflow for `infrastructure-live-access-control` and delegated repositories, supporting plan/apply operations.
 
-If you are using [Gruntwork Account Factory](/2.0/docs/accountfactory/overview), the following workflows are typically present:
+If you are using [Gruntwork Account Factory](/2.0/docs/accountfactory/concepts/), the following workflows are typically present:
 
 ### infrastructure-live-root
 
