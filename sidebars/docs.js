@@ -82,6 +82,11 @@ const sidebar = [
     id: "support",
   },
   {
+    label: "SLO Policy",
+    type: "doc",
+    id: "slo-policy",
+  },
+  {
     value: "Getting Started",
     type: "html",
     className: "sidebar-header emoji-rocket",
