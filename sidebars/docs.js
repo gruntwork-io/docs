@@ -225,18 +225,6 @@ const sidebar = [
         id: "2.0/docs/pipelines/installation/scm-comparison",
       },
       {
-        label: "Prerequisites",
-        type: "category",
-        collapsed: false,
-        items: [
-          {
-            label: "AWS Landing Zone",
-            type: "doc",
-            id: "2.0/docs/pipelines/installation/prerequisites/awslandingzone",
-          },
-        ],
-      },
-      {
         type: "category",
         label: "Enable Auth for Pipelines",
         collapsed: false,
@@ -484,6 +472,18 @@ const sidebar = [
         label: "Repository Topology",
         type: "doc",
         id: "2.0/docs/accountfactory/architecture/repository-topology",
+      },
+    ],
+  },
+  {
+    label: "Prerequisites",
+    type: "category",
+    collapsed: false,
+    items: [
+      {
+        label: "AWS Landing Zone",
+        type: "doc",
+        id: "2.0/docs/accountfactory/prerequisites/awslandingzone",
       },
     ],
   },
