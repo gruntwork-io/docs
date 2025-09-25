@@ -2,6 +2,8 @@
 
 Gruntwork Account Factory employs a defense-in-depth approach to secure workflows across both GitHub and GitLab platforms. This document outlines the controls Pipelines uses to ensure that only infrastructure written in code and approved by a reviewer can be deployed to your AWS accounts.
 
+Account Factory relies on Pipelines to drive infrastructure changes via GitOps workflows, so make sure to read the [Pipelines security controls](/2.0/docs/pipelines/architecture/security-controls) for more details on how Pipelines secures workflows.
+
 ## Least privilege principle
 
 Pipelines adheres to the principle of least privilege, granting only the necessary permissions for infrastructure actions.
