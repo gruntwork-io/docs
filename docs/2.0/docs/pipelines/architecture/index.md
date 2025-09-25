@@ -2,7 +2,6 @@
 
 Gruntwork Pipelines is designed to provide flexibility, enabling you to utilize the components you need to manage your infrastructure in a way that aligns with your organization's requirements.
 
-
 Understanding the components and their structure will help you use Pipelines and associated Infrastructure as Code (IaC) effectively.
 
 ## `infrastructure-live-root`
@@ -13,7 +12,7 @@ This repository is where you manage sensitive resources such as the Landing Zone
 
 All other infrastructure managed with Gruntwork software ultimately depends on resources configured in this repository.
 
-### Workflows
+### `infrastructure-live-root` workflows
 
 - **Account Factory:** (GitHub only) Provides an API for interacting with the Gruntwork Account Factory. It uses a [repository dispatch](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#repository_dispatch) to create AWS account requests.
 
@@ -27,7 +26,7 @@ All other infrastructure managed with Gruntwork software ultimately depends on r
 
   You don't even need to use the form at all if you don't want to. An alternative would be to use a service like ServiceNow to populate the requisite fields, then trigger the workflow using the GitHub API.
 
-  You can learn more about this [here](/2.0/docs/accountfactory/guides/vend-aws-account).
+  You can learn more about this in the ["Using the Account Factory Workflow" guide](/2.0/docs/accountfactory/guides/vend-aws-account).
 
   :::
 
@@ -70,7 +69,7 @@ It also doesn't have to be the only access control repository in your organizati
 
 :::
 
-### Workflows
+### `infrastructure-live-access-control` workflows
 
 - **Pipelines** - This workflow will be used by the `infrastructure-live-access-control` repository to manage access control infrastructure in response to changes in the repository in a GitOps fashion.
 
@@ -90,10 +89,9 @@ It can be advantageous to have one repository for all modules to make it easier 
 
 :::
 
-### Workflows
+### `infrastructure-catalog` workflows
 
 - **Tests:** Validates module functionality by provisioning them in real environments, running [Terratests](https://github.com/gruntwork-io/terratest), and tearing them down. This workflow ensures modules work as expected.
-
 
 ## `infrastructure-live-delegated`
 
@@ -102,6 +100,7 @@ One of the primary benefits of IaC Foundations is the streamlined delegation of 
 These repositories can be created manually by customers for specific purposes. For example, an application repository may need permissions to build and push a container image to AWS ECR, or to deploy an update to an ECS service. These permissions can be delegated by the `infrastructure-live-access-control` repository to a specific repository that needs those permissions.
 
 Enterprise customers can also expect the creation and management of delegated repositories centrally in the `infrastructure-live-root` repository. This is an Enterprise-only feature that allows for the creation of delegated repositories with largely the same degree of infrastructure management as the `infrastructure-live-root` repository itself. This is useful for organizations that want to allow large degrees of infrastructure management (e.g. entire AWS accounts) without having to manually provision and manage the repositories that need those permissions.
+
 ## Entity relationship diagram
 
 ```mermaid
