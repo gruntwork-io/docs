@@ -174,9 +174,9 @@ const sidebar = [
     },
     items: [
       {
-        label: "Components",
+        label: "Execution flow",
         type: "doc",
-        id: "2.0/docs/pipelines/architecture/components",
+        id: "2.0/docs/pipelines/architecture/execution-flow",
       },
       {
         label: "Actions",
