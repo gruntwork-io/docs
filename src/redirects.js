@@ -30,11 +30,11 @@ export const redirects = [
         from: "/developer-portal/link-github-id"
     },
     {
-        to: "/2.0/docs/pipelines/architecture/components",
+        to: "/2.0/docs/pipelines/architecture/execution-flow",
         from: "/pipelines/architecture/index"
     },
     {
-        to: "/2.0/docs/pipelines/architecture/components",
+        to: "/2.0/docs/pipelines/architecture/execution-flow",
         from: "/pipelines/architecture"
     },
     {
