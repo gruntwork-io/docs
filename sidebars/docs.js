@@ -489,8 +489,19 @@ const sidebar = [
   },
   {
     label: "Setup & Installation",
-    type: "doc",
-    id: "2.0/docs/accountfactory/installation/index",
+    type: "category",
+    collapsed: true,
+    link: {
+      type: "doc",
+      id: "2.0/docs/accountfactory/installation/index",
+    },
+    items: [
+      {
+        label: "Adding Account Factory to a new repository",
+        type: "doc",
+        id: "2.0/docs/accountfactory/installation/addingnewrepo",
+      },
+    ],
   },
   {
     label: "Guides",
