@@ -12,7 +12,6 @@ This guide focuses on non-delegated repositories. Enterprise customers can also 
 
 :::
 
-
 ### Step 1 - Download the file
 
 Locate the inputs web page in your `infrastructure-live-root` repository at `.github/workflows/account-factory-inputs.html` and download it to your local machine.
