@@ -1,11 +1,10 @@
 import CustomizableValue from '/src/components/CustomizableValue';
 
- 
 # Landing Zone
 
 ## Overview
 
-The Landing Zone component establishes an initial best-practice AWS multi-account setup.
+The Landing Zone component establishes an initial best-practice AWS multi-account setup for use with Gruntwork Account Factory.
 
 ## Extending AWS Control Tower
 
@@ -242,16 +241,15 @@ Complete the following steps to prepare for Gruntwork Account Factory:
 
       3. Switch to the `Users` tab, select your management user from the list and click **Next**
 
-      4.  Select `AWSAdministratorAccess` from the list of Permission Sets, then click **Next**
+      4. Select `AWSAdministratorAccess` from the list of Permission Sets, then click **Next**
 
-      5.  Click `Submit` to finish assigning access to your user
+      5. Click `Submit` to finish assigning access to your user
 
 ## Next steps
 
 Now that Control Tower is configured, consider these next steps:
+
 - [Set up IAM Identity Center](https://docs.aws.amazon.com/singlesignon/latest/userguide/get-started-choose-identity-source.html) for access control.
 - [Apply required controls or SCPs](https://docs.aws.amazon.com/controltower/latest/userguide/controls.html).
 - [Install Gruntwork Pipelines](/2.0/docs/pipelines/installation/viagithubapp).
 - [Set up Gruntwork Account Factory](/2.0/docs/accountfactory/installation).
-
-
