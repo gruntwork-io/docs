@@ -56,3 +56,161 @@ Customers using GitLab as their SCM platform use GitLab Machine Users to authent
 The Gruntwork Developer Portal (hosted at [app.gruntwork.io](https://app.gruntwork.io)) is a web-based interface that customers use to manage their Gruntwork subscription. This includes the ability to install the Gruntwork.io GitHub App and associate it with a Gruntwork organization, and manage the access that the app has to relevant GitHub resources in customer GitHub organizations.
 
 It is also used to manage the access that GitHub Machine Users have to relevant Gruntwork owned repositories, made available via customer Gruntwork subscriptions.
+
+## Architecture Overview
+
+The Gruntwork Pipelines architecture varies depending on your Source Control Management (SCM) platform, authentication method, and cloud provider.
+
+Below are simplified diagrams for each supported configuration, to provide a high-level overview of the architecture:
+
+### GitHub with Gruntwork.io App (Recommended)
+
+```mermaid
+graph TB
+    subgraph "Customer GitHub"
+        GH[GitHub Repository]
+        GHA[GitHub Actions]
+        IaC[Infrastructure as Code]
+    end
+
+    subgraph "Gruntwork Services"
+        GDP[Gruntwork Developer Portal<br/>app.gruntwork.io]
+        GApp[Gruntwork.io GitHub App]
+    end
+
+    subgraph "Pipelines Runtime"
+        Binary[Gruntwork Pipelines Binary]
+    end
+
+    subgraph "Cloud Provider"
+        OIDC[OpenID Connect]
+        Cloud[Cloud Resources<br/>AWS/Azure/Custom]
+    end
+
+    %% Main flow
+    GH --> IaC
+    IaC --> GHA
+    GHA --> Binary
+
+    %% Authentication
+    GDP --> GApp
+    GApp --> GH
+    Binary --> GApp
+
+    %% Cloud access
+    Binary --> OIDC
+    OIDC --> Cloud
+
+    classDef customer fill:#b3e5fc,stroke:#01579b,stroke-width:2px,color:#000000
+    classDef gruntwork fill:#e1bee7,stroke:#4a148c,stroke-width:2px,color:#000000
+    classDef runtime fill:#f8bbd9,stroke:#880e4f,stroke-width:2px,color:#000000
+    classDef cloud fill:#c8e6c9,stroke:#1b5e20,stroke-width:2px,color:#000000
+
+    class GH,GHA,IaC customer
+    class GDP,GApp gruntwork
+    class Binary runtime
+    class OIDC,Cloud cloud
+```
+
+### GitHub with Machine Users
+
+```mermaid
+graph TB
+    subgraph "Customer GitHub"
+        GH[GitHub Repository]
+        GHA[GitHub Actions]
+        IaC[Infrastructure as Code]
+    end
+
+    subgraph "Gruntwork Services"
+        GDP[Gruntwork Developer Portal<br/>app.gruntwork.io]
+        GMU[GitHub Machine User<br/>Long-lived PAT]
+    end
+
+    subgraph "Pipelines Runtime"
+        Binary[Gruntwork Pipelines Binary]
+    end
+
+    subgraph "Cloud Provider"
+        OIDC[OpenID Connect]
+        Cloud[Cloud Resources<br/>AWS/Azure/Custom]
+    end
+
+    %% Main flow
+    GH --> IaC
+    IaC --> GHA
+    GHA --> Binary
+
+    %% Authentication
+    GDP --> GMU
+    GMU --> GH
+    Binary --> GMU
+
+    %% Cloud access
+    Binary --> OIDC
+    OIDC --> Cloud
+
+    classDef customer fill:#b3e5fc,stroke:#01579b,stroke-width:2px,color:#000000
+    classDef gruntwork fill:#e1bee7,stroke:#4a148c,stroke-width:2px,color:#000000
+    classDef runtime fill:#f8bbd9,stroke:#880e4f,stroke-width:2px,color:#000000
+    classDef cloud fill:#c8e6c9,stroke:#1b5e20,stroke-width:2px,color:#000000
+
+    class GH,GHA,IaC customer
+    class GDP,GMU gruntwork
+    class Binary runtime
+    class OIDC,Cloud cloud
+```
+
+### GitLab
+
+```mermaid
+graph TB
+    subgraph "Customer GitLab"
+        GL[GitLab Repository]
+        GLC[GitLab CI]
+        IaC[Infrastructure as Code]
+    end
+
+    subgraph "Gruntwork Services"
+        GDP[Gruntwork Developer Portal<br/>app.gruntwork.io]
+        GMU[GitHub Machine User<br/>For Pipelines Binary]
+        GLMU[GitLab Machine User<br/>Access Token]
+    end
+
+    subgraph "Pipelines Runtime"
+        Binary[Gruntwork Pipelines Binary]
+    end
+
+    subgraph "Cloud Provider"
+        OIDC[OpenID Connect]
+        Cloud[Cloud Resources<br/>AWS/Azure/Custom]
+    end
+
+    %% Main flow
+    GL --> IaC
+    IaC --> GLC
+    GLC --> Binary
+
+    %% Authentication - GitLab
+    GDP --> GLMU
+    GLMU --> GL
+    Binary --> GLMU
+
+    %% Authentication - GitHub (for binary download)
+    GDP --> GMU
+    Binary --> GMU
+
+    %% Cloud access
+    Binary --> OIDC
+    OIDC --> Cloud
+
+    classDef customer fill:#b3e5fc,stroke:#01579b,stroke-width:2px,color:#000000
+    classDef gruntwork fill:#e1bee7,stroke:#4a148c,stroke-width:2px,color:#000000
+    classDef runtime fill:#f8bbd9,stroke:#880e4f,stroke-width:2px,color:#000000
+    classDef cloud fill:#c8e6c9,stroke:#1b5e20,stroke-width:2px,color:#000000
+
+    class GL,GLC,IaC customer
+    class GDP,GMU,GLMU gruntwork
+    class Binary runtime
+    class OIDC,Cloud cloud
+```
