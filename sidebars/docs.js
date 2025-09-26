@@ -225,18 +225,6 @@ const sidebar = [
         id: "2.0/docs/pipelines/installation/scm-comparison",
       },
       {
-        label: "Prerequisites",
-        type: "category",
-        collapsed: false,
-        items: [
-          {
-            label: "AWS Landing Zone",
-            type: "doc",
-            id: "2.0/docs/pipelines/installation/prerequisites/awslandingzone",
-          },
-        ],
-      },
-      {
         type: "category",
         label: "Enable Auth for Pipelines",
         collapsed: false,
@@ -483,9 +471,32 @@ const sidebar = [
     ],
   },
   {
+    label: "Prerequisites",
+    type: "category",
+    collapsed: false,
+    items: [
+      {
+        label: "AWS Landing Zone",
+        type: "doc",
+        id: "2.0/docs/accountfactory/prerequisites/awslandingzone",
+      },
+    ],
+  },
+  {
     label: "Setup & Installation",
-    type: "doc",
-    id: "2.0/docs/accountfactory/installation/index",
+    type: "category",
+    collapsed: true,
+    link: {
+      type: "doc",
+      id: "2.0/docs/accountfactory/installation/index",
+    },
+    items: [
+      {
+        label: "Adding Account Factory to a new repository",
+        type: "doc",
+        id: "2.0/docs/accountfactory/installation/addingnewrepo",
+      },
+    ],
   },
   {
     label: "Guides",
