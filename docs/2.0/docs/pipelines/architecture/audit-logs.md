@@ -1,8 +1,11 @@
 # Audit Logs
 
-Gruntwork Pipelines provides an audit log that records which user performed specific operations in your AWS accounts as a result of a [Pipelines Action](/2.0/docs/pipelines/architecture/actions.md).
+For certain cloud environments (for now, only AWS), Gruntwork Pipelines provides an audit log that records which user performed specific operations in your AWS accounts as a result of a [Pipelines Action](/2.0/docs/pipelines/architecture/actions.md). Pipelines does this via integration with native tooling for the cloud provider.
+
+## AWS
 
 Accessing AWS environments from a CI/CD system often involves assuming temporary credentials using OpenID Connect (OIDC). For platform-specific documentation, see:
+
 - [GitHub OIDC Configuration](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services)
 - [GitLab OIDC Configuration](https://docs.gitlab.com/ee/ci/cloud_services/aws/)
 
@@ -10,11 +13,11 @@ Shared credentials can complicate tracking who performed specific actions in AWS
 
 ## How it works
 
-Gruntwork Pipelines creates an audit log that tracks which user performed what action in which AWS account. It does this by setting the [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) session name to include the initiating username, the Pipelines name, and the merge request/pull request or branch that triggered the action. Logging is handled through [AWS CloudTrail](https://aws.amazon.com/cloudtrail/), where session names appear in the `User name` field, making it easy to identify which user performed an action. For information on locating logs, see [where you can find logs](#where-you-can-find-logs) and [querying data](#querying-data).
+Gruntwork Pipelines creates an audit log that tracks which user performed what action in which AWS account. It does this by setting the [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) session name to include the initiating username, the Pipelines name, and the merge/pull request or branch that triggered the action. Logging is handled through [AWS CloudTrail](https://aws.amazon.com/cloudtrail/), where session names appear in the `User name` field, making it easy to identify which user performed an action. For information on locating logs, see [where you can find logs](#where-you-can-find-logs) and [querying data](#querying-data).
 
 ### What gets logged
 
-Logs are generated for all operations performed by Gruntwork Pipelines across every AWS account. These logs leverage [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) session names to clearly label sessions with the username that requested the change and the associated merge request/pull request or branch.
+Logs are generated for all operations performed by Gruntwork Pipelines in AWS across every AWS account. These logs leverage [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) session names to clearly label sessions with the username that requested the change and the associated merge/pull request or branch.
 
 Each CloudTrail event linked to API calls from Pipelines [Actions](/2.0/docs/pipelines/architecture/actions.md) includes the session name in the `userIdentity` field. For example, if the user `SomeUserInYourOrg` initiated the 123rd request in your repository, the `userIdentity` field in a corresponding CloudTrail event would provide details such as the following.
 
@@ -58,13 +61,17 @@ By combining this data with a [query service](#querying-data), you can analyze t
 Pipelines employs a naming scheme that integrates the user who triggered the Pipelines [Action](/2.0/docs/pipelines/architecture/actions.md) along with the request or branch that initiated the action. The AWS STS session name is formatted as follows:
 `<UserName>-via-GWPipelines@(PR-<RequestNumber>|<branch name>)`.
 
-#### For merge request/pull request events
+#### For merge/pull request events
+
 When Pipelines runs in response to a request event (opened, updated, or reopened), the session name includes the user who made the most recent commit on the branch and the request number. For instance:
+
 - If the user `SomeUserInYourOrg` created request number `123`, the session name would be:
   `SomeUserInYourOrg-via-GWPipelines@PR-123`.
 
 #### For merged requests
+
 When Pipelines runs after a request is merged, the session name reflects the user who performed the merge and the deploy branch name (e.g., `main`). For example:
+
 - If the user `SomeUserInYourOrg` merged a request to the branch `main`, the session name would be:
   `SomeUserInYourOrg-via-GWPipelines@main`.
 
