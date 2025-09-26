@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.127.9" lastModifiedVersion="0.116.0"/>
+<VersionBadge version="0.128.0" lastModifiedVersion="0.116.0"/>
 
 # Route 53 Hosted Zones
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules/networking/route53" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/modules/networking/route53" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Froute53" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -105,7 +105,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 :::
 
-*   [Should you use AWS Route 53 or CloudMap for your DNS entries?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules/networking/route53/core-concepts.md#should-i-use-route53-or-cloud-map)
+*   [Should you use AWS Route 53 or CloudMap for your DNS entries?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/modules/networking/route53/core-concepts.md#should-i-use-route53-or-cloud-map)
 *   [AWS Cloud Map Documentation](https://docs.aws.amazon.com/cloud-map/latest/dg/what-is-cloud-map.html): Amazon’s docs
     for AWS Cloud Map that cover core concepts and configuration.
 *   [Route 53 Documentation](https://docs.aws.amazon.com/route53/): Amazon’s docs for Route 53 that cover core concepts
@@ -117,7 +117,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -125,7 +125,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -144,7 +144,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "route_53" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=v0.127.9"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=v0.128.0"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -183,7 +183,7 @@ module "route_53" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=v0.127.9"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=v0.128.0"
 }
 
 inputs = {
@@ -621,11 +621,11 @@ A map of domains to resource arns and hosted zones of the created Service Discov
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules/networking/route53/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules/networking/route53/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules/networking/route53/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/modules/networking/route53/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/modules/networking/route53/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/modules/networking/route53/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "30e110bc0e4655afb9459e8412333d6a"
+  "hash": "42b8cf48c263fac0a1f2bb499b25ae3d"
 }
 ##DOCS-SOURCER-END -->

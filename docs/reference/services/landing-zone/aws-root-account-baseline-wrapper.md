@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.127.9" lastModifiedVersion="0.126.2"/>
+<VersionBadge version="0.128.0" lastModifiedVersion="0.126.2"/>
 
 # Account Baseline for root account
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules/landingzone/account-baseline-root" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/modules/landingzone/account-baseline-root" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-root" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -58,16 +58,16 @@ If you’ve never used the Service Catalog before, make sure to read
 
 *   Learn more about each individual module, click the link in the [Features](#features) section
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
-*   [How to create child accounts](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/core-concepts.md#creating-child-accounts)
-*   [How to aggregate AWS Config and CloudTrail data in a logs account](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/core-concepts.md#aggregating-aws-config-and-cloudtrail-data-in-a-logs-account)
-*   [Why does this module use account-level AWS Config Rules?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/core-concepts.md#why-does-this-module-use-account-level-aws-config-rules)
-*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/core-concepts.md#how-to-use-multi-region-services)
+*   [How to create child accounts](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/core-concepts.md#creating-child-accounts)
+*   [How to aggregate AWS Config and CloudTrail data in a logs account](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/core-concepts.md#aggregating-aws-config-and-cloudtrail-data-in-a-logs-account)
+*   [Why does this module use account-level AWS Config Rules?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/core-concepts.md#why-does-this-module-use-account-level-aws-config-rules)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/core-concepts.md#how-to-use-multi-region-services)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end integrated tech stack on top of the Gruntwork Service Catalog.
@@ -104,7 +104,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "account_baseline_root" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-root?ref=v0.127.9"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-root?ref=v0.128.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -281,6 +281,10 @@ module "account_baseline_root" {
   # you don't have to pass around the KMS key ARN.
   cloudtrail_allow_kms_describe_key_to_external_aws_accounts = false
 
+  # After cloudtrail_num_days_after_which_archive_log_data it will
+  # moved/archived to this storage class
+  cloudtrail_archive_storage_class = "GLACIER"
+
   # Specify the name of the CloudWatch Logs group to publish the CloudTrail logs
   # to. This log group exists in the current account. Set this value to `null`
   # to avoid publishing the trail logs to the logs group. The recommended
@@ -369,7 +373,7 @@ module "account_baseline_root" {
   cloudtrail_kms_key_user_iam_arns = []
 
   # After this number of days, log files should be transitioned from S3 to
-  # Glacier. Enter 0 to never archive log data.
+  # var.cloudtrail_archive_storage_class. Enter 0 to never archive log data.
   cloudtrail_num_days_after_which_archive_log_data = 30
 
   # After this number of days, log files should be deleted from S3. Enter 0 to
@@ -1013,7 +1017,7 @@ module "account_baseline_root" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-root?ref=v0.127.9"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-root?ref=v0.128.0"
 }
 
 inputs = {
@@ -1193,6 +1197,10 @@ inputs = {
   # you don't have to pass around the KMS key ARN.
   cloudtrail_allow_kms_describe_key_to_external_aws_accounts = false
 
+  # After cloudtrail_num_days_after_which_archive_log_data it will
+  # moved/archived to this storage class
+  cloudtrail_archive_storage_class = "GLACIER"
+
   # Specify the name of the CloudWatch Logs group to publish the CloudTrail logs
   # to. This log group exists in the current account. Set this value to `null`
   # to avoid publishing the trail logs to the logs group. The recommended
@@ -1281,7 +1289,7 @@ inputs = {
   cloudtrail_kms_key_user_iam_arns = []
 
   # After this number of days, log files should be transitioned from S3 to
-  # Glacier. Enter 0 to never archive log data.
+  # var.cloudtrail_archive_storage_class. Enter 0 to never archive log data.
   cloudtrail_num_days_after_which_archive_log_data = 30
 
   # After this number of days, log files should be deleted from S3. Enter 0 to
@@ -2501,6 +2509,15 @@ Whether or not to allow kms:DescribeKey to external AWS accounts with write acce
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="cloudtrail_archive_storage_class" requirement="optional" type="string">
+<HclListItemDescription>
+
+After cloudtrail_num_days_after_which_archive_log_data it will moved/archived to this storage class
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;GLACIER&quot;"/>
+</HclListItem>
+
 <HclListItem name="cloudtrail_cloudwatch_logs_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2721,7 +2738,7 @@ All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key) tha
 <HclListItem name="cloudtrail_num_days_after_which_archive_log_data" requirement="optional" type="number">
 <HclListItemDescription>
 
-After this number of days, log files should be transitioned from S3 to Glacier. Enter 0 to never archive log data.
+After this number of days, log files should be transitioned from S3 to <a href="#cloudtrail_archive_storage_class"><code>cloudtrail_archive_storage_class</code></a>. Enter 0 to never archive log data.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
@@ -4615,11 +4632,11 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules/landingzone/account-baseline-root/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules/landingzone/account-baseline-root/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules/landingzone/account-baseline-root/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/modules/landingzone/account-baseline-root/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/modules/landingzone/account-baseline-root/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.128.0/modules/landingzone/account-baseline-root/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c717eda2ac034cc871accf5a0fa9e631"
+  "hash": "c8a4e7c8f99c393ddd9f00f74d12c962"
 }
 ##DOCS-SOURCER-END -->
