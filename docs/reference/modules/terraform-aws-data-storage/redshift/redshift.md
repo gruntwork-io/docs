@@ -149,9 +149,10 @@ module "redshift" {
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The name of the first database to create in the Redshift cluster. Must be
+  # 1-127 characters. Must begin with a letter or underscore. Subsequent
+  # characters can be letters, underscores, digits, or dollar signs. Cannot be a
+  # reserved word. Default is 'dev'.
   db_name = "dev"
 
   # Timeout for DB deleting
@@ -382,9 +383,10 @@ inputs = {
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The name of the first database to create in the Redshift cluster. Must be
+  # 1-127 characters. Must begin with a letter or underscore. Subsequent
+  # characters can be letters, underscores, digits, or dollar signs. Cannot be a
+  # reserved word. Default is 'dev'.
   db_name = "dev"
 
   # Timeout for DB deleting
@@ -690,7 +692,7 @@ A map of custom tags to apply to the RDS Instance and the Security Group created
 <HclListItem name="db_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create a database in the DB cluster you are creating.
+The name of the first database to create in the Redshift cluster. Must be 1-127 characters. Must begin with a letter or underscore. Subsequent characters can be letters, underscores, digits, or dollar signs. Cannot be a reserved word. Default is 'dev'.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;dev&quot;"/>
@@ -1059,6 +1061,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "10c45a6ea1ae6818c4817bb1ec6216ca"
+  "hash": "826df7c34d141ef654f5d679630a75f4"
 }
 ##DOCS-SOURCER-END -->

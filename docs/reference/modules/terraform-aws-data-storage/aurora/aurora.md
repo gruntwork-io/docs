@@ -282,9 +282,11 @@ module "aurora" {
   # Aurora DB cluster.
   db_instance_parameter_group_name = null
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The name for your database. Must contain 1-64 alphanumeric characters for
+  # Aurora MySQL, 1-63 for Aurora PostgreSQL. Must begin with a letter.
+  # Subsequent characters can be letters, underscores, or digits. Cannot be a
+  # reserved word. If you do not provide a name, Amazon RDS will not create a
+  # database in the DB cluster you are creating.
   db_name = null
 
   # If true, delete all automated backups when the DB cluster is deleted. If
@@ -672,9 +674,11 @@ inputs = {
   # Aurora DB cluster.
   db_instance_parameter_group_name = null
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The name for your database. Must contain 1-64 alphanumeric characters for
+  # Aurora MySQL, 1-63 for Aurora PostgreSQL. Must begin with a letter.
+  # Subsequent characters can be letters, underscores, or digits. Cannot be a
+  # reserved word. If you do not provide a name, Amazon RDS will not create a
+  # database in the DB cluster you are creating.
   db_name = null
 
   # If true, delete all automated backups when the DB cluster is deleted. If
@@ -1196,7 +1200,7 @@ An instance parameter group to associate with the cluster instances. Parameters 
 <HclListItem name="db_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create a database in the DB cluster you are creating.
+The name for your database. Must contain 1-64 alphanumeric characters for Aurora MySQL, 1-63 for Aurora PostgreSQL. Must begin with a letter. Subsequent characters can be letters, underscores, or digits. Cannot be a reserved word. If you do not provide a name, Amazon RDS will not create a database in the DB cluster you are creating.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1690,6 +1694,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "074f65534703a5b9affef27a3a09066d"
+  "hash": "c64dec22bb7395db8da34d8c37f6b54f"
 }
 ##DOCS-SOURCER-END -->

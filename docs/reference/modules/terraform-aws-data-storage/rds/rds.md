@@ -90,9 +90,51 @@ RDS supports automatically installing major version upgrades. To enable this fun
 1.  Set the `allow_major_version_upgrade` parameter to `true`.
 2.  Set the `engine_version` parameter to `MAJOR.MINOR` and omit the `PATCH` number.
 
-**Note**: consider temporarily setting parameter and option group variables to engine defaults during the major version upgrade process. This step is important to prevent upgrade failures that might occur due to custom configurations not being compatible with the new version. By reverting these configurations to default settings temporarily, you minimize the risk of incompatibility issues during the upgrade process. After the upgrade is successfully completed, these configurations can be reverted back to their custom values, ensuring that your database operates with the desired settings while being compatible with the upgraded version.
-
 **Note**: A minimal downtime is expected during a major version upgrade. Make sure to communicate the potential downtime to relevant stakeholders in advance.
+
+#### PostgreSQL Major Version Upgrades: Two-Phase Process Required
+
+PostgreSQL major version upgrades (e.g., 15→16) require a **two-phase process** due to parameter group family incompatibility. Each PostgreSQL major version requires a specific parameter group family (`postgres15` for v15, `postgres16` for v16), and Terraform cannot handle the transition in a single operation.
+
+**Root Cause**: The Terraform AWS provider cannot simultaneously detach the old parameter group and attach the new one, creating an unresolvable dependency cycle. See [terraform-provider-aws #38984](https://github.com/hashicorp/terraform-provider-aws/issues/38984) and [#6448](https://github.com/hashicorp/terraform-provider-aws/issues/6448).
+
+##### Step-by-Step Upgrade Process
+
+**Phase 1: Detach Custom Parameter Group**
+
+```hcl
+# Temporarily use AWS default parameter group
+parameter_group_name        = "default.postgres15"  # Use default for current version
+allow_major_version_upgrade = true
+engine_version             = "15.7"  # Keep current version
+```
+
+Apply: `terraform apply`
+
+**Phase 2: Upgrade Version with New Parameter Group**
+
+```hcl
+# Update version and parameter group together
+engine_version             = "16.3"
+parameter_group_name       = aws_db_parameter_group.postgres16.name
+allow_major_version_upgrade = true
+
+# Create new parameter group
+resource "aws_db_parameter_group" "postgres16" {
+  name   = "${var.name}-postgres16"
+  family = "postgres16"
+  # Add custom parameters here
+}
+```
+
+Apply: `terraform apply`
+
+**Critical Notes:**
+
+*   Always backup before upgrading
+*   Expect 5-30 minutes downtime
+*   Test in non-production first
+*   After upgrade, set `allow_major_version_upgrade = false` to prevent accidental upgrades
 
 ### Blue/Green Deployment for Low-Downtime Updates
 
@@ -274,9 +316,11 @@ module "rds" {
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The name for your database. Must contain 1-64 alphanumeric characters for
+  # MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a
+  # letter. Cannot be a reserved word. Not supported for SQL Server (must be
+  # null). If you do not provide a name, Amazon RDS will not create a database
+  # in the DB instance you are creating.
   db_name = null
 
   # A map of the default license to use for each supported RDS engine.
@@ -664,9 +708,11 @@ inputs = {
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The name for your database. Must contain 1-64 alphanumeric characters for
+  # MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a
+  # letter. Cannot be a reserved word. Not supported for SQL Server (must be
+  # null). If you do not provide a name, Amazon RDS will not create a database
+  # in the DB instance you are creating.
   db_name = null
 
   # A map of the default license to use for each supported RDS engine.
@@ -1259,7 +1305,7 @@ A map of custom tags to apply to the RDS Instance and the Security Group created
 <HclListItem name="db_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create a database in the DB cluster you are creating.
+The name for your database. Must contain 1-64 alphanumeric characters for MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a letter. Cannot be a reserved word. Not supported for SQL Server (must be null). If you do not provide a name, Amazon RDS will not create a database in the DB instance you are creating.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1760,6 +1806,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6848be12c3716f6da66abf8065a1fb70"
+  "hash": "6b89031a60ef9ecf9076463703774a93"
 }
 ##DOCS-SOURCER-END -->
