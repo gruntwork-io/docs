@@ -39,7 +39,7 @@ We now support cross-variable validation (the ability to reference the values of
 
 ## Future evolution
 
-This principle will evolve as the Terraform and OpenTofu ecosystems develop. We will:
+This principle will evolve as the OpenTofu and Terraform ecosystems develop. We will:
 - Regularly review compatibility and our support policy based on customer needs
 - Update our supported feature list as new stable releases become available
 - Clearly communicate any changes to our compatibility strategy
