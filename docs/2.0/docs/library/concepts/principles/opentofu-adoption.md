@@ -43,3 +43,4 @@ This principle will evolve as the OpenTofu and Terraform ecosystems develop. We 
 - Regularly review compatibility and our support policy based on customer needs
 - Update our supported feature list as new stable releases become available
 - Clearly communicate any changes to our compatibility strategy
+- Regularly review any customer request for adoption of new features
