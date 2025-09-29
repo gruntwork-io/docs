@@ -134,7 +134,7 @@ For `_envcommon/landingzone/root-pipelines-apply-role.hcl`, ensure that you have
    }
 ```
 
-For `_envcommon/landingzone/root-pipelines-plan-role.hcl`, ensure that you have at leasat the following permissions:
+For `_envcommon/landingzone/root-pipelines-plan-role.hcl`, ensure that you have at least the following permissions:
 
 ```hcl
     "CloudWatchEventsReadOnlyAccess" = {
@@ -175,7 +175,8 @@ For `_envcommon/landingzone/root-pipelines-plan-role.hcl`, ensure that you have 
      actions   = [
        "states:List*",
        "states:Describe*",
-       "states:GetExecutionHistory"
+       "states:GetExecutionHistory",
+       "states:ValidateStateMachineDefinition"
      ]
      effect    = "Allow"
    }

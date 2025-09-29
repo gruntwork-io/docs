@@ -82,6 +82,11 @@ const sidebar = [
     id: "support",
   },
   {
+    label: "SLO Policy",
+    type: "doc",
+    id: "slo-policy",
+  },
+  {
     value: "Getting Started",
     type: "html",
     className: "sidebar-header emoji-rocket",
@@ -572,6 +577,11 @@ const sidebar = [
     collapsed: true,
     items: [
       {
+        label: "Ongoing Updates",
+        type: "doc",
+        id: "2.0/docs/patcher/guides/ongoing-updates",
+      },
+      {
         label: "Setting up Promotion Workflows",
         type: "doc",
         id: "2.0/docs/patcher/guides/promotion-workflows",
@@ -590,6 +600,11 @@ const sidebar = [
         label: "Using Patcher Upgrade",
         type: "doc",
         id: "2.0/docs/patcher/guides/upgrade",
+      },
+      {
+        label: "Self-hosting Patcher",
+        type: "doc",
+        id: "2.0/docs/patcher/guides/self-hosting",
       },
       {
         label: "Disable Telemetry",

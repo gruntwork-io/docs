@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="1.0.0" lastModifiedVersion="0.8.8"/>
+<VersionBadge repoTitle="Control Tower" version="1.0.2" lastModifiedVersion="1.0.2"/>
 
 # Control Tower Provisioned Product Artifact Updater
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/landingzone/control-tower-provisioned-product-artifact-updater" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.2/modules/landingzone/control-tower-provisioned-product-artifact-updater" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.8.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v1.0.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This OpenTofu/Terraform module automates the detection and update of AWS Service Catalog provisioned products in response to [UpdateProvisioningArtifact](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpdateProvisioningArtifact.html) or [UpdateProvisionedProduct](https://docs.aws.amazon.com/servicecatalog/latest/dg/API_UpgradeProduct.html) API calls. AWS EventBridge, SQS, Lambda, and AWS Step Functions to create a scalable, asynchronous update mechanism that safely propagates new artifact versions to affected accounts.
 
@@ -77,7 +77,7 @@ When a new Provisioning Artifact is published in AWS Service Catalog, any accoun
 
 module "control_tower_provisioned_product_artifact_updater" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-provisioned-product-artifact-updater?ref=v1.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-provisioned-product-artifact-updater?ref=v1.0.2"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -127,6 +127,10 @@ module "control_tower_provisioned_product_artifact_updater" {
   # The name of your AWS Control Tower Account Factory Portfolio
   portfolio_name = "AWS Control Tower Account Factory Portfolio"
 
+  # The region where the portfolio exists. This is passed to the
+  # lookup-portfolio-id.sh script. Can be overriden by the env var AWS_REGION.
+  portfolio_region = "us-east-1"
+
   # The number of seconds for the Step Function 'Wait' state.
   sfn_wait_time_seconds = 30
 
@@ -149,7 +153,7 @@ module "control_tower_provisioned_product_artifact_updater" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-provisioned-product-artifact-updater?ref=v1.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-provisioned-product-artifact-updater?ref=v1.0.2"
 }
 
 inputs = {
@@ -202,6 +206,10 @@ inputs = {
   # The name of your AWS Control Tower Account Factory Portfolio
   portfolio_name = "AWS Control Tower Account Factory Portfolio"
 
+  # The region where the portfolio exists. This is passed to the
+  # lookup-portfolio-id.sh script. Can be overriden by the env var AWS_REGION.
+  portfolio_region = "us-east-1"
+
   # The number of seconds for the Step Function 'Wait' state.
   sfn_wait_time_seconds = 30
 
@@ -220,11 +228,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-provisioned-product-artifact-updater/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-provisioned-product-artifact-updater/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.0/modules/control-tower-provisioned-product-artifact-updater/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.2/modules/control-tower-provisioned-product-artifact-updater/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.2/modules/control-tower-provisioned-product-artifact-updater/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.2/modules/control-tower-provisioned-product-artifact-updater/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1d2ccf23618523aaeaa7faf7c8990e47"
+  "hash": "588b1efbeecf13a55e933f3844ddd130"
 }
 ##DOCS-SOURCER-END -->

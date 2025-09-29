@@ -29,9 +29,6 @@ The table below lists common AWS account operations and provides guidance on whe
 | Update account admin user in Account Access IAM Identity Center                                                               | ✅ (recommended) | ✅ (discouraged)       |
 | Granting additional users access to accounts in AWS IAM Identity Center                                                       | ✅ (recommended) | ✅ (discouraged)       |
 
-| Granting additional users access to accounts in AWS IAM Identity Center                                                       | ✅ (recommended) | ✅ (discouraged)       |
-
-
 ### Updating the account through the new AWS account request file
 
 You can update specific attributes of an AWS account by modifying the corresponding account request file in the `_new_account_requests` directory. Follow the steps below to update specific attributes:
