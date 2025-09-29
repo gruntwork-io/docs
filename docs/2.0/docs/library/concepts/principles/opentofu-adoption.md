@@ -26,7 +26,7 @@ When evaluating new OpenTofu language features for use in Gruntwork modules:
 
 1. **Dual-compatible features (Preferred)**: Features that work identically in both OpenTofu and Terraform should be placed in `.tf` files. (e.g. see [cross-variable validation](#cross-variable-validation) below.)
 2. **OpenTofu-only Features (Discouraged)**: Features that only work in OpenTofu should be placed in `.tofu` files and used sparingly. Terraform ignores `.tofu` files, while OpenTofu reads both `.tf` and `.tofu`. Avoid duplicating the same blocks across both extensions; prefer additive enhancements in `.tofu`. This approach increases maintenance cost, so we will use it only when the user benefit is clear.
-3. **Terraform-specific Features**: We do not support Terraform-specific features.
+3. **Terraform-only Features**: We do not support Terraform-specific features.
 
 ## Current feature adoption
 
