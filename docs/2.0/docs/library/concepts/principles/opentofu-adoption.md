@@ -6,7 +6,7 @@ But we also know that platform teams may be on very early versions of Terraform 
  
 ## Core principle
 
-We prefer OpenTofu over Terraform but design our modules to work seamlessly with both, ensuring customers can adopt OpenTofu without syntax changes or configuration rewrites.
+We prefer OpenTofu over Terraform but design our modules to work seamlessly with both whenever possible, ensuring customers can adopt OpenTofu without syntax changes or configuration rewrites.
 
 ## Implementation
 
