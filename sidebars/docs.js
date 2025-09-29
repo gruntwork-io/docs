@@ -658,7 +658,7 @@ const sidebar = [
             id: "2.0/docs/library/concepts/principles/quality-in-depth",
           },
           {
-            label: "Support SmoothOpenTofu Adoption",
+            label: "Support Smooth OpenTofu Adoption",
             type: "doc",
             id: "2.0/docs/library/concepts/principles/opentofu-adoption",
           },
