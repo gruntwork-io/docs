@@ -428,12 +428,23 @@ Specifies the launch type on which your task is running.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="ecs_target_network_configuration" requirement="optional">
+<HclListItem name="ecs_target_network_configuration" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Object that defines the target network configuration.
 
 </HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    subnets          = list(string)
+    security_groups  = optional(list(string))
+    assign_public_ip = optional(string)
+  })
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -551,6 +562,6 @@ The scheduling expression to use (rate or cron - see README for usage examples).
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.1.0/modules/ecs-task-scheduler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bc73559534c95fa89d757b7a0cc1a653"
+  "hash": "3dee61dbd776026b66a4c3def85a846e"
 }
 ##DOCS-SOURCER-END -->
