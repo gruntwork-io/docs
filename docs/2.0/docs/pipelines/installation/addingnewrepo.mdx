@@ -219,9 +219,9 @@ locals {
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="set-subscription-name" label="Create a new directory for the subscription you want to bootstrap, named after the subscription." />
+<PersistentCheckbox id="create-subscription-directory" label="Create a new directory for the subscription you want to bootstrap, named after the subscription." />
 <PersistentCheckbox id="copy-sub-hcl-contents" label="Copy the contents above to a new `sub.hcl` file in the subscription directory." />
-<PersistentCheckbox id="set-storage-account-name" label="Set the name of the storage account you want to use for state storage in the `sub.hcl` file." />
+<PersistentCheckbox id="edit-sub-hcl-storage-account-name" label="Set the name of the storage account you want to use for state storage in the `sub.hcl` file." />
 <PersistentCheckbox id="double-check-optional-sub-hcl-values" label="Double check that you've set the optional values to your liking." />
 
 :::
@@ -366,7 +366,7 @@ We're adding the `--no-stack-generate` flag here, as Terragrunt will already hav
 
 :::tip Troubleshooting Tips
 
-If you encounter issues during this step, please refer to the [Initial Apply Failure](#initial-apply-failure) section.
+If you encounter issues during this step, please refer to the [Initial Apply Failure](#azure-initial-apply-failure) section.
 
 :::
 
@@ -386,7 +386,7 @@ We're adding the `-force-copy` flag here to avoid any issues with OpenTofu waiti
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="pull-resources-into-state" label="Pull the resources into state using Terragrunt." />
+<PersistentCheckbox id="run-init-migrate-state-force-copy" label="Pull the resources into state using Terragrunt." />
 
 :::
 
@@ -397,7 +397,9 @@ We're adding the `-force-copy` flag here to avoid any issues with OpenTofu waiti
 
 Create [HCL configurations](/2.0/reference/pipelines/configurations-as-code/) in the `.gruntwork` directory in the root of your `infrastructure-live` repository to tell Pipelines how you plan to organize your infrastructure, and how you plan to have Pipelines authenticate with your cloud provider(s).
 
-For example:
+### The `repository` block
+
+The core configuration that you'll want to start with is the `repository` block. This block tells Pipelines which branch has the "live" infrastructure you want provisioned. When you merge IaC to this branch, Pipelines will be triggered to update your infrastructure accordingly.
 
 ```hcl title=".gruntwork/repository.hcl"
 repository {
@@ -405,13 +407,26 @@ repository {
 }
 ```
 
+:::note Progress Checklist
+
+<PersistentCheckbox id="create-repository-hcl" label="Create a new `.gruntwork/repository.hcl` file in the root of your `infrastructure-live` repository with the contents above." />
+<PersistentCheckbox id="edit-repository-deploy-branch-name" label="Edit the value of `deploy_branch_name` in `.gruntwork/repository.hcl` if necessary." />
+
+:::
+
+### The `environment` block
+
+Next, you'll want to define the environments you want to manage with Pipelines using the [`environment` block](/2.0/reference/pipelines/configurations-as-code/api#environment-block).
+
+For each environment, you'll want to define a [`filter` block](/2.0/reference/pipelines/configurations-as-code/api#filter-block) that tells Pipelines which units are part of that environment. You'll also want to define an [`authentication` block](/2.0/reference/pipelines/configurations-as-code/api#authentication-block) that tells Pipelines how to authenticate with your cloud provider(s) for that environment.
+
 <Tabs>
 <TabItem value="aws" label="AWS" default>
 
-```hcl title=".gruntwork/environment.hcl"
-environment "dev" {
+```hcl title=".gruntwork/environment-an-aws-account.hcl"
+environment "an_aws_account" {
   filter {
-    paths = ["dev/*"]
+    paths = ["an-aws-account/*"]
   }
 
   authentication {
@@ -419,20 +434,6 @@ environment "dev" {
       account_id = "123456789012"
       plan_iam_role_arn = "arn:aws:iam::123456789012:role/pipelines-plan"
       apply_iam_role_arn = "arn:aws:iam::123456789012:role/pipelines-apply"
-    }
-  }
-}
-
-environment "prod" {
-  filter {
-    paths = ["prod/*"]
-  }
-
-  authentication {
-    aws_oidc {
-      account_id = "987654321098"
-      plan_iam_role_arn = "arn:aws:iam::987654321098:role/pipelines-plan"
-      apply_iam_role_arn = "arn:aws:iam::987654321098:role/pipelines-apply"
     }
   }
 }
@@ -450,13 +451,24 @@ Check out the [aws block](/2.0/reference/pipelines/configurations-as-code/#aws-b
 
 :::
 
+:::note Progress Checklist
+
+<PersistentCheckbox id="create-aws-environment-hcl" label="Create a new `.gruntwork/environment-an-aws-account.hcl` file in the root of your `infrastructure-live` repository with the contents above." />
+<PersistentCheckbox id="rename-aws-environment-hcl" label="Rename the file to match the name of the environment you want to manage with pipelines." />
+<PersistentCheckbox id="edit-aws-environment-label" label="Edit the label of the `environment` block from `an_aws_account` to the name of the environment you want to manage with pipelines." />
+<PersistentCheckbox id="edit-aws-filter-paths" label="Edit the value of `paths` in the `filter` block so that the glob matches the path to the units you want to manage with Pipelines as part of that environment." />
+<PersistentCheckbox id="edit-aws-account-id" label="Edit the value of `account_id` in the `aws_oidc` block so that it matches the AWS account ID of the account you want to authenticate with." />
+<PersistentCheckbox id="edit-aws-plan-iam-role-arn" label="Edit the value of `plan_iam_role_arn` and `apply_iam_role_arn` in the `aws_oidc` block so that they match the IAM roles you want to assume for plans and applies for that environment." />
+
+:::
+
 </TabItem>
 <TabItem value="azure" label="Azure">
 
-```hcl title=".gruntwork/environment.hcl"
-environment "dev" {
+```hcl title=".gruntwork/environment-an-azure-subscription.hcl"
+environment "an_azure_subscription" {
   filter {
-    paths = ["dev/*"]
+    paths = ["an-azure-subscription/*"]
   }
 
   authentication {
@@ -469,22 +481,6 @@ environment "dev" {
     }
   }
 }
-
-environment "prod" {
-  filter {
-    paths = ["prod/*"]
-  }
-
-  authentication {
-    azure_oidc {
-      tenant_id       = "00000000-0000-0000-0000-000000000000"
-      subscription_id = "22222222-2222-2222-2222-222222222222"
-
-      plan_client_id  = "55555555-5555-5555-5555-555555555555"
-      apply_client_id = "66666666-6666-6666-6666-666666666666"
-    }
-  }
-}
 ```
 
 :::tip
@@ -493,10 +489,23 @@ Learn more about how Pipelines authenticates to Azure in the [Authenticating to 
 
 :::
 
+:::note Progress Checklist
+
+<PersistentCheckbox id="create-azure-environment-hcl" label="Create a new `.gruntwork/environment-an-azure-subscription.hcl` file in the root of your `infrastructure-live` repository with the contents above." />
+<PersistentCheckbox id="rename-azure-environment-hcl" label="Rename the file to match the name of the environment you want to manage with pipelines." />
+<PersistentCheckbox id="edit-azure-environment-label" label="Edit the label of the `environment` block from `an_azure_subscription` to the name of the environment you want to manage with pipelines." />
+<PersistentCheckbox id="edit-azure-filter-paths" label="Edit the value of `paths` in the `filter` block so that the glob matches the path to the units you want to manage with Pipelines as part of that environment." />
+<PersistentCheckbox id="edit-azure-tenant-id" label="Edit the value of `tenant_id` in the `azure_oidc` block so that it matches the tenant ID of the tenant you want to authenticate with." />
+<PersistentCheckbox id="edit-azure-subscription-id" label="Edit the value of `subscription_id` in the `azure_oidc` block so that it matches the subscription ID of the subscription you want to authenticate with." />
+<PersistentCheckbox id="edit-azure-plan-client-id" label="Edit the value of `plan_client_id` in the `azure_oidc` block so that it matches the client ID you want to authenticate with for plans." />
+<PersistentCheckbox id="edit-azure-apply-client-id" label="Edit the value of `apply_client_id` in the `azure_oidc` block so that it matches the client ID you want to authenticate with for applies." />
+
+:::
+
 </TabItem>
 <TabItem value="custom" label="Custom">
 
-```hcl title=".gruntwork/environment.hcl"
+```hcl title=".gruntwork/environment-dev.hcl"
 environment "dev" {
   filter {
     paths = ["dev/*"]
@@ -508,23 +517,22 @@ environment "dev" {
     }
   }
 }
-
-environment "prod" {
-  filter {
-    paths = ["prod/*"]
-  }
-
-  authentication {
-    custom {
-      auth_provider_cmd = "./scripts/custom-auth-prod.sh"
-    }
-  }
-}
 ```
 
 :::tip
 
 Learn more about how Pipelines can authenticate with custom authentication in the [Custom Authentication](/2.0/docs/pipelines/concepts/cloud-auth/custom) page.
+
+:::
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="create-custom-authentication-environment" label="Create a new `.gruntwork/environment-dev.hcl` file in the root of your `infrastructure-live` repository with the contents above." />
+<PersistentCheckbox id="rename-custom-authentication-environment" label="Rename the file to match the name of the environment you want to manage with pipelines." />
+<PersistentCheckbox id="edit-custom-authentication-environment-label" label="Edit the label of the `environment` block from `dev` to the name of the environment you want to manage with pipelines." />
+<PersistentCheckbox id="edit-custom-authentication-filter-paths" label="Edit the value of `paths` in the `filter` block so that the glob matches the path to the units you want to manage with Pipelines as part of that environment." />
+<PersistentCheckbox id="create-custom-authentication-script" label="Create a new `scripts/custom-auth-dev.sh` file (or name it something else) in the root of your `infrastructure-live` repository that performs the authentication you want to use for that environment (see the link above for help with this)." />
+<PersistentCheckbox id="edit-custom-authentication-auth-provider-cmd" label="Edit the value of `auth_provider_cmd` in the `custom` block so that it matches the path to the script you want to use to authenticate with." />
 
 :::
 
@@ -569,6 +577,13 @@ You can read the [Pipelines GitHub Actions Workflow](https://github.com/gruntwor
 
 :::
 
+:::note Progress Checklist
+
+<PersistentCheckbox id="create-pipelines-yml" label="Create a new `.github/workflows/pipelines.yml` file in the root of your `infrastructure-live` repository with the contents above." />
+<PersistentCheckbox id="edit-pipelines-yml-branch-name" label="Edit the value of `branches` in `.github/workflows/pipelines.yml` to match the `deploy_branch_name` in `.gruntwork/repository.hcl`." />
+
+:::
+
 ## Commit and push your changes
 
 Commit and push your changes to your repository.
@@ -585,6 +600,13 @@ git commit -m "Add Pipelines GitHub Actions workflow [skip ci]"
 git push
 ```
 
+:::note Progress Checklist
+
+<PersistentCheckbox id="commit-and-push-changes" label="Commit the changes to your repository (using `[skip ci]` in the commit message)." />
+<PersistentCheckbox id="push-changes-to-repository" label="Push the changes to your repository." />
+
+:::
+
 🚀 You've successfully added Gruntwork Pipelines to your new repository!
 
 ## Next steps
@@ -593,15 +615,14 @@ You have successfully completed the installation of Gruntwork Pipelines in a new
 
 ## Troubleshooting Tips
 
-If you encounter one of the following issues, please refer to the troubleshooting guidance for each scenario:
+If you encounter one of the following issues, please refer to the troubleshooting guidance for each scenario.
 
-### Initial Apply Failure
+### Azure Initial Apply Failure
 
 If your initial apply fails, follow these steps to troubleshoot the issue:
 
-<PersistentCheckbox id="check-initial-apply-fails" label="Read the error message in its entirety." />
-<PersistentCheckbox id="check-initial-apply-fails" label="Confirm that you ran the terragrunt apply command with all the required flags: `terragrunt run --all --non-interactive --provider-cache --no-stack-generate apply`" />
-<PersistentCheckbox id="check-initial-apply-fails" label="Confirm that you have the correct Azure credentials and permissions to create resources in your subscription" />
-<PersistentCheckbox id="check-initial-apply-fails" label="Confirm that you have exported the ARM_TENANT_ID and ARM_SUBSCRIPTION_ID environment variables if you haven't set them via the `az` CLI" />
-<PersistentCheckbox id="check-initial-apply-fails" label="Confirm that your storage account name in sub.hcl is unique across all of Azure and follows naming requirements (less than 24 chars, lowercase letters and numbers only)" />
-<PersistentCheckbox id="check-initial-apply-fails" label="Ensure your location value in terragrunt.stack.hcl matches an actual Azure region name (e.g. 'East US', not 'eastus')" />
+<PersistentCheckbox id="azure-initial-apply-failure-check-terragrunt-apply-command" label="Confirm that you ran the terragrunt apply command with all the required flags: `terragrunt run --all --non-interactive --provider-cache --no-stack-generate apply`" />
+<PersistentCheckbox id="azure-initial-apply-failure-check-azure-credentials" label="Confirm that you have the correct Azure credentials and permissions to create resources in your subscription" />
+<PersistentCheckbox id="azure-initial-apply-failure-check-arm-tenant-id" label="Confirm that you have exported the ARM_TENANT_ID and ARM_SUBSCRIPTION_ID environment variables if you haven't set them via the `az` CLI" />
+<PersistentCheckbox id="azure-initial-apply-failure-check-storage-account-name" label="Confirm that your storage account name in sub.hcl is unique across all of Azure and follows naming requirements (less than 24 chars, lowercase letters and numbers only)" />
+<PersistentCheckbox id="azure-initial-apply-failure-check-location" label="Ensure your location value in terragrunt.stack.hcl matches an actual Azure region name (e.g. 'East US', not 'eastus')" />
