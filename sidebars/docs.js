@@ -226,21 +226,21 @@ const sidebar = [
       },
       {
         type: "category",
-        label: "Enable Auth for Pipelines",
+        label: "Set up SCM Authentication",
         collapsed: false,
         items: [
           {
-            label: "Auth Overview",
+            label: "Overview",
             type: "doc",
             id: "2.0/docs/pipelines/installation/authoverview",
           },
           {
-            label: "Auth via GitHub App",
+            label: "GitHub App",
             type: "doc",
             id: "2.0/docs/pipelines/installation/viagithubapp",
           },
           {
-            label: "Auth via Machine Users",
+            label: "Machine Users",
             type: "doc",
             id: "2.0/docs/pipelines/installation/viamachineusers",
           },
@@ -287,6 +287,11 @@ const sidebar = [
                 label: "Adding Pipelines to an Existing GitLab Project",
                 type: "doc",
                 id: "2.0/docs/pipelines/installation/addinggitlabrepo",
+              },
+              {
+                label: "Adding Branch Protection to a GitLab Project",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/gitlab-branch-protection",
               },
             ],
           },
