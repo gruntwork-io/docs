@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.127.9" lastModifiedVersion="0.125.5"/>
+<VersionBadge version="0.129.1" lastModifiedVersion="0.129.0"/>
 
 # Application Load Balancer
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules/networking/alb" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.129.1/modules/networking/alb" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Falb" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -62,7 +62,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.129.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -70,7 +70,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.129.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -89,7 +89,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/alb?ref=v0.127.9"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/alb?ref=v0.129.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -260,6 +260,12 @@ module "alb" {
   # possible values are ipv4 and dualstack.
   ip_address_type = null
 
+  # (Optional) Informs browsers that the site should only be accessed using
+  # HTTPS, and that any future attempts to access it using HTTP should
+  # automatically be converted to HTTPS. Example: 'max-age=31536000;
+  # includeSubDomains; preload'.
+  routing_http_response_strict_transport_security_header_value = null
+
   # If true, create a new S3 bucket for access logs with the name in
   # var.access_logs_s3_bucket_name. If false, assume the S3 bucket for access
   # logs with the name in  var.access_logs_s3_bucket_name already exists, and
@@ -289,7 +295,7 @@ module "alb" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/alb?ref=v0.127.9"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/alb?ref=v0.129.1"
 }
 
 inputs = {
@@ -462,6 +468,12 @@ inputs = {
   # The type of IP addresses used by the subnets for your load balancer. The
   # possible values are ipv4 and dualstack.
   ip_address_type = null
+
+  # (Optional) Informs browsers that the site should only be accessed using
+  # HTTPS, and that any future attempts to access it using HTTP should
+  # automatically be converted to HTTPS. Example: 'max-age=31536000;
+  # includeSubDomains; preload'.
+  routing_http_response_strict_transport_security_header_value = null
 
   # If true, create a new S3 bucket for access logs with the name in
   # var.access_logs_s3_bucket_name. If false, assume the S3 bucket for access
@@ -904,6 +916,15 @@ The type of IP addresses used by the subnets for your load balancer. The possibl
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="routing_http_response_strict_transport_security_header_value" requirement="optional" type="string">
+<HclListItemDescription>
+
+(Optional) Informs browsers that the site should only be accessed using HTTPS, and that any future attempts to access it using HTTP should automatically be converted to HTTPS. Example: 'max-age=31536000; includeSubDomains; preload'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="should_create_access_logs_bucket" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1019,11 +1040,11 @@ The AWS-managed DNS name assigned to the ALB.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules/networking/alb/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules/networking/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.9/modules/networking/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.129.1/modules/networking/alb/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.129.1/modules/networking/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.129.1/modules/networking/alb/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "11ee427e89dd8b93d66877fc2aba727d"
+  "hash": "afd7cd8fe9d6b6dcc29e41872140e343"
 }
 ##DOCS-SOURCER-END -->
