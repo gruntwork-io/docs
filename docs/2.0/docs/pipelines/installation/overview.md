@@ -12,9 +12,9 @@ Customers using Account Factory benefit from a guided setup process that include
 
 Completing these steps results in a repository fully configured for automated infrastructure deployments using GitOps workflows.
 
-## Installation via manual setup
+## Standalone Installation
 
-For users not leveraging Account Factory or needing Gruntwork Pipelines for a standalone repository with existing Terragrunt configurations, Gruntwork Pipelines can be installed as an independent GitHub Actions or GitLab pipelines workflow.
+For users not leveraging Account Factory or needing Gruntwork Pipelines for a standalone repository with existing Terragrunt configurations, Gruntwork Pipelines can be installed as an independent GitHub Actions Workflow or GitLab CI Pipeline.
 
 To learn more about this process, consult the documentation for [Adding Pipelines to a New Repository](/2.0/docs/pipelines/installation/addingnewrepo) or [Adding Pipelines to an Existing Repository](/2.0/docs/pipelines/installation/addingexistingrepo).
 
