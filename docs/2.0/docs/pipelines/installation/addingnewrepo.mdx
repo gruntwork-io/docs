@@ -304,13 +304,19 @@ Once you've set up the Terragrunt configurations, you can use Terragrunt to prov
 First, make sure that everything is set up correctly by running a plan in the bootstrap directory.
 
 ```bash title="name-of-account/_global/bootstrap"
-terragrunt run --all --non-interactive plan
+terragrunt run --all --non-interactive --provider-cache plan
 ```
+
+:::tip
+
+We're using the `--provider-cache` flag here to ensure that we don't re-download the AWS provider on every run to speed up the process by leveraging the [Terragrunt Provider Cache Server](https://terragrunt.gruntwork.io/docs/features/provider-cache-server/).
+
+:::
 
 Next, apply the changes to your account.
 
 ```bash title="name-of-account/_global/bootstrap"
-terragrunt run --all --non-interactive apply
+terragrunt run --all --non-interactive --provider-cache apply
 ```
 
 :::note Progress Checklist

@@ -285,8 +285,9 @@ stack "bootstrap" {
 :::note Progress Checklist
 
 <PersistentCheckbox id="create-azure-bootstrap-configs" label="Create bootstrap configurations for each Azure subscription that needs OIDC resources." />
+<PersistentCheckbox id="update-azure-location" label="Update the location in the bootstrap configuration to the location you want to bootstrap your subscription in." />
 <PersistentCheckbox id="set-azure-github-org-repo" label="Set the correct GitHub organization and repository names in each bootstrap configuration." />
-<PersistentCheckbox id="set-azure-unique-storage-names" label="Set unique storage account names for state storage in each subscription." />
+<PersistentCheckbox id="set-azure-unique-storage-names" label="Set a globally unique storage account name for the storage account in each subscription." />
 
 :::
 
@@ -294,7 +295,7 @@ stack "bootstrap" {
 
 For each subscription that needs bootstrapping:
 
-1. Set environment variables:
+1. Set the environment variables used by the Azure provider to authenticate in a given subscription:
 
    ```bash
    export ARM_TENANT_ID="your-tenant-id"
@@ -313,6 +314,12 @@ For each subscription that needs bootstrapping:
    terragrunt run --all --non-interactive --provider-cache plan
    ```
 
+   :::tip
+
+   We're using the `--provider-cache` flag here to ensure that we don't re-download the Azure provider on every run to speed up the process by leveraging the [Terragrunt Provider Cache Server](https://terragrunt.gruntwork.io/docs/features/provider-cache-server/).
+
+   :::
+
 4. Apply the bootstrap resources:
 
    ```bash
@@ -325,10 +332,16 @@ For each subscription that needs bootstrapping:
    terragrunt run --all --non-interactive --provider-cache -- init -migrate-state -force-copy
    ```
 
+   :::tip
+
+   We're using the `-force-copy` flag here to avoid any issues with OpenTofu waiting for an interactive prompt to copy up local state.
+
+   :::
+
 :::note Progress Checklist
 
 <PersistentCheckbox id="set-azure-env-vars" label="Set ARM_TENANT_ID and ARM_SUBSCRIPTION_ID environment variables for each subscription." />
-<PersistentCheckbox id="run-azure-bootstrap-plan" label="Run plan for bootstrap resources in each Azure subscription." />
+<PersistentCheckbox id="run-azure-bootstrap-plan" label="Run a plan in the bootstrap directory to make sure that everything is set up correctly." />
 <PersistentCheckbox id="run-azure-bootstrap-apply" label="Apply bootstrap resources in each Azure subscription." />
 <PersistentCheckbox id="migrate-azure-state" label="Migrate state to remote storage for each Azure subscription." />
 
@@ -375,8 +388,8 @@ environment "production" {
 
   authentication {
     aws_oidc {
-      account_id = "123456789012"
-      plan_iam_role_arn = "arn:aws:iam::123456789012:role/pipelines-plan"
+      account_id         = "123456789012"
+      plan_iam_role_arn  = "arn:aws:iam::123456789012:role/pipelines-plan"
       apply_iam_role_arn = "arn:aws:iam::123456789012:role/pipelines-apply"
     }
   }
@@ -386,6 +399,12 @@ environment "production" {
 :::tip
 
 Learn more about how Pipelines authenticates to AWS in the [Authenticating to AWS](/2.0/docs/pipelines/concepts/cloud-auth/aws) page.
+
+:::
+
+:::tip
+
+Check out the [aws block](/2.0/reference/pipelines/configurations-as-code/#aws-blocks) for more information on how to configure Pipelines to reuse common AWS configurations.
 
 :::
 
@@ -514,7 +533,7 @@ You can read the [Pipelines GitHub Actions Workflow](https://github.com/gruntwor
 :::note Progress Checklist
 
 <PersistentCheckbox id="create-pipelines-yml" label="Create a new `.github/workflows/pipelines.yml` file in the root of your repository with the contents above." />
-<PersistentCheckbox id="edit-pipelines-yml-branch-name" label="Edit the value of `branches` in `.github/workflows/pipelines.yml` to match the `deploy_branch_name` in `.gruntwork/repository.hcl`." />
+<PersistentCheckbox id="edit-pipelines-yml-branch-name" label="Edit the value of `branches` in `.github/workflows/pipelines.yml` to match the `deploy_branch_name` in `.gruntwork/repository.hcl` if necessary." />
 
 :::
 
@@ -555,8 +574,9 @@ If you encounter issues during the setup process, here are some common troublesh
 
 If your bootstrap resource provisioning fails:
 
-<PersistentCheckbox id="troubleshoot-check-credentials" label="Confirm that you have the correct cloud provider credentials and permissions to create resources in your accounts/subscriptions." />
-<PersistentCheckbox id="troubleshoot-check-unique-names" label="Confirm that your S3 bucket names (AWS) or storage account names (Azure) are globally unique and follow naming requirements." />
+<PersistentCheckbox id="troubleshoot-check-credentials" label="Confirm that you have the correct cloud provider credentials and permissions to create resources in your AWS Accounts / Azure Subscriptions." />
+<PersistentCheckbox id="troubleshoot-check-aws-unique-names" label="For AWS: Confirm that your S3 bucket names are globally unique and follow relevant naming restrictions from AWS." />
+<PersistentCheckbox id="troubleshoot-check-azure-unique-names" label="For Azure: Confirm that your storage account names are globally unique and follow relevant naming restrictions from Azure." />
 <PersistentCheckbox id="troubleshoot-check-github-org-repo" label="Ensure your GitHub organization and repository names in the bootstrap configurations match your actual GitHub organization and repository." />
 <PersistentCheckbox id="troubleshoot-check-environment-variables" label="For Azure: Confirm that you have exported the ARM_TENANT_ID and ARM_SUBSCRIPTION_ID environment variables." />
 
@@ -565,13 +585,17 @@ If your bootstrap resource provisioning fails:
 If your HCL configurations aren't working as expected:
 
 <PersistentCheckbox id="troubleshoot-check-paths" label="Verify that the paths in your filter blocks correctly match your repository structure." />
-<PersistentCheckbox id="troubleshoot-check-account-ids" label="Confirm that all account IDs, subscription IDs, and client IDs are correct." />
-<PersistentCheckbox id="troubleshoot-check-role-arns" label="Ensure that IAM role ARNs match the roles created during bootstrapping." />
+<PersistentCheckbox id="troubleshoot-check-account-ids" label="For AWS: Confirm that all Account IDs and role names are correct." />
+<PersistentCheckbox id="troubleshoot-check-azure-values" label="For Azure: Confirm that all Tenant IDs, Subscription IDs and Client IDs are correct." />
 
 ### GitHub Actions Workflow Issues
 
-If your GitHub Actions workflow isn't triggering correctly:
+If your GitHub Actions workflow isn't working as expected:
 
 <PersistentCheckbox id="troubleshoot-check-branch-names" label="Verify that the branch name in your workflow file matches your deploy branch name." />
 <PersistentCheckbox id="troubleshoot-check-scm-access" label="Confirm that SCM access is properly configured (GitHub App or machine users)." />
 <PersistentCheckbox id="troubleshoot-check-permissions" label="Ensure that the workflow has the necessary permissions (id-token: write, contents: write, pull-requests: write)." />
+<PersistentCheckbox id="troubleshoot-check-aws-pipelines-config-trust" label="For AWS: Confirm that the roles you've provisioned have the appropriate trust relationship for their use-case (plans should trust all branches, applies should trust the deploy branch)." />
+<PersistentCheckbox id="troubleshoot-check-aws-string-like" label="For AWS: Confirm that the trust policy for the plan role you've provisioned uses StringLike for the sub condition and that it trusts all branches." />
+<PersistentCheckbox id="troubleshoot-check-azure-pipelines-config-trust" label="For Azure: Confirm that the Entra ID applications you've provisioned have the appropriate trust relationship for their use-case (plans should trust all branches, applies should trust the deploy branch)." />
+<PersistentCheckbox id="troubleshoot-check-azure-flexible-federated-credential" label="For Azure: Confirm that the plan Entra ID application you've provisioned has a Flexible Federated Identity Credential that trusts all branches." />
