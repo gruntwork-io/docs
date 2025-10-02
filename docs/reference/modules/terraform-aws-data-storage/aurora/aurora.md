@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.41.0" lastModifiedVersion="0.40.7"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.41.1" lastModifiedVersion="0.41.1"/>
 
 # Aurora Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.41.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Aurora, a MySQL and PostgreSQL compatible relational database built for the cloud.
 
@@ -59,7 +59,7 @@ Cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Managing.h
 ## How do you configure this module?
 
 This module allows you to configure a number of parameters, such as backup windows, maintenance window, port number,
-and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/aurora/variables.tf).
+and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/aurora/variables.tf).
 
 ## How do you create a cross-region read replica cluster?
 
@@ -77,7 +77,7 @@ module "replica" {
 }
 ```
 
-See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/examples/aurora-with-cross-region-replica) for more details.
+See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/examples/aurora-with-cross-region-replica) for more details.
 
 ## How do you destroy a cross-region read replica?
 
@@ -137,7 +137,7 @@ see [Limitations of Aurora Serverless](https://docs.aws.amazon.com/AmazonRDS/lat
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.41.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.41.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -272,6 +272,12 @@ module "aurora" {
   # Group created for it. The key is the tag name and the value is the tag
   # value.
   custom_tags = {}
+
+  # The mode of Database Insights to enable for the DB cluster. Valid options
+  # are 'standard' or 'advanced'. When setting this to 'advanced' then
+  # cluster_performance_insights_enabled must be set to true and
+  # 'cluster_performance_insights_retention_period' set to at least 465 days.
+  database_insights_mode = null
 
   # A cluster parameter group to associate with the cluster. Parameters in a DB
   # cluster parameter group apply to every DB instance in a DB cluster.
@@ -476,6 +482,10 @@ module "aurora" {
   # paused. Valid values are 300 through 86400.
   scaling_configuration_seconds_until_auto_pause = 300
 
+  # The time, in seconds, before an Aurora DB cluster in serverless mode is
+  # paused. Valid values are 300 through 86400.
+  scaling_configuration_seconds_until_auto_pause_V2 = 300
+
   # The action to take when the timeout is reached. Valid values:
   # ForceApplyCapacityChange, RollbackCapacityChange. Defaults to
   # RollbackCapacityChange.
@@ -524,7 +534,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.41.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.41.1"
 }
 
 inputs = {
@@ -663,6 +673,12 @@ inputs = {
   # value.
   custom_tags = {}
 
+  # The mode of Database Insights to enable for the DB cluster. Valid options
+  # are 'standard' or 'advanced'. When setting this to 'advanced' then
+  # cluster_performance_insights_enabled must be set to true and
+  # 'cluster_performance_insights_retention_period' set to at least 465 days.
+  database_insights_mode = null
+
   # A cluster parameter group to associate with the cluster. Parameters in a DB
   # cluster parameter group apply to every DB instance in a DB cluster.
   db_cluster_parameter_group_name = null
@@ -865,6 +881,10 @@ inputs = {
   # The time, in seconds, before an Aurora DB cluster in serverless mode is
   # paused. Valid values are 300 through 86400.
   scaling_configuration_seconds_until_auto_pause = 300
+
+  # The time, in seconds, before an Aurora DB cluster in serverless mode is
+  # paused. Valid values are 300 through 86400.
+  scaling_configuration_seconds_until_auto_pause_V2 = 300
 
   # The action to take when the timeout is reached. Valid values:
   # ForceApplyCapacityChange, RollbackCapacityChange. Defaults to
@@ -1173,6 +1193,15 @@ A map of custom tags to apply to the Aurora RDS Instance and the Security Group 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="database_insights_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+The mode of Database Insights to enable for the DB cluster. Valid options are 'standard' or 'advanced'. When setting this to 'advanced' then cluster_performance_insights_enabled must be set to true and 'cluster_performance_insights_retention_period' set to at least 465 days.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="db_cluster_parameter_group_name" requirement="optional" type="string">
@@ -1571,6 +1600,15 @@ The time, in seconds, before an Aurora DB cluster in serverless mode is paused. 
 <HclListItemDefaultValue defaultValue="300"/>
 </HclListItem>
 
+<HclListItem name="scaling_configuration_seconds_until_auto_pause_V2" requirement="optional" type="number">
+<HclListItemDescription>
+
+The time, in seconds, before an Aurora DB cluster in serverless mode is paused. Valid values are 300 through 86400.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="300"/>
+</HclListItem>
+
 <HclListItem name="scaling_configuration_timeout_action" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1685,11 +1723,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/aurora/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.0/modules/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/aurora/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "074f65534703a5b9affef27a3a09066d"
+  "hash": "f6b6c6ebb7105ef47557e24ba244e841"
 }
 ##DOCS-SOURCER-END -->
