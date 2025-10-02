@@ -236,12 +236,10 @@ locals {
 }
 
 stack "bootstrap" {
-  source = "git@github.com:gruntwork-io/terragrunt-scale-catalog.git//stacks/azure/bootstrap?ref=v1.0.0"
+  source = "https://github.com/gruntwork-io/terragrunt-scale-catalog//stacks/azure/github/pipelines-bootstrap?ref=v1.0.0"
   path   = "bootstrap"
 
   values = {
-    terragrunt_scale_catalog_url = "git@github.com:gruntwork-io/terragrunt-scale-catalog.git"
-
     // Set the location to the location you want to bootstrap your subscription in.
     location = "East US"
 
@@ -250,11 +248,11 @@ stack "bootstrap" {
     state_storage_account_name   = local.sub_hcl.locals.state_storage_account_name
     state_storage_container_name = local.sub_hcl.locals.state_storage_container_name
 
-    // Set the organization name you want to use for your subscription.
-    org_name = "acme"
+    // Set the organization name you want Azure to trust for OIDC.
+    github_org_name = "acme"
 
-    // Set the repository name you want to use for your subscription.
-    repo_name = "infrastructure-live"
+    // Set the repository name you want Azure to trust for OIDC.
+    github_repo_name = "infrastructure-live"
 
     // Set the OIDC resource prefix you want to use for your subscription.
     //
@@ -269,8 +267,8 @@ stack "bootstrap" {
 
 <PersistentCheckbox id="copy-stack-hcl-contents" label="Copy the contents above to a new `terragrunt.stack.hcl` file in the subscription directory." />
 <PersistentCheckbox id="set-location" label="Set the location in the `terragrunt.stack.hcl` file to the location you want to bootstrap your subscription in." />
-<PersistentCheckbox id="set-org-name" label="Set the organization name in the `terragrunt.stack.hcl` file to the GitHub Organization name you want Pipelines to trust." />
-<PersistentCheckbox id="set-repo-name" label="Set the repository name in the `terragrunt.stack.hcl` file to the name of the repository you want Pipelines to trust." />
+<PersistentCheckbox id="set-github-org-name" label="Set the organization name in the `terragrunt.stack.hcl` file to the GitHub Organization name you want Pipelines to trust." />
+<PersistentCheckbox id="set-github-repo-name" label="Set the repository name in the `terragrunt.stack.hcl` file to the name of the repository you want Pipelines to trust." />
 <PersistentCheckbox id="double-check-optional-stack-hcl-values" label="Double check that you've set the optional values to your liking." />
 
 :::
@@ -299,7 +297,7 @@ Make sure to run `mise install` to install the `azure-cli` tool.
 mise install
 ```
 
-If you haven't already, you'll want to authenticate with Azure using the `az` CLI.
+If you haven't already, you'll want to authenticate to Azure using the `az` CLI.
 
 ```bash
 az login
