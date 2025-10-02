@@ -4,7 +4,7 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Pipelines Install via GitHub App
+# Installing the Gruntwork.io GitHub App
 
 The [Gruntwork.io GitHub App](https://github.com/apps/gruntwork-io) is a [GitHub App](https://docs.github.com/en/apps/overview) introduced to help reduce the burden of integrating Gruntwork products to GitHub resources. The app is designed to be lightweight and flexible, providing a simple way to get started with Gruntwork products.
 
@@ -66,7 +66,7 @@ As of 2024/09/10, the Gruntwork.io GitHub App requests the following permissions
 
   These permissions are used during the initial bootstrapping process when customers opt-in to additional repositories being created outside of the main `infrastructure-live-root` repository.
 
-  This is especially important for DevOps Foundations Enterprise customers, as those customers benefit from the ability to have `infrastructure-live-root` repositories create new repositories and add designated GitHub teams as collaborators via Infrastructure as Code (IaC). This is a critical feature for Enterprise customers who want to be able to scale their infrastructure management across multiple teams with delegated responsibility for segments of their IaC Estate.
+  This is especially important for Account Factory Enterprise customers, as those customers benefit from the ability to have `infrastructure-live-root` repositories create new repositories and add designated GitHub teams as collaborators via Infrastructure as Code (IaC). This is a critical feature for Enterprise customers who want to be able to scale their infrastructure management across multiple teams with delegated responsibility for segments of their IaC Estate.
 
   <h3>Write access to Contents</h3>
 
@@ -166,7 +166,7 @@ To install the Gruntwork.io GitHub App in your organization follow these steps.
 
 ### Infrastructure Live Root Repositories
 
-DevOps Foundations treats certain repositories as especially privileged in order to perform critical operations like vending new AWS accounts and creating new repositories. These repositories are called "infrastructure live root repositories" and you can configure them in the [GitHub Account section](https://app.gruntwork.io/account?scroll_to=github-app) for your organization in the Gruntwork developer portal **if you are a designated administrator**.
+Account Factory treats certain repositories as especially privileged in order to perform critical operations like vending new AWS accounts and creating new repositories. These repositories are called "infrastructure live root repositories" and you can configure them in the [GitHub Account section](https://app.gruntwork.io/account?scroll_to=github-app) for your organization in the Gruntwork developer portal **if you are a designated administrator**.
 
 ![Root Repository Configuration](/img/devops-foundations/github-app/root-repo-config.png)
 
