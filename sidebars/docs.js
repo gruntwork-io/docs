@@ -257,17 +257,17 @@ const sidebar = [
             collapsed: false,
             items: [
               {
-                label: "Creating a New GitHub Repository with Pipelines",
+                label: "Bootstrap Pipelines in a New GitHub Repository",
                 type: "doc",
                 id: "2.0/docs/pipelines/installation/addingnewrepo",
               },
               {
-                label: "Adding Pipelines to an Existing GitHub Repository",
+                label: "Bootstrap Pipelines in an Existing GitHub Repository",
                 type: "doc",
                 id: "2.0/docs/pipelines/installation/addingexistingrepo",
               },
               {
-                label: "Adding Branch Protection to a Repository",
+                label: "Adding Branch Protection to a GitHub Repository",
                 type: "doc",
                 id: "2.0/docs/pipelines/installation/branch-protection",
               },
