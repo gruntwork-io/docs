@@ -60,3 +60,5 @@ minamijoyo
 tfupdate
 hcledit
 self-hosting
+infrachanges
+Entra

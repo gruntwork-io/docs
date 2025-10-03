@@ -82,6 +82,11 @@ const sidebar = [
     id: "support",
   },
   {
+    label: "SLO Policy",
+    type: "doc",
+    id: "slo-policy",
+  },
+  {
     value: "Getting Started",
     type: "html",
     className: "sidebar-header emoji-rocket",
@@ -121,9 +126,31 @@ const sidebar = [
     },
     items: [
       {
-        label: "Authenticating with Cloud Providers",
-        type: "doc",
-        id: "2.0/docs/pipelines/concepts/cloud-auth",
+        label: "Authenticating to the Cloud",
+        type: "category",
+        collapsed: false,
+        items: [
+          {
+            label: "Overview",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/index",
+          },
+          {
+            label: "AWS",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/aws",
+          },
+          {
+            label: "Azure",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/azure",
+          },
+          {
+            label: "Custom",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/custom",
+          }
+        ],
       },
       {
         label: "Drift Detection",
