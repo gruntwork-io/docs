@@ -49,7 +49,7 @@ This section covers the Pipelines configuration required to deploy an AWS S3 buc
 
 1. Create a `vars.yaml` file on your local machine with the following content:
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="GitHub" label="GitHub" default>
     ```yaml title="vars.yaml"
     AccountName: "$$ACCOUNT_NAME$$"
@@ -80,9 +80,7 @@ This section covers the Pipelines configuration required to deploy an AWS S3 buc
 
 3. We'll now use that `vars.yaml` file as input to [boilerplate](https://github.com/gruntwork-io/boilerplate) to generate the Terragrunt code for the OIDC Provider and IAM roles.  From the root of your repository, run the following command:
 
-<!-- TODO: Update the version of the architecture catalog templates below -->
-
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="GitHub" label="GitHub">
 ```bash
 boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/github-actions-single-account-setup?ref=X.Y.Z" --output-folder . --var-file vars.yaml --non-interactive
@@ -128,7 +126,7 @@ aws sts get-caller-identity
 
 In the event you already have an OIDC provider for your SCM in the AWS account you can import the existing one:
 
-<Tabs>
+<Tabs groupId="platform">
 <TabItem value="GitHub" label="GitHub">
 ```
 cd _global/$$ACCOUNT_NAME$$/github-actions-openid-connect-provider/
