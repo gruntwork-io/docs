@@ -47,18 +47,13 @@ Fundamentally, there are three places where the GovCloud partition must be set:
 
 This section covers the Pipelines configuration required to deploy an AWS S3 bucket to AWS GovCloud.
 
-1. Add the account configuration to the bottom of your root-folder `accounts.yml` file.
-
-    ```hcl title="accounts.yml"
-    $$ACCOUNT_NAME$$:
-      id: "$$ACCOUNT_ID$$"
-    ```
-2. Create a `vars.yaml` file on your local machine with the following content:
+1. Create a `vars.yaml` file on your local machine with the following content:
 
 <Tabs>
 <TabItem value="GitHub" label="GitHub" default>
     ```yaml title="vars.yaml"
     AccountName: "$$ACCOUNT_NAME$$"
+    AccountId: "$$ACCOUNT_ID$$"
     GitHubOrganization: "$$GITHUB_ORGANIZATION$$"
     GitHubRepository: "$$GITHUB_REPOSITORY$$"
     DeployBranchName: main # Change this to your default branch from which terragrunt apply should be run by pipelines
@@ -71,6 +66,7 @@ This section covers the Pipelines configuration required to deploy an AWS S3 buc
 <TabItem value="GitLab" label="GitLab">
     ```yaml title="vars.yaml"
     AccountName: "$$ACCOUNT_NAME$$"
+    AccountId: "$$ACCOUNT_ID$$"
     GitLabGroup: "$$GITLAB_GROUP$$"
     GitLabProject: "$$GITLAB_PROJECT$$"
     DeployBranchName: main # Change this to your default branch from which terragrunt apply should be run by pipelines
@@ -84,15 +80,17 @@ This section covers the Pipelines configuration required to deploy an AWS S3 buc
 
 3. We'll now use that `vars.yaml` file as input to [boilerplate](https://github.com/gruntwork-io/boilerplate) to generate the Terragrunt code for the OIDC Provider and IAM roles.  From the root of your repository, run the following command:
 
+<!-- TODO: Update the version of the architecture catalog templates below -->
+
 <Tabs>
 <TabItem value="GitHub" label="GitHub">
 ```bash
-boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/github-actions-single-account-setup?ref=main" --output-folder . --var-file vars.yaml --non-interactive
+boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/github-actions-single-account-setup?ref=X.Y.Z" --output-folder . --var-file vars.yaml --non-interactive
 ```
 </TabItem>
 <TabItem value="GitLab" label="GitLab">
 ```bash
-boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/gitlab-pipelines-single-account-setup?ref=main" --output-folder . --var-file vars.yaml --non-interactive
+boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/gitlab-pipelines-single-account-setup?ref=X.Y.Z" --output-folder . --var-file vars.yaml --non-interactive
 ```
 </TabItem>
 </Tabs>
