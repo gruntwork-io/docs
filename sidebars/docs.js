@@ -126,9 +126,31 @@ const sidebar = [
     },
     items: [
       {
-        label: "Authenticating with Cloud Providers",
-        type: "doc",
-        id: "2.0/docs/pipelines/concepts/cloud-auth",
+        label: "Authenticating to the Cloud",
+        type: "category",
+        collapsed: false,
+        items: [
+          {
+            label: "Overview",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/index",
+          },
+          {
+            label: "AWS",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/aws",
+          },
+          {
+            label: "Azure",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/azure",
+          },
+          {
+            label: "Custom",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/custom",
+          }
+        ],
       },
       {
         label: "Drift Detection",
@@ -269,7 +291,12 @@ const sidebar = [
             collapsed: false,
             items: [
               {
-                label: "Adding Pipelines to a GitLab Project",
+                label: "Creating a New GitLab Project with Pipelines",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/addingnewgitlabrepo",
+              },
+              {
+                label: "Adding Pipelines to an Existing GitLab Project",
                 type: "doc",
                 id: "2.0/docs/pipelines/installation/addinggitlabrepo",
               },
