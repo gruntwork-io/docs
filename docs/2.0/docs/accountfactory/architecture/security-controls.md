@@ -1,14 +1,19 @@
 # Controls
 
-Gruntwork Account Factory employs a defense-in-depth approach to secure workflows across both GitHub and GitLab platforms. This document outlines the controls Pipelines uses to ensure that only infrastructure written in code and approved by a reviewer can be deployed to your AWS accounts.
+Gruntwork Account Factory employs a defense-in-depth approach to secure workflows across both GitHub and GitLab platforms. This document outlines the controls Account Factory uses to ensure that only infrastructure written in code and approved by a reviewer can be deployed to your AWS accounts.
 
 Account Factory relies on Pipelines to drive infrastructure changes via GitOps workflows, so make sure to read the [Pipelines security controls](/2.0/docs/pipelines/architecture/security-controls) for more details on how Pipelines secures workflows.
 
 ## Least privilege principle
 
-Pipelines adheres to the principle of least privilege, granting only the necessary permissions for infrastructure actions.
+Account Factory adheres to the principle of least privilege, configuring the AWS IAM roles vended as part of Account Factory onboarding to grant only the necessary permissions for infrastructure actions relevant for Account Factory to operate correctly, and to only trust the `infrastructure-live-root` repository for role assumption.
 
-By default, the only repository/group required to interact with infrastructure using Pipelines in Gruntwork Account Factory is the `infrastructure-live-root` repository/group. This contains infrastructure code for `management`, `logs`, `security`, and `shared` accounts. Access should be limited to a small, trusted group responsible for defining critical infrastructure, similar to the role of the `root` user in Unix systems.
+By default, the only repository/group required to interact with infrastructure using Pipelines in Account Factory is the `infrastructure-live-root` repository/group. This contains the Infrastructure as Code for `management`, `logs`, `security`, and `shared` accounts. Access should be limited to a small, trusted group responsible for defining critical infrastructure, similar to the role of the `root` user in Unix systems.
+
+The roles used by the `infrastructure-live-root` repository are divided by responsibility:
+
+- Plan roles: Every account is provisioned with an AWS IAM role that `infrastructure-live-root` is trusted to assume from any branch that has read-only permissions to the resources in that account.
+- Apply roles: Every account is provisioned with an AWS IAM role that `infrastructure-live-root` is trusted to assume on the deploy branch (e.g. `main`) with read-write permissions to the resources in that account.
 
 ## Platform-Specific Access Controls
 
@@ -43,14 +48,28 @@ An optional `infrastructure-live-access-control` repository/group can manage acc
 
 Unlike the infrastructure-live-root repository, this repository focuses on managing access control rather than defining infrastructure. You might grant write access to a broader group for managing access while maintaining tight control over the main branch. Encourage collaboration between platform teams and application engineers to review and refine access control continuously.
 
-## Token Strategy
+## CI/CD Token Strategy
 
 <Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
+There are two ways GitHub users can configure Source Control Management (SCM) authentication for Account Factory:
+
+- The [Gruntwork.io GitHub App](https://github.com/apps/gruntwork-io)
+- [GitHub Machine Users](/2.0/docs/pipelines/installation/viamachineusers)
+
+In general, we recommend using the Gruntwork.io GitHub App when possible, as it provides a more feature-rich, reliable and secure experience.
+
+Reasons you might need to set up Machine Users include:
+
+- Your organization does not allow installation of third-party GitHub apps.
+- You are using Self-hosted GitHub Enterprise, and cannot use third-party GitHub apps due to your server settings.
+- You are using a different SCM platform (e.g. GitLab).
+- You want a fallback mechanism in case the Gruntwork.io GitHub App is temporarily unavailable.
+
 ### GitHub App Installation Strategy (Recommended)
 
-No tokens are required when using the GitHub App.
+No long-lived tokens are stored when using the Gruntwork.io GitHub App. Instead, short-lived tokens are generated at runtime on-demand using the Gruntwork.io GitHub App for authentication with GitHub.
 
 ### Machine Users Installation Strategy
 
@@ -146,7 +165,7 @@ For more details, see the [official AWS documentation](https://docs.aws.amazon.c
 
 Refer to [Configuring OpenId Connect in Amazon Web Services](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) for additional details.
 
-### Roles provisioned by DevOps Foundations
+### Roles provisioned by Account Factory
 
 Pipelines automatically provisions specific roles in AWS accounts to support required infrastructure operations. These roles follow the naming pattern `<repository-allowed-to-use-the-role>-pipelines-<permissions>`.
 
@@ -165,7 +184,7 @@ This separation ensures that controls like [branch protection](https://docs.gith
 
 A read-only plan role for the `infrastructure-live-root` repository.
 
-- This role is one of the first created when setting up DevOps Foundations. It is provisioned manually by the customer during the platform setup process.
+- This role is one of the first created when setting up Account Factory. It is provisioned manually by the customer during the platform setup process.
 - It exists in all accounts and handles tasks necessary for setting up AWS accounts.
 - These roles are highly permissive among read-only roles as they manage foundational AWS account setups.
 

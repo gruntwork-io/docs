@@ -1,8 +1,8 @@
 # Execution flow
 
-Pipelines begins doing work in response to an event in GitHub/GitLab, such as the creation, update, or merging of a pull/merge request, or a push to a deploy branch (e.g., `main` or `master`). The orchestrator determines the set of infrastructure changes (`infra-change set`) and selects the appropriate action for each change. For every change in the set, the executor performs the necessary action and logs the results in GitHub/GitLab, attaching them to the merge request/pull request that triggered the workflow.
+Pipelines begins doing work in response to an event in GitHub/GitLab, such as the creation, update, or merging of a pull/merge request, or a push to a deploy branch (e.g., `main` or `master`). Pipelines does this in the native CI/CD feature offered by Source Control Management (SCM) platforms (GitHub Actions for GitHub, GitLab CI/CD Pipelines for GitLab).
 
-The Pipelines execution flow consists of two main stages: the orchestrator and the executor. The orchestrator identifies necessary jobs based on the contents of a pull/merge request or push to the deploy branch, while the executor performs those tasks and updates resources accordingly.
+The flow of this work consists of two main stages: the orchestrator and the executor. The orchestrator identifies and categorizes work into a set of infrastructure changes (`infra-change set`) based on the contents of a pull/merge request or push to the deploy branch, while the executor performs those tasks and updates infrastructure accordingly.
 
 ## Orchestrator
 

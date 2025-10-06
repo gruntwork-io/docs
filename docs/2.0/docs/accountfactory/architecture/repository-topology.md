@@ -10,7 +10,7 @@ Understanding this repository structure will help you leverage Account Factory e
 
 Think of `infrastructure-live-root` as your organization's infrastructure command center. This repository, built from the [infrastructure-live-root-template](https://github.com/gruntwork-io/infrastructure-live-root-template), is where your platform team manages the foundational elements that every other AWS account depends on, and where your Account Factory workflow lives.
 
-This repository is the only repository with access to the management account, and is granted access to all AWS accounts for your platform team to provision infrastructure in as necessary. This is also where your platform team can provision new AWS accounts with consistent baselines whenever teams need them. You'll also manage critical organization-wide infrastructure like your AWS Landing Zone, central logging, and security services in this repository.
+This repository is the only repository with access to the AWS management account, and is trusted by IAM roles provisioned in all AWS accounts so that your platform team is able to provision infrastructure in them as necessary to prepare them for workloads. This is also where your platform team can provision new AWS accounts with consistent baselines whenever teams need them. You'll also manage critical organization-wide infrastructure like your AWS Landing Zone, central logging, and security services in this repository.
 
 Access to this repository is intentionally restricted to your most trusted platform team members. Every other piece of infrastructure in your organization can trace back to the foundational services configured here.
 
@@ -42,7 +42,13 @@ While you can rename `infrastructure-live-root` during setup, keeping the name c
 
 This is where you solve one of the biggest challenges in scaling infrastructure management: **How do you give teams the access they need (and only give them the exact access they need) to manage their own infrastructure?**
 
-The `infrastructure-live-access-control` repository is your organization's permission control center. It manages all the AWS IAM roles, policies, and permissions that determine what each team can do in their AWS accounts outside of the `infrastructure-live-root` repository. It provides a central place where application engineers and the platform team can collaborate to define and iterate on the access control policies for roles that can be assumed by [delegated infrastructure-live repositories](#infrastructure-live-delegated).
+:::tip
+
+This repository is optional for most users (Enterprise customers must provision this repository for delegated repository access control), but is a highly recommended best-practice for all customers.
+
+:::
+
+The `infrastructure-live-access-control` repository is your organization's permission control center. It manages all the IAM roles, policies, and permissions that determine what each team can do in their AWS accounts outside of the `infrastructure-live-root` repository. It provides a central place where application engineers and the platform team can collaborate to define and iterate on the access control policies for roles that can be assumed by [delegated infrastructure-live repositories](#infrastructure-live-delegated).
 
 Your application teams can _request_ the access they need here through pull requests, but your platform team maintains oversight by reviewing and approving these changes, and branch protection rules can ensure that they have final say in the approval process. No more bottlenecks where platform teams have to manually create every single IAM policy (and determine the appropriate level of access for each team), and no more security risks from teams having overly broad permissions.
 
