@@ -44,7 +44,7 @@ This is where you solve one of the biggest challenges in scaling infrastructure 
 
 The `infrastructure-live-access-control` repository is your organization's permission control center. It manages all the AWS IAM roles, policies, and permissions that determine what each team can do in their AWS accounts outside of the `infrastructure-live-root` repository. It provides a central place where application engineers and the platform team can collaborate to define and iterate on the access control policies for roles that can be assumed by [delegated infrastructure-live repositories](#infrastructure-live-delegated).
 
-Your application teams can propose the access they need here through pull requests, but your platform team maintains oversight by reviewing and approving these changes and branch protection rules can ensure that they have final say in the approval process. No more bottlenecks where platform teams have to manually create every single IAM policy (and determine the appropriate level of access for each team), and no more security risks from teams having overly broad permissions.
+Your application teams can _request_ the access they need here through pull requests, but your platform team maintains oversight by reviewing and approving these changes, and branch protection rules can ensure that they have final say in the approval process. No more bottlenecks where platform teams have to manually create every single IAM policy (and determine the appropriate level of access for each team), and no more security risks from teams having overly broad permissions.
 
 :::info
 
