@@ -14,7 +14,7 @@ When using Gruntwork Pipelines without Gruntwork Account Factory, customers are 
 
 ## Cloud resources
 
-For most customers, Pipelines is used to manage infrastructure resources in cloud environments. In order for Pipelines to be able to manage these resources, it needs to be able to authenticate to the cloud provider. Pipelines supports authentication out of the box for the following cloud providers:
+When Pipelines is used to manage infrastructure resources in cloud environments, it needs to be able to authenticate to the cloud provider. Pipelines supports authentication out of the box for the following cloud providers:
 
 - [AWS](/2.0/docs/pipelines/concepts/cloud-auth/aws)
 - [Azure](/2.0/docs/pipelines/concepts/cloud-auth/azure)
