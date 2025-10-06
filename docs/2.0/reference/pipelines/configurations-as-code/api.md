@@ -364,7 +364,7 @@ The IAM role ARN that Pipelines will assume when running Terragrunt apply comman
 <HclListItem name="region" requirement="optional" type="string">
 <HclListItemDescription>
 
-The AWS region that Pipelines will use when running Terragrunt commands.
+The AWS region that Pipelines will use when calling the AWS Security Token Service (STS) to generate authentication tokens.
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="us-east-1"/>
 </HclListItem>
