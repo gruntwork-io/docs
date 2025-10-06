@@ -284,6 +284,11 @@ const sidebar = [
                 id: "2.0/docs/pipelines/installation/addinggitlabrepo",
               },
               {
+                label: "Bootstrap Pipelines in an Existing GitLab Project",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/addingexistinggitlabrepo",
+              },
+              {
                 label: "Adding Branch Protection to a GitLab Project",
                 type: "doc",
                 id: "2.0/docs/pipelines/installation/gitlab-branch-protection",
