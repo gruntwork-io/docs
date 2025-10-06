@@ -273,7 +273,7 @@ module "eks_core_services" {
   # The version of the cluster-autoscaler helm chart to deploy. Note that this
   # is different from the app/container version, which is sepecified with
   # var.cluster_autoscaler_version.
-  cluster_autoscaler_chart_version = "9.21.0"
+  cluster_autoscaler_chart_version = "9.46.6"
 
   # A map of custom tags to apply to the Autoscaler Fargate Profile IAM Role if
   # enabled. The key is the tag name and the value is the tag value.
@@ -903,7 +903,7 @@ inputs = {
   # The version of the cluster-autoscaler helm chart to deploy. Note that this
   # is different from the app/container version, which is sepecified with
   # var.cluster_autoscaler_version.
-  cluster_autoscaler_chart_version = "9.21.0"
+  cluster_autoscaler_chart_version = "9.46.6"
 
   # A map of custom tags to apply to the Autoscaler Fargate Profile IAM Role if
   # enabled. The key is the tag name and the value is the tag value.
@@ -1873,7 +1873,7 @@ Restrict the cluster autoscaler to a list of absolute ASG ARNs upon initial appl
 The version of the cluster-autoscaler helm chart to deploy. Note that this is different from the app/container version, which is sepecified with <a href="#cluster_autoscaler_version"><code>cluster_autoscaler_version</code></a>.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;9.21.0&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;9.46.6&quot;"/>
 </HclListItem>
 
 <HclListItem name="cluster_autoscaler_fargate_profile_iam_role_tags" requirement="optional" type="map(string)">
@@ -5471,6 +5471,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.129.2/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6d1682a160ec43fd5fc63a73fead3014"
+  "hash": "0b1c21707013e8ff22558e9165bbe3c6"
 }
 ##DOCS-SOURCER-END -->
