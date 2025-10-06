@@ -13,7 +13,9 @@ const { redirects } = require("./src/redirects.js")
 const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
 
 const posthogConfig = cfg.has("posthog") ? cfg.get("posthog") : undefined
-const enablePosthog = posthogConfig && posthogConfig.apiKey
+
+// 10-6-2025 - disabling posthog in docusaurus config as we deploy it to the page via Google Tag Manager instead
+const enablePosthog = false //posthogConfig && posthogConfig.apiKey
 
 const googleAnalyticsConfig = cfg.has("googleAnalytics")
   ? cfg.get("googleAnalytics")
