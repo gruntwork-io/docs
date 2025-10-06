@@ -10,4 +10,6 @@ The orchestrator analyzes each infrastructure change in a pull request or git co
 
 ## Executor
 
-The executor receives a pipeline action and an infrastructure change as input and executes the specified action on the change. For example, when responding to `AccountsAdded` events on merge, the executor may create a follow-up pull request in the `infrastructure-live-root` repository to include additional IaC code for baselining the newly added accounts.
+The executor receives as inputs a pipeline action (e.g. `terragrunt plan`) and a specific unit of infrastructure that has been changed (e.g. `/path/to/changed-unit/terragrunt.hcl`) and executes the specified action on the specified unit. 
+
+For example, when responding to a `ModuleUpdated` event for `/some/unit/terragrunt.hcl`, the executor might execute a `terragrunt apply` on `/some/unit/terragrunt.hcl`. Or when responding to `AccountsAdded` events on merge, the executor may create a follow-up pull request in the `infrastructure-live-root` repository to include additional IaC code for baselining the newly added accounts.
