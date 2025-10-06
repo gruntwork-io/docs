@@ -174,9 +174,9 @@ const sidebar = [
     },
     items: [
       {
-        label: "Components",
+        label: "Execution flow",
         type: "doc",
-        id: "2.0/docs/pipelines/architecture/components",
+        id: "2.0/docs/pipelines/architecture/execution-flow",
       },
       {
         label: "Actions",
@@ -479,6 +479,11 @@ const sidebar = [
         label: "Network Topology",
         type: "doc",
         id: "2.0/docs/accountfactory/architecture/network-topology",
+      },
+      {
+        label: "Repository Topology",
+        type: "doc",
+        id: "2.0/docs/accountfactory/architecture/repository-topology",
       },
     ],
   },

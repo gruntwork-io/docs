@@ -42,6 +42,12 @@ The JSON payload approach provides greater flexibility for account vending, over
 
 #### Step 1 - Download the file
 
+:::note
+
+This guide focuses on non-delegated repositories. Enterprise customers can also [use Account Factory to create new Delegated Repositories](/2.0/docs/accountfactory/guides/delegated-repositories).
+
+:::
+
 Locate the inputs web page in your `infrastructure-live-root` repository at `.github/workflows/account-factory-inputs.html` and download it to your local machine.
 
 #### Step 2 - Populate the values
