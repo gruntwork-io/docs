@@ -93,6 +93,8 @@ mise ls-remote boilerplate
 
 :::
 
+### Cloud-specific bootstrap instructions
+
 <Tabs>
 <TabItem value="aws" label="AWS" default>
 
@@ -118,7 +120,8 @@ The process that we'll follow to get these resources ready for Pipelines is:
 2. Use Terragrunt to provision these resources in your AWS account
 3. (Optionally) Bootstrap additional AWS accounts until all your AWS accounts are ready for Pipelines
 
-### Bootstrap your `infrastructure-live` repository
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+<h3>Bootstrap your `infrastructure-live` repository</h3>
 
 To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to scaffold it with the necessary content for Pipelines to function.
 
@@ -171,7 +174,9 @@ boilerplate \
 :::
 
 :::note Progress Checklist
+
 <PersistentCheckbox id="scaffold-repository" label="Use Boilerplate to scaffold out your repository with the necessary scaffolding for Pipelines." />
+
 :::
 
 Next, install Terragrunt and OpenTofu locally (the `.mise.toml` file in the root of the repository after scaffolding should already be set to the versions you want for Terragrunt and OpenTofu):
@@ -185,7 +190,8 @@ mise install
 <PersistentCheckbox id="install-terragrunt-and-opentofu" label="Install Terragrunt and OpenTofu locally." />
 :::
 
-### Provisioning the resources
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+<h3>Provisioning the resources</h3>
 
 Once you've set up the Terragrunt configurations, you can use Terragrunt to provision the resources in your AWS account.
 
@@ -227,7 +233,8 @@ terragrunt run --all --non-interactive --provider-cache apply
 
 :::
 
-### Optional: Bootstrapping additional AWS accounts
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+<h3>Optional: Bootstrapping additional AWS accounts</h3>
 
 If you have multiple AWS accounts, and you want to bootstrap them as well, you can do so by following a similar, but slightly condensed process.
 
@@ -359,7 +366,8 @@ The process that we'll follow to get these resources ready for Pipelines is:
 4. Pull the bootstrap resources into state, now that we have configured a remote state backend
 5. (Optionally) Bootstrap additional Azure subscriptions until all your Azure subscriptions are ready for Pipelines
 
-### Bootstrap your `infrastructure-live` repository
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+<h3>Bootstrap your `infrastructure-live` repository</h3>
 
 To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to scaffold it with the necessary content for Pipelines to function.
 
@@ -428,7 +436,8 @@ Next, install Terragrunt and OpenTofu locally (the `.mise.toml` file in the root
 mise install
 ```
 
-### Provisioning the resources
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+<h3>Provisioning the resources</h3>
 
 Once you've set up the Terragrunt configurations, you can use Terragrunt to provision the resources in your Azure subscription.
 
@@ -498,7 +507,8 @@ We're adding the `--no-stack-generate` flag here, as Terragrunt will already hav
 <PersistentCheckbox id="run-apply" label="Run an apply in the subscription directory to provision the resources in your Azure subscription." />
 :::
 
-### Finalizing Terragrunt configurations
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+<h3>Finalizing Terragrunt configurations</h3>
 
 Once you've provisioned the resources in your Azure subscription, you can finalize the Terragrunt configurations using the bootstrap resources we just provisioned.
 
@@ -638,7 +648,8 @@ You can use those values to set the values for `plan_client_id` and `apply_clien
 
 :::
 
-### Pulling the resources into state
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+<h3>Pulling the resources into state</h3>
 
 Once you've provisioned the resources in your Azure subscription, you can pull the resources into state using the storage account we just provisioned.
 
@@ -658,7 +669,8 @@ We're adding the `-force-copy` flag here to avoid any issues with OpenTofu waiti
 
 :::
 
-### Optional: Bootstrapping additional Azure subscriptions
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+<h3>Optional: Bootstrapping additional Azure subscriptions</h3>
 
 If you have multiple Azure subscriptions, and you want to bootstrap them as well, you can do so by following a similar, but slightly condensed process.
 
