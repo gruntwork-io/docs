@@ -19,8 +19,3 @@ algolia:
   apiKey: ALGOLIA_API_KEY
   indexName: ALGOLIA_INDEX_NAME
   libraryIndexName: ALGOLIA_LIBRARY_INDEX_NAME
-
-# Posthog Analytics tracking config
-posthog:
-  apiKey: CONFIG_POSTHOG_API_KEY
-  appUrl: CONFIG_POSTHOG_APP_URL

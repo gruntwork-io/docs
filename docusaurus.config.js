@@ -12,11 +12,6 @@ const { redirects } = require("./src/redirects.js")
 
 const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
 
-const posthogConfig = cfg.has("posthog") ? cfg.get("posthog") : undefined
-
-// 10-6-2025 - disabling posthog in docusaurus config as we deploy it to the page via Google Tag Manager instead
-const enablePosthog = false //posthogConfig && posthogConfig.apiKey
-
 const googleAnalyticsConfig = cfg.has("googleAnalytics")
   ? cfg.get("googleAnalytics")
   : undefined
@@ -34,10 +29,6 @@ const buildVersion = cfg.has("app.buildVersion")
   : "N/A"
 
 const plugins = ["plugin-image-zoom"]
-
-if (enablePosthog) {
-  plugins.push("posthog-docusaurus")
-}
 
 const redirectPlugin = [
   "@docusaurus/plugin-client-redirects",
@@ -449,12 +440,6 @@ async function createConfig() {
             }
           : undefined,
         zoomSelector: ".markdown :not(em) > img:not(.no-zoom)",
-        posthog: enablePosthog
-          ? {
-              apiKey: posthogConfig.apiKey,
-              appUrl: posthogConfig.appUrl,
-            }
-          : undefined,
         metadata: [
           // https://docusaurus.io/docs/2.x/seo#global-metadata
           // This would become <meta name="keywords" content="..."/> in the generated HTML
