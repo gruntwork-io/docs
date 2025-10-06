@@ -715,7 +715,7 @@ module "eks_cluster_control_plane" {
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.33"
+  kubernetes_version = "1.32"
 
   # The thumbprint to use for the OpenID Connect Provider. You can retrieve the
   # thumbprint by following the instructions in the AWS docs:
@@ -1150,7 +1150,7 @@ inputs = {
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.33"
+  kubernetes_version = "1.32"
 
   # The thumbprint to use for the OpenID Connect Provider. You can retrieve the
   # thumbprint by following the instructions in the AWS docs:
@@ -2036,7 +2036,7 @@ The URL from which to download Kubergrunt if it's not installed already. Only us
 Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.33&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.32&quot;"/>
 </HclListItem>
 
 <HclListItem name="openid_connect_provider_thumbprint" requirement="optional" type="string">
@@ -2408,6 +2408,6 @@ The path to the kubergrunt binary, if in use.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.0/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7947c97e2423ba417268700593449de9"
+  "hash": "2cc32e7775c922c55241a2b11562f6ac"
 }
 ##DOCS-SOURCER-END -->

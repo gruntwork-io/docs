@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="3.1.0" lastModifiedVersion="3.1.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="3.1.0" lastModifiedVersion="1.5.1"/>
 
 # K8S External DNS Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.0/modules/eks-k8s-external-dns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v3.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v1.5.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs and configures [the external-dns
 application](https://github.com/kubernetes-incubator/external-dns) on an EKS cluster, so that you can configure Route 53
@@ -522,6 +522,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.0/modules/eks-k8s-external-dns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aa53df6512ec15f2195fc18427870273"
+  "hash": "646b2f3e450c0a6525aa2ae3eda459f2"
 }
 ##DOCS-SOURCER-END -->

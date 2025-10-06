@@ -152,12 +152,12 @@ module "eks_k_8_s_karpenter" {
   karpenter_chart_repository_username = null
 
   # Whether or not to install CRDs with the Karpenter Helm Chart. This should be
-  # set to true if using the karpenter-crd Helm Chart (karpenter_crd_helm_create
-  # = true).
-  karpenter_chart_skip_crds = true
+  # set to true if using the karpenter-crd Helm Chart
+  # (karpenter_chart_additional_values = true).
+  karpenter_chart_skip_crds = false
 
   # The version of the Karpenter Helm chart.
-  karpenter_chart_version = "1.6.2"
+  karpenter_chart_version = "v0.37.5"
 
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
   # Service Account. This is required if `create_karpenter_controller_irsa` is
@@ -193,11 +193,10 @@ module "eks_k_8_s_karpenter" {
 
   # The version of the Karpenter CRD Helm chart. This should typically be the
   # same version as karpenter_chart_version.
-  karpenter_crd_chart_version = "1.6.2"
+  karpenter_crd_chart_version = "v0.32.7"
 
-  # Whether or not to create the Karpenter CRDs via the karpenter-crd Helm
-  # chart. It is strongly recommended to manage the Karpenter CRDs via this Helm
-  # chart.
+  # Whether or not to create the Karpneter CRDs via the karpenter-crd Helm
+  # chart. It is suggested to manage the Karpenter CRDs via this Helm chart.
   karpenter_crd_helm_create = true
 
   # A map of custom tags to apply to the Karpenter Deprovisioning Queue IAM
@@ -343,12 +342,12 @@ inputs = {
   karpenter_chart_repository_username = null
 
   # Whether or not to install CRDs with the Karpenter Helm Chart. This should be
-  # set to true if using the karpenter-crd Helm Chart (karpenter_crd_helm_create
-  # = true).
-  karpenter_chart_skip_crds = true
+  # set to true if using the karpenter-crd Helm Chart
+  # (karpenter_chart_additional_values = true).
+  karpenter_chart_skip_crds = false
 
   # The version of the Karpenter Helm chart.
-  karpenter_chart_version = "1.6.2"
+  karpenter_chart_version = "v0.37.5"
 
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
   # Service Account. This is required if `create_karpenter_controller_irsa` is
@@ -384,11 +383,10 @@ inputs = {
 
   # The version of the Karpenter CRD Helm chart. This should typically be the
   # same version as karpenter_chart_version.
-  karpenter_crd_chart_version = "1.6.2"
+  karpenter_crd_chart_version = "v0.32.7"
 
-  # Whether or not to create the Karpenter CRDs via the karpenter-crd Helm
-  # chart. It is strongly recommended to manage the Karpenter CRDs via this Helm
-  # chart.
+  # Whether or not to create the Karpneter CRDs via the karpenter-crd Helm
+  # chart. It is suggested to manage the Karpenter CRDs via this Helm chart.
   karpenter_crd_helm_create = true
 
   # A map of custom tags to apply to the Karpenter Deprovisioning Queue IAM
@@ -623,10 +621,10 @@ Optionally provide a Username for HTTP basic authentication against the Karpente
 <HclListItem name="karpenter_chart_skip_crds" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Whether or not to install CRDs with the Karpenter Helm Chart. This should be set to true if using the karpenter-crd Helm Chart (karpenter_crd_helm_create = true).
+Whether or not to install CRDs with the Karpenter Helm Chart. This should be set to true if using the karpenter-crd Helm Chart (karpenter_chart_additional_values = true).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="karpenter_chart_version" requirement="optional" type="string">
@@ -635,7 +633,7 @@ Whether or not to install CRDs with the Karpenter Helm Chart. This should be set
 The version of the Karpenter Helm chart.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.6.2&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v0.37.5&quot;"/>
 </HclListItem>
 
 <HclListItem name="karpenter_controller_existing_role_arn" requirement="optional" type="string">
@@ -725,13 +723,13 @@ Optionally provide a Username for HTTP basic authentication against the Karpente
 The version of the Karpenter CRD Helm chart. This should typically be the same version as karpenter_chart_version.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.6.2&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v0.32.7&quot;"/>
 </HclListItem>
 
 <HclListItem name="karpenter_crd_helm_create" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Whether or not to create the Karpenter CRDs via the karpenter-crd Helm chart. It is strongly recommended to manage the Karpenter CRDs via this Helm chart.
+Whether or not to create the Karpneter CRDs via the karpenter-crd Helm chart. It is suggested to manage the Karpenter CRDs via this Helm chart.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -926,6 +924,6 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.0/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e8678837a6289bf83e43a379ef34e8ac"
+  "hash": "e6c6d74008c69350e1cfb377968f9e79"
 }
 ##DOCS-SOURCER-END -->

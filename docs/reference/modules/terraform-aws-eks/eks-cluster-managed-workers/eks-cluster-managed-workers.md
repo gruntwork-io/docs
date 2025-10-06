@@ -257,7 +257,7 @@ module "eks_cluster_managed_workers" {
   name_suffix = ""
 
   # Default value for ami_type field of node_group_configurations.
-  node_group_default_ami_type = "AL2023_x86_64_STANDARD"
+  node_group_default_ami_type = "AL2_x86_64"
 
   # Default value for ami_version field of node_group_configurations.
   node_group_default_ami_version = null
@@ -436,7 +436,7 @@ inputs = {
   name_suffix = ""
 
   # Default value for ami_type field of node_group_configurations.
-  node_group_default_ami_type = "AL2023_x86_64_STANDARD"
+  node_group_default_ami_type = "AL2_x86_64"
 
   # Default value for ami_version field of node_group_configurations.
   node_group_default_ami_version = null
@@ -793,7 +793,7 @@ Suffix resource names with this string. When you have multiple worker groups for
 Default value for ami_type field of node_group_configurations.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;AL2023_x86_64_STANDARD&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;AL2_x86_64&quot;"/>
 </HclListItem>
 
 <HclListItem name="node_group_default_ami_version" requirement="optional" type="string">
@@ -1014,6 +1014,6 @@ Map of Node Group names to ARNs of the created EKS Node Groups
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.0/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "38a1ab7671f88ab2d98e011761883063"
+  "hash": "848c771280f0cf31a787142b9865a4d6"
 }
 ##DOCS-SOURCER-END -->
