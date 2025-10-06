@@ -13,8 +13,8 @@ To use Gruntwork Pipelines in an **existing** GitLab repository, see this [guide
 Before you begin, make sure you have:
 
 - Basic familiarity with Git, GitLab, and infrastructure as code concepts
-- Completed the [AWS Landing Zone setup](/2.0/docs/pipelines/installation/prerequisites/awslandingzone)
-- Have programmatic access to the AWS accounts created in the [AWS Landing Zone setup](/2.0/docs/pipelines/installation/prerequisites/awslandingzone)
+- Completed the [AWS Landing Zone setup](/2.0/docs/accountfactory/prerequisites/awslandingzone)
+- Have programmatic access to the AWS accounts created in the [AWS Landing Zone setup](/2.0/docs/accountfactory/prerequisites/awslandingzone)
 - Completed the [Pipelines Auth setup for GitLab](/2.0/docs/pipelines/installation/viamachineusers#gitlab) and setup a machine user with appropriate PAT tokens
 - Local access to Gruntwork's GitHub repositories, specifically the [architecture catalog](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/)
 

@@ -47,7 +47,7 @@ Requires that the following tokens are created:
 - `INFRA_ROOT_WRITE_TOKEN`: Fine-grained PAT with read/write access to infrastructure repositories
 - `ORG_REPO_ADMIN_TOKEN`: Fine-grained PAT with admin access for repository management
 
-See [Setup via Machine Users](/2.0/docs/pipelines/installation/viamachineusers.md) for more details.
+See [Setup via Machine Users](/2.0/docs/pipelines/installation/viamachineusers) for more details.
 
 </TabItem>
 <TabItem value="gitlab" label="GitLab">

@@ -23,7 +23,7 @@ Navigate to the template repository and select **Use this template** -> **Create
 
 Use the Gruntwork.io GitHub App to [add the repository as an Infra Root repository](/2.0/docs/pipelines/installation/viagithubapp#configuration).
 
-If using the [machine user model](/2.0/docs/pipelines/installation/viamachineusers.md), ensure the `INFRA_ROOT_WRITE_TOKEN` (and `ORG_REPO_ADMIN_TOKEN` for enterprise customers) is added to the repository as a secret or configured as an organization secret.
+If using the [machine user model](/2.0/docs/pipelines/installation/viamachineusers), ensure the `INFRA_ROOT_WRITE_TOKEN` (and `ORG_REPO_ADMIN_TOKEN` for enterprise customers) is added to the repository as a secret or configured as an organization secret.
 
 ## Updating the Bootstrap Workflow
 

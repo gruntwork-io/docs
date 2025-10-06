@@ -12,7 +12,7 @@ Gruntwork Pipelines requires authentication with Source Control Management (SCM)
 Gruntwork provides two authentication methods:
 
 - [The Gruntwork.io GitHub App](/2.0/docs/pipelines/installation/viagithubapp.md)
-- [CI Users (Machine Users)](/2.0/docs/pipelines/installation/viamachineusers.md)
+- [CI Users (Machine Users)](/2.0/docs/pipelines/installation/viamachineusers)
 
 Both approaches support the core functionality of Pipelines. The GitHub App provides additional features and benefits, making it the recommended method for most customers that can use it. While Gruntwork strives to ensure feature parity between the two authentication mechanisms, certain advanced features are exclusive to the GitHub App, and this list is expected to grow over time.
 
