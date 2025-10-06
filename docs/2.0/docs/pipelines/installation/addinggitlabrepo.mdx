@@ -1,0 +1,463 @@
+# Bootstrap Pipelines in a New GitLab Project
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import PersistentCheckbox from '/src/components/PersistentCheckbox';
+
+To configure Gruntwork Pipelines in a new GitLab project, complete the following steps (which are explained in detail below):
+
+1. Create an `infrastructure-live` project.
+2. Configure machine user tokens for GitLab access, or ensure that the appropriate machine user tokens are set up as project or organization secrets.
+3. Create `.gruntwork` HCL configurations to tell Pipelines how to authenticate in your environments.
+4. Create `.gitlab-ci.yml` to tell your GitLab CI/CD pipeline how to run your pipelines.
+5. Commit and push your changes to your project.
+
+## Creating the infrastructure-live project
+
+Creating an `infrastructure-live` project is fairly straightforward. First, create a new project using the official GitLab documentation for [creating repositories](https://docs.gitlab.com/user/project/repository/). Name the project something like `infrastructure-live` and make it private (or internal).
+
+## Configuring SCM Access
+
+Pipelines needs the ability to interact with Source Control Management (SCM) platforms to fetch resources (e.g. IaC code, reusable CI/CD code and the Pipelines binary itself).
+
+For GitLab, you'll need to configure SCM access using [machine users](/2.0/docs/pipelines/installation/viamachineusers) with appropriate Personal Access Tokens (PATs).
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="configure-scm-access" label="Configure SCM access for Pipelines using machine users with GitLab PATs." />
+
+:::
+
+## Creating Cloud Resources for Pipelines
+
+To start using Pipelines, you'll need to ensure that requisite cloud resources are provisioned in your cloud provider(s) to start managing your infrastructure with Pipelines.
+
+:::note
+
+If you are using the [Gruntwork Account Factory](/2.0/docs/accountfactory/architecture), this will be done automatically during onboarding and in the process of [vending every new AWS account](/2.0/docs/accountfactory/guides/vend-aws-account), so you don't need to worry about this.
+
+:::
+
+Clone your `infrastructure-live` project repository to your local machine using [Git](https://docs.gitlab.com/user/project/repository/index.html#clone-a-repository).
+
+:::tip
+
+If you don't have Git installed, you can install it by following the official guide for [Git installation](https://git-scm.com/downloads).
+
+:::
+
+For example:
+
+```bash
+git clone git@gitlab.com:acme/infrastructure-live.git
+cd infrastructure-live
+```
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="clone-repository" label="Clone the `infrastructure-live` project repository locally." />
+<PersistentCheckbox id="cd-into-repository" label="Navigate into the `infrastructure-live` repository." />
+
+:::
+
+To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to scaffold it with the necessary IaC code to provision the infrastructure necessary for Pipelines to function.
+
+The easiest way to install Boilerplate is to use `mise` to install it.
+
+:::tip
+
+If you don't have `mise` installed, you can install it by following the official guide for [mise installation](https://mise.jdx.dev/getting-started.html).
+
+:::
+
+```bash
+mise use -g boilerplate@latest
+```
+
+:::tip
+
+If you'd rather install a specific version of Boilerplate, you can use the `ls-remote` command to list the available versions.
+
+```bash
+mise ls-remote boilerplate
+```
+
+:::
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="install-boilerplate" label="Install Boilerplate." />
+
+:::
+
+### Cloud-specific bootstrap instructions
+
+The resources that you need provisioned in AWS to start managing resources with Pipelines are:
+
+1. An OpenID Connect (OIDC) provider
+2. An IAM role for Pipelines to assume when running Terragrunt plan commands
+3. An IAM role for Pipelines to assume when running Terragrunt apply commands
+
+For every account you want Pipelines to manage infrastructure in.
+
+:::tip Don't Panic!
+
+This may seem like a lot to set up, but the content you need to add to your `infrastructure-live` repository is minimal. The majority of the work will be pulled from a reusable catalog that you'll reference in your `infrastructure-live` repository.
+
+If you want to peruse the catalog that's used in the bootstrap process, you can take a look at the [terragrunt-scale-catalog](https://github.com/gruntwork-io/terragrunt-scale-catalog) repository.
+
+:::
+
+The process that we'll follow to get these resources ready for Pipelines is:
+
+1. Set up the Terragrunt configurations in your `infrastructure-live` repository for bootstrapping Pipelines in a single AWS account
+2. Use Terragrunt to provision these resources in your AWS account
+3. (Optionally) Bootstrap additional AWS accounts until all your AWS accounts are ready for Pipelines
+
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+<h3>Bootstrap your `infrastructure-live` repository</h3>
+
+To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to scaffold it with the necessary content for Pipelines to function.
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.0.0' \
+  --output-folder .
+```
+
+:::tip
+
+You can just reply `y` to all the prompts to include dependencies, and accept defaults unless you want to customize something.
+
+Alternatively, you could run Boilerplate non-interactively by passing the `--non-interactive` flag. You'll need to supply the relevant values for required variables in that case.
+
+e.g.
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.0.0' \
+  --output-folder . \
+  --var 'AccountName=dev' \
+  --var 'GitLabGroupName=acme' \
+  --var 'GitLabRepoName=infrastructure-live' \
+  --var 'GitLabInstanceURL=https://gitlab.com' \
+  --var 'AWSAccountID=123456789012' \
+  --var 'AWSRegion=us-east-1' \
+  --var 'StateBucketName=my-state-bucket' \
+  --non-interactive
+```
+
+You can also choose to store these values in a YAML file and pass it to Boilerplate using the `--var-file` flag.
+
+```yaml title="vars.yml"
+AccountName: dev
+GitLabGroupName: acme
+GitLabRepoName: infrastructure-live
+GitLabInstanceURL: https://gitlab.com
+AWSAccountID: 123456789012
+AWSRegion: us-east-1
+StateBucketName: my-state-bucket
+```
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.0.0' \
+  --output-folder . \
+  --var-file vars.yml \
+  --non-interactive
+```
+
+:::
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="scaffold-repository" label="Use Boilerplate to scaffold out your repository with the necessary scaffolding for Pipelines." />
+
+:::
+
+Next, install Terragrunt and OpenTofu locally (the `.mise.toml` file in the root of the repository after scaffolding should already be set to the versions you want for Terragrunt and OpenTofu):
+
+```bash
+mise install
+```
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="install-terragrunt-and-opentofu" label="Install Terragrunt and OpenTofu locally." />
+:::
+
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+<h3>Provisioning the resources</h3>
+
+Once you've set up the Terragrunt configurations, you can use Terragrunt to provision the resources in your AWS account.
+
+:::tip
+
+Make sure that you're authenticated with AWS locally before proceeding.
+
+You can follow the documentation [here](https://search.opentofu.org/provider/hashicorp/aws/latest#authentication-and-configuration) to authenticate with the AWS provider. You are advised to choose an authentication method that doesn't require any hard-coded credentials, like assuming an IAM role.
+
+:::
+
+First, make sure that everything is set up correctly by running a plan in the `bootstrap` directory in `name-of-account/_global` where `name-of-account` is the name of the first AWS account you want to bootstrap.
+
+```bash title="name-of-account/_global/bootstrap"
+terragrunt run --all --non-interactive --provider-cache plan
+```
+
+:::tip
+
+We're using the `--provider-cache` flag here to ensure that we don't re-download the AWS provider on every run by leveraging the [Terragrunt Provider Cache Server](https://terragrunt.gruntwork.io/docs/features/provider-cache-server/).
+
+:::
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="run-aws-plan" label="Run a plan in the bootstrap directory to make sure that everything is set up correctly." />
+
+:::
+
+Next, apply the changes to your account.
+
+```bash title="name-of-account/_global/bootstrap"
+terragrunt run --all --non-interactive --provider-cache apply
+```
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="run-aws-apply" label="Run an apply in the bootstrap directory to provision the resources in your AWS account." />
+
+:::
+
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+<h3>Optional: Bootstrapping additional AWS accounts</h3>
+
+If you have multiple AWS accounts, and you want to bootstrap them as well, you can do so by following a similar, but slightly condensed process.
+
+For each additional account you want to bootstrap, you'll use Boilerplate in the root of your `infrastructure-live` repository to scaffold out the necessary content for just that account.
+
+:::tip
+
+If you are going to bootstrap more AWS accounts, you'll probably want to commit your existing changes before proceeding.
+
+```bash
+git add .
+git commit -m "Add core Pipelines scaffolding [skip ci]"
+```
+
+The `[skip ci]` in the commit message is just in-case you push your changes up to your repository at this state, as you don't want to trigger Pipelines yet.
+
+:::
+
+Just like before, you'll use Boilerplate to scaffold out the necessary content for just that account.
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.0.0' \
+  --output-folder .
+```
+
+:::tip
+
+Again, you can just reply `y` to all the prompts to include dependencies, and accept defaults unless you want to customize something.
+
+Alternatively, you could run Boilerplate non-interactively by passing the `--non-interactive` flag. You'll need to supply the relevant values for required variables in that case.
+
+e.g.
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.0.0' \
+  --output-folder . \
+  --var 'AccountName=prod' \
+  --var 'AWSAccountID=987654321012' \
+  --var 'AWSRegion=us-east-1' \
+  --var 'StateBucketName=my-prod-state-bucket' \
+  --var 'GitLabGroupName=acme' \
+  --var 'GitLabRepoName=infrastructure-live' \
+  --var 'GitLabInstanceURL=https://gitlab.com' \
+  --non-interactive
+```
+
+If you prefer to store the values in a YAML file and pass it to Boilerplate using the `--var-file` flag, you can do so like this:
+
+```yaml title="vars.yml"
+AccountName: prod
+AWSAccountID: 987654321012
+AWSRegion: us-east-1
+StateBucketName: my-prod-state-bucket
+GitLabGroupName: acme
+GitLabRepoName: infrastructure-live
+GitLabInstanceURL: https://gitlab.com
+```
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.0.0' \
+  --output-folder . \
+  --var-file vars.yml \
+  --non-interactive
+```
+
+:::
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="scaffold-additional-account" label="Use Boilerplate to scaffold out additional AWS accounts." />
+
+:::
+
+Once you've scaffolded out the additional accounts you want to bootstrap, you can use Terragrunt to provision the resources in each of these accounts.
+
+:::tip
+
+Make sure that you authenticate to each AWS account you are bootstrapping using AWS credentials for that account before you attempt to provision resources in it.
+
+:::
+
+For each account you want to bootstrap, you'll need to run the following commands:
+
+```bash
+cd <account-name>/_global/bootstrap
+terragrunt run --all --non-interactive --provider-cache plan
+terragrunt run --all --non-interactive --provider-cache apply
+```
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="run-additional-aws-plan" label="Run a plan in the bootstrap directory of the additional account to make sure that everything is set up correctly." />
+<PersistentCheckbox id="run-additional-aws-apply" label="Run an apply in the bootstrap directory of the additional account to provision the resources in the additional account." />
+
+:::
+
+## Creating `.gruntwork` HCL configurations
+
+Create [HCL configurations](/2.0/reference/pipelines/configurations-as-code/) in the `.gruntwork` directory in the root of your `infrastructure-live` repository to tell Pipelines how you plan to organize your infrastructure, and how you plan to have Pipelines authenticate with your cloud provider(s).
+
+### The `repository` block
+
+The core configuration that you'll want to start with is the `repository` block. This block tells Pipelines which branch has the "live" infrastructure you want provisioned. When you merge IaC to this branch, Pipelines will be triggered to update your infrastructure accordingly.
+
+```hcl title=".gruntwork/repository.hcl"
+repository {
+  deploy_branch_name = "main"
+}
+```
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="create-repository-hcl" label="Create a new `.gruntwork/repository.hcl` file in the root of your `infrastructure-live` repository with the contents above." />
+<PersistentCheckbox id="edit-repository-deploy-branch-name" label="Edit the value of `deploy_branch_name` in `.gruntwork/repository.hcl` if necessary." />
+
+:::
+
+### The `environment` block
+
+Next, you'll want to define the environments you want to manage with Pipelines using the [`environment` block](/2.0/reference/pipelines/configurations-as-code/api#environment-block).
+
+For each environment, you'll want to define a [`filter` block](/2.0/reference/pipelines/configurations-as-code/api#filter-block) that tells Pipelines which units are part of that environment. You'll also want to define an [`authentication` block](/2.0/reference/pipelines/configurations-as-code/api#authentication-block) that tells Pipelines how to authenticate with your cloud provider(s) for that environment.
+
+```hcl title=".gruntwork/environment-an-aws-account.hcl"
+environment "an_aws_account" {
+  filter {
+    paths = ["an-aws-account/*"]
+  }
+
+  authentication {
+    aws_oidc {
+      account_id = "123456789012"
+      plan_iam_role_arn = "arn:aws:iam::123456789012:role/pipelines-plan"
+      apply_iam_role_arn = "arn:aws:iam::123456789012:role/pipelines-apply"
+    }
+  }
+}
+```
+
+:::tip
+
+Learn more about how Pipelines authenticates to AWS in the [Authenticating to AWS](/2.0/docs/pipelines/concepts/cloud-auth/aws) page.
+
+:::
+
+:::tip
+
+Check out the [aws block](/2.0/reference/pipelines/configurations-as-code/#aws-blocks) for more information on how to configure Pipelines to authenticate with AWS conveniently.
+
+:::
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="create-aws-environment-hcl" label="Create a new `.gruntwork/environment-an-aws-account.hcl` file in the root of your `infrastructure-live` repository with the contents above." />
+<PersistentCheckbox id="rename-aws-environment-hcl" label="Rename the file to match the name of the environment you want to manage with pipelines." />
+<PersistentCheckbox id="edit-aws-environment-label" label="Edit the label of the `environment` block from `an_aws_account` to the name of the environment you want to manage with pipelines." />
+<PersistentCheckbox id="edit-aws-filter-paths" label="Edit the value of `paths` in the `filter` block so that the glob matches the path to the units you want to manage with Pipelines as part of that environment." />
+<PersistentCheckbox id="edit-aws-account-id" label="Edit the value of `account_id` in the `aws_oidc` block so that it matches the AWS account ID of the account you want to authenticate with." />
+<PersistentCheckbox id="edit-aws-plan-iam-role-arn" label="Edit the value of `plan_iam_role_arn` and `apply_iam_role_arn` in the `aws_oidc` block so that they match the IAM roles you want to assume for plans and applies for that environment." />
+
+:::
+
+## Creating `.gitlab-ci.yml`
+
+Create a `.gitlab-ci.yml` file in the root of your `infrastructure-live` repository with the following content:
+
+```yaml title=".gitlab-ci.yml"
+include:
+  - component: gitlab.com/gruntwork-io/pipelines-workflows/gitlab-ci@v4
+    inputs:
+      stage: pipelines
+```
+
+:::info
+
+**For custom GitLab instances only**: If you are using a custom GitLab instance, you must update the component reference to point to your forked version of the pipelines-workflows project:
+
+```yaml title=".gitlab-ci.yml"
+include:
+  - component: your-gitlab-instance.com/your-group/pipelines-workflows/gitlab-ci@v4
+    inputs:
+      stage: pipelines
+```
+
+:::
+
+:::tip
+
+You can read the [Pipelines GitLab CI Component](https://gitlab.com/gruntwork-io/pipelines-workflows/-/blob/main/templates/gitlab-ci.yml) to learn how this GitLab CI component calls the Pipelines CLI to run your pipelines.
+
+:::
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="create-gitlab-ci-yml" label="Create a new `.gitlab-ci.yml` file in the root of your `infrastructure-live` repository with the contents above." />
+<PersistentCheckbox id="update-gitlab-ci-component-reference" label="If using a custom GitLab instance, update the component reference to point to your forked pipelines-workflows project." />
+
+:::
+
+## Commit and push your changes
+
+Commit and push your changes to your repository.
+
+   :::note
+
+You should include `[skip ci]` in your commit message here to prevent triggering the Pipelines workflow.
+
+:::
+
+```bash
+git add .
+git commit -m "Add Pipelines GitLab CI workflow [skip ci]"
+git push
+```
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="commit-and-push-changes" label="Commit the changes to your repository (using `[skip ci]` in the commit message)." />
+<PersistentCheckbox id="push-changes-to-repository" label="Push the changes to your repository." />
+
+:::
+
+🚀 You've successfully added Gruntwork Pipelines to your new repository!
+
+## Next steps
+
+You have successfully completed the installation of Gruntwork Pipelines in a new repository. Proceed to [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change.md) to begin deploying changes.
