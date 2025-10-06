@@ -30,7 +30,7 @@ Access to this repository is intentionally restricted to your most trusted platf
 
   :::
 
-- **Pipelines:** This is where Account Factory integrates with the Gruntwork Pipelines product to drive infrastructure changes via GitOps workflows. Every infrastructure change goes through a proper review process with pull requests, approvals, and controlled deployments. Your platform team gets the confidence of peer review while maintaining the ability to rapidly deploy critical infrastructure changes.
+- **Pipelines:** This is where Account Factory integrates with Gruntwork Pipelines to drive infrastructure changes via GitOps workflows. With Gruntwork Pipelines, every infrastructure change goes through a proper review process with pull requests, approvals, and controlled deployments. Your platform team gets the confidence of peer review while maintaining the ability to rapidly deploy critical infrastructure changes.
 
 :::tip
 
