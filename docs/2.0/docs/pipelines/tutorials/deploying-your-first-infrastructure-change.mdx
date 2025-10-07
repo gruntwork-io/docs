@@ -1,0 +1,230 @@
+# Deploying your first Infrastructure Change
+
+import CustomizableValue from '/src/components/CustomizableValue';
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
+In this tutorial, we will guide you through deploying cloud storage. This "hello world" example introduces Gruntwork Pipelines and lays the groundwork for using it in production environments.
+
+## What you'll get
+
+By the end of this tutorial, you will have:
+
+- Cloud storage deployed automatically using Gruntwork Pipelines:
+  - **AWS**: An S3 bucket
+  - **Azure**: A Resource Group and Storage Account
+
+## Prerequisites
+
+Before starting, ensure you have the following:
+
+- Pipelines installed in a GitHub or GitLab repository. Refer to [Setup & Installation](/2.0/docs/pipelines/installation/overview) for more details.
+- Access to a sandbox or development cloud environment (AWS account or Azure subscription) configured during the Pipelines installation process.
+- Permissions to create a pull request in the GitHub/GitLab repository where Pipelines is installed.
+
+## Running Your first pipeline
+
+This section covers creating a cloud storage resource using Pipelines and GitOps workflows. You will define a `terragrunt.hcl` file to create storage, push the changes, create a pull/merge request to trigger a `plan` action, and merge the request to run an `apply` action that creates the resource.
+
+### Adding cloud storage
+
+<Tabs>
+<TabItem value="aws" label="AWS" groupId="platform" default>
+
+1. Create the folder structure for the new S3 bucket in your environment. Replace <CustomizableValue id="ACCOUNT_NAME" /> with the account name you are deploying to and <CustomizableValue id="REGION" /> with the AWS region where the S3 bucket will be deployed.
+
+    ```bash
+    mkdir -p $$ACCOUNT_NAME$$/$$REGION$$/data-storage/s3
+    touch $$ACCOUNT_NAME$$/$$REGION$$/region.hcl
+    touch $$ACCOUNT_NAME$$/$$REGION$$/data-storage/s3/terragrunt.hcl
+    ```
+
+2. Add the following content to the `region.hcl` file created earlier.
+
+    ```hcl title="$$ACCOUNT_NAME$$/$$REGION$$/region.hcl"
+    locals {
+      aws_region = "$$REGION$$"
+    }
+    ```
+
+3. Add the Terragrunt code below to the newly created `terragrunt.hcl` file to define the S3 bucket. Replace <CustomizableValue id='S3_BUCKET_NAME'/> with your desired bucket name. Ensure the bucket name is unique.
+
+    ```hcl title="$$ACCOUNT_NAME$$/$$REGION$$/data-storage/s3/terragrunt.hcl"
+    # ------------------------------------------------------------------------------------------------------
+    # DEPLOY GRUNTWORK's S3-BUCKET MODULE
+    # ------------------------------------------------------------------------------------------------------
+
+    terraform {
+      source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/s3-bucket?ref=v0.116.1"
+    }
+
+    include "root" {
+      path = find_in_parent_folders()
+    }
+
+    inputs = {
+      primary_bucket = "$$S3_BUCKET_NAME$$"
+    }
+    ```
+
+</TabItem>
+<TabItem value="azure" label="Azure" groupId="platform">
+
+1. Create the folder structure for the new Resource Group and Storage Account in your environment. Replace <CustomizableValue id="SUBSCRIPTION_NAME" /> with the subscription name you are deploying to, <CustomizableValue id="LOCATION" /> with the Azure location where the resources will be deployed, and <CustomizableValue id="RESOURCE_GROUP_NAME" /> with your desired resource group name.
+
+    ```bash
+    mkdir -p $$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/resource-group
+    mkdir -p $$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/data-storage/storage-account
+    touch $$SUBSCRIPTION_NAME$$/$$LOCATION$$/region.hcl
+    touch $$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/resource-group/terragrunt.hcl
+    touch $$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/data-storage/storage-account/terragrunt.hcl
+    ```
+
+2. Add the following content to the `region.hcl` file created earlier.
+
+    ```hcl title="$$SUBSCRIPTION_NAME$$/$$LOCATION$$/region.hcl"
+    locals {
+      azure_location = "$$LOCATION$$"
+    }
+    ```
+
+3. Add the Terragrunt code below to define the Resource Group.
+
+    ```hcl title="$$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/resource-group/terragrunt.hcl"
+    # ------------------------------------------------------------------------------------------------------
+    # DEPLOY GRUNTWORK's AZURE RESOURCE GROUP MODULE
+    # ------------------------------------------------------------------------------------------------------
+
+    include "root" {
+      path = find_in_parent_folders("root.hcl")
+    }
+
+    terraform {
+      source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/azure/resource-group?ref=v1.0.0"
+    }
+
+    inputs = {
+      name     = "$$RESOURCE_GROUP_NAME$$"
+      location = "$$LOCATION$$"
+    }
+    ```
+
+4. Add the Terragrunt code below to define the Storage Account with a dependency on the Resource Group. Replace <CustomizableValue id='STORAGE_ACCOUNT_NAME'/> with your desired storage account name. Ensure the name is unique and follows Azure naming conventions (lowercase letters and numbers only, 3-24 characters).
+
+    ```hcl title="$$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/data-storage/storage-account/terragrunt.hcl"
+    # ------------------------------------------------------------------------------------------------------
+    # DEPLOY GRUNTWORK's AZURE STORAGE ACCOUNT MODULE
+    # ------------------------------------------------------------------------------------------------------
+
+    include "root" {
+      path = find_in_parent_folders("root.hcl")
+    }
+
+    terraform {
+      source = "github.com/gruntwork-io/terragrunt-scale/catalog//modules/azure/storage-account?ref=v1.0.0"
+    }
+
+    dependency "resource_group" {
+      config_path = "../../resource-group"
+
+      mock_outputs = {
+        name = "mock-name"
+      }
+    }
+
+    inputs = {
+      name     = "$$STORAGE_ACCOUNT_NAME$$"
+      location = "$$LOCATION$$"
+
+      resource_group_name = dependency.resource_group.outputs.name
+    }
+    ```
+
+</TabItem>
+</Tabs>
+
+### Planning the changes
+
+<Tabs groupId="platform">
+<TabItem value="github" label="GitHub" groupId="scm" default>
+
+1. Create a new branch for your changes.
+2. Commit the changes to your branch and push it.
+3. Create a pull request (PR) against `main` (the default branch in your repository). Refer to this [GitHub tutorial](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) for instructions on creating a PR.
+
+After creating the PR, GitHub Actions will automatically execute the workflow defined in `/.github/workflows/pipelines.yml` in your repository.
+
+Once the workflow completes, Pipelines will post a comment on the PR summarizing the `terragrunt plan` output along with a link to the GitHub Actions workflow logs.
+
+![Pipelines Plan Comment](/img/pipelines/tutorial/pipelines-plan-comment.png)
+
+Click the *View full logs* link to see the complete output of the Gruntwork Pipelines run. Locate the *TerragruntExecute* step to review the full `terragrunt plan` generated by your changes.
+
+![Pipelines Plan Logs](/img/pipelines/tutorial/pipelines-plan-logs.png)
+
+</TabItem>
+<TabItem value="gitlab" label="GitLab" groupId="scm">
+
+1. Create a new branch for your changes.
+2. Commit the changes to your branch and push it.
+3. Create a merge request (MR) against `main` (the default branch in your project). Refer to this [GitLab tutorial](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html) for instructions on creating an MR.
+
+After creating the MR, GitLab CI/CD will automatically execute the pipeline defined in `.gitlab-ci.yml` in your project.
+
+Once the pipeline completes, Pipelines will post a comment on the MR summarizing the `terragrunt plan` output along with a link to the pipeline logs.
+Click the *View Pipeline Logs* link to see the complete output of the Gruntwork Pipelines run. Select the *plan* job to review the full `terragrunt plan` generated by your changes.
+
+</TabItem>
+</Tabs>
+
+### Applying the changes
+
+<Tabs groupId="platform">
+<TabItem value="github" label="GitHub" groupId="scm" default>
+
+If you are satisfied with the `terragrunt plan` output, proceed to merge the PR to create the cloud storage resource.
+
+Approve the PR and click the `Merge pull request` button to complete the merge. Upon merging, Pipelines will automatically execute an `apply` action to provision the storage resource.
+
+![Pipelines Apply Comment](/img/pipelines/tutorial/pipelines-apply-comment.png)
+
+To monitor the workflow run associated with the merged PR:
+
+1. Navigate to the `main` branch of your repository.
+2. Click the Checks icon next to the latest commit at the top of the file explorer.
+3. Click `details` next to the Pipelines workflow to view the `dispatch` job logs.
+
+![Find Pipelines Apply Logs](/img/pipelines/tutorial/find-pipelines-apply-logs.png)
+
+</TabItem>
+<TabItem value="gitlab" label="GitLab" groupId="scm">
+
+If you are satisfied with the `terragrunt plan` output, proceed to merge the MR to create the cloud storage resource.
+
+Approve the MR and click the `Merge` button to complete the merge. Upon merging, Pipelines will automatically execute an `apply` action to provision the storage resource.
+
+To monitor the pipeline run associated with the merged MR:
+
+1. Navigate to the `main` branch of your project.
+2. Click CI/CD > Pipelines in the left sidebar.
+3. Click on the latest pipeline to view the `apply` job logs.
+
+</TabItem>
+</Tabs>
+
+Congratulations! You have successfully used Gruntwork Pipelines and a GitOps workflow to provision cloud storage.
+
+<Tabs>
+<TabItem value="aws" label="AWS" groupId="platform" default>
+
+To verify the S3 bucket creation, visit the AWS Management Console and check the S3 service for the bucket.
+
+</TabItem>
+<TabItem value="azure" label="Azure" groupId="platform">
+
+To verify the Resource Group and Storage Account creation, visit the Azure Portal and navigate to Resource Groups to confirm both resources were created.
+
+</TabItem>
+</Tabs>
+
+To clean up the resources created during this tutorial, proceed to the next tutorial: [Destroying infrastructure with Pipelines](/2.0/docs/pipelines/tutorials/destroying-infrastructure#destroying-with-pipelines).

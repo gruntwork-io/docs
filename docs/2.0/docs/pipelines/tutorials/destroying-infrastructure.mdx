@@ -1,0 +1,99 @@
+# Destroying Infrastructure with Pipelines
+
+import CustomizableValue from '/src/components/CustomizableValue';
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
+This tutorial will help you learn how to destroy infrastructure using Gruntwork Pipelines and GitOps workflows.
+
+## What you'll get
+
+By the end, you'll have:
+
+- Destroyed cloud resources (AWS or Azure) using Gruntwork Pipelines
+
+## Prerequisites
+
+Before starting, make sure you have:
+
+- Pipelines installed in a GitHub/GitLab repository. Refer to [Setup & Installation](/2.0/docs/pipelines/installation/overview) for details.
+- Access to a sandbox or development cloud environment (AWS account or Azure subscription) configured during the Pipelines installation process.
+- Permissions to create a pull/merge request in the GitHub/GitLab repository where Pipelines is installed.
+- An existing cloud resource created using Infrastructure as Code (IaC) and Pipelines that you want to destroy. If no resource exists, follow the steps in the [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial to create one, which will then be destroyed in this tutorial.
+
+## Destroying with pipelines
+
+This section explains how to destroy cloud resources using Pipelines and GitOps workflows. The example used is the resources created in the [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial, but the process applies to any resource you wish to destroy.
+
+### Delete the infrastructure code
+
+<Tabs>
+<TabItem value="aws" label="AWS" default>
+
+1. Remove the folder containing the infrastructure code for the resource you want to destroy. For the S3 bucket example, delete the folder containing the S3 bucket code. Replace <CustomizableValue id="ACCOUNT_NAME" /> and <CustomizableValue id="REGION" /> with the appropriate values.
+
+    ```bash
+    rm -rf $$ACCOUNT_NAME$$/$$REGION$$/data-storage/s3
+    ```
+
+2. Create a new branch, commit the changes, and push the branch to your repository.
+
+</TabItem>
+<TabItem value="azure" label="Azure">
+
+1. Remove the folder containing the infrastructure code for the resources you want to destroy. For the Resource Group and Storage Account example, delete the folder containing all the resource group code. Replace <CustomizableValue id="SUBSCRIPTION_NAME" />, <CustomizableValue id="LOCATION" />, and <CustomizableValue id="RESOURCE_GROUP_NAME" /> with the appropriate values.
+
+    ```bash
+    rm -rf $$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$
+    ```
+
+2. Create a new branch, commit the changes, and push the branch to your repository.
+
+</TabItem>
+</Tabs>
+
+### Planning the destruction
+
+<Tabs groupId="platform">
+<TabItem value="github" label="GitHub" default>
+
+Create a Pull Request (PR) for the branch you just pushed, targeting `main` (the default branch in your repository).
+
+![Delete Infrastructure Code](/img/pipelines/tutorial/delete-infrastructure-code.png)
+
+Gruntwork Pipelines, via GitHub Actions, will detect the removal of the infrastructure unit's code and trigger a `plan` action in Pipelines. This action will display the destructive changes to be made to your cloud environment.
+
+![Pipelines Destroy Plan Comment](/img/pipelines/tutorial/pipelines-destroy-plan-comment.png)
+
+</TabItem>
+<TabItem value="gitlab" label="GitLab">
+
+Create a Merge Request (MR) for the branch you just pushed, targeting `main` (the default branch in your project).
+
+Gruntwork Pipelines, via GitLab CI/CD, will detect the removal of the infrastructure unit's code and trigger a `plan` action in Pipelines. This action will display the destructive changes to be made to your cloud environment.
+
+Click the *View Pipeline Logs* link to see the complete output of the destroy plan.
+
+</TabItem>
+</Tabs>
+
+### Applying the destruction
+
+If you are satisfied with the changes shown in the `plan` action, you can proceed to destroy the resources.
+
+Approve and merge the pull/merge request to trigger the apply action, permanently deleting the resources from your cloud environment.
+
+Congratulations! You have successfully destroyed cloud resources using Gruntwork Pipelines and GitOps workflows.
+
+<Tabs>
+<TabItem value="aws" label="AWS" default>
+
+To verify the S3 bucket has been destroyed, check the AWS Management Console and confirm the bucket no longer exists in the S3 service.
+
+</TabItem>
+<TabItem value="azure" label="Azure">
+
+To verify the Resource Group and Storage Account have been destroyed, visit the Azure Portal and confirm the Resource Group no longer exists.
+
+</TabItem>
+</Tabs>

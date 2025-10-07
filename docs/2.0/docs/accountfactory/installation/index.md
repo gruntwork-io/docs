@@ -6,13 +6,13 @@ Account Factory is automatically integrated into [new Pipelines root repositorie
 
 By default, Account Factory includes the following components:
 
-- 📋 An HTML form for generating workflow inputs: `.github/workflows/account-factory-inputs.html`
+- An HTML form for generating workflow inputs: `.github/workflows/account-factory-inputs.html`
 
-- 🏭 A workflow for generating new requests: `.github/workflows/account-factory.yml`
+- A workflow for generating new requests: `.github/workflows/account-factory.yml`
 
-- 🗃️ A root directory for tracking account requests: `_new-account-requests`
+- A root directory for tracking account requests: `_new-account-requests`
 
-- ⚙️ A YAML file for tracking account names and IDs: `accounts.yml`
+- A YAML file for tracking account names and IDs: `accounts.yml`
 
 For detailed instructions on using these components, refer to the [Vending a New AWS Account Guide](/2.0/docs/accountfactory/guides/vend-aws-account).
 
