@@ -61,12 +61,12 @@ If you wish to keep the broken code as is and simply have it ignored by pipeline
 
 Create a `.terragrunt-excludes` file in the root of your repository:
 
- ```text
- # .terragrunt-excludes
- # One directory per line (no globs)
- account/region/broken-module1
- account/region/broken-module2
- ```
+```text
+# .terragrunt-excludes
+# One directory per line (no globs)
+account/region/broken-module1
+account/region/broken-module2
+```
 
 Commit this file to your repository, and Terragrunt will automatically exclude these directories when using `run --all`.  Note, if you make a change to the code in those units and pipelines triggers a `run` in that directory itself, then the exclude will not be applied.
 
