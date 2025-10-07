@@ -10,5 +10,5 @@ In addition to authentication, the primary configuration options involve customi
 
 ## Next Steps
 
-- Explore the [YAML Configurations](/2.0/reference/pipelines/configurations.md) reference for detailed guidance.
-- Learn more about the (Beta) [Configurations as Code](/2.0/reference/pipelines/configurations-as-code/api.md) reference.
+- Explore the [YAML Configurations](/2.0/reference/pipelines/configurations) reference for detailed guidance.
+- Learn more about the (Beta) [Configurations as Code](/2.0/reference/pipelines/configurations-as-code/api) reference.
