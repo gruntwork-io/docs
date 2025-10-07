@@ -1,6 +1,6 @@
 # Handling Broken Infrastructure as Code
 
-When working with Infrastructure as Code (IaC) at scale, you may occasionally encounter broken or invalid configuration files that prevent Terragrunt from successfully running operations. These issues can block entire CI/CD pipeline, preventing even valid infrastructure changes from being deployed.
+When working with Infrastructure as Code (IaC) at scale, you may occasionally encounter broken or invalid configuration files that prevent Terragrunt from successfully running operations. These issues can block the entire CI/CD pipeline, preventing even valid infrastructure changes from being deployed.
 
 This guide presents several strategies for handling broken IaC while keeping your pipelines operational.
 
@@ -16,13 +16,13 @@ Common causes of broken IaC include:
 - Temporary or experimental code
 - Resources or modules that have are work in progress
 
-Depending on the type of run pipeline is executing, broken IaC can fail a pipeline and prevent other, legitimate changes from being deployed. Especially in circumstances where pipelines will trigger a `terragrunt run-all` it is important that all IaC is valid or properly excluded.
+Depending on the type of run pipeline is executing, broken IaC can fail a pipeline and prevent other, legitimate changes from being deployed. Especially in circumstances where pipelines will trigger a `terragrunt run --all` it is important that all IaC is valid or properly excluded.
 
 ## Resolution Strategies
 
 Here are several approaches to manage broken IaC, presented in order of preference:
 
-### 1. Fix the Invalid Code (Preferred Solution)
+### Fix the Invalid Code (Preferred Solution)
 
 The ideal solution is to fix the underlying issues:
 
@@ -41,7 +41,7 @@ git push
 
 Then create a merge/pull request to apply the fix to your main branch.
 
-### 2. Remove the Invalid IaC
+### Remove the Invalid IaC
 
 If you can't fix the issue immediately but the infrastructure is no longer needed, you can remove the problematic code:
 
@@ -55,22 +55,22 @@ git commit -m "Remove deprecated infrastructure module"
 git push
 ```
 
-### 3. Use a `.terragrunt-excludes` File
+### Use a `.terragrunt-excludes` File
 
 If you wish to keep the broken code as is and simply have it ignored by pipelines and Terragrunt, you can use a `.terragrunt-excludes` file to skip problematic units:
 
-1. Create a `.terragrunt-excludes` file in the root of your repository:
+Create a `.terragrunt-excludes` file in the root of your repository:
 
-```
-# .terragrunt-excludes
-# One directory per line (no globs)
-account/region/broken-module1
-account/region/broken-module2
-```
+ ```text
+ # .terragrunt-excludes
+ # One directory per line (no globs)
+ account/region/broken-module1
+ account/region/broken-module2
+ ```
 
-2. Commit this file to your repository, and Terragrunt will automatically exclude these directories when using `run-all`.  Note, if you make a change to the code in those units and pipelines triggers a `run` in that directory itself, then the exclude will not be applied.
+Commit this file to your repository, and Terragrunt will automatically exclude these directories when using `run --all`.  Note, if you make a change to the code in those units and pipelines triggers a `run` in that directory itself, then the exclude will not be applied.
 
-### 4. Configure Exclusions with Pipelines Environment Variables
+### Configure Exclusions with Pipelines Environment Variables
 
 If you don't wish to use `.terragrunt-excludes` in the root of the repository, you can create another file in a different location and set the `TG_QUEUE_EXCLUDES_FILE` environment variable to that path. You then use the Pipelines [`env` block](/2.0/reference/pipelines/configurations-as-code/api#env-block) in your `.gruntwork/pipelines.hcl` configuration to set environment variables that control Terragrunt's behavior:
 
@@ -94,14 +94,14 @@ repository {
 When excluding modules, be aware of dependencies:
 
 1. If module B depends on module A, and module A is excluded, you may need to exclude module B as well.
-2. Use `terragrunt graph-dependencies` to visualize your dependency tree.
+2. Use `terragrunt dag graph` to visualize your dependency tree.
 
 ## Best Practices
 
 1. **Document exclusions**: Add comments to your `.terragrunt-excludes` file explaining why each directory is excluded.
 2. **Track in issue system**: Create tickets for excluded modules that need to be fixed, including any relevant dates/timelines for when they should be revisited.
 3. **Regular cleanup**: Periodically review and update your excluded directories.
-4. **Validate locally**: Run `terragrunt hcl-validate` or `terragrunt validate` locally before committing changes.
+4. **Validate locally**: Run `terragrunt hcl validate` or `terragrunt validate` locally before committing changes.
 
 ## Troubleshooting
 
