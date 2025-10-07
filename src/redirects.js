@@ -372,5 +372,9 @@ export const redirects = [
     {
         from: '/2.0/docs/pipelines/installation/prerequisites/awslandingzone',
         to: '/2.0/docs/accountfactory/prerequisites/awslandingzone'
+    },
+    {
+        from: '/2.0/docs/pipelines/guides/setup-delegated-repo',
+        to: '/2.0/docs/accountfactory/guides/setup-delegated-repo'
     }
 ]

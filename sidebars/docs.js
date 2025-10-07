@@ -384,11 +384,6 @@ const sidebar = [
         id: "2.0/docs/pipelines/guides/terragrunt-env-vars",
       },
       {
-        label: "Setup a Delegated Repository",
-        type: "doc",
-        id: "2.0/docs/pipelines/guides/setup-delegated-repo",
-      },
-      {
         label: "Handling Broken IaC",
         type: "doc",
         id: "2.0/docs/pipelines/guides/handling-broken-iac",
@@ -532,6 +527,11 @@ const sidebar = [
         label: "Vending Delegated Repositories",
         type: "doc",
         id: "2.0/docs/accountfactory/guides/delegated-repositories",
+      },
+      {
+        label: "Setup a Delegated Repository",
+        type: "doc",
+        id: "2.0/docs/accountfactory/guides/setup-delegated-repo",
       },
       {
         label: "Adding Collaborators to Delegated Repositories",
