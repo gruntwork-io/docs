@@ -65,7 +65,7 @@ Review your existing project structure and identify:
 
 For each AWS Account / Azure Subscription you want to manage, you might already have some or all of the following resources provisioned.
 
-<Tabs>
+<Tabs groupId="cloud-provider">
 <TabItem value="aws" label="AWS" default>
 
 **Required AWS Resources:**
@@ -96,9 +96,9 @@ For each AWS Account / Azure Subscription you want to manage, you might already 
 
 ## Configuring SCM Access
 
-Pipelines needs the ability to interact with Source Control Management (SCM) platforms to fetch resources (e.g. IaC code, reusable CI/CD code and the Pipelines binary itself).
+Pipelines needs the ability to interact with GitLab to fetch resources (e.g. IaC code, reusable CI/CD code and the Pipelines binary itself).
 
-For GitLab, you'll need to configure SCM access using [machine users](/2.0/docs/pipelines/installation/viamachineusers) with appropriate Personal Access Tokens (PATs).
+To create machine users for GitLab access, follow our [machine users guide](/2.0/docs/pipelines/installation/viamachineusers) to set up the appropriate Personal Access Tokens (PATs) with the required permissions.
 
 :::note Progress Checklist
 
@@ -186,7 +186,7 @@ mise use -g terragrunt@latest opentofu@latest
 
 ### Cloud-specific bootstrap instructions
 
-<Tabs>
+<Tabs groupId="cloud-provider">
 <TabItem value="aws" label="AWS" default>
 
 The resources you need provisioned in AWS to start managing resources with Pipelines are:
@@ -253,13 +253,19 @@ EOF
 
 If you don't have a `root.hcl` file, you might need to customize the bootstrapping process, as the Terragrunt scale catalog expects a `root.hcl` file in the root of the project. Please contact [Gruntwork support](/support) for assistance if you need help.
 
-For each AWS account that needs bootstrapping, we'll use Boilerplate to scaffold the necessary content.
+For each AWS account that needs bootstrapping, we'll use Boilerplate to scaffold the necessary content. Run this command from the root of your project for each account:
 
 ```bash
 boilerplate \
   --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.0.0' \
   --output-folder .
 ```
+
+:::tip
+
+You'll need to run this boilerplate command once for each AWS account you want to manage with Pipelines. Boilerplate will prompt you for account-specific values each time.
+
+:::
 
 :::tip
 
@@ -405,13 +411,19 @@ The process that we'll follow to get these resources ready for Pipelines is:
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
 <h3>Bootstrap Your Project for Azure</h3>
 
-For each Azure subscription that needs bootstrapping, we'll use Boilerplate to scaffold the necessary content.
+For each Azure subscription that needs bootstrapping, we'll use Boilerplate to scaffold the necessary content. Run this command from the root of your project for each subscription:
 
 ```bash
 boilerplate \
   --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.0.0' \
   --output-folder .
 ```
+
+:::tip
+
+You'll need to run this boilerplate command once for each Azure subscription you want to manage with Pipelines. Boilerplate will prompt you for subscription-specific values each time.
+
+:::
 
 :::tip
 
@@ -676,7 +688,7 @@ Next, you'll want to define the environments you want to manage with Pipelines u
 
 For each environment, you'll want to define a [`filter` block](/2.0/reference/pipelines/configurations-as-code/api#filter-block) that tells Pipelines which units are part of that environment. You'll also want to define an [`authentication` block](/2.0/reference/pipelines/configurations-as-code/api#authentication-block) that tells Pipelines how to authenticate with your cloud provider(s) for that environment.
 
-<Tabs>
+<Tabs groupId="cloud-provider">
 <TabItem value="aws" label="AWS" default>
 
 ```hcl title=".gruntwork/environment-production.hcl"
