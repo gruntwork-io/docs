@@ -720,6 +720,11 @@ const sidebar = [
             type: "doc",
             id: "2.0/docs/library/concepts/principles/quality-in-depth",
           },
+          {
+            label: "Support Smooth OpenTofu Adoption",
+            type: "doc",
+            id: "2.0/docs/library/concepts/principles/opentofu-adoption",
+          },
         ],
       },
     ],

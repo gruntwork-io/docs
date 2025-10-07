@@ -13835,11 +13835,6 @@ postcss@^8.4.21, postcss@^8.4.24, postcss@^8.4.26, postcss@^8.4.33, postcss@^8.4
     picocolors "^1.1.0"
     source-map-js "^1.2.1"
 
-posthog-docusaurus@^1.0.3:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/posthog-docusaurus/-/posthog-docusaurus-1.0.5.tgz#836ae512521bbc6b81f8a54df74ab70deac7afab"
-  integrity sha512-XmNB3VkiSiiOIWfI5K140kPraN3aqwLu6uWcoYH3smYkrGuAYOw+kGm0ozMNaZlmDBaWENK7yy9SLVgl8i5bcg==
-
 prepend-http@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
