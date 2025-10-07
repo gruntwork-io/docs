@@ -2,7 +2,7 @@
 
 ## Introduction
 
-When Pipelines detects changes to Infrastructure as Code (IaC) in your repositories, it invokes `terragrunt` with a predefined set of command-line arguments for the detected changes. For instance, if a single unit is modified in a pull request, Pipelines will `chdir` into the unit's directory and execute `terragrunt plan --terragrunt-non-interactive`.
+When Pipelines detects changes to Infrastructure as Code (IaC) in your repositories, it invokes `terragrunt` with a predefined set of command-line arguments for the detected changes. For instance, if a single unit is modified in a pull request, Pipelines will `chdir` into the unit's directory and execute `terragrunt plan --non-interactive`.
 
 You can view the specific commands used in different scenarios by examining the logs of a Pipelines workflow run.
 
@@ -20,12 +20,12 @@ You can configure Pipelines to pass additional environment variables to Terragru
 
 Each entry in the `env` sequence represents an environment variable name and its value.
 
-For example, to enable the `--terragrunt-strict-include` flag in your Terragrunt runs, set the environment variable `TERRAGRUNT_STRICT_INCLUDE` to `true` in the Pipelines configuration file.
+For example, to enable the `--queue-strict-include` flag in your Terragrunt runs, set the environment variable `TG_QUEUE_STRICT_INCLUDE` to `true` in the Pipelines configuration file.
 
 ```yml title=".gruntwork/config.yml"
 pipelines:
     env:
-    - name: TERRAGRUNT_STRICT_INCLUDE
+    - name: TG_QUEUE_STRICT_INCLUDE
       value: true
 ```
 
