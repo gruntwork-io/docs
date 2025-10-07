@@ -4,7 +4,7 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Pipelines Install via GitHub App
+# Installing the Gruntwork.io GitHub App
 
 The [Gruntwork.io GitHub App](https://github.com/apps/gruntwork-io) is a [GitHub App](https://docs.github.com/en/apps/overview) introduced to help reduce the burden of integrating Gruntwork products to GitHub resources. The app is designed to be lightweight and flexible, providing a simple way to get started with Gruntwork products.
 
@@ -13,6 +13,7 @@ The [Gruntwork.io GitHub App](https://github.com/apps/gruntwork-io) is a [GitHub
 At this time Gruntwork does not provide an app for GitLab, this page is only relevant for Gruntwork Pipelines users installing in GitHub.
 
 :::
+
 ## Overview
 
 There are three major components to keep in mind when working with the Gruntwork.io GitHub App:
@@ -28,6 +29,7 @@ The Gruntwork.io GitHub App is the principal that Gruntwork products will utiliz
 #### Required Permissions
 
 As of 2024/09/10, the Gruntwork.io GitHub App requests the following permissions:
+
 - **Read access to Actions**: Allows the app to read GitHub Actions artifacts.
 - **Write access to Administration**: Allows the app to create new repositories, and add teams as collaborators to repositories.
 - **Write access to Contents**: Allows the app to read and write repository contents.
@@ -40,13 +42,15 @@ As of 2024/09/10, the Gruntwork.io GitHub App requests the following permissions
 
   Gruntwork.io requests all of these permissions because it requires them for different operations. Unfortunately, the way GitHub apps work prevents us from requesting permissions on a more granular basis. Know that the GitHub App Service will scope down its permissions whenever possible to the minimum required for the operation at hand.
 
-  The level of granularity available to customers when configuring the GitHub App installation is to either install the app on a per-repository basis or on an entire organization. Our recommendation is as follows:
+  The level of granularity available to customers when configuring the GitHub App installation is to either install the app on a per-repository basis or on an entire organization. Our recommendation is as follows for Account Factory customers:
 
-  * For non-enterprise customers, allow the app for `infrastructure-live-root` repository and (if in-use) `infrastructure-live-access-control` and `infrastructure-catalog`.
-  * For enterprise customers, allow the app to have access to the entire organization.
+  - For non-enterprise customers, allow the app for `infrastructure-live-root` repository and (if in-use) `infrastructure-live-access-control` and `infrastructure-catalog`.
 
-The reasoning for requiring entire-organization access for enterprise customers is that if you are using Account Factory to create delegated repositories then Account Factory will be creating, and then immediately modifying, new repositories in automated flows, which means it needs access to new repos as soon as they are created which is only possible with entire organization permission.
+  - For enterprise customers, allow the app to have access to the entire organization.
 
+  For non-Account Factory customers, we recommend installing the app on a per-repository basis.
+
+  The reasoning for requiring entire-organization access for enterprise customers is that if you are using Account Factory to create delegated repositories then Account Factory will be creating, and then immediately modifying, new repositories in automated flows, which means it needs access to new repos as soon as they are created which is only possible with entire organization permission.
 
   If you are unsure how to proceed here, reach out to Gruntwork Support for guidance.
 
@@ -62,7 +66,7 @@ The reasoning for requiring entire-organization access for enterprise customers 
 
   These permissions are used during the initial bootstrapping process when customers opt-in to additional repositories being created outside of the main `infrastructure-live-root` repository.
 
-  This is especially important for DevOps Foundations Enterprise customers, as those customers benefit from the ability to have `infrastructure-live-root` repositories create new repositories and add designated GitHub teams as collaborators via Infrastructure as Code (IaC). This is a critical feature for Enterprise customers who want to be able to scale their infrastructure management across multiple teams with delegated responsibility for segments of their IaC Estate.
+  This is especially important for Account Factory Enterprise customers, as those customers benefit from the ability to have `infrastructure-live-root` repositories create new repositories and add designated GitHub teams as collaborators via Infrastructure as Code (IaC). This is a critical feature for Enterprise customers who want to be able to scale their infrastructure management across multiple teams with delegated responsibility for segments of their IaC Estate.
 
   <h3>Write access to Contents</h3>
 
@@ -108,7 +112,7 @@ The GitHub App Service is used by two major clients:
 
 2. **Gruntwork Pipelines**
 
-   The main client for the Gruntwork.io App, and where most of the value is derived. Pipelines uses the GitHub App Service to acquire the relevant access for interacting with GitHub resources on behalf of the user. Access control rules are enforced here to ensure that only the level of access required, and explicitly specified in the Gruntwork Developer Portal can be used by Pipelines to interact with GitHub resources on behalf of the user.
+   The main client for the Gruntwork.io App, and where most of the value is derived. Pipelines uses the GitHub App Service to acquire the relevant access for interacting with GitHub resources on behalf of the user. Access control rules are enforced here to ensure that only the level of access required (and explicitly specified in the Gruntwork Developer Portal) can be used by Pipelines to interact with GitHub resources on behalf of the user.
 
    For example, while the Gruntwork.io GitHub App does have permissions to create new repositories, Pipelines will only do so if a workflow originating from a configured `infrastructure-live-root` repository requests it.
 
@@ -118,7 +122,7 @@ The availability of the Gruntwork.io GitHub App is something Gruntwork will ende
 
 Any downtime of Gruntwork services will not impact the ability of your team to manage infrastructure using Gruntwork products.
 
-#### App Only Features
+### App Only Features
 
 The following features of the Gruntwork.io GitHub App will be unavailable during downtime:
 
@@ -126,11 +130,11 @@ The following features of the Gruntwork.io GitHub App will be unavailable during
 - **Gruntwork Pipelines Comments**: While Pipelines will allow for IaC updates in a degraded state without the availability of the GitHub App, comments are a feature that rely on the availability of the app for the best experience.
 - **Gruntwork Pipelines Drift Detection**: Drift detection requires the availability of the GitHub App to function correctly.
 
-#### Fallback
+### Fallback
 
-In order to ensure that the availability of the Gruntwork.io GitHub App is not something that can impair the ability of users to drive infrastructure updates, the legacy mechanism of authenticating with GitHub using [Machine users](/2.0/docs/pipelines/installation/viamachineusers.md) is still supported.
+In order to ensure that the availability of the Gruntwork.io GitHub App is not something that can impair the ability of users to drive infrastructure updates, users can also authenticate with GitHub using [Machine users](/2.0/docs/pipelines/installation/viamachineusers).
 
-Configuring the `PIPELINES_READ_TOKEN`, `INFRA_ROOT_WRITE_TOKEN` and `ORG_REPO_ADMIN_TOKEN` where necessary (following the documentation linked above) will result in Pipelines using the legacy mechanism to authenticate with GitHub, rather than the Gruntwork.io GitHub App.
+Configuring the `PIPELINES_READ_TOKEN`, `INFRA_ROOT_WRITE_TOKEN` and `ORG_REPO_ADMIN_TOKEN` where necessary (following the documentation linked above) will result in Pipelines using the machine users mechanism to authenticate with GitHub, rather than the Gruntwork.io GitHub App.
 
 Using these fallback tokens will ensure that Pipelines can continue to perform operations like:
 
@@ -160,9 +164,9 @@ To install the Gruntwork.io GitHub App in your organization follow these steps.
 
 ## Configuration
 
-<h3>Infrastructure Live Root Repositories</h3>
+### Infrastructure Live Root Repositories
 
-DevOps Foundations treats certain repositories as especially privileged in order to perform critical operations like vending new AWS accounts and creating new repositories. These repositories are called "infrastructure live root repositories" and you can configure them in the [GitHub Account section](https://app.gruntwork.io/account?scroll_to=github-app) for your organization in the Gruntwork developer portal **if you are a designated administrator**.
+Account Factory treats certain repositories as especially privileged in order to perform critical operations like vending new AWS accounts and creating new repositories. These repositories are called "infrastructure live root repositories" and you can configure them in the [GitHub Account section](https://app.gruntwork.io/account?scroll_to=github-app) for your organization in the Gruntwork developer portal **if you are a designated administrator**.
 
 ![Root Repository Configuration](/img/devops-foundations/github-app/root-repo-config.png)
 
@@ -174,7 +178,7 @@ For more information, see the [relevant architecture documentation](/2.0/docs/pi
 
 ## Frequently Asked Questions
 
-#### How do I find my Gruntwork.io GitHub App installation ID?
+### How do I find my Gruntwork.io GitHub App installation ID?
 
 You can find the installation ID of the Gruntwork.io GitHub App in the URL of the installation page.
 

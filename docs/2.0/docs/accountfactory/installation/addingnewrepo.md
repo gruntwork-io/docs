@@ -1,6 +1,6 @@
-# Initial Setup
+# Adding Account Factory to a new repository
 
-To configure Gruntwork Pipelines in a new GitHub repository, complete the following steps:
+To configure Gruntwork Account Factory in a new GitHub repository, the following steps are required (and will be explained in detail below):
 
 1. Create your `infrastructure-live-root` repository using Gruntwork's GitHub template.
 2. Configure the Gruntwork.io GitHub App to authorize your `infrastructure-live-root` repository, or ensure that the appropriate machine user tokens are set up as repository or organization secrets.
@@ -23,7 +23,7 @@ Navigate to the template repository and select **Use this template** -> **Create
 
 Use the Gruntwork.io GitHub App to [add the repository as an Infra Root repository](/2.0/docs/pipelines/installation/viagithubapp#configuration).
 
-If using the [machine user model](/2.0/docs/pipelines/installation/viamachineusers.md), ensure the `INFRA_ROOT_WRITE_TOKEN` (and `ORG_REPO_ADMIN_TOKEN` for enterprise customers) is added to the repository as a secret or configured as an organization secret.
+If using the [machine user model](/2.0/docs/pipelines/installation/viamachineusers), ensure the `INFRA_ROOT_WRITE_TOKEN` (and `ORG_REPO_ADMIN_TOKEN` for enterprise customers) is added to the repository as a secret or configured as an organization secret.
 
 ## Updating the Bootstrap Workflow
 
@@ -47,5 +47,5 @@ Each of your repositories will contain a Bootstrap Pull Request. Follow the inst
 
 :::info
 
-The bootstrapping pull requests include pre-configured files, such as a `mise.toml` file that specifies versions of OpenTofu and Terragrunt. Ensure you review and update these configurations to align with your organization's requirements.
+The bootstrapping pull requests include pre-configured files, such as a `.mise.toml` file that specifies versions of OpenTofu and Terragrunt. Ensure you review and update these configurations to align with your organization's requirements.
 :::

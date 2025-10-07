@@ -8,7 +8,7 @@ Outside of the main binary, Pipelines has several other components that work tog
 
 By design, customers run the binary as part of their CI/CD pipelines (e.g. GitHub Actions, GitLab CI, etc.). As such, Gruntwork provides out-of-the-box CI/CD configurations for supported platforms when customers sign up for Gruntwork Pipelines.
 
-We likewise provide CI/CD configurations for [Gruntwork Account Factory](https://docs.gruntwork.io/account-factory/overview). 
+We likewise provide CI/CD configurations for [Gruntwork Account Factory](https://docs.gruntwork.io/account-factory/overview).
 
 When using Gruntwork Pipelines without Gruntwork Account Factory, customers are responsible for configuring their repositories to use the appropriate CI/CD configuration for that platform (see [Adding Pipelines to an Existing Repository](/2.0/docs/pipelines/installation/addingexistingrepo) for more information). This code is typically fairly minimal, and the majority of the work is done by reusable workflows made available by Gruntwork, and the binary itself.
 

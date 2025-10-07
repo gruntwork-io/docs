@@ -225,34 +225,22 @@ const sidebar = [
         id: "2.0/docs/pipelines/installation/scm-comparison",
       },
       {
-        label: "Prerequisites",
         type: "category",
+        label: "Set up SCM Authentication",
         collapsed: false,
         items: [
           {
-            label: "AWS Landing Zone",
-            type: "doc",
-            id: "2.0/docs/pipelines/installation/prerequisites/awslandingzone",
-          },
-        ],
-      },
-      {
-        type: "category",
-        label: "Enable Auth for Pipelines",
-        collapsed: false,
-        items: [
-          {
-            label: "Auth Overview",
+            label: "Overview",
             type: "doc",
             id: "2.0/docs/pipelines/installation/authoverview",
           },
           {
-            label: "Auth via GitHub App",
+            label: "GitHub App",
             type: "doc",
             id: "2.0/docs/pipelines/installation/viagithubapp",
           },
           {
-            label: "Auth via Machine Users",
+            label: "Machine Users",
             type: "doc",
             id: "2.0/docs/pipelines/installation/viamachineusers",
           },
@@ -269,17 +257,17 @@ const sidebar = [
             collapsed: false,
             items: [
               {
-                label: "Creating a New GitHub Repository with Pipelines",
+                label: "Bootstrap Pipelines in a New GitHub Repository",
                 type: "doc",
                 id: "2.0/docs/pipelines/installation/addingnewrepo",
               },
               {
-                label: "Adding Pipelines to an Existing GitHub Repository",
+                label: "Bootstrap Pipelines in an Existing GitHub Repository",
                 type: "doc",
                 id: "2.0/docs/pipelines/installation/addingexistingrepo",
               },
               {
-                label: "Adding Branch Protection to a Repository",
+                label: "Adding Branch Protection to a GitHub Repository",
                 type: "doc",
                 id: "2.0/docs/pipelines/installation/branch-protection",
               },
@@ -291,14 +279,19 @@ const sidebar = [
             collapsed: false,
             items: [
               {
-                label: "Creating a New GitLab Project with Pipelines",
-                type: "doc",
-                id: "2.0/docs/pipelines/installation/addingnewgitlabrepo",
-              },
-              {
-                label: "Adding Pipelines to an Existing GitLab Project",
+                label: "Bootstrap Pipelines in a new GitLab Project",
                 type: "doc",
                 id: "2.0/docs/pipelines/installation/addinggitlabrepo",
+              },
+              {
+                label: "Bootstrap Pipelines in an Existing GitLab Project",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/addingexistinggitlabrepo",
+              },
+              {
+                label: "Adding Branch Protection to a GitLab Project",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/gitlab-branch-protection",
               },
             ],
           },
@@ -488,9 +481,32 @@ const sidebar = [
     ],
   },
   {
+    label: "Prerequisites",
+    type: "category",
+    collapsed: false,
+    items: [
+      {
+        label: "AWS Landing Zone",
+        type: "doc",
+        id: "2.0/docs/accountfactory/prerequisites/awslandingzone",
+      },
+    ],
+  },
+  {
     label: "Setup & Installation",
-    type: "doc",
-    id: "2.0/docs/accountfactory/installation/index",
+    type: "category",
+    collapsed: true,
+    link: {
+      type: "doc",
+      id: "2.0/docs/accountfactory/installation/index",
+    },
+    items: [
+      {
+        label: "Adding Account Factory to a new repository",
+        type: "doc",
+        id: "2.0/docs/accountfactory/installation/addingnewrepo",
+      },
+    ],
   },
   {
     label: "Guides",
