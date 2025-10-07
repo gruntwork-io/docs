@@ -936,17 +936,6 @@ You can use those values to set the values for `plan_client_id` and `apply_clien
 
 :::
 
-:::note Progress Checklist
-
-<PersistentCheckbox id="create-custom-authentication-environment" label="Create a new `.gruntwork/environment-dev.hcl` file in the root of your `infrastructure-live` repository with the contents above." />
-<PersistentCheckbox id="rename-custom-authentication-environment" label="Rename the file to match the name of the environment you want to manage with pipelines." />
-<PersistentCheckbox id="edit-custom-authentication-environment-label" label="Edit the label of the `environment` block from `dev` to the name of the environment you want to manage with pipelines." />
-<PersistentCheckbox id="edit-custom-authentication-filter-paths" label="Edit the value of `paths` in the `filter` block so that the glob matches the path to the units you want to manage with Pipelines as part of that environment." />
-<PersistentCheckbox id="create-custom-authentication-script" label="Create a new `scripts/custom-auth-dev.sh` file (or name it something else) in the root of your `infrastructure-live` repository that performs the authentication you want to use for that environment (see the link above for help with this)." />
-<PersistentCheckbox id="edit-custom-authentication-auth-provider-cmd" label="Edit the value of `auth_provider_cmd` in the `custom` block so that it matches the path to the script you want to use to authenticate with." />
-
-:::
-
 </TabItem>
 </Tabs>
 
