@@ -48,4 +48,5 @@ Each of your repositories will contain a Bootstrap Pull Request. Follow the inst
 :::info
 
 The bootstrapping pull requests include pre-configured files, such as a `.mise.toml` file that specifies versions of OpenTofu and Terragrunt. Ensure you review and update these configurations to align with your organization's requirements.
+
 :::
