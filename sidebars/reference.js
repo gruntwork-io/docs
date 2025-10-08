@@ -79,9 +79,19 @@ const sidebar = [
     className: "sidebar-header",
   },
   {
+    label: "Overview",
+    type: "doc",
+    id: "2.0/reference/accountfactory/index",
+  },
+  {
     label: "Configurations",
     type: "doc",
     id: "2.0/reference/accountfactory/configurations",
+  },
+  {
+    label: "Configurations as Code (HCL - Beta)",
+    type: "doc",
+    id: "2.0/reference/accountfactory/configurations-as-code",
   },
 ]
 

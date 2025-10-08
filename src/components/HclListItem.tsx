@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react"
 import styles from "./HclListItem.module.css"
-import useBrokenLinks from '@docusaurus/useBrokenLinks';
+import useBrokenLinks from "@docusaurus/useBrokenLinks"
 
 interface HclListItemProps {
   name: string
@@ -11,7 +11,7 @@ interface HclListItemProps {
 export const HclListItem: React.FunctionComponent<
   PropsWithChildren<HclListItemProps>
 > = ({ name, requirement, type, children }) => {
-  useBrokenLinks().collectAnchor(name);
+  useBrokenLinks().collectAnchor(name)
   return (
     <div className={styles.container}>
       <div>
@@ -29,29 +29,28 @@ export const HclListItem: React.FunctionComponent<
   )
 }
 
-export const HclListItemDescription: React.FunctionComponent = ({
-  children,
-}) => {
+export const HclListItemDescription: React.FunctionComponent<
+  PropsWithChildren
+> = ({ children }) => {
   return <div className={styles.description}>{children}</div>
 }
 
-
-
-export const HclListItemExample: React.FunctionComponent = ({
+export const HclListItemExample: React.FunctionComponent<PropsWithChildren> = ({
   children,
 }) => {
-  return <div className={styles.description} style={{ marginTop: '10px' }}>
-    <details>
-      <summary>Example</summary>
-      {children}
-    </details>
-  </div>
+  return (
+    <div className={styles.description} style={{ marginTop: "10px" }}>
+      <details>
+        <summary>Example</summary>
+        {children}
+      </details>
+    </div>
+  )
 }
 
-export const HclGeneralListItem: React.FunctionComponent<PropsWithChildren<{ title: string }>> = ({
-  title,
-  children,
-}) => {
+export const HclGeneralListItem: React.FunctionComponent<
+  PropsWithChildren<{ title: string }>
+> = ({ title, children }) => {
   return (
     <div className={styles.detail}>
       <label className={styles.label}>{title}</label>
@@ -60,12 +59,10 @@ export const HclGeneralListItem: React.FunctionComponent<PropsWithChildren<{ tit
   )
 }
 
-export const HclListItemTypeDetails: React.FunctionComponent = ({
-  children,
-}) => {
-  return (
-    <HclGeneralListItem title="Type Details" children={children} />
-  )
+export const HclListItemTypeDetails: React.FunctionComponent<
+  PropsWithChildren
+> = ({ children }) => {
+  return <HclGeneralListItem title="Type Details" children={children} />
 }
 
 export const HclListItemDefaultValue: React.FunctionComponent<
