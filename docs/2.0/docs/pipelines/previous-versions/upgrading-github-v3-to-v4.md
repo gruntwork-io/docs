@@ -13,38 +13,73 @@ In `.mise.toml` in the root of the repository, update the `terragrunt` version e
 terragrunt = "0.86.3"
 ```
 
-See the [Terragrunt Release Notes](https://github.com/gruntwork-io/terragrunt/releases) for detailed information on the changes to Terragrunt.
+See the [Terragrunt Release Notes](https://github.com/gruntwork-io/terragrunt/releases)
+for detailed information on the changes to Terragrunt.
 
 <PersistentCheckbox id="upgrade-v3-to-v4-tgversion" label="Terragrunt Version Updated" />
 
 ## Migrating from root `terragrunt.hcl` to `root.hcl`
 
-Pipelines v3 used a `terragrunt.hcl` file in the root of the repository for common configuration. This is no longer recommended and should be renamed to `root.hcl`.
+:::warning
+When using a mix of older and newer catalogs, it is important that Terragrunt
+units are consistent with their root HCL files. For example v4.0.0 of the
+architecture catalog used by Account Factory requires a `root.hcl` file.
+:::
 
-This requires updating Terragrunt files that include this file
+Pipelines v3 used a `terragrunt.hcl` file in the root of the repository for common configuration.
+This is no longer recommended and should be renamed to `root.hcl`.
 
-OLD:
+This requires updating Terragrunt files that include this file.
+Both `find_in_parent_folders()` and `find_in_parent_folders("terragrunt.hcl")` should
+be replaced with `find_in_parent_folder("root.hcl")`.
 
+Typically units including the root like:
 ```
 include "root" {
   path = find_in_parent_folders()
 }
 ```
 
-NEW:
+Will need to be updated like so:
 ```
 include "root" {
   path = find_in_parent_folders("root.hcl")
 }
 ```
 
+Refer to the [Terragrunt Documentation](https://terragrunt.gruntwork.io/docs/migrate/migrating-from-root-terragrunt-hcl/)
+for more details.
+
 <PersistentCheckbox id="upgrade-v3-to-v4-roothcl" label="Root Terragrunt File Renamed" />
 
-## .gruntwork Config
+## Replace `.gruntwork/config.yml` with HCL Config
 
-YML configuration is officially deprecated in Pipelines v4
+:::note
+Repositories using only YML configuration will still function with Pipelines v4,
+but adding any HCL configuration will prevent the YML from having an effect.
+
+In the next major release YML configuration will have no effect and HCL will be
+required.
+:::
+
+YML configuration is officially deprecated in Pipelines v4. Migrating to HCL
+configuration requires adding HCL files to the `.gruntwork` directory in the root
+of your repository.
+
+We recommend adding the following files to your repository.
+
+```hcl title=".gruntwork/repository.hcl"
+repository {
+  deploy_branch_name = "main"
+}
+```
 
 
+
+```hcl title=
+
+
+<PersistentCheckbox id="upgrade-v3-to-v4-config" label="Config Replaced" />
 
 ## Allowlisting Actions
 
