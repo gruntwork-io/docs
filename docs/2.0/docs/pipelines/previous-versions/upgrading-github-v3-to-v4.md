@@ -137,7 +137,7 @@ environment "management" {
 :::warning
 Note the role-name in the `apply_iam_role_arn` and `plan_iam_role_arn` role ARN values. The role-names should match the Pipelines roles you provisioned in your AWS accounts.
 Typically, these roles are:
-- `root-pipelines-*` in the main `infrastructure-live` repository
+- `root-pipelines-*` in the `infrastructure-live-root` repository
 - `access-control-pipelines-*` in an `infrastructure-live-access-control` repository
 - `delegated-pipelines-*` in an `infrastructure-live-delegated` repository
 
@@ -164,7 +164,7 @@ Replacing and adding values based on your existing YML configuration.
 See the [Account Factory HCL](/2.0/reference/accountfactory/configurations-as-code) for
 a full reference of values or contact [Gruntwork Support](mailto:support@gruntwork.io) for assistance.
 
-For Enterprise customers using Account Factory; see the [Account Vending Configuration](/2.0/reference/accountfactory/configurations-as-code#account_vending-block) for converting the account vending configuration to HCL.
+For Enterprise customers using Account Factory: see the [Account Vending Configuration](/2.0/reference/accountfactory/configurations-as-code#account_vending-block) for converting the account vending configuration to HCL.
 
 
 :::note Progress Checklist
