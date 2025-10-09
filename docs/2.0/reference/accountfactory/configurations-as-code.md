@@ -1,4 +1,4 @@
-# Pipelines Account Factory (PAF) Configurations as Code
+# Pipelines Account Factory Configurations as Code
 
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
@@ -11,7 +11,7 @@ import {
   HclGeneralListItem,
 } from "/src/components/HclListItem.tsx"
 
-Account Factory uses configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to enable dynamic behavior. These configurations determine how Account Factory will provision and configure new AWS accounts using Gruntwork Pipelines.
+Pipelines Account Factory uses configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to enable dynamic behavior. These configurations determine how Account Factory will provision and configure new AWS accounts using Gruntwork Pipelines.
 
 To process configurations, Pipelines parses all `.hcl` files within a `.gruntwork` directory or a single file named `gruntwork.hcl`. Typically, global configurations relevant to the entire repository are placed in the `.gruntwork` directory at the root hence the file is typically named `account-factory.hcl` and placed in the `.gruntwork` directory at the root of the repository.
 
@@ -96,9 +96,9 @@ account_factory {
     }
     ```
 
-    In this example, when an account request type of `sdlc` is requested, an account will be created for each of the identifiers `dev`, `stage`, and `prod` and the catalog repositories `path/to/catalog-repositories`.
+    In this example, when an account request of type `sdlc` is requested, an account will be created for each of the identifiers; `dev`, `stage`, and `prod` as the suffixes for the new accounts being created. Also, if a "Delegate Management of Account(s)?" option is chosen during account request, the catalog repositories `path/to/catalog-repositories` will be added to the new accounts.
 
-    Similarly, when an account request type of `sandbox` is requested, the account will be created for the identifier `sandbox` and the catalog repositories `path/to/catalog-repositories`.
+    Similarly, when an account request of type `sandbox` is requested, the account will be created for the identifier `sandbox` as the suffix for the new account being created. Also, if a "Delegate Management of Account(s)?" option is chosen during account request, the catalog repositories `path/to/catalog-repositories` will be added to the new account.
 
   </HclListItemExample>
 </HclListItem>
@@ -386,7 +386,7 @@ account_factory {
 <HclListItem name="account_identifiers" requirement="required" type="list(string)">
 <HclListItemDescription>
 
-An list of account identifiers.
+A list of account identifiers. When vending accounts with this Account Vending configuration, a new account will be created for each identifier.
 
 </HclListItemDescription>
 </HclListItem>
