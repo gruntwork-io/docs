@@ -155,14 +155,8 @@ Generate the required tokens for the ci-user in their GitHub account.
 
 **Checklist:**
 
-<PersistentCheckbox
-  id="via-machine-users-2"
-  label="INFRA_ROOT_WRITE_TOKEN created under ci-user"
-/>
-<PersistentCheckbox
-  id="via-machine-users-3"
-  label="ORG_REPO_ADMIN_TOKEN created under ci-user"
-/>
+<PersistentCheckbox id="via-machine-users-2" label="INFRA_ROOT_WRITE_TOKEN created under ci-user" />
+<PersistentCheckbox id="via-machine-users-3" label="ORG_REPO_ADMIN_TOKEN created under ci-user" />
 
 #### INFRA_ROOT_WRITE_TOKEN
 
@@ -279,10 +273,7 @@ Invite `ci-user-read-only` to your `infrastructure-live-root` repository with re
 
 **Checklist:**
 
-<PersistentCheckbox
-  id="via-machine-users-4"
-  label="ci-read-only-user invited to infrastructure-live-root"
-/>
+<PersistentCheckbox id="via-machine-users-4" label="ci-read-only-user invited to infrastructure-live-root" /> 
 
 **Create a token for ci-read-only-user**
 
@@ -290,10 +281,7 @@ Generate the following token for the `ci-read-only-user`:
 
 **Checklist:**
 
-<PersistentCheckbox
-  id="via-machine-users-5"
-  label="PIPELINES_READ_TOKEN created under ci-read-only-user"
-/>
+<PersistentCheckbox id="via-machine-users-5" label="PIPELINES_READ_TOKEN created under ci-read-only-user" />
 
 #### PIPELINES_READ_TOKEN
 
@@ -309,10 +297,7 @@ Make sure both machine users are added to your team in Gruntwork’s GitHub Orga
 
 **Checklist:**
 
-<PersistentCheckbox
-  id="via-machine-users-6"
-  label="Machine users invited to Gruntwork organization"
-/>
+<PersistentCheckbox id="via-machine-users-6" label="Machine users invited to Gruntwork organization" />
 
 ## Configure secrets for GitHub Actions
 
@@ -327,18 +312,9 @@ Since this guide uses secrets scoped to specific repositories, the token permiss
 
 **Checklist:**
 
-<PersistentCheckbox
-  id="via-machine-users-5a"
-  label="PIPELINES_READ_TOKEN added to organization secrets"
-/>
-<PersistentCheckbox
-  id="via-machine-users-5b"
-  label="INFRA_ROOT_WRITE_TOKEN added to organization secrets"
-/>
-<PersistentCheckbox
-  id="via-machine-users-5c"
-  label="ORG_REPO_ADMIN_TOKEN added to organization secrets"
-/>
+<PersistentCheckbox id="via-machine-users-5a" label="PIPELINES_READ_TOKEN added to organization secrets" />
+<PersistentCheckbox id="via-machine-users-5b" label="INFRA_ROOT_WRITE_TOKEN added to organization secrets" />
+<PersistentCheckbox id="via-machine-users-5c" label="ORG_REPO_ADMIN_TOKEN added to organization secrets" />
 <hr />
 
 1. Navigate to your top-level GitHub Organization and select the **Settings** tab.
@@ -397,26 +373,11 @@ For more details on creating and using GitHub Actions Organization secrets, refe
 
 **Checklist:**
 
-<PersistentCheckbox
-  id="via-machine-users-6a"
-  label="PIPELINES_READ_TOKEN added to infrastructure-live-root"
-/>
-<PersistentCheckbox
-  id="via-machine-users-6b"
-  label="INFRA_ROOT_WRITE_TOKEN added to infrastructure-live-root"
-/>
-<PersistentCheckbox
-  id="via-machine-users-6c"
-  label="ORG_REPO_ADMIN_TOKEN added to infrastructure-live-root"
-/>
-<PersistentCheckbox
-  id="via-machine-users-6d"
-  label="PIPELINES_READ_TOKEN added to infrastructure-live-access-control"
-/>
-<PersistentCheckbox
-  id="via-machine-users-6e"
-  label="ORG_REPO_ADMIN_TOKEN added to infrastructure-live-access-control"
-/>
+<PersistentCheckbox id="via-machine-users-6a" label="PIPELINES_READ_TOKEN added to infrastructure-live-root" />
+<PersistentCheckbox id="via-machine-users-6b" label="INFRA_ROOT_WRITE_TOKEN added to infrastructure-live-root" />
+<PersistentCheckbox id="via-machine-users-6c" label="ORG_REPO_ADMIN_TOKEN added to infrastructure-live-root" />
+<PersistentCheckbox id="via-machine-users-6d" label="PIPELINES_READ_TOKEN added to infrastructure-live-access-control" />
+<PersistentCheckbox id="via-machine-users-6e" label="ORG_REPO_ADMIN_TOKEN added to infrastructure-live-access-control" />
 <hr />
 
 Gruntwork Pipelines retrieves these secrets from GitHub Actions secrets configured in the repository. For instructions on creating repository Actions secrets, refer to [creating secrets for a repository](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
@@ -484,14 +445,8 @@ Set an expiration date according to your organization's security policies. We re
 
 **Checklist:**
 
-<PersistentCheckbox
-  id="via-machine-users-gitlab-3"
-  label="PIPELINES_GITLAB_TOKEN created"
-/>
-<PersistentCheckbox
-  id="via-machine-users-gitlab-4"
-  label="PIPELINES_GITLAB_READ_TOKEN created"
-/>
+<PersistentCheckbox id="via-machine-users-gitlab-3" label="PIPELINES_GITLAB_TOKEN created" />
+<PersistentCheckbox id="via-machine-users-gitlab-4" label="PIPELINES_GITLAB_READ_TOKEN created" />
 
 ### Configure CI/CD Variables
 
@@ -508,14 +463,8 @@ Add the `PIPELINES_GITLAB_TOKEN` and `PIPELINES_GITLAB_READ_TOKEN` as CI/CD vari
 
 **Checklist:**
 
-<PersistentCheckbox
-  id="via-machine-users-gitlab-5"
-  label="PIPELINES_GITLAB_TOKEN added to CI/CD variables"
-/>
-<PersistentCheckbox
-  id="via-machine-users-gitlab-6"
-  label="PIPELINES_GITLAB_READ_TOKEN added to CI/CD variables"
-/>
+<PersistentCheckbox id="via-machine-users-gitlab-5" label="PIPELINES_GITLAB_TOKEN added to CI/CD variables" />
+<PersistentCheckbox id="via-machine-users-gitlab-6" label="PIPELINES_GITLAB_READ_TOKEN added to CI/CD variables" />
 
 :::caution
 Remember to update this token before it expires to prevent pipeline disruptions.
