@@ -398,6 +398,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/pipelines/guides/ignore-files-directories",
       },
+      {
+        label: "Unlocking State Locks",
+        type: "doc",
+        id: "2.0/docs/pipelines/guides/unlock"
+      }
     ],
   },
   {
