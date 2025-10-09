@@ -161,7 +161,7 @@ account_factory {
 ```
 
 Replacing and adding values based on your existing YML configuration.
-See the [Account Factory HCL](2.0/reference/accountfactory/configurations-as-code) for
+See the [Account Factory HCL](/2.0/reference/accountfactory/configurations-as-code) for
 a full reference of values or contact [Gruntwork Support](mailto:support@gruntwork.io) for assistance.
 
 For Enterprise customers using Account Factory; see the [Account Vending Configuration](/2.0/reference/accountfactory/configurations-as-code#account_vending-block) for converting the account vending configuration to HCL.
@@ -251,7 +251,7 @@ Update the GruntworkPipelines job to use these inputs:
       pipelines_drift_detection_branch: ${{ inputs.pipelines_drift_detection_branch }}
 ```
 
-The syntax for the filter in Drift Detection has changed. Refer to the [Filter Reference](2.0/docs/pipelines/guides/running-drift-detection#drift-detection-filter)
+The syntax for the filter in Drift Detection has changed. Refer to the [Filter Reference](/2.0/docs/pipelines/guides/running-drift-detection#drift-detection-filter)
 
 ### Update Drift Detection GruntworkPipelines uses version
 
