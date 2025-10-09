@@ -34,6 +34,16 @@ Below is an example of the recommended branch protection settings:
   GitHub Enterprise customers can also configure [push rulesets](https://docs.github.com/en/enterprise-cloud@latest/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets#push-rulesets). This feature allows restricting edits to `.github/workflows` files, ensuring infrastructure changes are properly reviewed and approved through Pipelines. Follow the documentation [here](https://docs.github.com/en/enterprise-cloud@latest/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository#creating-a-push-ruleset) to enable push rulesets if available.
 :::
 
+## Securing User Accounts
+
+Branch protection rules are only effective if you are confident that the users who have access to your repository are legitimate and trusted.
+
+You can improve your security posture by ensuring that:
+
+1. [User accounts have Multi-Factor Authentication (MFA) enabled](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication).
+2. [User accounts don't have compromised credentials](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure).
+3. [User accounts are granted access to infrastructure-live repositories on a least privilege basis](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
+
 ## Pull Request Workflow
 
 1. Developers make infrastructure changes on a branch and create a pull request (PR) against the default branch.

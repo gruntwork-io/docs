@@ -15,6 +15,16 @@ Below is an example of the recommended GitLab branch protection settings:
 
 ![GitLab Branch Protection Settings](/img/pipelines/gitlab_branch_protection.png)
 
+## Securing User Accounts
+
+Branch protection rules are only effective if you are confident that the users who have access to your repository are legitimate and trusted.
+
+You can improve your security posture by ensuring that:
+
+1. [User accounts have Multi-Factor Authentication (MFA) enabled](https://docs.gitlab.com/user/profile/account/two_factor_authentication/).
+2. [User accounts don't have compromised credentials](https://docs.gitlab.com/auth/auth_practices/).
+3. [User accounts are granted access to infrastructure-live repositories on a least privilege basis](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
+
 ## Merge Request Workflow
 
 1. Developers make infrastructure changes on a branch and create a merge request (MR) against the default branch.
