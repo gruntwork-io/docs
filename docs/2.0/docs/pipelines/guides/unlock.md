@@ -7,10 +7,20 @@ import TabItem from '@theme/TabItem';
 
 Occasionally, OpenTofu/Terraform state locks may remain in place if the process holding the lock does not release it properly. This can occur due to unexpected failures, such as crashes or premature termination of jobs.
 
-When this occurs jobs will fail after a timeout with `Error: Error acquiring the state lock`, and will not succeed until the lock is manually removed.
+When this occurs, jobs will fail after a timeout with `Error: Error acquiring the state lock`, and will not succeed until the lock is manually removed.
 
 :::note
-The default lock timeout in `infrastructure-live-root` repositories is set in the repository `root.hcl` under terraform extra_arguments.
+You might have a default lock timeout in your `root.hcl` file that looks like this:
+
+```hcl
+terraform {
+  extra_arguments "retry_lock" {
+    commands  = get_terraform_commands_that_need_locking()
+    arguments = ["-lock-timeout=10m"]
+  }
+}
+```
+
 :::
 
 ## Unlocking Unit State
@@ -33,7 +43,7 @@ In the above example the Unit Path is `acme/us-east-1/storage/s3bucket1`.
 
 ### Stack Path
 
-Optional. When a Unit within a Stack is locked, Pipelines requires the Stack Path to generate the stack before running force-unlock in the Unit.
+Optional: When a Unit within a Stack is locked, Pipelines requires the Stack Path to generate the stack before running force-unlock in the Unit.
 
 <Tabs groupId="platform">
 <TabItem value="github" label="GitHub">
