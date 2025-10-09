@@ -1,8 +1,10 @@
 # Pipelines Configuration
 
-import PipelinesConfig from '/docs/2.0/reference/pipelines/language_auth_partial.mdx'
+import PipelinesAuthPartial from '/docs/2.0/reference/pipelines/language_auth_partial.mdx'
+import PipelinesLanguageTransitionPartial from '/docs/2.0/reference/pipelines/language_transition_partial.mdx'
 
-<PipelinesConfig />
+<PipelinesLanguageTransitionPartial />
+<PipelinesAuthPartial />
 
 ## OpenTofu & Terraform
 

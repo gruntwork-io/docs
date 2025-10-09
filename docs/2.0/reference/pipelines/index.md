@@ -1,8 +1,10 @@
 # Overview
 
-import PipelinesConfig from './language_auth_partial.mdx'
+import PipelinesLanguageTransitionPartial from './language_transition_partial.mdx'
+import PipelinesAuthPartial from './language_auth_partial.mdx'
 
-<PipelinesConfig />
+<PipelinesLanguageTransitionPartial />
+<PipelinesAuthPartial />
 
 ## Additional configuration
 
