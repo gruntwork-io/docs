@@ -1,3 +1,5 @@
+import PersistentCheckbox from '@site/src/components/PersistentCheckbox';
+
 # Upgrading Pipelines GitHub Workflows From v3 to v4
 
 To upgrade Pipelines from v3 to v4, perform the following changes in each
@@ -16,9 +18,13 @@ terragrunt = "0.86.3"
 See the [Terragrunt Release Notes](https://github.com/gruntwork-io/terragrunt/releases)
 for detailed information on the changes to Terragrunt.
 
-<PersistentCheckbox id="upgrade-v3-to-v4-tgversion" label="Terragrunt Version Updated" />
+:::note Progress Checklist
 
-## Migrating from root `terragrunt.hcl` to `root.hcl`
+- [ ] Terragrunt Version Updated
+
+:::
+
+## Migrating from root terragrunt.hcl to root.hcl
 
 :::warning
 When using a mix of older and newer catalogs, it is important that Terragrunt
@@ -50,9 +56,13 @@ include "root" {
 Refer to the [Terragrunt Documentation](https://terragrunt.gruntwork.io/docs/migrate/migrating-from-root-terragrunt-hcl/)
 for more details.
 
-<PersistentCheckbox id="upgrade-v3-to-v4-roothcl" label="Root Terragrunt File Renamed" />
+:::note Progress Checklist
 
-## Replace `.gruntwork/config.yml` with HCL Config
+- [ ] Root Terragrunt File Renamed
+
+:::
+
+## Replace YML Config with HCL Config
 
 :::note
 Repositories using only YML configuration will still function with Pipelines v4,
@@ -62,9 +72,10 @@ In the next major release YML configuration will have no effect and HCL will be
 required.
 :::
 
-YML configuration is officially deprecated in Pipelines v4. Migrating to HCL
-configuration requires adding HCL files to the `.gruntwork` directory in the root
-of your repository.
+YML configurations(in the `.gruntwork/config.yml` file) are officially deprecated in Pipelines v4.
+Migrating to HCL configuration requires replacing the `config.yml` file with HCL files in the `.gruntwork` directory.
+
+### Repository Configuration
 
 We recommend adding the following files to your repository.
 
@@ -86,6 +97,7 @@ The `repository` block contains settings for the entire repository. See the
 [Repository Block Attributes](/2.0/reference/pipelines/configurations-as-code/api#repository-block-attributes)
 to find which of your existing YML configurations need to be added here.
 
+### AWS Accounts Configuration
 
 ```hcl title=".gruntwork/accounts.hcl"
 # AWS account configurations that are usable by the entire repository, see: https://docs.gruntwork.io/2.0/reference/pipelines/configurations-as-code/api#aws-block
@@ -99,8 +111,9 @@ aws {
 
 The `accounts.hcl` file is a helper to read from the root `accounts.yml` file into your HCL configuration.
 
-For each account in your repository add an environment-accountname.hcl. For example
-for the management account add the following:
+### Environments Configuration
+
+For each account in your repository add an environment-**accountname**.hcl file. e.g. for the management account add the following file:
 
 ```hcl title=".gruntwork/environment-management.hcl"
 # Configurations that are applicable to a specific environment within a repository, see: https://docs.gruntwork.io/2.0/reference/pipelines/configurations-as-code/api/#environment-block
@@ -121,46 +134,80 @@ environment "management" {
 
 ```
 
-Repeat this for each environment that needs to be authenticated.
+:::warning
+Note the role-name in the `apply_iam_role_arn` and `plan_iam_role_arn` role ARN values. The role-names should match the Pipelines roles you provisioned in your AWS accounts.
+Typically, these roles are:
+- `root-pipelines-*` in the main `infrastructure-live` repository
+- `access-control-pipelines-*` in an `infrastructure-live-access-control` repository
+- `delegated-pipelines-*` in an `infrastructure-live-delegated` repository
 
-If your repository has Account Factory add the following file
+Confirm the values by looking at your Infrastructure as Code for those IAM roles.
+:::
+
+**Repeat this for each environment that needs to be authenticated.**
+
+### Account Factory Configuration
+
+If your repository has Account Factory add the following file based on your existing YML configuration.
 
 ```hcl title=".gruntwork/account-factory.hcl"
 account_factory {
-  control_tower_module_version = "<REPLACE>"
-  security_module_version = "<REPLACE>"
-  access_control_repository_name = "<REPLACE>"
-  architecture_catalog_module_version = "<REPLACE>"
+  control_tower_module_version                  = "<REPLACE>"
+  security_module_version                       = "<REPLACE>"
+  access_control_repository_name                = "<REPLACE>"
+  architecture_catalog_module_version           = "<REPLACE>"
   infrastructure_catalog_module_repository_name = "<REPLACE>"
 }
 ```
 
-Replacing and adding values with the existing values in your YML configuration.
+Replacing and adding values based on your existing YML configuration.
 See the [Account Factory HCL](2.0/reference/accountfactory/configurations-as-code) for
-a full reference of values.
+a full reference of values or contact [Gruntwork Support](mailto:support@gruntwork.io) for assistance.
 
-<PersistentCheckbox id="upgrade-v3-to-v4-config" label="Config Replaced" />
+For Enterprise customers using Account Factory; see the [Account Vending Configuration](/2.0/reference/accountfactory/configurations-as-code#account_vending-block) for converting the account vending configuration to HCL.
+
+
+:::note Progress Checklist
+
+- [ ] YML Config Replaced
+
+:::
 
 ## Allowlisting Actions
 
 If your organization maintains an allowlist of GitHub actions, update the allowlist
 with the full list of actions in [pipelines-actions v4.0.0](https://github.com/gruntwork-io/pipelines-actions/tree/v4.0.0/.github/actions)
 
-<PersistentCheckbox id="upgrade-v3-to-v4-allowlist" label="Actions Allowlisted" />
+:::note Progress Checklist
 
-## Pipelines Workflow `.github/workflows/pipelines.yml`
+- [ ] Actions Allowlisted
 
-### Add `actions: read` permission
+:::
 
-Update the Pipelines Workflow in the repository to add `actions: read`
+## Pipelines Workflow
 
-<PersistentCheckbox id="upgrade-v3-to-v4-actionsread" label="Add actions: read" />
+In your infrastructure-live repository, update the `.github/workflows/pipelines.yml` file as follows:
+
+### Add workflow permission
+
+Update the Pipelines Workflow in the repository to add `actions: read`; required by the latest Pull Request comment functionality.
+
+:::note Progress Checklist
+
+- [ ] Updated Pipelines Workflow to add `actions: read` permission
+
+:::
+
 
 ### Update Pipelines GruntworkPipelines uses version
 
 Update the `uses:` field of the GruntworkPipelines job to reference `@v4`
 
-<PersistentCheckbox id="upgrade-v3-to-v4-pipelinesatv4" label="Pipelines Uses @v4" />
+:::note Progress Checklist
+
+- [ ] Updated Pipelines Workflow to reference `@v4`
+
+:::
 
 ### Remove PipelinesPassed job
 
@@ -168,9 +215,15 @@ The pipelines workflow now runs a `GruntworkPipelines / Pipelines Status Check`
 job which can be used for Required Status Checks. Remove the PipelinesPassed job
 and update any Required Status Checks to use `GruntworkPipelines / Pipelines Status Check`.
 
-<PersistentCheckbox id="upgrade-v3-to-v4-pipelinespassed" label="Remove PipelinesPassed" />
+:::note Progress Checklist
 
-## Drift Detection Workflow `.github/workflows/pipelines-drift-detection.yml`
+- [ ] Removed PipelinesPassed job
+
+:::
+
+## Drift Detection Workflow
+
+In your infrastructure-live repository, update the `.github/workflows/pipelines-drift-detection.yml` file as follows:
 
 ### Update Inputs
 
@@ -204,9 +257,15 @@ The syntax for the filter in Drift Detection has changed. Refer to the [Filter R
 
 Update the `uses:` field of the GruntworkPipelines job to reference `@v4`
 
-<PersistentCheckbox id="upgrade-v3-to-v4-ddatv4" label="Drift Detection Uses @v4" />
+:::note Progress Checklist
 
-## Unlock Workflow `.github/workflows/pipelines-unlock.yml`
+- [ ] Drift Detection Uses @v4
+
+:::
+
+## Unlock Workflow
+
+In your infrastructure-live repository, update the `.github/workflows/pipelines-unlock.yml` file as follows:
 
 ### Update Inputs
 
@@ -247,7 +306,8 @@ Update the GruntworkPipelines job to use these inputs:
 
 Update the `uses:` field of the GruntworkPipelines job to reference `@v4`
 
-<PersistentCheckbox id="upgrade-v3-to-v4-unlockatv4" label="Pipelines Unlock Uses @v4" />
+:::note Progress Checklist
 
+- [ ] Pipelines Unlock Uses @v4
 
-
+:::
