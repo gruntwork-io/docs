@@ -311,3 +311,20 @@ Update the `uses:` field of the GruntworkPipelines job to reference `@v4`
 - [ ] Pipelines Unlock Uses @v4
 
 :::
+
+## Updating CI User Token Permissions
+
+Update both of the CI User's Fine-Grained Personal Access Tokens (PATs):
+
+- [INFRA_ROOT_WRITE_TOKEN](/2.0/docs/pipelines/installation/viamachineusers#infra_root_write_token) and
+- [ORG_REPO_ADMIN_TOKEN](/2.0/docs/pipelines/installation/viamachineusers#org_repo_admin_token)
+
+to include `Actions: Read & write access`. This allows Pipelines to create enriched pull request comments with the latest workflow run logs.
+
+Customers using the [Gruntwork.io GitHub App](/2.0/docs/pipelines/installation/viagithubapp#gruntworkio-github-app) should also update the above permissions so that the tokens already have the necessary permissions when used as a fallback mechanism.
+
+:::note Progress Checklist
+
+- [ ] Updated CI User Token Permissions
+
+:::
