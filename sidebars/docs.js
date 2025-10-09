@@ -149,7 +149,7 @@ const sidebar = [
             label: "Custom",
             type: "doc",
             id: "2.0/docs/pipelines/concepts/cloud-auth/custom",
-          }
+          },
         ],
       },
       {
@@ -401,14 +401,19 @@ const sidebar = [
       {
         label: "Unlocking State Locks",
         type: "doc",
-        id: "2.0/docs/pipelines/guides/unlock"
-      }
+        id: "2.0/docs/pipelines/guides/unlock",
+      },
     ],
   },
   {
     label: "Previous Versions",
     type: "category",
     items: [
+      {
+        label: "Upgrading from Pipelines GitHub Workflows v3 to v4",
+        type: "doc",
+        id: "2.0/docs/pipelines/previous-versions/upgrading-github-v3-to-v4",
+      },
       {
         label: "Upgrading from Infrastructure-Pipelines",
         type: "doc",
@@ -549,7 +554,8 @@ const sidebar = [
         id: "2.0/docs/accountfactory/guides/iam-roles",
       },
       {
-        label: "Automatically Remediate AWS Control Tower Drift with Async Multi-Account Factory Module",
+        label:
+          "Automatically Remediate AWS Control Tower Drift with Async Multi-Account Factory Module",
         type: "doc",
         id: "2.0/docs/accountfactory/guides/drift-remediation-with-async-module",
       },
