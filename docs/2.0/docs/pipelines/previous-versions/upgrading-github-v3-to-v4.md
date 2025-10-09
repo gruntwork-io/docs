@@ -113,7 +113,7 @@ The `accounts.hcl` file is a helper to read from the root `accounts.yml` file in
 
 ### Environments Configuration
 
-For each account in your repository add an environment-**accountname**.hcl file. e.g. for the management account add the following file:
+For each account in your repository add an environment-**AccountName**.hcl file. e.g. for the management account add the following file:
 
 ```hcl title=".gruntwork/environment-management.hcl"
 # Configurations that are applicable to a specific environment within a repository, see: https://docs.gruntwork.io/2.0/reference/pipelines/configurations-as-code/api/#environment-block
