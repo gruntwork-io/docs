@@ -234,13 +234,14 @@ You can follow the documentation [here](https://search.opentofu.org/provider/has
 First, make sure that everything is set up correctly by running a plan in the `bootstrap` directory in `name-of-account/_global` where `name-of-account` is the name of the first AWS account you want to bootstrap.
 
 ```bash title="name-of-account/_global/bootstrap"
-terragrunt run --all --non-interactive --provider-cache plan
+terragrunt run --all --non-interactive --provider-cache --backend-bootstrap plan
 ```
 
 :::tip
 
 We're using the `--provider-cache` flag here to ensure that we don't re-download the AWS provider on every run by leveraging the [Terragrunt Provider Cache Server](https://terragrunt.gruntwork.io/docs/features/provider-cache-server/).
 
+We're using the `--backend-bootstrap` flag here to tell Terragrunt to bootstrap the OpenTofu backend automatically for the account.
 :::
 
 :::note Progress Checklist
@@ -351,7 +352,7 @@ For each account you want to bootstrap, you'll need to run the following command
 
 ```bash
 cd <account-name>/_global/bootstrap
-terragrunt run --all --non-interactive --provider-cache plan
+terragrunt run --all --non-interactive --provider-cache --backend-bootstrap plan
 terragrunt run --all --non-interactive --provider-cache apply
 ```
 
