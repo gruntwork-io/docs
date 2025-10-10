@@ -30,11 +30,11 @@ export const redirects = [
         from: "/developer-portal/link-github-id"
     },
     {
-        to: "/2.0/docs/pipelines/architecture/components",
+        to: "/2.0/docs/pipelines/architecture/execution-flow",
         from: "/pipelines/architecture/index"
     },
     {
-        to: "/2.0/docs/pipelines/architecture/components",
+        to: "/2.0/docs/pipelines/architecture/execution-flow",
         from: "/pipelines/architecture"
     },
     {
@@ -110,7 +110,7 @@ export const redirects = [
         from: "/foundations/overview"
     },
     {
-        to: "/2.0/docs/pipelines/concepts/cloud-auth",
+        to: "/2.0/docs/pipelines/concepts/cloud-auth/aws",
         from: "/foundations/pipelines/aws-authentication"
     },
     {
@@ -154,15 +154,15 @@ export const redirects = [
         from: "/foundations/running-apps"
     },
     {
-        to: "/2.0/docs/pipelines/installation/prerequisites/awslandingzone#prerequisites",
+        to: "/2.0/docs/accountfactory/prerequisites/awslandingzone#prerequisites",
         from: "/foundations/landing-zone/prerequisites"
     },
     {
-        to: "/2.0/docs/pipelines/installation/prerequisites/awslandingzone",
+        to: "/2.0/docs/accountfactory/prerequisites/awslandingzone",
         from: "/foundations/landing-zone/index"
     },
     {
-        to: "/2.0/docs/pipelines/installation/prerequisites/awslandingzone",
+        to: "/2.0/docs/accountfactory/prerequisites/awslandingzone",
         from: "/foundations/landing-zone"
     },
     {
@@ -170,7 +170,7 @@ export const redirects = [
         from: "/foundations/landing-zone/add-aws-account"
     },
     {
-        to: "/2.0/docs/pipelines/installation/prerequisites/awslandingzone#configure-control-tower",
+        to: "/2.0/docs/accountfactory/prerequisites/awslandingzone#configure-control-tower",
         from: "/foundations/landing-zone/enable-control-tower"
     },
     {
@@ -368,5 +368,13 @@ export const redirects = [
     {
         from: '/2.0/docs/pipelines/architecture/github-workflows',
         to: '/2.0/docs/pipelines/architecture/ci-workflows'
+    },
+    {
+        from: '/2.0/docs/pipelines/installation/prerequisites/awslandingzone',
+        to: '/2.0/docs/accountfactory/prerequisites/awslandingzone'
+    },
+    {
+        from: '/2.0/docs/pipelines/guides/setup-delegated-repo',
+        to: '/2.0/docs/accountfactory/guides/setup-delegated-repo'
     }
 ]

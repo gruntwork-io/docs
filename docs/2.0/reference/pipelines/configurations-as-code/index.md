@@ -9,10 +9,9 @@ To process configurations, Pipelines parses all `.hcl` files within a `.gruntwor
 We recommend reviewing our [concepts page](/2.0/docs/pipelines/concepts/hcl-config-language) on the HCL language to ensure familiarity with its features before configuring Pipelines.
 :::
 
-
 ## Basic configuration
 
-The minimum configuration required for Pipelines to function depends on the specific context. In most scenarios, Pipelines must determine how to authenticate with a cloud provider to execute Terragrunt commands. If authentication is not configured where required, Pipelines will generate an error.
+The minimum configuration required for Pipelines to function depends on the specific context. In most scenarios, Pipelines must determine how to authenticate with a cloud provider to execute Terragrunt commands. Unless running Pipelines on a host machine that is already authenticated with a cloud provider (e.g. a self-hosted runner), it is generally required to configure some form of authentication within the `authentication` block.
 
 Below is an example of a minimal configuration for a single Terragrunt unit, demonstrating how to enable Pipelines to authenticate with AWS using OIDC:
 
@@ -31,6 +30,17 @@ unit {
 
 Placing this configuration in a `gruntwork.hcl` file within the same directory as a `terragrunt.hcl` file directs Pipelines to assume the `role-to-assume-for-plans` role in the AWS account with the ID `an-aws-account-id` when executing Terragrunt plan commands. The authentication process leverages [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) to securely connect to AWS and assume the specified role.
 
+:::tip
+
+If you are running Pipelines on a host machine that is already authenticated with a cloud provider, you can explicitly leave the `authentication` block empty to signal that Pipelines should not attempt to perform any authentication itself.
+
+```hcl
+unit {
+  authentication {}
+}
+```
+
+:::
 
 It is common for multiple Terragrunt units within a repository to assume the same AWS role. For instance, all units within a specific directory may provision resources for the same AWS account. Configuring AWS authentication at the environment level is more efficient in these cases. You can do this by defining an `environment` block within one of the `.hcl` files in the `.gruntwork` directory at the repository root and specifying the AWS authentication configuration.
 
@@ -62,7 +72,6 @@ Details regarding the functionality of each configuration type are outlined belo
 ## Configuration hierarchy
 
 Pipelines configurations are structured into a hierarchy to manage specificity. Configurations that are more specific to an individual unit of IaC will take precedence over more general configurations in cases of conflict.
-
 
 The configuration hierarchy is as follows:
 
@@ -221,6 +230,7 @@ Job consolidation is a process by which Pipelines merges multiple related jobs (
 This optimization significantly reduces CI/CD costs by consolidating Terragrunt execution into fewer jobs, spreading the operational expenses more efficiently. Additionally, it enhances accuracy by allowing Terragrunt to leverage a Directed Acyclic Graph (DAG) for proper sequencing of updates.
 
 For example:
+
 - Instead of running the following independent jobs:
   A. `ModuleAdded`
   B. `ModuleChanged` (which depends on `ModuleAdded`)
@@ -243,6 +253,7 @@ In rare cases, you might disable job consolidation to allocate maximum resources
 Configurations must be specified within a single file named gruntwork.hcl, located in the same directory as the terragrunt.hcl file. These configurations are referred to as local configurations and are generally used to define settings specific to a single unit of Infrastructure as Code (IaC) within a repository. .
 
 These configurations can serve two purposes:
+
 1. Define all the settings necessary for Pipelines to operate within the scope of a single unit.
 2. Override global configurations defined in the `.gruntwork` directory, tailoring them to the unit's specific needs.
 
@@ -288,7 +299,6 @@ filter {
 
 All configuration blocks containing a `filter` block will apply only to units that match the specified filter.
 
-
 ### Authentication blocks
 
 [Full Reference for Authentication Blocks](/2.0/reference/pipelines/configurations-as-code/api#authentication-block)
@@ -296,9 +306,9 @@ All configuration blocks containing a `filter` block will apply only to units th
 Authentication blocks are configuration components used by [environment](#environment-blocks) and [unit](#unit-blocks) blocks to specify how Pipelines will authenticate with cloud platforms when executing Terragrunt commands.
 
 :::note
-Authentication blocks encapsulate more specific authentication configurations tailored to individual cloud platforms. When Pipelines processes an `authentication` block, it attempts to authenticate with all cloud platforms defined within it.
 
-Currently, the only supported block that can be nested within an `authentication` block is `aws_oidc`.
+Authentication blocks encapsulate more specific authentication configurations tailored to individual cloud platforms. When Pipelines processes an `authentication` block, it attempts to authenticate with the relevant cloud platform defined within it.
+
 :::
 
 :::tip

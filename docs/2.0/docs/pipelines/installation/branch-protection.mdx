@@ -1,14 +1,8 @@
-# Branch Protection
+# Adding Branch Protection to a GitHub Repository
 
-Gruntwork Pipelines is designed to function within a PR-based workflow. Approving a pull request (PR) or merge request (MR) signals approval to deploy infrastructure, so it's important to configure repository settings and branch protection accurately.
+Gruntwork Pipelines is designed to function within a pull request (PR) based workflow. Approving a pull request signals approval to deploy infrastructure, so it's important to configure repository settings and branch protection accurately.
 
-## Recommended settings
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs>
-<TabItem value="GitHub" label="GitHub">
+## GitHub Recommended Settings
 
 By default, Gruntwork Pipelines runs a `plan` on every push to a PR and an `apply` on every push to `main`. To ensure that infrastructure changes are reviewed and approved before deployment, branch protection should be enabled on `main` to prevent unauthorized changes.
 
@@ -40,32 +34,23 @@ Below is an example of the recommended branch protection settings:
   GitHub Enterprise customers can also configure [push rulesets](https://docs.github.com/en/enterprise-cloud@latest/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets#push-rulesets). This feature allows restricting edits to `.github/workflows` files, ensuring infrastructure changes are properly reviewed and approved through Pipelines. Follow the documentation [here](https://docs.github.com/en/enterprise-cloud@latest/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository#creating-a-push-ruleset) to enable push rulesets if available.
 :::
 
-</TabItem>
-<TabItem value="GitLab" label="GitLab">
+## Securing User Accounts
 
-## GitLab Recommended Settings
+Branch protection rules are only effective if you are confident that the users who have access to your repository are legitimate and trusted.
 
-For GitLab repositories, similar protection rules should be configured on the default branch (typically `main`). Navigate to `Settings > Repository > Protected branches` to configure the following settings:
+You can improve your security posture by ensuring that:
 
-- Set the initial default branch to **Protected**.
-- Set **Allowed to merge** to "Developers" or a specific group to control who can merge changes.
-- Set **Allowed to push** to "No one" to prevent direct pushes to the protected branch.
-- (Optional) Enable **Require approval from code owners** to ensure designated reviewers approve changes to specific files.
+1. [User accounts have Multi-Factor Authentication (MFA) enabled](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication).
+2. [User accounts don't have compromised credentials](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure).
+3. [User accounts are granted access to infrastructure-live repositories on a least privilege basis](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
 
-Below is an example of the recommended GitLab branch protection settings:
+## Pull Request Workflow
 
-![GitLab Branch Protection Settings](/img/pipelines/gitlab_branch_protection.png)
-
-</TabItem>
-</Tabs>
-
-## Merge Request/Pull Request Workflow
-
-1. Developers make infrastructure changes on a branch and create a PR (GitHub) or MR (GitLab) against the default branch.
-2. On merge request/pull request creation, Gruntwork Pipelines runs `plan` for any changes and posts the results as a comment.
+1. Developers make infrastructure changes on a branch and create a pull request (PR) against the default branch.
+2. On pull request creation, Gruntwork Pipelines runs `plan` for any changes and posts the results as a comment.
 3. Gruntwork Pipelines re-runs `plan` on every push to the branch and updates the results in a comment.
 4. Gather approvals. If Code Owners is enabled, all relevant code owners must approve the changes.
-5. Once approved, merge the merge request/pull request into the default branch.
-6. Gruntwork Pipelines runs `apply` for the changes from the merge request/pull request.
-   - On success, the merge request/pull request is updated to indicate the successful `apply`.
-   - On failure, the merge request/pull request is updated to indicate the failure of the `apply`. If the failure cannot be resolved by retrying, a new merge request/pull request must be created to address the issues.
+5. Once approved, merge the pull request into the default branch.
+6. Gruntwork Pipelines runs `apply` for the changes from the pull request.
+   - On success, the pull request is updated to indicate the successful `apply`.
+   - On failure, the pull request is updated to indicate the failure of the `apply`. If the failure cannot be resolved by retrying, a new pull request must be created to address the issues.

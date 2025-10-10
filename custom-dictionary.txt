@@ -60,3 +60,9 @@ minamijoyo
 tfupdate
 hcledit
 self-hosting
+infrachanges
+Entra
+GLMU
+myprodsa
+azuread
+mysa
