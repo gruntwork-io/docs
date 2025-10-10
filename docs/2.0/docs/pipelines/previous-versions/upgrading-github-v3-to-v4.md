@@ -113,7 +113,7 @@ The `accounts.hcl` file is a helper to read from the root `accounts.yml` file in
 
 ### Environments Configuration
 
-For each account in your repository add an environment-**accountname**.hcl file. e.g. for the management account add the following file:
+For each account in your repository add an environment-**AccountName**.hcl file. e.g. for the management account add the following file:
 
 ```hcl title=".gruntwork/environment-management.hcl"
 # Configurations that are applicable to a specific environment within a repository, see: https://docs.gruntwork.io/2.0/reference/pipelines/configurations-as-code/api/#environment-block
@@ -309,5 +309,22 @@ Update the `uses:` field of the GruntworkPipelines job to reference `@v4`
 :::note Progress Checklist
 
 - [ ] Pipelines Unlock Uses @v4
+
+:::
+
+## Updating CI User Token Permissions
+
+Update both of the CI User's Fine-Grained Personal Access Tokens (PATs):
+
+- [INFRA_ROOT_WRITE_TOKEN](/2.0/docs/pipelines/installation/viamachineusers#infra_root_write_token) and
+- [ORG_REPO_ADMIN_TOKEN](/2.0/docs/pipelines/installation/viamachineusers#org_repo_admin_token)
+
+to include `Actions: Read & write access`. This allows Pipelines to create enriched pull request comments with the latest workflow run logs.
+
+Customers using the [Gruntwork.io GitHub App](/2.0/docs/pipelines/installation/viagithubapp#gruntworkio-github-app) should also update the above permissions so that the tokens already have the necessary permissions when used as a fallback mechanism.
+
+:::note Progress Checklist
+
+- [ ] Updated CI User Token Permissions
 
 :::

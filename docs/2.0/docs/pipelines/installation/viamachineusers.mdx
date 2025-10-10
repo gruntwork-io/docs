@@ -6,7 +6,7 @@ toc_max_heading_level: 4
 
 # Creating Machine Users
 
-import PersistentCheckbox from '/src/components/PersistentCheckbox';
+import PersistentCheckbox from "/src/components/PersistentCheckbox"
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
@@ -39,6 +39,7 @@ If screen sharing while generating tokens, **pause or hide your screen** before 
 :::
 
 ### Token types
+
 <Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
@@ -163,13 +164,12 @@ This [fine-grained](#fine-grained-tokens) Personal Access Token allows GitHub Ac
 
 This token must have the following permissions to the `INFRA_ROOT_WRITE_TOKEN` for the `infrastructure-live-root` repository:
 
+- **Actions:** Read & write access — Allows Pipelines to create enriched pull request comments.
 - **Content:** Read & write access — Required to clone the repository and push changes.
 - **Issues:** Read & write access — Allows Pipelines to open issues when manual intervention is needed.
 - **Metadata:** Read access — Grants access to repository metadata.
 - **Pull requests:** Read & write access — Enables Pipelines to automate infrastructure changes through PRs.
 - **Workflows:** Read & write access — Needed to update workflow files in `.github/workflows` when provisioning new repositories.
-
-![INFRA_ROOT_WRITE_TOKEN PAT Configuration](/img/pipelines/security/INFRA_ROOT_WRITE_TOKEN.png)
 
 <details>
 
@@ -178,6 +178,10 @@ This token must have the following permissions to the `INFRA_ROOT_WRITE_TOKEN` f
 Below is a detailed breakdown of the permissions needed for the `INFRA_ROOT_WRITE_TOKEN`. Some permissions are tied to specific actions, while others are exclusively used by Enterprise customers.
 
 If you are not an Enterprise customer or prefer Pipelines not to execute certain behaviors, you can opt not to grant the related permissions.
+
+##### Actions read & write access
+
+Allows Pipelines to create workflow job artifacts and access workflow job logs to enrich pull request comments with the latest workflow run logs.
 
 ##### Content read & write access
 
@@ -205,6 +209,7 @@ Required to update workflows when provisioning new repositories.
 
 This fine-grained token is used for initial setup and bootstrapping repositories. For Enterprise customers, it also provisions delegated repositories. Assign the following permissions to all accessible repositories:
 
+- **Actions:** Read & write access — Allows Pipelines to create enriched pull request comments.
 - **Administration:** Read & write access — Required to create and manage repositories.
 - **Content:** Read & write access — Necessary for reading and writing repository files.
 - **Metadata:** Read access — Grants access to repository metadata.
@@ -215,14 +220,16 @@ This fine-grained token is used for initial setup and bootstrapping repositories
 
 - **Members:** Read & write access — Needed to manage team access for repositories.
 
-![ORG_REPO_ADMIN_TOKEN PAT Configuration](/img/pipelines/security/ORG_REPO_ADMIN_TOKEN.png)
-
 <details>
 <summary>Why does this token need these permissions?</summary>
 
 The following is a breakdown of the permissions needed for the `ORG_REPO_ADMIN_TOKEN`, based on our testing. Permissions were gradually added to identify the minimal set necessary to support Pipelines. Some permissions apply to specific actions, while others are exclusive to Enterprise customers.
 
 If you are not an Enterprise customer or prefer Pipelines not to carry out certain actions, you can choose to withhold the related permissions.
+
+##### Actions read & write access
+
+Allows Pipelines to create workflow job artifacts and access workflow job logs to enrich pull request comments with the latest workflow run logs.
 
 ##### Administration read & write access
 
@@ -273,6 +280,7 @@ Invite `ci-user-read-only` to your `infrastructure-live-root` repository with re
 Generate the following token for the `ci-read-only-user`:
 
 **Checklist:**
+
 <PersistentCheckbox id="via-machine-users-5" label="PIPELINES_READ_TOKEN created under ci-read-only-user" />
 
 #### PIPELINES_READ_TOKEN
