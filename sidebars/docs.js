@@ -415,6 +415,11 @@ const sidebar = [
         id: "2.0/docs/pipelines/previous-versions/upgrading-github-v3-to-v4",
       },
       {
+        label: "Upgrading from Pipelines GitLab Workflows v1 to v2",
+        type: "doc",
+        id: "2.0/docs/pipelines/previous-versions/upgrading-gitlab-v1-to-v2",
+      },
+      {
         label: "Upgrading from Infrastructure-Pipelines",
         type: "doc",
         id: "2.0/docs/pipelines/previous-versions/upgrading-from-infrastructure-pipelines",
