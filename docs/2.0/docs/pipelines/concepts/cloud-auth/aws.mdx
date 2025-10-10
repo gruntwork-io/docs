@@ -1,7 +1,7 @@
 # Authenticating to AWS
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
 
 Pipelines automatically determines which AWS account(s) to authenticate with, and how to authenticate with them, based on the infrastructure changes proposed in your pull request.
 
@@ -15,7 +15,7 @@ When creating a new AWS account, it is necessary to update the AWS OIDC configur
 
 ## How Pipelines knows what AWS principals to authenticate as
 
-<Tabs>
+<Tabs groupId="config-type" queryString="config-type">
 <TabItem value="hcl" label="HCL">
 
 For HCL configurations, account mappings are defined using environments specified in HCL configuration files in the `.gruntwork` directory (you are using these if you see `.hcl` files in your `.gruntwork` directory).
@@ -177,7 +177,7 @@ Critically, the issuer is a URL that is both specified inside the token, and is 
 
 Typically the issuer is the hostname of the CI/CD platform, such as `https://gitlab.com`, and thus oidc configuration (and public keys) can be fetched from the publicly available route, `https://gitlab.com/.well-known/openid-configuration` etc.
 
-If, however, your CI/CD platform is hosted privately, you will need to host the public key and OIDC configuration in a publicly accessible location, such as an S3 bucket, and update the issuer in your CI/CD configuration to point to that location.  The diagrams below illustrate both approaches - fetching the keys directly from your CI/CD platform via a public route, or fetching the keys from a public S3 bucket.
+If, however, your CI/CD platform is hosted privately, you will need to host the public key and OIDC configuration in a publicly accessible location, such as an S3 bucket, and update the issuer in your CI/CD configuration to point to that location. The diagrams below illustrate both approaches - fetching the keys directly from your CI/CD platform via a public route, or fetching the keys from a public S3 bucket.
 
 ### Publicly Available CI/CD Platforms
 
@@ -200,7 +200,7 @@ sequenceDiagram
 
 ### Non-Publicly Available CI/CD Platforms
 
-This diagram follows the [recommended approach](https://docs.gitlab.com/ci/cloud_services/aws/#configure-a-non-public-gitlab-instance) from GitLab for private CI/CD platform instances.  The guidance is to host the public key in a publicly accessible S3 bucket and update the issuer in the CI/CD configuration.
+This diagram follows the [recommended approach](https://docs.gitlab.com/ci/cloud_services/aws/#configure-a-non-public-gitlab-instance) from GitLab for private CI/CD platform instances. The guidance is to host the public key in a publicly accessible S3 bucket and update the issuer in the CI/CD configuration.
 
 A common alternative approach to re-hosting the public key and OIDC configuration is to update the application firewalls to specifically allow requests to the `.well-known/openid-configuration` endpoint and the JWKS endpoint from the AWS IdP.
 

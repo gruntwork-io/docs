@@ -5,7 +5,7 @@ Pipelines integrates with your repositories through GitHub/GitLab Workflows, lev
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs>
+<Tabs groupId="platform" queryString="platform-ci-workflows">
 <TabItem value="github" label="GitHub">
 
 ```yml
@@ -38,7 +38,7 @@ If you [fork the Gruntwork Workflows](https://docs.gruntwork.io/2.0/docs/pipelin
 
 ## Workflow dependencies
 
-<Tabs>
+<Tabs groupId="platform" queryString="platform-ci-workflows">
 <TabItem value="github" label="GitHub">
 
 The `pipelines-workflows` repository includes the following reusable workflows:
