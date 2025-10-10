@@ -37,6 +37,10 @@ By default, Pipelines is configured with the permissions needed to complete this
 
 The default Pipelines role has permissions to create S3 buckets with names that start with `test-pipelines-`. If you want to use a different bucket name, you may need to update the IAM policy accordingly.
 
+:::tip
+The default `bootstrap` Terragrunt stack provided in the installation guide includes `plan_iam_policy` and `apply_iam_policy` values that can be configured to adjust the permissions granted to Pipelines.
+:::
+
 :::
 
 1. Create the folder structure for the new S3 bucket in your environment. Replace <CustomizableValue id="ACCOUNT_NAME" /> with the account name you are deploying to and <CustomizableValue id="REGION" /> with the AWS region where the S3 bucket will be deployed.
@@ -81,6 +85,10 @@ The default Pipelines role has permissions to create S3 buckets with names that 
 :::caution Permissions Required
 
 By default, Pipelines is configured with the permissions needed to complete this tutorial. However, depending on your specific setup, you may need to adjust the role used by Pipelines to ensure it has the appropriate permissions to create Resource Groups and Storage Accounts in your subscription.
+
+:::tip
+The default `bootstrap` Terragrunt stack provided in the installation guide includes `plan_custom_role_actions` and `apply_custom_role_actions` values that can be configured to adjust the permissions granted to Pipelines.
+:::
 
 :::
 
