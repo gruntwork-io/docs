@@ -4,11 +4,11 @@ toc_min_heading_level: 2
 toc_max_heading_level: 4
 ---
 
-# Creating Machine Users
-
 import PersistentCheckbox from "/src/components/PersistentCheckbox"
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
+
+# Creating Machine Users
 
 For GitHub users, of the [two methods](/2.0/docs/pipelines/installation/authoverview.md) for installing Gruntwork Pipelines, we strongly recommend using the [GitHub App](/2.0/docs/pipelines/installation/viagithubapp.md). However, if the GitHub App cannot be used or if machine users are required as a [fallback](/2.0/docs/pipelines/installation/viagithubapp#fallback), this guide outlines how to set up authentication for Pipelines using access tokens and machine users.
 
@@ -40,7 +40,7 @@ If screen sharing while generating tokens, **pause or hide your screen** before 
 
 ### Token types
 
-<Tabs groupId="platform">
+<Tabs groupId="platform" queryString="platform-tokens-types">
 <TabItem value="github" label="GitHub" default>
 
 GitHub supports two types of tokens:
@@ -81,7 +81,7 @@ More information is available [here](https://docs.github.com/en/organizations/ma
 ![Pending requests](/img/pipelines/security/pending_requests.png)
 
 </TabItem>
-<TabItem value="GitLab" label="GitLab">
+<TabItem value="gitlab" label="GitLab">
 
 GitLab uses access tokens for authentication. There are several types of access tokens in GitLab:
 
@@ -112,8 +112,8 @@ When creating tokens, carefully consider the expiration date and scope of access
 
 ## Creating machine users
 
-<Tabs groupId="platform">
-<TabItem value="GitHub" label="GitHub" default>
+<Tabs groupId="platform" queryString="platform-tokens-setup">
+<TabItem value="github" label="GitHub" default>
 
 The recommended setup for Pipelines uses two machine users: one for opening pull requests and running workflows (`ci-user`) and another with read-only access to repositories (`ci-read-only-user`). Each user is assigned restrictive permissions based on their tasks. As a result, both users may need to participate at different stages to successfully run a pipeline job.
 
@@ -155,8 +155,8 @@ Generate the required tokens for the ci-user in their GitHub account.
 
 **Checklist:**
 
-<PersistentCheckbox id="via-machine-users-2" label="INFRA_ROOT_WRITE_TOKEN created under ci-user" />
-<PersistentCheckbox id="via-machine-users-3" label="ORG_REPO_ADMIN_TOKEN created under ci-user" />
+- [ ] INFRA_ROOT_WRITE_TOKEN created under ci-user
+- [ ] ORG_REPO_ADMIN_TOKEN created under ci-user
 
 #### INFRA_ROOT_WRITE_TOKEN
 
@@ -273,7 +273,7 @@ Invite `ci-user-read-only` to your `infrastructure-live-root` repository with re
 
 **Checklist:**
 
-<PersistentCheckbox id="via-machine-users-4" label="ci-read-only-user invited to infrastructure-live-root" /> 
+- [ ] ci-read-only-user invited to infrastructure-live-root
 
 **Create a token for ci-read-only-user**
 
@@ -281,7 +281,7 @@ Generate the following token for the `ci-read-only-user`:
 
 **Checklist:**
 
-<PersistentCheckbox id="via-machine-users-5" label="PIPELINES_READ_TOKEN created under ci-read-only-user" />
+- [ ] PIPELINES_READ_TOKEN created under ci-read-only-user
 
 #### PIPELINES_READ_TOKEN
 
@@ -297,7 +297,7 @@ Make sure both machine users are added to your team in Gruntwork’s GitHub Orga
 
 **Checklist:**
 
-<PersistentCheckbox id="via-machine-users-6" label="Machine users invited to Gruntwork organization" />
+- [ ] Machine users invited to Gruntwork organization
 
 ## Configure secrets for GitHub Actions
 
@@ -312,9 +312,10 @@ Since this guide uses secrets scoped to specific repositories, the token permiss
 
 **Checklist:**
 
-<PersistentCheckbox id="via-machine-users-5a" label="PIPELINES_READ_TOKEN added to organization secrets" />
-<PersistentCheckbox id="via-machine-users-5b" label="INFRA_ROOT_WRITE_TOKEN added to organization secrets" />
-<PersistentCheckbox id="via-machine-users-5c" label="ORG_REPO_ADMIN_TOKEN added to organization secrets" />
+- [ ] PIPELINES_READ_TOKEN added to organization secrets
+- [ ] INFRA_ROOT_WRITE_TOKEN added to organization secrets
+- [ ] ORG_REPO_ADMIN_TOKEN added to organization secrets
+
 <hr />
 
 1. Navigate to your top-level GitHub Organization and select the **Settings** tab.
@@ -373,11 +374,12 @@ For more details on creating and using GitHub Actions Organization secrets, refe
 
 **Checklist:**
 
-<PersistentCheckbox id="via-machine-users-6a" label="PIPELINES_READ_TOKEN added to infrastructure-live-root" />
-<PersistentCheckbox id="via-machine-users-6b" label="INFRA_ROOT_WRITE_TOKEN added to infrastructure-live-root" />
-<PersistentCheckbox id="via-machine-users-6c" label="ORG_REPO_ADMIN_TOKEN added to infrastructure-live-root" />
-<PersistentCheckbox id="via-machine-users-6d" label="PIPELINES_READ_TOKEN added to infrastructure-live-access-control" />
-<PersistentCheckbox id="via-machine-users-6e" label="ORG_REPO_ADMIN_TOKEN added to infrastructure-live-access-control" />
+- [ ] PIPELINES_READ_TOKEN added to infrastructure-live-root
+- [ ] INFRA_ROOT_WRITE_TOKEN added to infrastructure-live-root
+- [ ] ORG_REPO_ADMIN_TOKEN added to infrastructure-live-root
+- [ ] PIPELINES_READ_TOKEN added to infrastructure-live-access-control
+- [ ] ORG_REPO_ADMIN_TOKEN added to infrastructure-live-access-control
+
 <hr />
 
 Gruntwork Pipelines retrieves these secrets from GitHub Actions secrets configured in the repository. For instructions on creating repository Actions secrets, refer to [creating secrets for a repository](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
@@ -417,20 +419,25 @@ For more information on creating and using GitHub Actions Repository secrets, re
 </Tabs>
 
 </TabItem>
-<TabItem value="GitLab" label="GitLab">
+<TabItem value="gitlab" label="GitLab">
 
-For GitLab, Gruntwork Pipelines two CI variables. The first, the `PIPELINES_GITLAB_TOKEN` requires the `Developer`, `Maintainer` or `Owner` role and the scopes listed below. This token will be used to authenticate API calls and access repositories within your GitLab group. The second, the `PIPELINES_GITLAB_READ_TOKEN` will be used to access your own code within GitLab. If not set, Pipelines will default to the `CI_JOB_TOKEN` when accessing internal GitLab hosted code.
+For GitLab, Gruntwork Pipelines requires a couple of CI variables.
+
+- `PIPELINES_GITLAB_TOKEN` requires the `Developer`, `Maintainer` or `Owner` role and the scopes listed below. This token will be used to authenticate API calls and access repositories within your GitLab group.
+- `PIPELINES_GITLAB_READ_TOKEN` will be used to access your own code within GitLab. If not set, Pipelines will default to the `CI_JOB_TOKEN` when accessing internal GitLab hosted code.
+- `PIPELINES_GITLAB_ADMIN_TOKEN` (Enterprise customers only) will be used to create repositories within your GitLab group when provisioning new AWS accounts requiring a dedicated repository. This **MUST** be a Group Access Token but only set as a variable in your infrastructure-live-root's CI/CD variables.
 
 ### Creating the Access Token
 
-Gruntwork recommends [creating](https://docs.gitlab.com/user/project/settings/project_access_tokens/#create-a-project-access-token) two Project or Group Access Tokens as best practice:
+Gruntwork recommends [creating](https://docs.gitlab.com/user/project/settings/project_access_tokens/#create-a-project-access-token) separate Project or Group Access Tokens as best practice:
 
-| Token Name                      | Required Scopes                              | Required Role                   | Purpose                                                                      |
-| ------------------------------- | -------------------------------------------- | ------------------------------- | ---------------------------------------------------------------------------- |
-| **PIPELINES_GITLAB_TOKEN**      | `api` (and `ai_features` if using GitLab AI) | Developer, Maintainer, or Owner | Making API calls (e.g., creating comments on merge requests)                 |
-| **PIPELINES_GITLAB_READ_TOKEN** | `read_repository`                            | Any                             | Accessing GitLab repositories (e.g., your catalog or infrastructure modules) |
+| Token Name                       | Required Scopes                              | Required Role                   | Purpose                                                                                                            |
+| -------------------------------- | -------------------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **PIPELINES_GITLAB_TOKEN**       | `api` (and `ai_features` if using GitLab AI) | Developer, Maintainer, or Owner | Making API calls (e.g., creating comments on merge requests)                                                       |
+| **PIPELINES_GITLAB_READ_TOKEN**  | `read_repository`                            | Any                             | Accessing GitLab repositories (e.g., your catalog or infrastructure modules)                                       |
+| **PIPELINES_GITLAB_ADMIN_TOKEN** | `api`                                        | Maintainer, or Owner            | Creating repositories within your GitLab group when provisioning new AWS accounts requiring a dedicated repository |
 
-You may however generate a single token all scopes scopes if you prefer and use it for both purposes.
+You may however generate a single token with all scopes scopes if you prefer and use it for all purposes.
 
 These tokens will be stored in your CI/CD variables.
 
@@ -445,12 +452,13 @@ Set an expiration date according to your organization's security policies. We re
 
 **Checklist:**
 
-<PersistentCheckbox id="via-machine-users-gitlab-3" label="PIPELINES_GITLAB_TOKEN created" />
-<PersistentCheckbox id="via-machine-users-gitlab-4" label="PIPELINES_GITLAB_READ_TOKEN created" />
+- [ ] PIPELINES_GITLAB_TOKEN created
+- [ ] PIPELINES_GITLAB_READ_TOKEN created
+- [ ] PIPELINES_GITLAB_ADMIN_TOKEN created (Enterprise customers only and must be a Group Access Token)
 
 ### Configure CI/CD Variables
 
-Add the `PIPELINES_GITLAB_TOKEN` and `PIPELINES_GITLAB_READ_TOKEN` as CI/CD variables at the group or project level:
+Add the `PIPELINES_GITLAB_TOKEN` and `PIPELINES_GITLAB_READ_TOKEN` as CI/CD variables at the group or project level. Enterprise customers should set them at the group level so that provisioned repositories have access to them. `PIPELINES_GITLAB_ADMIN_TOKEN` should be set as a project-level variable in your infrastructure-live-root's CI/CD variables.
 
 1. Navigate to your GitLab group or project's **Settings > CI/CD**
 2. Expand the **Variables** section
@@ -458,13 +466,14 @@ Add the `PIPELINES_GITLAB_TOKEN` and `PIPELINES_GITLAB_READ_TOKEN` as CI/CD vari
 4. Mark the variables as **Masked**
 5. Leave both the **Protect variable** and **Expand variable reference** options unchecked
 6. Select the environments where this variable should be available
-7. Set the key to the name of the token e.g. `PIPELINES_GITLAB_TOKEN` or `PIPELINES_GITLAB_READ_TOKEN`
+7. Set the key to the name of the token e.g. `PIPELINES_GITLAB_TOKEN`, `PIPELINES_GITLAB_READ_TOKEN` or `PIPELINES_GITLAB_ADMIN_TOKEN`
 8. Set the value as the Personal Access Token generated in the [Creating the Access Token](#creating-the-access-token) section
 
 **Checklist:**
 
-<PersistentCheckbox id="via-machine-users-gitlab-5" label="PIPELINES_GITLAB_TOKEN added to CI/CD variables" />
-<PersistentCheckbox id="via-machine-users-gitlab-6" label="PIPELINES_GITLAB_READ_TOKEN added to CI/CD variables" />
+- [ ] PIPELINES_GITLAB_TOKEN added to CI/CD variables
+- [ ] PIPELINES_GITLAB_READ_TOKEN added to CI/CD variables
+- [ ] PIPELINES_GITLAB_ADMIN_TOKEN added to CI/CD variables
 
 :::caution
 Remember to update this token before it expires to prevent pipeline disruptions.

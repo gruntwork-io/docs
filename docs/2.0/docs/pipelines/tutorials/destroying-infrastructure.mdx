@@ -1,6 +1,6 @@
 # Destroying Infrastructure with Pipelines
 
-import CustomizableValue from '/src/components/CustomizableValue';
+import CustomizableValue from "/src/components/CustomizableValue"
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
@@ -27,7 +27,7 @@ This section explains how to destroy cloud resources using Pipelines and GitOps 
 
 ### Delete the infrastructure code
 
-<Tabs>
+<Tabs groupId="cloud" queryString="cloud">
 <TabItem value="aws" label="AWS" default>
 
 :::caution Permissions Required
@@ -44,9 +44,9 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
 
 1. Remove the folder containing the infrastructure code for the resource you want to destroy. For the S3 bucket example, delete the folder containing the S3 bucket code. Replace <CustomizableValue id="ACCOUNT_NAME" /> and <CustomizableValue id="REGION" /> with the appropriate values.
 
-    ```bash
-    rm -rf $$ACCOUNT_NAME$$/$$REGION$$/data-storage/s3
-    ```
+   ```bash
+   rm -rf $$ACCOUNT_NAME$$/$$REGION$$/data-storage/s3
+   ```
 
 2. Create a new branch, commit the changes, and push the branch to your repository.
 
@@ -65,9 +65,9 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
 
 1. Remove the folder containing the infrastructure code for the resources you want to destroy. For the Resource Group and Storage Account example, delete the folder containing all the resource group code. Replace <CustomizableValue id="SUBSCRIPTION_NAME" />, <CustomizableValue id="LOCATION" />, and <CustomizableValue id="RESOURCE_GROUP_NAME" /> with the appropriate values.
 
-    ```bash
-    rm -rf $$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$
-    ```
+   ```bash
+   rm -rf $$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$
+   ```
 
 2. Create a new branch, commit the changes, and push the branch to your repository.
 
@@ -94,7 +94,7 @@ Create a Merge Request (MR) for the branch you just pushed, targeting `main` (th
 
 Gruntwork Pipelines, via GitLab CI/CD, will detect the removal of the infrastructure unit's code and trigger a `plan` action in Pipelines. This action will display the destructive changes to be made to your cloud environment.
 
-Click the *View Pipeline Logs* link to see the complete output of the destroy plan.
+Click the _View Pipeline Logs_ link to see the complete output of the destroy plan.
 
 </TabItem>
 </Tabs>
@@ -107,7 +107,7 @@ Approve and merge the pull/merge request to trigger the apply action, permanentl
 
 Congratulations! You have successfully destroyed cloud resources using Gruntwork Pipelines and GitOps workflows.
 
-<Tabs>
+<Tabs groupId="cloud" queryString="cloud">
 <TabItem value="aws" label="AWS" default>
 
 To verify the S3 bucket has been destroyed, check the AWS Management Console and confirm the bucket no longer exists in the S3 service.
