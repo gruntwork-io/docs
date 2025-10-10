@@ -396,7 +396,7 @@ The process that we'll follow to get these resources ready for Pipelines is:
 1. Set up these bootstrap resources by creating some Terragrunt configurations in your `infrastructure-live` repository for bootstrapping Pipelines in a single Azure subscription
 2. Use Terragrunt to provision these resources in your Azure subscription
 3. Finalizing Terragrunt configurations using the bootstrap resources we just provisioned
-4. Pull the bootstrap resources into state, now that we have configured a remote state backend
+4. Pull the bootstrapped resources into state, now that we have configured a remote state backend
 5. (Optionally) Bootstrap additional Azure subscriptions until all your Azure subscriptions are ready for Pipelines
 
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
