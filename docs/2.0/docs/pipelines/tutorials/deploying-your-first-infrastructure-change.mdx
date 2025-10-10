@@ -59,7 +59,7 @@ This section covers creating a cloud storage resource using Pipelines and GitOps
     }
 
     include "root" {
-      path = find_in_parent_folders()
+      path = find_in_parent_folders("root.hcl")
     }
 
     inputs = {
