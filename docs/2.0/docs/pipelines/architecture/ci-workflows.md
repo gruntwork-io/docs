@@ -6,7 +6,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-<TabItem value="GitHub" label="GitHub">
+<TabItem value="github" label="GitHub">
 
 ```yml
 jobs:
@@ -15,7 +15,7 @@ jobs:
 ```
 
 </TabItem>
-<TabItem value="GitLab" label="GitLab">
+<TabItem value="gitlab" label="GitLab">
 
 ```yml
 include:
@@ -39,7 +39,7 @@ If you [fork the Gruntwork Workflows](https://docs.gruntwork.io/2.0/docs/pipelin
 ## Workflow dependencies
 
 <Tabs>
-<TabItem value="GitHub" label="GitHub">
+<TabItem value="github" label="GitHub">
 
 The `pipelines-workflows` repository includes the following reusable workflows:
 
@@ -70,7 +70,7 @@ If you are using [Gruntwork Account Factory](/2.0/docs/accountfactory/concepts/)
 - `pipelines.yml` - Uses `pipelines.yml`.
 
 </TabItem>
-<TabItem value="GitLab" label="GitLab">
+<TabItem value="gitlab" label="GitLab">
 
 Your `.gitlab-ci.yml` file will include the following workflow:
 
