@@ -30,6 +30,18 @@ This section explains how to destroy cloud resources using Pipelines and GitOps 
 <Tabs>
 <TabItem value="aws" label="AWS" default>
 
+:::caution Permissions Required
+
+By default, Pipelines is configured with the permissions needed to complete this tutorial. However, depending on your specific setup, you may need to adjust the IAM roles used by Pipelines to ensure they have the necessary permissions to destroy resources.
+
+The default Pipelines role has permissions to delete S3 buckets with names that start with `test-pipelines-`. If you're destroying resources with different naming conventions, you may need to update the IAM policy accordingly.
+
+:::tip
+The default `bootstrap` Terragrunt stack provided in the installation guide includes `plan_iam_policy` and `apply_iam_policy` values that can be configured to adjust the permissions granted to Pipelines.
+:::
+
+:::
+
 1. Remove the folder containing the infrastructure code for the resource you want to destroy. For the S3 bucket example, delete the folder containing the S3 bucket code. Replace <CustomizableValue id="ACCOUNT_NAME" /> and <CustomizableValue id="REGION" /> with the appropriate values.
 
     ```bash
@@ -40,6 +52,16 @@ This section explains how to destroy cloud resources using Pipelines and GitOps 
 
 </TabItem>
 <TabItem value="azure" label="Azure">
+
+:::caution Permissions Required
+
+By default, Pipelines is configured with the permissions needed to complete this tutorial. However, depending on your specific setup, you may need to adjust the role used by Pipelines to ensure it has the appropriate permissions to delete Resource Groups and Storage Accounts in your subscription.
+
+:::tip
+The default `bootstrap` Terragrunt stack provided in the installation guide includes `plan_custom_role_actions` and `apply_custom_role_actions` values that can be configured to adjust the permissions granted to Pipelines.
+:::
+
+:::
 
 1. Remove the folder containing the infrastructure code for the resources you want to destroy. For the Resource Group and Storage Account example, delete the folder containing all the resource group code. Replace <CustomizableValue id="SUBSCRIPTION_NAME" />, <CustomizableValue id="LOCATION" />, and <CustomizableValue id="RESOURCE_GROUP_NAME" /> with the appropriate values.
 
