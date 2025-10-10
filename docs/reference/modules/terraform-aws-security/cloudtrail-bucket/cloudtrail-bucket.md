@@ -9,21 +9,21 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.0.5" lastModifiedVersion="1.0.3"/>
+<VersionBadge repoTitle="Security Modules" version="1.1.0" lastModifiedVersion="1.0.3"/>
 
 # CloudTrail Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.5/modules/cloudtrail-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/cloudtrail-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.0.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an S3 bucket for storing CloudTrail data and a KMS Customer Master Key (CMK) for encrypting that
 data, including all the appropriate lifecycle, encryption, and permission settings for CloudTrail.
 
-This module is used under the hood in the [cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.5/modules/cloudtrail)
-and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.5/modules/account-baseline-root) modules.
+This module is used under the hood in the [cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/cloudtrail)
+and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/account-baseline-root) modules.
 
-It can also be used directly when configuring cross account access, for example when it is desirable to [have the central Cloudtrail S3 bucket exist outside of the management account.](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.5/modules/cloudtrail/core-concepts.md#multi-account-cloudtrail-setup-storing-the-cloudtrail-bucket-in-an-account-other-than-the-management-account)
+It can also be used directly when configuring cross account access, for example when it is desirable to [have the central Cloudtrail S3 bucket exist outside of the management account.](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/cloudtrail/core-concepts.md#multi-account-cloudtrail-setup-storing-the-cloudtrail-bucket-in-an-account-other-than-the-management-account)
 
 ## Sample Usage
 
@@ -38,7 +38,7 @@ It can also be used directly when configuring cross account access, for example 
 
 module "cloudtrail_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail-bucket?ref=v1.0.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail-bucket?ref=v1.1.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -214,7 +214,7 @@ module "cloudtrail_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail-bucket?ref=v1.0.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail-bucket?ref=v1.1.0"
 }
 
 inputs = {
@@ -923,11 +923,11 @@ The name of the S3 bucket where cloudtrail logs are delivered.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.5/modules/cloudtrail-bucket/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.5/modules/cloudtrail-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.0.5/modules/cloudtrail-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/cloudtrail-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/cloudtrail-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/cloudtrail-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9533bc68368dbd615d55e6c881a51d39"
+  "hash": "085fc5a668fab9067897c84ea8ba59bf"
 }
 ##DOCS-SOURCER-END -->
