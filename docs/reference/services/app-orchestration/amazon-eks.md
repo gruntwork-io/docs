@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.130.2" lastModifiedVersion="0.130.2"/>
+<VersionBadge version="0.130.5" lastModifiedVersion="0.130.4"/>
 
 # Amazon EKS
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.2/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.2/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.2/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.2/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.2/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.2/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -116,7 +116,7 @@ To add and manage additional worker groups, refer to the [eks-workers module](/r
 
 module "eks_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.130.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.130.5"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -733,6 +733,12 @@ module "eks_cluster" {
   # Default value for min_size field of managed_node_group_configurations.
   node_group_default_min_size = 1
 
+  # Default value for the node_repair_config field of
+  # managed_node_group_configurations. Any map entry that does not specify
+  # node_repair_config will use this value. Node auto repair is disabled by
+  # default.
+  node_group_default_node_repair_config = null
+
   # Default value for subnet_ids field of managed_node_group_configurations.
   node_group_default_subnet_ids = null
 
@@ -969,7 +975,7 @@ module "eks_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.130.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.130.5"
 }
 
 inputs = {
@@ -1588,6 +1594,12 @@ inputs = {
 
   # Default value for min_size field of managed_node_group_configurations.
   node_group_default_min_size = 1
+
+  # Default value for the node_repair_config field of
+  # managed_node_group_configurations. Any map entry that does not specify
+  # node_repair_config will use this value. Node auto repair is disabled by
+  # default.
+  node_group_default_node_repair_config = null
 
   # Default value for subnet_ids field of managed_node_group_configurations.
   node_group_default_subnet_ids = null
@@ -3682,6 +3694,9 @@ Any types represent complex values of variable type. For details, please consult
                                               maximum number of Pods allowed to be scheduled on the node. When null,
                                               the max will be automatically calculated based on the availability of
                                               total IP addresses to the instance type.
+   - node_repair_config    object           : (Defaults to value from var.node_group_default_node_repair_config) The node 
+                                               auto repair configuration for the node group. Node auto repair is disabled 
+                                               by default.
    - http_put_response_hop_limit  number    : (Defaults to value from
                                               var.node_group_default_http_put_response_hop_limit) The desired
                                               HTTP PUT response hop limit for instance metadata requests from the
@@ -3711,6 +3726,9 @@ Any types represent complex values of variable type. For details, please consult
    - name     string  : The Name of the Launch Template to use. One of ID or Name should be provided.
    - id       string  : The ID of the Launch Template to use. One of ID or Name should be provided.
    - version  string  : The version of the Launch Template to use.
+  
+   Structure of the node_repair_config object:
+   - enabled  bool : Specifies whether to enable node auto repair for the node group. Node auto repair is disabled by default.
   
    Example:
    managed_node_group_configurations = {
@@ -3842,6 +3860,24 @@ Default value for min_size field of managed_node_group_configurations.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_node_repair_config" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Default value for the node_repair_config field of managed_node_group_configurations. Any map entry that does not specify node_repair_config will use this value. Node auto repair is disabled by default.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    enabled = bool
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="node_group_default_subnet_ids" requirement="optional" type="list(string)">
@@ -4345,11 +4381,11 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.2/modules/services/eks-cluster/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.2/modules/services/eks-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.2/modules/services/eks-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/services/eks-cluster/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/services/eks-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "970de3667914715d99ac5fd871e5103c"
+  "hash": "07edd688172503e81b85bd9a8b8eb7af"
 }
 ##DOCS-SOURCER-END -->
