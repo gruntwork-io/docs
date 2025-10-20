@@ -190,7 +190,7 @@ with the full list of actions in [pipelines-actions v4.0.0](https://github.com/g
 
 :::note Progress Checklist
 
-- [ ] (Only if your organization requires) Each pipelines action from `pipelines-actions/.github/actions` has been added to my organization's GitHub Actions allowlist
+- [ ] (Only if your organization requires) Each pipelines action from `pipelines-actions/.github/actions` has been added to the organization's GitHub Actions allowlist
 
 :::
 
