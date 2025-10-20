@@ -2,8 +2,32 @@ import PersistentCheckbox from '@site/src/components/PersistentCheckbox';
 
 # Upgrading Pipelines GitHub Workflows From v3 to v4
 
-To upgrade Pipelines from v3 to v4, perform the following changes in each
-repository that includes the Gruntwork Pipelines Workflows.
+## What's new in Pipelines v4
+Pipelines v4 is nearly a full rewrite of the pipelines implementation within GitHub.  Prior to v4 the bulk of the "glue" logic to stitch together various components of the workflow was written in bash. In v4 we've replaced the majority of the bash code with golang code which is both faster, more maintainable and has significantly improved test coverage.  v4 also includes a handful of new features:
+
+### Run-All Log Parsing
+Pipelines will now request a custom log format from Terragrunt (via `TG_LOG_CUSTOM_FORMAT`) and then parse the resulting output into different streams, and present each Unit's output independently and deinterlaced in the pipelines comment engine.
+
+### Support for newer Terragrunt Versions (through to 1.0)
+Pipelines v3 has maximum Terragrunt version of 0.84.  Pipelines v4 removes this restriction and will support all Terragrunt versions from `0.86.3` through to 1.0+.
+
+### Azure Support
+Pipelines v4 includes support for Azure OIDC and state storage.  New configuration options are now available in [HCL configuration](https://docs.gruntwork.io/2.0/reference/pipelines/configurations-as-code/api#azure_oidc-block-attributes) for Azure.
+
+### Improved / Faster commenting engine
+Pipelines v4 includes a rewrite of several components of the commenting engine which should result in less time spent calculating and  posting PR comments.
+
+### Improved Drift Detection filters
+Pipelines v4 includes [a more expressive syntax](https://docs.gruntwork.io/2.0/docs/pipelines/guides/running-drift-detection#drift-detection-filter) for filters when triggering drift detection.
+
+### Removal of several feature flags
+The following [feature flags](https://docs.gruntwork.io/2.0/reference/pipelines/feature-flags) are now all *enabled* by default:
+
+* PIPELINES_FEATURE_EXPERIMENT_AGGRESSIVE_CONSOLIDATION
+* PIPELINES_FEATURE_EXPERIMENT_COLOCATED_FILE_UNIT_CHANGE_DETECTION
+* PIPELINES_FEATURE_EXPERIMENT_MINIMIZE_BLAST_RADIUS
+
+# Migration Guide
 
 ## Updating Terragrunt Version
 
