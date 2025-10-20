@@ -58,26 +58,22 @@ for more details.
 
 :::note Progress Checklist
 
-- [ ] Root Terragrunt File Renamed
+- [ ] Root `terragrunt.hcl` File Renamed to `root.hcl`
+- [ ] `find_in_parent_folders()` updated to `find_in_parent_folders("root.hcl")
 
 :::
 
 ## Replace YML Config with HCL Config
 
-:::note
-Repositories using only YML configuration will still function with Pipelines v4,
-but adding any HCL configuration will prevent the YML from having an effect.
+Pipelines v3 supported two configuration languages - YML and HCL.  With Pipelines v4, YML configuration is deprecated and we encourage all users to migrate their configuration to HCL as part of the upgrade to v4.  HCL is required in v4 for using Gruntwork Account Factory. The presence of any HCL configurations will cause pipelines to ignore YML configurations.  The next major release will remove YML support entirely.
 
-In the next major release YML configuration will have no effect and HCL will be
-required.
-:::
-
-YML configurations(in the `.gruntwork/config.yml` file) are officially deprecated in Pipelines v4.
-Migrating to HCL configuration requires replacing the `config.yml` file with HCL files in the `.gruntwork` directory.
+Migrating to HCL configuration requires replacing the `config.yml` file with HCL files in the `.gruntwork` directory.  Below are sample HCL configurations to get you started.
 
 ### Repository Configuration
 
-We recommend adding the following files to your repository.
+The `repository` block contains settings for the entire repository. See the
+[Repository Block Attributes](/2.0/reference/pipelines/configurations-as-code/api#repository-block-attributes)
+to find which of your existing YML configurations need to be added here.
 
 ```hcl title=".gruntwork/repository.hcl"
 # Configurations applicable to the entire repository, see: https://docs.gruntwork.io/2.0/reference/pipelines/configurations-as-code/api#repository-block
@@ -93,11 +89,10 @@ repository {
 
 ```
 
-The `repository` block contains settings for the entire repository. See the
-[Repository Block Attributes](/2.0/reference/pipelines/configurations-as-code/api#repository-block-attributes)
-to find which of your existing YML configurations need to be added here.
 
 ### AWS Accounts Configuration
+
+The `accounts.hcl` file is a helper to read from the root `accounts.yml` file into your HCL configuration.
 
 ```hcl title=".gruntwork/accounts.hcl"
 # AWS account configurations that are usable by the entire repository, see: https://docs.gruntwork.io/2.0/reference/pipelines/configurations-as-code/api#aws-block
@@ -109,7 +104,6 @@ aws {
 }
 ```
 
-The `accounts.hcl` file is a helper to read from the root `accounts.yml` file into your HCL configuration.
 
 ### Environments Configuration
 
@@ -169,7 +163,7 @@ For Enterprise customers using Account Factory: see the [Account Vending Configu
 
 :::note Progress Checklist
 
-- [ ] YML Config Replaced
+- [ ] YML Config Replaced with HCL
 
 :::
 
