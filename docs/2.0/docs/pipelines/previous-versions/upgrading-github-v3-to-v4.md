@@ -89,6 +89,11 @@ repository {
 
 ```
 
+:::note Progress Checklist
+
+- [ ] `.gruntwork/repository.hcl` created 
+
+:::
 
 ### AWS Accounts Configuration
 
@@ -104,6 +109,11 @@ aws {
 }
 ```
 
+:::note Progress Checklist
+
+- [ ] `.gruntwork/accounts.hcl` created 
+
+:::
 
 ### Environments Configuration
 
@@ -131,14 +141,20 @@ environment "management" {
 :::warning
 Note the role-name in the `apply_iam_role_arn` and `plan_iam_role_arn` role ARN values. The role-names should match the Pipelines roles you provisioned in your AWS accounts.
 Typically, these roles are:
-- `root-pipelines-*` in the `infrastructure-live-root` repository
-- `access-control-pipelines-*` in an `infrastructure-live-access-control` repository
-- `delegated-pipelines-*` in an `infrastructure-live-delegated` repository
+- `root-pipelines-plan` and `root-pipelines-apply`  in the `infrastructure-live-root` repository
+- `access-control-pipelines-plan` and ``access-control-pipelines-apply` in an `infrastructure-live-access-control` repository
+- `delegated-pipelines-plan` and `delegated-pipelines-apply` in an `infrastructure-live-delegated` repository
 
-Confirm the values by looking at your Infrastructure as Code for those IAM roles.
+Confirm the values by looking at your Infrastructure as Code (typically under `_envcommon/landingzone/<rolename>.hcl` in `infrastructure-live-root` or `infrastructure-live-access-control`) for those IAM roles.
 :::
 
 **Repeat this for each environment that needs to be authenticated.**
+
+:::note Progress Checklist
+
+- [ ] `.gruntwork/environment-ACCOUNTNAME.hcl` created for **each** AWS Account in your `accounts.yml` file
+
+:::
 
 ### Account Factory Configuration
 
@@ -163,7 +179,7 @@ For Enterprise customers using Account Factory: see the [Account Vending Configu
 
 :::note Progress Checklist
 
-- [ ] YML Config Replaced with HCL
+- [ ] `.gruntwork/account-factory.hcl` created 
 
 :::
 
