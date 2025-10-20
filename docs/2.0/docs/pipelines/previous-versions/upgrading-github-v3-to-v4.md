@@ -183,20 +183,20 @@ For Enterprise customers using Account Factory: see the [Account Vending Configu
 
 :::
 
-## Allowlisting Actions
+## Updating the GitHub Actions Allowlist
 
-If your organization maintains an allowlist of GitHub actions, update the allowlist
+If your organization maintains an [allowlist of GitHub actions](https://docs.github.com/en/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization#allowing-select-actions-and-reusable-workflows-to-run), update the allowlist
 with the full list of actions in [pipelines-actions v4.0.0](https://github.com/gruntwork-io/pipelines-actions/tree/v4.0.0/.github/actions)
 
 :::note Progress Checklist
 
-- [ ] Actions Allowlisted
+- [ ] (Only if your organization requires) Each pipelines action from `pipelines-actions/.github/actions` has been added to my organization's GitHub Actions allowlist
 
 :::
 
-## Pipelines Workflow
+## Update the Pipelines Workflow file
 
-In your infrastructure-live repository, update the `.github/workflows/pipelines.yml` file as follows:
+In each infrastructure-live repository (including any `-access-control` or `-delegated` repositories), update the `.github/workflows/pipelines.yml` file as follows:
 
 ### Add workflow permission
 
@@ -204,7 +204,7 @@ Update the Pipelines Workflow in the repository to add `actions: read`; required
 
 :::note Progress Checklist
 
-- [ ] Updated Pipelines Workflow to add `actions: read` permission
+- [ ] Updated Pipelines Workflow `pipelines.yml` to add `actions: read` permission
 
 :::
 
@@ -215,31 +215,31 @@ Update the `uses:` field of the GruntworkPipelines job to reference `@v4`
 
 :::note Progress Checklist
 
-- [ ] Updated Pipelines Workflow to reference `@v4`
+- [ ] Updated Pipelines Workflow `pipelines.yml` to reference `@v4`
 
 :::
 
 ### Remove PipelinesPassed job
 
 The pipelines workflow now runs a `GruntworkPipelines / Pipelines Status Check`
-job which can be used for Required Status Checks. Remove the PipelinesPassed job
-and update any Required Status Checks to use `GruntworkPipelines / Pipelines Status Check`.
+job which can be used for Required Status Checks. As a result the `PipelinesPassed` job is no longer required.
+Remove the PipelinesPassed job and update any Required Status Checks to use `GruntworkPipelines / Pipelines Status Check`.
 
 :::note Progress Checklist
 
-- [ ] Removed PipelinesPassed job
+- [ ] Removed `PipelinesPassed` job from `pipelines.yml`
 
 :::
 
 ## Drift Detection Workflow
 
-In your infrastructure-live repository, update the `.github/workflows/pipelines-drift-detection.yml` file as follows:
+In each infrastructure-live repository (including any `-access-control` or `-delegated` repositories), update the `.github/workflows/pipelines-drift-detection.yml` file as follows:
 
 ### Update Inputs
 
 The inputs for Drift Detection have been renamed.
 
-Update the `workflow_dispatch` section with the new inputs:
+Update the `workflow_dispatch` section and replace all the inputs with the below new inputs:
 
 ```
   workflow_dispatch:
@@ -253,7 +253,7 @@ Update the `workflow_dispatch` section with the new inputs:
         type: string
 ```
 
-Update the GruntworkPipelines job to use these inputs:
+Update the GruntworkPipelines job to use the new inputs:
 
 ```
     with:
@@ -261,7 +261,13 @@ Update the GruntworkPipelines job to use these inputs:
       pipelines_drift_detection_branch: ${{ inputs.pipelines_drift_detection_branch }}
 ```
 
-The syntax for the filter in Drift Detection has changed. Refer to the [Filter Reference](/2.0/docs/pipelines/guides/running-drift-detection#drift-detection-filter)
+Note that the syntax for the filter input in Drift Detection has changed. Refer to the [Filter Reference](/2.0/docs/pipelines/guides/running-drift-detection#drift-detection-filter) for a full description of the new and expanded capabilities.
+
+:::note Progress Checklist
+
+- [ ] Updated inputs and reference to inputs in `pipelines-drift-detection.yml`
+
+:::
 
 ### Update Drift Detection GruntworkPipelines uses version
 
@@ -269,19 +275,19 @@ Update the `uses:` field of the GruntworkPipelines job to reference `@v4`
 
 :::note Progress Checklist
 
-- [ ] Drift Detection Uses @v4
+- [ ] Updated `uses` reference in `pipelines-drift-detection.yml`
 
 :::
 
 ## Unlock Workflow
 
-In your infrastructure-live repository, update the `.github/workflows/pipelines-unlock.yml` file as follows:
+In each infrastructure-live repository (including any `-access-control` or `-delegated` repositories), update the `.github/workflows/pipelines-unlock.yml` file as follows:
 
 ### Update Inputs
 
 The inputs for Unlock have been renamed.
 
-Update the `workflow_dispatch` section with the new inputs:
+Update the `workflow_dispatch` section and replace all the inputs with the below new inputs:
 
 ```
     inputs:
@@ -303,7 +309,7 @@ Update the `workflow_dispatch` section with the new inputs:
         type: boolean
 ```
 
-Update the GruntworkPipelines job to use these inputs:
+Update the GruntworkPipelines job to use the updated inputs:
 
 ```
       lock_id: ${{ inputs.lock_id }}
@@ -312,13 +318,19 @@ Update the GruntworkPipelines job to use these inputs:
       unlock_all: ${{ inputs.unlock_all }}
 ```
 
+:::note Progress Checklist
+
+- [ ] Updated inputs and reference to inputs in `pipelines-unlock.yml`
+
+:::
+
 ### Update Unlock GruntworkPipelines uses version
 
 Update the `uses:` field of the GruntworkPipelines job to reference `@v4`
 
 :::note Progress Checklist
 
-- [ ] Pipelines Unlock Uses @v4
+- [ ] Updated `uses` reference in `pipelines-unlock.yml`
 
 :::
 
