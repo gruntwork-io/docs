@@ -2,7 +2,7 @@ import PersistentCheckbox from '@site/src/components/PersistentCheckbox';
 
 # Upgrading Pipelines GitHub Workflows From v3 to v4
 
-## What's new in Pipelines v4
+## What's new in Pipelines GitHub v4
 Pipelines v4 is nearly a full rewrite of the pipelines implementation within GitHub.  Prior to v4 the bulk of the "glue" logic to stitch together various components of the workflow was written in bash. In v4 we've replaced the majority of the bash code with golang code which is both faster, more maintainable and has significantly improved test coverage.  v4 also includes a handful of new features:
 
 ### Run-All Log Parsing
