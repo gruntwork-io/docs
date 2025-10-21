@@ -22,7 +22,7 @@ application](https://github.com/kubernetes-incubator/external-dns) on an EKS clu
 Hosted Zones to point DNS records to [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 endpoints.
 
-This module uses the community helm chart, with a set of best practices input.
+This module uses the official [Kubernetes SIGs external-dns helm chart](https://github.com/kubernetes-sigs/external-dns/tree/master/charts/external-dns), with a set of best practices input.
 
 ## How does this work?
 
@@ -183,14 +183,14 @@ module "eks_k_8_s_external_dns" {
   # 'external-dns' but may differ in the case of overriding the repository URL.
   external_dns_chart_name = "external-dns"
 
-  # Helm chart repository URL to obtain the external-dns chart from. Useful when
-  # using Bitnami charts that are older than 6 months due to Bitnami's lifecycle
-  # policy which removes older chart from the main index.
-  external_dns_chart_repository_url = "https://charts.bitnami.com/bitnami"
+  # Helm chart repository URL to obtain the external-dns chart from. Uses the
+  # official Kubernetes SIGs upstream chart by default.
+  external_dns_chart_repository_url = "https://kubernetes-sigs.github.io/external-dns/"
 
   # The version of the helm chart to use. Note that this is different from the
-  # app/container version.
-  external_dns_chart_version = "6.12.2"
+  # app/container version. This now defaults to the Kubernetes SIGs chart
+  # version.
+  external_dns_chart_version = "1.15.0"
 
   # A map of custom tags to apply to the External DNS Fargate Profile IAM Role
   # if enabled. The key is the tag name and the value is the tag value.
@@ -212,9 +212,9 @@ module "eks_k_8_s_external_dns" {
   image_registry = null
 
   # The container image repository to pull the images from. This allows
-  # overriding the default image repository for external-dns. For example,
-  # bitnamilegacy/external-dns.
-  image_repository = "bitnamilegacy/external-dns"
+  # overriding the default image repository for external-dns. When null, uses
+  # the chart's default image repository.
+  image_repository = null
 
   # Which format to output external-dns logs in (options: text, json)
   log_format = "text"
@@ -387,14 +387,14 @@ inputs = {
   # 'external-dns' but may differ in the case of overriding the repository URL.
   external_dns_chart_name = "external-dns"
 
-  # Helm chart repository URL to obtain the external-dns chart from. Useful when
-  # using Bitnami charts that are older than 6 months due to Bitnami's lifecycle
-  # policy which removes older chart from the main index.
-  external_dns_chart_repository_url = "https://charts.bitnami.com/bitnami"
+  # Helm chart repository URL to obtain the external-dns chart from. Uses the
+  # official Kubernetes SIGs upstream chart by default.
+  external_dns_chart_repository_url = "https://kubernetes-sigs.github.io/external-dns/"
 
   # The version of the helm chart to use. Note that this is different from the
-  # app/container version.
-  external_dns_chart_version = "6.12.2"
+  # app/container version. This now defaults to the Kubernetes SIGs chart
+  # version.
+  external_dns_chart_version = "1.15.0"
 
   # A map of custom tags to apply to the External DNS Fargate Profile IAM Role
   # if enabled. The key is the tag name and the value is the tag value.
@@ -416,9 +416,9 @@ inputs = {
   image_registry = null
 
   # The container image repository to pull the images from. This allows
-  # overriding the default image repository for external-dns. For example,
-  # bitnamilegacy/external-dns.
-  image_repository = "bitnamilegacy/external-dns"
+  # overriding the default image repository for external-dns. When null, uses
+  # the chart's default image repository.
+  image_repository = null
 
   # Which format to output external-dns logs in (options: text, json)
   log_format = "text"
@@ -522,6 +522,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.1/modules/eks-k8s-external-dns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "87493763aab683f4316f9a0809ce74b4"
+  "hash": "0094342b2f2601ac0c184041da089296"
 }
 ##DOCS-SOURCER-END -->
