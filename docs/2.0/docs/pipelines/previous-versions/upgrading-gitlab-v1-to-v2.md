@@ -3,6 +3,31 @@ import TabItem from '@theme/TabItem';
 
 # Upgrading Pipelines GitLab Workflows From v1 to v2
 
+## What's new in Pipelines GitLab v2
+
+### Run-All Log Parsing
+Pipelines will now request a custom log format from Terragrunt (via `TG_LOG_CUSTOM_FORMAT`) and then parse the resulting output into different streams, and present each Unit's output independently and deinterlaced in the pipelines comment engine.
+
+### Support for newer Terragrunt Versions (through to 1.0)
+Pipelines GitLab v1 has a maximum Terragrunt version of 0.84.  Pipelines GitLab v2 removes this restriction and will support all Terragrunt versions from `0.86.3` through to 1.0+.
+
+### Azure Support
+Pipelines GitLab v2 includes support for Azure OIDC and state storage.  New configuration options are now available in [HCL configuration](https://docs.gruntwork.io/2.0/reference/pipelines/configurations-as-code/api#azure_oidc-block-attributes) for Azure.
+
+### Drift Detection
+Pipelines GitLab v2 ports over our implementation of [Drift Detection](https://docs.gruntwork.io/2.0/docs/pipelines/concepts/drift-detection) from GitHub and is now available and at parity in GitLab
+
+### Pipelines Unlock
+Pipelines GitLab v2 includes a new feature to [unlock state locks](https://docs.gruntwork.io/2.0/docs/pipelines/guides/unlock).
+
+### Removal of several feature flags
+The following [feature flags](https://docs.gruntwork.io/2.0/reference/pipelines/feature-flags) are now all *enabled* by default:
+
+* PIPELINES_FEATURE_EXPERIMENT_AGGRESSIVE_CONSOLIDATION
+* PIPELINES_FEATURE_EXPERIMENT_COLOCATED_FILE_UNIT_CHANGE_DETECTION
+* PIPELINES_FEATURE_EXPERIMENT_MINIMIZE_BLAST_RADIUS
+
+# Migration Guide
 To upgrade Pipelines from v1 to v2, perform the following changes in each
 repository that includes the Gruntwork Pipelines Workflows.
 

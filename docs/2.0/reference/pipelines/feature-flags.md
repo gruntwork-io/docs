@@ -11,7 +11,10 @@ Pipelines supports optional feature flags that allow you to enable or disable sp
 Enables all Pipelines experiment flags.
 </li>
 <li>
-**Default Value**: Disabled
+**Default Value in Pipelines GitHub v3/GitLab v1**: Disabled
+</li>
+<li>
+**Default Value in Pipelines GitHub v4+/GitLab v2+**: Enabled
 </li>
 <li>
 **How to Enable**: Set to `"true"`
@@ -26,7 +29,10 @@ Enables Pipelines to consolidate as many Terragrunt plan/apply changes as possib
 This behavior will likely become the default in a major release of Pipelines but is currently opt-in due to being a breaking change to functionality.
 </li>
 <li>
-**Default Value**: Disabled
+**Default Value in Pipelines GitHub v3/GitLab v1**: Disabled
+</li>
+<li>
+**Default Value in Pipelines GitHub v4+/GitLab v2+**: Enabled
 </li>
 <li>**How to Enable**: Set to `"true"`</li>
 </ul>
@@ -48,7 +54,10 @@ When this flag is enabled Pipelines will detect changes to `dir1/myvars.json` as
 This behavior will likely become the default in a major release of Pipelines but is currently opt-in due to being a breaking change to functionality.
 </li>
 <li>
-**Default Value**: Disabled
+**Default Value in Pipelines GitHub v3/GitLab v1**: Disabled
+</li>
+<li>
+**Default Value in Pipelines GitHub v4+/GitLab v2+**: Enabled
 </li>
 <li>
 **How to Enable**: Set to `"true"`

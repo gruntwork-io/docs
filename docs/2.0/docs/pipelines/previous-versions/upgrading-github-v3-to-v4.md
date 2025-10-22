@@ -2,8 +2,32 @@ import PersistentCheckbox from '@site/src/components/PersistentCheckbox';
 
 # Upgrading Pipelines GitHub Workflows From v3 to v4
 
-To upgrade Pipelines from v3 to v4, perform the following changes in each
-repository that includes the Gruntwork Pipelines Workflows.
+## What's new in Pipelines GitHub v4
+Pipelines v4 is nearly a full rewrite of the pipelines implementation within GitHub.  Prior to v4 the bulk of the "glue" logic to stitch together various components of the workflow was written in bash. In v4 we've replaced the majority of the bash code with golang code which is both faster, more maintainable and has significantly improved test coverage.  v4 also includes a handful of new features:
+
+### Run-All Log Parsing
+Pipelines will now request a custom log format from Terragrunt (via `TG_LOG_CUSTOM_FORMAT`) and then parse the resulting output into different streams, and present each Unit's output independently and deinterlaced in the pipelines comment engine.
+
+### Support for newer Terragrunt Versions (through to 1.0)
+Pipelines v3 has maximum Terragrunt version of 0.84.  Pipelines v4 removes this restriction and will support all Terragrunt versions from `0.86.3` through to 1.0+.
+
+### Azure Support
+Pipelines v4 includes support for Azure OIDC and state storage.  New configuration options are now available in [HCL configuration](https://docs.gruntwork.io/2.0/reference/pipelines/configurations-as-code/api#azure_oidc-block-attributes) for Azure.
+
+### Improved / Faster commenting engine
+Pipelines v4 includes a rewrite of several components of the commenting engine which should result in less time spent calculating and  posting PR comments.
+
+### Improved Drift Detection filters
+Pipelines v4 includes [a more expressive syntax](https://docs.gruntwork.io/2.0/docs/pipelines/guides/running-drift-detection#drift-detection-filter) for filters when triggering drift detection.
+
+### Removal of several feature flags
+The following [feature flags](https://docs.gruntwork.io/2.0/reference/pipelines/feature-flags) are now all *enabled* by default:
+
+* PIPELINES_FEATURE_EXPERIMENT_AGGRESSIVE_CONSOLIDATION
+* PIPELINES_FEATURE_EXPERIMENT_COLOCATED_FILE_UNIT_CHANGE_DETECTION
+* PIPELINES_FEATURE_EXPERIMENT_MINIMIZE_BLAST_RADIUS
+
+# Migration Guide
 
 ## Updating Terragrunt Version
 
@@ -58,26 +82,22 @@ for more details.
 
 :::note Progress Checklist
 
-- [ ] Root Terragrunt File Renamed
+- [ ] Root `terragrunt.hcl` file renamed to `root.hcl`
+- [ ] `find_in_parent_folders()` updated to `find_in_parent_folders("root.hcl")
 
 :::
 
 ## Replace YML Config with HCL Config
 
-:::note
-Repositories using only YML configuration will still function with Pipelines v4,
-but adding any HCL configuration will prevent the YML from having an effect.
+Pipelines v3 supported two configuration languages - YML and HCL.  With Pipelines v4, YML configuration is deprecated and we encourage all users to migrate their configuration to HCL as part of the upgrade to v4.  HCL is required in v4 for using Gruntwork Account Factory. The presence of any HCL configurations will cause pipelines to ignore YML configurations.  The next major release will remove YML support entirely.
 
-In the next major release YML configuration will have no effect and HCL will be
-required.
-:::
-
-YML configurations(in the `.gruntwork/config.yml` file) are officially deprecated in Pipelines v4.
-Migrating to HCL configuration requires replacing the `config.yml` file with HCL files in the `.gruntwork` directory.
+Migrating to HCL configuration requires replacing the `config.yml` file with HCL files in the `.gruntwork` directory.  Below are sample HCL configurations to get you started.
 
 ### Repository Configuration
 
-We recommend adding the following files to your repository.
+The `repository` block contains settings for the entire repository. See the
+[Repository Block Attributes](/2.0/reference/pipelines/configurations-as-code/api#repository-block-attributes)
+to find which of your existing YML configurations need to be added here.
 
 ```hcl title=".gruntwork/repository.hcl"
 # Configurations applicable to the entire repository, see: https://docs.gruntwork.io/2.0/reference/pipelines/configurations-as-code/api#repository-block
@@ -93,11 +113,15 @@ repository {
 
 ```
 
-The `repository` block contains settings for the entire repository. See the
-[Repository Block Attributes](/2.0/reference/pipelines/configurations-as-code/api#repository-block-attributes)
-to find which of your existing YML configurations need to be added here.
+:::note Progress Checklist
+
+- [ ] `.gruntwork/repository.hcl` created 
+
+:::
 
 ### AWS Accounts Configuration
+
+The `accounts.hcl` file is a helper to read from the root `accounts.yml` file into your HCL configuration.
 
 ```hcl title=".gruntwork/accounts.hcl"
 # AWS account configurations that are usable by the entire repository, see: https://docs.gruntwork.io/2.0/reference/pipelines/configurations-as-code/api#aws-block
@@ -109,7 +133,11 @@ aws {
 }
 ```
 
-The `accounts.hcl` file is a helper to read from the root `accounts.yml` file into your HCL configuration.
+:::note Progress Checklist
+
+- [ ] `.gruntwork/accounts.hcl` created 
+
+:::
 
 ### Environments Configuration
 
@@ -137,14 +165,20 @@ environment "management" {
 :::warning
 Note the role-name in the `apply_iam_role_arn` and `plan_iam_role_arn` role ARN values. The role-names should match the Pipelines roles you provisioned in your AWS accounts.
 Typically, these roles are:
-- `root-pipelines-*` in the `infrastructure-live-root` repository
-- `access-control-pipelines-*` in an `infrastructure-live-access-control` repository
-- `delegated-pipelines-*` in an `infrastructure-live-delegated` repository
+- `root-pipelines-plan` and `root-pipelines-apply`  in the `infrastructure-live-root` repository
+- `access-control-pipelines-plan` and ``access-control-pipelines-apply` in an `infrastructure-live-access-control` repository
+- `delegated-pipelines-plan` and `delegated-pipelines-apply` in an `infrastructure-live-delegated` repository
 
-Confirm the values by looking at your Infrastructure as Code for those IAM roles.
+Confirm the values by looking at your Infrastructure as Code (typically under `_envcommon/landingzone/<rolename>.hcl` in `infrastructure-live-root` or `infrastructure-live-access-control`) for those IAM roles.
 :::
 
 **Repeat this for each environment that needs to be authenticated.**
+
+:::note Progress Checklist
+
+- [ ] `.gruntwork/environment-ACCOUNTNAME.hcl` created for **each** AWS Account in your `accounts.yml` file
+
+:::
 
 ### Account Factory Configuration
 
@@ -169,24 +203,24 @@ For Enterprise customers using Account Factory: see the [Account Vending Configu
 
 :::note Progress Checklist
 
-- [ ] YML Config Replaced
+- [ ] `.gruntwork/account-factory.hcl` created 
 
 :::
 
-## Allowlisting Actions
+## Updating the GitHub Actions Allowlist
 
-If your organization maintains an allowlist of GitHub actions, update the allowlist
+If your organization maintains an [allowlist of GitHub actions](https://docs.github.com/en/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization#allowing-select-actions-and-reusable-workflows-to-run), update the allowlist
 with the full list of actions in [pipelines-actions v4.0.0](https://github.com/gruntwork-io/pipelines-actions/tree/v4.0.0/.github/actions)
 
 :::note Progress Checklist
 
-- [ ] Actions Allowlisted
+- [ ] (Only if your organization requires) Each pipelines action from `pipelines-actions/.github/actions` has been added to the organization's GitHub Actions allowlist
 
 :::
 
-## Pipelines Workflow
+## Update the Pipelines Workflow file
 
-In your infrastructure-live repository, update the `.github/workflows/pipelines.yml` file as follows:
+In each infrastructure-live repository (including any `-access-control` or `-delegated` repositories), update the `.github/workflows/pipelines.yml` file as follows:
 
 ### Add workflow permission
 
@@ -194,7 +228,7 @@ Update the Pipelines Workflow in the repository to add `actions: read`; required
 
 :::note Progress Checklist
 
-- [ ] Updated Pipelines Workflow to add `actions: read` permission
+- [ ] Updated Pipelines Workflow `pipelines.yml` to add `actions: read` permission
 
 :::
 
@@ -205,31 +239,31 @@ Update the `uses:` field of the GruntworkPipelines job to reference `@v4`
 
 :::note Progress Checklist
 
-- [ ] Updated Pipelines Workflow to reference `@v4`
+- [ ] Updated Pipelines Workflow `pipelines.yml` to reference `@v4`
 
 :::
 
 ### Remove PipelinesPassed job
 
 The pipelines workflow now runs a `GruntworkPipelines / Pipelines Status Check`
-job which can be used for Required Status Checks. Remove the PipelinesPassed job
-and update any Required Status Checks to use `GruntworkPipelines / Pipelines Status Check`.
+job which can be used for Required Status Checks. As a result the `PipelinesPassed` job is no longer required.
+Remove the PipelinesPassed job and update any Required Status Checks to use `GruntworkPipelines / Pipelines Status Check`.
 
 :::note Progress Checklist
 
-- [ ] Removed PipelinesPassed job
+- [ ] Removed `PipelinesPassed` job from `pipelines.yml`
 
 :::
 
 ## Drift Detection Workflow
 
-In your infrastructure-live repository, update the `.github/workflows/pipelines-drift-detection.yml` file as follows:
+In each infrastructure-live repository (including any `-access-control` or `-delegated` repositories), update the `.github/workflows/pipelines-drift-detection.yml` file as follows:
 
 ### Update Inputs
 
 The inputs for Drift Detection have been renamed.
 
-Update the `workflow_dispatch` section with the new inputs:
+Update the `workflow_dispatch` section and replace all the inputs with the below new inputs:
 
 ```
   workflow_dispatch:
@@ -243,7 +277,7 @@ Update the `workflow_dispatch` section with the new inputs:
         type: string
 ```
 
-Update the GruntworkPipelines job to use these inputs:
+Update the GruntworkPipelines job to use the new inputs:
 
 ```
     with:
@@ -251,7 +285,13 @@ Update the GruntworkPipelines job to use these inputs:
       pipelines_drift_detection_branch: ${{ inputs.pipelines_drift_detection_branch }}
 ```
 
-The syntax for the filter in Drift Detection has changed. Refer to the [Filter Reference](/2.0/docs/pipelines/guides/running-drift-detection#drift-detection-filter)
+Note that the syntax for the filter input in Drift Detection has changed. Refer to the [Filter Reference](/2.0/docs/pipelines/guides/running-drift-detection#drift-detection-filter) for a full description of the new and expanded capabilities.
+
+:::note Progress Checklist
+
+- [ ] Updated inputs and reference to inputs in `pipelines-drift-detection.yml`
+
+:::
 
 ### Update Drift Detection GruntworkPipelines uses version
 
@@ -259,19 +299,19 @@ Update the `uses:` field of the GruntworkPipelines job to reference `@v4`
 
 :::note Progress Checklist
 
-- [ ] Drift Detection Uses @v4
+- [ ] Updated `uses` reference in `pipelines-drift-detection.yml`
 
 :::
 
 ## Unlock Workflow
 
-In your infrastructure-live repository, update the `.github/workflows/pipelines-unlock.yml` file as follows:
+In each infrastructure-live repository (including any `-access-control` or `-delegated` repositories), update the `.github/workflows/pipelines-unlock.yml` file as follows:
 
 ### Update Inputs
 
 The inputs for Unlock have been renamed.
 
-Update the `workflow_dispatch` section with the new inputs:
+Update the `workflow_dispatch` section and replace all the inputs with the below new inputs:
 
 ```
     inputs:
@@ -293,7 +333,7 @@ Update the `workflow_dispatch` section with the new inputs:
         type: boolean
 ```
 
-Update the GruntworkPipelines job to use these inputs:
+Update the GruntworkPipelines job to use the updated inputs:
 
 ```
       lock_id: ${{ inputs.lock_id }}
@@ -302,13 +342,19 @@ Update the GruntworkPipelines job to use these inputs:
       unlock_all: ${{ inputs.unlock_all }}
 ```
 
+:::note Progress Checklist
+
+- [ ] Updated inputs and reference to inputs in `pipelines-unlock.yml`
+
+:::
+
 ### Update Unlock GruntworkPipelines uses version
 
 Update the `uses:` field of the GruntworkPipelines job to reference `@v4`
 
 :::note Progress Checklist
 
-- [ ] Pipelines Unlock Uses @v4
+- [ ] Updated `uses` reference in `pipelines-unlock.yml`
 
 :::
 
