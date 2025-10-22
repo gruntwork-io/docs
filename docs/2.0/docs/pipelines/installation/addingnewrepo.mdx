@@ -1,8 +1,8 @@
 # Bootstrap Pipelines in a New GitHub Repository
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import PersistentCheckbox from '/src/components/PersistentCheckbox';
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+import PersistentCheckbox from "/src/components/PersistentCheckbox"
 
 To configure Gruntwork Pipelines in a new GitHub repository, complete the following steps (which are explained in detail below):
 
@@ -27,7 +27,10 @@ There are two ways to configure SCM access for Pipelines:
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="configure-scm-access" label="Configure SCM access for Pipelines using the documentation above." />
+<PersistentCheckbox
+  id="configure-scm-access"
+  label="Configure SCM access for Pipelines using the documentation above."
+/>
 
 :::
 
@@ -58,8 +61,14 @@ cd infrastructure-live
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="clone-repository" label="Clone the `infrastructure-live` repository locally." />
-<PersistentCheckbox id="cd-into-repository" label="Navigate into the `infrastructure-live` repository." />
+<PersistentCheckbox
+  id="clone-repository"
+  label="Clone the `infrastructure-live` repository locally."
+/>
+<PersistentCheckbox
+  id="cd-into-repository"
+  label="Navigate into the `infrastructure-live` repository."
+/>
 
 :::
 
@@ -95,7 +104,7 @@ mise ls-remote boilerplate
 
 ### Cloud-specific bootstrap instructions
 
-<Tabs>
+<Tabs groupId="cloud" queryString="cloud">
 <TabItem value="aws" label="AWS" default>
 
 The resources that you need provisioned in AWS to start managing resources with Pipelines are:
@@ -121,6 +130,7 @@ The process that we'll follow to get these resources ready for Pipelines is:
 3. (Optionally) Bootstrap additional AWS accounts until all your AWS accounts are ready for Pipelines
 
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+
 <h3>Bootstrap your `infrastructure-live` repository</h3>
 
 To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to scaffold it with the necessary content for Pipelines to function.
@@ -175,7 +185,10 @@ boilerplate \
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="scaffold-repository" label="Use Boilerplate to scaffold out your repository with the necessary scaffolding for Pipelines." />
+<PersistentCheckbox
+  id="scaffold-repository"
+  label="Use Boilerplate to scaffold out your repository with the necessary scaffolding for Pipelines."
+/>
 
 :::
 
@@ -187,10 +200,14 @@ mise install
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="install-terragrunt-and-opentofu" label="Install Terragrunt and OpenTofu locally." />
+<PersistentCheckbox
+  id="install-terragrunt-and-opentofu"
+  label="Install Terragrunt and OpenTofu locally."
+/>
 :::
 
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+
 <h3>Provisioning the resources</h3>
 
 Once you've set up the Terragrunt configurations, you can use Terragrunt to provision the resources in your AWS account.
@@ -219,7 +236,10 @@ We're using the `--backend-bootstrap` flag here to tell Terragrunt to bootstrap 
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="run-aws-plan" label="Run a plan in the bootstrap directory to make sure that everything is set up correctly." />
+<PersistentCheckbox
+  id="run-aws-plan"
+  label="Run a plan in the bootstrap directory to make sure that everything is set up correctly."
+/>
 
 :::
 
@@ -231,11 +251,15 @@ terragrunt run --all --non-interactive --provider-cache apply
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="run-aws-apply" label="Run an apply in the bootstrap directory to provision the resources in your AWS account." />
+<PersistentCheckbox
+  id="run-aws-apply"
+  label="Run an apply in the bootstrap directory to provision the resources in your AWS account."
+/>
 
 :::
 
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+
 <h3>Optional: Bootstrapping additional AWS accounts</h3>
 
 If you have multiple AWS accounts, and you want to bootstrap them as well, you can do so by following a similar, but slightly condensed process.
@@ -307,7 +331,10 @@ boilerplate \
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="scaffold-additional-account" label="Use Boilerplate to scaffold out additional AWS accounts." />
+<PersistentCheckbox
+  id="scaffold-additional-account"
+  label="Use Boilerplate to scaffold out additional AWS accounts."
+/>
 
 :::
 
@@ -329,8 +356,14 @@ terragrunt run --all --non-interactive --provider-cache apply
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="run-additional-aws-plan" label="Run a plan in the bootstrap directory of the additional account to make sure that everything is set up correctly." />
-<PersistentCheckbox id="run-additional-aws-apply" label="Run an apply in the bootstrap directory of the additional account to provision the resources in the additional account." />
+<PersistentCheckbox
+  id="run-additional-aws-plan"
+  label="Run a plan in the bootstrap directory of the additional account to make sure that everything is set up correctly."
+/>
+<PersistentCheckbox
+  id="run-additional-aws-apply"
+  label="Run an apply in the bootstrap directory of the additional account to provision the resources in the additional account."
+/>
 
 :::
 
@@ -369,6 +402,7 @@ The process that we'll follow to get these resources ready for Pipelines is:
 5. (Optionally) Bootstrap additional Azure subscriptions until all your Azure subscriptions are ready for Pipelines
 
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+
 <h3>Bootstrap your `infrastructure-live` repository</h3>
 
 To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to scaffold it with the necessary content for Pipelines to function.
@@ -429,7 +463,11 @@ boilerplate \
 :::
 
 :::note Progress Checklist
-<PersistentCheckbox id="scaffold-repository" label="Use Boilerplate to scaffold out your repository with the necessary scaffolding for Pipelines." />
+
+<PersistentCheckbox
+  id="scaffold-repository"
+  label="Use Boilerplate to scaffold out your repository with the necessary scaffolding for Pipelines."
+/>
 :::
 
 Next, install Terragrunt and OpenTofu locally (the `.mise.toml` file in the root of the repository after scaffolding should already be set to the versions you want for Terragrunt and OpenTofu):
@@ -439,6 +477,7 @@ mise install
 ```
 
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+
 <h3>Provisioning the resources</h3>
 
 Once you've set up the Terragrunt configurations, you can use Terragrunt to provision the resources in your Azure subscription.
@@ -451,10 +490,12 @@ az login
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="authenticate-with-azure" label="Authenticate with Azure using the `az` CLI." />
+<PersistentCheckbox
+  id="authenticate-with-azure"
+  label="Authenticate with Azure using the `az` CLI."
+/>
 
 :::
-
 
 To dynamically configure the Azure provider with a given tenant ID and subscription ID, ensure that you are exporting the following environment variables if you haven't the values via the `az` CLI:
 
@@ -470,8 +511,14 @@ export ARM_SUBSCRIPTION_ID="11111111-1111-1111-1111-111111111111"
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="export-arm-tenant-id" label="Export the ARM_TENANT_ID environment variable with the tenant ID of the Azure subscription you want to provision resources in." />
-<PersistentCheckbox id="export-arm-subscription-id" label="Export the ARM_SUBSCRIPTION_ID environment variable with the subscription ID of the Azure subscription you want to provision resources in." />
+<PersistentCheckbox
+  id="export-arm-tenant-id"
+  label="Export the ARM_TENANT_ID environment variable with the tenant ID of the Azure subscription you want to provision resources in."
+/>
+<PersistentCheckbox
+  id="export-arm-subscription-id"
+  label="Export the ARM_SUBSCRIPTION_ID environment variable with the subscription ID of the Azure subscription you want to provision resources in."
+/>
 :::
 
 First, make sure that everything is set up correctly by running a plan in the subscription directory.
@@ -488,7 +535,10 @@ We're using the `--provider-cache` flag here to ensure that we don't re-download
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="run-apply" label="Run an apply in the subscription directory to provision the resources in your Azure subscription." />
+<PersistentCheckbox
+  id="run-apply"
+  label="Run an apply in the subscription directory to provision the resources in your Azure subscription."
+/>
 
 :::
 
@@ -506,10 +556,14 @@ We're adding the `--no-stack-generate` flag here, as Terragrunt will already hav
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="run-apply" label="Run an apply in the subscription directory to provision the resources in your Azure subscription." />
+<PersistentCheckbox
+  id="run-apply"
+  label="Run an apply in the subscription directory to provision the resources in your Azure subscription."
+/>
 :::
 
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+
 <h3>Finalizing Terragrunt configurations</h3>
 
 Once you've provisioned the resources in your Azure subscription, you can finalize the Terragrunt configurations using the bootstrap resources we just provisioned.
@@ -598,7 +652,10 @@ EOF
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="uncomment-remote-state-backend" label="Uncomment the section that defines the remote state backend in the `root.hcl` file." />
+<PersistentCheckbox
+  id="uncomment-remote-state-backend"
+  label="Uncomment the section that defines the remote state backend in the `root.hcl` file."
+/>
 
 :::
 
@@ -645,12 +702,19 @@ You can use those values to set the values for `plan_client_id` and `apply_clien
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="fill-in-plan-client-id" label="Fill in `plan_client_id` after bootstrapping." />
-<PersistentCheckbox id="fill-in-apply-client-id" label="Fill in `apply_client_id` after bootstrapping." />
+<PersistentCheckbox
+  id="fill-in-plan-client-id"
+  label="Fill in `plan_client_id` after bootstrapping."
+/>
+<PersistentCheckbox
+  id="fill-in-apply-client-id"
+  label="Fill in `apply_client_id` after bootstrapping."
+/>
 
 :::
 
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+
 <h3>Pulling the resources into state</h3>
 
 Once you've provisioned the resources in your Azure subscription, you can pull the resources into state using the storage account we just provisioned.
@@ -667,11 +731,15 @@ We're adding the `-force-copy` flag here to avoid any issues with OpenTofu waiti
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="run-init-migrate-state-force-copy" label="Pull the resources into state using Terragrunt." />
+<PersistentCheckbox
+  id="run-init-migrate-state-force-copy"
+  label="Pull the resources into state using Terragrunt."
+/>
 
 :::
 
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+
 <h3>Optional: Bootstrapping additional Azure subscriptions</h3>
 
 If you have multiple Azure subscriptions, and you want to bootstrap them as well, you can do so by following a similar, but slightly condensed process.
@@ -749,7 +817,10 @@ boilerplate \
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="scaffold-additional-subscription" label="Use Boilerplate to scaffold out additional Azure subscriptions." />
+<PersistentCheckbox
+  id="scaffold-additional-subscription"
+  label="Use Boilerplate to scaffold out additional Azure subscriptions."
+/>
 
 :::
 
@@ -797,7 +868,10 @@ EOF
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="comment-out-remote-state-backend" label="Comment out the remote state backend configurations in the `root.hcl` file." />
+<PersistentCheckbox
+  id="comment-out-remote-state-backend"
+  label="Comment out the remote state backend configurations in the `root.hcl` file."
+/>
 
 :::
 
@@ -819,8 +893,14 @@ We're adding the `--no-stack-generate` flag here, as Terragrunt will already hav
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="run-additional-azure-plan" label="Run a plan in the bootstrap directory of the additional subscription to make sure that everything is set up correctly." />
-<PersistentCheckbox id="run-additional-azure-apply" label="Run an apply in the bootstrap directory of the additional subscription to provision the resources in the additional subscription." />
+<PersistentCheckbox
+  id="run-additional-azure-plan"
+  label="Run a plan in the bootstrap directory of the additional subscription to make sure that everything is set up correctly."
+/>
+<PersistentCheckbox
+  id="run-additional-azure-apply"
+  label="Run an apply in the bootstrap directory of the additional subscription to provision the resources in the additional subscription."
+/>
 
 :::
 
@@ -868,7 +948,10 @@ EOF
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="uncomment-remote-state-backend" label="Uncomment the remote state backend configurations in the `root.hcl` file." />
+<PersistentCheckbox
+  id="uncomment-remote-state-backend"
+  label="Uncomment the remote state backend configurations in the `root.hcl` file."
+/>
 
 :::
 
@@ -886,7 +969,10 @@ We're adding the `-force-copy` flag here to avoid any issues with OpenTofu waiti
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="run-init-migrate-state-force-copy" label="Pull the resources into state using Terragrunt." />
+<PersistentCheckbox
+  id="run-init-migrate-state-force-copy"
+  label="Pull the resources into state using Terragrunt."
+/>
 
 :::
 
@@ -933,8 +1019,14 @@ You can use those values to set the values for `plan_client_id` and `apply_clien
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="fill-in-plan-client-id" label="Fill in `plan_client_id` after bootstrapping." />
-<PersistentCheckbox id="fill-in-apply-client-id" label="Fill in `apply_client_id` after bootstrapping." />
+<PersistentCheckbox
+  id="fill-in-plan-client-id"
+  label="Fill in `plan_client_id` after bootstrapping."
+/>
+<PersistentCheckbox
+  id="fill-in-apply-client-id"
+  label="Fill in `apply_client_id` after bootstrapping."
+/>
 
 :::
 
@@ -959,8 +1051,14 @@ git push
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="commit-and-push-changes" label="Commit the changes to your repository (using `[skip ci]` in the commit message)." />
-<PersistentCheckbox id="push-changes-to-repository" label="Push the changes to your repository." />
+<PersistentCheckbox
+  id="commit-and-push-changes"
+  label="Commit the changes to your repository (using `[skip ci]` in the commit message)."
+/>
+<PersistentCheckbox
+  id="push-changes-to-repository"
+  label="Push the changes to your repository."
+/>
 
 :::
 
