@@ -27,7 +27,7 @@ The following [feature flags](https://docs.gruntwork.io/2.0/reference/pipelines/
 * PIPELINES_FEATURE_EXPERIMENT_COLOCATED_FILE_UNIT_CHANGE_DETECTION
 * PIPELINES_FEATURE_EXPERIMENT_MINIMIZE_BLAST_RADIUS
 
-## `--queue-include-units-reading` used instead of `--units-that-include`
+### `--queue-include-units-reading` used instead of `--units-that-include`
 
 Pipelines will now always use `--queue-include-units-reading` instead of `--units-that-include`. 
 
@@ -35,7 +35,7 @@ Previously, Pipelines would only use the former flag for `FileChanged` events fo
 
 By making this change, Pipelines now behaves more in-line with customer expectations, as customers expect that a file with an `.hcl` extension read via an HCL function like `read_terragrunt_config()` should still result in inclusion into the run queue.
 
-## Updated Terminology: Module -> Unit
+### Updated Terminology: Module -> Unit
 Pipelines v4 now refers to leaf folders with a `terragrunt.hcl` file as `units`.  Prior versions used the term `module`.  This change aligns Pipelines' terminology with Terragrunt's.
  
 # Migration Guide
