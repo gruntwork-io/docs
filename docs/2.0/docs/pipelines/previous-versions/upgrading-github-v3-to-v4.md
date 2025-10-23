@@ -255,6 +255,27 @@ Remove the PipelinesPassed job and update any Required Status Checks to use `Gru
 
 :::
 
+## Optional - Update forked pipelines-actions
+
+:::note
+
+This step only applies if your organization has forked the pipelines-actions repository
+to run custom actions.
+
+:::
+
+Update your organizations forked repository to pipelines-actions v4.1.0 or higher
+
+The inputs to custom actions have been changed, the `gruntwork_context` input has been removed.
+Any custom actions logic relying on `gruntwork_context` should be modified to no longer use this input. If this
+is not possible for your organization, contact us at [support@gruntwork.io](mailto:support@gruntwork.io).
+
+:::note Progress Checklist
+
+- [ ] Updated forked `pipelines-actions` to v4.1.0 or higher
+
+:::
+
 ## Drift Detection Workflow
 
 In each infrastructure-live repository (including any `-access-control` or `-delegated` repositories), update the `.github/workflows/pipelines-drift-detection.yml` file as follows:
