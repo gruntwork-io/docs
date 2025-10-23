@@ -66,3 +66,6 @@ GLMU
 myprodsa
 azuread
 mysa
+deinterlaced
+rolename
+ACCOUNTNAME
