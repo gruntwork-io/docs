@@ -36,7 +36,7 @@ Previously, Pipelines would only use the former flag for `FileChanged` events fo
 By making this change, Pipelines now behaves more in-line with customer expectations, as customers expect that a file with an `.hcl` extension read via an HCL function like `read_terragrunt_config()` should still result in inclusion into the run queue.
 
 ### Updated Terminology: Module -> Unit
-Pipelines v4 now refers to leaf folders with a `terragrunt.hcl` file as `units`.  Prior versions used the term `module`.  This change aligns Pipelines' terminology with Terragrunt's.
+Pipelines now refers to leaf folders with a `terragrunt.hcl` file as `units`.  Prior versions used the term `module`.  This change aligns Pipelines' terminology with Terragrunt's.
  
 # Migration Guide
 To upgrade Pipelines from v1 to v2, perform the following changes in each
