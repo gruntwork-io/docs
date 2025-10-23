@@ -9,6 +9,7 @@ For a more comprehensive walkthrough of how blocks work please see the Pipelines
 
 
 ### `environment` block
+
 <HclListItem name="environment" requirement="optional" type="labeled-block">
 <HclListItemDescription>
 Environment blocks are used to define configurations that are applicable to a specific environment within a repository.
@@ -182,6 +183,24 @@ The label applied to an accounts block is the name of the Accounts block. This i
 
 An AWS OIDC authentication block that determines how Pipelines will authenticate with AWS using OIDC. See more [below](#aws_oidc-block-attributes).
 
+### `azure_oidc` block
+
+<HclListItem name="azure_oidc" requirement="optional" type="block">
+<HclListItemDescription>
+
+An Azure OIDC authentication block that determines how Pipelines will authenticate with Azure using OIDC. See more [below](#azure_oidc-block-attributes).
+</HclListItemDescription>
+</HclListItem>
+
+</HclListItemDescription>
+</HclListItem>
+
+### `custom` block
+
+<HclListItem name="custom" requirement="optional" type="block">
+<HclListItemDescription>
+
+A custom authentication block that determines how Pipelines will authenticate with custom authentication logic when running Terragrunt commands. See more [below](#custom-block-attributes).
 </HclListItemDescription>
 </HclListItem>
 
@@ -280,7 +299,7 @@ Whether or not Pipelines will consolidate deleted resources when running Terragr
 
 The Infrastructure as Code(Iac) binary that Pipelines will instruct Terragrunt to use. Valid values are:
 - `opentofu` (default): Use OpenTofu for managing infrastructure. Gruntwork recommends customers use OpenTofu.
-- `terraform`: Use Terraform for managing infrastructure. 
+- `terraform`: Use Terraform for managing infrastructure.
 
   :::note
 
@@ -344,6 +363,7 @@ This is to make it convenient to tuck the `accounts.yml` file away somewhere in 
 <HclListItemDescription>
 
 The AWS account ID that Pipelines will authenticate with.
+
 </HclListItemDescription>
 </HclListItem>
 
@@ -351,6 +371,7 @@ The AWS account ID that Pipelines will authenticate with.
 <HclListItemDescription>
 
 The IAM role ARN that Pipelines will assume when running Terragrunt plan commands.
+
 </HclListItemDescription>
 </HclListItem>
 
@@ -358,6 +379,7 @@ The IAM role ARN that Pipelines will assume when running Terragrunt plan command
 <HclListItemDescription>
 
 The IAM role ARN that Pipelines will assume when running Terragrunt apply commands.
+
 </HclListItemDescription>
 </HclListItem>
 
@@ -365,6 +387,7 @@ The IAM role ARN that Pipelines will assume when running Terragrunt apply comman
 <HclListItemDescription>
 
 The AWS region that Pipelines will use when calling the AWS Security Token Service (STS) to generate authentication tokens.
+
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="us-east-1"/>
 </HclListItem>
@@ -376,4 +399,54 @@ The duration in seconds that the AWS session will be valid for.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="3600"/>
+</HclListItem>
+
+### `azure_oidc` block attributes
+
+<HclListItem name="tenant_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The Azure tenant ID that Pipelines will authenticate with.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="subscription_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The Azure subscription ID that Pipelines will authenticate with.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="plan_client_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The Azure client ID that Pipelines will authenticate with when running Terragrunt plan commands.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="apply_client_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The Azure client ID that Pipelines will authenticate with when running Terragrunt apply commands.
+
+</HclListItemDescription>
+</HclListItem>
+
+### `custom` block attributes
+
+<HclListItem name="auth_provider_cmd" requirement="required" type="string">
+<HclListItemDescription>
+
+The command that Pipelines will execute to authenticate with the custom authentication logic.
+
+:::tip
+
+You can learn more about how custom authentication works in the [Custom Authentication](/2.0/docs/pipelines/concepts/cloud-auth/custom) documentation.
+
+:::
+
+</HclListItemDescription>
 </HclListItem>

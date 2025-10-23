@@ -38,7 +38,7 @@ const sidebar = [
     id: "2.0/reference/pipelines/configurations",
   },
   {
-    label: "Configurations as Code (HCL - Beta)",
+    label: "Configurations as Code (HCL)",
     type: "category",
     items: [
       {
@@ -79,9 +79,19 @@ const sidebar = [
     className: "sidebar-header",
   },
   {
+    label: "Overview",
+    type: "doc",
+    id: "2.0/reference/accountfactory/index",
+  },
+  {
     label: "Configurations",
     type: "doc",
     id: "2.0/reference/accountfactory/configurations",
+  },
+  {
+    label: "Configurations as Code (HCL)",
+    type: "doc",
+    id: "2.0/reference/accountfactory/configurations-as-code",
   },
 ]
 

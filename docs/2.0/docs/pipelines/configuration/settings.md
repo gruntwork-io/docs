@@ -1,11 +1,11 @@
 # Pipelines Configuration
 
-[Full Pipelines Configuration Reference](/docs/2.0/reference/pipelines/configurations.md)
+import PipelinesAuthPartial from '/docs/2.0/reference/pipelines/language_auth_partial.mdx'
+import PipelinesLanguageTransitionPartial from '/docs/2.0/reference/pipelines/language_transition_partial.mdx'
 
-import PipelinesConfig from '/docs/2.0/reference/pipelines/language_auth_partial.mdx'
+<PipelinesLanguageTransitionPartial />
+<PipelinesAuthPartial />
 
-<PipelinesConfig />
+## OpenTofu & Terraform
 
-## Terraform & OpenTofu
-
-You can specify whether to invoke Terraform or OpenTofu in your Pipeline by configuring the [tf-binary](/2.0/reference/pipelines/configurations#tf-binary) setting. Define the versions of `tf-binary` and Terragrunt in the [mise.toml](/2.0/reference/pipelines/configurations#example-mise-configuration) file within your repository.
+You can specify whether to invoke OpenTofu or Terraform with Pipelines by configuring the [tf-binary](/2.0/reference/pipelines/configurations#tf-binary) setting. Define the versions of Terragrunt and OpenTofu/Terraform used by Pipelines in the [mise.toml](/2.0/reference/pipelines/configurations#example-mise-configuration) file within your repository.
