@@ -191,6 +191,11 @@ module "eks_workers" {
   # if asg_iam_role_already_exists is true.
   asg_custom_iam_role_name = null
 
+  # Default value for asg_ami_type field of autoscaling_group_configurations.
+  # See the AWS documentation for valid values. Docs:
+  # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
+  asg_default_ami_type = "AL2_x86_64"
+
   # Default value for enable_detailed_monitoring field of
   # autoscaling_group_configurations.
   asg_default_enable_detailed_monitoring = true
@@ -496,6 +501,11 @@ module "eks_workers" {
   # is required (must be non-null) if managed_node_group_iam_role_already_exists
   # is true.
   managed_node_group_iam_role_arn = null
+
+  # Default value for ami_type field of managed_node_group_configurations. See
+  # the AWS documentation for valid values. Docs:
+  # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
+  node_group_default_ami_type = "AL2_x86_64"
 
   # Default value for capacity_type field of managed_node_group_configurations.
   node_group_default_capacity_type = "ON_DEMAND"
@@ -749,6 +759,11 @@ inputs = {
   # if asg_iam_role_already_exists is true.
   asg_custom_iam_role_name = null
 
+  # Default value for asg_ami_type field of autoscaling_group_configurations.
+  # See the AWS documentation for valid values. Docs:
+  # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
+  asg_default_ami_type = "AL2_x86_64"
+
   # Default value for enable_detailed_monitoring field of
   # autoscaling_group_configurations.
   asg_default_enable_detailed_monitoring = true
@@ -1055,6 +1070,11 @@ inputs = {
   # is true.
   managed_node_group_iam_role_arn = null
 
+  # Default value for ami_type field of managed_node_group_configurations. See
+  # the AWS documentation for valid values. Docs:
+  # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
+  node_group_default_ami_type = "AL2_x86_64"
+
   # Default value for capacity_type field of managed_node_group_configurations.
   node_group_default_capacity_type = "ON_DEMAND"
 
@@ -1276,6 +1296,10 @@ Any types represent complex values of variable type. For details, please consult
                                               will be used to deploy updates to the cluster.
    - asg_instance_type   string             : (Defaults to value from var.asg_default_instance_type) The type of
                                               instances to use for the ASG (e.g., t2.medium).
+   - asg_ami_type                   string  : (Defaults to value from var.asg_default_ami_type) Type of Amazon
+                                              Machine Image (e.g. AL2_x86_64, AL2_x86_64_GPU) associated with the EKS
+                                              Node Group. See the AWS documentation for valid values.
+                                              https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.htmlAmazonEKS-Type-Nodegroup-amiType
    - max_pods_allowed    number             : (Defaults to value from var.asg_default_max_pods_allowed) The
                                               maximum number of Pods allowed to be scheduled on the node. When null,
                                               the max will be automatically calculated based on the availability of
@@ -1461,6 +1485,10 @@ Any types represent complex values of variable type. For details, please consult
                                               nodes. EKS will choose from this list of instance types when launching
                                               new instances. When using launch templates, this setting will override
                                               the configured instance type of the launch template.
+   - ami_type            string              : (Defaults to value from var.node_group_default_ami_type) Type of Amazon
+                                              Machine Image (e.g. AL2_x86_64, AL2_x86_64_GPU) associated with the EKS
+                                              Node Group. See the AWS documentation for valid values.
+                                              https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.htmlAmazonEKS-Type-Nodegroup-amiType
    - capacity_type       string             : (Defaults to value from var.node_group_default_capacity_type) Type of capacity
                                               associated with the EKS Node Group. Valid values: ON_DEMAND, SPOT.
    - launch_template     LaunchTemplate     : (Defaults to value from var.node_group_default_launch_template)
@@ -1597,6 +1625,15 @@ Custom name for the IAM role for the Self-managed workers. When null, a default 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_ami_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for asg_ami_type field of autoscaling_group_configurations. See the AWS documentation for valid values. Docs: https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;AL2_x86_64&quot;"/>
 </HclListItem>
 
 <HclListItem name="asg_default_enable_detailed_monitoring" requirement="optional" type="bool">
@@ -2458,6 +2495,15 @@ ARN of the IAM role to use if iam_role_already_exists = true. When null, uses ma
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="node_group_default_ami_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for ami_type field of managed_node_group_configurations. See the AWS documentation for valid values. Docs: https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;AL2_x86_64&quot;"/>
+</HclListItem>
+
 <HclListItem name="node_group_default_capacity_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2896,6 +2942,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "adc816a4b69b80d88a5e5a211e74f038"
+  "hash": "923673f830f21e6e8d03be7667b565d5"
 }
 ##DOCS-SOURCER-END -->
