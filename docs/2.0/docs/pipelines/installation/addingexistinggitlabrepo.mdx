@@ -257,7 +257,7 @@ For each AWS account that needs bootstrapping, we'll use Boilerplate to scaffold
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.0.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.1.0' \
   --output-folder .
 ```
 
@@ -277,7 +277,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.0.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.1.0' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitLabGroupName=acme' \
@@ -293,7 +293,7 @@ If you're using a self-hosted GitLab instance, you'll want to make sure the issu
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.0.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.1.0' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitLabGroupName=acme' \
@@ -320,7 +320,7 @@ StateBucketName: my-state-bucket
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.0.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.1.0' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -417,7 +417,7 @@ For each Azure subscription that needs bootstrapping, we'll use Boilerplate to s
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.0.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.1.0' \
   --output-folder .
 ```
 
@@ -437,7 +437,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.0.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.1.0' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitLabGroupName=acme' \
@@ -471,7 +471,7 @@ StateStorageContainerName: tfstate
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.0.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.1.0' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
