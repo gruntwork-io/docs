@@ -5,11 +5,14 @@ import PersistentCheckbox from '@site/src/components/PersistentCheckbox';
 ## What's new in Pipelines GitHub v4
 Pipelines v4 is nearly a full rewrite of the pipelines implementation within GitHub.  Prior to v4 the bulk of the "glue" logic to stitch together various components of the workflow was written in bash. In v4 we've replaced the majority of the bash code with golang code which is both faster, more maintainable and has significantly improved test coverage.  v4 also includes a handful of new features:
 
+### Support for newer Terragrunt Versions (through to 1.0)
+Pipelines previously had maximum Terragrunt version of 0.84.  This version of Pipelines removes this restriction and will support all Terragrunt versions from `0.86.3` through to 1.0+.
+
+### Updated Configuration: Deprecating YML and promoting HCL out of beta
+As of this release we are promoting HCL to the default configuration language for Pipelines. This release includes additions to the pipelines HCL configuration specification that bring it up to full feature parity with YML, and we intend to build forwards using only HCL. As a result, the YML configuration for Pipelines is now deprecated and will be removed in a future release.
+
 ### Run-All Log Parsing
 Pipelines will now request a custom log format from Terragrunt (via `TG_LOG_CUSTOM_FORMAT`) and then parse the resulting output into different streams, and present each Unit's output independently and deinterlaced in the pipelines comment engine.
-
-### Support for newer Terragrunt Versions (through to 1.0)
-Pipelines v3 has maximum Terragrunt version of 0.84.  Pipelines v4 removes this restriction and will support all Terragrunt versions from `0.86.3` through to 1.0+.
 
 ### Azure Support
 Pipelines v4 includes support for Azure OIDC and state storage.  New configuration options are now available in [HCL configuration](https://docs.gruntwork.io/2.0/reference/pipelines/configurations-as-code/api#azure_oidc-block-attributes) for Azure.
