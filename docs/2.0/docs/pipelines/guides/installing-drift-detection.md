@@ -65,7 +65,7 @@ permissions:
 
 jobs:
   GruntworkPipelines:
-    uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-drift-detection.yml@v3
+    uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-drift-detection.yml@v4
     with:
       path: ${{ inputs.path }}
       branch-name: ${{ inputs.branch-name }}
