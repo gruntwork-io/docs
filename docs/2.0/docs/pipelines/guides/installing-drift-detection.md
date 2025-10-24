@@ -53,11 +53,11 @@ on:
   #  - cron: '15 12 * * 1'
   workflow_dispatch:
     inputs:
-      path:
-        description: (Optional) Path to filter units e.g. "./management/*"
+      pipelines_drift_detection_filter:
+        description: Limit drift detection to units matching filter https://docs.gruntwork.io/2.0/docs/pipelines/guides/running-drift-detection#drift-detection-filter
         type: string
-      branch-name:
-        description: (Optional) branch name to open Drift Detection PRs with
+      pipelines_drift_detection_branch:
+        description: The branch name used for drift remediation PRs
         default: drift-detection
         type: string
 permissions:
@@ -65,7 +65,7 @@ permissions:
 
 jobs:
   GruntworkPipelines:
-    uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-drift-detection.yml@v3
+    uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-drift-detection.yml@v4
     with:
       path: ${{ inputs.path }}
       branch-name: ${{ inputs.branch-name }}
