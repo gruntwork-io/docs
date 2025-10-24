@@ -5,6 +5,9 @@ import TabItem from '@theme/TabItem';
 
 ## What's new in Pipelines GitLab v2
 
+### Account Factory Support
+Gruntwork Account Factory is now fully supported in Pipelines GitLab v2.  Reach out to Gruntwork Support for full details.
+
 ### Run-All Log Parsing
 Pipelines will now request a custom log format from Terragrunt (via `TG_LOG_CUSTOM_FORMAT`) and then parse the resulting output into different streams, and present each Unit's output independently and deinterlaced in the pipelines comment engine.
 
