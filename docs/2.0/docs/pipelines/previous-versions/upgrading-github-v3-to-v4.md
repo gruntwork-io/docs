@@ -97,7 +97,7 @@ for more details.
 :::note Progress Checklist
 
 - [ ] Root `terragrunt.hcl` file renamed to `root.hcl`
-- [ ] `find_in_parent_folders()` updated to `find_in_parent_folders("root.hcl")
+- [ ] `find_in_parent_folders()` updated to `find_in_parent_folders("root.hcl")`
 
 :::
 
@@ -180,7 +180,7 @@ environment "management" {
 Note the role-name in the `apply_iam_role_arn` and `plan_iam_role_arn` role ARN values. The role-names should match the Pipelines roles you provisioned in your AWS accounts.
 Typically, these roles are:
 - `root-pipelines-plan` and `root-pipelines-apply`  in the `infrastructure-live-root` repository
-- `access-control-pipelines-plan` and ``access-control-pipelines-apply` in an `infrastructure-live-access-control` repository
+- `access-control-pipelines-plan` and `access-control-pipelines-apply` in an `infrastructure-live-access-control` repository
 - `delegated-pipelines-plan` and `delegated-pipelines-apply` in an `infrastructure-live-delegated` repository
 
 Confirm the values by looking at your Infrastructure as Code (typically under `_envcommon/landingzone/<rolename>.hcl` in `infrastructure-live-root` or `infrastructure-live-access-control`) for those IAM roles.
