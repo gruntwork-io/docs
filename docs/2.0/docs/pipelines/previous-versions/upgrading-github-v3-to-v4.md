@@ -97,7 +97,7 @@ for more details.
 :::note Progress Checklist
 
 - [ ] Root `terragrunt.hcl` file renamed to `root.hcl`
-- [ ] `find_in_parent_folders()` updated to `find_in_parent_folders("root.hcl")
+- [ ] `find_in_parent_folders()` updated to `find_in_parent_folders("root.hcl")`
 
 :::
 
