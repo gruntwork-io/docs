@@ -243,6 +243,11 @@ module "eks_workers" {
   # asg_instance_type will use this value.
   asg_default_instance_type = "t3.medium"
 
+  # Default value for the asg_instance_user_data_base64 field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # asg_instance_user_data_base64 will use this value.
+  asg_default_instance_user_data_base64 = null
+
   # Default value for the max_pods_allowed field of
   # autoscaling_group_configurations. Any map entry that does not specify
   # max_pods_allowed will use this value.
@@ -574,6 +579,11 @@ module "eks_workers" {
   # Default value for taint field of node_group_configurations. These taints are
   # only used if the taint field is omitted from the configuration.
   node_group_default_taints = []
+
+  # Default value for the user_data_base64 field of
+  # managed_node_group_configurations. Any map entry that does not specify
+  # user_data_base64 will use this value.
+  node_group_default_user_data_base64 = null
 
   # The instance type to configure in the launch template. This value will be
   # used when the instance_types field is set to null (NOT omitted, in which
@@ -811,6 +821,11 @@ inputs = {
   # asg_instance_type will use this value.
   asg_default_instance_type = "t3.medium"
 
+  # Default value for the asg_instance_user_data_base64 field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # asg_instance_user_data_base64 will use this value.
+  asg_default_instance_user_data_base64 = null
+
   # Default value for the max_pods_allowed field of
   # autoscaling_group_configurations. Any map entry that does not specify
   # max_pods_allowed will use this value.
@@ -1143,6 +1158,11 @@ inputs = {
   # only used if the taint field is omitted from the configuration.
   node_group_default_taints = []
 
+  # Default value for the user_data_base64 field of
+  # managed_node_group_configurations. Any map entry that does not specify
+  # user_data_base64 will use this value.
+  node_group_default_user_data_base64 = null
+
   # The instance type to configure in the launch template. This value will be
   # used when the instance_types field is set to null (NOT omitted, in which
   # case var.node_group_default_instance_types will be used).
@@ -1314,6 +1334,8 @@ Any types represent complex values of variable type. For details, please consult
                                               instances to use for the ASG (e.g., 125).
    - asg_instance_root_volume_encryption   bool  : (Defaults to value from var.asg_default_instance_root_volume_encryption)
                                                Whether or not to enable root volume encryption for instances of the ASG.
+   - asg_instance_user_data_base64   string : (Defaults to value from var.asg_default_instance_user_data_base64) The base64 user-data content of
+                                              instance to use for the ASG.
    - tags                list(object[Tag])  : (Defaults to value from var.asg_default_tags) Custom tags to apply to the
                                               EC2 Instances in this ASG. Refer to structure definition below for the
                                               object type of each entry in the list.
@@ -1489,6 +1511,8 @@ Any types represent complex values of variable type. For details, please consult
                                               Machine Image (e.g. AL2_x86_64, AL2_x86_64_GPU) associated with the EKS
                                               Node Group. See the AWS documentation for valid values.
                                               https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.htmlAmazonEKS-Type-Nodegroup-amiType
+   - user_data_base64   string              : (Defaults to value from var.node_group_default_user_data_base64) The base64 user-data content of
+                                              instance to use for the Node Group.
    - capacity_type       string             : (Defaults to value from var.node_group_default_capacity_type) Type of capacity
                                               associated with the EKS Node Group. Valid values: ON_DEMAND, SPOT.
    - launch_template     LaunchTemplate     : (Defaults to value from var.node_group_default_launch_template)
@@ -1754,6 +1778,15 @@ Default value for the asg_instance_type field of autoscaling_group_configuration
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;t3.medium&quot;"/>
+</HclListItem>
+
+<HclListItem name="asg_default_instance_user_data_base64" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for the asg_instance_user_data_base64 field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_user_data_base64 will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="asg_default_max_pods_allowed" requirement="optional" type="number">
@@ -2673,6 +2706,15 @@ list(map(string))
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="node_group_default_user_data_base64" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for the user_data_base64 field of managed_node_group_configurations. Any map entry that does not specify user_data_base64 will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="node_group_launch_template_instance_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2942,6 +2984,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "923673f830f21e6e8d03be7667b565d5"
+  "hash": "a3153af85ce4bfc43feb4d92ec00ca49"
 }
 ##DOCS-SOURCER-END -->
