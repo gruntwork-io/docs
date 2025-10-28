@@ -811,16 +811,8 @@ Create a `.gitlab-ci.yml` file in the root of your project with the following co
 
 ```yaml title=".gitlab-ci.yml"
 include:
-  - project: 'gruntwork-io/gitlab-pipelines-workflows'
-    file: '/workflows/pipelines.yml'
-    ref: 'v1'
+  - component: $CI_SERVER_FQDN/gruntwork-io/pipelines-workflows/pipelines@v2
 ```
-
-:::tip
-
-You can read the [Pipelines GitLab CI Workflow](https://gitlab.com/gruntwork-io/gitlab-pipelines-workflows) to learn how this GitLab CI pipeline calls the Pipelines CLI to run your pipelines.
-
-:::
 
 :::note Progress Checklist
 
