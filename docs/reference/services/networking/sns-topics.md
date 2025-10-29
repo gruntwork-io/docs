@@ -121,6 +121,10 @@ module "sns_topics" {
   # The display name of the SNS topic
   display_name = ""
 
+  # Set to true to enable advanced formatting for CloudWatch alarms in Slack.
+  # This will use the CloudWatchNotification class for richer messages.
+  enable_advanced_formatting = false
+
   # The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a
   # custom CMK
   kms_master_key_id = "alias/aws/sns"
@@ -184,6 +188,10 @@ inputs = {
 
   # The display name of the SNS topic
   display_name = ""
+
+  # Set to true to enable advanced formatting for CloudWatch alarms in Slack.
+  # This will use the CloudWatchNotification class for richer messages.
+  enable_advanced_formatting = false
 
   # The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a
   # custom CMK
@@ -291,6 +299,15 @@ The display name of the SNS topic
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="enable_advanced_formatting" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable advanced formatting for CloudWatch alarms in Slack. This will use the CloudWatchNotification class for richer messages.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="kms_master_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -331,6 +348,6 @@ The ARN of the SNS topic.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/networking/sns-topics/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9de95776a6cb13c8567dace590a3b296"
+  "hash": "7817d91fc1085ac24f48984e975a0666"
 }
 ##DOCS-SOURCER-END -->

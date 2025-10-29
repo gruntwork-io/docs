@@ -221,6 +221,22 @@ ARN of the ECS cluster that was created.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="ecs_cluster_arn">
+<HclListItemDescription>
+
+ARN of the ECS cluster that was created. This output uses a consistent naming convention with the ecs-cluster module.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="ecs_cluster_name">
+<HclListItemDescription>
+
+The name of the ECS cluster. This output uses a consistent naming convention with the ecs-cluster module.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="name">
 <HclListItemDescription>
 
@@ -240,6 +256,6 @@ The name of the ECS cluster.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/services/ecs-fargate-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "624060c351357a16d6a77ae949e5d1fd"
+  "hash": "5a14d492cc9b2f193c4deb582475bb2c"
 }
 ##DOCS-SOURCER-END -->
