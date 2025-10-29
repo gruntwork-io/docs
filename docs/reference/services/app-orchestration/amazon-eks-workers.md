@@ -489,6 +489,10 @@ module "eks_workers" {
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   high_worker_memory_utilization_treat_missing_data = "missing"
 
+  # Whether or not to create an AWS Security Group for the Managed Node Groups.
+  # By default this is created.
+  managed_node_group_create_security_group = true
+
   # Custom name for the IAM role for the Managed Node Groups. When null, a
   # default name based on worker_name_prefix will be used. One of
   # managed_node_group_custom_iam_role_name and managed_node_group_iam_role_arn
@@ -1066,6 +1070,10 @@ inputs = {
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   high_worker_memory_utilization_treat_missing_data = "missing"
+
+  # Whether or not to create an AWS Security Group for the Managed Node Groups.
+  # By default this is created.
+  managed_node_group_create_security_group = true
 
   # Custom name for the IAM role for the Managed Node Groups. When null, a
   # default name based on worker_name_prefix will be used. One of
@@ -2501,6 +2509,15 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
+<HclListItem name="managed_node_group_create_security_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to create an AWS Security Group for the Managed Node Groups. By default this is created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="managed_node_group_custom_iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2984,6 +3001,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a3153af85ce4bfc43feb4d92ec00ca49"
+  "hash": "b65e57ca25020da830fd90e05519e030"
 }
 ##DOCS-SOURCER-END -->
