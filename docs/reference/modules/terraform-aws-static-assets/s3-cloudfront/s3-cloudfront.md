@@ -395,6 +395,9 @@ module "s_3_cloudfront" {
   # precedence 0.
   ordered_cache_behaviors = []
 
+  # Suffix to use for the CloudFront Origin Access Control (OAC) resource name.
+  origin_access_control_name_suffix = ""
+
   # The price class for this distribution. One of PriceClass_All,
   # PriceClass_200, PriceClass_100. Higher price classes support more edge
   # locations, but cost more. See:
@@ -714,6 +717,9 @@ inputs = {
   # top to bottom in order of precedence. The topmost cache behavior will have
   # precedence 0.
   ordered_cache_behaviors = []
+
+  # Suffix to use for the CloudFront Origin Access Control (OAC) resource name.
+  origin_access_control_name_suffix = ""
 
   # The price class for this distribution. One of PriceClass_All,
   # PriceClass_200, PriceClass_100. Higher price classes support more edge
@@ -1358,6 +1364,15 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="origin_access_control_name_suffix" requirement="optional" type="string">
+<HclListItemDescription>
+
+Suffix to use for the CloudFront Origin Access Control (OAC) resource name.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
 <HclListItem name="price_class" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1522,6 +1537,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.1/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8e553f66723c1def13a72aaa632cb4a5"
+  "hash": "164bcef48d05b57b9be433e5701276ab"
 }
 ##DOCS-SOURCER-END -->
