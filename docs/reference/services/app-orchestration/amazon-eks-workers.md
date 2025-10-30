@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.130.5" lastModifiedVersion="0.130.4"/>
+<VersionBadge version="0.130.7" lastModifiedVersion="0.130.7"/>
 
 # Amazon EKS Workers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/services/eks-workers" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.7/modules/services/eks-workers" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-workers" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.7/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.7/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.7/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.7/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.7/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -97,10 +97,10 @@ If you want to deploy this repo in production, check out the following resources
 ## Manage
 
 For information on registering the worker IAM role to the EKS control plane, refer to the
-[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
+[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.7/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
 
 For information on how to perform a blue-green deployment of the worker pools, refer to the
-[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
+[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.7/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
 section of the documentation.
 
 For information on how to manage your EKS cluster, including how to deploy Pods on Fargate, how to associate IAM roles
@@ -121,7 +121,7 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 module "eks_workers" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v0.130.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v0.130.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -191,6 +191,11 @@ module "eks_workers" {
   # if asg_iam_role_already_exists is true.
   asg_custom_iam_role_name = null
 
+  # Default value for asg_ami_type field of autoscaling_group_configurations.
+  # See the AWS documentation for valid values. Docs:
+  # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
+  asg_default_ami_type = "AL2_x86_64"
+
   # Default value for enable_detailed_monitoring field of
   # autoscaling_group_configurations.
   asg_default_enable_detailed_monitoring = true
@@ -237,6 +242,11 @@ module "eks_workers" {
   # autoscaling_group_configurations. Any map entry that does not specify
   # asg_instance_type will use this value.
   asg_default_instance_type = "t3.medium"
+
+  # Default value for the asg_instance_user_data_base64 field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # asg_instance_user_data_base64 will use this value.
+  asg_default_instance_user_data_base64 = null
 
   # Default value for the max_pods_allowed field of
   # autoscaling_group_configurations. Any map entry that does not specify
@@ -479,6 +489,10 @@ module "eks_workers" {
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   high_worker_memory_utilization_treat_missing_data = "missing"
 
+  # Whether or not to create an AWS Security Group for the Managed Node Groups.
+  # By default this is created.
+  managed_node_group_create_security_group = true
+
   # Custom name for the IAM role for the Managed Node Groups. When null, a
   # default name based on worker_name_prefix will be used. One of
   # managed_node_group_custom_iam_role_name and managed_node_group_iam_role_arn
@@ -496,6 +510,11 @@ module "eks_workers" {
   # is required (must be non-null) if managed_node_group_iam_role_already_exists
   # is true.
   managed_node_group_iam_role_arn = null
+
+  # Default value for ami_type field of managed_node_group_configurations. See
+  # the AWS documentation for valid values. Docs:
+  # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
+  node_group_default_ami_type = "AL2_x86_64"
 
   # Default value for capacity_type field of managed_node_group_configurations.
   node_group_default_capacity_type = "ON_DEMAND"
@@ -564,6 +583,11 @@ module "eks_workers" {
   # Default value for taint field of node_group_configurations. These taints are
   # only used if the taint field is omitted from the configuration.
   node_group_default_taints = []
+
+  # Default value for the user_data_base64 field of
+  # managed_node_group_configurations. Any map entry that does not specify
+  # user_data_base64 will use this value.
+  node_group_default_user_data_base64 = null
 
   # The instance type to configure in the launch template. This value will be
   # used when the instance_types field is set to null (NOT omitted, in which
@@ -676,7 +700,7 @@ module "eks_workers" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v0.130.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v0.130.7"
 }
 
 inputs = {
@@ -749,6 +773,11 @@ inputs = {
   # if asg_iam_role_already_exists is true.
   asg_custom_iam_role_name = null
 
+  # Default value for asg_ami_type field of autoscaling_group_configurations.
+  # See the AWS documentation for valid values. Docs:
+  # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
+  asg_default_ami_type = "AL2_x86_64"
+
   # Default value for enable_detailed_monitoring field of
   # autoscaling_group_configurations.
   asg_default_enable_detailed_monitoring = true
@@ -795,6 +824,11 @@ inputs = {
   # autoscaling_group_configurations. Any map entry that does not specify
   # asg_instance_type will use this value.
   asg_default_instance_type = "t3.medium"
+
+  # Default value for the asg_instance_user_data_base64 field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # asg_instance_user_data_base64 will use this value.
+  asg_default_instance_user_data_base64 = null
 
   # Default value for the max_pods_allowed field of
   # autoscaling_group_configurations. Any map entry that does not specify
@@ -1037,6 +1071,10 @@ inputs = {
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   high_worker_memory_utilization_treat_missing_data = "missing"
 
+  # Whether or not to create an AWS Security Group for the Managed Node Groups.
+  # By default this is created.
+  managed_node_group_create_security_group = true
+
   # Custom name for the IAM role for the Managed Node Groups. When null, a
   # default name based on worker_name_prefix will be used. One of
   # managed_node_group_custom_iam_role_name and managed_node_group_iam_role_arn
@@ -1054,6 +1092,11 @@ inputs = {
   # is required (must be non-null) if managed_node_group_iam_role_already_exists
   # is true.
   managed_node_group_iam_role_arn = null
+
+  # Default value for ami_type field of managed_node_group_configurations. See
+  # the AWS documentation for valid values. Docs:
+  # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
+  node_group_default_ami_type = "AL2_x86_64"
 
   # Default value for capacity_type field of managed_node_group_configurations.
   node_group_default_capacity_type = "ON_DEMAND"
@@ -1122,6 +1165,11 @@ inputs = {
   # Default value for taint field of node_group_configurations. These taints are
   # only used if the taint field is omitted from the configuration.
   node_group_default_taints = []
+
+  # Default value for the user_data_base64 field of
+  # managed_node_group_configurations. Any map entry that does not specify
+  # user_data_base64 will use this value.
+  node_group_default_user_data_base64 = null
 
   # The instance type to configure in the launch template. This value will be
   # used when the instance_types field is set to null (NOT omitted, in which
@@ -1276,6 +1324,10 @@ Any types represent complex values of variable type. For details, please consult
                                               will be used to deploy updates to the cluster.
    - asg_instance_type   string             : (Defaults to value from var.asg_default_instance_type) The type of
                                               instances to use for the ASG (e.g., t2.medium).
+   - asg_ami_type                   string  : (Defaults to value from var.asg_default_ami_type) Type of Amazon
+                                              Machine Image (e.g. AL2_x86_64, AL2_x86_64_GPU) associated with the EKS
+                                              Node Group. See the AWS documentation for valid values.
+                                              https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.htmlAmazonEKS-Type-Nodegroup-amiType
    - max_pods_allowed    number             : (Defaults to value from var.asg_default_max_pods_allowed) The
                                               maximum number of Pods allowed to be scheduled on the node. When null,
                                               the max will be automatically calculated based on the availability of
@@ -1290,6 +1342,8 @@ Any types represent complex values of variable type. For details, please consult
                                               instances to use for the ASG (e.g., 125).
    - asg_instance_root_volume_encryption   bool  : (Defaults to value from var.asg_default_instance_root_volume_encryption)
                                                Whether or not to enable root volume encryption for instances of the ASG.
+   - asg_instance_user_data_base64   string : (Defaults to value from var.asg_default_instance_user_data_base64) The base64 user-data content of
+                                              instance to use for the ASG.
    - tags                list(object[Tag])  : (Defaults to value from var.asg_default_tags) Custom tags to apply to the
                                               EC2 Instances in this ASG. Refer to structure definition below for the
                                               object type of each entry in the list.
@@ -1461,6 +1515,12 @@ Any types represent complex values of variable type. For details, please consult
                                               nodes. EKS will choose from this list of instance types when launching
                                               new instances. When using launch templates, this setting will override
                                               the configured instance type of the launch template.
+   - ami_type            string              : (Defaults to value from var.node_group_default_ami_type) Type of Amazon
+                                              Machine Image (e.g. AL2_x86_64, AL2_x86_64_GPU) associated with the EKS
+                                              Node Group. See the AWS documentation for valid values.
+                                              https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.htmlAmazonEKS-Type-Nodegroup-amiType
+   - user_data_base64   string              : (Defaults to value from var.node_group_default_user_data_base64) The base64 user-data content of
+                                              instance to use for the Node Group.
    - capacity_type       string             : (Defaults to value from var.node_group_default_capacity_type) Type of capacity
                                               associated with the EKS Node Group. Valid values: ON_DEMAND, SPOT.
    - launch_template     LaunchTemplate     : (Defaults to value from var.node_group_default_launch_template)
@@ -1599,6 +1659,15 @@ Custom name for the IAM role for the Self-managed workers. When null, a default 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="asg_default_ami_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for asg_ami_type field of autoscaling_group_configurations. See the AWS documentation for valid values. Docs: https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;AL2_x86_64&quot;"/>
+</HclListItem>
+
 <HclListItem name="asg_default_enable_detailed_monitoring" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1717,6 +1786,15 @@ Default value for the asg_instance_type field of autoscaling_group_configuration
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;t3.medium&quot;"/>
+</HclListItem>
+
+<HclListItem name="asg_default_instance_user_data_base64" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for the asg_instance_user_data_base64 field of autoscaling_group_configurations. Any map entry that does not specify asg_instance_user_data_base64 will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="asg_default_max_pods_allowed" requirement="optional" type="number">
@@ -2431,6 +2509,15 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
+<HclListItem name="managed_node_group_create_security_group" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to create an AWS Security Group for the Managed Node Groups. By default this is created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="managed_node_group_custom_iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2456,6 +2543,15 @@ ARN of the IAM role to use if iam_role_already_exists = true. When null, uses ma
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_ami_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for ami_type field of managed_node_group_configurations. See the AWS documentation for valid values. Docs: https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;AL2_x86_64&quot;"/>
 </HclListItem>
 
 <HclListItem name="node_group_default_capacity_type" requirement="optional" type="string">
@@ -2625,6 +2721,15 @@ list(map(string))
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="node_group_default_user_data_base64" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for the user_data_base64 field of managed_node_group_configurations. Any map entry that does not specify user_data_base64 will use this value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="node_group_launch_template_instance_type" requirement="optional" type="string">
@@ -2891,11 +2996,11 @@ The list of names of the ASGs that were deployed to act as EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/services/eks-workers/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/services/eks-workers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.5/modules/services/eks-workers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.7/modules/services/eks-workers/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.7/modules/services/eks-workers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.130.7/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "adc816a4b69b80d88a5e5a211e74f038"
+  "hash": "8ce4f6831bfab16b9152346f2492deb2"
 }
 ##DOCS-SOURCER-END -->
