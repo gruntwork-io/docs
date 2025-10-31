@@ -270,7 +270,7 @@ boilerplate \
   --var 'AccountName=dev' \
   --var 'GitHubOrgName=acme' \
   --var 'GitHubRepoName=infrastructure-live' \
-  --var 'AWSAccountID=123456789012' \
+  --var 'AWSAccountID="123456789012"' \
   --var 'AWSRegion=us-east-1' \
   --var 'StateBucketName=my-state-bucket' \
   --non-interactive
@@ -282,7 +282,7 @@ You can also choose to store these values in a YAML file and pass it to Boilerpl
 AccountName: dev
 GitHubOrgName: acme
 GitHubRepoName: infrastructure-live
-AWSAccountID: 123456789012
+AWSAccountID: "123456789012"
 AWSRegion: us-east-1
 StateBucketName: my-state-bucket
 ```
