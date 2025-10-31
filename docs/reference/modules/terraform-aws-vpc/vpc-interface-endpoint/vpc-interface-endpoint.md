@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.28.7" lastModifiedVersion="0.28.5"/>
+<VersionBadge repoTitle="VPC Modules" version="0.28.8" lastModifiedVersion="0.28.8"/>
 
 # Interface VPC Endpoint
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.7/modules/vpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.8/modules/vpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 By default, if code running within your VPCs makes API calls to AWS (e.g., to fetch data from S3 or trigger a Lambda function), those API calls leave the VPC, and are routed via the public Internet. This Terraform Module launches VPC endpoints that allow code running within your VPCs to privately connect to AWS services and APIs without the traffic leaving the VPC and without going over the public Internet. Although all API calls to AWS are encrypted with TLS, VPC endpoints give you one extra layer of security by keeping your API calls within the AWS network.
 
@@ -193,7 +193,7 @@ Not specifying a rule allows all traffic.
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.7/modules//_docs/vpc-core-concepts.md) like subnets and NAT Gateways.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.8/modules//_docs/vpc-core-concepts.md) like subnets and NAT Gateways.
 
 ## Sample Usage
 
@@ -208,7 +208,7 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 module "vpc_interface_endpoint" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.28.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.28.8"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -1312,6 +1312,9 @@ module "vpc_interface_endpoint" {
   # Set to true if you want to provision a RDS Endpoint within the VPC
   enable_rds_endpoint = false
 
+  # Set to true if you want to provision a RDS FIPSEndpoint within the VPC
+  enable_rds_fips_endpoint = false
+
   # Set to true if you want to provision a Redshift within the VPC
   enable_redshift_data_endpoint = false
 
@@ -1327,6 +1330,9 @@ module "vpc_interface_endpoint" {
 
   # Set to true if you want to provision a Secrets Manager within the VPC
   enable_secretsmanager_endpoint = false
+
+  # Set to true if you want to provision a FIPS Secrets Manager within the VPC
+  enable_secretsmanager_fips_endpoint = false
 
   # Set to true if you want to provision a Service Catalog Endpoint within the
   # VPC
@@ -1605,6 +1611,30 @@ module "vpc_interface_endpoint" {
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
   # but no other types of resources. If not specified, all resources will be
   # allowed to call this endpoint.
+  rds_fips_endpoint_policy = null
+
+  # Set to false if you don't want to associate a private hosted zone with the
+  # specified VPC for the RDS FIPS endpoint
+  rds_fips_endpoint_private_dns_enabled = true
+
+  # The ID of one or more security groups to associate with the network
+  # interface for the RDS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
+  rds_fips_endpoint_security_group_ids = []
+
+  # The IDs of subnets in which to create a network interface for the RDS
+  # endpoint. Only a single subnet within an AZ is supported. When defined, it
+  # overrides var.subnet_ids. For some regions, RDS endpoint is not supported in
+  # all the AZs, so this variable helps to overcome this issue.
+  rds_fips_endpoint_subnet_ids = []
+
+  # Tags for the RDS FIPS endpoint
+  rds_fips_endpoint_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   redshift_data_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
@@ -1720,6 +1750,29 @@ module "vpc_interface_endpoint" {
 
   # Tags for the Secrets Manager endpoint
   secretsmanager_endpoint_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  secretsmanager_fips_endpoint_policy = null
+
+  # Set to false if you don't want to associate a private hosted zone with the
+  # specified VPC for the FIPS Secrets Manager endpoint
+  secretsmanager_fips_endpoint_private_dns_enabled = true
+
+  # The ID of one or more security groups to associate with the network
+  # interface for the Secrets Manager endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
+  secretsmanager_fips_endpoint_security_group_ids = []
+
+  # The IDs of subnets in which to create a network interface for the  FIPS
+  # Secrets Manager endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
+  secretsmanager_fips_endpoint_subnet_ids = []
+
+  # Tags for the FIPS Secrets Manager endpoint
+  secretsmanager_fips_endpoint_tags = {}
 
   # A list of IDs of the security groups which will apply for all endpoints.
   # Must supply this or create_https_security_group = true.
@@ -2101,7 +2154,7 @@ module "vpc_interface_endpoint" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.28.7"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.28.8"
 }
 
 inputs = {
@@ -3208,6 +3261,9 @@ inputs = {
   # Set to true if you want to provision a RDS Endpoint within the VPC
   enable_rds_endpoint = false
 
+  # Set to true if you want to provision a RDS FIPSEndpoint within the VPC
+  enable_rds_fips_endpoint = false
+
   # Set to true if you want to provision a Redshift within the VPC
   enable_redshift_data_endpoint = false
 
@@ -3223,6 +3279,9 @@ inputs = {
 
   # Set to true if you want to provision a Secrets Manager within the VPC
   enable_secretsmanager_endpoint = false
+
+  # Set to true if you want to provision a FIPS Secrets Manager within the VPC
+  enable_secretsmanager_fips_endpoint = false
 
   # Set to true if you want to provision a Service Catalog Endpoint within the
   # VPC
@@ -3501,6 +3560,30 @@ inputs = {
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
   # but no other types of resources. If not specified, all resources will be
   # allowed to call this endpoint.
+  rds_fips_endpoint_policy = null
+
+  # Set to false if you don't want to associate a private hosted zone with the
+  # specified VPC for the RDS FIPS endpoint
+  rds_fips_endpoint_private_dns_enabled = true
+
+  # The ID of one or more security groups to associate with the network
+  # interface for the RDS endpoint. If none is provided, AWS will associate the
+  # default security group for the VPC.
+  rds_fips_endpoint_security_group_ids = []
+
+  # The IDs of subnets in which to create a network interface for the RDS
+  # endpoint. Only a single subnet within an AZ is supported. When defined, it
+  # overrides var.subnet_ids. For some regions, RDS endpoint is not supported in
+  # all the AZs, so this variable helps to overcome this issue.
+  rds_fips_endpoint_subnet_ids = []
+
+  # Tags for the RDS FIPS endpoint
+  rds_fips_endpoint_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   redshift_data_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
@@ -3616,6 +3699,29 @@ inputs = {
 
   # Tags for the Secrets Manager endpoint
   secretsmanager_endpoint_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  secretsmanager_fips_endpoint_policy = null
+
+  # Set to false if you don't want to associate a private hosted zone with the
+  # specified VPC for the FIPS Secrets Manager endpoint
+  secretsmanager_fips_endpoint_private_dns_enabled = true
+
+  # The ID of one or more security groups to associate with the network
+  # interface for the Secrets Manager endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
+  secretsmanager_fips_endpoint_security_group_ids = []
+
+  # The IDs of subnets in which to create a network interface for the  FIPS
+  # Secrets Manager endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
+  secretsmanager_fips_endpoint_subnet_ids = []
+
+  # Tags for the FIPS Secrets Manager endpoint
+  secretsmanager_fips_endpoint_tags = {}
 
   # A list of IDs of the security groups which will apply for all endpoints.
   # Must supply this or create_https_security_group = true.
@@ -6205,6 +6311,15 @@ Set to true if you want to provision a RDS Endpoint within the VPC
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_rds_fips_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a RDS FIPSEndpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="enable_redshift_data_endpoint" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -6245,6 +6360,15 @@ Set to true if you want to provision a SageMaker Runtime Endpoint within the VPC
 <HclListItemDescription>
 
 Set to true if you want to provision a Secrets Manager within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_secretsmanager_fips_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a FIPS Secrets Manager within the VPC
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -6817,6 +6941,51 @@ Tags for the RDS endpoint
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="rds_fips_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="rds_fips_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the RDS FIPS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="rds_fips_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the RDS endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="rds_fips_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the RDS endpoint. Only a single subnet within an AZ is supported. When defined, it overrides <a href="#subnet_ids"><code>subnet_ids</code></a>. For some regions, RDS endpoint is not supported in all the AZs, so this variable helps to overcome this issue.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="rds_fips_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the RDS FIPS endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="redshift_data_endpoint_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -7037,6 +7206,51 @@ The IDs of subnets in which to create a network interface for the Secrets Manage
 <HclListItemDescription>
 
 Tags for the Secrets Manager endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="secretsmanager_fips_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="secretsmanager_fips_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the FIPS Secrets Manager endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="secretsmanager_fips_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Secrets Manager endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="secretsmanager_fips_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the  FIPS Secrets Manager endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="secretsmanager_fips_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the FIPS Secrets Manager endpoint
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
@@ -8401,6 +8615,20 @@ If you have private dns enabled, then your streaming calls would automatically g
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="rds_fips_endpoint_id">
+</HclListItem>
+
+<HclListItem name="rds_fips_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your streaming calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="rds_fips_network_interface_ids">
+</HclListItem>
+
 <HclListItem name="rds_network_interface_ids">
 </HclListItem>
 
@@ -8469,6 +8697,20 @@ If you have private dns enabled, then your API calls would automatically go thro
 If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
 
 </HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="secretsmanager_fips_endpoint_id">
+</HclListItem>
+
+<HclListItem name="secretsmanager_fips_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly to use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="secretsmanager_fips_network_interface_ids">
 </HclListItem>
 
 <HclListItem name="secretsmanager_network_interface_ids">
@@ -8662,11 +8904,11 @@ If you have private dns enabled, then your streaming calls would automatically g
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.7/modules/vpc-interface-endpoint/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.7/modules/vpc-interface-endpoint/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.7/modules/vpc-interface-endpoint/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.8/modules/vpc-interface-endpoint/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.8/modules/vpc-interface-endpoint/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.8/modules/vpc-interface-endpoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2f9d55646e787a3971f4cd4485d05918"
+  "hash": "cb332fff5901373f9044114a3dab72a0"
 }
 ##DOCS-SOURCER-END -->
