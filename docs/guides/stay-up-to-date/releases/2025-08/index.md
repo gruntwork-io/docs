@@ -289,7 +289,10 @@ The `v4` line of Pipelines Workflows will support versions of Terragrunt &gt;= `
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  * LIB-2545 Update root-pipelines-apply-role and root-pipelines-plan-role (templates/gruntwork-landing-zone/_envcommon/landingzone) with permissions required by new [control-tower-multi-account-factory-async](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/b5880dc867eb2ead34401f5bc4497830c3ddf49b/modules/landingzone/control-tower-multi-account-factory-async) module.
+  &gt; [!IMPORTANT]
+&gt; This release **contains breaking changes** to the architecture catalog and should have been tagged in v4.0.0 release. The changes in this release have now been re-released with v4.0.0
+
+* LIB-2545 Update root-pipelines-apply-role and root-pipelines-plan-role (templates/gruntwork-landing-zone/_envcommon/landingzone) with permissions required by new [control-tower-multi-account-factory-async](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/b5880dc867eb2ead34401f5bc4497830c3ddf49b/modules/landingzone/control-tower-multi-account-factory-async) module.
 * Updated single-account-baseline template to optionally include a pipelines HCL environment config for the new account.
 * Deprecates remaining Pipelines v2 templates infra-live-root, infra-live-github-base &amp; devops-foundations-infrastructure-live-delegated
 * Bump Terragrunt and OpenTofu versions in boilerplate and mise.toml
@@ -727,6 +730,6 @@ Each release will include detailed notes indicating whether changes are breaking
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "75e9a45418b39c438c2de4b0f028cac7"
+  "hash": "3b60ef3bbe7a800cb2983917e6debab9"
 }
 ##DOCS-SOURCER-END -->
