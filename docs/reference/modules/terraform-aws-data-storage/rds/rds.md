@@ -316,9 +316,11 @@ module "rds" {
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The name for your database. Must contain 1-64 alphanumeric characters for
+  # MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a
+  # letter. Cannot be a reserved word. Not supported for SQL Server (must be
+  # null). If you do not provide a name, Amazon RDS will not create a database
+  # in the DB instance you are creating.
   db_name = null
 
   # A map of the default license to use for each supported RDS engine.
@@ -706,9 +708,11 @@ inputs = {
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The name for your database. Must contain 1-64 alphanumeric characters for
+  # MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a
+  # letter. Cannot be a reserved word. Not supported for SQL Server (must be
+  # null). If you do not provide a name, Amazon RDS will not create a database
+  # in the DB instance you are creating.
   db_name = null
 
   # A map of the default license to use for each supported RDS engine.
@@ -1301,7 +1305,7 @@ A map of custom tags to apply to the RDS Instance and the Security Group created
 <HclListItem name="db_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create a database in the DB cluster you are creating.
+The name for your database. Must contain 1-64 alphanumeric characters for MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a letter. Cannot be a reserved word. Not supported for SQL Server (must be null). If you do not provide a name, Amazon RDS will not create a database in the DB instance you are creating.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1802,6 +1806,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d305c8796a6b872e0822c94311e7a156"
+  "hash": "0cf33e01d702e7aef7292aec7f4976d4"
 }
 ##DOCS-SOURCER-END -->

@@ -240,6 +240,13 @@ module "aurora" {
   # instances
   cluster_instances_minutes_between_maintenance_windows = 180
 
+  # The interval, in seconds, between points when Enhanced Monitoring metrics
+  # are collected for the cluster instances. To disable collecting Enhanced
+  # Monitoring metrics, specify 0. Allowed values: 0, 1, 5, 15, 30, 60. Enhanced
+  # Monitoring metrics are useful when you want to see how different processes
+  # or threads on a DB instance use the CPU.
+  cluster_monitoring_interval = null
+
   # Specifies whether cluster level Performance Insights is enabled or not. On
   # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
   # instance classes.
@@ -288,9 +295,11 @@ module "aurora" {
   # Aurora DB cluster.
   db_instance_parameter_group_name = null
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The name for your database. Must contain 1-64 alphanumeric characters for
+  # Aurora MySQL, 1-63 for Aurora PostgreSQL. Must begin with a letter.
+  # Subsequent characters can be letters, underscores, or digits. Cannot be a
+  # reserved word. If you do not provide a name, Amazon RDS will not create a
+  # database in the DB cluster you are creating.
   db_name = null
 
   # If true, delete all automated backups when the DB cluster is deleted. If
@@ -481,6 +490,10 @@ module "aurora" {
   # The time, in seconds, before an Aurora DB cluster in serverless mode is
   # paused. Valid values are 300 through 86400.
   scaling_configuration_seconds_until_auto_pause = 300
+
+  # The time, in seconds, before an Aurora DB cluster in serverless mode is
+  # paused. Valid values are 300 through 86400.
+  scaling_configuration_seconds_until_auto_pause_V2 = 300
 
   # The action to take when the timeout is reached. Valid values:
   # ForceApplyCapacityChange, RollbackCapacityChange. Defaults to
@@ -636,6 +649,13 @@ inputs = {
   # instances
   cluster_instances_minutes_between_maintenance_windows = 180
 
+  # The interval, in seconds, between points when Enhanced Monitoring metrics
+  # are collected for the cluster instances. To disable collecting Enhanced
+  # Monitoring metrics, specify 0. Allowed values: 0, 1, 5, 15, 30, 60. Enhanced
+  # Monitoring metrics are useful when you want to see how different processes
+  # or threads on a DB instance use the CPU.
+  cluster_monitoring_interval = null
+
   # Specifies whether cluster level Performance Insights is enabled or not. On
   # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
   # instance classes.
@@ -684,9 +704,11 @@ inputs = {
   # Aurora DB cluster.
   db_instance_parameter_group_name = null
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The name for your database. Must contain 1-64 alphanumeric characters for
+  # Aurora MySQL, 1-63 for Aurora PostgreSQL. Must begin with a letter.
+  # Subsequent characters can be letters, underscores, or digits. Cannot be a
+  # reserved word. If you do not provide a name, Amazon RDS will not create a
+  # database in the DB cluster you are creating.
   db_name = null
 
   # If true, delete all automated backups when the DB cluster is deleted. If
@@ -877,6 +899,10 @@ inputs = {
   # The time, in seconds, before an Aurora DB cluster in serverless mode is
   # paused. Valid values are 300 through 86400.
   scaling_configuration_seconds_until_auto_pause = 300
+
+  # The time, in seconds, before an Aurora DB cluster in serverless mode is
+  # paused. Valid values are 300 through 86400.
+  scaling_configuration_seconds_until_auto_pause_V2 = 300
 
   # The action to take when the timeout is reached. Valid values:
   # ForceApplyCapacityChange, RollbackCapacityChange. Defaults to
@@ -1115,6 +1141,15 @@ Amount of time, in minutes, between maintenance windows of the cluster instances
 <HclListItemDefaultValue defaultValue="180"/>
 </HclListItem>
 
+<HclListItem name="cluster_monitoring_interval" requirement="optional" type="number">
+<HclListItemDescription>
+
+The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the cluster instances. To disable collecting Enhanced Monitoring metrics, specify 0. Allowed values: 0, 1, 5, 15, 30, 60. Enhanced Monitoring metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="cluster_performance_insights_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1217,7 +1252,7 @@ An instance parameter group to associate with the cluster instances. Parameters 
 <HclListItem name="db_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create a database in the DB cluster you are creating.
+The name for your database. Must contain 1-64 alphanumeric characters for Aurora MySQL, 1-63 for Aurora PostgreSQL. Must begin with a letter. Subsequent characters can be letters, underscores, or digits. Cannot be a reserved word. If you do not provide a name, Amazon RDS will not create a database in the DB cluster you are creating.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1592,6 +1627,15 @@ The time, in seconds, before an Aurora DB cluster in serverless mode is paused. 
 <HclListItemDefaultValue defaultValue="300"/>
 </HclListItem>
 
+<HclListItem name="scaling_configuration_seconds_until_auto_pause_V2" requirement="optional" type="number">
+<HclListItemDescription>
+
+The time, in seconds, before an Aurora DB cluster in serverless mode is paused. Valid values are 300 through 86400.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="300"/>
+</HclListItem>
+
 <HclListItem name="scaling_configuration_timeout_action" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1711,6 +1755,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fd9d080cf4f56179ff6e3c79fbe20415"
+  "hash": "6e26772d2ece7db775297f5a22b009b3"
 }
 ##DOCS-SOURCER-END -->
