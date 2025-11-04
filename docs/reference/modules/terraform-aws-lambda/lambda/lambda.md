@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="1.1.0" lastModifiedVersion="1.1.0"/>
+<VersionBadge repoTitle="AWS Lambda" version="1.2.0" lastModifiedVersion="1.2.0"/>
 
 # Lambda Function Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.1.0/modules/lambda" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.2.0/modules/lambda" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v1.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v1.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy and manage an [AWS Lambda](https://aws.amazon.com/lambda/) function. Lambda gives
 you a way to run code on-demand in AWS without having to manage servers.
@@ -48,6 +48,42 @@ resource "aws_lambda_permission" "with_sns" {
   source_arn = "${aws_sns_topic.default.arn}"
 }
 ```
+
+## How do you enhance IAM role security?
+
+**RECOMMENDED SECURITY PRACTICE**: By default, the IAM role created by this module can be assumed by any Lambda function
+in your AWS account. For enhanced security, you can enable the `enforce_source_arn_condition` parameter to restrict
+the role so that only the specific Lambda function created by this module can assume it.
+
+```hcl
+module "my_lambda_function" {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v1.0.8"
+  
+  # Enable enhanced IAM role security
+  enforce_source_arn_condition = true
+  
+  # (other params omitted)
+}
+```
+
+**Important Notes:**
+
+*   **Backward Compatibility**: This feature is currently **opt-in** (defaults to `false`) to maintain backward compatibility
+*   **Breaking Change**: Enabling this on existing deployments will immediately restrict the role and may break non-standard setups where:
+    *   Multiple Lambda functions share the same role
+    *   External tools or scripts assume the role for testing purposes
+*   **Migration Path**: Test thoroughly before enabling in production environments. In future releases, this will default to `true`
+*   **Not Applicable**: This setting has no effect if you provide an existing role via `existing_role_arn`
+
+**When to Enable:**
+
+*   ✅ New Lambda functions (recommended)
+*   ✅ Single-purpose Lambda functions with dedicated roles
+*   ❌ Shared roles across multiple Lambda functions
+*   ❌ Roles used by external testing tools
+
+This security enhancement ensures that only your specific Lambda function can assume its IAM role, following the
+principle of least privilege.
 
 ## How do you give the lambda function access to a VPC?
 
@@ -105,7 +141,7 @@ Lambda function are still in use. If necessary, the variable `enable_eni_cleanup
 of the function from the VPC during `terraform destroy` and unblock the Security Group for destruction. Note: this
 requires the [`aws` cli tool](https://aws.amazon.com/cli/) to be installed.
 
-Check out the [lambda-vpc example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.1.0/examples/lambda-vpc) for working sample code. Make sure to note the Known Issues
+Check out the [lambda-vpc example](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.2.0/examples/lambda-vpc) for working sample code. Make sure to note the Known Issues
 section in that example's README.
 
 ## How do you share Lambda functions across multiple AWS accounts?
@@ -153,7 +189,7 @@ If you want to have a central S3 bucket that you use as a repository for your La
 
 module "lambda" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v1.2.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -257,6 +293,13 @@ module "lambda" {
   # different environments. Note that an alternative way to run Lambda functions
   # in multiple environments is to version your Terraform code.
   enable_versioning = false
+
+  # Flag to add a condition to the trust relationship of the IAM role to enforce that only the Lambda
+  # function created by this module can assume the role. This is generally a good idea for security, but if you are
+  # using the created role across multiple Lambda functions, you may want to set this to false. In a future release,
+  # this will default to true.
+  #
+  enforce_source_arn_condition = false
 
   # The ENTRYPOINT for the docker image. Only used if you specify a Docker image
   # via image_uri.
@@ -396,6 +439,15 @@ module "lambda" {
   # points to a pregenerated zip archive.
   skip_zip = false
 
+  # Whether to enable Lambda SnapStart and on which conditions. SnapStart can
+  # improve cold start performance by up to 10x for Java 11+, Python 3.12+, and
+  # .NET 8+ runtimes. Valid values are 'PublishedVersions' (enable SnapStart) or
+  # 'None' (disable SnapStart). When set to 'PublishedVersions', requires
+  # enable_versioning = true. Not supported for container images (image_uri),
+  # Lambda@Edge, or when using provisioned concurrency. When null (default),
+  # SnapStart is not configured.
+  snap_start_apply_on = null
+
   # The path to the directory that contains your Lambda function source code.
   # This code will be zipped up and uploaded to Lambda as your deployment
   # package. If var.skip_zip is set to true, then this is assumed to be the path
@@ -456,7 +508,7 @@ module "lambda" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda?ref=v1.2.0"
 }
 
 inputs = {
@@ -564,6 +616,13 @@ inputs = {
   # in multiple environments is to version your Terraform code.
   enable_versioning = false
 
+  # Flag to add a condition to the trust relationship of the IAM role to enforce that only the Lambda
+  # function created by this module can assume the role. This is generally a good idea for security, but if you are
+  # using the created role across multiple Lambda functions, you may want to set this to false. In a future release,
+  # this will default to true.
+  #
+  enforce_source_arn_condition = false
+
   # The ENTRYPOINT for the docker image. Only used if you specify a Docker image
   # via image_uri.
   entry_point = []
@@ -701,6 +760,15 @@ inputs = {
   # Set to true to skip zip archive creation and assume that var.source_path
   # points to a pregenerated zip archive.
   skip_zip = false
+
+  # Whether to enable Lambda SnapStart and on which conditions. SnapStart can
+  # improve cold start performance by up to 10x for Java 11+, Python 3.12+, and
+  # .NET 8+ runtimes. Valid values are 'PublishedVersions' (enable SnapStart) or
+  # 'None' (disable SnapStart). When set to 'PublishedVersions', requires
+  # enable_versioning = true. Not supported for container images (image_uri),
+  # Lambda@Edge, or when using provisioned concurrency. When null (default),
+  # SnapStart is not configured.
+  snap_start_apply_on = null
 
   # The path to the directory that contains your Lambda function source code.
   # This code will be zipped up and uploaded to Lambda as your deployment
@@ -930,6 +998,19 @@ When true, this will force the detachment of the Lambda from the VPC, if <a href
 <HclListItemDescription>
 
 Set to true to enable versioning for this Lambda function. This allows you to use aliases to refer to execute different versions of the function in different environments. Note that an alternative way to run Lambda functions in multiple environments is to version your Terraform code.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enforce_source_arn_condition" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Flag to add a condition to the trust relationship of the IAM role to enforce that only the Lambda
+function created by this module can assume the role. This is generally a good idea for security, but if you are
+using the created role across multiple Lambda functions, you may want to set this to false. In a future release,
+this will default to true.
+
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -1220,6 +1301,15 @@ Set to true to skip zip archive creation and assume that <a href="#source_path">
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="snap_start_apply_on" requirement="optional" type="string">
+<HclListItemDescription>
+
+Whether to enable Lambda SnapStart and on which conditions. SnapStart can improve cold start performance by up to 10x for Java 11+, Python 3.12+, and .NET 8+ runtimes. Valid values are 'PublishedVersions' (enable SnapStart) or 'None' (disable SnapStart). When set to 'PublishedVersions', requires enable_versioning = true. Not supported for container images (image_uri), Lambda@Edge, or when using provisioned concurrency. When null (default), SnapStart is not configured.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="source_path" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1333,6 +1423,14 @@ Name of the (optionally) created CloudWatch log group for the lambda function.
 <HclListItem name="security_group_id">
 </HclListItem>
 
+<HclListItem name="snap_start_optimization_status">
+<HclListItemDescription>
+
+Optimization status of Lambda SnapStart. Possible values: 'On' (SnapStart is activated and optimized), 'Off' (SnapStart is deactivated), or null (SnapStart is not configured).
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="version">
 </HclListItem>
 
@@ -1342,11 +1440,11 @@ Name of the (optionally) created CloudWatch log group for the lambda function.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.1.0/modules/lambda/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.1.0/modules/lambda/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.1.0/modules/lambda/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.2.0/modules/lambda/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.2.0/modules/lambda/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.2.0/modules/lambda/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1503560e65bd104ab85d8c624d82e84c"
+  "hash": "bede4d1aaddb8be23ac1888358c6363d"
 }
 ##DOCS-SOURCER-END -->
