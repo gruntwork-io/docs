@@ -8,6 +8,7 @@ import TabItem from '@theme/TabItem';
 
 | Type | Terragrunt Ver | Pipelines Ver | Comments |
 | ---- | -------------- | ------------- | -------- |
+| Recommended | 0.93.1 | v4.y.z | Pipeline/Terragrunt is considerably faster on 0.93.1+ for environment auth |
 | Minimum | 0.86.3 | v4.y.z | This is the absolute minimum version of Terragrunt for Pipelines v4 |
 | Maximum | 0.84.z | v3.y.z | Pipelines v3.y.z is not compatible with Terragrunt 0.85.0 and above.|
 | Recommended | 0.77.11 | v3.y.z | Pipelines is actively tested with this version of Terragrunt |
@@ -19,6 +20,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="gitlab" label="GitLab">
 | Type | Terragrunt Ver | Pipelines Ver | Comments |
 | ---- | -------------- | ------------- | -------- |
+| Recommended | 0.93.1 | v2.y.z | Pipeline/Terragrunt is considerably faster on 0.93.1+ for environment auth |
 | Minimum | 0.86.3 | v2.y.z | This is the absolute minimum version of Terragrunt for Pipelines v2 |
 | Maximum | 0.84.z | v1.y.z | Pipelines v1.y.z is not compatible with Terragrunt 0.85.0 and above.|
 | Minimum | 0.59.7 | v1.y.z | This is the absolute minimum version of Terragrunt for Pipelines v1 |
