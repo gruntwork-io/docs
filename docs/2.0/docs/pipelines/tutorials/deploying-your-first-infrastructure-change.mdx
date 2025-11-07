@@ -62,12 +62,8 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
 3. Add the Terragrunt code below to the newly created `terragrunt.hcl` file to define the S3 bucket. Replace <CustomizableValue id='S3_BUCKET_NAME'/> with your desired bucket name. Ensure the bucket name is unique.
 
    ```hcl title="$$ACCOUNT_NAME$$/$$REGION$$/data-storage/s3/terragrunt.hcl"
-   # ------------------------------------------------------------------------------------------------------
-   # DEPLOY GRUNTWORK's S3-BUCKET MODULE
-   # ------------------------------------------------------------------------------------------------------
-
    terraform {
-     source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/s3-bucket?ref=v0.116.1"
+    source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/aws/s3-bucket?ref=v1.3.0"
    }
 
    include "root" {
@@ -75,7 +71,7 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
    }
 
    inputs = {
-     primary_bucket = "$$S3_BUCKET_NAME$$"
+     name = "$$S3_BUCKET_NAME$$"
    }
    ```
 
@@ -113,10 +109,6 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
 3. Add the Terragrunt code below to define the Resource Group.
 
    ```hcl title="$$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/resource-group/terragrunt.hcl"
-   # ------------------------------------------------------------------------------------------------------
-   # DEPLOY GRUNTWORK's AZURE RESOURCE GROUP MODULE
-   # ------------------------------------------------------------------------------------------------------
-
    include "root" {
      path = find_in_parent_folders("root.hcl")
    }
@@ -134,10 +126,6 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
 4. Add the Terragrunt code below to define the Storage Account with a dependency on the Resource Group. Replace <CustomizableValue id='STORAGE_ACCOUNT_NAME'/> with your desired storage account name. Ensure the name is unique and follows Azure naming conventions (lowercase letters and numbers only, 3-24 characters).
 
    ```hcl title="$$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/data-storage/storage-account/terragrunt.hcl"
-   # ------------------------------------------------------------------------------------------------------
-   # DEPLOY GRUNTWORK's AZURE STORAGE ACCOUNT MODULE
-   # ------------------------------------------------------------------------------------------------------
-
    include "root" {
      path = find_in_parent_folders("root.hcl")
    }

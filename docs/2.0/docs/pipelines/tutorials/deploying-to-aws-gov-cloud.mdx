@@ -148,7 +148,7 @@ terragrunt import "aws_iam_openid_connect_provider.gitlab" "ARN_OF_EXISTING_OIDC
 
 ## Testing Pipelines with the newly added GovCloud account
 
-We'll validate pipelines by creating a new S3 bucket in the GovCloud account.
+We'll validate pipelines by creating a new S3 bucket in the GovCloud account. Replace <CustomizableValue id='S3_BUCKET_NAME'/> with your desired bucket name. Ensure the bucket name is unique.
 
 1. Create a new folder in `s3-bucket-test`
 ```bash
@@ -158,7 +158,7 @@ mkdir -p $$ACCOUNT_NAME$$/$$GOVCLOUD_REGION$$/s3-bucket-test/
 2. Add the following content to the `terragrunt.hcl` file:
 ```hcl title="$$ACCOUNT_NAME$$/$$GOVCLOUD_REGION$$/s3-bucket-test/terragrunt.hcl"
 terraform {
-  source = "git::https://github.com/gruntwork-io/terraform-aws-service-catalog.git//.//modules/data-stores/s3-bucket?ref=v0.118.19"
+ source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/aws/s3-bucket?ref=v1.3.0"
 }
 
 include "root" {
@@ -166,14 +166,7 @@ include "root" {
 }
 
 inputs = {
-  # --------------------------------------------------------------------------------------------------------------------
-  # Required input variables
-  # --------------------------------------------------------------------------------------------------------------------
-
-  # Description: What to name the S3 bucket. Note that S3 bucket names must be globally unique across all AWS users!
-  # Type: string
-  primary_bucket = "$$TEST_BUCKET_NAME$$" # TODO: fill in value, ensure it is globally unique
-
+  name = "$$S3_BUCKET_NAME$$"
 }
 ```
 
