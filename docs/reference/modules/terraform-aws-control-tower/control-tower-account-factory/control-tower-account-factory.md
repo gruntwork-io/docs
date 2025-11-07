@@ -134,16 +134,20 @@ module "control_tower_account_factory" {
   # The name to use for the new AWS account
   account_name = <string>
 
-  # The name of the organizational unit (OU) in which this account should be
-  # created. Must be one of the OUs in your Control Tower dashboard.
+  # The name or path of the organizational unit (OU) in which this account
+  # should be created. You can specify either a simple OU name (e.g., 'Prod') or
+  # a path separated by forward slashes (e.g., 'Workloads/Prod'). When using a
+  # path, it will match against the full OU hierarchy. Simple names will match
+  # any OU with that name if it's unique, otherwise use a path to disambiguate.
   organizational_unit_name = <string>
 
   # The list of organizational units (OUs) in which to look for the specified
   # organizational_unit_name. The module will look for the OU with the specified
-  # name in this list.
+  # name or path in this list.
   ous = <list(object(
     id   = string
     name = string
+    path = string
   ))>
 
   # The email address of the user who will be granted admin access to this new
@@ -248,16 +252,20 @@ inputs = {
   # The name to use for the new AWS account
   account_name = <string>
 
-  # The name of the organizational unit (OU) in which this account should be
-  # created. Must be one of the OUs in your Control Tower dashboard.
+  # The name or path of the organizational unit (OU) in which this account
+  # should be created. You can specify either a simple OU name (e.g., 'Prod') or
+  # a path separated by forward slashes (e.g., 'Workloads/Prod'). When using a
+  # path, it will match against the full OU hierarchy. Simple names will match
+  # any OU with that name if it's unique, otherwise use a path to disambiguate.
   organizational_unit_name = <string>
 
   # The list of organizational units (OUs) in which to look for the specified
   # organizational_unit_name. The module will look for the OU with the specified
-  # name in this list.
+  # name or path in this list.
   ous = <list(object(
     id   = string
     name = string
+    path = string
   ))>
 
   # The email address of the user who will be granted admin access to this new
@@ -396,7 +404,7 @@ The name to use for the new AWS account
 <HclListItem name="organizational_unit_name" requirement="required" type="string">
 <HclListItemDescription>
 
-The name of the organizational unit (OU) in which this account should be created. Must be one of the OUs in your Control Tower dashboard.
+The name or path of the organizational unit (OU) in which this account should be created. You can specify either a simple OU name (e.g., 'Prod') or a path separated by forward slashes (e.g., 'Workloads/Prod'). When using a path, it will match against the full OU hierarchy. Simple names will match any OU with that name if it's unique, otherwise use a path to disambiguate.
 
 </HclListItemDescription>
 </HclListItem>
@@ -404,7 +412,7 @@ The name of the organizational unit (OU) in which this account should be created
 <HclListItem name="ous" requirement="required" type="list(object(…))">
 <HclListItemDescription>
 
-The list of organizational units (OUs) in which to look for the specified organizational_unit_name. The module will look for the OU with the specified name in this list.
+The list of organizational units (OUs) in which to look for the specified organizational_unit_name. The module will look for the OU with the specified name or path in this list.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -413,6 +421,7 @@ The list of organizational units (OUs) in which to look for the specified organi
 list(object({
     id   = string
     name = string
+    path = string
   }))
 ```
 
@@ -595,6 +604,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.3/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3c310f25606339b89c24c32dec72d27a"
+  "hash": "8d8ac88f061b07ca16c50acc4f2b1f4b"
 }
 ##DOCS-SOURCER-END -->
