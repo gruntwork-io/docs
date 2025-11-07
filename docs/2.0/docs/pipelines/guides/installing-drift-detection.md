@@ -67,8 +67,8 @@ jobs:
   GruntworkPipelines:
     uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines-drift-detection.yml@v4
     with:
-      path: ${{ inputs.path }}
-      branch-name: ${{ inputs.branch-name }}
+      pipelines_drift_detection_filter: ${{ inputs.pipelines_drift_detection_filter }}
+      pipelines_drift_detection_branch: ${{ inputs.pipelines_drift_detection_branch }}
 ```
 
 <PersistentCheckbox id="install-drift-2" label="Workflow File Created" />
