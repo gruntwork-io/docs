@@ -147,7 +147,7 @@ module "control_tower_account_factory" {
   ous = <list(object(
     id   = string
     name = string
-    path = string
+    path = optional(string)
   ))>
 
   # The email address of the user who will be granted admin access to this new
@@ -265,7 +265,7 @@ inputs = {
   ous = <list(object(
     id   = string
     name = string
-    path = string
+    path = optional(string)
   ))>
 
   # The email address of the user who will be granted admin access to this new
@@ -421,7 +421,7 @@ The list of organizational units (OUs) in which to look for the specified organi
 list(object({
     id   = string
     name = string
-    path = string
+    path = optional(string)
   }))
 ```
 
@@ -604,6 +604,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.3/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8d8ac88f061b07ca16c50acc4f2b1f4b"
+  "hash": "2b13f92344ac6d9a4e5890df634b79a1"
 }
 ##DOCS-SOURCER-END -->

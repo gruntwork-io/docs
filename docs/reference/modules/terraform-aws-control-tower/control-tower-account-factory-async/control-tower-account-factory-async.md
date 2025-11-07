@@ -150,7 +150,7 @@ module "control_tower_account_factory_async" {
   ous = <list(object(
     id   = string
     name = string
-    path = string
+    path = optional(string)
   ))>
 
   # The email address of the user who will be granted admin access to this new
@@ -243,7 +243,7 @@ inputs = {
   ous = <list(object(
     id   = string
     name = string
-    path = string
+    path = optional(string)
   ))>
 
   # The email address of the user who will be granted admin access to this new
@@ -374,7 +374,7 @@ The list of organizational units (OUs) in which to look for the specified organi
 list(object({
     id   = string
     name = string
-    path = string
+    path = optional(string)
   }))
 ```
 
@@ -558,6 +558,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.3/modules/control-tower-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "722923b7f353e4b9819d38b987fbf068"
+  "hash": "4318652d51a545bef1296a63eecba7a5"
 }
 ##DOCS-SOURCER-END -->
