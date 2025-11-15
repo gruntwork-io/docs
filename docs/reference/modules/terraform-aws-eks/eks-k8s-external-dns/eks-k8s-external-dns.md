@@ -211,11 +211,6 @@ module "eks_k_8_s_external_dns" {
   # The container image registry to pull the images from.
   image_registry = null
 
-  # The container image repository to pull the images from. This allows
-  # overriding the default image repository for external-dns. For example,
-  # bitnamilegacy/external-dns.
-  image_repository = "bitnamilegacy/external-dns"
-
   # Which format to output external-dns logs in (options: text, json)
   log_format = "text"
 
@@ -415,11 +410,6 @@ inputs = {
   # The container image registry to pull the images from.
   image_registry = null
 
-  # The container image repository to pull the images from. This allows
-  # overriding the default image repository for external-dns. For example,
-  # bitnamilegacy/external-dns.
-  image_repository = "bitnamilegacy/external-dns"
-
   # Which format to output external-dns logs in (options: text, json)
   log_format = "text"
 
@@ -522,6 +512,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.1/modules/eks-k8s-external-dns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "87493763aab683f4316f9a0809ce74b4"
+  "hash": "fc17fe4a6122ee706ddd69d6b282ca7a"
 }
 ##DOCS-SOURCER-END -->
