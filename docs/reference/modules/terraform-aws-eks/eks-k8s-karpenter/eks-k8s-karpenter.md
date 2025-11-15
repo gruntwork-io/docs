@@ -227,6 +227,10 @@ module "eks_k_8_s_karpenter" {
   # should be the Name of the IAM Role.
   karpenter_node_existing_iam_role_name = null
 
+  # A list of additional IAM policy ARNs to attach to the Karpenter Node IAM
+  # Role. This allows you to attach custom policies to Karpenter nodes
+  karpenter_node_iam_role_additional_policy_arns = []
+
   # A description of the Karpenter Node IAM Role.
   karpenter_node_iam_role_description = "IAM Role attached to nodes launched by Karpenter."
 
@@ -417,6 +421,10 @@ inputs = {
   # This is required if `create_karpenter_node_iam_role` is set to false. This
   # should be the Name of the IAM Role.
   karpenter_node_existing_iam_role_name = null
+
+  # A list of additional IAM policy ARNs to attach to the Karpenter Node IAM
+  # Role. This allows you to attach custom policies to Karpenter nodes
+  karpenter_node_iam_role_additional_policy_arns = []
 
   # A description of the Karpenter Node IAM Role.
   karpenter_node_iam_role_description = "IAM Role attached to nodes launched by Karpenter."
@@ -800,6 +808,15 @@ Use an existing IAM Role to be used for the Karpenter Node Instance Profile. Thi
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="karpenter_node_iam_role_additional_policy_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of additional IAM policy ARNs to attach to the Karpenter Node IAM Role. This allows you to attach custom policies to Karpenter nodes
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="karpenter_node_iam_role_description" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -926,6 +943,6 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.1/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aab3d2689c040a607433a1e18b5dfb29"
+  "hash": "c7dc0596f8f3f3539b450d4bd004a6fc"
 }
 ##DOCS-SOURCER-END -->
