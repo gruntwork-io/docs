@@ -14,6 +14,7 @@ const infrastructurePipelinesSidebars = require("./sidebars/infrastructure-pipel
 const ecsDeployRunnerSidebars = require("./sidebars/ecs-deploy-runner.js")
 const docsSidebar = require("./sidebars/docs.js")
 const referenceSidebar = require("./sidebars/reference.js")
+const waySidebar = require("./sidebars/way.js")
 
 // @ts-check
 
@@ -24,6 +25,7 @@ const sidebars = {
   ecsDeployRunnerSidebars,
   docsSidebar,
   referenceSidebar,
+  waySidebar,
 }
 
 module.exports = sidebars

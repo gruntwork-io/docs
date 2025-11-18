@@ -260,6 +260,11 @@ async function createConfig() {
             },
             {
               type: "doc",
+              label: "Way",
+              docId: "2.0/way/intro/welcome",
+            },
+            {
+              type: "doc",
               label: "Release Notes",
               docId: "guides/stay-up-to-date/index",
             },
