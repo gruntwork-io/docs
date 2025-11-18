@@ -1,4 +1,5 @@
 {
   "label": "Principles",
-  "position": 4
+  "position": 3,
+  "className": "way-top-level-item"
 }

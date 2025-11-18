@@ -1,6 +1,7 @@
 {
   "label": "Resources",
   "position": 8,
+  "className": "way-top-level-item",
   "link": {
     "type": "generated-index",
     "description": "Reference materials and definitions for The Gruntwork Way."

@@ -740,3 +740,9 @@ html[data-theme="dark"] .customizable-value span::after {
   background-color: var(--ifm-color-primary);
   border-color: var(--ifm-color-primary);
 }
+
+/* Bold top-level sidebar items in the Way section only */
+.way-top-level-item > div > a.menu__link,
+.way-top-level-item > a.menu__link {
+  font-weight: bold;
+}
