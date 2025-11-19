@@ -21,7 +21,8 @@
     "run-docs-sourcer": "docs-sourcer -p service-catalog-api -p module-catalog-api",
     "sidebar": "scripts/generate-sidebar.js",
     "relative-link-check": "! grep -Fr '](.' docs/2.0/",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky"
   },
   "dependencies": {
     "@docusaurus/core": "^3.7.0",
