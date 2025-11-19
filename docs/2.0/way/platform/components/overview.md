@@ -11,7 +11,7 @@ While [patterns](/2.0/way/platform/patterns/overview) define your opinions for s
 
 ## Your developer platform is built from components
 
-One of the core ideas of The Gruntowrkyish Way is that you build your developer platform by implementing:
+One of the core ideas of The Gruntwork Way is that you build your developer platform by implementing:
 
 - [Patterns](/2.0/way/platform/patterns/overview)
 - Components (this section!)
