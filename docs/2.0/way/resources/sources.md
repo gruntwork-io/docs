@@ -53,4 +53,4 @@ Jason Yip is a former Staff Agile Coach at Spotify. In this 2-part series, he re
 
 ## Proper attribution
 
-We are committed to properly crediting the ideas and work of others. If you notice any content that should include attribution or where our citation doesn't adequately acknowledge the original source, please let us know and we'll address it promptly.
+We are committed to properly crediting the ideas and work of others. If you notice any content that you believe should include attribution or where our citation doesn't adequately acknowledge the original source, please let us know and we'll address it promptly.
