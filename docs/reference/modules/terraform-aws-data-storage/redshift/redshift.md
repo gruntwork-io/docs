@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.41.1" lastModifiedVersion="0.40.7"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.42.0" lastModifiedVersion="0.40.7"/>
 
 # Redshift Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.42.0/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -60,7 +60,7 @@ workaround, you can re-run the destroy command once the workspace gets deleted c
 
 module "redshift" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.41.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.42.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -149,9 +149,10 @@ module "redshift" {
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The name of the first database to create in the Redshift cluster. Must be
+  # 1-127 characters. Must begin with a letter or underscore. Subsequent
+  # characters can be letters, underscores, digits, or dollar signs. Cannot be a
+  # reserved word. Default is 'dev'.
   db_name = "dev"
 
   # Timeout for DB deleting
@@ -290,7 +291,7 @@ module "redshift" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.41.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.42.0"
 }
 
 inputs = {
@@ -382,9 +383,10 @@ inputs = {
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The name of the first database to create in the Redshift cluster. Must be
+  # 1-127 characters. Must begin with a letter or underscore. Subsequent
+  # characters can be letters, underscores, digits, or dollar signs. Cannot be a
+  # reserved word. Default is 'dev'.
   db_name = "dev"
 
   # Timeout for DB deleting
@@ -690,7 +692,7 @@ A map of custom tags to apply to the RDS Instance and the Security Group created
 <HclListItem name="db_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create a database in the DB cluster you are creating.
+The name of the first database to create in the Redshift cluster. Must be 1-127 characters. Must begin with a letter or underscore. Subsequent characters can be letters, underscores, digits, or dollar signs. Cannot be a reserved word. Default is 'dev'.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;dev&quot;"/>
@@ -1054,11 +1056,11 @@ The ID of the Security Group that controls access to the cluster
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/redshift/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/redshift/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/redshift/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.42.0/modules/redshift/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.42.0/modules/redshift/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.42.0/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a591bc3ae0347dde794b79aa114a4605"
+  "hash": "af16fa4e6fe87b9a5465450483fb2a6d"
 }
 ##DOCS-SOURCER-END -->

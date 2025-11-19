@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.41.1" lastModifiedVersion="0.41.1"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.42.0" lastModifiedVersion="0.41.1"/>
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.42.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.41.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -159,7 +159,7 @@ Set `multi_az=true`. When setting up a multi-AZ (Availability Zone) RDS deployme
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.41.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.42.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -316,9 +316,11 @@ module "rds" {
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The name for your database. Must contain 1-64 alphanumeric characters for
+  # MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a
+  # letter. Cannot be a reserved word. Not supported for SQL Server (must be
+  # null). If you do not provide a name, Amazon RDS will not create a database
+  # in the DB instance you are creating.
   db_name = null
 
   # A map of the default license to use for each supported RDS engine.
@@ -546,7 +548,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.41.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.42.0"
 }
 
 inputs = {
@@ -706,9 +708,11 @@ inputs = {
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The name for your database. Must contain 1-64 alphanumeric characters for
+  # MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a
+  # letter. Cannot be a reserved word. Not supported for SQL Server (must be
+  # null). If you do not provide a name, Amazon RDS will not create a database
+  # in the DB instance you are creating.
   db_name = null
 
   # A map of the default license to use for each supported RDS engine.
@@ -1301,7 +1305,7 @@ A map of custom tags to apply to the RDS Instance and the Security Group created
 <HclListItem name="db_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create a database in the DB cluster you are creating.
+The name for your database. Must contain 1-64 alphanumeric characters for MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a letter. Cannot be a reserved word. Not supported for SQL Server (must be null). If you do not provide a name, Amazon RDS will not create a database in the DB instance you are creating.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1797,11 +1801,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.41.1/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.42.0/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.42.0/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.42.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d305c8796a6b872e0822c94311e7a156"
+  "hash": "e296afb15db8e84e73dc2dec793e75d9"
 }
 ##DOCS-SOURCER-END -->
