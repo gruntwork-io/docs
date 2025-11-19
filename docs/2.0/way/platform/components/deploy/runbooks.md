@@ -11,11 +11,11 @@ title: Runbooks
 
 ### The challenge
 
-When a developer needs to deploy new infrastructure, per the principle of [define all live infrastructure as pattern instances](/2.0/way/principles/technical-foundations/define-all-live-infrastructure-as-pattern-instances), the developer will need a way to create a new [infrastructure module instance](/2.0/way/solution/patterns/types#infrastructure-module-instances). 
+When a developer needs to deploy new infrastructure, per the principle of [define all live infrastructure as pattern instances](/2.0/way/principles/technical-foundations/define-all-live-infrastructure-as-pattern-instances), the developer will need a way to create a new [infrastructure module instance](/2.0/way/platform/patterns/types#infrastructure-module-instances). 
 
 But creating a module instance can be complex! The developer may need to do any or all of the following:
 
-- Write new code that calls the desired [infrastructure module](/2.0/way/solution/patterns/types#infrastructure-modules) (e.g. a Terragrunt unit)
+- Write new code that calls the desired [infrastructure module](/2.0/way/platform/patterns/types#infrastructure-modules) (e.g. a Terragrunt unit)
 - Compose many infrastructure modules together to achieve a more complex use case
 - Confirm that they meet all pre-requisites to use a given infrastructure module
 - Perform other actions needed to meet the pre-requisites (e.g. obtain a new internal API key)
@@ -44,7 +44,7 @@ Runbooks pack a wide collection of functionality into a single format, so we exp
 
 A common industry term is "developer self-service." We can now assert a definition of developer self-service using the terms we've introduced so far.
 
-Specifically, developer self-service is the combination of a [catalog](./catalog.md) of infrastructure modules that meet the most common infrastructure needs, plus the ability to use **runbooks,** plus a way to deploy the generated using a [pipeline](./pipelines.md).
+Specifically, developer self-service is the combination of a [catalog](/2.0/way/platform/components/deploy/catalog) of infrastructure modules that meet the most common infrastructure needs, plus the ability to use **runbooks,** plus a way to deploy the generated using a [pipeline](/2.0/way/platform/components/deploy/pipelines).
 
 ## Effective runbooks
 
@@ -54,7 +54,7 @@ To qualify as a runbook, you need to at least meet the following requirements. A
 
 - **Expose parameter values.** The user can see a list of the parameter values available.
 - **Configure parameter values.** The user can configure the parameter values.
-- **Generate code.** The user can instantiate an [infrastructure module](/2.0/way/solution/patterns/types#infrastructure-modules), either by generating code or other means.
+- **Generate code.** The user can instantiate an [infrastructure module](/2.0/way/platform/patterns/types#infrastructure-modules), either by generating code or other means.
 
 ### Effective runbooks
 

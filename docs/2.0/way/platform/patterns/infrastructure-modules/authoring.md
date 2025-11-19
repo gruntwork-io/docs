@@ -36,7 +36,7 @@ Authors have three main options for sourcing infrastructure modules:
 
 If you source a module from a third party (open source or commercial), you have three options for how your users can consume it:
 
-1. **Direct reference** - You decide that users will directly reference the infrastructure module. For example, you choose a commercial infrastructure module and decide your [infrastructure module instances](/2.0/way/solution/patterns/types#infrastructure-module-instances) will directly reference the vendor's GitHub repo. 
+1. **Direct reference** - You decide that users will directly reference the infrastructure module. For example, you choose a commercial infrastructure module and decide your [infrastructure module instances](/2.0/way/platform/patterns/types#infrastructure-module-instances) will directly reference the vendor's GitHub repo. 
 2. **Wrapper module** - You write an inhouse module that calls the third-party module. This gives you the ability to customize the third-party module without having to re-implement or maintain it. Users will now directly access this wrapper module. For example, you use an open source AWS Lambda module, but write your own Acme AWS Lambda module that uses the open source AWS Lambda module.
 3. **Fork** - You fork the third-party module and maintain your own copy, at which point this is a direct reference, but based on a third-party starting point. Platform engineers are often tempted to do this when a single variable or output is missing, but they can massively underestimate the amount of work required to maintain the module over time. Only do this as an absolute last resort. Try working with the module author to incorporate your desired change first.
 
@@ -109,7 +109,7 @@ But this guideline holds another fundamental tension because you'll also need to
 
 But the ideals of "single repo containing many modules" and "one repo per module" are direct contradictions of each other. So what to do?
 
-In our experience, the better option is to deal with empty versions and fewer git repos. Better yet, you can write tooling to automate nearly all aspects of empty versions (like your [IaC updater](/2.0/way/solution/platform/maintain/iac-updater)). There's also tooling available to manage many git repos at once (like our open source tool, [git-xargs](https://github.com/gruntwork-io/git-xargs)), but using these can be cumbersome. That's why we recommend fewer git repos at the expense of empty versions, mitigated by tooling.
+In our experience, the better option is to deal with empty versions and fewer git repos. Better yet, you can write tooling to automate nearly all aspects of empty versions (like your [IaC updater](/2.0/way/platform/components/maintain/iac-updater)). There's also tooling available to manage many git repos at once (like our open source tool, [git-xargs](https://github.com/gruntwork-io/git-xargs)), but using these can be cumbersome. That's why we recommend fewer git repos at the expense of empty versions, mitigated by tooling.
 
 ### Propagating version updates
 
@@ -117,7 +117,7 @@ When you update a low-level infrastructure module, you often need to propagate t
 
 To manage this effectively:
 
-- **Use automation** - Tools like [Terragrunt's dependency management](https://terragrunt.gruntwork.io/docs/features/keep-your-terraform-code-dry/) or an [IaC updater](/2.0/way/solution/platform/maintain/iac-updater) can help automate the process of updating module versions across your infrastructure.
+- **Use automation** - Tools like [Terragrunt's dependency management](https://terragrunt.gruntwork.io/docs/features/keep-your-terraform-code-dry/) or an [IaC updater](/2.0/way/platform/components/maintain/iac-updater) can help automate the process of updating module versions across your infrastructure.
 - **Batch updates** - Group related module updates together to reduce the number of change cycles.
 - **Validate your updates** - Run tests after you update infrastructure modules or infrastructure module instances to validate that your modules still work as expected.
 

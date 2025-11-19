@@ -12,6 +12,6 @@ This means all infrastructure changes follow a disciplined workflow: commit to G
 The benefits of GitOps are substantial. Every change is visible and attributed because you always know who changed what and why. Rollbacks are more straightforward because you have the option to revert a commit. Compliance is built-in because the Git history is your audit log. And the workflow is familiar because developers already know how to use Git, pull/merge requests, and code review.
 
 :::info
-GitOps is closely related to the [pipelines component](/2.0/way/solution/platform/deploy/pipelines).
+GitOps is closely related to the [pipelines component](/2.0/way/platform/components/deploy/pipelines).
 :::
 

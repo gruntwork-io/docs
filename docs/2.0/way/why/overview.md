@@ -55,7 +55,7 @@ The art of platform engineering is finding the right balance among velocity, gov
 
 In [principles](/2.0/way/principles/overview), we share a set of principles we embrace when it comes to designing a developer platform.
 
-In [building blocks](/2.0/way/solution/overview), we describe the three major elements of a developer platform: 
+In [building blocks](/2.0/way/platform/overview), we describe the three major elements of a developer platform: 
 
 1. Patterns
 2. Platform Components

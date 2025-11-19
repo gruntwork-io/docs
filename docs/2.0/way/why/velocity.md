@@ -24,31 +24,31 @@ Achieving high velocity comes from building the right core abstractions and auto
 
 Provide vetted, reusable solutions for common infrastructure patterns. Make it easy for developers to adopt these pre-built implementations rather than reinventing them.
 
-_Related: [Patterns concept](/2.0/way/solution/patterns/overview), [Catalog component](/2.0/way/solution/platform/deploy/catalog)_
+_Related: [Patterns concept](/2.0/way/platform/patterns/overview), [Catalog component](/2.0/way/platform/components/deploy/catalog)_
 
 ### Offer pre-built app patterns
 
 Provide application templates that enable developers to quickly bootstrap new services.
 
-_Related: [Patterns concept](/2.0/way/solution/patterns/overview), [Catalog component](/2.0/way/solution/platform/deploy/catalog)_
+_Related: [Patterns concept](/2.0/way/platform/patterns/overview), [Catalog component](/2.0/way/platform/components/deploy/catalog)_
 
 ### Offer developer self-service
 
 Developers need a convenient way to browse and configure the available patterns without waiting for a human to approve their request.
 
-_Related: [Enable developer self-service principle](/2.0/way/principles/developer-experience/enable-developer-self-service), [Runbooks component](/2.0/way/solution/platform/deploy/runbooks)_
+_Related: [Enable developer self-service principle](/2.0/way/principles/developer-experience/enable-developer-self-service), [Runbooks component](/2.0/way/platform/components/deploy/runbooks)_
 
 ### Automate IaC pipelines
 
 Once a pattern is configured, developers need a streamlined way to deploy it.
 
-_Related: [Pipelines component](/2.0/way/solution/platform/deploy/pipelines)_
+_Related: [Pipelines component](/2.0/way/platform/components/deploy/pipelines)_
 
 ### Set up guardrails
 
 Velocity requires safety. To give developers the confidence to deploy quickly, you need guardrails that prevent them from doing the wrong thing.
 
-_Related: [guardrails over gates principle](/2.0/way/principles/governance-maintainability/guardrails-over-gates), [Pipelines component](/2.0/way/solution/platform/deploy/pipelines)_
+_Related: [guardrails over gates principle](/2.0/way/principles/governance-maintainability/guardrails-over-gates), [Pipelines component](/2.0/way/platform/components/deploy/pipelines)_
 
 ### Set and measure internal standards
 

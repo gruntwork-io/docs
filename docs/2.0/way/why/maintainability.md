@@ -39,7 +39,7 @@ Identify the sources of debt, and for each one, put in place processes and tooli
 
 **Prevention and remediation:** Automatically detect drift on a scheduled basis, along with a proposal on how to resolve it. E.g. Open a pull request on a weekly basis that identifies drift and can resolve it by merging the pull request.
 
-_Related: [Drift detector component](/2.0/way/solution/platform/maintain/drift-detector)_
+_Related: [Drift detector component](/2.0/way/platform/components/maintain/drift-detector)_
 
 ### Streamlined resource imports
 
@@ -47,7 +47,7 @@ _Related: [Drift detector component](/2.0/way/solution/platform/maintain/drift-d
 
 **Prevention and remediation:** Use tooling that can discover unmanaged resources and generate the necessary code to bring them under IaC management.
 
-_Related: [Importer component](/2.0/way/solution/platform/maintain/importer)_
+_Related: [Importer component](/2.0/way/platform/components/maintain/importer)_
 
 ### Automated IaC updates
 
@@ -55,7 +55,7 @@ _Related: [Importer component](/2.0/way/solution/platform/maintain/importer)_
 
 **Prevention and remediation:** Automate the process of updating your IaC to use the latest approved versions of tools, modules, and patterns. Track available updates and provide automated pull requests that upgrade dependencies while running tests to ensure compatibility.
 
-_Related: [IaC updater component](/2.0/way/solution/platform/maintain/iac-updater)_
+_Related: [IaC updater component](/2.0/way/platform/components/maintain/iac-updater)_
 
 ### Infrastructure estate insights
 
@@ -63,7 +63,7 @@ _Related: [IaC updater component](/2.0/way/solution/platform/maintain/iac-update
 
 **Prevention and remediation:** Provide visibility into each repo, environment, and unit to identify where teams do not adhere to your standards. Make this information easy to discover, both for the platform engineers and application teams.
 
-_Related: [Scorecard component](/2.0/way/solution/platform/maintain/scorecard)_
+_Related: [Scorecard component](/2.0/way/platform/components/maintain/scorecard)_
 
 ## How to measure it
 

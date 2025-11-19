@@ -3,7 +3,7 @@ sidebar_position: 3
 title: Where To Store Them
 ---
 
-Once you define a pattern, you need somewhere to store it. This is the core purpose of the **[catalog](/2.0/way/solution/platform/deploy/catalog)** platform component.
+Once you define a pattern, you need somewhere to store it. This is the core purpose of the **[catalog](/2.0/way/platform/components/deploy/catalog)** platform component.
 
 ## Examples
 

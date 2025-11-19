@@ -17,9 +17,9 @@ Nearly every company on the planet needs software, and when companies write thei
 
 A **developer platform** is the product your platform team builds to balance these three concerns. It consists of three essential building blocks:
 
-- [Patterns](/2.0/way/solution/patterns/overview) - pre-built solutions to common infrastructure problems
-- [Platform components](/2.0/way/solution/platform/overview) - the machinery for deploying and managing infrastructure
-- [Interfaces](/2.0/way/solution/interfaces/overview) - how developers interact with your platform.
+- [Patterns](/2.0/way/platform/patterns/overview) - pre-built solutions to common infrastructure problems
+- [Platform components](/2.0/way/platform/components/overview) - the machinery for deploying and managing infrastructure
+- [Interfaces](/2.0/way/platform/interfaces/overview) - how developers interact with your platform.
 
 Together, these enable developers to move fast while meeting the needs of the business, and to do so in a way that incurs manageable levels of debt.
 

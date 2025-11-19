@@ -17,9 +17,9 @@ For example, most network experts agree that a virtual machine should not allow 
 
 The challenge with guardrails is that they're a pain to write. And once again, we are reminded that [the platform is a balancing act](/2.0/way/principles/core-philosophy/the-platform-is-a-balancing-act). Guardrails take more time upfront to create. But then they remove the need for manual approvals, and thus increase velocity without compromising governance.
 
-Guardrails are a form of [pattern](/2.0/way/solution/patterns/overview). For example, an OPA policy that follows the [conftest](https://www.conftest.dev/) convention is one popular way to codify rules.
+Guardrails are a form of [pattern](/2.0/way/platform/patterns/overview). For example, an OPA policy that follows the [conftest](https://www.conftest.dev/) convention is one popular way to codify rules.
 
-As we discussed above, guardrails can be applied at various stages of the development process, but one especially important place to apply them is in your [IaC pipeline](/2.0/way/solution/platform/deploy/pipelines).
+As we discussed above, guardrails can be applied at various stages of the development process, but one especially important place to apply them is in your [IaC pipeline](/2.0/way/platform/components/deploy/pipelines).
 
 Invest in building guardrails early, as they're the key to scaling both governance and velocity together.
 

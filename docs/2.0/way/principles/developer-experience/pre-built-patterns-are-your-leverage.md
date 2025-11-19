@@ -10,7 +10,7 @@ A small platform team can support hundreds or thousands of developers by offerin
 Any reusable opinion that can be expressed as code can qualify as a pattern. For example, one popular way to implement patterns among platform teams is to author OpenTofu/Terraform modules.
 
 :::info
-See more examples of [Patterns](/2.0/way/solution/patterns/overview).
+See more examples of [Patterns](/2.0/way/platform/patterns/overview).
 :::
 
 A pattern has both an _author_ and a _consumer._ The author is a DevOps subject matter expert (SME) of some kind. For example, a pattern author might be an SME in deploying Amazon RDS as a production-grade database. The author "codifies" all her expertise on deployment, monitoring, disaster recovery, gotchas and anything else that might be relevant into a reusable pattern.

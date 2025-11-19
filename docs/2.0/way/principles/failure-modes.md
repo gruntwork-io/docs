@@ -50,7 +50,7 @@ Optionally permit teams to deviate from standards with the knowledge that they m
 
 ### What went wrong
 
-You (or your developer teams) didn't leverage [pre-built patterns](/2.0/way/principles/developer-experience/pre-built-patterns-are-your-leverage) when populating your [catalog](/2.0/way/solution/patterns/overview), so you effectively reimplemented the same solutions from scratch.
+You (or your developer teams) didn't leverage [pre-built patterns](/2.0/way/principles/developer-experience/pre-built-patterns-are-your-leverage) when populating your [catalog](/2.0/way/platform/patterns/overview), so you effectively reimplemented the same solutions from scratch.
 
 When developers need to deploy a Kubernetes service, set up a database, or configure observability, they shouldn't have to figure it out from first principles every time. Likewise, when you platform engineers go to populate their catalog, they shouldn't have to reimplement everything from scratch every time.
 

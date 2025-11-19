@@ -5,7 +5,7 @@ title: Categories
 
 # Infrastructure Module Categories
 
-Earlier, we [defined](../overview) patterns as _pre-built opinionated solutions to common infrastructure problems._ So what exactly are those common infrastructure problems? 
+Earlier, we [defined](/2.0/way/platform/patterns/overview) patterns as _pre-built opinionated solutions to common infrastructure problems._ So what exactly are those common infrastructure problems? 
 
 Based on years of experience, we've identified the following **categories** of infrastructure modules. Each category has one or more **subject matter expertise topics (SME topics)**. Each SME topic has one or more infrastructure modules.
 

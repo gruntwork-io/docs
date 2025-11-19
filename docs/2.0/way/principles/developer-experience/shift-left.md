@@ -15,5 +15,5 @@ In traditional software development, validation checks happen late: security rev
 
 This principle applies to everything: security scanning in CI/CD pipelines, cost estimation when resources are provisioned, policy validation before infrastructure is deployed. In general, the earlier you catch issues, the cheaper they are to fix and the less they disrupt flow.
 
-Modern tools make shifting left practical. IDE plugins can validate infrastructure code as it's written. Git pre-commit hooks can run security scans before code is pushed. Components like your [IaC Pipeline](/2.0/way/solution/platform/deploy/pipelines) can enforce policies before deployment. Collectively, these tools give developers immediate, actionable feedback when they're in the best position to act on it.
+Modern tools make shifting left practical. IDE plugins can validate infrastructure code as it's written. Git pre-commit hooks can run security scans before code is pushed. Components like your [IaC Pipeline](/2.0/way/platform/components/deploy/pipelines) can enforce policies before deployment. Collectively, these tools give developers immediate, actionable feedback when they're in the best position to act on it.
 

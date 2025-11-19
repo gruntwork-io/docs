@@ -27,25 +27,25 @@ Achieving effective governance comes from putting in place the right core tools 
 
 When 100% of infrastructure changes all deploy through the same centralized pipeline, you have a mechanism to enforce the same workflows and governance processes.
 
-_Related: [Pipelines component](/2.0/way/solution/platform/deploy/pipelines)_
+_Related: [Pipelines component](/2.0/way/platform/components/deploy/pipelines)_
 
 ### Automate policy enforcement
 
 When your governance policies are captured as code, your infrastructure pipelines can automatically enforce them. This prevents human error and ensures consistency.
 
-_Related: [Guardrails over gates principle](/2.0/way/principles/governance-maintainability/guardrails-over-gates), [Pipelines component](/2.0/way/solution/platform/deploy/pipelines)_
+_Related: [Guardrails over gates principle](/2.0/way/principles/governance-maintainability/guardrails-over-gates), [Pipelines component](/2.0/way/platform/components/deploy/pipelines)_
 
 ### Use pre-built patterns
 
-Developers don't just need "infrastructure," they need a specific set of [infrastructure patterns](/2.0/way/solution/patterns/overview) such as deploying a K8s service, launching a database, or connecting to an LLM in an authorized way. When you provide developers with pre-built implementations of these patterns that already meet your governance requirements, compliance becomes the easy default choice rather than an afterthought.
+Developers don't just need "infrastructure," they need a specific set of [infrastructure patterns](/2.0/way/platform/patterns/overview) such as deploying a K8s service, launching a database, or connecting to an LLM in an authorized way. When you provide developers with pre-built implementations of these patterns that already meet your governance requirements, compliance becomes the easy default choice rather than an afterthought.
 
-_Related: [Offer golden paths principle](/2.0/way/principles/governance-maintainability/offer-golden-paths), [Patterns concept](/2.0/way/solution/patterns/overview), [Catalog component](/2.0/way/solution/platform/deploy/catalog)_
+_Related: [Offer golden paths principle](/2.0/way/principles/governance-maintainability/offer-golden-paths), [Patterns concept](/2.0/way/platform/patterns/overview), [Catalog component](/2.0/way/platform/components/deploy/catalog)_
 
 ### Offer developer self-service
 
-Most teams think of offering developers a self-service way to do infrastructure primarily as an investment in [velocity](./velocity.md) and this is true! But when you lower the "pain" of deploying new infrastructure the right way, developers are far more likely to adopt your pre-approved patterns, so developer self-service is actually a key enabler of effective pre-built patterns, which are themselves an enabler of governance.
+Most teams think of offering developers a self-service way to do infrastructure primarily as an investment in [velocity](/2.0/way/why/velocity) and this is true! But when you lower the "pain" of deploying new infrastructure the right way, developers are far more likely to adopt your pre-approved patterns, so developer self-service is actually a key enabler of effective pre-built patterns, which are themselves an enabler of governance.
 
-_Related: [Enable developer self-service principle](/2.0/way/principles/developer-experience/enable-developer-self-service), [Runbooks component](/2.0/way/solution/platform/deploy/runbooks)_
+_Related: [Enable developer self-service principle](/2.0/way/principles/developer-experience/enable-developer-self-service), [Runbooks component](/2.0/way/platform/components/deploy/runbooks)_
 
 ### Enable unit-level oversight
 
@@ -53,7 +53,7 @@ The best way to monitor infrastructure is to be able to view its status at its l
 
 For example, you want to see not just how overall infrastructure trend is spending, but which units have increased in cost the most, or which stacks are suffering the most compliance issues.
 
-_Related: [Operate Infrastructure components](/2.0/way/solution/platform/overview#operate-infrastructure)_
+_Related: [Operate Infrastructure components](/2.0/way/platform/components/overview#operate-infrastructure)_
 
 ### Leverage specialized tooling
 

@@ -43,7 +43,7 @@ More generally, when a pattern is represented as code, what were liabilities abo
 6. **Maintainability at scale.** Updates to best practices can be made once in code and rolled out systematically across all instances of the pattern.
 
 :::info
-Patterns are a fundamental concept of developer platforms. Learn much more about them in the [Patterns section](/2.0/way/solution/patterns/overview).
+Patterns are a fundamental concept of developer platforms. Learn much more about them in the [Patterns section](/2.0/way/platform/patterns/overview).
 :::
 
 Of course, writing all patterns as code does take more time. Sometimes in emergency situations, engineers might need to optimize for speed over maintainability and resort to ClickOps. Or perhaps the team is not clear on how to represent patterns as code but has urgent deadlines to hit.

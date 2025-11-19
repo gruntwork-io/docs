@@ -9,7 +9,7 @@ To get the most out of the Gruntwork Way, start by making sure you understand th
 
 First, a **developer platform** is the product your platform team builds to balance three essential concerns: enabling developers to move fast ([velocity](/2.0/way/why/velocity)), meeting business needs like security, cost, and compliance ([governance](/2.0/way/why/governance)), and avoiding unsustainable technical debt ([maintainability](/2.0/way/why/maintainability)).
 
-To build a successful platform, you need to combine three types of building blocks: [patterns](/2.0/way/solution/patterns/overview) (pre-built solutions to common infrastructure problems), [platform components](/2.0/way/solution/platform/overview) (the machinery for deploying and managing infrastructure), and [interfaces](/2.0/way/solution/interfaces/overview) (how developers interact with your platform).
+To build a successful platform, you need to combine three types of building blocks: [patterns](/2.0/way/platform/patterns/overview) (pre-built solutions to common infrastructure problems), [platform components](/2.0/way/platform/components/overview) (the machinery for deploying and managing infrastructure), and [interfaces](/2.0/way/platform/interfaces/overview) (how developers interact with your platform).
 
 Finally, everything in this framework is based on the [guiding principles](/2.0/way/principles/overview) we've discovered through years of building and refining developer platforms.
 

@@ -17,7 +17,7 @@ In practice, we expect users in these roles will find this useful:
 
 As you build your developer platform, you will go through a series of maturity stages. 
 
-Actually, to be more precise, you will build maturity separately in your [patterns](/2.0/way/solution/patterns/overview), [platform components](/2.0/way/solution/platform/overview), and [interfaces](/2.0/way/solution/interfaces/overview). Your collective maturity level for the "developer platform" is really just the collection of maturity levels for its component parts.
+Actually, to be more precise, you will build maturity separately in your [patterns](/2.0/way/platform/patterns/overview), [platform components](/2.0/way/platform/components/overview), and [interfaces](/2.0/way/platform/interfaces/overview). Your collective maturity level for the "developer platform" is really just the collection of maturity levels for its component parts.
 
 In general, the component parts track these maturity levels:
 

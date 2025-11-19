@@ -7,9 +7,9 @@ title: Overview
 
 To build a successful developer platform, you need three essential building blocks:
 
-1. [Patterns](/2.0/way/solution/patterns/overview) - Pre-built solutions to common infrastructure problems
-2. [Platform Components](/2.0/way/solution/platform/overview) - A core collection of functional capabilities
-3. [Interfaces](/2.0/way/solution/interfaces/overview) - How developers interact with your platform
+1. [Patterns](/2.0/way/platform/patterns/overview) - Pre-built solutions to common infrastructure problems
+2. [Platform Components](/2.0/way/platform/components/overview) - A core collection of functional capabilities
+3. [Interfaces](/2.0/way/platform/interfaces/overview) - How developers interact with your platform
 
 ## How they work together
 
