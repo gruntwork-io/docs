@@ -57,6 +57,7 @@
     "@docusaurus/tsconfig": "3.7.0",
     "@docusaurus/types": "^3.7.0",
     "cspell": "^8.19.4",
+    "husky": "^9.1.7",
     "jest": "^27.4.7",
     "onchange": "^7.1.0",
     "ts-node": "^10.7.0",
