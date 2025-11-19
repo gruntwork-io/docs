@@ -15,12 +15,12 @@ When a developer needs to deploy new infrastructure, per the principle of [defin
 
 But creating a module instance can be complex! The developer may need to do any or all of the following:
 
-- Write new code that calls the desired [infrastructure module](/2.0/way/platform/patterns/types#infrastructure-modules) (e.g. a Terragrunt unit)
-- Compose many infrastructure modules together to achieve a more complex use case
 - Confirm that they meet all pre-requisites to use a given infrastructure module
 - Perform other actions needed to meet the pre-requisites (e.g. obtain a new internal API key)
+- Write new code that calls the desired [infrastructure module](/2.0/way/platform/patterns/types#infrastructure-modules) (e.g. a Terragrunt unit)
+- Compose many infrastructure modules together to achieve a more complex use case
 - "Apply" the code they generated
-- Validate that a pattern was created successfully
+- Validate that a pattern instance was deployed successfully
 
 The breadth and depth of these requirements impose a heavy burden on the humble developer who wishes only to deploy a pattern so they can get back to their real job of building their app.
 
@@ -44,7 +44,7 @@ Runbooks pack a wide collection of functionality into a single format, so we exp
 
 A common industry term is "developer self-service." We can now assert a definition of developer self-service using the terms we've introduced so far.
 
-Specifically, developer self-service is the combination of a [catalog](/2.0/way/platform/components/deploy/catalog) of infrastructure modules that meet the most common infrastructure needs, plus the ability to use **runbooks,** plus a way to deploy the generated using a [pipeline](/2.0/way/platform/components/deploy/pipelines).
+Specifically, developer self-service is the combination of a **[catalog](/2.0/way/platform/components/deploy/catalog)** of infrastructure modules, plus the ability to use **runbooks,** plus a way to deploy the generated code using a **[pipeline](/2.0/way/platform/components/deploy/pipelines)**.
 
 ## Effective runbooks
 

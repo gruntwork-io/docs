@@ -9,6 +9,20 @@ title: Overview
 
 While [patterns](/2.0/way/platform/patterns/overview) define your opinions for solving a given infrastructure problem, platform components provide the machinery that makes deploying, operating, and maintaining that infrastructure efficient and reliable at scale.
 
+## Your developer platform is built from components
+
+One of the core ideas of The Gruntowrk Way is that you build your developer platform by implementing:
+
+- [Patterns](/2.0/way/platform/patterns/overview)
+- Components (this section!)
+- [Interfaces](/2.0/way/platform/interfaces/overview)
+
+We talk about components individually because that is the most helpful way to think about them. But in practice, your end users may simply see a "developer platform" and the lines between specific components may be blurry.
+
+For example, a developer might browse your **catalog**, create an infrastructure module instance with a **runbook,** and then deploy the new code with your **pipeline.** That these are three separate components is not meaningful to the developer as long as they can accomplish their goal of deploying new infrastructure.
+
+But for the platform engineer as the maintainer, it is clarifying to understand that to deploy their new infrastructure, your developer end-user actually needs to make use of three separate but connected components.
+
 ## Component categories
 
 Platform components organize into three major categories based on their purpose:
@@ -37,7 +51,7 @@ The components you need to detect and fix infrastructure debt. These include:
 
 ## Build vs buy
 
-You can choose to build or buy most of these components. You can also choose to optimize for "best of breed" (the best individual component) or "best of suite" (the best combination of components), or mix and match build and buy to suit your needs.
+You can choose to build or buy most of these components. You can build some and buy others. You can also choose to optimize for "best of breed" (the best individual component) or "best of suite" (the best combination of components), or mix and match build and buy to suit your needs.
 
 ## Next
 

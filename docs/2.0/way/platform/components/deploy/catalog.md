@@ -11,7 +11,7 @@ title: Catalog
 
 The catalog is the system of record for all your organization's [infrastructure patterns](/2.0/way/platform/patterns/overview).
 
-When a member of your organization goes to ask "how do we solve problem X here?" if you have an official answer, you need a system of record to point them to. Or when you update a pattern, your pattern authors need to know which version is canonical and where to place their updates. That system of record is the **catalog.**
+When a member of your organization goes to ask "how do we approach infrastructure problem X around here?", you need a system of record to point them to. Or when you update a pattern, your pattern authors need to know which pattern version is canonical and where to place their updates. That system of record is the **catalog.**
 
 ## Good catalogs
 
@@ -19,13 +19,13 @@ When a member of your organization goes to ask "how do we solve problem X here?"
 
 To qualify as a catalog, you need only meet one requirement. The catalog is:
 
-- **System of record.** The latest available information about your patterns lives in the catalog.
+- **A system of record.** The latest available information about your patterns lives in the catalog.
 
 ### Effective catalogs
 
 To be an _effective_ catalog, we need a few more requirements. Effective catalogs are:
 
-- **Browsable.** Users can browse the available patterns using their preferred [interface](/2.0/way/platform/interfaces/overview)
+- **Browsable.** Users can browse the available patterns using their preferred [interface](/2.0/way/platform/interfaces/overview).
 - **Searchable.** Users can search for exactly the pattern they want.
 - **Detailed.** Users can browse detailed information about each pattern.
 - **Extensible.** As the catalog maintainer, you can add support for new patterns.
@@ -40,7 +40,7 @@ You have several options when implementing a catalog. In order from least favora
 
 ### No system of record
 
-You simply do not have a system of record. If a user wants to know whether a pattern exists, they verbally ask people, but there is no written resource to consult.
+You simply do not have a system of record. If a user wants to know whether a pattern exists, they verbally ask, but there is no written resource to consult.
 
 ### Documentation site
 
