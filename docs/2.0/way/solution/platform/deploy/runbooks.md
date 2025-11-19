@@ -132,7 +132,7 @@ Gruntwork maintains an open source template generator built specially for DevOps
 
 ### Infrastructure module UI
 
-You can build (or buy) a solution that renders a UI for a given infrastructure module. The UI lists the available parameter values, and users fill in those values directly through the UI. Ideally, the UI can allow users to fetch value from external data sources such as infrastructure-as-code state, a secrets manager, or a third-party cool.
+You can build (or buy) a solution that renders a UI for a given infrastructure module. The UI lists the available parameter values, and users fill in those values directly through the UI. Ideally, the UI can allow users to fetch value from external data sources such as infrastructure-as-code state, a secrets manager, or a third-party tool.
 
 The primary limitation of the infrastructure module UI is that, by definition, it is scoped to a single infrastructure module. 
 
