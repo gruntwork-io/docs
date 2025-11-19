@@ -31,7 +31,7 @@ This approach leads to many issues:
 
 Around 2014, these issues reached an inflection point and the idea of infrastructure-as-code was then a major paradigm shift. More than a decade later, we can now generalize the idea of representing all infrastructure as code to the idea that you should **represent all patterns as code,** and then [define all live infrastructure as pattern instances](/2.0/way/principles/technical-foundations/define-all-live-infrastructure-as-pattern-instances).
 
-Representing patterns as code brings many benefits. To start, when anything is captured as code, it can be _stored in version control. That means that every change is now tracked, attributed, and can be reverted if needed. Code can be peer reviewed, and automated tests can run to immediately validate the newly committed code.
+Representing patterns as code brings many benefits. To start, when anything is captured as code, it can be stored in version control. That means that every change is now tracked, attributed, and can be reverted if needed. Code can be peer reviewed, and automated tests can run to immediately validate the newly committed code.
 
 More generally, when a pattern is represented as code, what were liabilities above now become key advantages:
 

@@ -30,7 +30,7 @@ A Platform engineer builds internal developer platforms that provide standardize
 
 ### DevOps bankruptcy
 
-When organizations wind up in some or all of these failure modes they may reach a breaking point we describe as **DevOps Bankruptcy**, a point at which starting fresh is often the better option because correcting the anti-patterns in their current infrastructure paradigm would be too costly.”
+When organizations wind up in some or all of these failure modes they may reach a breaking point we describe as **DevOps Bankruptcy**: a point at which starting fresh is often the better option because correcting the anti-patterns in their current infrastructure paradigm would be too costly.
 
 ### Unit
 
