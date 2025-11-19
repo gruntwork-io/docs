@@ -17,9 +17,7 @@ That definition might sound a little abstract, so here are some real-world examp
 - Helm charts
 
 The common theme among all patterns is that when a user goes to consume them, they are pre-built, they reflect the opinion of a subject matter expert, and they solve a common infrastructure problem.
-
-Now let's bo back to the definition of a pattern so we can understand that more deeply.
-
+Now let's go back to the definition of a pattern so we can understand that more deeply.
 ### Common infrastructure problems
 
 _Patterns are pre-built, opinionated solutions to **common infrastructure problems.**_

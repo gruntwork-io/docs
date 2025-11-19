@@ -22,7 +22,7 @@ But creating a module instance can be complex! The developer may need to do any 
 - "Apply" the code they generated
 - Validate that a pattern was created successfully
 
-The breath and depth of these requirements impose a heavy burden on the humble developer who wishes only to deploy a pattern so they can get back to their real job of building their app. 
+The breadth and depth of these requirements impose a heavy burden on the humble developer who wishes only to deploy a pattern so they can get back to their real job of building their app.
 
 ### The solution
 
@@ -65,7 +65,7 @@ To be an _effective_ runbook, we need a few more requirements. Effective runbook
 - **Easily authored.** It must be easy for runbook authors to capture their expertise.
 - **Easily launched.** It must be easy for the runbook consumer to begin using the runbook.
 - **Documented.** The runbook must teach the user about this particular area of subject matter expertise, intermixing documentation and interactivity.
-- **Testable.** A runbook must be programmatically testable so that you can continually validate that it functions as expected.immediately see how that impacts the generated code. 
+- **Testable.** A runbook must be programmatically testable so that you can continually validate that it functions as expected.
 - **Capture feedback.** The runbook must expose a way for runbook consumers to share feedback about their experience and request improvements.
 
 #### Code execution
@@ -127,7 +127,7 @@ This improves on using static documentation because we offer the user a pre-set 
 Better yet, either the process of generating the code includes a step to configure variables, or the template itself can leave placeholders for users to enter variables (as it does above).
 
 :::info
-Gruntwork maintains an open source template generator built specially for DevOps and platform engineering called **Gruntwork Boilerplate.** Learn more at https://github.com/gruntwork-io/boilerplate.
+Gruntwork maintains an open-source template generator built specially for DevOps and platform engineering called **Gruntwork Boilerplate.** Learn more at [https://github.com/gruntwork-io/boilerplate](https://github.com/gruntwork-io/boilerplate).
 :::
 
 ### Infrastructure module UI

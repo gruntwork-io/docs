@@ -67,7 +67,7 @@ SME topics include:
 - AI model access (Azure OpenAI, Amazon Bedrock)
 - Data platform configuration (Databricks, Amazon Sagemaker)
 - Data lakes (Snowflake, AWS Glue, Amazon Athena, Amazon RedShift)
-- Vector databases (Pgvector, Pinecon, Amazon OpenSearch)
+- Vector databases (Pgvector, Pinecone, Amazon OpenSearch)
 
 This covers AI model access, data platforms for AI, specialized compute resources, and AI observability.
 
