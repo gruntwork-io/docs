@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.141.0" lastModifiedVersion="0.126.2"/>
+<VersionBadge version="0.142.0" lastModifiedVersion="0.126.2"/>
 
 # Account Baseline for app accounts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/landingzone/account-baseline-app" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-app" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -57,13 +57,13 @@ If you’ve never used the Service Catalog before, make sure to read
 
 *   Learn more about each individual module, click the link in the [Features](#features) section.
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
-*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/landingzone/account-baseline-root/core-concepts.md#how-to-use-multi-region-services)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end integrated tech stack on top of the Gruntwork Service Catalog.
@@ -100,7 +100,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "account_baseline_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.141.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.142.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -255,21 +255,10 @@ module "account_baseline_app" {
   # IAM role
   aws_config_iam_role_permissions_boundary = null
 
-  # Additional IAM policies to apply to cloudtrail S3 bucket. You can use this
-  # to grant read/write access beyond what is provided to Cloudtrail. This
-  # should be a map, where each key is a unique statement ID (SID), and each
-  # value is an object that contains the parameters defined in the comment
-  # below.
-  cloudtrail_additional_bucket_policy_statements = null
-
   # Whether or not to allow kms:DescribeKey to external AWS accounts with write
   # access to the CloudTrail bucket. This is useful during deployment so that
   # you don't have to pass around the KMS key ARN.
   cloudtrail_allow_kms_describe_key_to_external_aws_accounts = false
-
-  # After cloudtrail_num_days_after_which_archive_log_data it will
-  # moved/archived to this storage class
-  cloudtrail_archive_storage_class = "GLACIER"
 
   # Specify the name of the CloudWatch Logs group to publish the CloudTrail logs
   # to. This log group exists in the current account. Set this value to `null`
@@ -316,10 +305,6 @@ module "account_baseline_app" {
   # IAM role
   cloudtrail_iam_role_permissions_boundary = null
 
-  # Type of insights to log on a trail. Valid values are: ApiCallRateInsight and
-  # ApiErrorRateInsight.
-  cloudtrail_insight_selector = []
-
   # All CloudTrail Logs will be encrypted with a KMS CMK (Customer Master Key)
   # that governs access to write API calls older than 7 days and all read API
   # calls. If you are aggregating CloudTrail logs and creating the CMK in this
@@ -362,7 +347,7 @@ module "account_baseline_app" {
   cloudtrail_kms_key_user_iam_arns = []
 
   # After this number of days, log files should be transitioned from S3 to
-  # var.cloudtrail_archive_storage_class. Enter 0 to never archive log data.
+  # Glacier. Enter 0 to never archive log data.
   cloudtrail_num_days_after_which_archive_log_data = 30
 
   # After this number of days, log files should be deleted from S3. Enter 0 to
@@ -383,9 +368,6 @@ module "account_baseline_app" {
   # the name of a bucket in the logs account).
   cloudtrail_s3_bucket_already_exists = true
 
-  # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
-  cloudtrail_s3_bucket_key_enabled = false
-
   # The name of the S3 Bucket where CloudTrail logs will be stored. This could
   # be a bucket in this AWS account (e.g., if this is the logs account) or the
   # name of a bucket in another AWS account where logs should be sent (e.g., if
@@ -400,10 +382,6 @@ module "account_baseline_app" {
   # AWS. For instructions on how to enable MFA Delete, check out the README from
   # the terraform-aws-security/private-s3-bucket module.
   cloudtrail_s3_mfa_delete = false
-
-  # Name of the existing SNS topic to which the delivery notification will be
-  # sent.
-  cloudtrail_sns_topic_name = null
 
   # Tags to apply to the CloudTrail resources.
   cloudtrail_tags = {}
@@ -453,10 +431,6 @@ module "account_baseline_app" {
   # want to permanently delete everything!
   config_force_destroy = false
 
-  # The name of an IAM role for Config service to assume. Must be unique within
-  # the AWS account.
-  config_iam_role_name = "AWS_ConfigRole"
-
   # Provide a list of AWS account IDs that will be allowed to send AWS Config
   # data to this account. This is only required if you are aggregating config
   # data in this account (e.g., this is the logs account) from other accounts.
@@ -469,11 +443,6 @@ module "account_baseline_app" {
   # After this number of days, log files should be deleted from S3. Enter 0 to
   # never delete log data.
   config_num_days_after_which_delete_log_data = 730
-
-  # Recording Groups to define in AWS Config. See the upstream module for how to
-  # define the variable, the default of null will use the module's default:
-  # https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
-  config_recording_groups = null
 
   # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket,
   # when the S3 bucket is created within this module
@@ -506,11 +475,6 @@ module "account_baseline_app" {
   # AWS. For instructions on how to enable MFA Delete, check out the README from
   # the terraform-aws-security/private-s3-bucket module.
   config_s3_mfa_delete = false
-
-  # If set to true, create an IAM role for AWS Config. Customize the name of the
-  # role by setting iam_role_name. If set to false, the name passed in
-  # iam_role_name must already exist.
-  config_should_create_iam_role = true
 
   # Set to true to create an S3 bucket of name var.config_s3_bucket_name in this
   # account for storing AWS Config data (e.g., if this is the logs account). Set
@@ -548,10 +512,6 @@ module "account_baseline_app" {
   # A map of tags to apply to the S3 Bucket. The key is the tag name and the
   # value is the tag value.
   config_tags = {}
-
-  # If set to true, use a service-linked role for AWS Config that is already
-  # created. If set to false, use a custom IAM role referenced in iam_role_name.
-  config_use_service_linked_role = false
 
   # The maximum frequency with which AWS Config runs evaluations for the
   # ´PERIODIC´ rules. See
@@ -654,22 +614,8 @@ module "account_baseline_app" {
   # potential damage from a domain hijacking attack on GitHub domains.
   github_actions_openid_connect_provider_thumbprint_list = null
 
-  # Whether to accept an invite from the master account if the detector is not
-  # created automatically
-  guardduty_accept_invite = false
-
-  # The AWS account ID of the GuardDuty delegated admin/master account
-  guardduty_admin_account_id = null
-
   # Name of the Cloudwatch event rules.
   guardduty_cloudwatch_event_rule_name = "guardduty-finding-events"
-
-  # Map of detector features to enable, where the key is the name of the feature
-  # the value is the feature configuration. When AWS Organizations delegated
-  # admin account is used, use var.organization_configuration_features in the
-  # deledated admin account instead. See
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector_feature
-  guardduty_detector_features = {}
 
   # Specifies the frequency of notifications sent for subsequent finding
   # occurrences. If the detector is a GuardDuty member account, the value is
@@ -679,107 +625,9 @@ module "account_baseline_app" {
   # standalone and master accounts: FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS.
   guardduty_finding_publishing_frequency = null
 
-  # If true, an IAM Policy that grants access to the key will be honored. If
-  # false, only the ARNs listed in var.kms_key_user_iam_arns will have access to
-  # the key and any IAM Policy grants will be ignored. (true or false)
-  guardduty_findings_allow_kms_access_with_iam = true
-
-  # The AWS regions that are allowed to write to the GuardDuty findings S3
-  # bucket. This is needed to configure the bucket and CMK policy to allow
-  # writes from manually-enabled regions. See
-  # https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty_exportfindings-s3-policies
-  guardduty_findings_allowed_regions = []
-
-  # Whether or not to enable automatic annual rotation of the KMS key. Defaults
-  # to true.
-  guardduty_findings_enable_key_rotation = true
-
-  # A list of external AWS accounts that should be given write access for
-  # GuardDuty findings to this S3 bucket. This is useful when aggregating
-  # findings for multiple AWS accounts in one common S3 bucket.
-  guardduty_findings_external_aws_account_ids_with_write_access = []
-
-  # If set to true, when you run 'terraform destroy', delete all objects from
-  # the bucket so that the bucket can be destroyed without error. Warning: these
-  # objects are not recoverable so only use this if you're absolutely sure you
-  # want to permanently delete everything!
-  guardduty_findings_force_destroy = false
-
-  # All GuardDuty findings will be encrypted with a KMS Key (a Customer Master
-  # Key). The IAM Users specified in this list will have rights to change who
-  # can access the data.
-  guardduty_findings_kms_key_administrator_iam_arns = []
-
-  # If set to true, that means the KMS key you're using already exists, and does
-  # not need to be created.
-  guardduty_findings_kms_key_already_exists = false
-
-  # The ARN of the KMS key used to encrypt GuardDuty findings. GuardDuty
-  # enforces findings to be encrypted. Only used if
-  # guardduty_publish_findings_to_s3 is true.
-  guardduty_findings_kms_key_arn = null
-
-  # Additional service principals beyond GuardDuty that should have access to
-  # the KMS key used to encrypt the logs.
-  guardduty_findings_kms_key_service_principals = []
-
-  # All GuardDuty findings will be encrypted with a KMS Key (a Customer Master
-  # Key). The IAM Users specified in this list will have read-only access to the
-  # data.
-  guardduty_findings_kms_key_user_iam_arns = []
-
-  # After this number of days, findings should be transitioned from S3 to
-  # Glacier. Enter 0 to never archive findings.
-  guardduty_findings_num_days_after_which_archive_findings_data = 30
-
-  # After this number of days, log files should be deleted from S3. Enter 0 to
-  # never delete log data.
-  guardduty_findings_num_days_after_which_delete_findings_data = 365
-
-  # Additional IAM policies to apply to this S3 bucket. You can use this to
-  # grant read/write access. This should be a map, where each key is a unique
-  # statement ID (SID), and each value is an object that contains the parameters
-  # defined in the comment above.
-  guardduty_findings_s3_bucket_additional_policy_statements = {}
-
-  # The S3 bucket ARN to which the findings get exported.
-  guardduty_findings_s3_bucket_arn = null
-
-  # The name of the S3 Bucket where GuardDuty findings will be stored.
-  guardduty_findings_s3_bucket_name = null
-
-  # Optional prefix directory to create in the bucket. Must contain a trailing
-  # '/'. If you use a prefix for S3 findings publishing, you must pre-create the
-  # prefix in the findings bucket. See
-  # https://github.com/hashicorp/terraform-provider-aws/issues/16750.
-  guardduty_findings_s3_bucket_prefix = null
-
-  # Enable MFA delete for either 'Change the versioning state of your bucket' or
-  # 'Permanently delete an object version'. This setting only applies to the
-  # bucket used to storage GuardDuty findings. This cannot be used to toggle
-  # this setting but is available to allow managed buckets to reflect the state
-  # in AWS. For instructions on how to enable MFA Delete, check out the README
-  # from the terraform-aws-security/private-s3-bucket module.
-  guardduty_findings_s3_mfa_delete = false
-
-  # The bucket prefix without trailing '/' under which the findings get
-  # exported. The prefix is optional and will be
-  # AWSLogs/[Account-ID]/GuardDuty/[Region]/ if not provided.
-  guardduty_findings_s3_prefix = null
-
-  # Whether to create a bucket for GuardDuty findings. If set to true, you must
-  # provide the var.guardduty_findings_s3_bucket_name.
-  guardduty_findings_should_create_bucket = false
-
   # Specifies a name for the created SNS topics where findings are published.
   # publish_findings_to_sns must be set to true.
   guardduty_findings_sns_topic_name = "guardduty-findings"
-
-  # Tags to apply to the GuardDuty findings resources (S3 bucket and CMK).
-  guardduty_findings_tags = {}
-
-  # Publish GuardDuty findings to an S3 bucket.
-  guardduty_publish_findings_to_s3 = false
 
   # Send GuardDuty findings to SNS topics specified by findings_sns_topic_name.
   guardduty_publish_findings_to_sns = false
@@ -875,43 +723,6 @@ module "account_baseline_app" {
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
-  # The mode for AWS Config to record configuration changes.
-  #
-  # recording_frequency:
-  # The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
-  # - CONTINUOUS
-  # - DAILY
-  #
-  # You can also override the recording frequency for specific resource types.
-  # recording_mode_override:
-  #   description:
-  #     A description for the override.
-  #   recording_frequency:
-  #     The frequency with which AWS Config records configuration changes for the specified resource types.
-  #     - CONTINUOUS
-  #     - DAILY
-  #   resource_types:
-  #     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-  #
-  # See the following for more information:
-  # https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
-  #
-  # /*
-  # recording_mode = {
-  #   recording_frequency = "DAILY"
-  #   recording_mode_override = {
-  #     description         = "Override for specific resource types"
-  #     recording_frequency = "CONTINUOUS"
-  #     resource_types      = ["AWS::EC2::Instance"]
-  #   }
-  # }
-  # */
-  #
-  recording_mode = null
-
-  # Manages S3 account-level Public Access Block configuration.
-  s3_account_public_access_block = null
-
   # Create service-linked roles for this set of services. You should pass in the
   # URLs of the services, but without the protocol (e.g., http://) in front:
   # e.g., use elasticbeanstalk.amazonaws.com for Elastic Beanstalk or
@@ -950,7 +761,7 @@ module "account_baseline_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.141.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-app?ref=v0.142.0"
 }
 
 inputs = {
@@ -1108,21 +919,10 @@ inputs = {
   # IAM role
   aws_config_iam_role_permissions_boundary = null
 
-  # Additional IAM policies to apply to cloudtrail S3 bucket. You can use this
-  # to grant read/write access beyond what is provided to Cloudtrail. This
-  # should be a map, where each key is a unique statement ID (SID), and each
-  # value is an object that contains the parameters defined in the comment
-  # below.
-  cloudtrail_additional_bucket_policy_statements = null
-
   # Whether or not to allow kms:DescribeKey to external AWS accounts with write
   # access to the CloudTrail bucket. This is useful during deployment so that
   # you don't have to pass around the KMS key ARN.
   cloudtrail_allow_kms_describe_key_to_external_aws_accounts = false
-
-  # After cloudtrail_num_days_after_which_archive_log_data it will
-  # moved/archived to this storage class
-  cloudtrail_archive_storage_class = "GLACIER"
 
   # Specify the name of the CloudWatch Logs group to publish the CloudTrail logs
   # to. This log group exists in the current account. Set this value to `null`
@@ -1169,10 +969,6 @@ inputs = {
   # IAM role
   cloudtrail_iam_role_permissions_boundary = null
 
-  # Type of insights to log on a trail. Valid values are: ApiCallRateInsight and
-  # ApiErrorRateInsight.
-  cloudtrail_insight_selector = []
-
   # All CloudTrail Logs will be encrypted with a KMS CMK (Customer Master Key)
   # that governs access to write API calls older than 7 days and all read API
   # calls. If you are aggregating CloudTrail logs and creating the CMK in this
@@ -1215,7 +1011,7 @@ inputs = {
   cloudtrail_kms_key_user_iam_arns = []
 
   # After this number of days, log files should be transitioned from S3 to
-  # var.cloudtrail_archive_storage_class. Enter 0 to never archive log data.
+  # Glacier. Enter 0 to never archive log data.
   cloudtrail_num_days_after_which_archive_log_data = 30
 
   # After this number of days, log files should be deleted from S3. Enter 0 to
@@ -1236,9 +1032,6 @@ inputs = {
   # the name of a bucket in the logs account).
   cloudtrail_s3_bucket_already_exists = true
 
-  # Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
-  cloudtrail_s3_bucket_key_enabled = false
-
   # The name of the S3 Bucket where CloudTrail logs will be stored. This could
   # be a bucket in this AWS account (e.g., if this is the logs account) or the
   # name of a bucket in another AWS account where logs should be sent (e.g., if
@@ -1253,10 +1046,6 @@ inputs = {
   # AWS. For instructions on how to enable MFA Delete, check out the README from
   # the terraform-aws-security/private-s3-bucket module.
   cloudtrail_s3_mfa_delete = false
-
-  # Name of the existing SNS topic to which the delivery notification will be
-  # sent.
-  cloudtrail_sns_topic_name = null
 
   # Tags to apply to the CloudTrail resources.
   cloudtrail_tags = {}
@@ -1306,10 +1095,6 @@ inputs = {
   # want to permanently delete everything!
   config_force_destroy = false
 
-  # The name of an IAM role for Config service to assume. Must be unique within
-  # the AWS account.
-  config_iam_role_name = "AWS_ConfigRole"
-
   # Provide a list of AWS account IDs that will be allowed to send AWS Config
   # data to this account. This is only required if you are aggregating config
   # data in this account (e.g., this is the logs account) from other accounts.
@@ -1322,11 +1107,6 @@ inputs = {
   # After this number of days, log files should be deleted from S3. Enter 0 to
   # never delete log data.
   config_num_days_after_which_delete_log_data = 730
-
-  # Recording Groups to define in AWS Config. See the upstream module for how to
-  # define the variable, the default of null will use the module's default:
-  # https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
-  config_recording_groups = null
 
   # Optional KMS key to use for encrypting S3 objects on the AWS Config bucket,
   # when the S3 bucket is created within this module
@@ -1359,11 +1139,6 @@ inputs = {
   # AWS. For instructions on how to enable MFA Delete, check out the README from
   # the terraform-aws-security/private-s3-bucket module.
   config_s3_mfa_delete = false
-
-  # If set to true, create an IAM role for AWS Config. Customize the name of the
-  # role by setting iam_role_name. If set to false, the name passed in
-  # iam_role_name must already exist.
-  config_should_create_iam_role = true
 
   # Set to true to create an S3 bucket of name var.config_s3_bucket_name in this
   # account for storing AWS Config data (e.g., if this is the logs account). Set
@@ -1401,10 +1176,6 @@ inputs = {
   # A map of tags to apply to the S3 Bucket. The key is the tag name and the
   # value is the tag value.
   config_tags = {}
-
-  # If set to true, use a service-linked role for AWS Config that is already
-  # created. If set to false, use a custom IAM role referenced in iam_role_name.
-  config_use_service_linked_role = false
 
   # The maximum frequency with which AWS Config runs evaluations for the
   # ´PERIODIC´ rules. See
@@ -1507,22 +1278,8 @@ inputs = {
   # potential damage from a domain hijacking attack on GitHub domains.
   github_actions_openid_connect_provider_thumbprint_list = null
 
-  # Whether to accept an invite from the master account if the detector is not
-  # created automatically
-  guardduty_accept_invite = false
-
-  # The AWS account ID of the GuardDuty delegated admin/master account
-  guardduty_admin_account_id = null
-
   # Name of the Cloudwatch event rules.
   guardduty_cloudwatch_event_rule_name = "guardduty-finding-events"
-
-  # Map of detector features to enable, where the key is the name of the feature
-  # the value is the feature configuration. When AWS Organizations delegated
-  # admin account is used, use var.organization_configuration_features in the
-  # deledated admin account instead. See
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector_feature
-  guardduty_detector_features = {}
 
   # Specifies the frequency of notifications sent for subsequent finding
   # occurrences. If the detector is a GuardDuty member account, the value is
@@ -1532,107 +1289,9 @@ inputs = {
   # standalone and master accounts: FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS.
   guardduty_finding_publishing_frequency = null
 
-  # If true, an IAM Policy that grants access to the key will be honored. If
-  # false, only the ARNs listed in var.kms_key_user_iam_arns will have access to
-  # the key and any IAM Policy grants will be ignored. (true or false)
-  guardduty_findings_allow_kms_access_with_iam = true
-
-  # The AWS regions that are allowed to write to the GuardDuty findings S3
-  # bucket. This is needed to configure the bucket and CMK policy to allow
-  # writes from manually-enabled regions. See
-  # https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty_exportfindings-s3-policies
-  guardduty_findings_allowed_regions = []
-
-  # Whether or not to enable automatic annual rotation of the KMS key. Defaults
-  # to true.
-  guardduty_findings_enable_key_rotation = true
-
-  # A list of external AWS accounts that should be given write access for
-  # GuardDuty findings to this S3 bucket. This is useful when aggregating
-  # findings for multiple AWS accounts in one common S3 bucket.
-  guardduty_findings_external_aws_account_ids_with_write_access = []
-
-  # If set to true, when you run 'terraform destroy', delete all objects from
-  # the bucket so that the bucket can be destroyed without error. Warning: these
-  # objects are not recoverable so only use this if you're absolutely sure you
-  # want to permanently delete everything!
-  guardduty_findings_force_destroy = false
-
-  # All GuardDuty findings will be encrypted with a KMS Key (a Customer Master
-  # Key). The IAM Users specified in this list will have rights to change who
-  # can access the data.
-  guardduty_findings_kms_key_administrator_iam_arns = []
-
-  # If set to true, that means the KMS key you're using already exists, and does
-  # not need to be created.
-  guardduty_findings_kms_key_already_exists = false
-
-  # The ARN of the KMS key used to encrypt GuardDuty findings. GuardDuty
-  # enforces findings to be encrypted. Only used if
-  # guardduty_publish_findings_to_s3 is true.
-  guardduty_findings_kms_key_arn = null
-
-  # Additional service principals beyond GuardDuty that should have access to
-  # the KMS key used to encrypt the logs.
-  guardduty_findings_kms_key_service_principals = []
-
-  # All GuardDuty findings will be encrypted with a KMS Key (a Customer Master
-  # Key). The IAM Users specified in this list will have read-only access to the
-  # data.
-  guardduty_findings_kms_key_user_iam_arns = []
-
-  # After this number of days, findings should be transitioned from S3 to
-  # Glacier. Enter 0 to never archive findings.
-  guardduty_findings_num_days_after_which_archive_findings_data = 30
-
-  # After this number of days, log files should be deleted from S3. Enter 0 to
-  # never delete log data.
-  guardduty_findings_num_days_after_which_delete_findings_data = 365
-
-  # Additional IAM policies to apply to this S3 bucket. You can use this to
-  # grant read/write access. This should be a map, where each key is a unique
-  # statement ID (SID), and each value is an object that contains the parameters
-  # defined in the comment above.
-  guardduty_findings_s3_bucket_additional_policy_statements = {}
-
-  # The S3 bucket ARN to which the findings get exported.
-  guardduty_findings_s3_bucket_arn = null
-
-  # The name of the S3 Bucket where GuardDuty findings will be stored.
-  guardduty_findings_s3_bucket_name = null
-
-  # Optional prefix directory to create in the bucket. Must contain a trailing
-  # '/'. If you use a prefix for S3 findings publishing, you must pre-create the
-  # prefix in the findings bucket. See
-  # https://github.com/hashicorp/terraform-provider-aws/issues/16750.
-  guardduty_findings_s3_bucket_prefix = null
-
-  # Enable MFA delete for either 'Change the versioning state of your bucket' or
-  # 'Permanently delete an object version'. This setting only applies to the
-  # bucket used to storage GuardDuty findings. This cannot be used to toggle
-  # this setting but is available to allow managed buckets to reflect the state
-  # in AWS. For instructions on how to enable MFA Delete, check out the README
-  # from the terraform-aws-security/private-s3-bucket module.
-  guardduty_findings_s3_mfa_delete = false
-
-  # The bucket prefix without trailing '/' under which the findings get
-  # exported. The prefix is optional and will be
-  # AWSLogs/[Account-ID]/GuardDuty/[Region]/ if not provided.
-  guardduty_findings_s3_prefix = null
-
-  # Whether to create a bucket for GuardDuty findings. If set to true, you must
-  # provide the var.guardduty_findings_s3_bucket_name.
-  guardduty_findings_should_create_bucket = false
-
   # Specifies a name for the created SNS topics where findings are published.
   # publish_findings_to_sns must be set to true.
   guardduty_findings_sns_topic_name = "guardduty-findings"
-
-  # Tags to apply to the GuardDuty findings resources (S3 bucket and CMK).
-  guardduty_findings_tags = {}
-
-  # Publish GuardDuty findings to an S3 bucket.
-  guardduty_publish_findings_to_s3 = false
 
   # Send GuardDuty findings to SNS topics specified by findings_sns_topic_name.
   guardduty_publish_findings_to_sns = false
@@ -1727,43 +1386,6 @@ inputs = {
   # KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
-
-  # The mode for AWS Config to record configuration changes.
-  #
-  # recording_frequency:
-  # The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
-  # - CONTINUOUS
-  # - DAILY
-  #
-  # You can also override the recording frequency for specific resource types.
-  # recording_mode_override:
-  #   description:
-  #     A description for the override.
-  #   recording_frequency:
-  #     The frequency with which AWS Config records configuration changes for the specified resource types.
-  #     - CONTINUOUS
-  #     - DAILY
-  #   resource_types:
-  #     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-  #
-  # See the following for more information:
-  # https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
-  #
-  # /*
-  # recording_mode = {
-  #   recording_frequency = "DAILY"
-  #   recording_mode_override = {
-  #     description         = "Override for specific resource types"
-  #     recording_frequency = "CONTINUOUS"
-  #     resource_types      = ["AWS::EC2::Instance"]
-  #   }
-  # }
-  # */
-  #
-  recording_mode = null
-
-  # Manages S3 account-level Public Access Block configuration.
-  s3_account_public_access_block = null
 
   # Create service-linked roles for this set of services. You should pass in the
   # URLs of the services, but without the protocol (e.g., http://) in front:
@@ -2089,89 +1711,6 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cloudtrail_additional_bucket_policy_statements" requirement="optional" type="any">
-<HclListItemDescription>
-
-Additional IAM policies to apply to cloudtrail S3 bucket. You can use this to grant read/write access beyond what is provided to Cloudtrail. This should be a map, where each key is a unique statement ID (SID), and each value is an object that contains the parameters defined in the comment below.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   {
-      AllIamUsersReadAccess = {
-        effect     = "Allow"
-        actions    = ["s3:GetObject"]
-        principals = {
-          AWS = ["arn:aws:iam::111111111111:user/ann", "arn:aws:iam::111111111111:user/bob"]
-        }
-        condition = {
-          SourceVPCCheck = {
-            test = "StringEquals"
-            variable = "aws:SourceVpc"
-            values = ["vpc-abcd123"]
-          }
-        }
-      }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   See the 'statement' block in the aws_iam_policy_document data
-   source for context: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document
-  
-   - effect                                      string            (optional): Either "Allow" or "Deny", to specify whether this statement allows or denies the given actions.
-   - actions                                     list(string)      (optional): A list of actions that this statement either allows or denies. For example, ["s3:GetObject", "s3:PutObject"].
-   - not_actions                                 list(string)      (optional): A list of actions that this statement does NOT apply to. Used to apply a policy statement to all actions except those listed.
-   - principals                                  map(list(string)) (optional): The principals to which this statement applies. The keys are the principal type ("AWS", "Service", or "Federated") and the value is a list of identifiers.
-   - not_principals                              map(list(string)) (optional): The principals to which this statement does NOT apply. The keys are the principal type ("AWS", "Service", or "Federated") and the value is a list of identifiers.
-   - keys                                        list(string)      (optional): A list of keys within the bucket to which this policy applies. For example, ["", "/*"] would apply to (a) the bucket itself and (b) all keys within the bucket. The default is [""].
-   - condition                                   map(object)       (optional): A nested configuration block (described below) that defines a further, possibly-service-specific condition that constrains whether this statement applies.
-  
-   condition is a map from a unique ID for the condition to an object that can define the following properties:
-  
-   - test                                        string            (required): The name of the IAM condition operator to evaluate.
-   - variable                                    string            (required): The name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables starting with aws:, or service-specific variables prefixed with the service name.
-   - values                                      list(string)      (required):  The values to evaluate the condition against. If multiple values are provided, the condition matches if at least one of them applies. (That is, the tests are combined with the "OR" boolean operation.)
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-   Ideally, this would be a map(object({...})), but the Terraform object type constraint doesn't support optional
-   parameters, whereas IAM policy statements have many optional params. And we can't even use map(any), as the
-   Terraform map type constraint requires all values to have the same type ("shape"), but as each object in the map
-   may specify different optional params, this won't work either. So, sadly, we are forced to fall back to "any."
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
 <HclListItem name="cloudtrail_allow_kms_describe_key_to_external_aws_accounts" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2179,15 +1718,6 @@ Whether or not to allow kms:DescribeKey to external AWS accounts with write acce
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cloudtrail_archive_storage_class" requirement="optional" type="string">
-<HclListItemDescription>
-
-After cloudtrail_num_days_after_which_archive_log_data it will moved/archived to this storage class
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;GLACIER&quot;"/>
 </HclListItem>
 
 <HclListItem name="cloudtrail_cloudwatch_logs_group_name" requirement="optional" type="string">
@@ -2267,15 +1797,6 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cloudtrail_insight_selector" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Type of insights to log on a trail. Valid values are: ApiCallRateInsight and ApiErrorRateInsight.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="cloudtrail_kms_key_administrator_iam_arns" requirement="optional" type="list(string)">
@@ -2401,7 +1922,7 @@ All CloudTrail Logs will be encrypted with a KMS CMK (Customer Master Key) that 
 <HclListItem name="cloudtrail_num_days_after_which_archive_log_data" requirement="optional" type="number">
 <HclListItemDescription>
 
-After this number of days, log files should be transitioned from S3 to <a href="#cloudtrail_archive_storage_class"><code>cloudtrail_archive_storage_class</code></a>. Enter 0 to never archive log data.
+After this number of days, log files should be transitioned from S3 to Glacier. Enter 0 to never archive log data.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
@@ -2434,15 +1955,6 @@ Set to false to create an S3 bucket of name <a href="#cloudtrail_s3_bucket_name"
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="cloudtrail_s3_bucket_key_enabled" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Optional whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="cloudtrail_s3_bucket_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2459,15 +1971,6 @@ Enable MFA delete for either 'Change the versioning state of your bucket' or 'Pe
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="cloudtrail_sns_topic_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-Name of the existing SNS topic to which the delivery notification will be sent.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cloudtrail_tags" requirement="optional" type="map(string)">
@@ -2543,15 +2046,6 @@ If set to true, when you run 'terraform destroy', delete all objects from the bu
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="config_iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of an IAM role for Config service to assume. Must be unique within the AWS account.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;AWS_ConfigRole&quot;"/>
-</HclListItem>
-
 <HclListItem name="config_linked_accounts" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -2577,32 +2071,6 @@ After this number of days, log files should be deleted from S3. Enter 0 to never
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="730"/>
-</HclListItem>
-
-<HclListItem name="config_recording_groups" requirement="optional" type="map(object(…))">
-<HclListItemDescription>
-
-Recording Groups to define in AWS Config. See the upstream module for how to define the variable, the default of null will use the module's default: https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(object({
-    all_supported                 = bool
-    include_global_resource_types = bool
-    resource_types                = list(string)
-    recording_strategy = object({
-      use_only = string
-    })
-    exclusion_by_resource_types = optional(object({
-      resource_types = list(string)
-    }))
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="config_s3_bucket_kms_key_arn" requirement="optional" type="string">
@@ -2639,15 +2107,6 @@ Enable MFA delete for either 'Change the versioning state of your bucket' or 'Pe
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="config_should_create_iam_role" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, create an IAM role for AWS Config. Customize the name of the role by setting iam_role_name. If set to false, the name passed in iam_role_name must already exist.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="config_should_create_s3_bucket" requirement="optional" type="bool">
@@ -2702,15 +2161,6 @@ A map of tags to apply to the S3 Bucket. The key is the tag name and the value i
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="config_use_service_linked_role" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, use a service-linked role for AWS Config that is already created. If set to false, use a custom IAM role referenced in iam_role_name.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="configrules_maximum_execution_frequency" requirement="optional" type="string">
@@ -2911,24 +2361,6 @@ When set, use the statically provided hardcoded list of thumbprints rather than 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="guardduty_accept_invite" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether to accept an invite from the master account if the detector is not created automatically
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="guardduty_admin_account_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The AWS account ID of the GuardDuty delegated admin/master account
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="guardduty_cloudwatch_event_rule_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2936,28 +2368,6 @@ Name of the Cloudwatch event rules.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;guardduty-finding-events&quot;"/>
-</HclListItem>
-
-<HclListItem name="guardduty_detector_features" requirement="optional" type="map(object(…))">
-<HclListItemDescription>
-
-Map of detector features to enable, where the key is the name of the feature the value is the feature configuration. When AWS Organizations delegated admin account is used, use <a href="#organization_configuration_features"><code>organization_configuration_features</code></a> in the deledated admin account instead. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector_feature
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(object({
-    status = string
-    additional_configuration = list(object({
-      name   = string
-      status = string
-    }))
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="guardduty_finding_publishing_frequency" requirement="optional" type="string">
@@ -2969,316 +2379,6 @@ Specifies the frequency of notifications sent for subsequent finding occurrences
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="guardduty_findings_allow_kms_access_with_iam" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, an IAM Policy that grants access to the key will be honored. If false, only the ARNs listed in <a href="#kms_key_user_iam_arns"><code>kms_key_user_iam_arns</code></a> will have access to the key and any IAM Policy grants will be ignored. (true or false)
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_allowed_regions" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The AWS regions that are allowed to write to the GuardDuty findings S3 bucket. This is needed to configure the bucket and CMK policy to allow writes from manually-enabled regions. See https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_exportfindings.html#guardduty_exportfindings-s3-policies
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_enable_key_rotation" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether or not to enable automatic annual rotation of the KMS key. Defaults to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_external_aws_account_ids_with_write_access" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-A list of external AWS accounts that should be given write access for GuardDuty findings to this S3 bucket. This is useful when aggregating findings for multiple AWS accounts in one common S3 bucket.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_force_destroy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, when you run 'terraform destroy', delete all objects from the bucket so that the bucket can be destroyed without error. Warning: these objects are not recoverable so only use this if you're absolutely sure you want to permanently delete everything!
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_kms_key_administrator_iam_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-All GuardDuty findings will be encrypted with a KMS Key (a Customer Master Key). The IAM Users specified in this list will have rights to change who can access the data.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_kms_key_already_exists" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, that means the KMS key you're using already exists, and does not need to be created.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_kms_key_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ARN of the KMS key used to encrypt GuardDuty findings. GuardDuty enforces findings to be encrypted. Only used if guardduty_publish_findings_to_s3 is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_kms_key_service_principals" requirement="optional" type="list(object(…))">
-<HclListItemDescription>
-
-Additional service principals beyond GuardDuty that should have access to the KMS key used to encrypt the logs.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(object({
-    # The name of the service principal (e.g.: s3.amazonaws.com).
-    name = string
-
-    # The list of actions that the given service principal is allowed to perform (e.g. ["kms:DescribeKey",
-    # "kms:GenerateDataKey"]).
-    actions = list(string)
-
-    # List of additional service principals. Useful when, for example, granting
-    # access to opt-in region service endpoints (e.g. guardduty.us-east-1.amazonaws.com).
-    additional_principals = list(string)
-
-    # List of conditions to apply to the permissions for the service principal. Use this to apply conditions on the
-    # permissions for accessing the KMS key (e.g., only allow access for certain encryption contexts).
-    conditions = list(object({
-      # Name of the IAM condition operator to evaluate.
-      test = string
-
-      # Name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables
-      # starting with aws: or service-specific variables prefixed with the service name.
-      variable = string
-
-      # Values to evaluate the condition against. If multiple values are provided, the condition matches if at least one
-      # of them applies. That is, AWS evaluates multiple values as though using an "OR" boolean operation.
-      values = list(string)
-    }))
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="[]"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     The list of actions that the given service principal is allowed to perform (e.g. ["kms:DescribeKey",
-     "kms:GenerateDataKey"]).
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     List of additional service principals. Useful when, for example, granting
-     access to opt-in region service endpoints (e.g. guardduty.us-east-1.amazonaws.com).
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     List of conditions to apply to the permissions for the service principal. Use this to apply conditions on the
-     permissions for accessing the KMS key (e.g., only allow access for certain encryption contexts).
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-       Name of a Context Variable to apply the condition to. Context variables may either be standard AWS variables
-       starting with aws: or service-specific variables prefixed with the service name.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-       Values to evaluate the condition against. If multiple values are provided, the condition matches if at least one
-       of them applies. That is, AWS evaluates multiple values as though using an "OR" boolean operation.
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_kms_key_user_iam_arns" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-All GuardDuty findings will be encrypted with a KMS Key (a Customer Master Key). The IAM Users specified in this list will have read-only access to the data.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_num_days_after_which_archive_findings_data" requirement="optional" type="number">
-<HclListItemDescription>
-
-After this number of days, findings should be transitioned from S3 to Glacier. Enter 0 to never archive findings.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="30"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_num_days_after_which_delete_findings_data" requirement="optional" type="number">
-<HclListItemDescription>
-
-After this number of days, log files should be deleted from S3. Enter 0 to never delete log data.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="365"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_s3_bucket_additional_policy_statements" requirement="optional" type="any">
-<HclListItemDescription>
-
-Additional IAM policies to apply to this S3 bucket. You can use this to grant read/write access. This should be a map, where each key is a unique statement ID (SID), and each value is an object that contains the parameters defined in the comment above.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
-<details>
-  <summary>Example</summary>
-
-
-```hcl
-   {
-      AllIamUsersReadAccess = {
-        effect     = "Allow"
-        actions    = ["s3:GetObject"]
-        principals = {
-          AWS = ["arn:aws:iam::111111111111:user/ann", "arn:aws:iam::111111111111:user/bob"]
-        }
-        condition = {
-          SourceVPCCheck = {
-            test = "StringEquals"
-            variable = "aws:SourceVpc"
-            values = ["vpc-abcd123"]
-          }
-        }
-      }
-   }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Ideally, this would be a map(object({...})), but the Terraform object type constraint doesn't support optional
-   parameters, whereas IAM policy statements have many optional params. And we can't even use map(any), as the
-   Terraform map type constraint requires all values to have the same type ("shape"), but as each object in the map
-   may specify different optional params, this won't work either. So, sadly, we are forced to fall back to "any."
-
-```
-</details>
-
-</HclGeneralListItem>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_s3_bucket_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-The S3 bucket ARN to which the findings get exported.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_s3_bucket_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-The name of the S3 Bucket where GuardDuty findings will be stored.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_s3_bucket_prefix" requirement="optional" type="string">
-<HclListItemDescription>
-
-Optional prefix directory to create in the bucket. Must contain a trailing '/'. If you use a prefix for S3 findings publishing, you must pre-create the prefix in the findings bucket. See https://github.com/hashicorp/terraform-provider-aws/issues/16750.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_s3_mfa_delete" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enable MFA delete for either 'Change the versioning state of your bucket' or 'Permanently delete an object version'. This setting only applies to the bucket used to storage GuardDuty findings. This cannot be used to toggle this setting but is available to allow managed buckets to reflect the state in AWS. For instructions on how to enable MFA Delete, check out the README from the terraform-aws-security/private-s3-bucket module.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_s3_prefix" requirement="optional" type="string">
-<HclListItemDescription>
-
-The bucket prefix without trailing '/' under which the findings get exported. The prefix is optional and will be AWSLogs/[Account-ID]/GuardDuty/[Region]/ if not provided.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_should_create_bucket" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether to create a bucket for GuardDuty findings. If set to true, you must provide the <a href="#guardduty_findings_s3_bucket_name"><code>guardduty_findings_s3_bucket_name</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="guardduty_findings_sns_topic_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -3286,24 +2386,6 @@ Specifies a name for the created SNS topics where findings are published. publis
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;guardduty-findings&quot;"/>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_tags" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Tags to apply to the GuardDuty findings resources (S3 bucket and CMK).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="guardduty_publish_findings_to_s3" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Publish GuardDuty findings to an S3 bucket.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="guardduty_publish_findings_to_sns" requirement="optional" type="bool">
@@ -3681,81 +2763,6 @@ KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS stor
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="recording_mode" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-The mode for AWS Config to record configuration changes.
-
-recording_frequency:
-The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
-- CONTINUOUS
-- DAILY
-
-You can also override the recording frequency for specific resource types.
-recording_mode_override:
-  description:
-    A description for the override.
-  recording_frequency:
-    The frequency with which AWS Config records configuration changes for the specified resource types.
-    - CONTINUOUS
-    - DAILY
-  resource_types:
-    A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
-
-See the following for more information:
-https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
-
-```
-recording_mode = &#123;
-  recording_frequency = 'DAILY'
-  recording_mode_override = &#123;
-    description         = 'Override for specific resource types'
-    recording_frequency = 'CONTINUOUS'
-    resource_types      = ['AWS::EC2::Instance']
-  &#125;
-&#125;
-```
-
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    recording_frequency = string
-    recording_mode_override = optional(object({
-      description         = string
-      recording_frequency = string
-      resource_types      = list(string)
-    }))
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="s3_account_public_access_block" requirement="optional" type="object(…)">
-<HclListItemDescription>
-
-Manages S3 account-level Public Access Block configuration.
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    block_public_acls       = optional(bool)
-    ignore_public_acls      = optional(bool)
-    block_public_policy     = optional(bool)
-    restrict_public_buckets = optional(bool)
-  })
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="service_linked_roles" requirement="optional" type="set(string)">
 <HclListItemDescription>
 
@@ -3819,6 +2826,12 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <HclListItem name="allow_full_access_sign_in_url">
 </HclListItem>
 
+<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_houston_cli_access_from_other_accounts_iam_role_id">
+</HclListItem>
+
 <HclListItem name="allow_iam_admin_access_from_other_accounts_iam_role_arn">
 </HclListItem>
 
@@ -3853,6 +2866,15 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 </HclListItem>
 
 <HclListItem name="allow_ssh_grunt_access_sign_in_url">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_arn">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_from_other_accounts_iam_role_id">
+</HclListItem>
+
+<HclListItem name="allow_ssh_grunt_houston_access_sign_in_url">
 </HclListItem>
 
 <HclListItem name="allow_support_access_from_other_accounts_iam_role_arn">
@@ -4024,38 +3046,6 @@ The IDs of the GuardDuty detectors.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="guardduty_findings_kms_key_alias_name">
-<HclListItemDescription>
-
-The alias of the KMS key used by the S3 bucket to encrypt GuardDuty findings.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_kms_key_arn">
-<HclListItemDescription>
-
-The ARN of the KMS key used by the S3 bucket to encrypt GuardDuty findings.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_s3_bucket_arn">
-<HclListItemDescription>
-
-The ARN of the S3 bucket where GuardDuty findings are delivered.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="guardduty_findings_s3_bucket_name">
-<HclListItemDescription>
-
-The name of the S3 bucket where GuardDuty findings are delivered.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="guardduty_findings_sns_topic_arns">
 <HclListItemDescription>
 
@@ -4118,11 +3108,11 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/modules/landingzone/account-baseline-app/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/modules/landingzone/account-baseline-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/modules/landingzone/account-baseline-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/landingzone/account-baseline-app/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/landingzone/account-baseline-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/landingzone/account-baseline-app/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "48d478289548e87fc6a8505db6cae11c"
+  "hash": "77a1134349b150fc4dc5ff218e076838"
 }
 ##DOCS-SOURCER-END -->
