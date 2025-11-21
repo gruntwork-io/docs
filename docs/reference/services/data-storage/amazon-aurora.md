@@ -43,6 +43,7 @@ by AWS and automatically handles standby failover, read replicas, backups, patch
 *   Automatic scaling of storage
 *   Scale to 0 with Aurora Serverless
 *   Integrate with Kubernetes Service Discovery
+*   Support Aurora Serverless v2
 
 ## Learn
 
@@ -162,9 +163,39 @@ module "aurora" {
   # updated within this time period, as that indicates the backup failed to run.
   backup_job_alarm_period = 3600
 
+  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
+  # state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  backup_job_alarm_treat_missing_data = "missing"
+
   # How many days to keep backup snapshots around before cleaning them up. Max:
   # 35
   backup_retention_period = 30
+
+  # The Certificate Authority (CA) certificate bundle to use on the Aurora DB
+  # instances. Possible values: rds-ca-2019 (default if nothing is specified),
+  # rds-ca-rsa2048-g1, rds-ca-rsa4096-g1, rds-ca-ecc384-g1.
+  ca_cert_identifier = null
+
+  # List of IAM role ARNs to attach to the cluster. Be sure these roles exists.
+  # They will not be created here. Serverless aurora does not support attaching
+  # IAM roles.
+  cluster_iam_roles = []
+
+  # Specifies whether cluster level Performance Insights is enabled or not. On
+  # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
+  # instance classes.
+  cluster_performance_insights_enabled = false
+
+  # The ARN for the KMS key to encrypt cluster level Performance Insights data.
+  cluster_performance_insights_kms_key_id = null
+
+  # Specifies the amount of time to retain cluster level Performance Insights
+  # data for. Defaults to 7 days if Performance Insights are enabled. Valid
+  # values are 7, month * 31 (where month is a number of months from 1-23), and
+  # 731.
+  cluster_performance_insights_retention_period = null
 
   # Copy all the Aurora cluster tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
@@ -207,6 +238,12 @@ module "aurora" {
   # Parameters for the read latency widget to output for use in a CloudWatch
   # dashboard.
   dashboard_write_latency_widget_parameters = {"height":6,"period":60,"width":8}
+
+  # The mode of Database Insights to enable for the DB cluster. Valid options
+  # are 'standard' or 'advanced'. When setting this to 'advanced' then
+  # cluster_performance_insights_enabled must be set to true and
+  # 'cluster_performance_insights_retention_period' set to at least 465 days.
+  database_insights_mode = null
 
   # Configure a custom parameter group for the RDS DB cluster. This will create
   # a new parameter group with the given parameters. When null, the database
@@ -281,6 +318,9 @@ module "aurora" {
   # e.g. 5.7.mysql_aurora.2.08.1.
   engine_version = null
 
+  # Global cluster identifier when creating the global secondary cluster.
+  global_cluster_identifier = null
+
   # The period, in seconds, over which to measure the CPU utilization
   # percentage.
   high_cpu_utilization_period = 60
@@ -289,6 +329,12 @@ module "aurora" {
   # this threshold.
   high_cpu_utilization_threshold = 90
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the read latency.
   high_read_latency_period = 60
 
@@ -296,12 +342,24 @@ module "aurora" {
   # taken per disk I/O operation), in seconds, is above this threshold.
   high_read_latency_threshold = 5
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_read_latency_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the write latency.
   high_write_latency_period = 60
 
   # Trigger an alarm if the DB instance write latency (average amount of time
   # taken per disk I/O operation), in seconds, is above this threshold.
   high_write_latency_threshold = 5
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_write_latency_treat_missing_data = "missing"
 
   # The ID of the hosted zone in which to write DNS records
   hosted_zone_id = null
@@ -316,7 +374,7 @@ module "aurora" {
 
   # The instance type to use for the db (e.g. db.r3.large). Only used when
   # var.engine_mode is set to provisioned.
-  instance_type = "db.t3.small"
+  instance_type = "db.t3.medium"
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this null, the default RDS
@@ -330,12 +388,28 @@ module "aurora" {
   # drops below this threshold.
   low_disk_space_available_threshold = 1000000000
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  low_disk_space_available_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the available free memory.
   low_memory_available_period = 60
 
   # Trigger an alarm if the amount of free memory, in Bytes, on the DB instance
   # drops below this threshold.
   low_memory_available_threshold = 100000000
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  low_memory_available_treat_missing_data = "missing"
+
+  # Set to true to allow RDS to manage the master user password in Secrets
+  # Manager. Cannot be set if password is provided.
+  manage_master_user_password = null
 
   # The value to use for the master password of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
@@ -356,6 +430,12 @@ module "aurora" {
   # The ARN for the KMS key to encrypt Performance Insights data.
   performance_insights_kms_key_id = null
 
+  # The amount of time in days to retain Performance Insights data. Either 7 (7
+  # days) or 731 (2 years). When specifying
+  # performance_insights_retention_period, performance_insights_enabled needs to
+  # be set to true. Defaults to 7.
+  performance_insights_retention_period = null
+
   # The port the DB will listen on (e.g. 3306). This can also be provided via
   # AWS Secrets Manager. See the description of db_config_secrets_manager_id. A
   # value here overrides the value in db_config_secrets_manager_id.
@@ -365,6 +445,11 @@ module "aurora" {
   # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
   # runs.
   preferred_backup_window = "06:00-07:00"
+
+  # The weekly day and time range during which cluster maintenance can occur
+  # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
+  # there may even be a downtime during maintenance windows.
+  preferred_maintenance_window = "sun:07:00-sun:08:00"
 
   # The domain name to create a route 53 record for the primary endpoint of the
   # RDS database.
@@ -381,6 +466,10 @@ module "aurora" {
   # RDS database. Note that Aurora Serverless does not have reader endpoints, so
   # this option is ignored when engine_mode is set to serverless. 
   reader_domain_name = null
+
+  # ARN of a source DB cluster or DB instance if this DB cluster is to be
+  # created as a Read Replica.
+  replication_source_identifier = null
 
   # If non-empty, the Aurora cluster will be restored from the given source
   # cluster using the latest restorable time. Can only be used if
@@ -405,10 +494,14 @@ module "aurora" {
   # and 256. Only used when var.engine_mode is set to serverless.
   scaling_configuration_max_capacity = 256
 
+  scaling_configuration_max_capacity_V2 = null
+
   # The minimum capacity. The minimum capacity must be lesser than or equal to
   # the maximum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128,
   # and 256. Only used when var.engine_mode is set to serverless.
   scaling_configuration_min_capacity = 2
+
+  scaling_configuration_min_capacity_V2 = null
 
   # The time, in seconds, before an Aurora DB cluster in serverless mode is
   # paused. Valid values are 300 through 86400. Only used when var.engine_mode
@@ -540,9 +633,39 @@ inputs = {
   # updated within this time period, as that indicates the backup failed to run.
   backup_job_alarm_period = 3600
 
+  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
+  # state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  backup_job_alarm_treat_missing_data = "missing"
+
   # How many days to keep backup snapshots around before cleaning them up. Max:
   # 35
   backup_retention_period = 30
+
+  # The Certificate Authority (CA) certificate bundle to use on the Aurora DB
+  # instances. Possible values: rds-ca-2019 (default if nothing is specified),
+  # rds-ca-rsa2048-g1, rds-ca-rsa4096-g1, rds-ca-ecc384-g1.
+  ca_cert_identifier = null
+
+  # List of IAM role ARNs to attach to the cluster. Be sure these roles exists.
+  # They will not be created here. Serverless aurora does not support attaching
+  # IAM roles.
+  cluster_iam_roles = []
+
+  # Specifies whether cluster level Performance Insights is enabled or not. On
+  # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
+  # instance classes.
+  cluster_performance_insights_enabled = false
+
+  # The ARN for the KMS key to encrypt cluster level Performance Insights data.
+  cluster_performance_insights_kms_key_id = null
+
+  # Specifies the amount of time to retain cluster level Performance Insights
+  # data for. Defaults to 7 days if Performance Insights are enabled. Valid
+  # values are 7, month * 31 (where month is a number of months from 1-23), and
+  # 731.
+  cluster_performance_insights_retention_period = null
 
   # Copy all the Aurora cluster tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
@@ -585,6 +708,12 @@ inputs = {
   # Parameters for the read latency widget to output for use in a CloudWatch
   # dashboard.
   dashboard_write_latency_widget_parameters = {"height":6,"period":60,"width":8}
+
+  # The mode of Database Insights to enable for the DB cluster. Valid options
+  # are 'standard' or 'advanced'. When setting this to 'advanced' then
+  # cluster_performance_insights_enabled must be set to true and
+  # 'cluster_performance_insights_retention_period' set to at least 465 days.
+  database_insights_mode = null
 
   # Configure a custom parameter group for the RDS DB cluster. This will create
   # a new parameter group with the given parameters. When null, the database
@@ -659,6 +788,9 @@ inputs = {
   # e.g. 5.7.mysql_aurora.2.08.1.
   engine_version = null
 
+  # Global cluster identifier when creating the global secondary cluster.
+  global_cluster_identifier = null
+
   # The period, in seconds, over which to measure the CPU utilization
   # percentage.
   high_cpu_utilization_period = 60
@@ -667,6 +799,12 @@ inputs = {
   # this threshold.
   high_cpu_utilization_threshold = 90
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_cpu_utilization_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the read latency.
   high_read_latency_period = 60
 
@@ -674,12 +812,24 @@ inputs = {
   # taken per disk I/O operation), in seconds, is above this threshold.
   high_read_latency_threshold = 5
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_read_latency_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the write latency.
   high_write_latency_period = 60
 
   # Trigger an alarm if the DB instance write latency (average amount of time
   # taken per disk I/O operation), in seconds, is above this threshold.
   high_write_latency_threshold = 5
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_write_latency_treat_missing_data = "missing"
 
   # The ID of the hosted zone in which to write DNS records
   hosted_zone_id = null
@@ -694,7 +844,7 @@ inputs = {
 
   # The instance type to use for the db (e.g. db.r3.large). Only used when
   # var.engine_mode is set to provisioned.
-  instance_type = "db.t3.small"
+  instance_type = "db.t3.medium"
 
   # The ARN of a KMS key that should be used to encrypt data on disk. Only used
   # if var.storage_encrypted is true. If you leave this null, the default RDS
@@ -708,12 +858,28 @@ inputs = {
   # drops below this threshold.
   low_disk_space_available_threshold = 1000000000
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  low_disk_space_available_treat_missing_data = "missing"
+
   # The period, in seconds, over which to measure the available free memory.
   low_memory_available_period = 60
 
   # Trigger an alarm if the amount of free memory, in Bytes, on the DB instance
   # drops below this threshold.
   low_memory_available_threshold = 100000000
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  low_memory_available_treat_missing_data = "missing"
+
+  # Set to true to allow RDS to manage the master user password in Secrets
+  # Manager. Cannot be set if password is provided.
+  manage_master_user_password = null
 
   # The value to use for the master password of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
@@ -734,6 +900,12 @@ inputs = {
   # The ARN for the KMS key to encrypt Performance Insights data.
   performance_insights_kms_key_id = null
 
+  # The amount of time in days to retain Performance Insights data. Either 7 (7
+  # days) or 731 (2 years). When specifying
+  # performance_insights_retention_period, performance_insights_enabled needs to
+  # be set to true. Defaults to 7.
+  performance_insights_retention_period = null
+
   # The port the DB will listen on (e.g. 3306). This can also be provided via
   # AWS Secrets Manager. See the description of db_config_secrets_manager_id. A
   # value here overrides the value in db_config_secrets_manager_id.
@@ -743,6 +915,11 @@ inputs = {
   # 04:00-09:00). Time zone is UTC. Performance may be degraded while a backup
   # runs.
   preferred_backup_window = "06:00-07:00"
+
+  # The weekly day and time range during which cluster maintenance can occur
+  # (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or
+  # there may even be a downtime during maintenance windows.
+  preferred_maintenance_window = "sun:07:00-sun:08:00"
 
   # The domain name to create a route 53 record for the primary endpoint of the
   # RDS database.
@@ -759,6 +936,10 @@ inputs = {
   # RDS database. Note that Aurora Serverless does not have reader endpoints, so
   # this option is ignored when engine_mode is set to serverless. 
   reader_domain_name = null
+
+  # ARN of a source DB cluster or DB instance if this DB cluster is to be
+  # created as a Read Replica.
+  replication_source_identifier = null
 
   # If non-empty, the Aurora cluster will be restored from the given source
   # cluster using the latest restorable time. Can only be used if
@@ -783,10 +964,14 @@ inputs = {
   # and 256. Only used when var.engine_mode is set to serverless.
   scaling_configuration_max_capacity = 256
 
+  scaling_configuration_max_capacity_V2 = null
+
   # The minimum capacity. The minimum capacity must be lesser than or equal to
   # the maximum capacity. Valid capacity values are 2, 4, 8, 16, 32, 64, 128,
   # and 256. Only used when var.engine_mode is set to serverless.
   scaling_configuration_min_capacity = 2
+
+  scaling_configuration_min_capacity_V2 = null
 
   # The time, in seconds, before an Aurora DB cluster in serverless mode is
   # paused. Valid values are 300 through 86400. Only used when var.engine_mode
@@ -953,6 +1138,15 @@ How often, in seconds, the backup job is expected to run. This is the same as <a
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="backup_job_alarm_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="backup_retention_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -960,6 +1154,51 @@ How many days to keep backup snapshots around before cleaning them up. Max: 35
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="ca_cert_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Certificate Authority (CA) certificate bundle to use on the Aurora DB instances. Possible values: rds-ca-2019 (default if nothing is specified), rds-ca-rsa2048-g1, rds-ca-rsa4096-g1, rds-ca-ecc384-g1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_iam_roles" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of IAM role ARNs to attach to the cluster. Be sure these roles exists. They will not be created here. Serverless aurora does not support attaching IAM roles.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cluster_performance_insights_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether cluster level Performance Insights is enabled or not. On Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB instance classes.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="cluster_performance_insights_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN for the KMS key to encrypt cluster level Performance Insights data.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_performance_insights_retention_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+Specifies the amount of time to retain cluster level Performance Insights data for. Defaults to 7 days if Performance Insights are enabled. Valid values are 7, month * 31 (where month is a number of months from 1-23), and 731.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="copy_tags_to_snapshot" requirement="optional" type="bool">
@@ -1280,6 +1519,15 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="database_insights_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+The mode of Database Insights to enable for the DB cluster. Valid options are 'standard' or 'advanced'. When setting this to 'advanced' then cluster_performance_insights_enabled must be set to true and 'cluster_performance_insights_retention_period' set to at least 465 days.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="db_cluster_custom_parameter_group" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
@@ -1531,6 +1779,15 @@ The Amazon Aurora DB engine version for the selected engine and engine_mode. Not
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="global_cluster_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+Global cluster identifier when creating the global secondary cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="high_cpu_utilization_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1547,6 +1804,15 @@ Trigger an alarm if the DB instance has a CPU utilization percentage above this 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="high_read_latency_period" requirement="optional" type="number">
@@ -1567,6 +1833,15 @@ Trigger an alarm if the DB instance read latency (average amount of time taken p
 <HclListItemDefaultValue defaultValue="5"/>
 </HclListItem>
 
+<HclListItem name="high_read_latency_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="high_write_latency_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1583,6 +1858,15 @@ Trigger an alarm if the DB instance write latency (average amount of time taken 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="5"/>
+</HclListItem>
+
+<HclListItem name="high_write_latency_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
@@ -1618,7 +1902,7 @@ The number of DB instances, including the primary, to run in the RDS cluster. On
 The instance type to use for the db (e.g. db.r3.large). Only used when <a href="#engine_mode"><code>engine_mode</code></a> is set to provisioned.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;db.t3.small&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;db.t3.medium&quot;"/>
 <HclGeneralListItem title="More Details">
 <details>
 
@@ -1673,6 +1957,15 @@ Trigger an alarm if the amount of disk space, in Bytes, on the DB instance drops
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="low_disk_space_available_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="low_memory_available_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1701,6 +1994,24 @@ Trigger an alarm if the amount of free memory, in Bytes, on the DB instance drop
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="low_memory_available_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="manage_master_user_password" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to allow RDS to manage the master user password in Secrets Manager. Cannot be set if password is provided.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="master_password" requirement="optional" type="string">
@@ -1739,6 +2050,15 @@ The ARN for the KMS key to encrypt Performance Insights data.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="performance_insights_retention_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of time in days to retain Performance Insights data. Either 7 (7 days) or 731 (2 years). When specifying performance_insights_retention_period, performance_insights_enabled needs to be set to true. Defaults to 7.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="port" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1755,6 +2075,15 @@ The daily time range during which automated backups are created (e.g. 04:00-09:0
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;06:00-07:00&quot;"/>
+</HclListItem>
+
+<HclListItem name="preferred_maintenance_window" requirement="optional" type="string">
+<HclListItemDescription>
+
+The weekly day and time range during which cluster maintenance can occur (e.g. wed:04:00-wed:04:30). Time zone is UTC. Performance may be degraded or there may even be a downtime during maintenance windows.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;sun:07:00-sun:08:00&quot;"/>
 </HclListItem>
 
 <HclListItem name="primary_domain_name" requirement="optional" type="string">
@@ -1779,6 +2108,15 @@ If you wish to make your database accessible from the public Internet, set this 
 <HclListItemDescription>
 
 The domain name to create a route 53 record for the reader endpoint of the RDS database. Note that Aurora Serverless does not have reader endpoints, so this option is ignored when engine_mode is set to serverless. 
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="replication_source_identifier" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of a source DB cluster or DB instance if this DB cluster is to be created as a Read Replica.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1820,6 +2158,10 @@ The maximum capacity. The maximum capacity must be greater than or equal to the 
 <HclListItemDefaultValue defaultValue="256"/>
 </HclListItem>
 
+<HclListItem name="scaling_configuration_max_capacity_V2" requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="scaling_configuration_min_capacity" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1827,6 +2169,10 @@ The minimum capacity. The minimum capacity must be lesser than or equal to the m
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="2"/>
+</HclListItem>
+
+<HclListItem name="scaling_configuration_min_capacity_V2" requirement="optional" type="number">
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="scaling_configuration_seconds_until_auto_pause" requirement="optional" type="number">
@@ -1954,6 +2300,14 @@ The ARN of the RDS Aurora cluster.
 <HclListItemDescription>
 
 The ID of the RDS Aurora cluster (e.g TODO).
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cluster_master_password_secret_arn">
+<HclListItemDescription>
+
+The ARN of master user secret. Only available when `manage_master_user_password` is set to true
 
 </HclListItemDescription>
 </HclListItem>
@@ -2089,6 +2443,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f1461f348945be26c2101b323c4e6018"
+  "hash": "c511aad7b07e6d9d2bd566a2490d12d8"
 }
 ##DOCS-SOURCER-END -->
