@@ -9,19 +9,19 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.28.8" lastModifiedVersion="0.27.0"/>
+<VersionBadge repoTitle="VPC Modules" version="0.28.9" lastModifiedVersion="0.28.9"/>
 
 # Transit Gateway Attachment Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.8/modules/transit-gateway-attachment" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.9/modules/transit-gateway-attachment" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.27.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates a transit gateway attachment resource. A transit gateway attachment, attaches the transit gateway to a VPC. This module can be used to attach a transit gateway to multiple VPCs. Attaching a transit gateway to one or more VPCs creates a HUB and spoke routing topology, allowing traffic from one VPC to reach other VPCs or from a VPC to reach on-premises networks.
 
 The module accepts a map of VPCs for attachment to the transit gateway. See the examples below for the structure of the map.
 
-See [VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.8/modules//_docs/vpc-core-concepts.md) for more information on the core networking components and topologies.
+See [VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.9/modules//_docs/vpc-core-concepts.md) for more information on the core networking components and topologies.
 
 ## What is a Transit Gateway Attachment?
 
@@ -29,7 +29,7 @@ A transit gateway attachment is a way to connect a transit gateway (virtual rout
 
 ## Usage
 
-For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.8/examples/transit-gateway-attachment/).
+For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.9/examples/transit-gateway-attachment/).
 
 <!-- BEGIN_TF_DOCS -->
 
@@ -90,7 +90,7 @@ No modules.
 
 module "transit_gateway_attachment" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-attachment?ref=v0.28.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-attachment?ref=v0.28.9"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -161,7 +161,7 @@ module "transit_gateway_attachment" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-attachment?ref=v0.28.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway-attachment?ref=v0.28.9"
 }
 
 inputs = {
@@ -388,11 +388,11 @@ The IDs of the Transit Gateway Route Tables.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.8/modules/transit-gateway-attachment/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.8/modules/transit-gateway-attachment/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.8/modules/transit-gateway-attachment/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.9/modules/transit-gateway-attachment/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.9/modules/transit-gateway-attachment/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.9/modules/transit-gateway-attachment/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c1f792832fb0c84535d04b871c6d5661"
+  "hash": "da1c91c29897bce0d6d67233c68cd81b"
 }
 ##DOCS-SOURCER-END -->
