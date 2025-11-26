@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.141.0" lastModifiedVersion="0.141.0"/>
+<VersionBadge version="0.142.0" lastModifiedVersion="0.141.0"/>
 
 # Amazon EKS
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -116,7 +116,7 @@ To add and manage additional worker groups, refer to the [eks-workers module](/r
 
 module "eks_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.141.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.142.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -173,6 +173,14 @@ module "eks_cluster" {
   # Kubernetes API endpoint (e.g. the endpoint within the VPC, not the public
   # endpoint).
   allow_private_api_access_from_security_groups = []
+
+  # The source of the AMI to use for the EKS cluster's worker nodes. Can be
+  # 'auto', 'launch_template', or 'eks_nodegroup'. When set to 'eks_nodegroup',
+  # the ami_type field in managed_node_group_configurations will be used to
+  # determine the AMI. WARNING: there are limitations on what values are valid -
+  # check the AWS documentation for more information:
+  # https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
+  ami_source = "auto"
 
   # Default value for enable_detailed_monitoring field of
   # autoscaling_group_configurations.
@@ -686,6 +694,9 @@ module "eks_cluster" {
   # cluster. Set to empty object ({}) if you do not wish to configure managed
   # node groups.
   managed_node_group_configurations = {}
+
+  # Default value for ami_type field of managed_node_group_configurations.
+  node_group_default_ami_type = null
 
   # Default value for capacity_type field of managed_node_group_configurations.
   node_group_default_capacity_type = "ON_DEMAND"
@@ -975,7 +986,7 @@ module "eks_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.141.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.142.0"
 }
 
 inputs = {
@@ -1035,6 +1046,14 @@ inputs = {
   # Kubernetes API endpoint (e.g. the endpoint within the VPC, not the public
   # endpoint).
   allow_private_api_access_from_security_groups = []
+
+  # The source of the AMI to use for the EKS cluster's worker nodes. Can be
+  # 'auto', 'launch_template', or 'eks_nodegroup'. When set to 'eks_nodegroup',
+  # the ami_type field in managed_node_group_configurations will be used to
+  # determine the AMI. WARNING: there are limitations on what values are valid -
+  # check the AWS documentation for more information:
+  # https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
+  ami_source = "auto"
 
   # Default value for enable_detailed_monitoring field of
   # autoscaling_group_configurations.
@@ -1548,6 +1567,9 @@ inputs = {
   # cluster. Set to empty object ({}) if you do not wish to configure managed
   # node groups.
   managed_node_group_configurations = {}
+
+  # Default value for ami_type field of managed_node_group_configurations.
+  node_group_default_ami_type = null
 
   # Default value for capacity_type field of managed_node_group_configurations.
   node_group_default_capacity_type = "ON_DEMAND"
@@ -1976,6 +1998,15 @@ The list of security groups to allow inbound access to the private Kubernetes AP
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="ami_source" requirement="optional" type="string">
+<HclListItemDescription>
+
+The source of the AMI to use for the EKS cluster's worker nodes. Can be 'auto', 'launch_template', or 'eks_nodegroup'. When set to 'eks_nodegroup', the ami_type field in managed_node_group_configurations will be used to determine the AMI. WARNING: there are limitations on what values are valid - check the AWS documentation for more information: https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;auto&quot;"/>
 </HclListItem>
 
 <HclListItem name="asg_default_enable_detailed_monitoring" requirement="optional" type="bool">
@@ -3676,6 +3707,9 @@ Any types represent complex values of variable type. For details, please consult
                                               the configured instance type of the launch template.
    - capacity_type       string             : (Defaults to value from var.node_group_default_capacity_type) Type of capacity
                                               associated with the EKS Node Group. Valid values: ON_DEMAND, SPOT.
+   - ami_type            string             : (Defaults to value from var.node_group_default_ami_type) Type of AMI
+                                              associated with the EKS Node Group. See the AWS documentation for valid
+                                              AMI Types. Docs: https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.htmlAmazonEKS-Type-Nodegroup-amiType
    - launch_template     LaunchTemplate     : (Defaults to value from var.node_group_default_launch_template)
                                               Launch template to use for the node. Specify either Name or ID of launch
                                               template. Must include version. Although the API supports using the
@@ -3752,6 +3786,15 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="node_group_default_ami_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default value for ami_type field of managed_node_group_configurations.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="node_group_default_capacity_type" requirement="optional" type="string">
@@ -4381,11 +4424,11 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/modules/services/eks-cluster/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/modules/services/eks-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.141.0/modules/services/eks-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/eks-cluster/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/eks-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "725dd4a3e873813f17c36cb164bf4449"
+  "hash": "414a49d29c33f78714c6d887f0b194a5"
 }
 ##DOCS-SOURCER-END -->
