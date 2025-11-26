@@ -3708,7 +3708,8 @@ Any types represent complex values of variable type. For details, please consult
    - capacity_type       string             : (Defaults to value from var.node_group_default_capacity_type) Type of capacity
                                               associated with the EKS Node Group. Valid values: ON_DEMAND, SPOT.
    - ami_type            string             : (Defaults to value from var.node_group_default_ami_type) Type of AMI
-                                              associated with the EKS Node Group. See the AWS documentation for valid
+                                              associated with the EKS Node Group. Only takes effect when
+                                              var.ami_source = "eks_nodegroup". See the AWS documentation for valid
                                               AMI Types. Docs: https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.htmlAmazonEKS-Type-Nodegroup-amiType
    - launch_template     LaunchTemplate     : (Defaults to value from var.node_group_default_launch_template)
                                               Launch template to use for the node. Specify either Name or ID of launch
@@ -4429,6 +4430,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "414a49d29c33f78714c6d887f0b194a5"
+  "hash": "1230203c9894f0ec1cbf07070df5489b"
 }
 ##DOCS-SOURCER-END -->
