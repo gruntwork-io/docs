@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="1.0.3" lastModifiedVersion="0.8.8"/>
+<VersionBadge repoTitle="Control Tower" version="1.1.0" lastModifiedVersion="1.1.0"/>
 
 # Control Tower Account Factory
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.3/modules/landingzone/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/landingzone/control-tower-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.8.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v1.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a Terraform module that will trigger the creation of a new AWS account by using Control Tower.
 
@@ -89,7 +89,7 @@ This is usually accompanied by this module returning outputs that look like the 
 
 Unfortunately, this is an unrecoverable error from an AWS Provider perspective, as the provider has no insight into the fact that Service Catalog is in a bad state when it fails in this fashion, and retries will not help.
 
-The easiest way to recover from this error is to make a small update to one of the variables that are passed into this module. For example, if you are integrating with this module via the [../control-tower-multi-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.3/modules/control-tower-multi-account-factory) module, you could change the value of something in the relevant file in the directory referenced by the  `account_requests_folder`, then revert your change.
+The easiest way to recover from this error is to make a small update to one of the variables that are passed into this module. For example, if you are integrating with this module via the [../control-tower-multi-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/control-tower-multi-account-factory) module, you could change the value of something in the relevant file in the directory referenced by the  `account_requests_folder`, then revert your change.
 
 e.g.
 
@@ -122,7 +122,7 @@ This workaround should only be done to correct up to five Service Catalog provis
 
 module "control_tower_account_factory" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v1.0.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v1.1.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -134,16 +134,20 @@ module "control_tower_account_factory" {
   # The name to use for the new AWS account
   account_name = <string>
 
-  # The name of the organizational unit (OU) in which this account should be
-  # created. Must be one of the OUs in your Control Tower dashboard.
+  # The name or path of the organizational unit (OU) in which this account
+  # should be created. You can specify either a simple OU name (e.g., 'Prod') or
+  # a path separated by forward slashes (e.g., 'Workloads/Prod'). When using a
+  # path, it will match against the full OU hierarchy. Simple names will match
+  # any OU with that name if it's unique, otherwise use a path to disambiguate.
   organizational_unit_name = <string>
 
   # The list of organizational units (OUs) in which to look for the specified
   # organizational_unit_name. The module will look for the OU with the specified
-  # name in this list.
+  # name or path in this list.
   ous = <list(object(
     id   = string
     name = string
+    path = optional(string)
   ))>
 
   # The email address of the user who will be granted admin access to this new
@@ -233,7 +237,7 @@ module "control_tower_account_factory" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v1.0.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-factory?ref=v1.1.0"
 }
 
 inputs = {
@@ -248,16 +252,20 @@ inputs = {
   # The name to use for the new AWS account
   account_name = <string>
 
-  # The name of the organizational unit (OU) in which this account should be
-  # created. Must be one of the OUs in your Control Tower dashboard.
+  # The name or path of the organizational unit (OU) in which this account
+  # should be created. You can specify either a simple OU name (e.g., 'Prod') or
+  # a path separated by forward slashes (e.g., 'Workloads/Prod'). When using a
+  # path, it will match against the full OU hierarchy. Simple names will match
+  # any OU with that name if it's unique, otherwise use a path to disambiguate.
   organizational_unit_name = <string>
 
   # The list of organizational units (OUs) in which to look for the specified
   # organizational_unit_name. The module will look for the OU with the specified
-  # name in this list.
+  # name or path in this list.
   ous = <list(object(
     id   = string
     name = string
+    path = optional(string)
   ))>
 
   # The email address of the user who will be granted admin access to this new
@@ -396,7 +404,7 @@ The name to use for the new AWS account
 <HclListItem name="organizational_unit_name" requirement="required" type="string">
 <HclListItemDescription>
 
-The name of the organizational unit (OU) in which this account should be created. Must be one of the OUs in your Control Tower dashboard.
+The name or path of the organizational unit (OU) in which this account should be created. You can specify either a simple OU name (e.g., 'Prod') or a path separated by forward slashes (e.g., 'Workloads/Prod'). When using a path, it will match against the full OU hierarchy. Simple names will match any OU with that name if it's unique, otherwise use a path to disambiguate.
 
 </HclListItemDescription>
 </HclListItem>
@@ -404,7 +412,7 @@ The name of the organizational unit (OU) in which this account should be created
 <HclListItem name="ous" requirement="required" type="list(object(…))">
 <HclListItemDescription>
 
-The list of organizational units (OUs) in which to look for the specified organizational_unit_name. The module will look for the OU with the specified name in this list.
+The list of organizational units (OUs) in which to look for the specified organizational_unit_name. The module will look for the OU with the specified name or path in this list.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -413,6 +421,7 @@ The list of organizational units (OUs) in which to look for the specified organi
 list(object({
     id   = string
     name = string
+    path = optional(string)
   }))
 ```
 
@@ -590,11 +599,11 @@ The URL of the AWS SSO login page for this account
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.3/modules/control-tower-account-factory/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.3/modules/control-tower-account-factory/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.0.3/modules/control-tower-account-factory/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/control-tower-account-factory/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/control-tower-account-factory/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3c310f25606339b89c24c32dec72d27a"
+  "hash": "a689da8c6fc56b82f2812cd910797860"
 }
 ##DOCS-SOURCER-END -->
