@@ -64,12 +64,12 @@ This behavior will likely become the default in a major release of Pipelines but
 </li>
 </ul>
 
-#### `PIPELINES_FEATURE_EXPERIMENT_MINIMIZE_BLAST_RADIUS`
+#### `PIPELINES_FEATURE_EXPERIMENT_DISABLE_PREFLIGHT_AHEAD_OF_DEPLOY_BRANCH`
 <ul>
 <li>
-Enables Terragrunt features to reduce the potential changes during a run-all. Terragrunt [queue-strict-include](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-strict-include) and [queue-exclude-external](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-exclude-external) are enabled by default which excludes dependencies from being planned/applied during run-all, and more closely matches the behavior of a single unit change.
+Allows users to opt-out of the preflight check that prevents Pipelines from running if the current commit is behind the tip of the deploy branch.
 
-This behavior will likely become the default in a major release of Pipelines but is currently opt-in due to being a breaking change to functionality.
+We do not recommend enabling this feature by default as it removes the guarantee that Pipelines will apply the reviewed plan. This feature exists to unblock teams that are facing contention issues keeping branches ahead of their deploy branch - and is 'at your own risk'.
 </li>
 <li>
 **Default Value**: Disabled
@@ -78,6 +78,45 @@ This behavior will likely become the default in a major release of Pipelines but
 **How to Enable**: Set to `"true"`
 </li>
 </ul>
+
+#### `PIPELINES_FEATURE_EXPERIMENT_IGNORE_UNITS_WITHOUT_ENVIRONMENT`
+<ul>
+<li>
+Causes units and files in units to no longer be detected as changes when the flag is enabled and they have no environment.
+
+With Account Factory, new root directories will not be treated as new accounts if they do not have an environment.
+
+When running plans and applies, units with no environment are excluded from the Terragrunt DAG.
+
+**Note**: Adding an environment will not cause units to be detected as an added unit. You will need to also modify the units (e.g., make a whitespace change) to trigger detection.
+</li>
+<li>
+**Default Value**: Disabled
+</li>
+<li>
+**How to Enable**: Set to `"true"`
+</li>
+</ul>
+
+#### `PIPELINES_FEATURE_EXPERIMENT_MINIMIZE_BLAST_RADIUS`
+<ul>
+<li>
+Enables Terragrunt features to reduce the potential changes during a run-all. Terragrunt [queue-strict-include](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-strict-include) and [queue-exclude-external](https://terragrunt.gruntwork.io/docs/reference/cli-options/#queue-exclude-external) are enabled by default which excludes dependencies from being planned/applied during run-all, and more closely matches the behavior of a single unit change.
+</li>
+<li>
+**Default Value in Pipelines GitHub v3/GitLab v1**: Disabled
+</li>
+<li>
+**Default Value in Pipelines GitHub v4+/GitLab v2+**: Enabled
+</li>
+<li>
+**How to Enable**: Set to `"true"`
+</li>
+</ul>
+
+## Deprecated Flags
+
+The following flags are valid in Pipelines GitHub v3/GitLab v1 but are deprecated in Pipelines GitHub v4+/GitLab v2+.
 
 #### `PIPELINES_FEATURE_TERRAGRUNT_INCLUDE_UNITS_READING`
 <ul>
