@@ -21,6 +21,7 @@ Here are the repos that were updated:
 - [terraform-aws-monitoring](#terraform-aws-monitoring)
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
+- [terraform-aws-vpc](#terraform-aws-vpc)
 
 
 ## boilerplate
@@ -633,6 +634,24 @@ Templates now uses the following new variables
 ## terraform-aws-service-catalog
 
 
+### [v0.140.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.140.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/31/2025 | Modules affected: modules/networking/vpc, modules/services/eks-argocd, modules/services/eks-cluster, modules/services/eks-core-services | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.140.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Bump `terraform-aws-eks` to `v2.0.0`
+- Update default Karpenter to `v1.6.2`
+
+
+
+</div>
+
+
 ### [v0.130.7](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.130.7)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -643,7 +662,21 @@ Templates now uses the following new variables
 
   
 
-- Add Support for AL2023 EKS Worker AMI&apos;s
+Add Support for AL2023 EKS Worker AMI&apos;s. New configurations have been added to `autoscaling_group_configurations` and `managed_node_group_configurations` to support both AL2 and AL2023 AMI Types. Users on an AMI Type other than AL2 will need to proactively set the corresponding `autoscaling_group_configurations.asg_ami_type` and/or managed_node_group_configurations.ami_type` to ensure the correct user data script is used during initialization of the worker node(s). See [here](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/v0.130.7/modules/services/eks-workers/user_data.tf#L49-L57) for current supported AMI Type configurations.
+
+The following attributes and variables have were added: 
+- `autoscaling_group_configurations.asg_ami_type`
+- `autoscaling_group_configurations.asg_instance_user_data_base64`
+- `managed_node_group_configurations.ami_type`
+- `managed_node_group_configurations.user_data_base64`
+- `asg_default_ami_type`
+- `asg_default_instance_user_data_base64`
+- `node_group_default_ami_type`
+- `node_group_default_user_data_base64`
+- `managed_node_group_create_security_group`
+
+**NOTE**: The new `*ami_type` variables and attributes are defaulted to `AL2_x86_64` to maintain previous default configurations. These will need to be updated to `AL2023_*` configurations for AL2023 AMI types. An example would be `AL2023_x86_64_STANDARD`.  See [here](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/v0.130.7/modules/services/eks-workers/user_data.tf#L49-L57) for current supported AMI Type configurations. 
+
 
 
 </div>
@@ -828,9 +861,31 @@ Templates now uses the following new variables
 
 </div>
 
+
+
+## terraform-aws-vpc
+
+
+### [v0.28.8](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.8)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 10/31/2025 | Modules affected: vpc-interface-endpoint | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.8">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Added ability to provision secretsmanager-fips vpc endpoint
+- Added ability to have rds fips endpoint
+
+
+
+</div>
+
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "30a6084f1b3382e8553986339ab82715"
+  "hash": "611953e375c563ab852e36cea11fcd3e"
 }
 ##DOCS-SOURCER-END -->
