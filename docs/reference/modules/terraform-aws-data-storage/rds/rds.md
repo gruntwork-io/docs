@@ -316,6 +316,12 @@ module "rds" {
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
+  # The mode of Database Insights to enable for the DB instance. Valid options
+  # are 'standard' or 'advanced'. When setting this to 'advanced' then
+  # performance_insights_enabled must be set to true and
+  # 'performance_insights_retention_period' set to at least 465 days.
+  database_insights_mode = null
+
   # The name for your database. Must contain 1-64 alphanumeric characters for
   # MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a
   # letter. Cannot be a reserved word. Not supported for SQL Server (must be
@@ -707,6 +713,12 @@ inputs = {
   # A map of custom tags to apply to the RDS Instance and the Security Group
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
+
+  # The mode of Database Insights to enable for the DB instance. Valid options
+  # are 'standard' or 'advanced'. When setting this to 'advanced' then
+  # performance_insights_enabled must be set to true and
+  # 'performance_insights_retention_period' set to at least 465 days.
+  database_insights_mode = null
 
   # The name for your database. Must contain 1-64 alphanumeric characters for
   # MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a
@@ -1302,6 +1314,15 @@ A map of custom tags to apply to the RDS Instance and the Security Group created
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="database_insights_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+The mode of Database Insights to enable for the DB instance. Valid options are 'standard' or 'advanced'. When setting this to 'advanced' then performance_insights_enabled must be set to true and 'performance_insights_retention_period' set to at least 465 days.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="db_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1806,6 +1827,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.42.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e296afb15db8e84e73dc2dec793e75d9"
+  "hash": "6b94d27dd64a779b50806c93780c8900"
 }
 ##DOCS-SOURCER-END -->
