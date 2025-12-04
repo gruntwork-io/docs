@@ -1,0 +1,359 @@
+
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="/usr/local/anaconda3/bin:$PATH"
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/alexp/.oh-my-zsh"
+export PATH=/opt/homebrew/bin:$PATH
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias hg='history | grep'
+
+#ssh&cred section
+alias E="eval $(ssh-agent -s)"
+alias EE='export GOOGLE_APPLICATION_CREDENTIALS="/c/users/admin/GIT/My First Project-17b258c1b937.json"'
+alias S="ssh-add ~/.ssh/appuser"
+#ansible section
+alias ae='ansible-playbook site-editor.yml'
+alias am='ansible-playbook site-manager.yml'
+alias af='ansible-playbook full-site.yml'
+alias afc='ansible-playbook full-site.yml --tags=cron'
+alias afg='ansible-playbook full-site.yml --tags=git'
+#docker section
+alias ee='eval $(docker-machine env vm1)'
+alias glist='gcloud compute instances list'
+alias kil='docker kill $(docker ps -q)'
+alias shh='docker-machine ssh docker-host'
+alias dexp='export DID="'
+alias dexe='docker exec -it $DID sh'
+alias dexer='docker exec -it -u root $DID sh'
+alias dcup='docker-compose up -d'
+alias dcd='docker-compose down'
+
+
+#python section
+alias da='django-admin'
+
+#git section
+alias ga='git add'
+alias gas='git add ${gsg}'
+alias gm='git commit -m'
+alias gp='git push'
+alias gpl='git pull'
+alias gam='git commit -am'
+alias gc='git checkout'
+alias gs='git status'
+gsg () {
+	(
+	git status | grep 'modified:' | cut -c 14- | tr '\n' ' '
+	)
+}
+
+
+#k8s section
+alias kg='kubectl get'
+alias k='kubectl'
+alias kd='kubectl describe'
+alias kgp='kubectl get pods'
+alias kgs='kubectl get svc'
+alias kgi='kubectl get ing'
+alias kaf='kubectl apply -f'
+alias ked='kubectl edit'
+alias kx='kubectx'
+export EDITOR='open -a "Visual Studio Code" --wait'
+
+#export
+export AWS_REGION=us-east-1
+export PS1='%2d$ '
+export TF_LOG="TRACE"
+export TF_LOG_PATH="/Users/alexp/.terraform.d/terraform.log"
+
+# terraform & tfenv
+alias tf='terraform'
+alias tfpp='terraform plan -no-color | tee plan.plan'
+alias tg='terragrunt'
+alias tgpp='terragrunt plan -no-color | tee plan.plan'
+alias tgs='terragrunt show -no-color > state.state'
+
+# python
+alias py='python3'
+
+#AWS
+export CLOUDFLARE_API_TOKEN=""
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+
+alias ipplan="find /Users/alexp/GIT/az-network -name network_layout.tf | xargs grep -1a address_space | grep -E '172\.|10\.' | sort -n -t . -k 3,3 -k 4,4 -k 5,5 -k 6,6"
+
+aww () {
+	(
+	aws configure ss
+	)
+}
+alias sso="aws sso login"
+alias prod="export AWS_PROFILE=\"prod\""
+alias stage="export AWS_PROFILE=\"stage\""  
+alias data="export AWS_PROFILE=\"data\""
+alias shared="export AWS_PROFILE=\"shared\""
+alias logs="export AWS_PROFILE=\"logs\""
+alias security="export AWS_PROFILE=\"security\""
+alias logarchive="export AWS_PROFILE=\"logarchive\""
+
+mfa () {
+	(
+		hax aws:mfa --profile default
+		aws configure set --profile root aws_session_token $(aws configure get --profile default aws_session_token)
+		aws configure set --profile root aws_access_key_id $(aws configure get --profile default aws_access_key_id)
+		aws configure set --profile root aws_secret_access_key $(aws configure get --profile default aws_secret_access_key)
+	)
+}
+
+gcll () {
+	(
+		filepath=$(echo $1 | grep -oEi '[a-zA-Z0-9-]+\.git$' | sed 's/....$//')
+		echo $filepath
+		echo $1
+		git clone $1 "/Users/alexp/GIT/$filepath"
+		cursor "/Users/alexp/GIT/$filepath"
+	)
+}
+
+gmm () {
+	(
+		commit_message=$(echo $1 | sed 's/^[^\/]*\///' | sed 's/\(ice-[0-9]*\)-/\1: /g' | sed 's/-/ /g' | sed 's/ice /ICE-/')
+		git commit -m $commit_message
+	)
+}
+
+
+gccc () {
+	(
+		# Remove 'alexp/' and ensure branch name is 'ice-0000-xxxx' or 'sec-00-xxxx'
+		branch_name=$(echo $1 | sed 's/^[^\/]*\///' | sed 's/\(ice-[0-9]*\):/\1-/g' | sed 's/\(sec-[0-9]*\):/\1-/g' | sed 's/\//-/g')
+		commit_message=$(echo $1 | sed 's/^[^\/]*\///' | sed 's/\(ice-[0-9]*\)-/\1: /g' | sed 's/\(sec-[0-9]*\)-/\1: /g' | sed 's/-/ /g' | sed 's/ice /ICE-/')
+		git checkout -b $branch_name
+		git commit -m "$commit_message"
+	)
+}
+
+gcmm () {
+	(
+	default_branch=$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)
+	git checkout $default_branch
+	)
+}
+
+
+#KUBECONFIG
+export KUBECONFIG=~/.kube/config
+
+#MAC
+#lock the dock
+defaults write com.apple.dock contents-immutable -bool false
+
+
+export GOPATH=~/go      # Feel free to change the value but it must be a writable directory
+export KUBECONFIG=/Users/alexp/.kube/config:/Users/alexp/GIT/axios/devops/kubeconfig
+export N_PREFIX=~/.n                    # Feel free to change the value
+export PATH="/Users/alexp/GIT/axios/devops/scripts:${PATH}"
+export PATH="${PATH}:/Users/alexp/GIT/hax/bin"
+export PATH="${GOPATH}/bin:${PATH}"
+export PATH="${N_PREFIX}/bin:${PATH}"
+
+# HAX
+alias hm='hax aws:mfa'
+alias hmc='hax aws:mfa-copy-code'
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+#Cursor
+alias c='cursor'
+
+#old AWS
+alias aws_1_18='podman run --rm -ti -v ~/.aws:/root/.aws -v $(pwd):/aws atlassian/pipelines-awscli:1.18.147 amazon/aws-cli'
+
+switch-profile() {
+        local aws_profile=$1
+        set -x
+        export AWS_PROFILE=${aws_profile}
+        set +x
+        eval $(aws configure export-credentials --profile ${aws_profile} --format env)
+}
+
+# Terragrunt docker function - universal function for all terragrunt operations
+tgd() {
+    # Check if environment is provided
+    if [[ -z "$1" ]]; then
+        echo "Usage: tgd <environment> <command> [additional_args...]"
+        echo "Environments: prod, stage, data, shared, logs, security, logarchive"
+        echo "Commands: plan, apply, show, destroy, etc."
+        return 1
+    fi
+
+    # Check if command is provided
+    if [[ -z "$2" ]]; then
+        echo "Error: Command is required"
+        echo "Usage: tgd <environment> <command> [additional_args...]"
+        return 1
+    fi
+
+    local env=$1
+    shift  # Remove environment from arguments
+    local command=$1
+    shift  # Remove command from arguments
+    local current_dir=$(pwd)
+    local workspace=${TERRAGRUNT_WORKSPACE:-"/Users/alexp/GIT/infrastructure-live"}
+    local relative_path=${current_dir#$workspace}
+    
+    if [[ $current_dir != $workspace* ]]; then
+        echo "Error: Current directory must be within $workspace"
+        echo "Set TERRAGRUNT_WORKSPACE environment variable to change workspace"
+        return 1
+    fi
+
+    # Check if AWS_PROFILE is set
+    if [[ -z "$AWS_PROFILE" ]]; then
+        echo "Error: AWS_PROFILE environment variable is not set"
+        echo "Please set AWS_PROFILE using the appropriate alias (e.g., 'prod', 'stage', etc.)"
+        return 1
+    fi
+    
+    docker run -it --rm \
+        -v ~/.ssh:/root/.ssh:ro \
+        -v ~/.aws:/root/.aws \
+        -v $workspace:/workspace \
+        -w /workspace$relative_path \
+        -e AWS_PROFILE=$AWS_PROFILE \
+        -e AWS_DEFAULT_REGION=us-east-1 \
+        -e CLOUDFLARE_API_TOKEN=$CLOUDFLARE_API_TOKEN \
+        terragrunt-aws-tf-1-1-4 $command "$@"
+}
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/alexp/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/alexp/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/alexp/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/alexp/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# History search: Press UP/DOWN to search history based on what you've typed
+# Example: Type "ssh " and press UP to see previous ssh commands
+# Example: Type "ssh -p 24 " and press UP to see commands starting with "ssh -p 24"
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search    # Up arrow
+bindkey '^[[B' down-line-or-beginning-search  # Down arrow
