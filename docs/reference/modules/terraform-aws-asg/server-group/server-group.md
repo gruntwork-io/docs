@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Auto Scaling Group Modules" version="1.0.2" lastModifiedVersion="0.21.14"/>
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="1.0.2" lastModifiedVersion="1.0.2"/>
 
 # Server Group Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.0.2/modules/server-group" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.14" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v1.0.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module allows you to run a fixed-size cluster of servers that can:
 
@@ -1450,6 +1450,6 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.0.2/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "35c0d66ca6d7fe8d5f8c762286541022"
+  "hash": "348d261866e6a2cdf1ccf180c971d329"
 }
 ##DOCS-SOURCER-END -->
