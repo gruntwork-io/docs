@@ -11,10 +11,7 @@ Pipelines supports optional feature flags that allow you to enable or disable sp
 Enables all Pipelines experiment flags.
 </li>
 <li>
-**Default Value in Pipelines GitHub v3/GitLab v1**: Disabled
-</li>
-<li>
-**Default Value in Pipelines GitHub v4+/GitLab v2+**: Enabled
+**Default Value: Disabled**
 </li>
 <li>
 **How to Enable**: Set to `"true"`
@@ -70,6 +67,19 @@ This behavior will likely become the default in a major release of Pipelines but
 Allows users to opt-out of the preflight check that prevents Pipelines from running if the current commit is behind the tip of the deploy branch.
 
 We do not recommend enabling this feature by default as it removes the guarantee that Pipelines will apply the reviewed plan. This feature exists to unblock teams that are facing contention issues keeping branches ahead of their deploy branch - and is 'at your own risk'.
+</li>
+<li>
+**Default Value**: Disabled
+</li>
+<li>
+**How to Enable**: Set to `"true"`
+</li>
+</ul>
+
+#### `PIPELINES_FEATURE_EXPERIMENT_GENERATE_ALL_STACKS`
+<ul>
+<li>
+Causes Pipelines to generate all stacks before running a plan or apply operation. This ensures that any stacks that are dependencies of units outside of the current stack or unit are available during the execution.
 </li>
 <li>
 **Default Value**: Disabled
