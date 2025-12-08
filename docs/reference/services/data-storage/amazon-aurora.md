@@ -287,6 +287,10 @@ module "aurora" {
   # database cannot be deleted.
   enable_deletion_protection = false
 
+  # If true, enables the HTTP endpoint used for Data API. Only valid when
+  # engine_mode is set to serverless.
+  enable_http_endpoint = null
+
   # Set to true to enable alarms related to performance, such as read and write
   # latency alarms. Set to false to disable those alarms if you aren't sure what
   # would be reasonable perf numbers for your RDS set up or if those numbers are
@@ -756,6 +760,10 @@ inputs = {
   # Enable deletion protection on the database instance. If this is enabled, the
   # database cannot be deleted.
   enable_deletion_protection = false
+
+  # If true, enables the HTTP endpoint used for Data API. Only valid when
+  # engine_mode is set to serverless.
+  enable_http_endpoint = null
 
   # Set to true to enable alarms related to performance, such as read and write
   # latency alarms. Set to false to disable those alarms if you aren't sure what
@@ -1725,6 +1733,15 @@ Enable deletion protection on the database instance. If this is enabled, the dat
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_http_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, enables the HTTP endpoint used for Data API. Only valid when engine_mode is set to serverless.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="enable_perf_alarms" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2443,6 +2460,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c511aad7b07e6d9d2bd566a2490d12d8"
+  "hash": "efce65d91ae939647d7685791a0f9f17"
 }
 ##DOCS-SOURCER-END -->
