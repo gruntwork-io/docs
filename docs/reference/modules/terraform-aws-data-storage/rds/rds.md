@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.42.0" lastModifiedVersion="0.41.1"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.43.0" lastModifiedVersion="0.43.0"/>
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.42.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.43.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.41.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.43.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle,
 or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups,
@@ -159,7 +159,7 @@ Set `multi_az=true`. When setting up a multi-AZ (Availability Zone) RDS deployme
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.42.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.43.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -315,6 +315,12 @@ module "rds" {
   # A map of custom tags to apply to the RDS Instance and the Security Group
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
+
+  # The mode of Database Insights to enable for the DB instance. Valid options
+  # are 'standard' or 'advanced'. When setting this to 'advanced' then
+  # performance_insights_enabled must be set to true and
+  # 'performance_insights_retention_period' set to at least 465 days.
+  database_insights_mode = null
 
   # The name for your database. Must contain 1-64 alphanumeric characters for
   # MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a
@@ -548,7 +554,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.42.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.43.0"
 }
 
 inputs = {
@@ -707,6 +713,12 @@ inputs = {
   # A map of custom tags to apply to the RDS Instance and the Security Group
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
+
+  # The mode of Database Insights to enable for the DB instance. Valid options
+  # are 'standard' or 'advanced'. When setting this to 'advanced' then
+  # performance_insights_enabled must be set to true and
+  # 'performance_insights_retention_period' set to at least 465 days.
+  database_insights_mode = null
 
   # The name for your database. Must contain 1-64 alphanumeric characters for
   # MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a
@@ -1302,6 +1314,15 @@ A map of custom tags to apply to the RDS Instance and the Security Group created
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="database_insights_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+The mode of Database Insights to enable for the DB instance. Valid options are 'standard' or 'advanced'. When setting this to 'advanced' then performance_insights_enabled must be set to true and 'performance_insights_retention_period' set to at least 465 days.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="db_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1801,11 +1822,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.42.0/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.42.0/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.42.0/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.43.0/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.43.0/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.43.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e296afb15db8e84e73dc2dec793e75d9"
+  "hash": "c6f5a99495df1b69984a8553407972e9"
 }
 ##DOCS-SOURCER-END -->
