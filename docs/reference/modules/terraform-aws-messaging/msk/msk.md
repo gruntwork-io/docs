@@ -185,6 +185,16 @@ module "msk" {
 **Important**: This feature requires Terraform AWS Provider version 4.13.0 or later. If you encounter a
 `ConflictsWith` error when enabling both TLS and SASL, please upgrade your AWS provider version.
 
+#### Unauthenticated Access
+
+By default, the module sets `enable_client_unauthenticated = false`, which disables unauthenticated client access
+when any authentication method is enabled. If you need to allow unauthenticated access alongside authenticated
+methods (e.g., during a migration), you can set `enable_client_unauthenticated = true`.
+
+**Note**: If you have an existing cluster with `unauthenticated = true` and want to enable authentication methods,
+you should explicitly set `enable_client_unauthenticated = true` to prevent Terraform from changing the
+unauthenticated setting unexpectedly.
+
 See the [msk-with-multi-auth example](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/examples/msk-with-multi-auth) for a complete working example.
 
 You can read more about available authentication and authorization options from
@@ -373,6 +383,11 @@ module "msk" {
   # Whether TLS client authentication is enabled.
   enable_client_tls = false
 
+  # Whether unauthenticated client access is enabled. When set to true, clients
+  # can connect without authentication. When using TLS or SASL authentication,
+  # you typically want this set to false.
+  enable_client_unauthenticated = false
+
   # Indicates whether you want to enable or disable streaming broker logs to
   # Cloudwatch Logs.
   enable_cloudwatch_logs = false
@@ -555,6 +570,11 @@ inputs = {
 
   # Whether TLS client authentication is enabled.
   enable_client_tls = false
+
+  # Whether unauthenticated client access is enabled. When set to true, clients
+  # can connect without authentication. When using TLS or SASL authentication,
+  # you typically want this set to false.
+  enable_client_unauthenticated = false
 
   # Indicates whether you want to enable or disable streaming broker logs to
   # Cloudwatch Logs.
@@ -852,6 +872,15 @@ Whether SASL SCRAM client authentication is enabled.
 <HclListItemDescription>
 
 Whether TLS client authentication is enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_client_unauthenticated" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether unauthenticated client access is enabled. When set to true, clients can connect without authentication. When using TLS or SASL authentication, you typically want this set to false.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -1221,6 +1250,6 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/msk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3d900adec4255b95a4a415e4325ed236"
+  "hash": "6923d7ef2aefe254b37beb8e8bb96e52"
 }
 ##DOCS-SOURCER-END -->
