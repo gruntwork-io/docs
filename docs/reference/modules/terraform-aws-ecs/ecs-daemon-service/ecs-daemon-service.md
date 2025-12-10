@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="1.2.0" lastModifiedVersion="1.1.0"/>
+<VersionBadge repoTitle="Amazon ECS" version="1.3.0" lastModifiedVersion="1.3.0"/>
 
 # ECS Daemon Service Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.2.0/modules/ecs-daemon-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-daemon-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v1.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an [ECS Daemon Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html)
 that you can use to deploy exactly one task on each active container instance that meets all of the task placement constraints
@@ -33,7 +33,7 @@ environment variables to set, and so on. To actually run an ECS Task, you define
 
 ## How do you create an ECS cluster?
 
-To use ECS, you first deploy one or more EC2 Instances into a "cluster". See the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.2.0/modules/ecs-cluster)
+To use ECS, you first deploy one or more EC2 Instances into a "cluster". See the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-cluster)
 for how to create a cluster.
 
 ## How do you add additional IAM policies?
@@ -82,7 +82,7 @@ EOF
 
 module "ecs_daemon_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v1.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v1.3.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -127,6 +127,12 @@ module "ecs_daemon_service" {
   # Prefix for name of iam role and policy that allows cloudwatch and ecr access
   custom_task_execution_name_prefix = null
 
+  # Set enable to 'true' to prevent the task from attempting to continuously
+  # redeploy after a failed health check. Set rollback to 'true' to also
+  # automatically roll back to the last successful deployment. If this setting
+  # is used, both 'enable' and 'rollback' are required fields.
+  deployment_circuit_breaker = null
+
   # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
   deployment_controller = null
 
@@ -160,6 +166,10 @@ module "ecs_daemon_service" {
   # operations the the ECS service. Adjusting the value can be particularly
   # useful when using 'wait_for_steady_state'.
   service_create_update_timeout = "20m"
+
+  # Use this variable to adjust the default timeout of 10m for delete operations
+  # the the ECS service.
+  service_delete_timeout = "10m"
 
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
@@ -204,7 +214,7 @@ module "ecs_daemon_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v1.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v1.3.0"
 }
 
 inputs = {
@@ -252,6 +262,12 @@ inputs = {
   # Prefix for name of iam role and policy that allows cloudwatch and ecr access
   custom_task_execution_name_prefix = null
 
+  # Set enable to 'true' to prevent the task from attempting to continuously
+  # redeploy after a failed health check. Set rollback to 'true' to also
+  # automatically roll back to the last successful deployment. If this setting
+  # is used, both 'enable' and 'rollback' are required fields.
+  deployment_circuit_breaker = null
+
   # Type of deployment controller, possible values: CODE_DEPLOY, ECS, EXTERNAL
   deployment_controller = null
 
@@ -285,6 +301,10 @@ inputs = {
   # operations the the ECS service. Adjusting the value can be particularly
   # useful when using 'wait_for_steady_state'.
   service_create_update_timeout = "20m"
+
+  # Use this variable to adjust the default timeout of 10m for delete operations
+  # the the ECS service.
+  service_delete_timeout = "10m"
 
   # A map of tags to apply to the ECS service. Each item in this list should be
   # a map with the parameters key and value.
@@ -403,6 +423,25 @@ Prefix for name of iam role and policy that allows cloudwatch and ecr access
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="deployment_circuit_breaker" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Set enable to 'true' to prevent the task from attempting to continuously redeploy after a failed health check. Set rollback to 'true' to also automatically roll back to the last successful deployment. If this setting is used, both 'enable' and 'rollback' are required fields.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    enable   = bool
+    rollback = bool
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="deployment_controller" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -472,6 +511,15 @@ Use this variable to adjust the default timeout of 20m for create and update ope
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;20m&quot;"/>
+</HclListItem>
+
+<HclListItem name="service_delete_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Use this variable to adjust the default timeout of 10m for delete operations the the ECS service.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;10m&quot;"/>
 </HclListItem>
 
 <HclListItem name="service_tags" requirement="optional" type="map(string)">
@@ -587,11 +635,11 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.2.0/modules/ecs-daemon-service/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.2.0/modules/ecs-daemon-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.2.0/modules/ecs-daemon-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-daemon-service/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-daemon-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-daemon-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "43f704bafa14e09c1b08339a30eff1d3"
+  "hash": "b57777db67aa62f4b217aa64e8531c0c"
 }
 ##DOCS-SOURCER-END -->
