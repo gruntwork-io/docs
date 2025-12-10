@@ -158,7 +158,7 @@ mkdir -p $$ACCOUNT_NAME$$/$$GOVCLOUD_REGION$$/s3-bucket-test/
 2. Add the following content to the `terragrunt.hcl` file:
 ```hcl title="$$ACCOUNT_NAME$$/$$GOVCLOUD_REGION$$/s3-bucket-test/terragrunt.hcl"
 terraform {
- source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/aws/s3-bucket?ref=v1.3.0"
+ source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/aws/s3-bucket?ref=v1.3.2"
 }
 
 include "root" {

@@ -63,7 +63,7 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
 
    ```hcl title="$$ACCOUNT_NAME$$/$$REGION$$/data-storage/s3/terragrunt.hcl"
    terraform {
-    source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/aws/s3-bucket?ref=v1.3.0"
+    source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/aws/s3-bucket?ref=v1.3.2"
    }
 
    include "root" {
@@ -114,7 +114,7 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
    }
 
    terraform {
-     source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/azure/resource-group?ref=v1.1.0"
+     source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/azure/resource-group?ref=v1.3.2"
    }
 
    inputs = {
@@ -131,7 +131,7 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
    }
 
    terraform {
-     source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/azure/storage-account?ref=v1.1.0"
+     source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/azure/storage-account?ref=v1.3.2"
    }
 
    dependency "resource_group" {
