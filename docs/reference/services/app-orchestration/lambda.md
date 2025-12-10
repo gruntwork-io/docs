@@ -254,6 +254,10 @@ module "lambda" {
   # with Service Accounts.
   iam_policy = null
 
+  # The name to use for the IAM role created for the lambda function. If null,
+  # default to the function name (var.name).
+  iam_role_name = null
+
   # The ECR image URI containing the function's deployment package. Example:
   # 01234501234501.dkr.ecr.us-east-1.amazonaws.com/image_name:image_tag
   image_uri = null
@@ -270,6 +274,10 @@ module "lambda" {
   # The list of Lambda Layer Version ARNs to attach to your Lambda Function. You
   # can have a maximum of 5 Layers attached to each function.
   layers = []
+
+  # Time to wait after creating managed policy, to avoid AWS eventual
+  # consistency racing. Default: 60s.
+  managed_policy_waiting_time = "60s"
 
   # The name for the alarm's associated metric.
   metric_name = "Errors"
@@ -559,6 +567,10 @@ inputs = {
   # with Service Accounts.
   iam_policy = null
 
+  # The name to use for the IAM role created for the lambda function. If null,
+  # default to the function name (var.name).
+  iam_role_name = null
+
   # The ECR image URI containing the function's deployment package. Example:
   # 01234501234501.dkr.ecr.us-east-1.amazonaws.com/image_name:image_tag
   image_uri = null
@@ -575,6 +587,10 @@ inputs = {
   # The list of Lambda Layer Version ARNs to attach to your Lambda Function. You
   # can have a maximum of 5 Layers attached to each function.
   layers = []
+
+  # Time to wait after creating managed policy, to avoid AWS eventual
+  # consistency racing. Default: 60s.
+  managed_policy_waiting_time = "60s"
 
   # The name for the alarm's associated metric.
   metric_name = "Errors"
@@ -1025,6 +1041,15 @@ map(object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to use for the IAM role created for the lambda function. If null, default to the function name (<a href="#name"><code>name</code></a>).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="image_uri" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1059,6 +1084,15 @@ The list of Lambda Layer Version ARNs to attach to your Lambda Function. You can
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="managed_policy_waiting_time" requirement="optional" type="string">
+<HclListItemDescription>
+
+Time to wait after creating managed policy, to avoid AWS eventual consistency racing. Default: 60s.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;60s&quot;"/>
 </HclListItem>
 
 <HclListItem name="metric_name" requirement="optional" type="string">
@@ -1428,6 +1462,6 @@ Latest published version of your Lambda Function
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/lambda/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c9f880bac03afa7dcd8672bb2f356d8a"
+  "hash": "873c8bc9d45518c84218c1f051840ed2"
 }
 ##DOCS-SOURCER-END -->
