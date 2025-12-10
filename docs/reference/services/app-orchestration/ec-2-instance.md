@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.127.5" lastModifiedVersion="0.126.2"/>
+<VersionBadge version="0.142.0" lastModifiedVersion="0.130.3"/>
 
 # EC2 Instance
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/services/ec2-instance" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/ec2-instance" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fec2-instance" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -58,9 +58,9 @@ If you’ve never used the Service Catalog before, make sure to read
 
 ### Core concepts
 
-*   [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
-*   [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
-*   [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
+*   [How do I update my instance?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/ec2-instance/core-concepts.md#how-do-i-update-my-instance)
+*   [How do I use User Data?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/ec2-instance/core-concepts.md#how-do-i-use-user-data)
+*   [How do I mount an EBS volume?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/ec2-instance/core-concepts.md#how-do-i-mount-an-ebs-volume)
 
 ### The EC2 Instance AMI
 
@@ -85,7 +85,7 @@ This template configures the AMI to:
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-learning-and-testing): The `examples/for-learning-and-testing`
     folder contains standalone sample code optimized for learning, experimenting, and testing (but not direct
     production usage).
 
@@ -93,7 +93,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog, configure CI / CD for your apps and
@@ -113,7 +113,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "ec_2_instance" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ec2-instance?ref=v0.127.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ec2-instance?ref=v0.142.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -368,6 +368,16 @@ module "ec_2_instance" {
   # empty string, will use var.name. Required when create_iam_role is false.
   iam_role_name = ""
 
+  # The name of the device being monitored (e.g. xvda1)
+  instance_device = "xvda1"
+
+  # Optional fstype dimension that filters the data you request for all
+  # instances matching the specified fstype. Example: 'xfs'
+  instance_fstype = null
+
+  # The mount path of the file system being monitored (e.g. /)
+  instance_mount_path = "/"
+
   # The name of a Key Pair that can be used to SSH to this instance. This
   # instance may have ssh-grunt installed. The preferred way to do SSH access is
   # with your own IAM user name and SSH key. This Key Pair is only as a
@@ -398,6 +408,10 @@ module "ec_2_instance" {
 
   # If set to true, the root volume will be encrypted. Default is set to false
   root_volume_encrypted = false
+
+  # Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting
+  # the volume
+  root_volume_kms_key_id = null
 
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
@@ -455,7 +469,7 @@ module "ec_2_instance" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ec2-instance?ref=v0.127.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/ec2-instance?ref=v0.142.0"
 }
 
 inputs = {
@@ -713,6 +727,16 @@ inputs = {
   # empty string, will use var.name. Required when create_iam_role is false.
   iam_role_name = ""
 
+  # The name of the device being monitored (e.g. xvda1)
+  instance_device = "xvda1"
+
+  # Optional fstype dimension that filters the data you request for all
+  # instances matching the specified fstype. Example: 'xfs'
+  instance_fstype = null
+
+  # The mount path of the file system being monitored (e.g. /)
+  instance_mount_path = "/"
+
   # The name of a Key Pair that can be used to SSH to this instance. This
   # instance may have ssh-grunt installed. The preferred way to do SSH access is
   # with your own IAM user name and SSH key. This Key Pair is only as a
@@ -743,6 +767,10 @@ inputs = {
 
   # If set to true, the root volume will be encrypted. Default is set to false
   root_volume_encrypted = false
+
+  # Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting
+  # the volume
+  root_volume_kms_key_id = null
 
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
@@ -1336,6 +1364,33 @@ The name for the bastion host's IAM role and instance profile. If set to an empt
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="instance_device" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the device being monitored (e.g. xvda1)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;xvda1&quot;"/>
+</HclListItem>
+
+<HclListItem name="instance_fstype" requirement="optional" type="string">
+<HclListItemDescription>
+
+Optional fstype dimension that filters the data you request for all instances matching the specified fstype. Example: 'xfs'
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="instance_mount_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+The mount path of the file system being monitored (e.g. /)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;/&quot;"/>
+</HclListItem>
+
 <HclListItem name="keypair_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1397,6 +1452,15 @@ If set to true, the root volume will be encrypted. Default is set to false
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="root_volume_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting the volume
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="root_volume_size" requirement="optional" type="number">
@@ -1569,11 +1633,11 @@ The input parameters for the EBS volumes.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/services/ec2-instance/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/services/ec2-instance/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/services/ec2-instance/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/ec2-instance/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/ec2-instance/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "04957564753a452d75323434df4de64c"
+  "hash": "42e28dc6d4c23e7c46bd2d1ac4917ac9"
 }
 ##DOCS-SOURCER-END -->
