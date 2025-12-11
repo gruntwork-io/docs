@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.142.0" lastModifiedVersion="0.125.3"/>
+<VersionBadge version="0.143.1" lastModifiedVersion="0.142.1"/>
 
 # Lambda
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/lambda" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.1/modules/services/lambda" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Flambda" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -59,9 +59,9 @@ documentation in the [terraform-aws-lambda](https://github.com/gruntwork-io/terr
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.1/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.1/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.1/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -69,7 +69,7 @@ documentation in the [terraform-aws-lambda](https://github.com/gruntwork-io/terr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,7 +77,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -101,7 +101,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "lambda" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/lambda?ref=v0.142.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/lambda?ref=v0.143.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -254,6 +254,10 @@ module "lambda" {
   # with Service Accounts.
   iam_policy = null
 
+  # The name to use for the IAM role created for the lambda function. If null,
+  # default to the function name (var.name).
+  iam_role_name = null
+
   # The ECR image URI containing the function's deployment package. Example:
   # 01234501234501.dkr.ecr.us-east-1.amazonaws.com/image_name:image_tag
   image_uri = null
@@ -270,6 +274,10 @@ module "lambda" {
   # The list of Lambda Layer Version ARNs to attach to your Lambda Function. You
   # can have a maximum of 5 Layers attached to each function.
   layers = []
+
+  # Time to wait after creating managed policy, to avoid AWS eventual
+  # consistency racing. Default: 60s.
+  managed_policy_waiting_time = "60s"
 
   # The name for the alarm's associated metric.
   metric_name = "Errors"
@@ -403,7 +411,7 @@ module "lambda" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/lambda?ref=v0.142.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/lambda?ref=v0.143.1"
 }
 
 inputs = {
@@ -559,6 +567,10 @@ inputs = {
   # with Service Accounts.
   iam_policy = null
 
+  # The name to use for the IAM role created for the lambda function. If null,
+  # default to the function name (var.name).
+  iam_role_name = null
+
   # The ECR image URI containing the function's deployment package. Example:
   # 01234501234501.dkr.ecr.us-east-1.amazonaws.com/image_name:image_tag
   image_uri = null
@@ -575,6 +587,10 @@ inputs = {
   # The list of Lambda Layer Version ARNs to attach to your Lambda Function. You
   # can have a maximum of 5 Layers attached to each function.
   layers = []
+
+  # Time to wait after creating managed policy, to avoid AWS eventual
+  # consistency racing. Default: 60s.
+  managed_policy_waiting_time = "60s"
 
   # The name for the alarm's associated metric.
   metric_name = "Errors"
@@ -1025,6 +1041,15 @@ map(object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name to use for the IAM role created for the lambda function. If null, default to the function name (<a href="#name"><code>name</code></a>).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="image_uri" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1059,6 +1084,15 @@ The list of Lambda Layer Version ARNs to attach to your Lambda Function. You can
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="managed_policy_waiting_time" requirement="optional" type="string">
+<HclListItemDescription>
+
+Time to wait after creating managed policy, to avoid AWS eventual consistency racing. Default: 60s.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;60s&quot;"/>
 </HclListItem>
 
 <HclListItem name="metric_name" requirement="optional" type="string">
@@ -1423,11 +1457,11 @@ Latest published version of your Lambda Function
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/lambda/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/lambda/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/lambda/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.1/modules/services/lambda/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.1/modules/services/lambda/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.1/modules/services/lambda/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "c9f880bac03afa7dcd8672bb2f356d8a"
+  "hash": "860bbdabe7affe9f3c9d3749648c427e"
 }
 ##DOCS-SOURCER-END -->
