@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.127.5" lastModifiedVersion="0.127.5"/>
+<VersionBadge version="0.143.3" lastModifiedVersion="0.143.1"/>
 
 # Amazon EKS
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -116,7 +116,7 @@ To add and manage additional worker groups, refer to the [eks-workers module](/r
 
 module "eks_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.127.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.143.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -137,6 +137,16 @@ module "eks_cluster" {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # The authentication mode for the cluster. Valid values are CONFIG_MAP, API or
+  # API_AND_CONFIG_MAP.
+  access_config_authentication_mode = "CONFIG_MAP"
+
+  # Map of EKS Access Entries to be created for the cluster.
+  access_entries = {}
+
+  # Map of EKS Access Entry Policy Associations to be created for the cluster.
+  access_entry_policy_associations = {}
 
   # A list of additional security group IDs to attach to the control plane.
   additional_security_groups_for_control_plane = []
@@ -167,6 +177,11 @@ module "eks_cluster" {
   # Default value for enable_detailed_monitoring field of
   # autoscaling_group_configurations.
   asg_default_enable_detailed_monitoring = true
+
+  # Default value for the extra_block_device_mappings field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # extra_block_device_mappings will use this value.
+  asg_default_extra_block_device_mappings = []
 
   # Default value for the http_put_response_hop_limit field of
   # autoscaling_group_configurations.
@@ -281,6 +296,22 @@ module "eks_cluster" {
   # your cluster.
   asg_use_resource_name_prefix = true
 
+  # A map of custom tags to apply to the EKS Worker IAM Policies. The key is the
+  # tag name and the value is the tag value.
+  asg_worker_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  asg_worker_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Instance Profile. The
+  # key is the tag name and the value is the tag value.
+  asg_worker_instance_profile_tags = {}
+
+  # A map of custom tags to apply to the Fargate Profile if enabled. The key is
+  # the tag name and the value is the tag value.
+  auth_merger_eks_fargate_profile_tags = {}
+
   # Configure one or more Auto Scaling Groups (ASGs) to manage the EC2 instances
   # in this cluster. If any of the values are not provided, the specified
   # default variable will be used to lookup a default value.
@@ -304,6 +335,10 @@ module "eks_cluster" {
   # Namespace to deploy the aws-auth-merger into. The app will watch for
   # ConfigMaps in this Namespace to merge into the aws-auth ConfigMap.
   aws_auth_merger_namespace = "aws-auth-merger"
+
+  # Whether or not to bootstrap an access entry with cluster admin permissions
+  # for the cluster creator.
+  bootstrap_cluster_creator_admin_permissions = true
 
   # Cloud init scripts to run on the EKS worker nodes when it is booting. See
   # the part blocks in
@@ -340,6 +375,22 @@ module "eks_cluster" {
   # cluster
   cluster_instance_keypair_name = null
 
+  # The IP family used to assign Kubernetes pod and service addresses. Valid
+  # values are ipv4 (default) and ipv6. You can only specify an IP family when
+  # you create a cluster, changing this value will force a new cluster to be
+  # created.
+  cluster_network_config_ip_family = "ipv4"
+
+  # The CIDR block to assign Kubernetes pod and service IP addresses from. If
+  # you don't specify a block, Kubernetes assigns addresses from either the
+  # 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. You can only specify a custom
+  # CIDR block when you create a cluster, changing this value will force a new
+  # cluster to be created.
+  cluster_network_config_service_ipv4_cidr = null
+
+  # Specify the log class of the cloudwatch log group
+  control_plane_cloudwatch_log_group_class = "STANDARD"
+
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data in the CloudWatch log group for EKS control plane logs.
   control_plane_cloudwatch_log_group_kms_key_id = null
@@ -369,6 +420,10 @@ module "eks_cluster" {
   # CLUSTER_NAME-fargate-role.
   custom_default_fargate_iam_role_name = null
 
+  # A map of custom tags to apply to the EKS add-ons. The key is the tag name
+  # and the value is the tag value.
+  custom_tags_eks_addons = {}
+
   # A map of unique identifiers to egress security group rules to attach to the
   # worker groups.
   custom_worker_egress_security_group_rules = {}
@@ -389,9 +444,95 @@ module "eks_cluster" {
   # CloudWatch dashboard.
   dashboard_memory_usage_widget_parameters = {"height":6,"period":60,"width":8}
 
+  # A map of default tags to apply to all supported resources in this module.
+  # These tags will be merged with any other resource specific tags. The key is
+  # the tag name and the value is the tag value.
+  default_tags = {}
+
+  # Configuraiton object for the EBS CSI Driver EKS AddOn
+  ebs_csi_driver_addon_config = {}
+
+  # A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the
+  # tag name and the value is the tag value.
+  ebs_csi_driver_addon_tags = {}
+
+  # A map of custom tags to apply to the IAM Policies created for the EBS CSI
+  # Driver IAM Role if enabled. The key is the tag name and the value is the tag
+  # value.
+  ebs_csi_driver_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EBS CSI Driver IAM Role if enabled. The
+  # key is the tag name and the value is the tag value.
+  ebs_csi_driver_iam_role_tags = {}
+
+  # If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used
+  # for a policy attachment.
+  ebs_csi_driver_kms_key_arn = null
+
+  # The namespace for the EBS CSI Driver. This will almost always be the
+  # kube-system namespace.
+  ebs_csi_driver_namespace = "kube-system"
+
+  # The Service Account name to be used with the EBS CSI Driver
+  ebs_csi_driver_sa_name = "ebs-csi-controller-sa"
+
   # Map of EKS add-ons, where key is name of the add-on and value is a map of
   # add-on properties.
   eks_addons = {}
+
+  # Configuration block with compute configuration for EKS Auto Mode.
+  eks_auto_mode_compute_config = {"enabled":true,"node_pools":["general-purpose","system"]}
+
+  # Whether or not to create an IAM Role for the EKS Worker Nodes when using EKS
+  # Auto Mode. If using the built-in NodePools for EKS Auto Mode you must either
+  # provide an IAM Role ARN for `eks_auto_mode_compute_config.node_role_arn` or
+  # set this to true to automatically create one.
+  eks_auto_mode_create_node_iam_role = true
+
+  # Configuration block with elastic load balancing configuration for the
+  # cluster.
+  eks_auto_mode_elastic_load_balancing_config = {}
+
+  # Whether or not to enable EKS Auto Mode.
+  eks_auto_mode_enabled = false
+
+  # Description of the EKS Auto Mode Node IAM Role.
+  eks_auto_mode_iam_role_description = null
+
+  # IAM Role Name to for the EKS Auto Mode Node IAM Role. If this is not set a
+  # default name will be provided in the form of
+  # `<var.cluster_name-eks-auto-mode-role>`
+  eks_auto_mode_iam_role_name = null
+
+  # The IAM Role Path for the EKS Auto Mode Node IAM Role.
+  eks_auto_mode_iam_role_path = null
+
+  # Permissions Boundary ARN to be used with the EKS Auto Mode Node IAM Role.
+  eks_auto_mode_iam_role_permissions_boundary = null
+
+  # Whether or not to use `eks_auto_mode_iam_role_name` as a prefix for the EKS
+  # Auto Mode Node IAM Role Name.
+  eks_auto_mode_iam_role_use_name_prefix = true
+
+  # Configuration block with storage configuration for EKS Auto Mode.
+  eks_auto_mode_storage_config = {}
+
+  # A map of custom tags to apply to the EKS Cluster Cluster Creator Access
+  # Entry. The key is the tag name and the value is the tag value.
+  eks_cluster_creator_access_entry_tags = {}
+
+  # A map of custom tags to apply to the EKS Cluster IAM Role. The key is the
+  # tag name and the value is the tag value.
+  eks_cluster_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Cluster OIDC Provider. The key is
+  # the tag name and the value is the tag value.
+  eks_cluster_oidc_tags = {}
+
+  # The name of the Security Group to create for the EKS Cluster. If a name is
+  # not provided, a name will be generated automatically. For existing clusters,
+  # set this variable to the existing cluster security group name.
+  eks_cluster_security_group_name = null
 
   # A map of custom tags to apply to the Security Group for the EKS Cluster
   # Control Plane. The key is the tag name and the value is the tag value.
@@ -400,6 +541,16 @@ module "eks_cluster" {
   # A map of custom tags to apply to the EKS Cluster Control Plane. The key is
   # the tag name and the value is the tag value.
   eks_cluster_tags = {}
+
+  # A map of custom tags to apply to the Control Plane Services Fargate Profile
+  # IAM Role for this EKS Cluster if enabled. The key is the tag name and the
+  # value is the tag value.
+  eks_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Control Plane Services Fargate Profile
+  # for this EKS Cluster if enabled. The key is the tag name and the value is
+  # the tag value.
+  eks_fargate_profile_tags = {}
 
   # If set to true, installs the aws-auth-merger to manage the aws-auth
   # configuration. When true, requires setting the var.aws_auth_merger_image
@@ -421,6 +572,11 @@ module "eks_cluster" {
   # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent
   # to get memory and disk metrics in CloudWatch for your Bastion host.
   enable_cloudwatch_metrics = true
+
+  # When set to true, the module configures and install the EBS CSI Driver as an
+  # EKS managed AddOn
+  # (https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html).
+  enable_ebs_csi_driver = false
 
   # When set to true, the module configures EKS add-ons
   # (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html)
@@ -468,6 +624,48 @@ module "eks_cluster" {
   # will allow all availability zones.
   fargate_worker_disallowed_availability_zones = ["us-east-1d","us-east-1e","ca-central-1d"]
 
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  # for the ASG.
+  high_worker_cpu_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster CPU utilization
+  # percentage above this threshold.
+  high_worker_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_worker_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the ASG.
+  high_worker_disk_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster root disk utilization
+  # percentage above this threshold.
+  high_worker_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_worker_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization
+  # percentage for the ASG.
+  high_worker_memory_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster Memory utilization
+  # percentage above this threshold.
+  high_worker_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_worker_memory_utilization_treat_missing_data = "missing"
+
   # Mapping of IAM role ARNs to Kubernetes RBAC groups that grant permissions to
   # the user.
   iam_role_to_rbac_group_mapping = {}
@@ -476,10 +674,16 @@ module "eks_cluster" {
   # the user.
   iam_user_to_rbac_group_mapping = {}
 
+  # The URL from which to download Kubergrunt if it's not installed already. Use
+  # to specify a version of kubergrunt that is compatible with your specified
+  # kubernetes version. Ex.
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>'
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>"
+
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.22"
+  kubernetes_version = "1.32"
 
   # Configure one or more Node Groups to manage the EC2 instances in this
   # cluster. Set to empty object ({}) if you do not wish to configure managed
@@ -532,6 +736,12 @@ module "eks_cluster" {
   # Default value for min_size field of managed_node_group_configurations.
   node_group_default_min_size = 1
 
+  # Default value for the node_repair_config field of
+  # managed_node_group_configurations. Any map entry that does not specify
+  # node_repair_config will use this value. Node auto repair is disabled by
+  # default.
+  node_group_default_node_repair_config = null
+
   # Default value for subnet_ids field of managed_node_group_configurations.
   node_group_default_subnet_ids = null
 
@@ -568,6 +778,10 @@ module "eks_cluster" {
   # A map of tags to apply to the Security Group of the ASG for the managed node
   # group pool. The key is the tag name and the value is the tag value.
   node_group_security_group_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  node_group_worker_iam_role_tags = {}
 
   # Number of subnets provided in the var.control_plane_vpc_subnet_ids variable.
   # When null (default), this is computed dynamically from the list. This is
@@ -616,6 +830,26 @@ module "eks_cluster" {
 
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
+
+  # When set to true, the sync-core-components command will skip updating
+  # coredns. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_coredns = false
+
+  # When set to true, the sync-core-components command will skip updating
+  # kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_kube_proxy = false
+
+  # When set to true, the sync-core-components command will skip updating
+  # aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_vpc_cni = false
+
+  # When set to true, the sync-core-components command will wait until the new
+  # versions are rolled out in the cluster. This variable is ignored if
+  # `use_kubergrunt_sync_components` is false.
+  upgrade_cluster_script_wait_for_rollout = true
 
   # If this variable is set to true, then use an exec-based plugin to
   # authenticate and fetch tokens for EKS. This is useful because EKS clusters
@@ -744,7 +978,7 @@ module "eks_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.127.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.143.3"
 }
 
 inputs = {
@@ -768,6 +1002,16 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # The authentication mode for the cluster. Valid values are CONFIG_MAP, API or
+  # API_AND_CONFIG_MAP.
+  access_config_authentication_mode = "CONFIG_MAP"
+
+  # Map of EKS Access Entries to be created for the cluster.
+  access_entries = {}
+
+  # Map of EKS Access Entry Policy Associations to be created for the cluster.
+  access_entry_policy_associations = {}
 
   # A list of additional security group IDs to attach to the control plane.
   additional_security_groups_for_control_plane = []
@@ -798,6 +1042,11 @@ inputs = {
   # Default value for enable_detailed_monitoring field of
   # autoscaling_group_configurations.
   asg_default_enable_detailed_monitoring = true
+
+  # Default value for the extra_block_device_mappings field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # extra_block_device_mappings will use this value.
+  asg_default_extra_block_device_mappings = []
 
   # Default value for the http_put_response_hop_limit field of
   # autoscaling_group_configurations.
@@ -912,6 +1161,22 @@ inputs = {
   # your cluster.
   asg_use_resource_name_prefix = true
 
+  # A map of custom tags to apply to the EKS Worker IAM Policies. The key is the
+  # tag name and the value is the tag value.
+  asg_worker_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  asg_worker_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Instance Profile. The
+  # key is the tag name and the value is the tag value.
+  asg_worker_instance_profile_tags = {}
+
+  # A map of custom tags to apply to the Fargate Profile if enabled. The key is
+  # the tag name and the value is the tag value.
+  auth_merger_eks_fargate_profile_tags = {}
+
   # Configure one or more Auto Scaling Groups (ASGs) to manage the EC2 instances
   # in this cluster. If any of the values are not provided, the specified
   # default variable will be used to lookup a default value.
@@ -935,6 +1200,10 @@ inputs = {
   # Namespace to deploy the aws-auth-merger into. The app will watch for
   # ConfigMaps in this Namespace to merge into the aws-auth ConfigMap.
   aws_auth_merger_namespace = "aws-auth-merger"
+
+  # Whether or not to bootstrap an access entry with cluster admin permissions
+  # for the cluster creator.
+  bootstrap_cluster_creator_admin_permissions = true
 
   # Cloud init scripts to run on the EKS worker nodes when it is booting. See
   # the part blocks in
@@ -971,6 +1240,22 @@ inputs = {
   # cluster
   cluster_instance_keypair_name = null
 
+  # The IP family used to assign Kubernetes pod and service addresses. Valid
+  # values are ipv4 (default) and ipv6. You can only specify an IP family when
+  # you create a cluster, changing this value will force a new cluster to be
+  # created.
+  cluster_network_config_ip_family = "ipv4"
+
+  # The CIDR block to assign Kubernetes pod and service IP addresses from. If
+  # you don't specify a block, Kubernetes assigns addresses from either the
+  # 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. You can only specify a custom
+  # CIDR block when you create a cluster, changing this value will force a new
+  # cluster to be created.
+  cluster_network_config_service_ipv4_cidr = null
+
+  # Specify the log class of the cloudwatch log group
+  control_plane_cloudwatch_log_group_class = "STANDARD"
+
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data in the CloudWatch log group for EKS control plane logs.
   control_plane_cloudwatch_log_group_kms_key_id = null
@@ -1000,6 +1285,10 @@ inputs = {
   # CLUSTER_NAME-fargate-role.
   custom_default_fargate_iam_role_name = null
 
+  # A map of custom tags to apply to the EKS add-ons. The key is the tag name
+  # and the value is the tag value.
+  custom_tags_eks_addons = {}
+
   # A map of unique identifiers to egress security group rules to attach to the
   # worker groups.
   custom_worker_egress_security_group_rules = {}
@@ -1020,9 +1309,95 @@ inputs = {
   # CloudWatch dashboard.
   dashboard_memory_usage_widget_parameters = {"height":6,"period":60,"width":8}
 
+  # A map of default tags to apply to all supported resources in this module.
+  # These tags will be merged with any other resource specific tags. The key is
+  # the tag name and the value is the tag value.
+  default_tags = {}
+
+  # Configuraiton object for the EBS CSI Driver EKS AddOn
+  ebs_csi_driver_addon_config = {}
+
+  # A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the
+  # tag name and the value is the tag value.
+  ebs_csi_driver_addon_tags = {}
+
+  # A map of custom tags to apply to the IAM Policies created for the EBS CSI
+  # Driver IAM Role if enabled. The key is the tag name and the value is the tag
+  # value.
+  ebs_csi_driver_iam_policy_tags = {}
+
+  # A map of custom tags to apply to the EBS CSI Driver IAM Role if enabled. The
+  # key is the tag name and the value is the tag value.
+  ebs_csi_driver_iam_role_tags = {}
+
+  # If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used
+  # for a policy attachment.
+  ebs_csi_driver_kms_key_arn = null
+
+  # The namespace for the EBS CSI Driver. This will almost always be the
+  # kube-system namespace.
+  ebs_csi_driver_namespace = "kube-system"
+
+  # The Service Account name to be used with the EBS CSI Driver
+  ebs_csi_driver_sa_name = "ebs-csi-controller-sa"
+
   # Map of EKS add-ons, where key is name of the add-on and value is a map of
   # add-on properties.
   eks_addons = {}
+
+  # Configuration block with compute configuration for EKS Auto Mode.
+  eks_auto_mode_compute_config = {"enabled":true,"node_pools":["general-purpose","system"]}
+
+  # Whether or not to create an IAM Role for the EKS Worker Nodes when using EKS
+  # Auto Mode. If using the built-in NodePools for EKS Auto Mode you must either
+  # provide an IAM Role ARN for `eks_auto_mode_compute_config.node_role_arn` or
+  # set this to true to automatically create one.
+  eks_auto_mode_create_node_iam_role = true
+
+  # Configuration block with elastic load balancing configuration for the
+  # cluster.
+  eks_auto_mode_elastic_load_balancing_config = {}
+
+  # Whether or not to enable EKS Auto Mode.
+  eks_auto_mode_enabled = false
+
+  # Description of the EKS Auto Mode Node IAM Role.
+  eks_auto_mode_iam_role_description = null
+
+  # IAM Role Name to for the EKS Auto Mode Node IAM Role. If this is not set a
+  # default name will be provided in the form of
+  # `<var.cluster_name-eks-auto-mode-role>`
+  eks_auto_mode_iam_role_name = null
+
+  # The IAM Role Path for the EKS Auto Mode Node IAM Role.
+  eks_auto_mode_iam_role_path = null
+
+  # Permissions Boundary ARN to be used with the EKS Auto Mode Node IAM Role.
+  eks_auto_mode_iam_role_permissions_boundary = null
+
+  # Whether or not to use `eks_auto_mode_iam_role_name` as a prefix for the EKS
+  # Auto Mode Node IAM Role Name.
+  eks_auto_mode_iam_role_use_name_prefix = true
+
+  # Configuration block with storage configuration for EKS Auto Mode.
+  eks_auto_mode_storage_config = {}
+
+  # A map of custom tags to apply to the EKS Cluster Cluster Creator Access
+  # Entry. The key is the tag name and the value is the tag value.
+  eks_cluster_creator_access_entry_tags = {}
+
+  # A map of custom tags to apply to the EKS Cluster IAM Role. The key is the
+  # tag name and the value is the tag value.
+  eks_cluster_iam_role_tags = {}
+
+  # A map of custom tags to apply to the EKS Cluster OIDC Provider. The key is
+  # the tag name and the value is the tag value.
+  eks_cluster_oidc_tags = {}
+
+  # The name of the Security Group to create for the EKS Cluster. If a name is
+  # not provided, a name will be generated automatically. For existing clusters,
+  # set this variable to the existing cluster security group name.
+  eks_cluster_security_group_name = null
 
   # A map of custom tags to apply to the Security Group for the EKS Cluster
   # Control Plane. The key is the tag name and the value is the tag value.
@@ -1031,6 +1406,16 @@ inputs = {
   # A map of custom tags to apply to the EKS Cluster Control Plane. The key is
   # the tag name and the value is the tag value.
   eks_cluster_tags = {}
+
+  # A map of custom tags to apply to the Control Plane Services Fargate Profile
+  # IAM Role for this EKS Cluster if enabled. The key is the tag name and the
+  # value is the tag value.
+  eks_fargate_profile_iam_role_tags = {}
+
+  # A map of custom tags to apply to the Control Plane Services Fargate Profile
+  # for this EKS Cluster if enabled. The key is the tag name and the value is
+  # the tag value.
+  eks_fargate_profile_tags = {}
 
   # If set to true, installs the aws-auth-merger to manage the aws-auth
   # configuration. When true, requires setting the var.aws_auth_merger_image
@@ -1052,6 +1437,11 @@ inputs = {
   # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/agents/cloudwatch-agent
   # to get memory and disk metrics in CloudWatch for your Bastion host.
   enable_cloudwatch_metrics = true
+
+  # When set to true, the module configures and install the EBS CSI Driver as an
+  # EKS managed AddOn
+  # (https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html).
+  enable_ebs_csi_driver = false
 
   # When set to true, the module configures EKS add-ons
   # (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html)
@@ -1099,6 +1489,48 @@ inputs = {
   # will allow all availability zones.
   fargate_worker_disallowed_availability_zones = ["us-east-1d","us-east-1e","ca-central-1d"]
 
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  # for the ASG.
+  high_worker_cpu_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster CPU utilization
+  # percentage above this threshold.
+  high_worker_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_worker_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the ASG.
+  high_worker_disk_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster root disk utilization
+  # percentage above this threshold.
+  high_worker_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_worker_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization
+  # percentage for the ASG.
+  high_worker_memory_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster Memory utilization
+  # percentage above this threshold.
+  high_worker_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_worker_memory_utilization_treat_missing_data = "missing"
+
   # Mapping of IAM role ARNs to Kubernetes RBAC groups that grant permissions to
   # the user.
   iam_role_to_rbac_group_mapping = {}
@@ -1107,10 +1539,16 @@ inputs = {
   # the user.
   iam_user_to_rbac_group_mapping = {}
 
+  # The URL from which to download Kubergrunt if it's not installed already. Use
+  # to specify a version of kubergrunt that is compatible with your specified
+  # kubernetes version. Ex.
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>'
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>"
+
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.22"
+  kubernetes_version = "1.32"
 
   # Configure one or more Node Groups to manage the EC2 instances in this
   # cluster. Set to empty object ({}) if you do not wish to configure managed
@@ -1163,6 +1601,12 @@ inputs = {
   # Default value for min_size field of managed_node_group_configurations.
   node_group_default_min_size = 1
 
+  # Default value for the node_repair_config field of
+  # managed_node_group_configurations. Any map entry that does not specify
+  # node_repair_config will use this value. Node auto repair is disabled by
+  # default.
+  node_group_default_node_repair_config = null
+
   # Default value for subnet_ids field of managed_node_group_configurations.
   node_group_default_subnet_ids = null
 
@@ -1199,6 +1643,10 @@ inputs = {
   # A map of tags to apply to the Security Group of the ASG for the managed node
   # group pool. The key is the tag name and the value is the tag value.
   node_group_security_group_tags = {}
+
+  # A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag
+  # name and the value is the tag value.
+  node_group_worker_iam_role_tags = {}
 
   # Number of subnets provided in the var.control_plane_vpc_subnet_ids variable.
   # When null (default), this is computed dynamically from the list. This is
@@ -1247,6 +1695,26 @@ inputs = {
 
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
+
+  # When set to true, the sync-core-components command will skip updating
+  # coredns. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_coredns = false
+
+  # When set to true, the sync-core-components command will skip updating
+  # kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_kube_proxy = false
+
+  # When set to true, the sync-core-components command will skip updating
+  # aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is
+  # false.
+  upgrade_cluster_script_skip_vpc_cni = false
+
+  # When set to true, the sync-core-components command will wait until the new
+  # versions are rolled out in the cluster. This variable is ignored if
+  # `use_kubergrunt_sync_components` is false.
+  upgrade_cluster_script_wait_for_rollout = true
 
   # If this variable is set to true, then use an exec-based plugin to
   # authenticate and fetch tokens for EKS. This is useful because EKS clusters
@@ -1412,6 +1880,47 @@ ID of the VPC where the EKS resources will be deployed.
 
 ### Optional
 
+<HclListItem name="access_config_authentication_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+The authentication mode for the cluster. Valid values are CONFIG_MAP, API or API_AND_CONFIG_MAP.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;CONFIG_MAP&quot;"/>
+</HclListItem>
+
+<HclListItem name="access_entries" requirement="optional" type="any">
+<HclListItemDescription>
+
+Map of EKS Access Entries to be created for the cluster.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="access_entry_policy_associations" requirement="optional" type="any">
+<HclListItemDescription>
+
+Map of EKS Access Entry Policy Associations to be created for the cluster.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="additional_security_groups_for_control_plane" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1482,6 +1991,35 @@ Default value for enable_detailed_monitoring field of autoscaling_group_configur
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="asg_default_extra_block_device_mappings" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Default value for the extra_block_device_mappings field of autoscaling_group_configurations. Any map entry that does not specify extra_block_device_mappings will use this value.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    device_name  = string
+    no_device    = optional(string)
+    virtual_name = optional(string)
+    ebs = optional(object({
+      volume_size           = optional(number)
+      volume_type           = optional(string)
+      iops                  = optional(number)
+      throughput            = optional(number)
+      delete_on_termination = optional(bool)
+      encrypted             = optional(bool)
+      kms_key_id            = optional(string)
+    }))
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="asg_default_http_put_response_hop_limit" requirement="optional" type="number">
@@ -1743,6 +2281,42 @@ When true, all the relevant resources for self managed workers will be set to us
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="asg_worker_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Policies. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="asg_worker_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="asg_worker_instance_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Instance Profile. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="auth_merger_eks_fargate_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Fargate Profile if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="autoscaling_group_configurations" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -1829,6 +2403,8 @@ Any types represent complex values of variable type. For details, please consult
                                                Per-ASG cloud init scripts to run at boot time on the node.  See var.cloud_init_parts for accepted keys.
    - http_put_response_hop_limit     number  : (Defaults to value from var.asg_default_http_put_response_hop_limit) The
                                                desired HTTP PUT response hop limit for instance metadata requests.
+   - extra_block_device_mappings             : (Defaults to value from var.asg_default_extra_block_device_mappings) Additional block device mappings
+                                                to attach to instances. Useful for Bottlerocket or custom storage configs.
   
    Structure of Tag object:
    - key                  string  : The key for the tag to apply to the instance.
@@ -1907,6 +2483,15 @@ Namespace to deploy the aws-auth-merger into. The app will watch for ConfigMaps 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;aws-auth-merger&quot;"/>
+</HclListItem>
+
+<HclListItem name="bootstrap_cluster_creator_admin_permissions" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to bootstrap an access entry with cluster admin permissions for the cluster creator.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="cloud_init_parts" requirement="optional" type="map(object(…))">
@@ -2035,6 +2620,33 @@ The name of the Key Pair that can be used to SSH to each instance in the EKS clu
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="cluster_network_config_ip_family" requirement="optional" type="string">
+<HclListItemDescription>
+
+The IP family used to assign Kubernetes pod and service addresses. Valid values are ipv4 (default) and ipv6. You can only specify an IP family when you create a cluster, changing this value will force a new cluster to be created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;ipv4&quot;"/>
+</HclListItem>
+
+<HclListItem name="cluster_network_config_service_ipv4_cidr" requirement="optional" type="string">
+<HclListItemDescription>
+
+The CIDR block to assign Kubernetes pod and service IP addresses from. If you don't specify a block, Kubernetes assigns addresses from either the 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. You can only specify a custom CIDR block when you create a cluster, changing this value will force a new cluster to be created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="control_plane_cloudwatch_log_group_class" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specify the log class of the cloudwatch log group
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;STANDARD&quot;"/>
+</HclListItem>
+
 <HclListItem name="control_plane_cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2089,6 +2701,15 @@ The name to use for the default Fargate execution IAM role that is created when 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="custom_tags_eks_addons" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS add-ons. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="custom_worker_egress_security_group_rules" requirement="optional" type="map(object(…))">
@@ -2306,6 +2927,121 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="default_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of default tags to apply to all supported resources in this module. These tags will be merged with any other resource specific tags. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_addon_config" requirement="optional" type="any">
+<HclListItemDescription>
+
+Configuraiton object for the EBS CSI Driver EKS AddOn
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   EKS add-on advanced configuration via configuration_values must follow the configuration schema for the deployed version of the add-on. 
+   See the following AWS Blog for more details on advanced configuration of EKS add-ons: https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/
+   Example:
+   {
+     addon_version               = "v1.14.0-eksbuild.1"
+     configuration_values        = {}
+     preserve                    = false
+     resolve_conflicts_on_create = "OVERWRITE"
+     service_account_role_arn    = "arn:aws:iam::123456789012:role/role-name"
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_addon_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EBS CSI Driver AddOn. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+     {
+       key1 = "value1"
+       key2 = "value2"
+     }
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_iam_policy_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the IAM Policies created for the EBS CSI Driver IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EBS CSI Driver IAM Role if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+If using KMS encryption of EBS volumes, provide the KMS Key ARN to be used for a policy attachment.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_namespace" requirement="optional" type="string">
+<HclListItemDescription>
+
+The namespace for the EBS CSI Driver. This will almost always be the kube-system namespace.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;kube-system&quot;"/>
+</HclListItem>
+
+<HclListItem name="ebs_csi_driver_sa_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Service Account name to be used with the EBS CSI Driver
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;ebs-csi-controller-sa&quot;"/>
+</HclListItem>
+
 <HclListItem name="eks_addons" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -2330,9 +3066,9 @@ Any types represent complex values of variable type. For details, please consult
        coredns    = {}
        kube-proxy = {}
        vpc-cni    = {
-         addon_version            = "1.10.1-eksbuild.1"
-         resolve_conflicts        = "NONE"
-         service_account_role_arn = "arn:aws:iam::123456789012:role/role-name"
+         addon_version               = "1.10.1-eksbuild.1"
+         resolve_conflicts_on_create = "OVERWRITE"
+         service_account_role_arn    = "arn:aws:iam::123456789012:role/role-name"
        }
      }
 
@@ -2340,6 +3076,193 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="eks_auto_mode_compute_config" requirement="optional" type="any">
+<HclListItemDescription>
+
+Configuration block with compute configuration for EKS Auto Mode.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  enabled = true,
+  node_pools = [
+    "general-purpose",
+    "system"
+  ]
+}
+```
+
+</HclListItemDefaultValue>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   {
+      enabled: true
+      node_pools: "general-purpose"
+      node_role_arn: "arn:aws:eks::aws:role/MyEKSAccessModeWorkerRole"
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   We will default to use the default Node Pools provided by AWS
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="eks_auto_mode_create_node_iam_role" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to create an IAM Role for the EKS Worker Nodes when using EKS Auto Mode. If using the built-in NodePools for EKS Auto Mode you must either provide an IAM Role ARN for `eks_auto_mode_compute_config.node_role_arn` or set this to true to automatically create one.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="eks_auto_mode_elastic_load_balancing_config" requirement="optional" type="any">
+<HclListItemDescription>
+
+Configuration block with elastic load balancing configuration for the cluster.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_auto_mode_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to enable EKS Auto Mode.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="eks_auto_mode_iam_role_description" requirement="optional" type="string">
+<HclListItemDescription>
+
+Description of the EKS Auto Mode Node IAM Role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="eks_auto_mode_iam_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM Role Name to for the EKS Auto Mode Node IAM Role. If this is not set a default name will be provided in the form of `&lt;<a href="#cluster_name"><code>cluster_name</code></a>-eks-auto-mode-role>`
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="eks_auto_mode_iam_role_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+The IAM Role Path for the EKS Auto Mode Node IAM Role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="eks_auto_mode_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+Permissions Boundary ARN to be used with the EKS Auto Mode Node IAM Role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="eks_auto_mode_iam_role_use_name_prefix" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to use `eks_auto_mode_iam_role_name` as a prefix for the EKS Auto Mode Node IAM Role Name.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="eks_auto_mode_storage_config" requirement="optional" type="any">
+<HclListItemDescription>
+
+Configuration block with storage configuration for EKS Auto Mode.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_cluster_creator_access_entry_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Cluster Cluster Creator Access Entry. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_cluster_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Cluster IAM Role. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_cluster_oidc_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Cluster OIDC Provider. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_cluster_security_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the Security Group to create for the EKS Cluster. If a name is not provided, a name will be generated automatically. For existing clusters, set this variable to the existing cluster security group name.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="eks_cluster_security_group_tags" requirement="optional" type="map(string)">
@@ -2388,6 +3311,24 @@ A map of custom tags to apply to the EKS Cluster Control Plane. The key is the t
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="eks_fargate_profile_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Control Plane Services Fargate Profile IAM Role for this EKS Cluster if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="eks_fargate_profile_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the Control Plane Services Fargate Profile for this EKS Cluster if enabled. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="enable_aws_auth_merger" requirement="optional" type="bool">
@@ -2440,6 +3381,15 @@ Set to true to add IAM permissions to send custom metrics to CloudWatch. This is
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_ebs_csi_driver" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the module configures and install the EBS CSI Driver as an EKS managed AddOn (https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="enable_eks_addons" requirement="optional" type="bool">
@@ -2534,6 +3484,87 @@ A list of availability zones in the region that we CANNOT use to deploy the EKS 
 </HclListItemDefaultValue>
 </HclListItem>
 
+<HclListItem name="high_worker_cpu_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the CPU utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_worker_cpu_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_worker_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_worker_disk_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_worker_disk_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_worker_disk_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_worker_memory_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_worker_memory_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster Memory utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_worker_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="iam_role_to_rbac_group_mapping" requirement="optional" type="map(list(…))">
 <HclListItemDescription>
 
@@ -2594,13 +3625,22 @@ map(list(string))
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="kubergrunt_download_url" requirement="optional" type="string">
+<HclListItemDescription>
+
+The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_&lt;platform>'
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>&quot;"/>
+</HclListItem>
+
 <HclListItem name="kubernetes_version" requirement="optional" type="string">
 <HclListItemDescription>
 
 Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.22&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.32&quot;"/>
 </HclListItem>
 
 <HclListItem name="managed_node_group_configurations" requirement="optional" type="any">
@@ -2669,6 +3709,9 @@ Any types represent complex values of variable type. For details, please consult
                                               maximum number of Pods allowed to be scheduled on the node. When null,
                                               the max will be automatically calculated based on the availability of
                                               total IP addresses to the instance type.
+   - node_repair_config    object           : (Defaults to value from var.node_group_default_node_repair_config) The node 
+                                               auto repair configuration for the node group. Node auto repair is disabled 
+                                               by default.
    - http_put_response_hop_limit  number    : (Defaults to value from
                                               var.node_group_default_http_put_response_hop_limit) The desired
                                               HTTP PUT response hop limit for instance metadata requests from the
@@ -2698,6 +3741,9 @@ Any types represent complex values of variable type. For details, please consult
    - name     string  : The Name of the Launch Template to use. One of ID or Name should be provided.
    - id       string  : The ID of the Launch Template to use. One of ID or Name should be provided.
    - version  string  : The version of the Launch Template to use.
+  
+   Structure of the node_repair_config object:
+   - enabled  bool : Specifies whether to enable node auto repair for the node group. Node auto repair is disabled by default.
   
    Example:
    managed_node_group_configurations = {
@@ -2831,6 +3877,24 @@ Default value for min_size field of managed_node_group_configurations.
 <HclListItemDefaultValue defaultValue="1"/>
 </HclListItem>
 
+<HclListItem name="node_group_default_node_repair_config" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Default value for the node_repair_config field of managed_node_group_configurations. Any map entry that does not specify node_repair_config will use this value. Node auto repair is disabled by default.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    enabled = bool
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="node_group_default_subnet_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -2896,6 +3960,15 @@ Tags assigned to a node group are mirrored to the underlaying autoscaling group 
 <HclListItemDescription>
 
 A map of tags to apply to the Security Group of the ASG for the managed node group pool. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="node_group_worker_iam_role_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the EKS Worker IAM Role. The key is the tag name and the value is the tag value.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
@@ -2971,6 +4044,42 @@ The tenancy of this server. Must be one of: default, dedicated, or host.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
+</HclListItem>
+
+<HclListItem name="upgrade_cluster_script_skip_coredns" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will skip updating coredns. This variable is ignored if `use_kubergrunt_sync_components` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="upgrade_cluster_script_skip_kube_proxy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will skip updating kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="upgrade_cluster_script_skip_vpc_cni" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will skip updating aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="upgrade_cluster_script_wait_for_rollout" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When set to true, the sync-core-components command will wait until the new versions are rolled out in the cluster. This variable is ignored if `use_kubergrunt_sync_components` is false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="use_exec_plugin_for_auth" requirement="optional" type="bool">
@@ -3137,10 +4246,34 @@ The namespace name for the aws-auth-merger add on, if created.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="eks_auto_mode_iam_role_arn">
+<HclListItemDescription>
+
+AWS ARN identifier of the IAM role created for the EKS Auto Mode Nodes.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="eks_auto_mode_iam_role_name">
+<HclListItemDescription>
+
+Name of the IAM role created for the EKS Auto Mode Nodes.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="eks_cluster_arn">
 <HclListItemDescription>
 
 The ARN of the EKS cluster that was deployed.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="eks_cluster_endpoint">
+<HclListItemDescription>
+
+URL endpoint of the Kubernetes control plane provided by EKS.
 
 </HclListItemDescription>
 </HclListItem>
@@ -3263,11 +4396,11 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/services/eks-cluster/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/services/eks-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/services/eks-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/services/eks-cluster/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/services/eks-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "029978b438e43ccb086b19b9e520bfec"
+  "hash": "eab893a6ad5f216ba9002fa1227d075c"
 }
 ##DOCS-SOURCER-END -->

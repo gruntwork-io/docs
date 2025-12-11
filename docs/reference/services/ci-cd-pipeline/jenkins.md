@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.127.5" lastModifiedVersion="0.118.9"/>
+<VersionBadge version="0.143.3" lastModifiedVersion="0.143.0"/>
 
 # Jenkins CI Server
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/mgmt/jenkins" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/mgmt/jenkins" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fjenkins" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,7 +68,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -76,7 +76,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -98,7 +98,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "jenkins" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/jenkins?ref=v0.127.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/jenkins?ref=v0.143.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -299,6 +299,48 @@ module "jenkins" {
   # use null, or Terraform will complain).
   external_account_ssh_grunt_role_arn = ""
 
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  # for the ASG.
+  high_asg_cpu_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster CPU utilization
+  # percentage above this threshold.
+  high_asg_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_asg_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the ASG.
+  high_asg_disk_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster root disk utilization
+  # percentage above this threshold.
+  high_asg_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_asg_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization
+  # percentage for the ASG.
+  high_asg_memory_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster Memory utilization
+  # percentage above this threshold.
+  high_asg_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_asg_memory_utilization_treat_missing_data = "missing"
+
   # Set to true to make the Jenkins ALB an internal ALB that cannot be accessed
   # from the public Internet. We strongly recommend setting this to true to keep
   # Jenkins more secure.
@@ -312,6 +354,12 @@ module "jenkins" {
 
   # The OS user that should be used to run Jenkins
   jenkins_user = "jenkins"
+
+  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
+  # state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  jenkins_volume_alarm_treat_missing_data = "missing"
 
   # Set to true to encrypt the Jenkins EBS volume.
   jenkins_volume_encrypted = true
@@ -341,6 +389,15 @@ module "jenkins" {
   # OS, temp folders, apps, etc.
   root_volume_size = 100
 
+  # Set to 'true' to allow the server group role to assume itself. See
+  # https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+  server_iam_role_allow_self_assume = false
+
+  # Maximum session duration (in seconds) that you want to set for the server
+  # group role. This setting can have a value from 1 hour to 12 hours. Default
+  # is 1 hour (3600s).
+  server_iam_role_max_session_duration = 3600
+
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
   # CloudWatch Log Group with various settings such as retention periods and KMS
@@ -367,6 +424,12 @@ module "jenkins" {
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
 
+  # Set this variable to true to use Instance Metadata Service Version 1
+  # (IMDSv1) for the deployment of Jenkins. Set this variable to false to use
+  # IMDSv2. Note that while IMDsv2 is preferred due to its special security
+  # hardening, we default to IMDSv1 in order to make legacy migrations easier.
+  use_imdsv1 = true
+
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
   # are friendlier to automated policy checkers, which may scan a single
@@ -389,7 +452,7 @@ module "jenkins" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/jenkins?ref=v0.127.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/jenkins?ref=v0.143.3"
 }
 
 inputs = {
@@ -593,6 +656,48 @@ inputs = {
   # use null, or Terraform will complain).
   external_account_ssh_grunt_role_arn = ""
 
+  # The period, in seconds, over which to measure the CPU utilization percentage
+  # for the ASG.
+  high_asg_cpu_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster CPU utilization
+  # percentage above this threshold.
+  high_asg_cpu_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_asg_cpu_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the root disk utilization
+  # percentage for the ASG.
+  high_asg_disk_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster root disk utilization
+  # percentage above this threshold.
+  high_asg_disk_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_asg_disk_utilization_treat_missing_data = "missing"
+
+  # The period, in seconds, over which to measure the Memory utilization
+  # percentage for the ASG.
+  high_asg_memory_utilization_period = 60
+
+  # Trigger an alarm if the ASG has an average cluster Memory utilization
+  # percentage above this threshold.
+  high_asg_memory_utilization_threshold = 90
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_asg_memory_utilization_treat_missing_data = "missing"
+
   # Set to true to make the Jenkins ALB an internal ALB that cannot be accessed
   # from the public Internet. We strongly recommend setting this to true to keep
   # Jenkins more secure.
@@ -606,6 +711,12 @@ inputs = {
 
   # The OS user that should be used to run Jenkins
   jenkins_user = "jenkins"
+
+  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
+  # state. Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  jenkins_volume_alarm_treat_missing_data = "missing"
 
   # Set to true to encrypt the Jenkins EBS volume.
   jenkins_volume_encrypted = true
@@ -635,6 +746,15 @@ inputs = {
   # OS, temp folders, apps, etc.
   root_volume_size = 100
 
+  # Set to 'true' to allow the server group role to assume itself. See
+  # https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+  server_iam_role_allow_self_assume = false
+
+  # Maximum session duration (in seconds) that you want to set for the server
+  # group role. This setting can have a value from 1 hour to 12 hours. Default
+  # is 1 hour (3600s).
+  server_iam_role_max_session_duration = 3600
+
   # When true, precreate the CloudWatch Log Group to use for log aggregation
   # from the EC2 instances. This is useful if you wish to customize the
   # CloudWatch Log Group with various settings such as retention periods and KMS
@@ -660,6 +780,12 @@ inputs = {
 
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
+
+  # Set this variable to true to use Instance Metadata Service Version 1
+  # (IMDSv1) for the deployment of Jenkins. Set this variable to false to use
+  # IMDSv2. Note that while IMDsv2 is preferred due to its special security
+  # hardening, we default to IMDSv1 in order to make legacy migrations easier.
+  use_imdsv1 = true
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -1113,6 +1239,87 @@ If you are using ssh-grunt and your IAM users / groups are defined in a separate
 <HclListItemDefaultValue defaultValue="&quot;&quot;"/>
 </HclListItem>
 
+<HclListItem name="high_asg_cpu_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the CPU utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_asg_cpu_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster CPU utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_asg_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_asg_disk_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the root disk utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_asg_disk_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster root disk utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_asg_disk_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_asg_memory_utilization_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the Memory utilization percentage for the ASG.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_asg_memory_utilization_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the ASG has an average cluster Memory utilization percentage above this threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="90"/>
+</HclListItem>
+
+<HclListItem name="high_asg_memory_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="is_internal_alb" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1147,6 +1354,15 @@ The OS user that should be used to run Jenkins
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;jenkins&quot;"/>
+</HclListItem>
+
+<HclListItem name="jenkins_volume_alarm_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="jenkins_volume_encrypted" requirement="optional" type="bool">
@@ -1212,6 +1428,24 @@ The amount of disk space, in GB, to allocate for the root volume of this server.
 <HclListItemDefaultValue defaultValue="100"/>
 </HclListItem>
 
+<HclListItem name="server_iam_role_allow_self_assume" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to 'true' to allow the server group role to assume itself. See https://aws.amazon.com/blogs/security/announcing-an-update-to-iam-role-trust-policy-behavior/
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="server_iam_role_max_session_duration" requirement="optional" type="number">
+<HclListItemDescription>
+
+Maximum session duration (in seconds) that you want to set for the server group role. This setting can have a value from 1 hour to 12 hours. Default is 1 hour (3600s).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="3600"/>
+</HclListItem>
+
 <HclListItem name="should_create_cloudwatch_log_group" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1255,6 +1489,15 @@ The tenancy of this server. Must be one of: default, dedicated, or host.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
+</HclListItem>
+
+<HclListItem name="use_imdsv1" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set this variable to true to use Instance Metadata Service Version 1 (IMDSv1) for the deployment of Jenkins. Set this variable to false to use IMDSv2. Note that while IMDsv2 is preferred due to its special security hardening, we default to IMDSv1 in order to make legacy migrations easier.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -1401,11 +1644,11 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/mgmt/jenkins/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/mgmt/jenkins/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/mgmt/jenkins/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/mgmt/jenkins/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/mgmt/jenkins/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/mgmt/jenkins/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "80183817e5cd76377dbba313e3775963"
+  "hash": "b706f7ab07119cd928888a602aeef98b"
 }
 ##DOCS-SOURCER-END -->

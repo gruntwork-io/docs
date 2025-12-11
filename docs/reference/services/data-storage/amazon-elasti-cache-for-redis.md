@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.127.5" lastModifiedVersion="0.112.5"/>
+<VersionBadge version="0.143.3" lastModifiedVersion="0.112.5"/>
 
 # Amazon ElastiCache for Redis
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/data-stores/redis" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/data-stores/redis" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fredis" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -67,7 +67,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -75,7 +75,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -94,7 +94,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "redis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/redis?ref=v0.127.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/redis?ref=v0.143.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -135,6 +135,16 @@ module "redis" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Trigger an alarm if the amount of free memory, in Bytes, on the node drops
+  # below this threshold
+  alarm_low_memory_available_threshold = 100000000
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  alarm_treat_missing_data = "missing"
+
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
   alarms_sns_topic_arns = []
@@ -162,10 +172,11 @@ module "redis" {
   # alphanumeric characters or symbols (excluding @, <double-quotes>, and /)
   auth_token = null
 
-  # Specifies the number of shards and replicas per shard in the cluster. The
-  # list should contain a single map with keys 'num_node_groups' and
-  # 'replicas_per_node_group' set to desired integer values.
-  cluster_mode = []
+  # Specifies whether minor version engine upgrades will be applied
+  # automatically to the underlying Cache Cluster instances during the
+  # maintenance window. Only supported for engine type 'redis' and if the engine
+  # version is 6 or higher. Defaults to false (disabled).
+  auto_minor_version_upgrade = false
 
   # Whether to enable encryption at rest.
   enable_at_rest_encryption = true
@@ -178,10 +189,21 @@ module "redis" {
   # Whether to enable encryption in transit.
   enable_transit_encryption = true
 
+  # Specifies the destination and format of Redis Engine Log. See the
+  # documentation on Amazon ElastiCache. See Log Delivery Configuration below
+  # for more details. You can find more information here
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+  engine_log_delivery_configuration = null
+
   # Specifies the weekly time range for when maintenance on the cache cluster is
   # performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi
   # (24H Clock UTC). The minimum maintenance window is a 60 minute period.
   maintenance_window = "sat:07:00-sat:08:00"
+
+  # Number of node groups (shards) for this Redis replication group. Changing
+  # this number will trigger a resizing operation before other settings
+  # modifications.
+  num_node_groups = null
 
   # Name of the parameter group to associate with this cache cluster. This can
   # be used to configure custom settings for the cluster.
@@ -193,6 +215,17 @@ module "redis" {
 
   # Version number of redis to use (e.g. 5.0.6).
   redis_version = "5.0.6"
+
+  #  Number of replica nodes in each node group. Changing this number will
+  # trigger a resizing operation before other settings modifications. Valid
+  # values are 0 to 5.
+  replicas_per_node_group = null
+
+  # Specifies the destination and format of Redis SLOWLOG. See the documentation
+  # on Amazon ElastiCache. See Log Delivery Configuration below for more
+  # details. You can find more information here
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+  slow_log_delivery_configuration = null
 
   # The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon
   # S3. You can use this parameter to restore from an externally created
@@ -237,7 +270,7 @@ module "redis" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/redis?ref=v0.127.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/redis?ref=v0.143.3"
 }
 
 inputs = {
@@ -281,6 +314,16 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Trigger an alarm if the amount of free memory, in Bytes, on the node drops
+  # below this threshold
+  alarm_low_memory_available_threshold = 100000000
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  alarm_treat_missing_data = "missing"
+
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
   alarms_sns_topic_arns = []
@@ -308,10 +351,11 @@ inputs = {
   # alphanumeric characters or symbols (excluding @, <double-quotes>, and /)
   auth_token = null
 
-  # Specifies the number of shards and replicas per shard in the cluster. The
-  # list should contain a single map with keys 'num_node_groups' and
-  # 'replicas_per_node_group' set to desired integer values.
-  cluster_mode = []
+  # Specifies whether minor version engine upgrades will be applied
+  # automatically to the underlying Cache Cluster instances during the
+  # maintenance window. Only supported for engine type 'redis' and if the engine
+  # version is 6 or higher. Defaults to false (disabled).
+  auto_minor_version_upgrade = false
 
   # Whether to enable encryption at rest.
   enable_at_rest_encryption = true
@@ -324,10 +368,21 @@ inputs = {
   # Whether to enable encryption in transit.
   enable_transit_encryption = true
 
+  # Specifies the destination and format of Redis Engine Log. See the
+  # documentation on Amazon ElastiCache. See Log Delivery Configuration below
+  # for more details. You can find more information here
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+  engine_log_delivery_configuration = null
+
   # Specifies the weekly time range for when maintenance on the cache cluster is
   # performed (e.g. sun:05:00-sun:09:00). The format is ddd:hh24:mi-ddd:hh24:mi
   # (24H Clock UTC). The minimum maintenance window is a 60 minute period.
   maintenance_window = "sat:07:00-sat:08:00"
+
+  # Number of node groups (shards) for this Redis replication group. Changing
+  # this number will trigger a resizing operation before other settings
+  # modifications.
+  num_node_groups = null
 
   # Name of the parameter group to associate with this cache cluster. This can
   # be used to configure custom settings for the cluster.
@@ -339,6 +394,17 @@ inputs = {
 
   # Version number of redis to use (e.g. 5.0.6).
   redis_version = "5.0.6"
+
+  #  Number of replica nodes in each node group. Changing this number will
+  # trigger a resizing operation before other settings modifications. Valid
+  # values are 0 to 5.
+  replicas_per_node_group = null
+
+  # Specifies the destination and format of Redis SLOWLOG. See the documentation
+  # on Amazon ElastiCache. See Log Delivery Configuration below for more
+  # details. You can find more information here
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+  slow_log_delivery_configuration = null
 
   # The Amazon Resource Name (ARN) of a Redis RDB snapshot file stored in Amazon
   # S3. You can use this parameter to restore from an externally created
@@ -444,6 +510,36 @@ The ID of the VPC in which to deploy RDS.
 
 ### Optional
 
+<HclListItem name="alarm_low_memory_available_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the amount of free memory, in Bytes, on the node drops below this threshold
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="100000000"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Default is 100MB (100 million bytes)
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="alarm_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="alarms_sns_topic_arns" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -489,23 +585,13 @@ The password used to access a password protected server. Can be specified only i
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="cluster_mode" requirement="optional" type="list(object(…))">
+<HclListItem name="auto_minor_version_upgrade" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Specifies the number of shards and replicas per shard in the cluster. The list should contain a single map with keys 'num_node_groups' and 'replicas_per_node_group' set to desired integer values.
+Specifies whether minor version engine upgrades will be applied automatically to the underlying Cache Cluster instances during the maintenance window. Only supported for engine type 'redis' and if the engine version is 6 or higher. Defaults to false (disabled).
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-list(object({
-    num_node_groups         = number
-    replicas_per_node_group = number
-  }))
-```
-
-</HclListItemTypeDetails>
-<HclListItemDefaultValue defaultValue="[]"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="enable_at_rest_encryption" requirement="optional" type="bool">
@@ -535,6 +621,26 @@ Whether to enable encryption in transit.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="engine_log_delivery_configuration" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Specifies the destination and format of Redis Engine Log. See the documentation on Amazon ElastiCache. See Log Delivery Configuration below for more details. You can find more information here https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    destination      = string
+    destination_type = string
+    log_format       = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="maintenance_window" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -542,6 +648,15 @@ Specifies the weekly time range for when maintenance on the cache cluster is per
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;sat:07:00-sat:08:00&quot;"/>
+</HclListItem>
+
+<HclListItem name="num_node_groups" requirement="optional" type="number">
+<HclListItemDescription>
+
+Number of node groups (shards) for this Redis replication group. Changing this number will trigger a resizing operation before other settings modifications.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="parameter_group_name" requirement="optional" type="string">
@@ -569,6 +684,35 @@ Version number of redis to use (e.g. 5.0.6).
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;5.0.6&quot;"/>
+</HclListItem>
+
+<HclListItem name="replicas_per_node_group" requirement="optional" type="number">
+<HclListItemDescription>
+
+ Number of replica nodes in each node group. Changing this number will trigger a resizing operation before other settings modifications. Valid values are 0 to 5.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="slow_log_delivery_configuration" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Specifies the destination and format of Redis SLOWLOG. See the documentation on Amazon ElastiCache. See Log Delivery Configuration below for more details. You can find more information here https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_replication_group#log-delivery-configuration.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    destination      = string
+    destination_type = string
+    log_format       = string
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="snapshot_arn" requirement="optional" type="string">
@@ -676,17 +820,25 @@ When cluster mode is disabled, use this endpoint for all read operations.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="security_group_id">
+<HclListItemDescription>
+
+Security Group ID used for redis cluster.
+
+</HclListItemDescription>
+</HclListItem>
+
 </TabItem>
 </Tabs>
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/data-stores/redis/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/data-stores/redis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/data-stores/redis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/data-stores/redis/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/data-stores/redis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/data-stores/redis/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "eb62dc8dc5ba837fc7a04cd2be4aa167"
+  "hash": "e3d2354926e956be401010347e791edf"
 }
 ##DOCS-SOURCER-END -->

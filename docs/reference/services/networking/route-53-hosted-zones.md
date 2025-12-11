@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.127.5" lastModifiedVersion="0.116.0"/>
+<VersionBadge version="0.143.3" lastModifiedVersion="0.142.0"/>
 
 # Route 53 Hosted Zones
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/networking/route53" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/networking/route53" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Froute53" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -38,6 +38,62 @@ This service contains code to deploy [Route 53 Hosted Zones](https://aws.amazon.
 *   Automatic health checks to route traffic only to healthy endpoints
 *   Automatic integration with other AWS services, such as ELBs
 
+### Private hosted zone record management
+
+This module now supports creating records (including A/AAAA and alias) inside Private Hosted Zones, mirroring the
+existing capabilities for Public Hosted Zones. You can define both apex-level records and subdomain records in the
+`private_zones` input by specifying `apex_records` and `subdomains`.
+
+Example:
+
+```hcl
+module "route53" {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=<VERSION>"
+
+  private_zones = {
+    "corp.internal" = {
+      comment       = "Private zone with records"
+      vpcs          = [{ id = "vpc-0123456789abcdef0", region = null }]
+      tags          = { Env = "dev" }
+      force_destroy = true
+
+      # Apex record (e.g., corp.internal)
+      apex_records = [
+        {
+          type    = "A"
+          ttl     = 60
+          records = ["10.0.0.5"]
+        }
+      ]
+
+      # Subdomain records (e.g., app.corp.internal)
+      subdomains = {
+        app = {
+          type    = "A"
+          ttl     = 300
+          records = ["10.0.1.10"]
+        }
+
+        # Alias to an internal ALB/NLB
+        svc = {
+          type = "A"
+          alias = {
+            name                   = aws_lb.internal.dns_name
+            zone_id                = aws_lb.internal.zone_id
+            evaluate_target_health = true
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Notes:
+
+*   Alias targets must be resolvable within the associated VPC(s) (e.g., internal ALB/NLB).
+*   Query private records from within the VPC(s) that are associated to the Private Hosted Zone.
+
 ## Learn
 
 :::note
@@ -49,7 +105,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 :::
 
-*   [Should you use AWS Route 53 or CloudMap for your DNS entries?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/networking/route53/core-concepts.md#should-i-use-route53-or-cloud-map)
+*   [Should you use AWS Route 53 or CloudMap for your DNS entries?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/networking/route53/core-concepts.md#should-i-use-route53-or-cloud-map)
 *   [AWS Cloud Map Documentation](https://docs.aws.amazon.com/cloud-map/latest/dg/what-is-cloud-map.html): Amazon’s docs
     for AWS Cloud Map that cover core concepts and configuration.
 *   [Route 53 Documentation](https://docs.aws.amazon.com/route53/): Amazon’s docs for Route 53 that cover core concepts
@@ -61,7 +117,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -69,7 +125,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -88,14 +144,15 @@ If you want to deploy this repo in production, check out the following resources
 
 module "route_53" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=v0.127.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=v0.143.3"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
   # A map of private Route 53 Hosted Zones. In this map, the key should be the
-  # domain name. See examples below.
+  # domain name. Supports optional record management similar to public zones.
+  # See examples below.
   private_zones = {}
 
   # A map of public Route 53 Hosted Zones. In this map, the key should be the
@@ -126,7 +183,7 @@ module "route_53" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=v0.127.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/route53?ref=v0.143.3"
 }
 
 inputs = {
@@ -136,7 +193,8 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
 
   # A map of private Route 53 Hosted Zones. In this map, the key should be the
-  # domain name. See examples below.
+  # domain name. Supports optional record management similar to public zones.
+  # See examples below.
   private_zones = {}
 
   # A map of public Route 53 Hosted Zones. In this map, the key should be the
@@ -170,64 +228,79 @@ inputs = {
 
 ### Optional
 
-<HclListItem name="private_zones" requirement="optional" type="map(object(…))">
+<HclListItem name="private_zones" requirement="optional" type="any">
 <HclListItemDescription>
 
-A map of private Route 53 Hosted Zones. In this map, the key should be the domain name. See examples below.
+A map of private Route 53 Hosted Zones. In this map, the key should be the domain name. Supports optional record management similar to public zones. See examples below.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
-map(object({
-    # An optional, arbitrary comment to attach to the private Hosted Zone
-    comment = string
-    # The list of VPCs to associate with the private Hosted Zone. You must provide at least one VPC in this list.
-    vpcs = list(object({
-      # The ID of the VPC.
-      id = string
-      # The region of the VPC. If null, defaults to the region configured on the provider.
-      region = string
-    }))
-    # A mapping of tags to assign to the private Hosted Zone
-    tags = map(string)
-    # Whether to destroy all records (possibly managed ouside of Terraform) in the zone when destroying the zone
-    force_destroy = bool
-  }))
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
 ```
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
+<HclGeneralListItem title="More Details">
 <details>
-  <summary>Example</summary>
 
 
 ```hcl
+
+   Allow empty maps to be passed by default - since we sometimes define only public zones or only private zones in a given module call
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Example (basic private zone only):
+  
    private_zones = {
-       "backend.com" = {
-           comment = "Use for arbitrary comments"
-           vpcs = [{
-             id = "19233983937"
-             region = null
-           }]
-           tags = {
-               CanDelete = true
+     "backend.local" = {
+       comment       = "Use for arbitrary comments"
+       vpcs          = [{ id = "vpc-1234567890", region = null }]
+       tags          = { CanDelete = true }
+       force_destroy = true
+     }
+   }
+  
+   Example (with private A records):
+  
+   private_zones = {
+     "corp.internal" = {
+       comment       = "Private zone with records"
+       vpcs          = [{ id = "vpc-1234567890", region = null }]
+       tags          = { Env = "dev" }
+       force_destroy = true
+       subdomains = {
+         api = {
+           type    = "A"
+           ttl     = 300
+           records = ["10.0.1.10"]
+         }
+          Alternatively, alias to an internal NLB/ALB etc
+         app = {
+           type = "A"
+           alias = {
+             name                   = aws_lb.internal.dns_name
+             zone_id                = aws_lb.internal.zone_id
+             evaluate_target_health = true
            }
-           force_destroy = true
+         }
        }
-       "database.com" = {
-           comment = "This is prod - don't delete!"
-           vpcs = [{
-             id = "129734967447"
-             region = null
-           }]
-           tags = {
-               Application = "redis"
-               Team = "apps"
-           }
-           force_destroy = false
-       }
+       apex_records = [
+         {
+           type    = "A"
+           ttl     = 60
+           records = ["10.0.0.5"]
+         }
+       ]
+     }
    }
 
 ```
@@ -309,6 +382,15 @@ Any types represent complex values of variable type. For details, please consult
                type    = "SPF"
                ttl     = 3600
                records = ["hello-world"]
+             }
+             txt-test-docs = {
+               fqdn  = "docs.example.com"
+               type  = "A"
+               alias = {
+                 name                   = aws_elb.main.dns_name
+                 zone_id                = aws_elb.main.zone_id
+                 evaluate_target_health = true
+               }
              }
            }
        }
@@ -539,11 +621,11 @@ A map of domains to resource arns and hosted zones of the created Service Discov
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/networking/route53/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/networking/route53/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.127.5/modules/networking/route53/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/networking/route53/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/networking/route53/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/networking/route53/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7f3d7e7f116e249980f3297081677a1f"
+  "hash": "c717bd5f71069fe9d0fb3ebb1939a16c"
 }
 ##DOCS-SOURCER-END -->
