@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.142.0" lastModifiedVersion="0.141.0"/>
+<VersionBadge version="0.143.3" lastModifiedVersion="0.143.1"/>
 
 # Amazon EKS
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -116,7 +116,7 @@ To add and manage additional worker groups, refer to the [eks-workers module](/r
 
 module "eks_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.142.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.143.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -387,6 +387,9 @@ module "eks_cluster" {
   # CIDR block when you create a cluster, changing this value will force a new
   # cluster to be created.
   cluster_network_config_service_ipv4_cidr = null
+
+  # Specify the log class of the cloudwatch log group
+  control_plane_cloudwatch_log_group_class = "STANDARD"
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data in the CloudWatch log group for EKS control plane logs.
@@ -975,7 +978,7 @@ module "eks_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.142.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.143.3"
 }
 
 inputs = {
@@ -1249,6 +1252,9 @@ inputs = {
   # CIDR block when you create a cluster, changing this value will force a new
   # cluster to be created.
   cluster_network_config_service_ipv4_cidr = null
+
+  # Specify the log class of the cloudwatch log group
+  control_plane_cloudwatch_log_group_class = "STANDARD"
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data in the CloudWatch log group for EKS control plane logs.
@@ -2630,6 +2636,15 @@ The CIDR block to assign Kubernetes pod and service IP addresses from. If you do
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="control_plane_cloudwatch_log_group_class" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specify the log class of the cloudwatch log group
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;STANDARD&quot;"/>
 </HclListItem>
 
 <HclListItem name="control_plane_cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
@@ -4381,11 +4396,11 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/eks-cluster/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/eks-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/eks-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/services/eks-cluster/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/services/eks-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.143.3/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f5222d108727fb9c0b18e5a4f03dbd78"
+  "hash": "eab893a6ad5f216ba9002fa1227d075c"
 }
 ##DOCS-SOURCER-END -->
