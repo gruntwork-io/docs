@@ -293,6 +293,11 @@ module "eks_cluster_managed_workers" {
   # Default value for min_size field of node_group_configurations.
   node_group_default_min_size = 1
 
+  # Default value for node_repair_config field of node_group_configurations. Any
+  # map entry that does not specify node_repair_config will use this value. Node
+  # auto repair is disabled by default.
+  node_group_default_node_repair_config = null
+
   # Default value for subnet_ids field of node_group_configurations.
   node_group_default_subnet_ids = null
 
@@ -312,6 +317,8 @@ module "eks_cluster_managed_workers" {
   # limitations with for_each.
   node_group_names = null
 
+  # DEPRECATED: Use node_group_default_node_repair_config or specify
+  # node_repair_config in individual node group configurations instead.
   # Configuration block for node auto repair in EKS node groups. If null, auto
   # repair will not be configured.
   node_repair_config = null
@@ -472,6 +479,11 @@ inputs = {
   # Default value for min_size field of node_group_configurations.
   node_group_default_min_size = 1
 
+  # Default value for node_repair_config field of node_group_configurations. Any
+  # map entry that does not specify node_repair_config will use this value. Node
+  # auto repair is disabled by default.
+  node_group_default_node_repair_config = null
+
   # Default value for subnet_ids field of node_group_configurations.
   node_group_default_subnet_ids = null
 
@@ -491,6 +503,8 @@ inputs = {
   # limitations with for_each.
   node_group_names = null
 
+  # DEPRECATED: Use node_group_default_node_repair_config or specify
+  # node_repair_config in individual node group configurations instead.
   # Configuration block for node auto repair in EKS node groups. If null, auto
   # repair will not be configured.
   node_repair_config = null
@@ -606,6 +620,9 @@ Any types represent complex values of variable type. For details, please consult
    - taints              list(map(string))  : (Defaults to value from var.node_group_default_taints) Custom Kubernetes
                                               taint to apply to the EC2 Instances in this node group. See below for
                                               structure of taints.
+   - node_repair_config  object             : (Defaults to value from var.node_group_default_node_repair_config) The node
+                                              auto repair configuration for the node group. Node auto repair is disabled
+                                              by default. See below for structure of node_repair_config.
   
    Structure of LaunchTemplate object:
    - name     string  : The Name of the Launch Template to use. One of ID or Name should be provided.
@@ -616,6 +633,9 @@ Any types represent complex values of variable type. For details, please consult
    - key     string  : The key of the taint. Maximum length of 63.
    - value   string  : The value of the taint. Maximum length of 63.
    - effect  string  : The effect of the taint. Valid values: NO_SCHEDULE, NO_EXECUTE, PREFER_NO_SCHEDULE.
+  
+   Structure of node_repair_config object:
+   - enabled  bool : Specifies whether to enable node auto repair for the node group. Node auto repair is disabled by default.
   
    Example:
    node_group_configurations = {
@@ -631,6 +651,9 @@ Any types represent complex values of variable type. For details, please consult
        max_size       = 3
        subnet_ids     = [data.terraform_remote_state.vpc.outputs.private_app_subnet_ids[0]]
        disk_size      = 50
+       node_repair_config = {
+         enabled = true
+       }
      }
      ngroup2 = {}   Only defaults
    }
@@ -899,6 +922,24 @@ Default value for min_size field of node_group_configurations.
 <HclListItemDefaultValue defaultValue="1"/>
 </HclListItem>
 
+<HclListItem name="node_group_default_node_repair_config" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Default value for node_repair_config field of node_group_configurations. Any map entry that does not specify node_repair_config will use this value. Node auto repair is disabled by default.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    enabled = bool
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="node_group_default_subnet_ids" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -945,7 +986,7 @@ The names of the node groups. When null, this value is automatically calculated 
 <HclListItem name="node_repair_config" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Configuration block for node auto repair in EKS node groups. If null, auto repair will not be configured.
+DEPRECATED: Use node_group_default_node_repair_config or specify node_repair_config in individual node group configurations instead. Configuration block for node auto repair in EKS node groups. If null, auto repair will not be configured.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1014,6 +1055,6 @@ Map of Node Group names to ARNs of the created EKS Node Groups
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bc463481772a20bb051d4b951d246593"
+  "hash": "7e14c93a4ccc6a90d956b9a36978ea0f"
 }
 ##DOCS-SOURCER-END -->
