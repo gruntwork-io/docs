@@ -9,20 +9,20 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="1.1.2" lastModifiedVersion="1.1.2"/>
+<VersionBadge repoTitle="Static Assets Modules" version="1.1.3" lastModifiedVersion="1.1.3"/>
 
 # CloudFront Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.2/modules/cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.3/modules/cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v1.1.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v1.1.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module deploys an [AWS CloudFront](https://aws.amazon.com/cloudfront/) distribution to serve content from S3 or custom origins. CloudFront is a Content Delivery Network (CDN) that caches your content at edge locations around the world to reduce latency and improve performance for your users.
 
 ## Quick Start
 
-*   See the [cloudfront-custom-origin](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.2/examples/cloudfront) example for working sample code.
-*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.2/modules/cloudfront/vars.tf) for all parameters you can set for this module.
+*   See the [cloudfront-custom-origin](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.3/examples/cloudfront) example for working sample code.
+*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.3/modules/cloudfront/vars.tf) for all parameters you can set for this module.
 
 ## Sample Usage
 
@@ -37,7 +37,7 @@ This module deploys an [AWS CloudFront](https://aws.amazon.com/cloudfront/) dist
 
 module "cloudfront" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v1.1.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v1.1.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -325,7 +325,7 @@ module "cloudfront" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v1.1.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v1.1.3"
 }
 
 inputs = {
@@ -2856,11 +2856,11 @@ Unique identifier that specifies the AWS WAF web ACL, if any, to associate with 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.2/modules/cloudfront/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.2/modules/cloudfront/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.2/modules/cloudfront/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.3/modules/cloudfront/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.3/modules/cloudfront/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.3/modules/cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c6f0d20234ad282e03778379ea3308f5"
+  "hash": "08d3ee3bd08a4e3fcc8eaf5e7820e9aa"
 }
 ##DOCS-SOURCER-END -->
