@@ -503,6 +503,21 @@ html[data-theme="dark"] .link-button:hover {
   margin-left: 0.25rem;
 }
 
+/* SEARCH */
+
+/* override text color in highlighted search result */
+html[data-theme="dark"] {
+  .DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-Tree,
+  .DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-action,
+  .DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-icon,
+  .DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-path,
+  .DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-text,
+  .DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-title,
+  .DocSearch-Hit[aria-selected="true"] mark {
+    color: #0d0622 !important;
+  }
+}
+
 /* FOOTER */
 
 /* --ifm-footer-background-color doesn't appear to work */
