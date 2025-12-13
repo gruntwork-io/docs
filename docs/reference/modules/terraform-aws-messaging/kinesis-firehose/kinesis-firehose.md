@@ -46,9 +46,6 @@ module "kinesis_firehose" {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The ARN of the kinesis data stream.
-  kinesis_stream_arn = <string>
-
   # The name of the Kinesis Data Firehose.
   name = <string>
 
@@ -61,6 +58,10 @@ module "kinesis_firehose" {
 
   # The processing configuration for the Kinesis Data Firehose.
   extended_s3_processors = []
+
+  # The ARN of the kinesis data stream. If not specified, the Firehose will use
+  # Direct PUT as the source.
+  kinesis_stream_arn = null
 
 }
 
@@ -86,9 +87,6 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The ARN of the kinesis data stream.
-  kinesis_stream_arn = <string>
-
   # The name of the Kinesis Data Firehose.
   name = <string>
 
@@ -101,6 +99,10 @@ inputs = {
 
   # The processing configuration for the Kinesis Data Firehose.
   extended_s3_processors = []
+
+  # The ARN of the kinesis data stream. If not specified, the Firehose will use
+  # Direct PUT as the source.
+  kinesis_stream_arn = null
 
 }
 
@@ -119,14 +121,6 @@ inputs = {
 <TabItem value="inputs" label="Inputs" default>
 
 ### Required
-
-<HclListItem name="kinesis_stream_arn" requirement="required" type="string">
-<HclListItemDescription>
-
-The ARN of the kinesis data stream.
-
-</HclListItemDescription>
-</HclListItem>
 
 <HclListItem name="name" requirement="required" type="string">
 <HclListItemDescription>
@@ -166,6 +160,15 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="kinesis_stream_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the kinesis data stream. If not specified, the Firehose will use Direct PUT as the source.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
@@ -214,6 +217,6 @@ Name of the role for Kinesis Firehose
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/kinesis-firehose/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8db9113fa20e099ec86d9419e57763ea"
+  "hash": "d91af4c0df84e5307744c056e6470567"
 }
 ##DOCS-SOURCER-END -->
