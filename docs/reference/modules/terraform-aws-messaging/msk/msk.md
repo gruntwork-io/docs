@@ -246,7 +246,7 @@ the [Tiered storage](https://docs.aws.amazon.com/msk/latest/developerguide/msk-t
 You can enable the tiered storage by setting the following variables:
 
 *   `var.storage_info = "TIERED"`
-*   `var.kafka_version = "2.8.2.tiered"` (Note: this is the only supported kafka version for tiered storage)
+*   `var.kafka_version`: set to version 3.6.0 or higher (e.g., "3.6.0", "3.7.x", "3.8.x", etc.)
 *   `var.instance_type`: set to other than `kafka.t3.small`.
 
 It's only supported for the provisioned cluster type (non-serverless mode).
@@ -1185,6 +1185,6 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/msk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "59f6d6055769f56876cab99505541f86"
+  "hash": "fffebb440a23b32113bdd54854a1da80"
 }
 ##DOCS-SOURCER-END -->

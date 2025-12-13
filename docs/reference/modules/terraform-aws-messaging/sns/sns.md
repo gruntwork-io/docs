@@ -295,19 +295,12 @@ Enable or disable creation of the resources of this module.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="delivery_policy" requirement="optional" type="any">
+<HclListItem name="delivery_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
 Delivery policy for sns topic.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -400,6 +393,6 @@ A map of key value pairs to apply as tags to the SNS topic.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1832cdd513fbf69e7c6c539310f7d560"
+  "hash": "ad445a24d6198a036d92f5decc2851b3"
 }
 ##DOCS-SOURCER-END -->
