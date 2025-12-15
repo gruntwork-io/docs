@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.142.0" lastModifiedVersion="0.112.5"/>
+<VersionBadge version="0.145.0" lastModifiedVersion="0.144.0"/>
 
 # Amazon ElastiCache for Redis
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/redis" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.145.0/modules/data-stores/redis" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fredis" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -67,7 +67,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.145.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -75,7 +75,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.145.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -94,7 +94,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "redis" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/redis?ref=v0.142.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/redis?ref=v0.145.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -135,6 +135,12 @@ module "redis" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  alarm_high_cpu_utilization_treat_missing_data = "missing"
+
   # Trigger an alarm if the amount of free memory, in Bytes, on the node drops
   # below this threshold
   alarm_low_memory_available_threshold = 100000000
@@ -143,7 +149,7 @@ module "redis" {
   # Based on
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  alarm_treat_missing_data = "missing"
+  alarm_low_memory_available_treat_missing_data = "missing"
 
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
@@ -270,7 +276,7 @@ module "redis" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/redis?ref=v0.142.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/redis?ref=v0.145.0"
 }
 
 inputs = {
@@ -314,6 +320,12 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  alarm_high_cpu_utilization_treat_missing_data = "missing"
+
   # Trigger an alarm if the amount of free memory, in Bytes, on the node drops
   # below this threshold
   alarm_low_memory_available_threshold = 100000000
@@ -322,7 +334,7 @@ inputs = {
   # Based on
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  alarm_treat_missing_data = "missing"
+  alarm_low_memory_available_treat_missing_data = "missing"
 
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
@@ -510,6 +522,15 @@ The ID of the VPC in which to deploy RDS.
 
 ### Optional
 
+<HclListItem name="alarm_high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
 <HclListItem name="alarm_low_memory_available_threshold" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -531,7 +552,7 @@ Trigger an alarm if the amount of free memory, in Bytes, on the node drops below
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="alarm_treat_missing_data" requirement="optional" type="string">
+<HclListItem name="alarm_low_memory_available_treat_missing_data" requirement="optional" type="string">
 <HclListItemDescription>
 
 Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
@@ -834,11 +855,11 @@ Security Group ID used for redis cluster.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/redis/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/redis/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/redis/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.145.0/modules/data-stores/redis/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.145.0/modules/data-stores/redis/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.145.0/modules/data-stores/redis/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2da106eb23e30591b11de5ce01c1ae43"
+  "hash": "94854f266e5b8587d45fcac689fe199d"
 }
 ##DOCS-SOURCER-END -->
