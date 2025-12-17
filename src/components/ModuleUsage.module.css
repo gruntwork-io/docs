@@ -1,6 +1,0 @@
-.fixedHeight {
-  margin: 1.5rem 0;
-  max-height: 600px;
-  min-height: 300px;
-  overflow: scroll;
-}
