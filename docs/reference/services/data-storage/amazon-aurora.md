@@ -274,6 +274,11 @@ module "aurora" {
   # value in db_config_secrets_manager_id.
   db_name = null
 
+  # If true, delete all automated backups when the DB cluster is deleted. If
+  # false, automated backups are retained until the retention period expires.
+  # Defaults to true.
+  delete_automated_backups = null
+
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
@@ -286,6 +291,10 @@ module "aurora" {
   # Enable deletion protection on the database instance. If this is enabled, the
   # database cannot be deleted.
   enable_deletion_protection = false
+
+  # If true, enables the HTTP endpoint used for Data API. Only valid when
+  # engine_mode is set to serverless.
+  enable_http_endpoint = null
 
   # Set to true to enable alarms related to performance, such as read and write
   # latency alarms. Set to false to disable those alarms if you aren't sure what
@@ -476,6 +485,11 @@ module "aurora" {
   # snapshot_identifier is null. For more information see
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT.html
   restore_source_cluster_identifier = null
+
+  # Only used if 'restore_source_cluster_identifier' is non-empty. Date and time
+  # in UTC format to restore the database cluster to (e.g,
+  # 2009-09-07T23:45:00Z). When null, the latest restorable time will be used.
+  restore_to_time = null
 
   # Only used if 'restore_source_cluster_identifier' is non-empty. Type of
   # restore to be performed. Valid options are 'full-copy' and 'copy-on-write'.
@@ -744,6 +758,11 @@ inputs = {
   # value in db_config_secrets_manager_id.
   db_name = null
 
+  # If true, delete all automated backups when the DB cluster is deleted. If
+  # false, automated backups are retained until the retention period expires.
+  # Defaults to true.
+  delete_automated_backups = null
+
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
@@ -756,6 +775,10 @@ inputs = {
   # Enable deletion protection on the database instance. If this is enabled, the
   # database cannot be deleted.
   enable_deletion_protection = false
+
+  # If true, enables the HTTP endpoint used for Data API. Only valid when
+  # engine_mode is set to serverless.
+  enable_http_endpoint = null
 
   # Set to true to enable alarms related to performance, such as read and write
   # latency alarms. Set to false to disable those alarms if you aren't sure what
@@ -946,6 +969,11 @@ inputs = {
   # snapshot_identifier is null. For more information see
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT.html
   restore_source_cluster_identifier = null
+
+  # Only used if 'restore_source_cluster_identifier' is non-empty. Date and time
+  # in UTC format to restore the database cluster to (e.g,
+  # 2009-09-07T23:45:00Z). When null, the latest restorable time will be used.
+  restore_to_time = null
 
   # Only used if 'restore_source_cluster_identifier' is non-empty. Type of
   # restore to be performed. Valid options are 'full-copy' and 'copy-on-write'.
@@ -1698,6 +1726,15 @@ The name for your database of up to 8 alpha-numeric characters. If you do not pr
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="delete_automated_backups" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, delete all automated backups when the DB cluster is deleted. If false, automated backups are retained until the retention period expires. Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1723,6 +1760,15 @@ Enable deletion protection on the database instance. If this is enabled, the dat
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_http_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, enables the HTTP endpoint used for Data API. Only valid when engine_mode is set to serverless.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="enable_perf_alarms" requirement="optional" type="bool">
@@ -2131,6 +2177,15 @@ If non-empty, the Aurora cluster will be restored from the given source cluster 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="restore_to_time" requirement="optional" type="string">
+<HclListItemDescription>
+
+Only used if 'restore_source_cluster_identifier' is non-empty. Date and time in UTC format to restore the database cluster to (e.g, 2009-09-07T23:45:00Z). When null, the latest restorable time will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="restore_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2443,6 +2498,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.145.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6d09ae25efe25b927da5e4a2b4610c89"
+  "hash": "d23dcac7e24f2ad11443ef271b9c1f84"
 }
 ##DOCS-SOURCER-END -->

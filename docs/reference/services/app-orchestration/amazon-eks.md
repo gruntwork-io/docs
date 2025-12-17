@@ -388,6 +388,9 @@ module "eks_cluster" {
   # cluster to be created.
   cluster_network_config_service_ipv4_cidr = null
 
+  # Specify the log class of the cloudwatch log group
+  control_plane_cloudwatch_log_group_class = "STANDARD"
+
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data in the CloudWatch log group for EKS control plane logs.
   control_plane_cloudwatch_log_group_kms_key_id = null
@@ -1249,6 +1252,9 @@ inputs = {
   # CIDR block when you create a cluster, changing this value will force a new
   # cluster to be created.
   cluster_network_config_service_ipv4_cidr = null
+
+  # Specify the log class of the cloudwatch log group
+  control_plane_cloudwatch_log_group_class = "STANDARD"
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data in the CloudWatch log group for EKS control plane logs.
@@ -2630,6 +2636,15 @@ The CIDR block to assign Kubernetes pod and service IP addresses from. If you do
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="control_plane_cloudwatch_log_group_class" requirement="optional" type="string">
+<HclListItemDescription>
+
+Specify the log class of the cloudwatch log group
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;STANDARD&quot;"/>
 </HclListItem>
 
 <HclListItem name="control_plane_cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
@@ -4386,6 +4401,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.145.0/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b26040fa441a2eb2350044db3b712b1b"
+  "hash": "b44a8ccfc06374e1d3ada375a1171de8"
 }
 ##DOCS-SOURCER-END -->

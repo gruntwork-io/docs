@@ -409,8 +409,11 @@ module "ec_2_instance" {
   # If set to true, the root volume will be encrypted. Default is set to false
   root_volume_encrypted = false
 
-  # Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting
-  # the volume
+  # The ID of the KMS key to use for encrypting the root volume. Only used if
+  # root_volume_encrypted is true. If null, the default EBS encryption key for
+  # the account will be used. See
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#kms_key_id
+  # for more information.
   root_volume_kms_key_id = null
 
   # The size of the root volume, in gigabytes.
@@ -768,8 +771,11 @@ inputs = {
   # If set to true, the root volume will be encrypted. Default is set to false
   root_volume_encrypted = false
 
-  # Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting
-  # the volume
+  # The ID of the KMS key to use for encrypting the root volume. Only used if
+  # root_volume_encrypted is true. If null, the default EBS encryption key for
+  # the account will be used. See
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#kms_key_id
+  # for more information.
   root_volume_kms_key_id = null
 
   # The size of the root volume, in gigabytes.
@@ -1457,7 +1463,7 @@ If set to true, the root volume will be encrypted. Default is set to false
 <HclListItem name="root_volume_kms_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting the volume
+The ID of the KMS key to use for encrypting the root volume. Only used if root_volume_encrypted is true. If null, the default EBS encryption key for the account will be used. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#kms_key_id for more information.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1638,6 +1644,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.145.0/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "63deaa11c756b95526940712dfbbea78"
+  "hash": "478a0aeeaa1e0362264b9faa6f646aa4"
 }
 ##DOCS-SOURCER-END -->
