@@ -83,11 +83,28 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'tgScaleSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Terragrunt Scale',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          type: 'docSidebar',
+          sidebarId: 'awsAcceleratorSidebar',
+          position: 'left',
+          label: 'AWS Accelerator',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'waySidebar',
+          position: 'left',
+          label: 'Way',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'openSourceSidebar',
+          position: 'left',
+          label: 'Open Source',
+        },
         {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
