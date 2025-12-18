@@ -35,6 +35,11 @@ const config: Config = {
     locales: ['en'],
   },
 
+  plugins: [
+    // Install Tailwind v4
+    "./src/plugins/tailwind-config.js"
+  ],
+
   presets: [
     [
       'classic',
