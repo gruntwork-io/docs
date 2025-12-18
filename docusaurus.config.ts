@@ -106,8 +106,20 @@ const config: Config = {
           label: 'Open Source',
         },
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
+          type: 'doc',
+          docId: 'support/index',
+          label: 'Support',
+          position: 'right',
+        },
+        {
+          href: 'https://library.gruntwork.io',
+          label: 'Library Search',
+          position: 'right',
+        },
+        
+        {
+          href: 'https://app.gruntwork.io',
+          label: 'Sign in',
           position: 'right',
         },
       ],
