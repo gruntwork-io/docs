@@ -1,0 +1,50 @@
+.container {
+  margin-bottom: 26px;
+}
+
+.body {
+  padding-top: 14px;
+  padding-left: 46px;
+}
+
+.description > p {
+  margin-bottom: 0px;
+}
+
+.detail {
+  margin-top: 10px;
+}
+
+.meta {
+  font-size: 14px;
+  margin-left: 14px;
+  font-weight: 600;
+  color: #666666;
+}
+
+.label {
+  display: block;
+}
+
+.inlineLabel {
+  margin-right: 9px;
+}
+
+.inlineLabel,
+.label {
+  font-weight: 600;
+  padding-bottom: 12px;
+}
+
+pre {
+  border: 1px solid #cbd5e0;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.code {
+  /* display: inline; */
+  font-weight: 400 !important ;
+  font-size: 14px !important;
+  margin-bottom: 0px;
+}

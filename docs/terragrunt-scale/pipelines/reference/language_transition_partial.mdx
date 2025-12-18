@@ -1,0 +1,9 @@
+## Configuration Language Transition
+
+Pipelines configurations are currently undergoing a transition from YAML configurations to new HCL [Configurations as Code](/docs/terragrunt-scale/pipelines/reference/configurations-as-code/index.md). These new configurations will offer a richer configuration experience, but are not yet required for use. [YAML configurations](/docs/terragrunt-scale/pipelines/reference/configurations.md) will continue to work as expected for the time being.
+
+YAML configurations are read by Pipelines when HCL configurations are not present, and the Pipelines binary falls back to interpreting YAML configurations as if they were defined in the HCL configuration system in this scenario.
+
+This means that if you have a `.gruntwork/config.yml` file in your repository, you can continue to use it as you have been, and Pipelines will continue to work as expected.
+
+If you do introduce any HCL configurations into your `.gruntwork` directory or introduce a `gruntwork.hcl` file into a directory, Pipelines will begin to use the HCL configuration system instead of the YAML configuration system.

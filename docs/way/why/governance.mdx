@@ -1,0 +1,126 @@
+---
+sidebar_position: 3
+---
+
+# Governance
+
+## What it is
+
+**Governance is the set of steps you take to protect your customers and your company.** It's the safety net that allows you to move fast while maintaining control over your infrastructure estate.
+
+While compliance frameworks like SOC 2 focus broadly on governance, your developer platform should be focused on how to _automate_ governance using policies and guardrails. Ultimately, the goal is to make non-compliance hard to do rather than easy to do.
+
+## What it covers
+
+Governance applies across several key business requirements. Whenever you deploy any form of new infrastructure or application, most companies have to ask themselves a few key questions:
+
+- **Cost effectiveness** - Can you afford the infrastructure you're deploying?
+- **Compliance** - Does it satisfy your legal and regulatory obligations?
+- **Security** - Will it protect your customers and data?
+- **Standards adherence** - Does it follow your organization's patterns and policies?
+
+## How to improve it
+
+Achieving effective governance comes from putting in place the right core tools and automations. We believe the following are the most important:
+
+### Use IaC pipelines
+
+When 100% of infrastructure changes all deploy through the same centralized pipeline, you have a mechanism to enforce the same workflows and governance processes.
+
+_Related: [Pipelines component](/docs/way/platform/components/deploy/pipelines)_
+
+### Automate policy enforcement
+
+When your governance policies are captured as code, your infrastructure pipelines can automatically enforce them. This prevents human error and ensures consistency.
+
+_Related: [Guardrails over gates principle](/docs/way/principles/governance-maintainability/guardrails-over-gates), [Pipelines component](/docs/way/platform/components/deploy/pipelines)_
+
+### Use pre-built patterns
+
+Developers don't just need "infrastructure," they need a specific set of [infrastructure patterns](/docs/way/platform/patterns/overview) such as deploying a K8s service, launching a database, or connecting to an LLM in an authorized way. When you provide developers with pre-built implementations of these patterns that already meet your governance requirements, compliance becomes the easy default choice rather than an afterthought.
+
+_Related: [Offer golden paths principle](/docs/way/principles/governance-maintainability/offer-golden-paths), [Patterns concept](/docs/way/platform/patterns/overview), [Catalog component](/docs/way/platform/components/deploy/catalog)_
+
+### Offer developer self-service
+
+Most teams think of offering developers a self-service way to do infrastructure primarily as an investment in [velocity](/docs/way/why/velocity) and this is true! But when you lower the "pain" of deploying new infrastructure the right way, developers are far more likely to adopt your pre-approved patterns, so developer self-service is actually a key enabler of effective pre-built patterns, which are themselves an enabler of governance.
+
+_Related: [Enable developer self-service principle](/docs/way/principles/developer-experience/enable-developer-self-service), [Runbooks component](/docs/way/platform/components/deploy/runbooks)_
+
+### Enable unit-level oversight
+
+The best way to monitor infrastructure is to be able to view its status at its lowest level, the [unit](/docs/way/resources/glossary#unit), and then by [stack](/docs/way/resources/glossary#stack), repo, and ultimately the infrastructure as a whole. With this filtering mechanism, you can view how either an individual unit or the entire infrastructure is faring against your governance standards.
+
+For example, you want to see not just how overall infrastructure trend is spending, but which units have increased in cost the most, or which stacks are suffering the most compliance issues.
+
+_Related: [Operate Infrastructure components](/docs/way/platform/components/overview#operate-infrastructure)_
+
+### Leverage specialized tooling
+
+Some elements of governance are sufficiently complex to warrant having a dedicated solution to monitor and remediate them. For example, most companies benefit from a security platform like [Snyk](https://snyk.io/) or [Wiz](https://www.wiz.io/), or from dedicated financial oversight tools like [Finout](https://www.finout.io/) or [Infracost](https://www.infracost.io/).
+
+More generally, dedicated tools are especially useful for:
+
+- Security
+- Cost management
+- Observability
+- Compliance
+
+And each of these categories has numerous vendors available.
+
+## How to measure it
+
+As we've seen, governance breaks down into a discrete set of needs such as security, cost management, etc. For each governance need, it's important to understand both:
+
+1. The overall state of the need (state metric)
+2. How effective you are at fixing issues that arise for the need (flow metric)
+
+This highlights an important point: good governance is not just about having a positive moment-in-time posture, but also about how quickly you can respond to issues in a complex, fast-moving world of many demands.
+
+At the same time, governance has a very large surface area and you can easily overwhelm yourself with metrics. So it's important to focus on the critical few metrics that drive the most insight.
+
+Let's look at those now, though your own mileage may vary.
+
+### Need: Compliance
+
+**State Metric: Infrastructure compliance rate**
+
+Your infrastructure compliance rate measures what percentage of your existing infrastructure units currently meet your policy requirements.
+
+**Flow Metric: Mean time to remediation (MTTR)**
+
+Your mean time to remediation (MTTR) measures how long a non-compliance issue takes to be resolved.
+
+### Need: Security
+
+**State Metric: Critical vulnerability coverage**
+
+Your critical vulnerability coverage measures what percentage of critical and high-severity security findings have been remediated across your infrastructure estate. This gives you a snapshot of your current security posture and exposure to known threats.
+
+**Flow Metric: Mean time to patch (MTTP)**
+
+Your mean time to patch (MTTP) measures how long it takes from when a security vulnerability is identified to when it's patched across all affected infrastructure. This metric reveals how responsive your security remediation processes are and whether you can meet SLAs for critical vulnerabilities (e.g., patching critical CVEs within 7 days).
+
+### Need: Cost Management
+
+**State Metric: Infrastructure cost efficiency ratio**
+
+Your infrastructure cost efficiency ratio measures your actual infrastructure spend against your budgeted or forecasted costs. For example, if you budgeted $100K/month but spent $120K, your efficiency ratio is 83%. This metric helps identify cost overruns and enables tracking trends over time.
+
+**Flow Metric: Cost anomaly response time**
+
+Your cost anomaly response time measures how long it takes from when a significant cost spike or waste is detected to when corrective action is taken. This reveals the effectiveness of your cost monitoring and your team's ability to quickly address unexpected spending.
+
+### Need: Observability
+
+**State Metric: Service observability coverage**
+
+Your service observability coverage measures what percentage of your production services have complete observability instrumentation (logs, metrics, traces, and alerting). This reveals blind spots in your monitoring and helps ensure you can detect and diagnose issues across your entire infrastructure estate.
+
+**Flow Metric: None**
+
+The nature of observability is to be able to detect issues as they happen, so there is no flow metric for this need.
+
+## Next
+
+Good governance gives you the confidence to move fast, but to maintain that over time, you need to focus on keeping your infrastructure estate healthy and manageable. Let's learn more about that now.

@@ -1,0 +1,7 @@
+## Authentication
+
+Core pipelines functionally generally requires only a small amount of configuration. The most critical configuration for the CI/CD pipeline is how to authenticate with AWS, and that is covered in one of two ways:
+
+- With the YAML system pipelines expects each top-level folder in the repository to correspond to an account in `accounts.hcl` and the existence of appropriate OIDC roles to enable pipelines to assume the respective role for infra changes in those folders. As such, very little of the YAML configuration requires customization.
+
+- With the HCL system users can flexibly configure pipelines to authenticate to various AWS accounts to match arbitrary folder structures. The bulk of the HCL configuration language we define is to support this flexibility.
