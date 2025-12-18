@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+- Use bun as the javascript runtime.
+- Also use bun as a replacement for npm, yarn, or the like.
