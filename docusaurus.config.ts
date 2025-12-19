@@ -56,6 +56,33 @@ const config: Config = {
     },
   ],
 
+  themes: [
+    [
+      '@easyops-cn/docusaurus-search-local',
+      {
+        hashed: true,
+        // Index docs and blog
+        indexDocs: true,
+        indexBlog: true,
+        indexPages: false,
+        // Language of your documentation
+        language: ['en'],
+        // Highlight search terms on result pages
+        highlightSearchTermsOnTargetPage: true,
+        // Search result limits
+        searchResultLimits: 8,
+        // Search result context max length
+        searchResultContextMaxLength: 50,
+        // Explicity paths to be ignored from indexing
+        ignoreFiles: [],
+        // Remove default language in URL, if applicable
+        removeDefaultStopWordFilter: false,
+        // Search bar shortcut key
+        searchBarShortcutHint: true,
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',

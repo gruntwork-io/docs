@@ -1,13 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from '@docusaurus/Link';
+import ButtonLink from '../../components/ui/ButtonLink';
 
 /**
  * SecondaryNavDropdown - Shows secondary nav items in a dropdown
- * at intermediate viewport sizes (768px - 1043px)
+ * at intermediate viewport sizes (md to xl, 997px - 1279px)
  * 
- * At 1044px+, this component is hidden and the regular nav items show
- * At 768px-1043px, this dropdown shows while regular secondary items are hidden
- * Below 768px, full mobile menu takes over
+ * Breakpoints (matches Docusaurus default at 996px):
+ *   < md  (< 997px)       : Mobile - hamburger menu, this component hidden
+ *   md-xl (997px-1279px)  : Intermediate - this dropdown visible
+ *   ≥ xl  (≥ 1280px)      : Desktop - full navbar, this component hidden
  */
 export default function SecondaryNavDropdown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +40,7 @@ export default function SecondaryNavDropdown() {
   return (
     <div 
       ref={dropdownRef} 
-      className="secondary-nav-dropdown navbar__item"
+      className="secondary-nav-dropdown navbar__item flex shrink-0"
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -48,7 +50,7 @@ export default function SecondaryNavDropdown() {
       >
         More
         <svg 
-          className={`w-3 h-3 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-3 h-3 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"
@@ -82,7 +84,7 @@ export default function SecondaryNavDropdown() {
           >
             Library Search
             <svg 
-              className="w-3 h-3 ml-1 inline-block opacity-60" 
+              className="w-3 h-3 ml-1 inline-block opacity-60"
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -90,6 +92,17 @@ export default function SecondaryNavDropdown() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
           </a>
+          {/* Sign In - only visible when navbar Sign In is hidden (narrow intermediate) */}
+          <div className="secondary-nav-dropdown__divider secondary-nav-dropdown__signin-divider" />
+          <ButtonLink
+            href="https://app.gruntwork.io"
+            variant="outline"
+            size="sm"
+            className="secondary-nav-dropdown__signin"
+            onClick={() => setIsOpen(false)}
+          >
+            Sign In
+          </ButtonLink>
         </div>
       )}
     </div>

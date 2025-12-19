@@ -1,21 +1,28 @@
 /**
  * Navbar Styles
  * 
- * Breakpoint variables (defined in custom.css :root):
- *   --bp-md → Tailwind md: prefix, intermediate menu
- *   --bp-lg → Tailwind lg: prefix, full navbar
+ * ==========================================================================
+ * CUSTOM BREAKPOINTS (defined in custom.css @theme inline)
+ * ==========================================================================
  * 
- * Note: CSS media queries don't support var(), so we use literal values below
- * but reference the variable names in comments for maintainability.
+ *   --breakpoint-md:  997px   → Mobile to intermediate transition (matches Docusaurus default)
+ *   --breakpoint-xl:  1280px  → Full desktop navbar
  * 
- * Breakpoint behavior:
- *   lg+                  : Desktop - full navbar, all items visible
- *   md to [lg - 1]  : Intermediate - primary nav + "More" dropdown
- *   Below md             : Mobile - hamburger menu only
+ * Note: CSS media queries don't support var(), so we use literal values below.
+ * If you change these breakpoints, search for the pixel values to update all usages.
+ * 
+ * ==========================================================================
+ * BREAKPOINT BEHAVIOR
+ * ==========================================================================
+ * 
+ *   < md  (< 997px)           : Mobile - hamburger menu only
+ *   md-xl (997px - 1279px)    : Intermediate - nav + "More" dropdown + theme toggle + search
+ *   ≥ xl  (≥ 1280px)          : Desktop - full navbar, all items visible
+ * 
  */
 
 /* ==========================================================================
-   Navbar Item Styling
+   Base Styles (all viewports)
    ========================================================================== */
 
 .navbar__item {
@@ -29,6 +36,7 @@
 
 .secondary-nav-dropdown {
   position: relative;
+  z-index: 200; /* Ensure dropdown appears above search bar */
 }
 
 .secondary-nav-dropdown__menu {
@@ -71,91 +79,40 @@
   background: var(--ifm-toc-border-color);
 }
 
-/* ==========================================================================
-   Hide Sign In from mobile sidebar (already visible in navbar)
-   ========================================================================== */
+/* Style Sign In ButtonLink in dropdown */
+.secondary-nav-dropdown__signin {
+  display: block !important;
+  width: 100%;
+  margin-top: 0.25rem;
+}
 
-.navbar-sidebar #navbar-sign-in,
-.navbar-sidebar__items #navbar-sign-in {
-  display: none !important;
+.secondary-nav-dropdown__signin button {
+  width: 100%;
+  justify-content: center;
 }
 
 /* ==========================================================================
-   BREAKPOINT: Desktop (min-width: lg)
-   Full navbar with all items visible
+   BREAKPOINT: Mobile (< md, below 997px)
+   Hamburger menu only
    ========================================================================== */
 
-@media (min-width: 1044px) /* lg */ {
-  .secondary-nav-dropdown {
-    display: none !important;
-  }
-}
-
-/* ==========================================================================
-   BREAKPOINT: Intermediate (md to [lg - 1px])
-   Primary nav visible, secondary items in dropdown
-   ========================================================================== */
-
-@media (min-width: 770px) /* md */ and (max-width: 1043px) /* lg - 1 */ {
-  /* Keep hamburger toggle hidden */
-  .navbar__toggle {
-    display: none !important;
-  }
-  
-  /* Keep primary nav items visible (left side) */
-  .navbar__items:not(.navbar__items--right) .navbar__item {
-    display: flex !important;
-  }
-  
-  /* Hide secondary nav items (right side) */
-  .navbar__items--right .navbar__item {
-    display: none !important;
-  }
-  
-  /* Show the dropdown in intermediate mode */
-  .navbar__items--right .secondary-nav-dropdown {
-    display: flex !important;
-  }
-  
-  /* Keep Sign In button visible */
-  .navbar__items--right .navbar__item:has(#navbar-sign-in) {
-    display: flex !important;
-  }
-  
-  /* Keep color mode toggle visible */
-  .navbar__items--right [class*="colorModeToggle"] {
-    display: flex !important;
-  }
-  
-  /* Restore container padding */
-  .navbar > .container,
-  .navbar > .container-fluid {
-    padding: var(--ifm-navbar-padding-horizontal) !important;
-  }
-}
-
-/* ==========================================================================
-   BREAKPOINT: Mobile (below md)
-   Full hamburger menu
-   ========================================================================== */
-
-@media (max-width: 769px) /* md - 1 */ {
-  /* Show the hamburger toggle */
+@media (max-width: 996px) {
+  /* Show hamburger toggle */
   .navbar__toggle {
     display: inherit !important;
   }
   
-  /* Hide navbar items (they go in the mobile sidebar) */
+  /* Hide navbar items (they go in mobile sidebar) */
   .navbar__item {
     display: none !important;
   }
   
-  /* Hide dropdown in mobile - items are in the sidebar */
+  /* Hide dropdown (items are in sidebar) */
   .secondary-nav-dropdown {
     display: none !important;
   }
   
-  /* Remove container padding in mobile mode */
+  /* Remove container padding */
   .navbar > .container,
   .navbar > .container-fluid {
     padding: 0 !important;
@@ -166,9 +123,103 @@
     width: 9rem !important;
   }
   
-  /* Hide color mode toggle */
-  [class*="colorModeToggle"] {
+  /* Color mode toggle is already hidden by Docusaurus at this breakpoint */
+}
+
+/* ==========================================================================
+   BREAKPOINT: Intermediate (md to xl, 997px - 1279px)
+   Primary nav visible, secondary items in "More" dropdown
+   ========================================================================== */
+
+@media (min-width: 997px) and (max-width: 1279px) {
+  /* Hide hamburger toggle */
+  .navbar__toggle {
     display: none !important;
+  }
+  
+  /* Show primary nav items (left side) */
+  .navbar__items:not(.navbar__items--right) .navbar__item {
+    display: flex !important;
+  }
+  
+  /* Hide secondary nav items (right side) - they're in the dropdown */
+  .navbar__items--right .navbar__item {
+    display: none !important;
+  }
+  
+  /* Show the "More" dropdown */
+  .navbar__items--right .navbar__item.secondary-nav-dropdown {
+    display: flex !important;
+  }
+  
+  /* Hide Sign In button (it's in the dropdown) */
+  .navbar-signin-wrapper {
+    display: none !important;
+  }
+  
+  /* Show color mode toggle (Docusaurus shows it at 997px+) */
+  .navbar-color-mode-wrapper,
+  [class*="colorModeToggle"] {
+    display: flex !important;
+  }
+  
+  /* Restore container padding */
+  .navbar > .container,
+  .navbar > .container-fluid {
+    padding: var(--ifm-navbar-padding-horizontal) !important;
+  }
+  
+  /* Right navbar items layout */
+  .navbar__items--right {
+    flex-shrink: 0;
+    gap: 0.5rem;
+    overflow: visible !important;
+  }
+  
+  /* Prevent clipping */
+  .navbar > .container,
+  .navbar > .container-fluid,
+  .navbar__inner {
+    overflow: visible !important;
+  }
+  
+  /* Ensure dropdown is visible */
+  .secondary-nav-dropdown {
+    display: flex !important;
+    flex-shrink: 0;
+  }
+
+  /* Show search bar */
+  [class*="navbarSearchContainer"] {
+    display: flex !important;
+    flex-shrink: 0;
+  }
+  
+  /* Search bar width */
+  [class*="navbarSearchContainer"] input {
+    width: 9rem !important;
+    min-width: 9rem !important;
   }
 }
 
+/* ==========================================================================
+   BREAKPOINT: Desktop (≥ xl, 1280px and above)
+   Full navbar with all items visible
+   ========================================================================== */
+
+@media (min-width: 1280px) {
+  /* Hide the "More" dropdown (all items visible directly) */
+  .secondary-nav-dropdown {
+    display: none !important;
+  }
+  
+  /* Search bar minimum width */
+  [class*="navbarSearchContainer"] input {
+    min-width: 6rem;
+  }
+  
+  /* Visual balance for right-side items */
+  .navbar__items--right {
+    margin-left: 10px;
+  }
+}
