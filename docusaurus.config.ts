@@ -126,6 +126,17 @@ const config: Config = {
           position: 'left',
           label: 'Open Source',
         },
+        /*
+         * Secondary nav items (right side)
+         * 
+         * These items are duplicated in SecondaryNavDropdown.tsx for responsive behavior:
+         *   - Desktop (lg+): Individual items visible, dropdown hidden
+         *   - Intermediate (md to lg-1): Items hidden via CSS, dropdown visible
+         *   - Mobile (<md): Items appear in hamburger sidebar, dropdown hidden
+         * 
+         * See: src/css/navbar.css for breakpoint styles
+         * See: src/theme/NavbarItem/SecondaryNavDropdown.tsx for dropdown component
+         */
         {
           type: 'doc',
           docId: 'release-notes/index',
@@ -143,7 +154,12 @@ const config: Config = {
           label: 'Library Search',
           position: 'right',
         },
-        
+        // Dropdown for secondary items - visible only at intermediate breakpoint (md to lg-1)
+        {
+          type: 'custom-secondaryNavDropdown',
+          position: 'right',
+        },
+        // Sign In button - always visible, hidden from mobile sidebar via CSS
         {
           type: 'custom-signInButton',
           position: 'right',

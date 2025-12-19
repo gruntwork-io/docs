@@ -1,0 +1,174 @@
+/**
+ * Navbar Styles
+ * 
+ * Breakpoint variables (defined in custom.css :root):
+ *   --bp-md → Tailwind md: prefix, intermediate menu
+ *   --bp-lg → Tailwind lg: prefix, full navbar
+ * 
+ * Note: CSS media queries don't support var(), so we use literal values below
+ * but reference the variable names in comments for maintainability.
+ * 
+ * Breakpoint behavior:
+ *   lg+                  : Desktop - full navbar, all items visible
+ *   md to [lg - 1]  : Intermediate - primary nav + "More" dropdown
+ *   Below md             : Mobile - hamburger menu only
+ */
+
+/* ==========================================================================
+   Navbar Item Styling
+   ========================================================================== */
+
+.navbar__item {
+  font-size: 0.8rem;
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   Secondary Nav Dropdown Component
+   ========================================================================== */
+
+.secondary-nav-dropdown {
+  position: relative;
+}
+
+.secondary-nav-dropdown__menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 200px;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  background: var(--ifm-navbar-background-color);
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+[data-theme='dark'] .secondary-nav-dropdown__menu {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.secondary-nav-dropdown__item {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  color: var(--ifm-navbar-link-color);
+  text-decoration: none;
+  border-radius: 0.25rem;
+  transition: background-color 0.15s ease;
+}
+
+.secondary-nav-dropdown__item:hover {
+  background: var(--ifm-menu-color-background-hover);
+  text-decoration: none;
+  color: var(--ifm-navbar-link-hover-color);
+}
+
+.secondary-nav-dropdown__divider {
+  height: 1px;
+  margin: 0.5rem 0;
+  background: var(--ifm-toc-border-color);
+}
+
+/* ==========================================================================
+   Hide Sign In from mobile sidebar (already visible in navbar)
+   ========================================================================== */
+
+.navbar-sidebar #navbar-sign-in,
+.navbar-sidebar__items #navbar-sign-in {
+  display: none !important;
+}
+
+/* ==========================================================================
+   BREAKPOINT: Desktop (min-width: lg)
+   Full navbar with all items visible
+   ========================================================================== */
+
+@media (min-width: 1044px) /* lg */ {
+  .secondary-nav-dropdown {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT: Intermediate (md to [lg - 1px])
+   Primary nav visible, secondary items in dropdown
+   ========================================================================== */
+
+@media (min-width: 770px) /* md */ and (max-width: 1043px) /* lg - 1 */ {
+  /* Keep hamburger toggle hidden */
+  .navbar__toggle {
+    display: none !important;
+  }
+  
+  /* Keep primary nav items visible (left side) */
+  .navbar__items:not(.navbar__items--right) .navbar__item {
+    display: flex !important;
+  }
+  
+  /* Hide secondary nav items (right side) */
+  .navbar__items--right .navbar__item {
+    display: none !important;
+  }
+  
+  /* Show the dropdown in intermediate mode */
+  .navbar__items--right .secondary-nav-dropdown {
+    display: flex !important;
+  }
+  
+  /* Keep Sign In button visible */
+  .navbar__items--right .navbar__item:has(#navbar-sign-in) {
+    display: flex !important;
+  }
+  
+  /* Keep color mode toggle visible */
+  .navbar__items--right [class*="colorModeToggle"] {
+    display: flex !important;
+  }
+  
+  /* Restore container padding */
+  .navbar > .container,
+  .navbar > .container-fluid {
+    padding: var(--ifm-navbar-padding-horizontal) !important;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT: Mobile (below md)
+   Full hamburger menu
+   ========================================================================== */
+
+@media (max-width: 769px) /* md - 1 */ {
+  /* Show the hamburger toggle */
+  .navbar__toggle {
+    display: inherit !important;
+  }
+  
+  /* Hide navbar items (they go in the mobile sidebar) */
+  .navbar__item {
+    display: none !important;
+  }
+  
+  /* Hide dropdown in mobile - items are in the sidebar */
+  .secondary-nav-dropdown {
+    display: none !important;
+  }
+  
+  /* Remove container padding in mobile mode */
+  .navbar > .container,
+  .navbar > .container-fluid {
+    padding: 0 !important;
+  }
+  
+  /* Reduce search input width */
+  .navbar__search-input {
+    width: 9rem !important;
+  }
+  
+  /* Hide color mode toggle */
+  [class*="colorModeToggle"] {
+    display: none !important;
+  }
+}
+

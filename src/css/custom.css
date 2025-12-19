@@ -12,6 +12,7 @@
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
 @import "tw-animate-css";
+@import "./navbar.css";
 
 @custom-variant dark (&:is([data-theme="dark"] *));
 
@@ -71,6 +72,21 @@
 
 /* You can override the default Infima variables here. */
 :root {
+  /* ==========================================================================
+     Custom Breakpoints
+     
+     These override Tailwind defaults and are used for navbar responsive behavior.
+     Note: CSS media queries don't support var(), so we define these for:
+       1. Tailwind classes (md:, lg:) via @theme inline below
+       2. Documentation/reference for custom media queries in navbar.css
+
+     IMPORTANT! CSS media queries regrettably cannot use CSS vars, so be sure to search
+     for these literal values (e.g. "1044px") if you make any changes to make sure you're
+     updating all the break points.
+     ========================================================================== */
+  --bp-md: 770px;   /* Intermediate menu (Tailwind default: 768px) */
+  --bp-lg: 1044px;  /* Full navbar (Tailwind default: 1024px) */
+
   /* Font families */
   --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-family-heading: 'General Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -144,13 +160,13 @@
     --secondary-foreground: oklch(0.985 0 0);
     --muted: oklch(0.269 0 0);
     --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
+    --accent: oklch(0.3 0 0);
     --accent-foreground: oklch(0.985 0 0);
     --destructive: oklch(0.396 0.141 25.723);
     --destructive-foreground: oklch(0.985 0 0);
-    --border: oklch(0.269 0 0);
-    --input: oklch(0.269 0 0);
-    --ring: oklch(0.439 0 0);
+    --border: oklch(0.45 0 0);
+    --input: oklch(0.45 0 0);
+    --ring: oklch(0.55 0 0);
   }
   
   /* Register shadcn colors with Tailwind v4 */
@@ -178,6 +194,10 @@
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
     --radius-xl: calc(var(--radius) + 4px);
+    
+    /* Override Tailwind breakpoints to match --bp-md and --bp-lg from :root */
+    --breakpoint-md: var(--bp-md);
+    --breakpoint-lg: var(--bp-lg);
   }
 
 /* ==========================================================================
@@ -192,11 +212,6 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   font-family: var(--font-family-base);
-}
-
-.navbar__item {
-  font-size: 0.8rem;
-  letter-spacing: -0.01em;
 }
 
 .menu__link {
