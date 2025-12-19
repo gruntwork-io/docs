@@ -145,8 +145,7 @@ const config: Config = {
         },
         
         {
-          href: 'https://app.gruntwork.io',
-          label: 'Sign in',
+          type: 'custom-signInButton',
           position: 'right',
         },
       ],
