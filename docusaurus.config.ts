@@ -1,6 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import path from 'path';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -37,7 +38,22 @@ const config: Config = {
 
   plugins: [
     // Install Tailwind v4
-    "./src/plugins/tailwind-config.js"
+    "./src/plugins/tailwind-config.js",
+    // Add webpack alias for @/ imports
+    function () {
+      return {
+        name: 'webpack-alias-plugin',
+        configureWebpack() {
+          return {
+            resolve: {
+              alias: {
+                '@': path.resolve(__dirname, 'src'),
+              },
+            },
+          };
+        },
+      };
+    },
   ],
 
   presets: [

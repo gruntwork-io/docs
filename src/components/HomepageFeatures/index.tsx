@@ -2,6 +2,7 @@ import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
+import { Button } from '@/components/ui/button'
 
 type FeatureItem = {
   title: string;
@@ -28,7 +29,7 @@ export default function HomepageFeatures(): ReactNode {
     <section className={styles.features}>
       <div className="container">
         <div className="row">
-          Placeholder
+          Placeholder <Button variant="outline">Button</Button>
         </div>
       </div>
     </section>
