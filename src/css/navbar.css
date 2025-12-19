@@ -1,5 +1,6 @@
 /**
  * Navbar Styles
+ * Gruntwork-inspired navigation with a sleek, dark aesthetic
  * 
  * ==========================================================================
  * CUSTOM BREAKPOINTS (defined in custom.css @theme inline)
@@ -9,7 +10,6 @@
  *   --breakpoint-xl:  1280px  → Full desktop navbar
  * 
  * Note: CSS media queries don't support var(), so we use literal values below.
- * If you change these breakpoints, search for the pixel values to update all usages.
  * 
  * ==========================================================================
  * BREAKPOINT BEHAVIOR
@@ -22,12 +22,59 @@
  */
 
 /* ==========================================================================
-   Base Styles (all viewports)
+   Base Navbar Styles
    ========================================================================== */
 
+.navbar {
+  box-shadow: none !important;
+}
+
+[data-theme='dark'] .navbar {
+  background: var(--gw-bg-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme='light'] .navbar {
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--gw-gray-200);
+}
+
 .navbar__item {
-  font-size: 0.8rem;
+  font-size: 0.875rem;
+  font-weight: 500;
   letter-spacing: -0.01em;
+}
+
+.navbar__link {
+  transition: color 0.15s ease;
+}
+
+[data-theme='dark'] .navbar__link {
+  color: var(--gw-gray-400);
+}
+
+[data-theme='dark'] .navbar__link:hover,
+[data-theme='dark'] .navbar__link--active {
+  color: #FFFFFF;
+}
+
+[data-theme='light'] .navbar__link {
+  color: var(--gw-gray-600);
+}
+
+[data-theme='light'] .navbar__link:hover,
+[data-theme='light'] .navbar__link--active {
+  color: var(--gw-gray-900);
+}
+
+/* Logo styling */
+.navbar__logo {
+  height: 1.75rem;
+}
+
+.navbar__logo img {
+  height: 100%;
+  width: auto;
 }
 
 /* ==========================================================================
@@ -36,7 +83,7 @@
 
 .secondary-nav-dropdown {
   position: relative;
-  z-index: 200; /* Ensure dropdown appears above search bar */
+  z-index: 200;
 }
 
 .secondary-nav-dropdown__menu {
@@ -45,38 +92,68 @@
   right: 0;
   min-width: 200px;
   padding: 0.5rem;
-  margin-top: 0.25rem;
-  background: var(--ifm-navbar-background-color);
-  border: 1px solid var(--ifm-toc-border-color);
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 0.5rem;
+  border-radius: 10px;
   z-index: 100;
 }
 
 [data-theme='dark'] .secondary-nav-dropdown__menu {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background: var(--gw-bg-elevated);
+  border: 1px solid var(--gw-gray-800);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='light'] .secondary-nav-dropdown__menu {
+  background: #FFFFFF;
+  border: 1px solid var(--gw-gray-200);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 .secondary-nav-dropdown__item {
   display: block;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.8rem;
-  color: var(--ifm-navbar-link-color);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 500;
   text-decoration: none;
-  border-radius: 0.25rem;
-  transition: background-color 0.15s ease;
+  border-radius: 6px;
+  transition: all 0.15s ease;
 }
 
-.secondary-nav-dropdown__item:hover {
-  background: var(--ifm-menu-color-background-hover);
+[data-theme='dark'] .secondary-nav-dropdown__item {
+  color: var(--gw-gray-300);
+}
+
+[data-theme='dark'] .secondary-nav-dropdown__item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #FFFFFF;
   text-decoration: none;
-  color: var(--ifm-navbar-link-hover-color);
+}
+
+[data-theme='light'] .secondary-nav-dropdown__item {
+  color: var(--gw-gray-600);
+}
+
+[data-theme='light'] .secondary-nav-dropdown__item:hover {
+  background: var(--gw-gray-100);
+  color: var(--gw-gray-900);
+  text-decoration: none;
 }
 
 .secondary-nav-dropdown__divider {
   height: 1px;
   margin: 0.5rem 0;
-  background: var(--ifm-toc-border-color);
+}
+
+[data-theme='dark'] .secondary-nav-dropdown__divider {
+  background: var(--gw-gray-800);
+}
+
+[data-theme='light'] .secondary-nav-dropdown__divider {
+  background: var(--gw-gray-200);
 }
 
 /* Style Sign In ButtonLink in dropdown */
@@ -89,6 +166,93 @@
 .secondary-nav-dropdown__signin button {
   width: 100%;
   justify-content: center;
+}
+
+/* ==========================================================================
+   Search Styling
+   ========================================================================== */
+
+.navbar__search-input {
+  border-radius: 8px;
+  font-size: 0.875rem;
+  transition: all 0.15s ease;
+}
+
+[data-theme='dark'] .navbar__search-input {
+  background: var(--gw-bg-elevated);
+  border: 1px solid var(--gw-gray-700);
+  color: var(--gw-gray-200);
+}
+
+[data-theme='dark'] .navbar__search-input::placeholder {
+  color: var(--gw-gray-500);
+}
+
+[data-theme='dark'] .navbar__search-input:focus {
+  background: var(--gw-bg-surface);
+  border-color: var(--gw-green-400);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 194, 160, 0.15);
+}
+
+[data-theme='light'] .navbar__search-input {
+  background: var(--gw-gray-100);
+  border: 1px solid var(--gw-gray-200);
+  color: var(--gw-gray-900);
+}
+
+[data-theme='light'] .navbar__search-input::placeholder {
+  color: var(--gw-gray-400);
+}
+
+[data-theme='light'] .navbar__search-input:focus {
+  background: #FFFFFF;
+  border-color: var(--gw-green-500);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(21, 139, 113, 0.15);
+}
+
+/* ==========================================================================
+   Color Mode Toggle
+   ========================================================================== */
+
+[data-theme='dark'] [class*="toggle_"] {
+  color: var(--gw-gray-400);
+}
+
+[data-theme='dark'] [class*="toggle_"]:hover {
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   Mobile Sidebar
+   ========================================================================== */
+
+[data-theme='dark'] .navbar-sidebar {
+  background: var(--gw-bg-primary);
+}
+
+[data-theme='dark'] .navbar-sidebar__brand {
+  border-bottom: 1px solid var(--gw-gray-800);
+}
+
+[data-theme='dark'] .navbar-sidebar__items {
+  background: var(--gw-bg-primary);
+}
+
+[data-theme='dark'] .navbar-sidebar .menu__link {
+  color: var(--gw-gray-300);
+  border-radius: 6px;
+}
+
+[data-theme='dark'] .navbar-sidebar .menu__link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #FFFFFF;
+}
+
+[data-theme='dark'] .navbar-sidebar .menu__link--active {
+  background: rgba(37, 194, 160, 0.1);
+  color: var(--gw-green-400);
 }
 
 /* ==========================================================================
@@ -122,8 +286,6 @@
   .navbar__search-input {
     width: 9rem !important;
   }
-  
-  /* Color mode toggle is already hidden by Docusaurus at this breakpoint */
 }
 
 /* ==========================================================================
@@ -215,11 +377,50 @@
   
   /* Search bar minimum width */
   [class*="navbarSearchContainer"] input {
-    min-width: 6rem;
+    min-width: 8rem;
   }
   
   /* Visual balance for right-side items */
   .navbar__items--right {
     margin-left: 10px;
+    gap: 0.25rem;
   }
+}
+
+/* ==========================================================================
+   Sign In Button
+   ========================================================================== */
+
+.navbar-signin-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+[data-theme='dark'] .navbar-signin-button {
+  color: var(--gw-bg-primary);
+  background: var(--gw-green-400);
+  border: none;
+}
+
+[data-theme='dark'] .navbar-signin-button:hover {
+  background: var(--gw-green-300);
+  text-decoration: none;
+}
+
+[data-theme='light'] .navbar-signin-button {
+  color: #FFFFFF;
+  background: var(--gw-green-600);
+  border: none;
+}
+
+[data-theme='light'] .navbar-signin-button:hover {
+  background: var(--gw-green-500);
+  text-decoration: none;
 }

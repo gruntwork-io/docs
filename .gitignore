@@ -7,7 +7,7 @@
 # Generated files
 .docusaurus
 .cache-loader
-.playwright-mcp
+.playwright-mcp*
 
 # Misc
 .DS_Store

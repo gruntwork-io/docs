@@ -1,10 +1,11 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Gruntwork Docs - Custom CSS
+ * 
+ * A dark, developer-centric theme inspired by gruntwork.io,
+ * terragrunt.gruntwork.io, and payloadcms.com/docs
  */
 
- /* ==========================================================================
+/* ==========================================================================
    Tailwind CSS v4
    ========================================================================== */
 
@@ -67,153 +68,810 @@
 }
 
 /* ==========================================================================
-   CSS Variables for Docusaurus (uses Infima under the hood)
+   Gruntwork Brand Colors - Frost Blue Accent
    ========================================================================== */
 
-/* You can override the default Infima variables here. */
+:root {
+  /* Frost blue accent palette */
+  --gw-frost-50: #EDFCFB;
+  --gw-frost-100: #D0F7F5;
+  --gw-frost-200: #A6F0EB;
+  --gw-frost-300: #6EE5DD;
+  --gw-frost-400: #5CE0D8;
+  --gw-frost-500: #3DCCC4;
+  --gw-frost-600: #2BA8A1;
+  --gw-frost-700: #258582;
+  --gw-frost-800: #1E6664;
+  --gw-frost-900: #184A49;
+  
+  /* Coral/salmon for CTAs */
+  --gw-coral-400: #E8836B;
+  --gw-coral-500: #E06B50;
+  --gw-coral-600: #D85A3D;
+  
+  /* Neutral dark palette */
+  --gw-gray-50: #F9FAFB;
+  --gw-gray-100: #F3F4F6;
+  --gw-gray-200: #E5E7EB;
+  --gw-gray-300: #D1D5DB;
+  --gw-gray-400: #9CA3AF;
+  --gw-gray-500: #6B7280;
+  --gw-gray-600: #4B5563;
+  --gw-gray-700: #374151;
+  --gw-gray-800: #1F2937;
+  --gw-gray-900: #111827;
+  --gw-gray-950: #0A0D12;
+  
+  /* Near-black backgrounds with slight blue tint */
+  --gw-bg-primary: #0D0F14;
+  --gw-bg-secondary: #12151C;
+  --gw-bg-elevated: #181B24;
+  --gw-bg-surface: #1E212B;
+}
+
+/* ==========================================================================
+   CSS Variables for Docusaurus (Infima Framework)
+   ========================================================================== */
+
 :root {
   /* ==========================================================================
      Custom Breakpoints for Navbar
-     
-     These define the responsive behavior of the navbar. CSS media queries can't
-     use CSS variables, so these are for documentation. The actual values are
-     hardcoded in navbar.css.
-     
-     If you change these, search for the pixel values to update all usages:
-       - 997px  (md) - matches Docusaurus default
-       - 1280px (xl)
      ========================================================================== */
-  --bp-md: 997px;   /* Mobile → Intermediate (hamburger disappears, matches Docusaurus) */
-  --bp-xl: 1280px;  /* Intermediate → Desktop (full navbar) */
+  --bp-md: 997px;
+  --bp-xl: 1280px;
 
   /* Font families */
   --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-family-heading: 'General Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-family-mono: 'Geist Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
-  /* Apply to Infima variables (Docusaurus's CSS framework) */
+  /* Apply to Infima */
   --ifm-font-family-base: var(--font-family-base);
   --ifm-font-family-monospace: var(--font-family-mono);
+  --ifm-heading-font-family: var(--font-family-heading);
 
-  /* Colors */
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Light mode colors */
+  --ifm-color-primary: #2BA8A1;
+  --ifm-color-primary-dark: #279A94;
+  --ifm-color-primary-darker: #24918B;
+  --ifm-color-primary-darkest: #1E7772;
+  --ifm-color-primary-light: #34B5AE;
+  --ifm-color-primary-lighter: #3DBCB5;
+  --ifm-color-primary-lightest: #53C6C0;
+  
+  /* Light mode backgrounds */
+  --ifm-background-color: #FFFFFF;
+  --ifm-background-surface-color: #F9FAFB;
+  
+  /* Code styling */
+  --ifm-code-font-size: 0.875rem;
+  --ifm-code-border-radius: 4px;
+  --docusaurus-highlighted-code-line-bg: rgba(92, 224, 216, 0.12);
+  
+  /* Border radius */
+  --ifm-global-radius: 6px;
+  --ifm-code-border-radius: 4px;
+  
+  /* Spacing */
+  --ifm-global-spacing: 1rem;
+  --ifm-navbar-height: 3.5rem;
+  --ifm-navbar-shadow: none;
+  
+  /* Sidebar */
+  --doc-sidebar-width: 260px;
+  --ifm-menu-color: var(--gw-gray-600);
+  --ifm-menu-color-active: var(--ifm-color-primary);
+  
+  /* Line heights */
+  --ifm-line-height-base: 1.65;
+  --ifm-heading-line-height: 1.3;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* ==========================================================================
+   Dark Mode (Primary Theme)
+   ========================================================================== */
+
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  /* Frost blue accent */
+  --ifm-color-primary: #5CE0D8;
+  --ifm-color-primary-dark: #43DCD3;
+  --ifm-color-primary-darker: #36D9CF;
+  --ifm-color-primary-darkest: #24C7BC;
+  --ifm-color-primary-light: #75E4DD;
+  --ifm-color-primary-lighter: #82E7E0;
+  --ifm-color-primary-lightest: #A8EEE9;
+  
+  /* Background colors */
+  --ifm-background-color: var(--gw-bg-primary);
+  --ifm-background-surface-color: var(--gw-bg-secondary);
+  
+  /* Navbar */
+  --ifm-navbar-background-color: var(--gw-bg-primary);
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-link-color: var(--gw-gray-400);
+  --ifm-navbar-link-hover-color: #FFFFFF;
+  
+  /* Text colors */
+  --ifm-font-color-base: var(--gw-gray-300);
+  --ifm-font-color-secondary: var(--gw-gray-500);
+  --ifm-heading-color: #FFFFFF;
+  
+  /* Links */
+  --ifm-link-color: var(--ifm-color-primary);
+  --ifm-link-hover-color: var(--ifm-color-primary-light);
+  
+  /* Code blocks */
+  --ifm-code-background: var(--gw-bg-elevated);
+  --docusaurus-highlighted-code-line-bg: rgba(92, 224, 216, 0.1);
+  --prism-background-color: var(--gw-bg-elevated);
+  
+  /* Sidebar */
+  --ifm-menu-color: var(--gw-gray-400);
+  --ifm-menu-color-active: var(--ifm-color-primary);
+  --ifm-menu-color-background-active: rgba(92, 224, 216, 0.08);
+  --ifm-menu-color-background-hover: rgba(255, 255, 255, 0.04);
+  
+  /* Table of contents */
+  --ifm-toc-border-color: transparent;
+  --ifm-toc-link-color: var(--gw-gray-500);
+  
+  /* Cards and surfaces */
+  --ifm-card-background-color: var(--gw-bg-elevated);
+  --ifm-card-border-radius: 8px;
+  
+  /* Borders */
+  --ifm-hr-border-color: var(--gw-gray-800);
+  --ifm-global-border-color: rgba(255, 255, 255, 0.06);
+  
+  /* Footer */
+  --ifm-footer-background-color: var(--gw-bg-primary);
+  --ifm-footer-color: var(--gw-gray-500);
+  --ifm-footer-link-color: var(--gw-gray-400);
+  --ifm-footer-link-hover-color: #FFFFFF;
+  --ifm-footer-title-color: var(--gw-gray-200);
 }
 
 /* ==========================================================================
    CSS Variables for shadcn/ui
    ========================================================================== */
 
-   :root {
-    --radius: 0.625rem;
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --destructive-foreground: oklch(0.985 0 0);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-  }
+:root {
+  --radius: 0.5rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.65 0.12 180);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.9 0 0);
+  --input: oklch(0.9 0 0);
+  --ring: oklch(0.65 0.12 180);
+}
+
+[data-theme='dark'] {
+  --background: oklch(0.1 0.01 250);
+  --foreground: oklch(0.9 0 0);
+  --card: oklch(0.13 0.01 250);
+  --card-foreground: oklch(0.9 0 0);
+  --popover: oklch(0.13 0.01 250);
+  --popover-foreground: oklch(0.9 0 0);
+  --primary: oklch(0.8 0.1 180);
+  --primary-foreground: oklch(0.1 0 0);
+  --secondary: oklch(0.18 0.01 250);
+  --secondary-foreground: oklch(0.9 0 0);
+  --muted: oklch(0.18 0.01 250);
+  --muted-foreground: oklch(0.55 0 0);
+  --accent: oklch(0.22 0.01 250);
+  --accent-foreground: oklch(0.9 0 0);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.9 0 0);
+  --border: oklch(0.22 0.01 250);
+  --input: oklch(0.22 0.01 250);
+  --ring: oklch(0.8 0.1 180);
+}
+
+/* Register shadcn colors with Tailwind v4 */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
   
-  [data-theme='dark'] {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.145 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.145 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.985 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.3 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.396 0.141 25.723);
-    --destructive-foreground: oklch(0.985 0 0);
-    --border: oklch(0.45 0 0);
-    --input: oklch(0.45 0 0);
-    --ring: oklch(0.55 0 0);
-  }
+  /* Gruntwork brand colors for Tailwind */
+  --color-gw-frost-400: var(--gw-frost-400);
+  --color-gw-frost-500: var(--gw-frost-500);
+  --color-gw-coral-500: var(--gw-coral-500);
   
-  /* Register shadcn colors with Tailwind v4 */
-  @theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --color-card: var(--card);
-    --color-card-foreground: var(--card-foreground);
-    --color-popover: var(--popover);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-primary: var(--primary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-secondary: var(--secondary);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-muted: var(--muted);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-accent: var(--accent);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-destructive: var(--destructive);
-    --color-destructive-foreground: var(--destructive-foreground);
-    --color-border: var(--border);
-    --color-input: var(--input);
-    --color-ring: var(--ring);
-    --radius-sm: calc(var(--radius) - 4px);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) + 4px);
-    
-    /* Custom Tailwind breakpoints for navbar behavior */
-    --breakpoint-md: 997px;   /* Mobile → Intermediate (matches Docusaurus) */
-    --breakpoint-xl: 1280px;  /* Full desktop navbar */
-  }
+  /* Custom Tailwind breakpoints for navbar behavior */
+  --breakpoint-md: 997px;
+  --breakpoint-xl: 1280px;
+}
 
 /* ==========================================================================
-   Customize sitewide styles
+   Global Styles
    ========================================================================== */
 
 /* Apply heading font to all headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-family-heading);
   font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 
 p {
   font-family: var(--font-family-base);
 }
 
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   Sidebar Styling - PayloadCMS Inspired
+   ========================================================================== */
+
+/* Sidebar container */
+[data-theme='dark'] .theme-doc-sidebar-container {
+  background: var(--gw-bg-secondary);
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Menu links - smaller and cleaner */
 .menu__link {
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
+  font-weight: 450;
+  padding: 0.375rem 0.75rem;
+  border-radius: 4px;
+  transition: all 0.12s ease;
+  letter-spacing: -0.005em;
+}
+
+[data-theme='dark'] .menu__link {
+  color: var(--gw-gray-400);
+}
+
+[data-theme='dark'] .menu__link:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--gw-gray-200);
+}
+
+[data-theme='dark'] .menu__link--active:not(.menu__link--sublist) {
+  background: rgba(92, 224, 216, 0.08);
+  color: var(--gw-frost-400);
+}
+
+/* Category/folder labels - smaller chevrons */
+.menu__link--sublist {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+[data-theme='dark'] .menu__link--sublist {
+  color: var(--gw-gray-300);
+}
+
+/* Make chevrons smaller */
+.menu__link--sublist-caret::after,
+.menu__caret::before {
+  background-size: 1.1rem 1.1rem !important;
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+  min-width: 1.1rem !important;
+  opacity: 0.5;
+  transition: opacity 0.12s ease, transform 0.15s ease;
+}
+
+.menu__link--sublist-caret:hover::after,
+.menu__caret:hover::before {
+  opacity: 0.8;
+}
+
+/* Menu list spacing */
+.menu__list {
+  padding-left: 0.875rem;
+}
+
+.menu__list .menu__list {
+  border-left: 1px solid rgba(255, 255, 255, 0.04);
+  margin-left: 0.5rem;
+  padding-left: 0.625rem;
+}
+
+/* Category headers in sidebar */
+.theme-doc-sidebar-item-category > .menu__list-item-collapsible > .menu__link {
+  font-size: 0.8125rem;
+  font-weight: 600;
   letter-spacing: -0.01em;
+  padding-top: 1rem;
+  padding-bottom: 0.375rem;
+}
+
+[data-theme='dark'] .theme-doc-sidebar-item-category > .menu__list-item-collapsible > .menu__link {
+  color: var(--gw-gray-200) !important;
+}
+
+.theme-doc-sidebar-item-category > .menu__list-item-collapsible > .menu__link:hover {
+  background: transparent !important;
+}
+
+/* ==========================================================================
+   Main Content Styling
+   ========================================================================== */
+
+/* Article content */
+.theme-doc-markdown {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+[data-theme='dark'] .theme-doc-markdown {
+  color: var(--gw-gray-300);
+}
+
+/* Headings in content */
+.theme-doc-markdown h1 {
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.theme-doc-markdown h2 {
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.875rem;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.theme-doc-markdown h3 {
+  font-size: 1.1875rem;
+  margin-top: 2rem;
+  margin-bottom: 0.625rem;
+}
+
+/* Remove borders from headings */
+[data-theme='dark'] .theme-doc-markdown h2,
+[data-theme='dark'] .theme-doc-markdown h3,
+[data-theme='dark'] .theme-doc-markdown h4 {
+  border-bottom: none;
+}
+
+/* Anchor links */
+.hash-link {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  margin-left: 0.5rem;
+}
+
+h2:hover .hash-link,
+h3:hover .hash-link,
+h4:hover .hash-link {
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   TOC (Table of Contents) - Cleaner
+   ========================================================================== */
+
+.table-of-contents {
+  font-size: 0.75rem;
+  border-left: none;
+  padding-left: 0;
+}
+
+[data-theme='dark'] .table-of-contents__link {
+  color: var(--gw-gray-500);
+  transition: color 0.12s ease;
+}
+
+[data-theme='dark'] .table-of-contents__link:hover,
+[data-theme='dark'] .table-of-contents__link--active {
+  color: var(--gw-frost-400);
+}
+
+/* TOC active indicator */
+[data-theme='dark'] .table-of-contents__left-border {
+  border-left: 2px solid var(--gw-frost-400);
+}
+
+/* ==========================================================================
+   Code Block Styling
+   ========================================================================== */
+
+/* Code block container */
+[data-theme='dark'] .prism-code {
+  background: var(--gw-bg-elevated) !important;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+  font-size: 0.8125rem;
+}
+
+/* Inline code */
+[data-theme='dark'] code {
+  background: var(--gw-bg-elevated);
+  border: none;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: var(--gw-frost-300);
+}
+
+/* Code in links should inherit link color */
+[data-theme='dark'] a code {
+  color: inherit;
+}
+
+/* Code block title bar */
+[data-theme='dark'] .codeBlockTitle {
+  background: var(--gw-bg-surface) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--gw-gray-500);
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+}
+
+/* Copy button */
+[data-theme='dark'] button[class*="copyButton"] {
+  background: transparent;
+  border: none;
+  color: var(--gw-gray-500);
+  opacity: 0;
+  transition: all 0.15s ease;
+}
+
+[data-theme='dark'] div[class*="codeBlockContainer"]:hover button[class*="copyButton"] {
+  opacity: 1;
+}
+
+[data-theme='dark'] button[class*="copyButton"]:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--gw-gray-300);
+}
+
+/* Line numbers */
+[data-theme='dark'] .codeLineNumber {
+  color: var(--gw-gray-600);
+  padding-right: 1rem;
+}
+
+/* ==========================================================================
+   Admonitions / Alerts - Cleaner
+   ========================================================================== */
+
+[data-theme='dark'] .alert {
+  background: var(--gw-bg-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-left: 3px solid;
+  border-radius: 0 6px 6px 0;
+  padding: 1rem 1.25rem;
+}
+
+[data-theme='dark'] .alert--info {
+  border-left-color: var(--gw-frost-400);
+}
+
+[data-theme='dark'] .alert--warning {
+  border-left-color: #F59E0B;
+}
+
+[data-theme='dark'] .alert--danger {
+  border-left-color: #EF4444;
+}
+
+[data-theme='dark'] .alert--success {
+  border-left-color: #10B981;
+}
+
+[data-theme='dark'] .alert .admonitionHeading_node_modules-\@docusaurus-theme-classic-lib-theme-Admonition-Layout-styles-module {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* ==========================================================================
+   Table Styling
+   ========================================================================== */
+
+[data-theme='dark'] table {
+  font-size: 0.875rem;
+  border-collapse: collapse;
+  border: none;
+}
+
+[data-theme='dark'] th {
+  background: var(--gw-bg-elevated);
+  color: var(--gw-gray-300);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+[data-theme='dark'] td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+[data-theme='dark'] tr:last-child td {
+  border-bottom: none;
+}
+
+[data-theme='dark'] tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ==========================================================================
+   Search Styling
+   ========================================================================== */
+
+[data-theme='dark'] .navbar__search-input {
+  background: var(--gw-bg-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--gw-gray-200);
+  font-size: 0.8125rem;
+  border-radius: 6px;
+}
+
+[data-theme='dark'] .navbar__search-input::placeholder {
+  color: var(--gw-gray-600);
+}
+
+[data-theme='dark'] .navbar__search-input:focus {
+  background: var(--gw-bg-surface);
+  border-color: var(--gw-frost-500);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(92, 224, 216, 0.15);
+}
+
+/* ==========================================================================
+   Pagination - Cleaner
+   ========================================================================== */
+
+[data-theme='dark'] .pagination-nav__link {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  padding: 1rem 1.25rem;
+}
+
+[data-theme='dark'] .pagination-nav__link:hover {
+  border-color: var(--gw-frost-500);
+  background: rgba(92, 224, 216, 0.04);
+}
+
+[data-theme='dark'] .pagination-nav__sublabel {
+  color: var(--gw-gray-600);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+[data-theme='dark'] .pagination-nav__label {
+  color: var(--gw-gray-200);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Breadcrumbs - More subtle
+   ========================================================================== */
+
+.breadcrumbs {
+  font-size: 0.75rem;
+}
+
+[data-theme='dark'] .breadcrumbs__link {
+  color: var(--gw-gray-500);
+}
+
+[data-theme='dark'] .breadcrumbs__link:hover {
+  color: var(--gw-frost-400);
+}
+
+[data-theme='dark'] .breadcrumbs__item--active .breadcrumbs__link {
+  color: var(--gw-gray-300);
+}
+
+/* ==========================================================================
+   Footer Styling
+   ========================================================================== */
+
+[data-theme='dark'] .footer {
+  background: var(--gw-bg-primary);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+[data-theme='dark'] .footer__title {
+  color: var(--gw-gray-300);
+  font-family: var(--font-family-base);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+}
+
+[data-theme='dark'] .footer__link-item {
+  color: var(--gw-gray-500);
+  font-size: 0.8125rem;
+  transition: color 0.12s ease;
+  padding: 0.25rem 0;
+}
+
+[data-theme='dark'] .footer__link-item:hover {
+  color: var(--gw-gray-200);
+}
+
+[data-theme='dark'] .footer__copyright {
+  color: var(--gw-gray-600);
+  font-size: 0.75rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ==========================================================================
+   Scrollbar Styling
+   ========================================================================== */
+
+[data-theme='dark'] {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gw-gray-700) transparent;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: var(--gw-gray-700);
+  border-radius: 3px;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+  background: var(--gw-gray-600);
+}
+
+/* ==========================================================================
+   Selection Styling
+   ========================================================================== */
+
+[data-theme='dark'] ::selection {
+  background: rgba(92, 224, 216, 0.25);
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   Focus Styling
+   ========================================================================== */
+
+[data-theme='dark'] *:focus-visible {
+  outline: 2px solid var(--gw-frost-400);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Badge / Tag Styling
+   ========================================================================== */
+
+[data-theme='dark'] .badge {
+  background: var(--gw-bg-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--gw-gray-400);
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 0.125rem 0.5rem;
+}
+
+[data-theme='dark'] .badge--primary {
+  background: rgba(92, 224, 216, 0.12);
+  border-color: rgba(92, 224, 216, 0.2);
+  color: var(--gw-frost-400);
+}
+
+/* ==========================================================================
+   Tabs Styling
+   ========================================================================== */
+
+[data-theme='dark'] .tabs {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+[data-theme='dark'] .tabs__item {
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+  color: var(--gw-gray-500);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  margin-bottom: -1px;
+}
+
+[data-theme='dark'] .tabs__item--active {
+  background: transparent;
+  border-bottom-color: var(--gw-frost-400);
+  color: var(--gw-frost-400);
+}
+
+[data-theme='dark'] .tabs__item:hover:not(.tabs__item--active) {
+  background: transparent;
+  color: var(--gw-gray-300);
+}
+
+/* ==========================================================================
+   Doc Item Container - Clean borders
+   ========================================================================== */
+
+[data-theme='dark'] .docItemContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocItem-Layout-styles-module {
+  border: none;
+}
+
+/* Remove TOC border */
+[data-theme='dark'] .tocCollapsible_node_modules-\@docusaurus-theme-classic-lib-theme-TOCCollapsible-styles-module {
+  border: none;
+  background: transparent;
+}
+
+/* Clean doc page wrapper */
+[data-theme='dark'] article {
+  padding: 0;
+}
+
+/* Clean main wrapper */
+[data-theme='dark'] .main-wrapper {
+  background: var(--gw-bg-primary);
+}
+
+/* Doc root wrapper padding */
+.docRoot_node_modules-\@docusaurus-theme-classic-lib-theme-DocRoot-Layout-Main-styles-module {
+  padding-top: 1rem;
 }

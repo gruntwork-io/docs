@@ -120,7 +120,9 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
-      respectPrefersColorScheme: true,
+      defaultMode: 'dark',
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
     },
     navbar: {
       logo: {
@@ -197,50 +199,96 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Platform',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'IaC Library',
+              href: 'https://www.gruntwork.io/platform/iac-library',
+            },
+            {
+              label: 'Account Factory',
+              href: 'https://www.gruntwork.io/platform/account-factory',
+            },
+            {
+              label: 'Pipelines',
+              href: 'https://www.gruntwork.io/platform/pipelines',
+            },
+            {
+              label: 'Patcher',
+              href: 'https://www.gruntwork.io/platform/patcher',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'Open Source',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Terragrunt',
+              href: 'https://terragrunt.gruntwork.io',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'Terratest',
+              href: 'https://terratest.gruntwork.io',
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'Boilerplate',
+              href: 'https://github.com/gruntwork-io/boilerplate',
+            },
+            {
+              label: 'Cloud Nuke',
+              href: 'https://github.com/gruntwork-io/cloud-nuke',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'Resources',
           items: [
             {
               label: 'Blog',
-              to: '/blog',
+              href: 'https://www.gruntwork.io/blog',
+            },
+            {
+              label: 'Books',
+              href: 'https://www.gruntwork.io/books',
+            },
+            {
+              label: 'Community',
+              href: 'https://www.gruntwork.io/resources/community',
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/gruntwork-io',
+            },
+          ],
+        },
+        {
+          title: 'Company',
+          items: [
+            {
+              label: 'About',
+              href: 'https://www.gruntwork.io/about',
+            },
+            {
+              label: 'Pricing',
+              href: 'https://www.gruntwork.io/pricing',
+            },
+            {
+              label: 'Support',
+              href: 'https://www.gruntwork.io/support',
+            },
+            {
+              label: 'Contact',
+              href: 'https://www.gruntwork.io/contact',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `© ${new Date().getFullYear()} Gruntwork, Inc. All rights reserved.`,
     },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ['bash', 'hcl', 'json', 'yaml', 'toml', 'diff'],
     },
   } satisfies Preset.ThemeConfig,
 };
