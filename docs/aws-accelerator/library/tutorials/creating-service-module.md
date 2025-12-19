@@ -2,7 +2,7 @@
 
 We offer a collection of [service modules](/docs/aws-accelerator/library/concepts/service-modules) that combine individual [modules](/docs/aws-accelerator/library/concepts/modules) to address specific use cases, such as provisioning EKS clusters or VPCs with public and private subnets. While we strive to make the service catalog as comprehensive as possible, you may need to create a custom service to meet a unique requirement for your company. 
 
-In this guide, you will learn how to create a service that provisions a simple API using the [AWS Lambda Function](/reference/modules/terraform-aws-lambda/lambda/) and [API Gateway](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/) modules from the Gruntwork Infrastructure as Code (IaC) Library. 
+In this guide, you will learn how to create a service that provisions a simple API using the [AWS Lambda Function](https://library.gruntwork.io/modules/terraform-aws-lambda/lambda/) and [API Gateway](https://library.gruntwork.io/modules/terraform-aws-lambda/lambda-http-api-gateway/) modules from the Gruntwork Infrastructure as Code (IaC) Library. 
 
 ## Prerequisites 
 
@@ -32,7 +32,7 @@ touch gw_service_guide/serverless-api/outputs.tf
 
 ### Define the service
 
-Next, define the module blocks for the AWS Lambda function and HTTP API Gateway. Use the [Lambda function module](/reference/modules/terraform-aws-lambda/lambda/) for the Lambda function, and the [HTTP API Gateway module](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/) for the HTTP API Gateway. 
+Next, define the module blocks for the AWS Lambda function and HTTP API Gateway. Use the [Lambda function module](https://library.gruntwork.io/modules/terraform-aws-lambda/lambda/) for the Lambda function, and the [HTTP API Gateway module](https://library.gruntwork.io/modules/terraform-aws-lambda/lambda-http-api-gateway/) for the HTTP API Gateway. 
 
 To simplify the configuration for this guide, we define a single route — `ANY /{proxy+}`. This configuration directs the API Gateway to forward all requests matching the path `/*` to the Lambda function. This approach is particularly effective when using an API framework within the Lambda function code to handle request routing. 
 
@@ -93,7 +93,7 @@ variable "lambda_handler" {
 
 ### Specify the outputs
 
-Next, define the outputs for the module. Outputs provide a convenient way to pass values between modules when building a service composed of multiple modules. For this guide, we will define a single output — the URL for the provisioned API. When developing a module for your company or team, you may need to include additional outputs. Refer to the Library Reference for the [Lambda function module](/reference/modules/terraform-aws-lambda/lambda/#reference) and the [HTTP API Gateway module](/reference/modules/terraform-aws-lambda/lambda-http-api-gateway/#reference) for a complete list of available outputs.
+Next, define the outputs for the module. Outputs provide a convenient way to pass values between modules when building a service composed of multiple modules. For this guide, we will define a single output — the URL for the provisioned API. When developing a module for your company or team, you may need to include additional outputs. Refer to the Library Reference for the [Lambda function module](https://library.gruntwork.io/modules/terraform-aws-lambda/lambda/#reference) and the [HTTP API Gateway module](https://library.gruntwork.io/modules/terraform-aws-lambda/lambda-http-api-gateway/#reference) for a complete list of available outputs.
 
 ```hcl title=gw_service_guide/serverless-api/outputs.tf
 output "api_endpoint" {
@@ -200,5 +200,5 @@ You should receive `{"message": "Hello from Gruntwork!"}` as a response.
 
 ## What’s next
 
-Now that you've defined your own service, consider how you would make this module available to others in your organization. At Gruntwork, we share services using a GitHub repository called `terraform-aws-service-catalog`. For more information, refer to the [Library Reference](/library/reference). Next, try adding tests to this service using [Terratest](https://terratest.gruntwork.io) to ensure resources are created successfully as changes are made to the service. Finally, think about what additional resources you might include in this module. For example, you could add authentication via AWS Cognito to the HTTP API Gateway or a DynamoDB table to store data.
+Now that you've defined your own service, consider how you would make this module available to others in your organization. At Gruntwork, we share services using a GitHub repository called `terraform-aws-service-catalog`. For more information, refer to the [Library Reference](https://library.gruntwork.io). Next, try adding tests to this service using [Terratest](https://terratest.gruntwork.io) to ensure resources are created successfully as changes are made to the service. Finally, think about what additional resources you might include in this module. For example, you could add authentication via AWS Cognito to the HTTP API Gateway or a DynamoDB table to store data.
 

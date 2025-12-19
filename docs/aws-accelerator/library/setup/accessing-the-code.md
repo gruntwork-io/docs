@@ -4,7 +4,7 @@ Gruntwork provides access to all code included in your Infrastructure as Code (I
 
 ## Accessing modules and services in the IaC Library
 
-Once you can access the Gruntwork IaC library, you can view the source code for all modules and services in [GitHub](https://github.com/orgs/gruntwork-io/repositories). Refer to the [Library Reference](/library/reference) for a complete list of available modules and services.
+Once you can access the Gruntwork IaC library, you can view the source code for all modules and services in [GitHub](https://github.com/orgs/gruntwork-io/repositories). Refer to the [Library Reference](https://library.gruntwork.io) for a complete list of available modules and services.
 
 In GitHub, each IaC repository adheres to a naming convention: it begins with the prefix `terraform-aws-`, followed by a description of the modules it contains. For example, Amazon SNS, SQS, MSK, and Kinesis modules reside in the `terraform-aws-messaging` repository. 
 

@@ -6,7 +6,7 @@ Service modules are usually written in Terraform, represent a full use case, and
 
 ## Example
 
-Let’s look at an example service module. The [`rds` service module](/reference/services/data-storage/amazon-rds) creates not only an RDS database, but also a DNS record in Amazon Route53, CloudWatch alarms, a CloudWatch dashboard, and scheduled snapshots of the database, all using a combination of "building block" modules.
+Let's look at an example service module. The [`rds` service module](https://library.gruntwork.io/services/data-storage/amazon-rds) creates not only an RDS database, but also a DNS record in Amazon Route53, CloudWatch alarms, a CloudWatch dashboard, and scheduled snapshots of the database, all using a combination of "building block" modules.
 
 After applying, you will have an RDS instance that you can access via a human-friendly name, alarms to alert you if something goes wrong, a dashboard for viewing RDS KPIs, and a strategy for disaster recovery.
 
@@ -22,7 +22,7 @@ If you do not agree with our opinions, you can either [customize the module](/do
 
 Using a service module can save you time because Gruntwork has already pieced together individual building block modules and tested that they correctly reference each other.
 
-For example, the [eks-cluster service module](/reference/services/app-orchestration/amazon-eks) combines all the modules you need to run an EKS (Kubernetes) cluster in a typical production environment, including modules for the control plane, worker nodes, secrets management, log aggregation, alerting, and so on.
+For example, the [eks-cluster service module](https://library.gruntwork.io/services/app-orchestration/amazon-eks) combines all the modules you need to run an EKS (Kubernetes) cluster in a typical production environment, including modules for the control plane, worker nodes, secrets management, log aggregation, alerting, and so on.
 
 If you need more flexibility than our services provide, then you can combine modules from our [module catalog](/docs/aws-accelerator/library/concepts/modules#where-to-find-the-building-block-modules), your own modules, or open source modules to meet your specific use case.
 
@@ -36,7 +36,7 @@ The service catalog features over 25 service modules spanning three major use ca
 2. Running applications
 3. Storing data
 
-To browse the service catalog, see the [Library Reference](/library/reference) and look for "Service Catalog" in the sidebar. You can also visit the [terraform-aws-service-catalog git repo](https://github.com/gruntwork-io/terraform-aws-service-catalog).
+To browse the service catalog, see the [Library Reference](https://library.gruntwork.io) and look for "Service Catalog" in the sidebar. You can also visit the [terraform-aws-service-catalog git repo](https://github.com/gruntwork-io/terraform-aws-service-catalog).
 
 ## How service modules are updated
 

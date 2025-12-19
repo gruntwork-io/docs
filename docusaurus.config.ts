@@ -96,7 +96,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'awsAcceleratorSidebar',
           position: 'left',
-          label: 'AWS Accelerator',
+          label: 'Accelerator',
         },
         {
           type: 'docSidebar',
@@ -109,6 +109,12 @@ const config: Config = {
           sidebarId: 'openSourceSidebar',
           position: 'left',
           label: 'Open Source',
+        },
+        {
+          type: 'doc',
+          docId: 'release-notes/index',
+          label: 'Release Notes',
+          position: 'right',
         },
         {
           type: 'doc',

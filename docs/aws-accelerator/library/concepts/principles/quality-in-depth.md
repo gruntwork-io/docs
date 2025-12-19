@@ -27,7 +27,7 @@ While ensuring security often involves good practices and sound judgment, static
 
 ### Automated documentation generation
 
-While well-written, human-generated documentation captures intent and technical details, automated documentation generation ensures accuracy and up-to-date information. Gruntwork employs custom tools to supplement manually written documentation with automatically generated details, available in the [Library Reference](/library/reference).
+While well-written, human-generated documentation captures intent and technical details, automated documentation generation ensures accuracy and up-to-date information. Gruntwork employs custom tools to supplement manually written documentation with automatically generated details, available in the [Library Reference](https://library.gruntwork.io).
 
 ## Quality checks we don't use
 

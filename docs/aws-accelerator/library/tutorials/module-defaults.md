@@ -37,7 +37,7 @@ locals {
 
 Finally, you can define inputs, where the module defaults pattern demonstrates its value by keeping your code DRY.
 
-In the example block below, we set default values for the `vpc_name` and `num_nat_gateways` variables. A quick inspection of the [`vpc-app`](/reference/modules/terraform-aws-vpc/vpc-app/) module reveals that only one additional required variable — `cidr_block` — remains unspecified. As a result, consumers of the defaults module need to provide just one input variable, achieving a 66% reduction in required inputs. You can build on this example by setting a default CIDR block while giving consumers the option to override it with a different value if needed.
+In the example block below, we set default values for the `vpc_name` and `num_nat_gateways` variables. A quick inspection of the [`vpc-app`](https://library.gruntwork.io/modules/terraform-aws-vpc/vpc-app/) module reveals that only one additional required variable — `cidr_block` — remains unspecified. As a result, consumers of the defaults module need to provide just one input variable, achieving a 66% reduction in required inputs. You can build on this example by setting a default CIDR block while giving consumers the option to override it with a different value if needed.
 
 
 ```hcl title=_module_defaults/networking/vpc-app.hcl
@@ -58,7 +58,7 @@ Now that you understand how to develop a defaults module, let’s explore how yo
 
 ### Infrastructure units
 
-An infrastructure unit is the Gruntwork term for deploying an infrastructure-as-code module in a single environment. For example, deploying the [`vpc-app`](/reference/modules/terraform-aws-vpc/vpc-app/) module in your development AWS account constitutes a single infrastructure unit.  
+An infrastructure unit is the Gruntwork term for deploying an infrastructure-as-code module in a single environment. For example, deploying the [`vpc-app`](https://library.gruntwork.io/modules/terraform-aws-vpc/vpc-app/) module in your development AWS account constitutes a single infrastructure unit.  
 
 In this section, we’ll outline the approach Gruntwork uses for leveraging defaults modules as infrastructure units. When you purchase a DevOps Foundation, the generated repository containing your infrastructure-as-code is automatically configured to use this approach.  
 

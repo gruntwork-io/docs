@@ -100,7 +100,7 @@ Merge the Access Control PR before running workflows in the new repository.
 
 Review the Access Control Pull Request, which adds two new roles: `delegated-pipelines-apply-role` and `delegated-pipelines-plan-role`. These roles grant the minimum permissions required to bootstrap the new repository.
 
-To add additional permissions, modify the [iam_policy](/reference/modules/terraform-aws-security/github-actions-iam-role/#iam_policy) block in each role.
+To add additional permissions, modify the [iam_policy](https://library.gruntwork.io/modules/terraform-aws-security/github-actions-iam-role/#iam_policy) block in each role.
 
 Managing these roles through the `infrastructure-live-access-control` repository ensures your platform team retains control over changes in the delegated repository.
 

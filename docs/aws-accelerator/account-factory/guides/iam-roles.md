@@ -58,7 +58,7 @@ iam_policy = {
 }
 ```
 
-See the full description of the `iam_policy` input [in the library reference](/reference/modules/terraform-aws-security/github-actions-iam-role/#iam_policy).
+See the full description of the `iam_policy` input [in the library reference](https://library.gruntwork.io/modules/terraform-aws-security/github-actions-iam-role/#iam_policy).
 
 ### Customizing all delegated repositories
  

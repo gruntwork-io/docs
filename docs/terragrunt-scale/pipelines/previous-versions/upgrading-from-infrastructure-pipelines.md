@@ -4,7 +4,7 @@ This migration guide is for those using the earlier version of Gruntwork Pipelin
 
 ## What's new
 
-For a detailed overview of changes and improvements in the latest version of Pipelines, refer to the [deprecation notice](/infrastructure-pipelines/overview/deprecation.md).
+For a detailed overview of changes and improvements in the latest version of Pipelines, refer to the [Pipelines documentation](/docs/terragrunt-scale/pipelines/concepts/overview).
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ Before starting the migration process, ensure the following:
 
 ## Step 1: Ensure Machine Users are configured
 
-Verify that appropriate tokens and secrets are configured to allow workflows to access the necessary infrastructure secrets. Detailed instructions can be found in the [Machine Users guide](/infrastructure-pipelines/security/machine-users.md).
+Verify that appropriate tokens and secrets are configured to allow workflows to access the necessary infrastructure secrets. Detailed instructions can be found in the [Machine Users guide](/docs/terragrunt-scale/pipelines/installation/viamachineusers).
 
 ## Step 2: Update the `bootstrap.yml` workflow
 
@@ -159,7 +159,7 @@ The `pipelines.yml` workflow serves as the primary workflow for planning and app
 
 The logic previously managed by dispatching workflows to a secondary `infrastructure-pipelines` repository has been replaced with a shared workflow located in the Gruntwork-managed [pipelines-workflows](https://github.com/gruntwork-io/pipelines-workflows) repository. By default, any repository using Pipelines will reference this shared workflow.
 
-Repositories using `infrastructure-live` now operate within their own context. Secrets and role assumptions are specific to the repository executing the workflow, eliminating the need for a secondary repository. This adjustment simplifies infrastructure management at scale and offers numerous benefits over the previous method. To learn more, see the [deprecation notice here](/infrastructure-pipelines/overview/deprecation.md).
+Repositories using `infrastructure-live` now operate within their own context. Secrets and role assumptions are specific to the repository executing the workflow, eliminating the need for a secondary repository. This adjustment simplifies infrastructure management at scale and offers numerous benefits over the previous method. To learn more, see the [Pipelines documentation](/docs/terragrunt-scale/pipelines/concepts/overview).
 
 Please ensure you understand these changes. For questions, contact Gruntwork support.
 
@@ -246,7 +246,7 @@ Consult Gruntwork support if you're unsure about residual files.
 
 ### Delete old tokens and secrets
 
-Remove any tokens or secrets used with the previous `infrastructure-pipelines` setup. For a list of old tokens, refer to [Machine Users Documentation](/infrastructure-pipelines/security/machine-users.md).
+Remove any tokens or secrets used with the previous `infrastructure-pipelines` setup. For a list of old tokens, refer to [Machine Users Documentation](/docs/terragrunt-scale/pipelines/installation/viamachineusers).
 
 ### Archive the `infrastructure-pipelines` repository
 

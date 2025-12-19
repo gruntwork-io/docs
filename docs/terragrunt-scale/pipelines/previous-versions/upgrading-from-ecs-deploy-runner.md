@@ -66,7 +66,7 @@ Once the repository is successfully bootstrapped, delete the `CUSTOMER_BOOTSTRAP
 
 ## Set up GitHub CI machine Users and secrets
 
-Pipelines uses two machine users: one for read-only operations and another for elevated privileges. Follow the [Machine Users Guide](/infrastructure-pipelines/security/machine-users) to set up these accounts and configure their access tokens in the appropriate repositories.
+Pipelines uses two machine users: one for read-only operations and another for elevated privileges. Follow the [Machine Users Guide](/docs/terragrunt-scale/pipelines/installation/viamachineusers) to set up these accounts and configure their access tokens in the appropriate repositories.
 
 ## Create AWS IAM roles for Pipelines
 

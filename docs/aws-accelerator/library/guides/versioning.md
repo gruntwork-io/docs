@@ -8,7 +8,7 @@ Gruntwork versions the Infrastructure as Code (IaC) Library using [Semantic Vers
 - The **MINOR** version is incremented when we introduce backward incompatible API changes.
 - The **PATCH** version is incremented when we add backward compatible functionality or bug fixes.
 
-For modules that include submodules (e.g., `terraform-aws-server/modules/single-server`), not every release will contain changes for all submodules. While we recommend using the latest version, you can identify the most recent version with modifications to a specific submodule in the [Library Reference](/library/reference).
+For modules that include submodules (e.g., `terraform-aws-server/modules/single-server`), not every release will contain changes for all submodules. While we recommend using the latest version, you can identify the most recent version with modifications to a specific submodule in the [Library Reference](https://library.gruntwork.io).
 
 ![Submodules show the last version in which they were modified](/img/iac/stay-up-to-date/versioning/module_release_tag_versions.png)
 

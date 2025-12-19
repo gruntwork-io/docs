@@ -34,4 +34,4 @@ For GitHub Actions, you have two authentication options:
 For GitLab CI/CD:
 
 1. [Machine User Authentication](/docs/terragrunt-scale/pipelines/installation/viamachineusers) is the only supported method
-2. Contact [Gruntwork support](/support) to authorize your GitLab groups
+2. Contact [Gruntwork support](/docs/support) to authorize your GitLab groups

@@ -15,15 +15,15 @@ The standard network architecture includes:
 
 ## Out-of-the-box setup
 
-Gruntwork generates the IaC code required to implement an opinionated, standard, recommended VPC configuration. Details are available in the [VPC service catalog module](/reference/services/networking/virtual-private-cloud-vpc).
+Gruntwork generates the IaC code required to implement an opinionated, standard, recommended VPC configuration. Details are available in the [VPC service catalog module](https://library.gruntwork.io/services/networking/virtual-private-cloud-vpc).
 
 ## Extending the standard VPC
 
 You can expand the configuration using "building block" modules from the VPC topic in the Gruntwork IaC Library. These modules enable additional functionality such as:
 
-- [Enabling IPv6](/reference/modules/terraform-aws-vpc/vpc-app/#ipv6-design)
-- [Adding a Transit Gateway](/reference/modules/terraform-aws-vpc/transit-gateway/)
-- [Enabling DNS forwarding](/reference/modules/terraform-aws-vpc/vpc-dns-forwarder/)
-- [Setting up Tailscale](/reference/services/security/tailscale-subnet-router)
+- [Enabling IPv6](https://library.gruntwork.io/modules/terraform-aws-vpc/vpc-app/#ipv6-design)
+- [Adding a Transit Gateway](https://library.gruntwork.io/modules/terraform-aws-vpc/transit-gateway/)
+- [Enabling DNS forwarding](https://library.gruntwork.io/modules/terraform-aws-vpc/vpc-dns-forwarder/)
+- [Setting up Tailscale](https://library.gruntwork.io/services/security/tailscale-subnet-router)
 
 This process involves working directly with the OpenTofu/Terraform modules in the Gruntwork IaC Library.

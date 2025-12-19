@@ -104,7 +104,7 @@ If you believe your change will benefit the entire Gruntwork community using the
 
 ## Forking
 
-The [Gruntwork Terms of Service](https://gruntwork.io/terms/) allow you to fork code from the Gruntwork Infrastructure as Code Library into your own repositories. You may need to fork code for two reasons: to customize Gruntwork modules for your organization’s needs or to comply with policies that require all source code to reside in an internal GitHub Enterprise or BitBucket server. If your changes are specific to your organization, we encourage you to [contribute them back to the upstream Gruntwork repository](/docs/aws-accelerator/library/guides/contributing) whenever possible. This section outlines how to fork the code when required.
+The [Gruntwork Terms of Service](https://gruntwork.io/terms/) allow you to fork code from the Gruntwork Infrastructure as Code Library into your own repositories. You may need to fork code for two reasons: to customize Gruntwork modules for your organization's needs or to comply with policies that require all source code to reside in an internal GitHub Enterprise or BitBucket server. If your changes are specific to your organization, we encourage you to [contribute them back to the upstream Gruntwork repository](/docs/aws-accelerator/library/guides/contributing) whenever possible. This section outlines how to fork the code when required.
 
 :::caution
 
@@ -131,7 +131,7 @@ To fork code from the Gruntwork Infrastructure as Code Library:
 3. Copy pre-built binaries for repositories that contain them (e.g., `ssh-grunt`).
 4. Search each repository for cross-references to other Gruntwork repos. Most repositories are standalone, but some Terraform and Go code is shared across repositories. Update Terraform source URLs and Go import statements from `github.com/gruntwork-io` to your private Git repository URLs.
 
-We recommend automating this process and running it on a regular schedule. The Gruntwork Infrastructure as Code Library is [continuously updated](/guides/stay-up-to-date/), so you’ll need to pull in updates regularly to remain current.
+We recommend automating this process and running it on a regular schedule. The Gruntwork Infrastructure as Code Library is [continuously updated](/docs/release-notes/), so you'll need to pull in updates regularly to remain current.
 
 :::info
 
