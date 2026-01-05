@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AOvR4","number":176,"author":{"login":"rhoboat"},"title":"ECS Fargate: Add autoscaling without downtime?","body":"Hey! We were trying move from an ecs fargate service without autoscaling to one with autoscaling. Is there a way to do it with no downtime? Right now, it seems like there's not.","bodyHTML":"<p dir=\"auto\">Hey! We were trying move from an ecs fargate service without autoscaling to one with autoscaling. Is there a way to do it with no downtime? Right now, it seems like there's not.</p>","answer":{"body":"Hi,\r\nyes, from my tests I found that when enabling auto-scaling ECS service is recreated which will lead to downtime, as a workaround - I was thinking that can be created separated service with auto scale, traffic shifted to new service and then old one can be removed.\r\n ","bodyHTML":"<p dir=\"auto\">Hi,<br>\nyes, from my tests I found that when enabling auto-scaling ECS service is recreated which will lead to downtime, as a workaround - I was thinking that can be created separated service with auto scale, traffic shifted to new service and then old one can be removed.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "07e5c6cc53f29a87d7309aa9aa119582"
+  "hash": "cc2e9ba12720de9e97e4e4dfc622c40b"
 }
 ##DOCS-SOURCER-END -->

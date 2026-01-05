@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AO22V","number":213,"author":{"login":"yorinasub17"},"title":"How do I share Secrets Manager secrets with Kubernetes Pods through Terragrunt/Terraform?","body":"Can I retrieve the secrets in Terragrunt/Terraform and set it up as environment variables on the helm chart inputs/kubernetes manifests/provider resources?","bodyHTML":"<p dir=\"auto\">Can I retrieve the secrets in Terragrunt/Terraform and set it up as environment variables on the helm chart inputs/kubernetes manifests/provider resources?</p>","answer":{"body":"In general, it is recommended to manage secrets by pulling it in the containers, similar to how we do it in our [aws-sample-app](https://github.com/gruntwork-io/aws-sample-app) container.\r\n\r\nThis is to avoid leaking the raw, unencrypted secret into various places (e.g., if you pull the secrets in terragrunt, the raw unencrypted secret ends up in the Terraform state file AND the Deployment Kubernetes manifest such that if you `kubectl describe deployment`, you can read it in plain text).","bodyHTML":"<p dir=\"auto\">In general, it is recommended to manage secrets by pulling it in the containers, similar to how we do it in our <a href=\"https://github.com/gruntwork-io/aws-sample-app\">aws-sample-app</a> container.</p>\n<p dir=\"auto\">This is to avoid leaking the raw, unencrypted secret into various places (e.g., if you pull the secrets in terragrunt, the raw unencrypted secret ends up in the Terraform state file AND the Deployment Kubernetes manifest such that if you <code class=\"notranslate\">kubectl describe deployment</code>, you can read it in plain text).</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "6b65690166cc6829aec1507a941c05d4"
+  "hash": "7eb9e77e12d240da888dca72231abce5"
 }
 ##DOCS-SOURCER-END -->

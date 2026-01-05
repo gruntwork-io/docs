@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AO7RH","number":243,"author":{"login":"marinalimeira"},"title":"How to reduce `.terragrunt-cache` size","body":"Our base infrastructure repo with only 5 accounts/30 accounts is already 15GB in size, locally, due to .terragrunt-cache folders in every module. Is there any smart way to reduce the total size of the cache folders? ","bodyHTML":"<p dir=\"auto\">Our base infrastructure repo with only 5 accounts/30 accounts is already 15GB in size, locally, due to .terragrunt-cache folders in every module. Is there any smart way to reduce the total size of the cache folders?</p>","answer":{"body":"This is unfortunately a known issue that we haven't had a chance to tackle. The issue ticket in `terragrunt` for this feature request is https://github.com/gruntwork-io/terragrunt/issues/561. I recommend taking a look at some of the comments on the issue, as some of our open source users have found ways to workaround this by using a centralized download directory (specifically, [this comment](https://github.com/gruntwork-io/terragrunt/issues/561#issuecomment-1032170292)).","bodyHTML":"<p dir=\"auto\">This is unfortunately a known issue that we haven't had a chance to tackle. The issue ticket in <code class=\"notranslate\">terragrunt</code> for this feature request is <a class=\"issue-link js-issue-link\" data-error-text=\"Failed to load title\" data-id=\"356864701\" data-permission-text=\"Title is private\" data-url=\"https://github.com/gruntwork-io/terragrunt/issues/561\" data-hovercard-type=\"issue\" data-hovercard-url=\"/gruntwork-io/terragrunt/issues/561/hovercard\" href=\"https://github.com/gruntwork-io/terragrunt/issues/561\">gruntwork-io/terragrunt#561</a>. I recommend taking a look at some of the comments on the issue, as some of our open source users have found ways to workaround this by using a centralized download directory (specifically, <a href=\"https://github.com/gruntwork-io/terragrunt/issues/561#issuecomment-1032170292\" data-hovercard-type=\"issue\" data-hovercard-url=\"/gruntwork-io/terragrunt/issues/561/hovercard\">this comment</a>).</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "13205cfcb8aa1475cbe307048622c471"
+  "hash": "bbd9bed8e065b6ce8b8217b0b0d8bb46"
 }
 ##DOCS-SOURCER-END -->

@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AO3fC","number":221,"author":{"login":"zackproser"},"title":"How to use a PGP key directly for the Ref Arch instead of using Keybase?","body":"A customer asked: \r\n> How can I provide a PGP key for use in my Reference Architecture deployment without creating a Keybase account? ","bodyHTML":"<p dir=\"auto\">A customer asked:</p>\n<blockquote>\n<p dir=\"auto\">How can I provide a PGP key for use in my Reference Architecture deployment without creating a Keybase account?</p>\n</blockquote>","answer":{"body":"To provide us a PGP key without using keybase, first export your PGP key: \r\n```bash \r\n# Set KEYID to the ID of the PGP key you would like to use for encrypting\r\ngpg --export $KEYID | base64\r\n```\r\n\r\nOnce you have exported your key using this command, you can paste in the full `base64` encoded string instead of the `keybase:username` format in your `reference-architecture-form.yml`. ","bodyHTML":"<p dir=\"auto\">To provide us a PGP key without using keybase, first export your PGP key:</p>\n<div class=\"highlight highlight-source-shell notranslate position-relative overflow-auto\" dir=\"auto\" data-snippet-clipboard-copy-content=\"# Set KEYID to the ID of the PGP key you would like to use for encrypting\ngpg --export $KEYID | base64\"><pre class=\"notranslate\"><span class=\"pl-c\"><span class=\"pl-c\">#</span> Set KEYID to the ID of the PGP key you would like to use for encrypting</span>\ngpg --export <span class=\"pl-smi\">$KEYID</span> <span class=\"pl-k\">|</span> base64</pre></div>\n<p dir=\"auto\">Once you have exported your key using this command, you can paste in the full <code class=\"notranslate\">base64</code> encoded string instead of the <code class=\"notranslate\">keybase:username</code> format in your <code class=\"notranslate\">reference-architecture-form.yml</code>.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "75f363d5bc42061a8c9d2e5215b7fa80"
+  "hash": "ec060f998565f0be036fd48093027d84"
 }
 ##DOCS-SOURCER-END -->

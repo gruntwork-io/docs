@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AOCcJ","number":64,"author":{"login":"marijakstrazdas"},"title":"AWS Backup integrated?","body":"Does Gruntwork have AWS Backup (the org-wide managed solution) integrated into your process?","bodyHTML":"<p dir=\"auto\">Does Gruntwork have AWS Backup (the org-wide managed solution) integrated into your process?</p>","answer":{"body":"We do not currently support AWS Backup. However, all of our data storage modules include configurable snapshot capturing functionality. In addition, we offer special modules for snapshotting AWS Lambda and RDS resources in https://github.com/gruntwork-io/terraform-aws-data-storage.  \r\n\r\nThat said, because the Reference Architecture is defined entirely within Infrastructure as Code, adding support for AWS Backup using [the AWS Backup Terraform resources](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/backup_plan) should be straightforward.","bodyHTML":"<p dir=\"auto\">We do not currently support AWS Backup. However, all of our data storage modules include configurable snapshot capturing functionality. In addition, we offer special modules for snapshotting AWS Lambda and RDS resources in <a href=\"https://github.com/gruntwork-io/terraform-aws-data-storage\">https://github.com/gruntwork-io/terraform-aws-data-storage</a>.</p>\n<p dir=\"auto\">That said, because the Reference Architecture is defined entirely within Infrastructure as Code, adding support for AWS Backup using <a href=\"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/backup_plan\" rel=\"nofollow\">the AWS Backup Terraform resources</a> should be straightforward.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "69bbdb08f81400a4e76055cc8d6b0c7f"
+  "hash": "36abc498a865eb1156fb3f25042ea284"
 }
 ##DOCS-SOURCER-END -->

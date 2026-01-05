@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84ASbnT","number":661,"author":{"login":"ellisonc"},"title":"I can't delete VPCs using cloud-nuke","body":"\nWhen I try to delete a VPC using cloud-nuke I see an error\r\n\r\n```\r\nInvalidParameterValue: Network interface 'eni:2ad435344fe31c' is currently in use.'\r\n```\n\n---\n\n<ins datetime=\"2023-02-07T14:35:07Z\">\n  <p><a href=\"https://support.gruntwork.io/hc/requests/109877\">Tracked in ticket #109877</a></p>\n</ins>\n","bodyHTML":"<p dir=\"auto\">When I try to delete a VPC using cloud-nuke I see an error</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"InvalidParameterValue: Network interface 'eni:2ad435344fe31c' is currently in use.'\"><pre class=\"notranslate\"><code class=\"notranslate\">InvalidParameterValue: Network interface 'eni:2ad435344fe31c' is currently in use.'\n</code></pre></div>\n<hr>\n<ins datetime=\"2023-02-07T14:35:07Z\">\n  <p dir=\"auto\"><a href=\"https://support.gruntwork.io/hc/requests/109877\" rel=\"nofollow\">Tracked in ticket #109877</a></p>\n</ins>","answer":{"body":"We believe this is a problem with eventual consistency within AWS. After removing any eni resources within the VPC it takes a significant period of time before the VPC becomes eligible for deletion.  As part of Gruntwork operations we typically run cloud-nuke multiple times to ensure VPCs are destroyed.  We find that retrying after 30 minutes typically resolves the issue.","bodyHTML":"<p dir=\"auto\">We believe this is a problem with eventual consistency within AWS. After removing any eni resources within the VPC it takes a significant period of time before the VPC becomes eligible for deletion.  As part of Gruntwork operations we typically run cloud-nuke multiple times to ensure VPCs are destroyed.  We find that retrying after 30 minutes typically resolves the issue.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "bab3fd17cd8b7b919f04dba010e04619"
+  "hash": "1564fbe77359f8c9baefdc6b9297f650"
 }
 ##DOCS-SOURCER-END -->

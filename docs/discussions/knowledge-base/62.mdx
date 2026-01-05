@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AOB2L","number":62,"author":{"login":"zackproser"},"title":"Do you have a recommended strategy for secrets management?","body":"A customer asked: \r\n> Do you have a recommended strategy to manage secrets along the infra and the apps in your modules/documentation or reference architecture?","bodyHTML":"<p dir=\"auto\">A customer asked:</p>\n<blockquote>\n<p dir=\"auto\">Do you have a recommended strategy to manage secrets along the infra and the apps in your modules/documentation or reference architecture?</p>\n</blockquote>","answer":{"body":"We've designed our Ref Arch to be a showcase of best practices for security and secrets management. \r\n\r\nOur tooling uses AWS Secrets Manager to store sensitive information. Our modules, AWS Sample apps, and tooling all leverage Secrets Manager to securely store and retrieve this data. \r\n\r\nOur [AWS Sample App](https://github.com/gruntwork-io/aws-sample-app) demonstrates how to fetch sensitive info (the DB password, in this case) upon startup and to store that information in memory only, without persisting it to disk. \r\n\r\nOnce you've received your Reference Architecture, you can certainly feel free to adopt these patterns in your own code. \r\n\r\n","bodyHTML":"<p dir=\"auto\">We've designed our Ref Arch to be a showcase of best practices for security and secrets management.</p>\n<p dir=\"auto\">Our tooling uses AWS Secrets Manager to store sensitive information. Our modules, AWS Sample apps, and tooling all leverage Secrets Manager to securely store and retrieve this data.</p>\n<p dir=\"auto\">Our <a href=\"https://github.com/gruntwork-io/aws-sample-app\">AWS Sample App</a> demonstrates how to fetch sensitive info (the DB password, in this case) upon startup and to store that information in memory only, without persisting it to disk.</p>\n<p dir=\"auto\">Once you've received your Reference Architecture, you can certainly feel free to adopt these patterns in your own code.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "a13acf0c099c6f7ff36551bd61ce8ed1"
+  "hash": "4557fe4250494c93f0337168a1f0be85"
 }
 ##DOCS-SOURCER-END -->

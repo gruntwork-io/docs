@@ -1,0 +1,26 @@
+---
+hide_table_of_contents: true
+hide_title: true
+custom_edit_url: null
+---
+
+import CenterLayout from "/src/components/CenterLayout"
+import GitHub from "/src/components/GitHub"
+
+<head>
+  <link rel="canonical" href="https://github.com/gruntwork-io/knowledge-base/discussions/821" />
+</head>
+
+<CenterLayout>
+<span className="searchCategory">Knowledge Base</span>
+<h1>Not upgrade aws-node vpc cni when upgrading the cluster</h1>
+<GitHub discussion={{"id":"D_kwDOF8slf84AZBmO","number":821,"author":{"login":"gabrielanavarrorsid"},"title":"Not upgrade aws-node vpc cni when upgrading the cluster","body":"\nI'm using the terraform-aws-service-catalog eks-cluster module and noticed there's no way to let the module know that I do not wish to upgrade the vpc cni. The reason I dont need this upgrade is because we use a different CNI and we would like to know how we can configure it to not re-deploy the aws-node vpc CNI.\r\n\r\nI checked the terraform-aws-eks repository and noticed that this variable `upgrade_cluster_script_skip_vpc_cni` exists there but that one is not exposed as a variable on the terraform-aws-service-catalog one. Could this be a feature request to be able to configure this? Or did I miss a configuration that I can use with terraform-aws-service-catalog to achieve this.\n\n---\n\n<ins datetime=\"2024-04-25T15:46:29Z\">\n  <p><a href=\"https://support.gruntwork.io/hc/requests/110905\">Tracked in ticket #110905</a></p>\n</ins>\n","bodyHTML":"<p dir=\"auto\">I'm using the terraform-aws-service-catalog eks-cluster module and noticed there's no way to let the module know that I do not wish to upgrade the vpc cni. The reason I dont need this upgrade is because we use a different CNI and we would like to know how we can configure it to not re-deploy the aws-node vpc CNI.</p>\n<p dir=\"auto\">I checked the terraform-aws-eks repository and noticed that this variable <code class=\"notranslate\">upgrade_cluster_script_skip_vpc_cni</code> exists there but that one is not exposed as a variable on the terraform-aws-service-catalog one. Could this be a feature request to be able to configure this? Or did I miss a configuration that I can use with terraform-aws-service-catalog to achieve this.</p>\n<hr>\n<ins datetime=\"2024-04-25T15:46:29Z\">\n  <p dir=\"auto\"><a href=\"https://support.gruntwork.io/hc/requests/110905\" rel=\"nofollow\">Tracked in ticket #110905</a></p>\n</ins>","answer":{"body":"Hi @gabrielanavarrorsid , here is the latest release that has the additional vars exposed! Apologies on it taking a little longer than expected to get released. Please give it a try and let me know if it unblocks you. \r\n[Release v0.112.10](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.112.10)","bodyHTML":"<p dir=\"auto\">Hi <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-url=\"/users/gabrielanavarrorsid/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/gabrielanavarrorsid\">@gabrielanavarrorsid</a> , here is the latest release that has the additional vars exposed! Apologies on it taking a little longer than expected to get released. Please give it a try and let me know if it unblocks you.<br>\n<a href=\"https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v0.112.10\">Release v0.112.10</a></p>"}}} />
+
+</CenterLayout>
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "github-discussions",
+  "hash": "f58c73da979099348837c81fcd38539e"
+}
+##DOCS-SOURCER-END -->

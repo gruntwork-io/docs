@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AO5vu","number":229,"author":{"login":"yorinasub17"},"title":"How do I migrate to a new folder structure using Terragrunt?","body":"A naive copy paste causes the state file to be lost because the `relative_path_to_include` function changes due to the difference in folder paths.","bodyHTML":"<p dir=\"auto\">A naive copy paste causes the state file to be lost because the <code class=\"notranslate\">relative_path_to_include</code> function changes due to the difference in folder paths.</p>","answer":{"body":"You can migrate folder paths by doing the following:\r\n\r\n\r\n1. In the old folder structure, dump out the state to a known, temporary location using `terragrunt state pull > $PATH_TO_TEMP_LOCATION`\r\n2. Switch to the new folder structure and import the state using `terragrunt state push $PATH_TO_TEMP_LOCATION`\r\n","bodyHTML":"<p dir=\"auto\">You can migrate folder paths by doing the following:</p>\n<ol dir=\"auto\">\n<li>In the old folder structure, dump out the state to a known, temporary location using <code class=\"notranslate\">terragrunt state pull &gt; $PATH_TO_TEMP_LOCATION</code></li>\n<li>Switch to the new folder structure and import the state using <code class=\"notranslate\">terragrunt state push $PATH_TO_TEMP_LOCATION</code></li>\n</ol>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "eb1e8e06ab12e7f331a651599a7164a4"
+  "hash": "9f7a5b73ef723b8723bbe8a95fcdbec0"
 }
 ##DOCS-SOURCER-END -->

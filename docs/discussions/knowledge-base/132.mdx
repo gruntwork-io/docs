@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AOeJC","number":132,"author":{"login":"zackproser"},"title":"Grant cross-account access to ECS cluster EC2 instance role","body":"A customer asked: \r\n> I'm running a Nomad cluster in `dev` and want to pull some ECR images from `shared-services` which use a shared KMS key (`container-images`). I've set up the Nomad clients with the `ecr-login` docker config. How do I grant cross-account access to the assumed instance role for the client instances?\r\n\r\n\r\n","bodyHTML":"<p dir=\"auto\">A customer asked:</p>\n<blockquote>\n<p dir=\"auto\">I'm running a Nomad cluster in <code class=\"notranslate\">dev</code> and want to pull some ECR images from <code class=\"notranslate\">shared-services</code> which use a shared KMS key (<code class=\"notranslate\">container-images</code>). I've set up the Nomad clients with the <code class=\"notranslate\">ecr-login</code> docker config. How do I grant cross-account access to the assumed instance role for the client instances?</p>\n</blockquote>","answer":{"body":"So long as your ECR repo policy grants permission to the dev account, you can add the necessary ecr API permissions as a role policy on the nomad nodes. [Here is how we do it for ECS](https://github.com/gruntwork-io/terraform-aws-ecs/blob/7b97af9029e8ce139984b76d4a2b9b7ac27dd4e6/modules/ecs-cluster/main.tf#L314).\r\n","bodyHTML":"<p dir=\"auto\">So long as your ECR repo policy grants permission to the dev account, you can add the necessary ecr API permissions as a role policy on the nomad nodes. <a href=\"https://github.com/gruntwork-io/terraform-aws-ecs/blob/7b97af9029e8ce139984b76d4a2b9b7ac27dd4e6/modules/ecs-cluster/main.tf#L314\">Here is how we do it for ECS</a>.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "25b3872fb574761e5745cbfaf0712078"
+  "hash": "4a4ce715cbd050ad9a1b554e96868e9e"
 }
 ##DOCS-SOURCER-END -->

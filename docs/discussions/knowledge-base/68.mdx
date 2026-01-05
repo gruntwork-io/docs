@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AOFRz","number":68,"author":{"login":"marijakstrazdas"},"title":"Can Gruntwork Pipelines push images to ECR repos and deploy them automatically using GitHub Actions?","body":"A customer asked:\r\n\r\n> Can Gruntwork Pipelines push images to ECR repos and deploy them automatically using GitHub Actions?","bodyHTML":"<p dir=\"auto\">A customer asked:</p>\n<blockquote>\n<p dir=\"auto\">Can Gruntwork Pipelines push images to ECR repos and deploy them automatically using GitHub Actions?</p>\n</blockquote>","answer":{"body":"The pipeline can build the image and push it to the ECR repo, then it can also update and roll out the service, including updating the tag and creating a Fargate task.\r\n\r\nOne limitation to note is that GitHub Actions doesn’t have support for approval workflows unless you have GitHub Enterprise. Hence we haven’t implemented that feature in our GitHub Actions code. The customer can always update that if they have GitHub Enterprise, or they can use an alternative CI/CD like Circleci, or they can simply not use the approval workflow and instead manually roll changes forward.","bodyHTML":"<p dir=\"auto\">The pipeline can build the image and push it to the ECR repo, then it can also update and roll out the service, including updating the tag and creating a Fargate task.</p>\n<p dir=\"auto\">One limitation to note is that GitHub Actions doesn’t have support for approval workflows unless you have GitHub Enterprise. Hence we haven’t implemented that feature in our GitHub Actions code. The customer can always update that if they have GitHub Enterprise, or they can use an alternative CI/CD like Circleci, or they can simply not use the approval workflow and instead manually roll changes forward.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "c9b86fbcabb48f2d15915f026367daaf"
+  "hash": "3baa0ab062f4e1e72ce5a644493530ad"
 }
 ##DOCS-SOURCER-END -->

@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AOoVn","number":152,"author":{"login":"umm0n"},"title":"What's the recommended way to handle secrets creation? IAC or manually?","body":"Hey everyone! Does gruntworks have an official recommendation for how to handle secrets creation in AWS? We understand that, due to the nature of secrets, it might not be feasible to use IAC for this. Should secrets be one of the few things we create manually?\r\n","bodyHTML":"<p dir=\"auto\">Hey everyone! Does gruntworks have an official recommendation for how to handle secrets creation in AWS? We understand that, due to the nature of secrets, it might not be feasible to use IAC for this. Should secrets be one of the few things we create manually?</p>","answer":{"body":"Currently we recommend managing and creating secrets in AWS Secrets Manager using either the `aws` CLI, or the web console. This is the safest way to ensure that the secrets won't leak in an unexpected location, such as the terraform state file, or your local code.\r\n\r\nCredit for answering this question goes to @yorinasub17.","bodyHTML":"<p dir=\"auto\">Currently we recommend managing and creating secrets in AWS Secrets Manager using either the <code class=\"notranslate\">aws</code> CLI, or the web console. This is the safest way to ensure that the secrets won't leak in an unexpected location, such as the terraform state file, or your local code.</p>\n<p dir=\"auto\">Credit for answering this question goes to <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-url=\"/users/yorinasub17/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/yorinasub17\">@yorinasub17</a>.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "52434fb451cc333c64ecc1b175081937"
+  "hash": "b02c51aeba07d1357903c408317a2f94"
 }
 ##DOCS-SOURCER-END -->

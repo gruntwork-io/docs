@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AOaVO","number":108,"author":{"login":"pete0emerson"},"title":"Creating and destroying groups of resources with Terragrunt","body":"We are currently building out our AWS DR infrastructure for our production portals. Our goal is to be able to deploy all infrastructure comprised of many modules with interdependencies using a pipeline in a seamless fashion. Because terragrunt splits state between modules there are challenges deploying a large scale application with short RTO via a pipeline.\r\n\r\nAre there any other solutions to creating and destroying groups of resources besides using terragrunt run-all plan/apply?","bodyHTML":"<p dir=\"auto\">We are currently building out our AWS DR infrastructure for our production portals. Our goal is to be able to deploy all infrastructure comprised of many modules with interdependencies using a pipeline in a seamless fashion. Because terragrunt splits state between modules there are challenges deploying a large scale application with short RTO via a pipeline.</p>\n<p dir=\"auto\">Are there any other solutions to creating and destroying groups of resources besides using terragrunt run-all plan/apply?</p>","answer":{"body":"Hi, to deploy/destroy all modules can be used `run-all` command.","bodyHTML":"<p dir=\"auto\">Hi, to deploy/destroy all modules can be used <code class=\"notranslate\">run-all</code> command.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "1a612beccf49055556dd0d5ce6287ee1"
+  "hash": "2e55bf473a77ed8831aa9e81426d26dd"
 }
 ##DOCS-SOURCER-END -->

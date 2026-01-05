@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AQF9e","number":505,"author":{"login":"kkumaar999"},"title":"terragrunt local and remote backend","body":"\nWe have one terragrunt backend configured in gcs bucket. We are using the same bucket for all the executions. Can we make this remote state as optional i.e when user wants the state to be created local instead of already created backend.\n\n---\n\n<ins datetime=\"2022-07-15T07:22:05Z\">\n  <p><a href=\"https://support.gruntwork.io/hc/requests/108988\">Tracked in ticket #108988</a></p>\n</ins>\n","bodyHTML":"<p dir=\"auto\">We have one terragrunt backend configured in gcs bucket. We are using the same bucket for all the executions. Can we make this remote state as optional i.e when user wants the state to be created local instead of already created backend.</p>\n<hr>\n<ins datetime=\"2022-07-15T07:22:05Z\">\n  <p dir=\"auto\"><a href=\"https://support.gruntwork.io/hc/requests/108988\" rel=\"nofollow\">Tracked in ticket #108988</a></p>\n</ins>","answer":{"body":"Unfortunately, there really isn't a great way to implement this in terragrunt right now because there isn't a way to turn off a block. The best way I can think of is to have users/devs uncomment a `remote_state` block in the child that overrides the remote state block in the parent.\r\n\r\nThere might be a better way using conditionals and exposed includes, but then there will be a good amount of copy paste.","bodyHTML":"<p dir=\"auto\">Unfortunately, there really isn't a great way to implement this in terragrunt right now because there isn't a way to turn off a block. The best way I can think of is to have users/devs uncomment a <code class=\"notranslate\">remote_state</code> block in the child that overrides the remote state block in the parent.</p>\n<p dir=\"auto\">There might be a better way using conditionals and exposed includes, but then there will be a good amount of copy paste.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "547ba5e3278e72c2082ddb7c78942c84"
+  "hash": "8ac5e0f34b08ad433d357871f4d1cdf5"
 }
 ##DOCS-SOURCER-END -->

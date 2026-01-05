@@ -14,14 +14,13 @@ import GitHub from "/src/components/GitHub"
 <CenterLayout>
 <span className="searchCategory">Knowledge Base</span>
 <h1>AWS quotas when going multi-region after Reference Architecture deployed</h1>
-<GitHub discussion={{"id":"D_kwDOF8slf84APncK","number":429,"author":{"login":"iangrunt"},"title":"AWS quotas when going multi-region after Reference Architecture deployed","body":"\nOnce my RefArch is deployed, and I would like to duplicate that infrastructure in new regions, are there AWS quotas I will run into?\n\n---\n\n<ins datetime=\"2022-05-23T19:58:51Z\">\n  <p><a href=\"https://support.gruntwork.io/hc/requests/108652\">Tracked in ticket #108652</a></p>\n</ins>\n","bodyHTML":"<p dir=\"auto\">Once my RefArch is deployed, and I would like to duplicate that infrastructure in new regions, are there AWS quotas I will run into?</p>\n<hr>\n<ins datetime=\"2022-05-23T19:58:51Z\">\n  <p dir=\"auto\"><a href=\"https://support.gruntwork.io/hc/requests/108652\" rel=\"nofollow\">Tracked in ticket #108652</a></p>\n</ins>","answer":{"body":"If you are using the CIS Reference Architecture, then you may run into quota issues around NACL rules per VPC when deploying the VPC. If you do, you will want to increase that to at least 40.","bodyHTML":"<p dir=\"auto\">If you are using the CIS Reference Architecture, then you may run into quota issues around NACL rules per VPC when deploying the VPC. If you do, you will want to increase that to at least 40.</p>"}}} />
+<GitHub discussion={{"id":"D_kwDOF8slf84APncK","number":429,"author":{"login":"iantybo"},"title":"AWS quotas when going multi-region after Reference Architecture deployed","body":"\nOnce my RefArch is deployed, and I would like to duplicate that infrastructure in new regions, are there AWS quotas I will run into?\n\n---\n\n<ins datetime=\"2022-05-23T19:58:51Z\">\n  <p><a href=\"https://support.gruntwork.io/hc/requests/108652\">Tracked in ticket #108652</a></p>\n</ins>\n","bodyHTML":"<p dir=\"auto\">Once my RefArch is deployed, and I would like to duplicate that infrastructure in new regions, are there AWS quotas I will run into?</p>\n<hr>\n<ins datetime=\"2022-05-23T19:58:51Z\">\n  <p dir=\"auto\"><a href=\"https://support.gruntwork.io/hc/requests/108652\" rel=\"nofollow\">Tracked in ticket #108652</a></p>\n</ins>","answer":{"body":"If you are using the CIS Reference Architecture, then you may run into quota issues around NACL rules per VPC when deploying the VPC. If you do, you will want to increase that to at least 40.","bodyHTML":"<p dir=\"auto\">If you are using the CIS Reference Architecture, then you may run into quota issues around NACL rules per VPC when deploying the VPC. If you do, you will want to increase that to at least 40.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "ce4c1b36456d7763473640f148c04eb9"
+  "hash": "aaade1ec47077ccb0baacdc4d332ab6c"
 }
 ##DOCS-SOURCER-END -->

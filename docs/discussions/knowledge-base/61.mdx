@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AOB2C","number":61,"author":{"login":"zackproser"},"title":"DNS: can we use subdomains for each account? Or do we need different domains?","body":"A customer asked: \r\n> The domain organization recommended in the reference architecture allows to have a domain structure like api.dev.domain.com, api.staging.domain.com, api.domain.com. Will this work, or do we need to use separate domains for each account? \r\n\r\n\r\n","bodyHTML":"<p dir=\"auto\">A customer asked:</p>\n<blockquote>\n<p dir=\"auto\">The domain organization recommended in the reference architecture allows to have a domain structure like api.dev.domain.com, api.staging.domain.com, api.domain.com. Will this work, or do we need to use separate domains for each account?</p>\n</blockquote>","answer":{"body":"Our Ref Arch supports both approaches: \r\n- You can use a single domain, and assign unique subdomains to each account, e.g.; dev.example.com, stage.example.com, prod.example.com\r\n- You can use a different domain for each account, if you so wish, e.g.; example.net, example.com, example.io\r\n\r\nWe have automated DNS checks built into our tooling that will ensure your DNS setup is resolving correctly prior to a deployment. ","bodyHTML":"<p dir=\"auto\">Our Ref Arch supports both approaches:</p>\n<ul dir=\"auto\">\n<li>You can use a single domain, and assign unique subdomains to each account, e.g.; dev.example.com, stage.example.com, prod.example.com</li>\n<li>You can use a different domain for each account, if you so wish, e.g.; example.net, example.com, example.io</li>\n</ul>\n<p dir=\"auto\">We have automated DNS checks built into our tooling that will ensure your DNS setup is resolving correctly prior to a deployment.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "cfb8d75e8ef76bb30bab377c1a861c48"
+  "hash": "57f931b81040de65debefcdc0690dd41"
 }
 ##DOCS-SOURCER-END -->

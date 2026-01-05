@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84ANxxP","number":36,"author":{"login":"yorinasub17"},"title":"VPC Peering in the Reference Architecture","body":"Can you configure VPC Peering with existing environments with the Reference Architecture? If so, can you customize the CIDR blocks of new VPCs deployed with the Reference Architecture?","bodyHTML":"<p dir=\"auto\">Can you configure VPC Peering with existing environments with the Reference Architecture? If so, can you customize the CIDR blocks of new VPCs deployed with the Reference Architecture?</p>","answer":{"body":"The Reference Architecture supports VPC peering with existing environments, but it will not automatically setup peering for you. Once deployed, you can setup the peering access with the existing VPCs by modifying the `terragrunt.hcl` configuration of the Reference Architecture to configure the peering variables:\r\n\r\n- `create_peering_connection`\r\n- `origin_vpc_id`\r\n- `origin_vpc_name`\r\n- `origin_vpc_route_table_ids`\r\n- `origin_vpc_cidr_block`\r\n- `origin_vpc_public_subnet_ids`\r\n\r\nTo accommodate VPC peering, we allow configuring the specific CIDR blocks of the VPCs being deployed at the Reference Architecture configuration time.","bodyHTML":"<p dir=\"auto\">The Reference Architecture supports VPC peering with existing environments, but it will not automatically setup peering for you. Once deployed, you can setup the peering access with the existing VPCs by modifying the <code class=\"notranslate\">terragrunt.hcl</code> configuration of the Reference Architecture to configure the peering variables:</p>\n<ul dir=\"auto\">\n<li><code class=\"notranslate\">create_peering_connection</code></li>\n<li><code class=\"notranslate\">origin_vpc_id</code></li>\n<li><code class=\"notranslate\">origin_vpc_name</code></li>\n<li><code class=\"notranslate\">origin_vpc_route_table_ids</code></li>\n<li><code class=\"notranslate\">origin_vpc_cidr_block</code></li>\n<li><code class=\"notranslate\">origin_vpc_public_subnet_ids</code></li>\n</ul>\n<p dir=\"auto\">To accommodate VPC peering, we allow configuring the specific CIDR blocks of the VPCs being deployed at the Reference Architecture configuration time.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "a4001c6dce689e8239d29db1422e2769"
+  "hash": "1875a376386d3ff0eaed7f538e893381"
 }
 ##DOCS-SOURCER-END -->
