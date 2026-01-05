@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AOv8i","number":181,"author":{"login":"rhoboat"},"title":"ECS Deploy Runner for multiple regions","body":"Should accounts use a single ecs-deploy-runner, in a single region, for all the regions in that account? Or should they use one ecs-deploy-runner per region? Are there any drawbacks to using a single ecs-deploy-runner per account (other than having to create/mantain an additional region, other than the one used)?","bodyHTML":"<p dir=\"auto\">Should accounts use a single ecs-deploy-runner, in a single region, for all the regions in that account? Or should they use one ecs-deploy-runner per region? Are there any drawbacks to using a single ecs-deploy-runner per account (other than having to create/mantain an additional region, other than the one used)?</p>","answer":{"body":"The ECS Deploy Runner already has the ability to deploy resources in any region for that account. The only possible issue is that you may incur higher cost when there are high network bandwidth activities, like pushing a docker container.\r\n\r\n_help from @yorinasub17_ ","bodyHTML":"<p dir=\"auto\">The ECS Deploy Runner already has the ability to deploy resources in any region for that account. The only possible issue is that you may incur higher cost when there are high network bandwidth activities, like pushing a docker container.</p>\n<p dir=\"auto\"><em>help from <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-url=\"/users/yorinasub17/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/yorinasub17\">@yorinasub17</a></em></p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "e4a2340158cf9352623ca4ee20fcd9e4"
+  "hash": "8cf83dfc25c1a2cbd895b91a4dae3d43"
 }
 ##DOCS-SOURCER-END -->

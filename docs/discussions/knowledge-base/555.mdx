@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AQs_m","number":555,"author":{"login":"kholisrag"},"title":"Does terragrunt `sops_decrypt_file` function support `age`?","body":"\nDoes terragrunt `sops_decrypt_file` function support `age`?\r\nhttps://github.com/FiloSottile/age\n\n---\n\n<ins datetime=\"2022-09-09T15:07:13Z\">\n  <p><a href=\"https://support.gruntwork.io/hc/requests/109230\">Tracked in ticket #109230</a></p>\n</ins>\n","bodyHTML":"<p dir=\"auto\">Does terragrunt <code class=\"notranslate\">sops_decrypt_file</code> function support <code class=\"notranslate\">age</code>?<br>\n<a href=\"https://github.com/FiloSottile/age\">https://github.com/FiloSottile/age</a></p>\n<hr>\n<ins datetime=\"2022-09-09T15:07:13Z\">\n  <p dir=\"auto\"><a href=\"https://support.gruntwork.io/hc/requests/109230\" rel=\"nofollow\">Tracked in ticket #109230</a></p>\n</ins>","answer":{"body":"`sops_decrypt_file` uses https://github.com/mozilla/sops as a library to decrypt SOPS encrypted files, so unless `sops` has native support for `age`, the function will not support it.","bodyHTML":"<p dir=\"auto\"><code class=\"notranslate\">sops_decrypt_file</code> uses <a href=\"https://github.com/mozilla/sops\">https://github.com/mozilla/sops</a> as a library to decrypt SOPS encrypted files, so unless <code class=\"notranslate\">sops</code> has native support for <code class=\"notranslate\">age</code>, the function will not support it.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "39b2d6605aaff11d2fe1cf68f3acbe5f"
+  "hash": "30f8d380e12b77b67d680e0ba84adaa5"
 }
 ##DOCS-SOURCER-END -->

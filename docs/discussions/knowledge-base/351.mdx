@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84APR1f","number":351,"author":{"login":"autero1"},"title":"How can I pass values to k8s-service in Service Catalog that aren't exposed with input variables?","body":"If a [chart value](https://github.com/gruntwork-io/helm-kubernetes-services/blob/master/charts/k8s-service/values.yaml) isn't exposed with an [input variable](https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/k8s-service/variables.tf), is there a way to pass those values to the Helm Chart?","bodyHTML":"<p dir=\"auto\">If a <a href=\"https://github.com/gruntwork-io/helm-kubernetes-services/blob/master/charts/k8s-service/values.yaml\">chart value</a> isn't exposed with an <a href=\"https://github.com/gruntwork-io/terraform-aws-service-catalog/blob/master/modules/services/k8s-service/variables.tf\">input variable</a>, is there a way to pass those values to the Helm Chart?</p>","answer":{"body":"You can use the input variable `override_chart_inputs` to override any computed chart inputs. This is provided as a workaround while the terraform module does not support a particular input value that is exposed in the underlying chart. \r\n\r\nPlease always file a GitHub issue to request exposing additional underlying input values prior to using this variable.","bodyHTML":"<p dir=\"auto\">You can use the input variable <code class=\"notranslate\">override_chart_inputs</code> to override any computed chart inputs. This is provided as a workaround while the terraform module does not support a particular input value that is exposed in the underlying chart.</p>\n<p dir=\"auto\">Please always file a GitHub issue to request exposing additional underlying input values prior to using this variable.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "1bf1322a118b899c062a16567d40f7c8"
+  "hash": "55dbc82fa27612ec169e6a0565778dfa"
 }
 ##DOCS-SOURCER-END -->

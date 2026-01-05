@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84ASQYz","number":642,"author":{"login":"zackproser"},"title":"How do I ensure a GitHub Personal Acccess token (PAT) is valid?","body":"\nA customer asked: \r\n> How can I ensure a given GitHub Personal Access Token (PAT) is still valid?\n\n---\n\n<ins datetime=\"2023-01-23T20:34:21Z\">\n  <p><a href=\"https://support.gruntwork.io/hc/requests/109822\">Tracked in ticket #109822</a></p>\n</ins>\n","bodyHTML":"<p dir=\"auto\">A customer asked:</p>\n<blockquote>\n<p dir=\"auto\">How can I ensure a given GitHub Personal Access Token (PAT) is still valid?</p>\n</blockquote>\n<hr>\n<ins datetime=\"2023-01-23T20:34:21Z\">\n  <p dir=\"auto\"><a href=\"https://support.gruntwork.io/hc/requests/109822\" rel=\"nofollow\">Tracked in ticket #109822</a></p>\n</ins>","answer":{"body":"# Step 1. Install GitHub's official `gh` command line tool\r\n[Official installation instructions](https://github.com/cli/cli#installation)\r\n\r\n# Step 2. Export the token to test as `GH_TOKEN`\r\n`export GH_TOKEN=<the-github-pat>`\r\n\r\n# Step 3. Run `gh auth status`\r\n\r\n`gh auth status`\r\n\r\n![out](https://user-images.githubusercontent.com/1769996/214150704-2bbb6fc8-28b8-4447-9d72-5ecff797208d.gif)\r\n\r\n\r\n","bodyHTML":"<h1 dir=\"auto\">Step 1. Install GitHub's official <code class=\"notranslate\">gh</code> command line tool</h1>\n<p dir=\"auto\"><a href=\"https://github.com/cli/cli#installation\">Official installation instructions</a></p>\n<h1 dir=\"auto\">Step 2. Export the token to test as <code class=\"notranslate\">GH_TOKEN</code></h1>\n<p dir=\"auto\"><code class=\"notranslate\">export GH_TOKEN=&lt;the-github-pat&gt;</code></p>\n<h1 dir=\"auto\">Step 3. Run <code class=\"notranslate\">gh auth status</code></h1>\n<p dir=\"auto\"><code class=\"notranslate\">gh auth status</code></p>\n<p dir=\"auto\"><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://user-images.githubusercontent.com/1769996/214150704-2bbb6fc8-28b8-4447-9d72-5ecff797208d.gif\"><img src=\"https://user-images.githubusercontent.com/1769996/214150704-2bbb6fc8-28b8-4447-9d72-5ecff797208d.gif\" alt=\"out\" data-animated-image=\"\" style=\"max-width: 100%;\"></a></p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "ce3967705f4e54129cb835917698951e"
+  "hash": "ed17688a47edbbedc92dfa3cc4e63663"
 }
 ##DOCS-SOURCER-END -->

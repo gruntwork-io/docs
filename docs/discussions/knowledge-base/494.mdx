@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AQBij","number":494,"author":{"login":"yorinasub17"},"title":"AMI version vs module version?","body":"\nWe have a deployed multi-account reference architecture, and we're looking to update our AMIs for EKS nodes and OpenVPN server.  Would it cause problems to update to the latest versions of the installed modules, or do we need to keep those versions in sync with the versions referenced by our infra-live modules?\n\n---\n\n<ins datetime=\"2022-07-07T15:33:45Z\">\n  <p><a href=\"https://support.gruntwork.io/hc/requests/108937\">Tracked in ticket #108937</a></p>\n</ins>\n","bodyHTML":"<p dir=\"auto\">We have a deployed multi-account reference architecture, and we're looking to update our AMIs for EKS nodes and OpenVPN server.  Would it cause problems to update to the latest versions of the installed modules, or do we need to keep those versions in sync with the versions referenced by our infra-live modules?</p>\n<hr>\n<ins datetime=\"2022-07-07T15:33:45Z\">\n  <p dir=\"auto\"><a href=\"https://support.gruntwork.io/hc/requests/108937\" rel=\"nofollow\">Tracked in ticket #108937</a></p>\n</ins>","answer":{"body":"In general, we recommend keeping the modules version in sync with the AMI version, primarily because some of the AMI updates coincide with updates to the user-data script, and you can have boot up problems due to wrong or missing args.","bodyHTML":"<p dir=\"auto\">In general, we recommend keeping the modules version in sync with the AMI version, primarily because some of the AMI updates coincide with updates to the user-data script, and you can have boot up problems due to wrong or missing args.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "e023aba7c1b27fe554ce26a0ab9ddcc0"
+  "hash": "445ac3d5e9d5fa77edcb985039425cc6"
 }
 ##DOCS-SOURCER-END -->

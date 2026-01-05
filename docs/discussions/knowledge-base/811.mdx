@@ -1,0 +1,26 @@
+---
+hide_table_of_contents: true
+hide_title: true
+custom_edit_url: null
+---
+
+import CenterLayout from "/src/components/CenterLayout"
+import GitHub from "/src/components/GitHub"
+
+<head>
+  <link rel="canonical" href="https://github.com/gruntwork-io/knowledge-base/discussions/811" />
+</head>
+
+<CenterLayout>
+<span className="searchCategory">Knowledge Base</span>
+<h1>Dry run option in terratest</h1>
+<GitHub discussion={{"id":"D_kwDOF8slf84AYijY","number":811,"author":{"login":"Syed-Shahidh-Ilhan"},"title":"Dry run option in terratest","body":"\nHey guys, I'm just exploring how terratest can help me test individual modules.\r\nso in terratest we're actually spinning up the infrastructure running some checks and then destroying it.....There must be some costs due to this right? (like spinning up an eks cluster and then destroying it)\r\nSo is there a dry-run option in terratest?\n\n---\n\n<ins datetime=\"2024-03-28T19:04:32Z\">\n  <p><a href=\"https://support.gruntwork.io/hc/requests/110849\">Tracked in ticket #110849</a></p>\n</ins>\n","bodyHTML":"<p dir=\"auto\">Hey guys, I'm just exploring how terratest can help me test individual modules.<br>\nso in terratest we're actually spinning up the infrastructure running some checks and then destroying it.....There must be some costs due to this right? (like spinning up an eks cluster and then destroying it)<br>\nSo is there a dry-run option in terratest?</p>\n<hr>\n<ins datetime=\"2024-03-28T19:04:32Z\">\n  <p dir=\"auto\"><a href=\"https://support.gruntwork.io/hc/requests/110849\" rel=\"nofollow\">Tracked in ticket #110849</a></p>\n</ins>","answer":{"body":"Hello,\r\nexamples of how to use terratest can be found at https://github.com/gruntwork-io/terratest/tree/master/examples\r\n\r\nSome of examples can run locally and will not require access to cloud resources:\r\n * docker tests\r\n * Helm\r\n * Terraform tests can be configured to create local files \r\n\r\nhttps://github.com/gruntwork-io/terratest/tree/master/examples/docker-hello-world-example\r\n\r\nhttps://github.com/gruntwork-io/terratest/tree/master/examples/helm-basic-example\r\n\r\nhttps://github.com/gruntwork-io/terratest/tree/master/examples/terraform-hello-world-example\r\n\r\n\r\n","bodyHTML":"<p dir=\"auto\">Hello,<br>\nexamples of how to use terratest can be found at <a href=\"https://github.com/gruntwork-io/terratest/tree/master/examples\">https://github.com/gruntwork-io/terratest/tree/master/examples</a></p>\n<p dir=\"auto\">Some of examples can run locally and will not require access to cloud resources:</p>\n<ul dir=\"auto\">\n<li>docker tests</li>\n<li>Helm</li>\n<li>Terraform tests can be configured to create local files</li>\n</ul>\n<p dir=\"auto\"><a href=\"https://github.com/gruntwork-io/terratest/tree/master/examples/docker-hello-world-example\">https://github.com/gruntwork-io/terratest/tree/master/examples/docker-hello-world-example</a></p>\n<p dir=\"auto\"><a href=\"https://github.com/gruntwork-io/terratest/tree/master/examples/helm-basic-example\">https://github.com/gruntwork-io/terratest/tree/master/examples/helm-basic-example</a></p>\n<p dir=\"auto\"><a href=\"https://github.com/gruntwork-io/terratest/tree/master/examples/terraform-hello-world-example\">https://github.com/gruntwork-io/terratest/tree/master/examples/terraform-hello-world-example</a></p>"}}} />
+
+</CenterLayout>
+
+<!-- ##DOCS-SOURCER-START
+{
+  "sourcePlugin": "github-discussions",
+  "hash": "939e20e99c31e9f5f0ca5be779fff983"
+}
+##DOCS-SOURCER-END -->

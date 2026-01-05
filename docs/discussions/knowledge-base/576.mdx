@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84ARJPL","number":576,"author":{"login":"josh-padnick"},"title":"How do I add custom Helm charts to an EKS cluster?","body":"\nIs there a recommended way to add a custom Helm chart to an EKS cluster so that it's managed as infrastructure as code? For example, I'd like add RabbitMQ via Helm. Separately, are there any standard Helm charts you recommend?\r\n\r\n\n\n---\n\n<ins datetime=\"2022-10-21T23:36:29Z\">\n  <p><a href=\"https://support.gruntwork.io/hc/requests/109416\">Tracked in ticket #109416</a></p>\n</ins>\n","bodyHTML":"<p dir=\"auto\">Is there a recommended way to add a custom Helm chart to an EKS cluster so that it's managed as infrastructure as code? For example, I'd like add RabbitMQ via Helm. Separately, are there any standard Helm charts you recommend?</p>\n<hr>\n<ins datetime=\"2022-10-21T23:36:29Z\">\n  <p dir=\"auto\"><a href=\"https://support.gruntwork.io/hc/requests/109416\" rel=\"nofollow\">Tracked in ticket #109416</a></p>\n</ins>","answer":{"body":"To deploy arbitrary Helm Charts, you can use the [Helm Chart wrapper module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/helm-service) in Service Catalog. That module is intended to deploy third-party applications already packaged as Helm Charts. \r\n\r\n[Bitnami](https://bitnami.com/stacks/helm) has a fairly wide variety of applications packaged as Helm Charts.","bodyHTML":"<p dir=\"auto\">To deploy arbitrary Helm Charts, you can use the <a href=\"https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/master/modules/services/helm-service\">Helm Chart wrapper module</a> in Service Catalog. That module is intended to deploy third-party applications already packaged as Helm Charts.</p>\n<p dir=\"auto\"><a href=\"https://bitnami.com/stacks/helm\" rel=\"nofollow\">Bitnami</a> has a fairly wide variety of applications packaged as Helm Charts.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "fe2ac90f87ceeaefd0636cbbd186322f"
+  "hash": "f6fa865ecac59a185ed6f6d64ee2245b"
 }
 ##DOCS-SOURCER-END -->

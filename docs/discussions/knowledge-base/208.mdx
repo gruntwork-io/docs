@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AO0PN","number":208,"author":{"login":"zackproser"},"title":"Terraform modules: provider constraints and upper and lower bounds","body":"A customer asked: \r\n> I notice that some Gruntwork modules have very specific constraints, where the provider version is required to be `>= 3.66.0`, whereas in other places, the provider constraint that is set only specifies the upper bound, e.g.; `< 4.0`. Why is this done? \r\n\r\n","bodyHTML":"<p dir=\"auto\">A customer asked:</p>\n<blockquote>\n<p dir=\"auto\">I notice that some Gruntwork modules have very specific constraints, where the provider version is required to be <code class=\"notranslate\">&gt;= 3.66.0</code>, whereas in other places, the provider constraint that is set only specifies the upper bound, e.g.; <code class=\"notranslate\">&lt; 4.0</code>. Why is this done?</p>\n</blockquote>","answer":{"body":"There are some situations where a high lower bound, e.g.; `> 3.0, < 4.0`, could cause problems. For example, there might be a bug for a resource in the newer provider versions and you'd like to explicitly avoid the broken versions. \r\n\r\nIn general, we find that setting a lower bound is not very flexible and has the potential to cause issues we're not aware of, so we try to avoid setting a high lower bound, or a lower bound at all, wherever possible. ","bodyHTML":"<p dir=\"auto\">There are some situations where a high lower bound, e.g.; <code class=\"notranslate\">&gt; 3.0, &lt; 4.0</code>, could cause problems. For example, there might be a bug for a resource in the newer provider versions and you'd like to explicitly avoid the broken versions.</p>\n<p dir=\"auto\">In general, we find that setting a lower bound is not very flexible and has the potential to cause issues we're not aware of, so we try to avoid setting a high lower bound, or a lower bound at all, wherever possible.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "5bd1cf7e8b568152ade75a5c4064730d"
+  "hash": "b3f8583f104031cf701fb051d83848e1"
 }
 ##DOCS-SOURCER-END -->

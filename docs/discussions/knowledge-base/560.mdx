@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AQzRv","number":560,"author":{"login":"yorinasub17"},"title":"How do I mount multiple EBS volumes?","body":"\nI know that I can use `persistent-ebs-volume` in `terraform-aws-server` to mount an EBS volume on boot. However, how do I use that script to mount multiple volumes on different mount points?\n\n---\n\n<ins datetime=\"2022-09-19T15:45:07Z\">\n  <p><a href=\"https://support.gruntwork.io/hc/requests/109259\">Tracked in ticket #109259</a></p>\n</ins>\n","bodyHTML":"<p dir=\"auto\">I know that I can use <code class=\"notranslate\">persistent-ebs-volume</code> in <code class=\"notranslate\">terraform-aws-server</code> to mount an EBS volume on boot. However, how do I use that script to mount multiple volumes on different mount points?</p>\n<hr>\n<ins datetime=\"2022-09-19T15:45:07Z\">\n  <p dir=\"auto\"><a href=\"https://support.gruntwork.io/hc/requests/109259\" rel=\"nofollow\">Tracked in ticket #109259</a></p>\n</ins>","answer":{"body":"`persistent-ebs-volume` can be used to mount multiple volumes by calling it multiple times with different parameters that identify the different volumes. For example, you can have different tags for the volumes, and pass different key names for the `--volume-with-same-tag` argument.","bodyHTML":"<p dir=\"auto\"><code class=\"notranslate\">persistent-ebs-volume</code> can be used to mount multiple volumes by calling it multiple times with different parameters that identify the different volumes. For example, you can have different tags for the volumes, and pass different key names for the <code class=\"notranslate\">--volume-with-same-tag</code> argument.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "ba3d1e4b2813e860bc5a3884aa46c477"
+  "hash": "f2784666f6e341e17f825d65e4a9aa12"
 }
 ##DOCS-SOURCER-END -->

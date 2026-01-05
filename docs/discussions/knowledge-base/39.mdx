@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84AN3M2","number":39,"author":{"login":"zackproser"},"title":"Custom permissions for lamba function in terraform-aws-lambda","body":"A customer asked: \r\n> I have a lambda that I'm creating using the lambda service module in the catalog. I need it to have permissions to get a secret from the secrets manager. If this was an ecs-service , I'd set the iam_policy var as needed, but it seems like with the lambda I need to first create a separate policy and then provide the policy as the assume_role_policy var. Am I understanding this correctly?","bodyHTML":"<p dir=\"auto\">A customer asked:</p>\n<blockquote>\n<p dir=\"auto\">I have a lambda that I'm creating using the lambda service module in the catalog. I need it to have permissions to get a secret from the secrets manager. If this was an ecs-service , I'd set the iam_policy var as needed, but it seems like with the lambda I need to first create a separate policy and then provide the policy as the assume_role_policy var. Am I understanding this correctly?</p>\n</blockquote>","answer":{"body":"This is correct! There is a default lambda role defined in the module. However, if you need to set your own custom permissions, you can define them outside of the lambda module and still attach them to the lambda function's `aws_iam_role`. ","bodyHTML":"<p dir=\"auto\">This is correct! There is a default lambda role defined in the module. However, if you need to set your own custom permissions, you can define them outside of the lambda module and still attach them to the lambda function's <code class=\"notranslate\">aws_iam_role</code>.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "3028d69843d1bc262ffc3cf72351cdca"
+  "hash": "1b6dfecf585894f00f6a06b015ed8d5e"
 }
 ##DOCS-SOURCER-END -->

@@ -17,11 +17,10 @@ import GitHub from "/src/components/GitHub"
 <GitHub discussion={{"id":"D_kwDOF8slf84ARsgb","number":611,"author":{"login":"sewmiuraj"},"title":"Support for EFS throughput_mode set to elastic","body":"Hello,\r\n\r\nI need to confirm if gruntwork supports the value **elastic** for the variable throughput_mode.\r\n\r\nThe variables.tf says valid values are only: \\\"bursting\\\", \\\"provisioned\\\"\r\nhttps://github.com/gruntwork-io/terraform-aws-data-storage/blob/main/modules/efs/variables.tf\r\n\r\nIf it is not supported, when can we expect the support to be enabled.\r\n\r\nMany thanks. ","bodyHTML":"<p dir=\"auto\">Hello,</p>\n<p dir=\"auto\">I need to confirm if gruntwork supports the value <strong>elastic</strong> for the variable throughput_mode.</p>\n<p dir=\"auto\">The variables.tf says valid values are only: \"bursting\", \"provisioned\"<br>\n<a href=\"https://github.com/gruntwork-io/terraform-aws-data-storage/blob/main/modules/efs/variables.tf\">https://github.com/gruntwork-io/terraform-aws-data-storage/blob/main/modules/efs/variables.tf</a></p>\n<p dir=\"auto\">If it is not supported, when can we expect the support to be enabled.</p>\n<p dir=\"auto\">Many thanks.</p>","answer":{"body":"Hey @sewmiuraj, the latest release `v0.26.0` contain changes to upgrade the modules inside the data storage repo from 3.x.x to 4.22.0 which should give you the capability to use the feature you want. Please try it out and let us know if you have any further problems. ","bodyHTML":"<p dir=\"auto\">Hey <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-url=\"/users/sewmiuraj/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/sewmiuraj\">@sewmiuraj</a>, the latest release <code class=\"notranslate\">v0.26.0</code> contain changes to upgrade the modules inside the data storage repo from 3.x.x to 4.22.0 which should give you the capability to use the feature you want. Please try it out and let us know if you have any further problems.</p>"}}} />
 
 </CenterLayout>
-  
 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "github-discussions",
-  "hash": "806b80be9c8bc66533fd5b88a797513f"
+  "hash": "8a47b217f31f27c06d35471ce8f3ce58"
 }
 ##DOCS-SOURCER-END -->
