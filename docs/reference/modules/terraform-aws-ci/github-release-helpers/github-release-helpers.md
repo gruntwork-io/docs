@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="0.59.2" lastModifiedVersion="0.58.1"/>
+<VersionBadge repoTitle="CI Modules" version="0.59.11" lastModifiedVersion="0.58.1"/>
 
 # GitHub Release Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/github-release-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.11/modules/github-release-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.58.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -80,15 +80,14 @@ sign-files --source-dir bin --out-dir release --name terragrunt-iac-engine-opent
 create-release --repo-owner gruntwork-io --repo-name terragrunt-engine-opentofu --rc-version 1.0.0-rc1 --version 1.0.0 --release-dir release
 ```
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/github-release-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/github-release-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.2/modules/github-release-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.11/modules/github-release-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.11/modules/github-release-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v0.59.11/modules/github-release-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bdd59f1a238bc47f1d5b3245c3853275"
+  "hash": "6b5a9a9b644ee52d3d74eadae8eb5bf2"
 }
 ##DOCS-SOURCER-END -->

@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.10.5" lastModifiedVersion="0.10.5"/>
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.10.7" lastModifiedVersion="0.10.5"/>
 
 # Executable Dependency
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/executable-dependency" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/executable-dependency" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.10.5" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -27,7 +27,7 @@ if it's not installed already: e.g., [terraform-aws-eks](https://github.com/grun
 
 ## Example code
 
-See the [executable-dependency example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/examples/executable-dependency) for working sample code.
+See the [executable-dependency example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/examples/executable-dependency) for working sample code.
 
 ## Usage
 
@@ -76,7 +76,7 @@ will either be the path of the executable on the system `PATH` or a path in `ins
 
 module "executable_dependency" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/executable-dependency?ref=v0.10.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/executable-dependency?ref=v0.10.7"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -127,7 +127,7 @@ module "executable_dependency" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/executable-dependency?ref=v0.10.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/executable-dependency?ref=v0.10.7"
 }
 
 inputs = {
@@ -243,15 +243,14 @@ The path to use to run the executable. Will either be the path of the executable
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/executable-dependency/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/executable-dependency/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/executable-dependency/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/executable-dependency/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/executable-dependency/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/executable-dependency/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a1cf271dd05d6a89bbae97759f2fa33d"
+  "hash": "798d0c4e5cc3f1ad526e511d30cdd710"
 }
 ##DOCS-SOURCER-END -->

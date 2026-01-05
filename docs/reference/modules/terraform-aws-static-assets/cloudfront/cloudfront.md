@@ -9,20 +9,20 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="0.19.0" lastModifiedVersion="0.19.0"/>
+<VersionBadge repoTitle="Static Assets Modules" version="1.1.2" lastModifiedVersion="1.1.2"/>
 
 # CloudFront Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.19.0/modules/cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.2/modules/cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v0.19.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v1.1.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module deploys an [AWS CloudFront](https://aws.amazon.com/cloudfront/) distribution to serve content from S3 or custom origins. CloudFront is a Content Delivery Network (CDN) that caches your content at edge locations around the world to reduce latency and improve performance for your users.
 
 ## Quick Start
 
-*   See the [cloudfront-custom-origin](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.19.0/examples/cloudfront-custom-origin) example for working sample code.
-*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.19.0/modules/cloudfront/vars.tf) for all parameters you can set for this module.
+*   See the [cloudfront-custom-origin](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.2/examples/cloudfront) example for working sample code.
+*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.2/modules/cloudfront/vars.tf) for all parameters you can set for this module.
 
 ## Sample Usage
 
@@ -37,7 +37,7 @@ This module deploys an [AWS CloudFront](https://aws.amazon.com/cloudfront/) dist
 
 module "cloudfront" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v0.19.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v1.1.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -78,6 +78,7 @@ module "cloudfront" {
         )
       ))
     ))
+    existing_cache_policy_id = optional(string)
     field_level_encryption = optional(object(
       content_type_profile_config = object(
         forward_when_content_type_is_unknown = bool
@@ -100,6 +101,7 @@ module "cloudfront" {
         query_strings = optional(list(string))
       )
     ))
+    existing_origin_request_policy_id = optional(string)
     realtime_log_config = optional(object(
       sampling_rate = number
       fields = list(string)
@@ -143,7 +145,7 @@ module "cloudfront" {
           access_control_max_age_sec = string
           override = bool
           include_subdomains = optional(bool)
-          preload = optional(string)
+          preload = optional(bool)
         ))
         xss_protection = optional(object(
           protection = bool
@@ -157,6 +159,7 @@ module "cloudfront" {
         sampling_rate = number
       ))
     ))
+    existing_response_headers_policy_id = optional(string)
     lambda_function_association = optional(object(
       viewer-request  = optional(object( lambda_arn = string, include_body = optional(bool) ))
       origin-request  = optional(object( lambda_arn = string, include_body = optional(bool) ))
@@ -167,6 +170,7 @@ module "cloudfront" {
       viewer-request  = optional(object( function_arn = string ))
       viewer-response = optional(object( function_arn = string ))
     ), )
+    grpc_config = optional(object( enabled = bool ))
   )>
 
   # When you use the CloudFront console to create or update a distribution, you
@@ -201,6 +205,15 @@ module "cloudfront" {
       enabled = bool
       origin_shield_region = optional(string)
     ))
+    vpc_origin_config = optional(object(
+      arn = string
+      origin_protocol_policy = string
+      origin_ssl_protocols = optional(list(string), ["TLSv1.2"])
+      http_port = optional(number, 80)
+      https_port = optional(number, 443)
+      origin_keepalive_timeout = optional(number)
+      origin_read_timeout = optional(number)
+    ))
   ))>
 
   # ----------------------------------------------------------------------------------------------------
@@ -215,10 +228,10 @@ module "cloudfront" {
   # Any comments you want to include about the distribution.
   comment = null
 
-  # continuous deployment policy. This argument should only be set on a
-  # production distribution. See the aws_cloudfront_continuous_deployment_policy
-  # resource for additional details.
-  continuous_deployment_policy = {"is_continuous_deployment_policy_enabled":false}
+  # continuous deployment policy. This argument should only be set on a STAGING
+  # distribution. See the aws_cloudfront_continuous_deployment_policy resource
+  # for additional details.
+  continuous_deployment_policy = null
 
   # One or more custom error response elements.
   custom_error_response = []
@@ -233,6 +246,12 @@ module "cloudfront" {
 
   # Whether the distribution is enabled to accept end user requests for content.
   enabled = true
+
+  # The ID of the continuous deployment policy to associate with the
+  # distribution. This argument should only be set on a production distribution.
+  # See the aws_cloudfront_continuous_deployment_policy resource for additional
+  # details.
+  existing_continuous_deployment_policy_id = null
 
   # The restriction configuration for this distribution (geo_restrictions)
   geo_restriction = [{"locations":[],"restriction_type":"none"}]
@@ -249,9 +268,12 @@ module "cloudfront" {
   # charged only once per month, per metric (up to 8 metrics per distribution).
   is_monitoring_subscription_enabled = false
 
-  # The logging configuration that controls how logs are written to your
-  # distribution (maximum one).
-  logging_config = {"is_logging_enabled":false}
+  # [LEGACY] The logging configuration that controls how logs are written to
+  # your distribution (maximum one).
+  logging_config = {"include_cookies":true,"is_logging_enabled":false}
+
+  # The logging destination for distribution.
+  logging_config_v2 = null
 
   # Ordered list of cache behaviors resource for this distribution. List from
   # top to bottom in order of precedence. The topmost cache behavior will have
@@ -278,7 +300,7 @@ module "cloudfront" {
 
   # The SSL configuration for this distribution. Please see variable definition
   # for detailed fields description.
-  viewer_certificate = {"cloudfront_default_certificate":true,"minimum_protocol_version":"TLSv1.2_2021","ssl_support_method":"sni-only"}
+  viewer_certificate = {"cloudfront_default_certificate":true}
 
   # If enabled, the resource will wait for the distribution status to change
   # from InProgress to Deployed. Setting this to false will skip the process.
@@ -303,7 +325,7 @@ module "cloudfront" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v0.19.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/cloudfront?ref=v1.1.2"
 }
 
 inputs = {
@@ -347,6 +369,7 @@ inputs = {
         )
       ))
     ))
+    existing_cache_policy_id = optional(string)
     field_level_encryption = optional(object(
       content_type_profile_config = object(
         forward_when_content_type_is_unknown = bool
@@ -369,6 +392,7 @@ inputs = {
         query_strings = optional(list(string))
       )
     ))
+    existing_origin_request_policy_id = optional(string)
     realtime_log_config = optional(object(
       sampling_rate = number
       fields = list(string)
@@ -412,7 +436,7 @@ inputs = {
           access_control_max_age_sec = string
           override = bool
           include_subdomains = optional(bool)
-          preload = optional(string)
+          preload = optional(bool)
         ))
         xss_protection = optional(object(
           protection = bool
@@ -426,6 +450,7 @@ inputs = {
         sampling_rate = number
       ))
     ))
+    existing_response_headers_policy_id = optional(string)
     lambda_function_association = optional(object(
       viewer-request  = optional(object( lambda_arn = string, include_body = optional(bool) ))
       origin-request  = optional(object( lambda_arn = string, include_body = optional(bool) ))
@@ -436,6 +461,7 @@ inputs = {
       viewer-request  = optional(object( function_arn = string ))
       viewer-response = optional(object( function_arn = string ))
     ), )
+    grpc_config = optional(object( enabled = bool ))
   )>
 
   # When you use the CloudFront console to create or update a distribution, you
@@ -470,6 +496,15 @@ inputs = {
       enabled = bool
       origin_shield_region = optional(string)
     ))
+    vpc_origin_config = optional(object(
+      arn = string
+      origin_protocol_policy = string
+      origin_ssl_protocols = optional(list(string), ["TLSv1.2"])
+      http_port = optional(number, 80)
+      https_port = optional(number, 443)
+      origin_keepalive_timeout = optional(number)
+      origin_read_timeout = optional(number)
+    ))
   ))>
 
   # ----------------------------------------------------------------------------------------------------
@@ -484,10 +519,10 @@ inputs = {
   # Any comments you want to include about the distribution.
   comment = null
 
-  # continuous deployment policy. This argument should only be set on a
-  # production distribution. See the aws_cloudfront_continuous_deployment_policy
-  # resource for additional details.
-  continuous_deployment_policy = {"is_continuous_deployment_policy_enabled":false}
+  # continuous deployment policy. This argument should only be set on a STAGING
+  # distribution. See the aws_cloudfront_continuous_deployment_policy resource
+  # for additional details.
+  continuous_deployment_policy = null
 
   # One or more custom error response elements.
   custom_error_response = []
@@ -502,6 +537,12 @@ inputs = {
 
   # Whether the distribution is enabled to accept end user requests for content.
   enabled = true
+
+  # The ID of the continuous deployment policy to associate with the
+  # distribution. This argument should only be set on a production distribution.
+  # See the aws_cloudfront_continuous_deployment_policy resource for additional
+  # details.
+  existing_continuous_deployment_policy_id = null
 
   # The restriction configuration for this distribution (geo_restrictions)
   geo_restriction = [{"locations":[],"restriction_type":"none"}]
@@ -518,9 +559,12 @@ inputs = {
   # charged only once per month, per metric (up to 8 metrics per distribution).
   is_monitoring_subscription_enabled = false
 
-  # The logging configuration that controls how logs are written to your
-  # distribution (maximum one).
-  logging_config = {"is_logging_enabled":false}
+  # [LEGACY] The logging configuration that controls how logs are written to
+  # your distribution (maximum one).
+  logging_config = {"include_cookies":true,"is_logging_enabled":false}
+
+  # The logging destination for distribution.
+  logging_config_v2 = null
 
   # Ordered list of cache behaviors resource for this distribution. List from
   # top to bottom in order of precedence. The topmost cache behavior will have
@@ -547,7 +591,7 @@ inputs = {
 
   # The SSL configuration for this distribution. Please see variable definition
   # for detailed fields description.
-  viewer_certificate = {"cloudfront_default_certificate":true,"minimum_protocol_version":"TLSv1.2_2021","ssl_support_method":"sni-only"}
+  viewer_certificate = {"cloudfront_default_certificate":true}
 
   # If enabled, the resource will wait for the distribution status to change
   # from InProgress to Deployed. Setting this to false will skip the process.
@@ -634,7 +678,9 @@ object({
     #  List of AWS account IDs (or self) that you want to allow to create signed URLs for private content.
     trusted_signers = optional(list(string))
 
-    # You can use a cache policy to improve your cache hit ratio by controlling the values (URL query strings, HTTP headers, and cookies) that are included in the cache key.
+    # You can use a cache policy to improve your cache hit ratio by controlling the values (URL query strings, HTTP headers, and cookies)
+    # that are included in the cache key. It is possible to provide an existing cache policy ID directly. If both cache_policy and
+    # existing_cache_policy_id are provided, then existing_cache_policy_id takes priority.
     cache_policy = optional(object({
       # The minimum amount of time, in seconds, that you want objects to stay in the CloudFront cache
       # before CloudFront checks with the origin to see if the object has been updated.
@@ -687,6 +733,7 @@ object({
         })
       }))
     }))
+    existing_cache_policy_id = optional(string)
 
     # Defines Configuration for a CloudFront Field-level Encryption Config resource.
     field_level_encryption = optional(object({
@@ -739,8 +786,9 @@ object({
         query_strings = optional(list(string))
       })
     }))
+    existing_origin_request_policy_id = optional(string)
 
-    # Defines a CloudFront real-time log configuration resource..
+    # Defines a CloudFront real-time log configuration resource.
     realtime_log_config = optional(object({
       # The sampling rate for this real-time log configuration.
       # The sampling rate determines the percentage of viewer requests that are represented in the real-time log data.
@@ -756,7 +804,9 @@ object({
       kinesis_stream_arn = string
     }))
 
-    # Defines a CloudFront response headers policy resource.
+    # Defines a CloudFront response headers policy resource. It is possible to provide an existing policy ID directly.
+    # If both response_headers_policy and existing_response_headers_policy_id are provided, then
+    # existing_response_headers_policy_id takes priority.
     response_headers_policy = optional(object({
       # A configuration for a set of HTTP response headers that are used for Cross-Origin Resource Sharing (CORS).
       cors_config = optional(object({
@@ -849,7 +899,7 @@ object({
           include_subdomains = optional(bool)
 
           # Whether CloudFront includes the preload directive in the Strict-Transport-Security HTTP response header.
-          preload = optional(string)
+          preload = optional(bool)
         }))
 
         # Determine whether CloudFront includes the X-XSS-Protection HTTP response header and the header’s value.
@@ -882,6 +932,7 @@ object({
         sampling_rate = number
       }))
     }))
+    existing_response_headers_policy_id = optional(string)
 
     # A config block that triggers a lambda function with specific actions.
     lambda_function_association = optional(object({
@@ -901,6 +952,9 @@ object({
       viewer-request  = optional(object({ function_arn = string }))
       viewer-response = optional(object({ function_arn = string }))
     }), {})
+
+    # Whether Grpc requests are enabled.
+    grpc_config = optional(object({ enabled = bool }))
   })
 ```
 
@@ -1027,7 +1081,9 @@ object({
 
 ```hcl
 
-     You can use a cache policy to improve your cache hit ratio by controlling the values (URL query strings, HTTP headers, and cookies) that are included in the cache key.
+     You can use a cache policy to improve your cache hit ratio by controlling the values (URL query strings, HTTP headers, and cookies)
+     that are included in the cache key. It is possible to provide an existing cache policy ID directly. If both cache_policy and
+     existing_cache_policy_id are provided, then existing_cache_policy_id takes priority.
 
 ```
 </details>
@@ -1181,7 +1237,7 @@ object({
 
 ```hcl
 
-     Defines a CloudFront real-time log configuration resource..
+     Defines a CloudFront real-time log configuration resource.
 
 ```
 </details>
@@ -1213,7 +1269,9 @@ object({
 
 ```hcl
 
-     Defines a CloudFront response headers policy resource.
+     Defines a CloudFront response headers policy resource. It is possible to provide an existing policy ID directly.
+     If both response_headers_policy and existing_response_headers_policy_id are provided, then
+     existing_response_headers_policy_id takes priority.
 
 ```
 </details>
@@ -1511,6 +1569,16 @@ object({
 ```
 </details>
 
+<details>
+
+
+```hcl
+
+     Whether Grpc requests are enabled.
+
+```
+</details>
+
 </HclGeneralListItem>
 </HclListItem>
 
@@ -1619,6 +1687,40 @@ map(object({
       # AWS Region for Origin Shield. To specify a region, use the region code, not the region name.
       # For example, specify the US East (Ohio) region as us-east-2.
       origin_shield_region = optional(string)
+    }))
+    vpc_origin_config = optional(object({
+      # ARN for an Elastic Load Balancer or EC2 instance.
+      arn = string
+
+      # The protocol policy that you want CloudFront to use when fetching objects from your origin.
+      # - HTTP only: CloudFront uses only HTTP to access the origin.
+      # - HTTPS only: CloudFront uses only HTTPS to access the origin.
+      # - Match viewer: CloudFront communicates with your origin using HTTP or HTTPS, depending on the protocol of the viewer request.
+      # One of http-only, https-only, or match-viewer.
+      origin_protocol_policy = string
+
+      # Choose the minimum TLS/SSL protocol that CloudFront can use when it establishes an HTTPS connection to your origin.
+      # Lower TLS protocols are less secure, so we recommend that you choose the latest TLS protocol that your origin supports.
+      # Valid values include protocols SSLv3, TLSv1, TLSv1.1, TLSv1.2
+      origin_ssl_protocols = optional(list(string), ["TLSv1.2"])
+
+      # Origin's HTTP port. The default is port 80.
+      http_port = optional(number, 80)
+
+      # Origin's HTTPS port. The default is port 443.
+      https_port = optional(number, 443)
+
+      # The keep-alive timeout is how long (in seconds) CloudFront tries to maintain a connection to your custom origin after it gets the last packet of a response.
+      # Maintaining a persistent connection saves the time that is required to re-establish the TCP connection and perform another TLS handshake for subsequent requests.
+      # Increasing the keep-alive timeout helps improve the request-per-connection metric for distributions.
+      # AWS enforces an upper limit of 60. But you can request an increase. Defaults to 5.
+      origin_keepalive_timeout = optional(number)
+
+      # The origin response timeout, also known as the origin read timeout or origin request timeout, applies to both of the following values:
+      # - How long (in seconds) CloudFront waits for a response after forwarding a request to the origin.
+      # - How long (in seconds) CloudFront waits after receiving a packet of a response from the origin and before receiving the next packet.
+      # By default, AWS enforces an upper limit of 60. But you can request an increase. Defaults to 30.
+      origin_read_timeout = optional(number)
     }))
   }))
 ```
@@ -1753,6 +1855,78 @@ map(object({
 ```
 </details>
 
+<details>
+
+
+```hcl
+
+       The protocol policy that you want CloudFront to use when fetching objects from your origin.
+       - HTTP only: CloudFront uses only HTTP to access the origin.
+       - HTTPS only: CloudFront uses only HTTPS to access the origin.
+       - Match viewer: CloudFront communicates with your origin using HTTP or HTTPS, depending on the protocol of the viewer request.
+       One of http-only, https-only, or match-viewer.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Choose the minimum TLS/SSL protocol that CloudFront can use when it establishes an HTTPS connection to your origin.
+       Lower TLS protocols are less secure, so we recommend that you choose the latest TLS protocol that your origin supports.
+       Valid values include protocols SSLv3, TLSv1, TLSv1.1, TLSv1.2
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Origin's HTTP port. The default is port 80.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       Origin's HTTPS port. The default is port 443.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       The keep-alive timeout is how long (in seconds) CloudFront tries to maintain a connection to your custom origin after it gets the last packet of a response.
+       Maintaining a persistent connection saves the time that is required to re-establish the TCP connection and perform another TLS handshake for subsequent requests.
+       Increasing the keep-alive timeout helps improve the request-per-connection metric for distributions.
+       AWS enforces an upper limit of 60. But you can request an increase. Defaults to 5.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+       The origin response timeout, also known as the origin read timeout or origin request timeout, applies to both of the following values:
+       - How long (in seconds) CloudFront waits for a response after forwarding a request to the origin.
+       - How long (in seconds) CloudFront waits after receiving a packet of a response from the origin and before receiving the next packet.
+       By default, AWS enforces an upper limit of 60. But you can request an increase. Defaults to 30.
+
+```
+</details>
+
 </HclGeneralListItem>
 </HclListItem>
 
@@ -1779,25 +1953,13 @@ Any comments you want to include about the distribution.
 <HclListItem name="continuous_deployment_policy" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-continuous deployment policy. This argument should only be set on a production distribution. See the aws_cloudfront_continuous_deployment_policy resource for additional details.
+continuous deployment policy. This argument should only be set on a STAGING distribution. See the aws_cloudfront_continuous_deployment_policy resource for additional details.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
 
 ```hcl
 object({
-    # Flag to enable continuous deployment policy.
-    is_continuous_deployment_policy_enabled = bool
-
-    # CloudFront domain name of the staging distribution.
-    staging_distribution_dns_names = optional(object({
-      # A list of CloudFront domain names for the staging distribution.
-      items = list(string)
-
-      # Number of CloudFront domain names in the staging distribution.
-      quantity = number
-    }))
-
     # Parameters for routing production traffic from primary to staging distributions.
     traffic_config = optional(object({
       # Type of traffic configuration. Valid values are SingleWeight and SingleHeader.
@@ -1835,46 +1997,8 @@ object({
 ```
 
 </HclListItemTypeDetails>
-<HclListItemDefaultValue>
-
-```hcl
-{
-  is_continuous_deployment_policy_enabled = false
-}
-```
-
-</HclListItemDefaultValue>
+<HclListItemDefaultValue defaultValue="null"/>
 <HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-     CloudFront domain name of the staging distribution.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-       Number of CloudFront domain names in the staging distribution.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-     Parameters for routing production traffic from primary to staging distributions.
-
-```
-</details>
-
 <details>
 
 
@@ -2033,6 +2157,15 @@ Whether the distribution is enabled to accept end user requests for content.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="existing_continuous_deployment_policy_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ID of the continuous deployment policy to associate with the distribution. This argument should only be set on a production distribution. See the aws_cloudfront_continuous_deployment_policy resource for additional details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="geo_restriction" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
 
@@ -2110,7 +2243,7 @@ When you enable additional metrics for a distribution, CloudFront sends up to 8 
 <HclListItem name="logging_config" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-The logging configuration that controls how logs are written to your distribution (maximum one).
+[LEGACY] The logging configuration that controls how logs are written to your distribution (maximum one).
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -2137,12 +2270,26 @@ object({
 
 ```hcl
 {
+  include_cookies = true,
   is_logging_enabled = false
 }
 ```
 
 </HclListItemDefaultValue>
 <HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   There is an additional option to include cookies in standard logging. In the CloudFront API, this is the IncludeCookies parameter.
+   If you configure access logging by using the CloudWatch API and you specify that you want to include cookies,
+   you must use the CloudFront console or CloudFront API to update your distribution to include cookies. Otherwise,
+   CloudFront can’t send cookies to your log destination.
+
+```
+</details>
+
 <details>
 
 
@@ -2179,6 +2326,132 @@ object({
 ```hcl
 
      Whether to include cookies in access logs (default: false).
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="logging_config_v2" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+The logging destination for distribution.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+
+    # ARN of one of: Cloudwatch Log Group, Firehose Delivery Stream or S3 Bucket
+    logs_destination_arn = optional(string)
+
+    # The format of the logs that are sent to this delivery destination.
+    # Valid values:
+    # - for Cloudwatch logs: json, plain
+    # - for Kinesis Data Firehose: json, plain, raw
+    # - for S3 Bucket: json, plain, parquet, w3c
+    output_format = optional(string)
+
+    # The field delimiter to use between record fields.
+    # Only applicable for such output formats:
+    # - plain
+    # - w3c
+    # - raw
+    field_delimiter = optional(string)
+
+    # The list of record fields to be delivered to the destination, in order.
+    # Please refer to the CloudFront documentation for the list of available fields.
+    # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/standard-logging.html
+    record_fields = optional(list(string))
+
+    # This parameter causes the S3 objects that contain delivered logs to use
+    # a prefix structure that allows for integration with Apache Hive.
+    # Applicable only for S3 Bucket ARN.
+    enable_hive_compatible_path = optional(bool)
+
+    # This string allows re-configuring the S3 object prefix to contain either static or variable sections.
+    # The valid variables to use in the suffix path will vary by each log source.
+    # Applicable only for S3 Bucket ARN.
+    suffix_path = optional(string)
+
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     ARN of one of: Cloudwatch Log Group, Firehose Delivery Stream or S3 Bucket
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The format of the logs that are sent to this delivery destination.
+     Valid values:
+     - for Cloudwatch logs: json, plain
+     - for Kinesis Data Firehose: json, plain, raw
+     - for S3 Bucket: json, plain, parquet, w3c
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The field delimiter to use between record fields.
+     Only applicable for such output formats:
+     - plain
+     - w3c
+     - raw
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The list of record fields to be delivered to the destination, in order.
+     Please refer to the CloudFront documentation for the list of available fields.
+     https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/standard-logging.html
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     This parameter causes the S3 objects that contain delivered logs to use
+     a prefix structure that allows for integration with Apache Hive.
+     Applicable only for S3 Bucket ARN.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     This string allows re-configuring the S3 object prefix to contain either static or variable sections.
+     The valid variables to use in the suffix path will vary by each log source.
+     Applicable only for S3 Bucket ARN.
 
 ```
 </details>
@@ -2235,16 +2508,6 @@ map(object({
         })
       })
     }))
-    field_level_encryption = optional(object({
-      content_type_profile_config = object({
-        forward_when_content_type_is_unknown = bool
-        content_type                         = string
-        format                               = string
-      })
-      query_arg_profile_config = object({
-        forward_when_query_arg_profile_is_unknown = bool
-      })
-    }))
     origin_request_policy = optional(object({
       cookies_config = object({
         cookie_behavior = string
@@ -2258,11 +2521,6 @@ map(object({
         query_string_behavior = string
         query_strings         = optional(list(string))
       })
-    }))
-    realtime_log_config = optional(object({
-      sampling_rate      = number
-      fields             = list(string)
-      kinesis_stream_arn = string
     }))
     response_headers_policy = optional(object({
       cors_config = optional(object({
@@ -2302,7 +2560,7 @@ map(object({
           access_control_max_age_sec = string
           override                   = bool
           include_subdomains         = optional(bool)
-          preload                    = optional(string)
+          preload                    = optional(bool)
         }))
         xss_protection = optional(object({
           protection = bool
@@ -2317,6 +2575,26 @@ map(object({
       }))
     }))
 
+    existing_cache_policy_id            = optional(string)
+    existing_origin_request_policy_id   = optional(string)
+    existing_response_headers_policy_id = optional(string)
+
+    field_level_encryption = optional(object({
+      content_type_profile_config = object({
+        forward_when_content_type_is_unknown = bool
+        content_type                         = string
+        format                               = string
+      })
+      query_arg_profile_config = object({
+        forward_when_query_arg_profile_is_unknown = bool
+      })
+    }))
+    realtime_log_config = optional(object({
+      sampling_rate      = number
+      fields             = list(string)
+      kinesis_stream_arn = string
+    }))
+
     lambda_function_association = optional(object({
       viewer-request  = optional(object({ lambda_arn = string, include_body = optional(bool) }))
       origin-request  = optional(object({ lambda_arn = string, include_body = optional(bool) }))
@@ -2327,6 +2605,7 @@ map(object({
       viewer-request  = optional(object({ function_arn = string }))
       viewer-response = optional(object({ function_arn = string }))
     }), {})
+    grpc_config = optional(object({ enabled = bool }))
   }))
 ```
 
@@ -2469,9 +2748,7 @@ object({
 
 ```hcl
 {
-  cloudfront_default_certificate = true,
-  minimum_protocol_version = "TLSv1.2_2021",
-  ssl_support_method = "sni-only"
+  cloudfront_default_certificate = true
 }
 ```
 
@@ -2567,21 +2844,23 @@ Unique identifier that specifies the AWS WAF web ACL, if any, to associate with 
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
-<HclListItem name="cloudfront_distribution_domain_name">
+<HclListItem name="cloudfront_distribution">
+</HclListItem>
+
+<HclListItem name="cloudfront_distribution_continuous_deployment_policy">
 </HclListItem>
 
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.19.0/modules/cloudfront/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.19.0/modules/cloudfront/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v0.19.0/modules/cloudfront/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.2/modules/cloudfront/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.2/modules/cloudfront/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.1.2/modules/cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ccb79b5b6d936a30f19818d6bfdd9e4f"
+  "hash": "c6f0d20234ad282e03778379ea3308f5"
 }
 ##DOCS-SOURCER-END -->

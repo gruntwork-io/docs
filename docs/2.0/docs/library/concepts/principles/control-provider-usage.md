@@ -1,17 +1,17 @@
 # Control Provider Usage
 
-There are two main methods for controlling the provider used in OpenTofu/Terraform operations:
+There are two primary methods for managing the provider used in OpenTofu/Terraform operations:
 
-1. Setting required provider versions.
-2. Committing the `.terraform.lock.hcl` file.
+1. Specifying required provider versions.
+2. Committing the `.terraform.lock.hcl` file to version control.
+   
+## Required provider versions
 
-## Required Provider Versions
+It is advisable to follow the [OpenTofu recommendations](https://opentofu.org/docs/language/providers/requirements/#best-practices-for-provider-versions) for specifying minimum provider versions for any providers used in modules developed as part of the library, ensuring compatibility between installed provider versions and the features in your modules.
 
-Generally speaking, follow [OpenTofu recommendations](https://opentofu.org/docs/language/providers/requirements/#best-practices-for-provider-versions) regarding specifying the minimum provider version for any providers used by modules authored as part of the library.
 
-This recommendation is useful guidance for ensuring that the feature set used as part of modules being authored for the library are available in provider versions end users install.
 
-You can do that by using a `required_provider` configuration block like the following:
+Specify these versions using a `required_provider` configuration block, as demonstrated below:
 
 ```terraform
 terraform {
@@ -23,19 +23,17 @@ terraform {
   }
 }
 ```
+Following guidance against setting maximum provider versions is critical, particularly for modules dependent on other modules.
 
-Note the guidance against setting maximum provider versions. This is especially important for modules that end up as dependencies of other modules.
+Since end users install only one provider version, conflicting provider version constraints across module dependencies can make the modules unusable.
 
-Because only one version of a provider is ultimately installed by end users, conflicting provider versions in module dependencies can result in modules being unusable.
-
-An exception to the general rule of avoiding pinning maximum provider versions in modules is to prevent a module from pulling in breaking changes from a future version of a provider.
+The exception to this rule is when setting a maximum provider version is necessary to prevent a module from inadvertently adopting breaking changes in future provider versions.
 
 ## Committing `.terraform.lock.hcl` File
 
-When running `tofu init` in a directory with `.tf` files, a [`.terraform.lock.hcl`](https://opentofu.org/docs/language/files/dependency-lock) file will be automatically generated if it doesn't exist.
 
-This file shouldn't be committed in module repositories, but should be committed to repositories where those modules are referenced to provision live infrastructure.
+When you run `tofu init` in a directory with `.tf` files, a [`.terraform.lock.hcl`](https://opentofu.org/docs/language/files/dependency-lock) file is automatically created if one does not already exist.
 
-When using Terragrunt, note how [Terragrunt handles lock files](https://terragrunt.gruntwork.io/docs/features/lock-file-handling/).
+This file should not be committed in module repositories. However, committing it in repositories used to provision live infrastructure is recommended.
 
-Keep this behavior in mind when deciding how to handle `.terraform.lock.hcl` files in modules.
+For Terragrunt users, review [Terragrunt’s approach to lock file management](https://terragrunt.gruntwork.io/docs/features/lock-file-handling/) to determine the best way to handle `.terraform.lock.hcl` files in modules.

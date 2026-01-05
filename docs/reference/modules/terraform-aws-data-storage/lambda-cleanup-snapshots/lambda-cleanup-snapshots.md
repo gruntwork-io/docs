@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.40.0" lastModifiedVersion="0.38.1"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.43.0" lastModifiedVersion="0.41.0"/>
 
 # Delete Snapshots Lambda Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/lambda-cleanup-snapshots" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.43.0/modules/lambda-cleanup-snapshots" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.38.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.41.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an [AWS Lambda](https://aws.amazon.com/lambda/) function that runs periodically and deletes old
 snapshots of an [Amazon Relational Database (RDS)](https://aws.amazon.com/rds/) database. The module allows you to
@@ -29,7 +29,7 @@ Note that to use this module, you must have access to the Gruntwork [Continuous 
 
 This module allows you to configure a number of parameters, such as which database to backup, how often to run the
 backups, what account to share the backups with, and more. For a list of all available variables and their
-descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/lambda-cleanup-snapshots/variables.tf).
+descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.43.0/modules/lambda-cleanup-snapshots/variables.tf).
 
 ## Sample Usage
 
@@ -44,7 +44,7 @@ descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-d
 
 module "lambda_cleanup_snapshots" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-cleanup-snapshots?ref=v0.40.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-cleanup-snapshots?ref=v0.43.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -114,7 +114,7 @@ module "lambda_cleanup_snapshots" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-cleanup-snapshots?ref=v0.40.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-cleanup-snapshots?ref=v0.43.0"
 }
 
 inputs = {
@@ -283,21 +283,23 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
 <HclListItem name="lambda_function_arn">
 </HclListItem>
 
+<HclListItem name="lambda_function_name">
+</HclListItem>
+
 <HclListItem name="lambda_iam_role_id">
 </HclListItem>
 
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/lambda-cleanup-snapshots/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/lambda-cleanup-snapshots/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/lambda-cleanup-snapshots/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.43.0/modules/lambda-cleanup-snapshots/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.43.0/modules/lambda-cleanup-snapshots/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.43.0/modules/lambda-cleanup-snapshots/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dd813376ce675a965b462835d0700406"
+  "hash": "bd510c2a3ca2aab978f5c17bbcef5716"
 }
 ##DOCS-SOURCER-END -->

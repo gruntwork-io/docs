@@ -1,6 +1,387 @@
 {
   "module": "mgmt/bastion-host",
   "releases": {
+    "v0.127.1": {
+      "contains_changes": false
+    },
+    "v0.127.0": {
+      "contains_changes": false
+    },
+    "v0.126.0": {
+      "contains_changes": false
+    },
+    "v0.125.5": {
+      "contains_changes": false
+    },
+    "v0.125.4": {
+      "contains_changes": false
+    },
+    "v0.125.3": {
+      "contains_changes": false
+    },
+    "v0.125.2": {
+      "contains_changes": false
+    },
+    "v0.125.1": {
+      "contains_changes": false
+    },
+    "v0.125.0": {
+      "contains_changes": false
+    },
+    "v0.124.0": {
+      "contains_changes": false
+    },
+    "v0.123.0": {
+      "contains_changes": false
+    },
+    "v0.122.0": {
+      "contains_changes": false
+    },
+    "v0.121.3": {
+      "contains_changes": false
+    },
+    "v0.121.2": {
+      "contains_changes": false
+    },
+    "v0.121.1": {
+      "contains_changes": false
+    },
+    "v0.121.0": {
+      "contains_changes": false
+    },
+    "v0.120.1": {
+      "contains_changes": false
+    },
+    "v0.120.0": {
+      "contains_changes": false
+    },
+    "v0.119.2": {
+      "contains_changes": false
+    },
+    "v0.119.1": {
+      "contains_changes": false
+    },
+    "v0.119.0": {
+      "contains_changes": false
+    },
+    "v0.118.22": {
+      "contains_changes": false
+    },
+    "v0.118.21": {
+      "contains_changes": false
+    },
+    "v0.118.20": {
+      "contains_changes": false
+    },
+    "v0.118.19": {
+      "contains_changes": false
+    },
+    "v0.118.18": {
+      "contains_changes": false
+    },
+    "v0.118.17": {
+      "contains_changes": false
+    },
+    "v0.118.16": {
+      "contains_changes": false
+    },
+    "v0.118.15": {
+      "contains_changes": false
+    },
+    "v0.118.14": {
+      "contains_changes": false
+    },
+    "v0.118.13": {
+      "contains_changes": false
+    },
+    "v0.118.12": {
+      "contains_changes": false
+    },
+    "v0.118.11": {
+      "contains_changes": false
+    },
+    "v0.118.10": {
+      "contains_changes": false
+    },
+    "v0.118.9": {
+      "contains_changes": false
+    },
+    "v0.118.8": {
+      "contains_changes": false
+    },
+    "v0.118.7": {
+      "contains_changes": false
+    },
+    "v0.118.6": {
+      "contains_changes": false
+    },
+    "v0.118.5": {
+      "contains_changes": false
+    },
+    "v0.118.4": {
+      "contains_changes": false
+    },
+    "v0.118.3": {
+      "contains_changes": false
+    },
+    "v0.118.2": {
+      "contains_changes": false
+    },
+    "v0.118.1": {
+      "contains_changes": false
+    },
+    "v0.118.0": {
+      "contains_changes": false
+    },
+    "v0.117.0": {
+      "contains_changes": false
+    },
+    "v0.116.1": {
+      "contains_changes": false
+    },
+    "v0.116.0": {
+      "contains_changes": false
+    },
+    "v0.115.6": {
+      "contains_changes": false
+    },
+    "v0.115.5": {
+      "contains_changes": true
+    },
+    "v0.115.4": {
+      "contains_changes": false
+    },
+    "v0.115.3": {
+      "contains_changes": false
+    },
+    "v0.115.2": {
+      "contains_changes": false
+    },
+    "v0.115.1": {
+      "contains_changes": false
+    },
+    "v0.115.0": {
+      "contains_changes": false
+    },
+    "v0.114.4": {
+      "contains_changes": false
+    },
+    "v0.114.3": {
+      "contains_changes": false
+    },
+    "v0.114.2": {
+      "contains_changes": false
+    },
+    "v0.114.1": {
+      "contains_changes": false
+    },
+    "v0.114.0": {
+      "contains_changes": false
+    },
+    "v0.113.0": {
+      "contains_changes": false
+    },
+    "v0.112.20": {
+      "contains_changes": false
+    },
+    "v0.112.19": {
+      "contains_changes": false
+    },
+    "v0.112.18": {
+      "contains_changes": false
+    },
+    "v0.112.17": {
+      "contains_changes": false
+    },
+    "v0.112.16": {
+      "contains_changes": false
+    },
+    "v0.112.15": {
+      "contains_changes": false
+    },
+    "v0.112.14": {
+      "contains_changes": false
+    },
+    "v0.112.13": {
+      "contains_changes": false
+    },
+    "v0.112.12": {
+      "contains_changes": false
+    },
+    "v0.112.11": {
+      "contains_changes": false
+    },
+    "v0.112.10": {
+      "contains_changes": false
+    },
+    "v0.112.9": {
+      "contains_changes": false
+    },
+    "v0.112.8": {
+      "contains_changes": false
+    },
+    "v0.112.7": {
+      "contains_changes": false
+    },
+    "v0.112.6": {
+      "contains_changes": false
+    },
+    "v0.112.5": {
+      "contains_changes": false
+    },
+    "v0.112.4": {
+      "contains_changes": false
+    },
+    "v0.112.3": {
+      "contains_changes": false
+    },
+    "v0.112.2": {
+      "contains_changes": false
+    },
+    "v0.112.1": {
+      "contains_changes": false
+    },
+    "v0.112.0": {
+      "contains_changes": false
+    },
+    "v0.111.8": {
+      "contains_changes": false
+    },
+    "v0.111.7": {
+      "contains_changes": false
+    },
+    "v0.111.6": {
+      "contains_changes": false
+    },
+    "v0.111.5": {
+      "contains_changes": false
+    },
+    "v0.111.4": {
+      "contains_changes": false
+    },
+    "v0.111.3": {
+      "contains_changes": false
+    },
+    "v0.111.2": {
+      "contains_changes": false
+    },
+    "v0.111.1": {
+      "contains_changes": false
+    },
+    "v0.111.0": {
+      "contains_changes": false
+    },
+    "v0.110.5": {
+      "contains_changes": false
+    },
+    "v0.110.4": {
+      "contains_changes": false
+    },
+    "v0.110.3": {
+      "contains_changes": false
+    },
+    "v0.110.2": {
+      "contains_changes": false
+    },
+    "v0.110.1": {
+      "contains_changes": false
+    },
+    "v0.110.0": {
+      "contains_changes": false
+    },
+    "v0.109.7": {
+      "contains_changes": false
+    },
+    "v0.109.6": {
+      "contains_changes": false
+    },
+    "v0.109.5": {
+      "contains_changes": false
+    },
+    "v0.109.4": {
+      "contains_changes": false
+    },
+    "v0.109.3": {
+      "contains_changes": false
+    },
+    "v0.109.2": {
+      "contains_changes": false
+    },
+    "v0.109.1": {
+      "contains_changes": false
+    },
+    "v0.109.0": {
+      "contains_changes": false
+    },
+    "v0.108.6": {
+      "contains_changes": false
+    },
+    "v0.108.5": {
+      "contains_changes": false
+    },
+    "v0.108.4": {
+      "contains_changes": false
+    },
+    "v0.108.3": {
+      "contains_changes": false
+    },
+    "v0.108.2": {
+      "contains_changes": false
+    },
+    "v0.108.1": {
+      "contains_changes": false
+    },
+    "v0.108.0": {
+      "contains_changes": false
+    },
+    "v0.107.12": {
+      "contains_changes": false
+    },
+    "v0.107.11": {
+      "contains_changes": false
+    },
+    "v0.107.10": {
+      "contains_changes": false
+    },
+    "v0.107.9": {
+      "contains_changes": false
+    },
+    "v0.107.8": {
+      "contains_changes": false
+    },
+    "v0.107.7": {
+      "contains_changes": false
+    },
+    "v0.107.6": {
+      "contains_changes": false
+    },
+    "v0.107.5": {
+      "contains_changes": false
+    },
+    "v0.107.4": {
+      "contains_changes": false
+    },
+    "v0.107.3": {
+      "contains_changes": false
+    },
+    "v0.107.2": {
+      "contains_changes": false
+    },
+    "v0.107.1": {
+      "contains_changes": false
+    },
+    "v0.107.0": {
+      "contains_changes": false
+    },
+    "v0.106.1": {
+      "contains_changes": false
+    },
+    "v0.106.0": {
+      "contains_changes": true
+    },
+    "v0.105.1": {
+      "contains_changes": false
+    },
     "v0.105.0": {
       "contains_changes": true
     },

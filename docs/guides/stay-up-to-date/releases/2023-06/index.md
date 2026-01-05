@@ -898,12 +898,9 @@ Note: EKS 1.26 requires kubergrunt v0.11.3 and above
 
 </div>
 
-
-
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "f89d1040196925c21b2fc592f53a8057"
+  "hash": "669336d8a6b5af3ac2b74b2c96a221e0"
 }
 ##DOCS-SOURCER-END -->

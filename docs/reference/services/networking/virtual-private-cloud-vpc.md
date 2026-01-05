@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.3" lastModifiedVersion="0.115.4"/>
+<VersionBadge version="0.142.0" lastModifiedVersion="0.142.0"/>
 
 # VPC
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/networking/vpc" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Fvpc" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -65,9 +65,9 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ documentation in the [terraform-aws-vpc](https://github.com/gruntwork-io/terrafo
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -105,7 +105,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "vpc" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.118.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.142.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -128,6 +128,12 @@ module "vpc" {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # Should the inspection subnet be allowed outbound access to the internet?
+  allow_inspection_internet_access = false
+
+  # Should the private app subnet be allowed outbound access to the internet?
+  allow_private_app_internet_access = true
 
   # Should the private persistence subnet be allowed outbound access to the
   # internet?
@@ -238,6 +244,12 @@ module "vpc" {
   # be routed from other VPC hosting the IGW.
   create_igw = true
 
+  # If set to false, this module will NOT create the inspection subnets.
+  create_inspection_subnets = false
+
+  # Flag that controls attachment of secondary EIP to NAT gateway.
+  create_nat_secondary_eip = false
+
   # If set to false, this module will NOT create Network ACLs. This is useful if
   # you don't want to use Network ACLs or you want to provide your own Network
   # ACLs outside of this module.
@@ -331,6 +343,12 @@ module "vpc" {
   # destination VPC). If null (default), defaults to
   # 'DESTINATION_VPC_NAME-from-ORIGIN_VPC_NAME-in'.
   destination_vpc_resolver_name = null
+
+  # The DHCP Options Set ID to associate with the VPC. After specifying this
+  # attribute, removing it will delete the DHCP option assignment, leaving the
+  # VPC without any DHCP option set, rather than reverting to the one set by
+  # default.
+  dhcp_options_id = null
 
   # IAM policy to restrict what resources can call this endpoint. For example,
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
@@ -447,6 +465,42 @@ module "vpc" {
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role.
   iam_role_permissions_boundary = null
+
+  # A list of Virtual Private Gateways that will propagate routes to inspection
+  # subnets. All routes from VPN connections that use Virtual Private Gateways
+  # listed here will appear in route tables of persistence subnets. If left
+  # empty, no routes will be propagated.
+  inspection_propagating_vgws = []
+
+  # A map of tags to apply to the inspection route tables(s), on top of the
+  # custom_tags. The key is the tag name and the value is the tag value. Note
+  # that tags defined here will override tags defined as custom_tags in case of
+  # conflict.
+  inspection_route_table_custom_tags = {}
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges. MAKE SURE if you change this you also change the CIDR spacing or you
+  # may hit errors. See cidrsubnet interpolation in terraform config for more
+  # information.
+  inspection_subnet_bits = 5
+
+  # A map listing the specific CIDR blocks desired for each private-persistence
+  # subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the
+  # number of Availability Zones. If left blank, we will compute a reasonable
+  # CIDR block for each subnet.
+  inspection_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the inspection subnets, on top of the custom_tags.
+  # The key is the tag name and the value is the tag value. Note that tags
+  # defined here will override tags defined as custom_tags in case of conflict.
+  inspection_subnet_custom_tags = {}
+
+  # The name of the inspection subnet tier. This is used to tag the subnet and
+  # its resources.
+  inspection_subnet_name = "inspection"
+
+  # The amount of spacing between the inspection subnets.
+  inspection_subnet_spacing = null
 
   # Filters to select the IPv4 IPAM pool to use for allocated this VPCs
   ipv4_ipam_pool_filters = null
@@ -807,7 +861,7 @@ module "vpc" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.118.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/vpc?ref=v0.142.0"
 }
 
 inputs = {
@@ -833,6 +887,12 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # Should the inspection subnet be allowed outbound access to the internet?
+  allow_inspection_internet_access = false
+
+  # Should the private app subnet be allowed outbound access to the internet?
+  allow_private_app_internet_access = true
 
   # Should the private persistence subnet be allowed outbound access to the
   # internet?
@@ -943,6 +1003,12 @@ inputs = {
   # be routed from other VPC hosting the IGW.
   create_igw = true
 
+  # If set to false, this module will NOT create the inspection subnets.
+  create_inspection_subnets = false
+
+  # Flag that controls attachment of secondary EIP to NAT gateway.
+  create_nat_secondary_eip = false
+
   # If set to false, this module will NOT create Network ACLs. This is useful if
   # you don't want to use Network ACLs or you want to provide your own Network
   # ACLs outside of this module.
@@ -1036,6 +1102,12 @@ inputs = {
   # destination VPC). If null (default), defaults to
   # 'DESTINATION_VPC_NAME-from-ORIGIN_VPC_NAME-in'.
   destination_vpc_resolver_name = null
+
+  # The DHCP Options Set ID to associate with the VPC. After specifying this
+  # attribute, removing it will delete the DHCP option assignment, leaving the
+  # VPC without any DHCP option set, rather than reverting to the one set by
+  # default.
+  dhcp_options_id = null
 
   # IAM policy to restrict what resources can call this endpoint. For example,
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
@@ -1152,6 +1224,42 @@ inputs = {
   # The ARN of the policy that is used to set the permissions boundary for the
   # IAM role.
   iam_role_permissions_boundary = null
+
+  # A list of Virtual Private Gateways that will propagate routes to inspection
+  # subnets. All routes from VPN connections that use Virtual Private Gateways
+  # listed here will appear in route tables of persistence subnets. If left
+  # empty, no routes will be propagated.
+  inspection_propagating_vgws = []
+
+  # A map of tags to apply to the inspection route tables(s), on top of the
+  # custom_tags. The key is the tag name and the value is the tag value. Note
+  # that tags defined here will override tags defined as custom_tags in case of
+  # conflict.
+  inspection_route_table_custom_tags = {}
+
+  # Takes the CIDR prefix and adds these many bits to it for calculating subnet
+  # ranges. MAKE SURE if you change this you also change the CIDR spacing or you
+  # may hit errors. See cidrsubnet interpolation in terraform config for more
+  # information.
+  inspection_subnet_bits = 5
+
+  # A map listing the specific CIDR blocks desired for each private-persistence
+  # subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the
+  # number of Availability Zones. If left blank, we will compute a reasonable
+  # CIDR block for each subnet.
+  inspection_subnet_cidr_blocks = {}
+
+  # A map of tags to apply to the inspection subnets, on top of the custom_tags.
+  # The key is the tag name and the value is the tag value. Note that tags
+  # defined here will override tags defined as custom_tags in case of conflict.
+  inspection_subnet_custom_tags = {}
+
+  # The name of the inspection subnet tier. This is used to tag the subnet and
+  # its resources.
+  inspection_subnet_name = "inspection"
+
+  # The amount of spacing between the inspection subnets.
+  inspection_subnet_spacing = null
 
   # Filters to select the IPv4 IPAM pool to use for allocated this VPCs
   ipv4_ipam_pool_filters = null
@@ -1541,6 +1649,24 @@ Name of the VPC. Examples include 'prod', 'dev', 'mgmt', etc.
 
 ### Optional
 
+<HclListItem name="allow_inspection_internet_access" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should the inspection subnet be allowed outbound access to the internet?
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="allow_private_app_internet_access" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Should the private app subnet be allowed outbound access to the internet?
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="allow_private_persistence_internet_access" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1738,6 +1864,24 @@ Whether the VPC will create an Internet Gateway. There are use cases when the VP
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_inspection_subnets" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to false, this module will NOT create the inspection subnets.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="create_nat_secondary_eip" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Flag that controls attachment of secondary EIP to NAT gateway.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="create_network_acls" requirement="optional" type="bool">
@@ -1986,6 +2130,15 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDescription>
 
 Name to set for the destination VPC resolver (inbound from origin VPC to destination VPC). If null (default), defaults to 'DESTINATION_VPC_NAME-from-ORIGIN_VPC_NAME-in'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="dhcp_options_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The DHCP Options Set ID to associate with the VPC. After specifying this attribute, removing it will delete the DHCP option assignment, leaving the VPC without any DHCP option set, rather than reverting to the one set by default.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -2310,6 +2463,69 @@ The amount of spacing between the different subnet types when all subnets are pr
 <HclListItemDescription>
 
 The ARN of the policy that is used to set the permissions boundary for the IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="inspection_propagating_vgws" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of Virtual Private Gateways that will propagate routes to inspection subnets. All routes from VPN connections that use Virtual Private Gateways listed here will appear in route tables of persistence subnets. If left empty, no routes will be propagated.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="inspection_route_table_custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the inspection route tables(s), on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="inspection_subnet_bits" requirement="optional" type="number">
+<HclListItemDescription>
+
+Takes the CIDR prefix and adds these many bits to it for calculating subnet ranges. MAKE SURE if you change this you also change the CIDR spacing or you may hit errors. See cidrsubnet interpolation in terraform config for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="5"/>
+</HclListItem>
+
+<HclListItem name="inspection_subnet_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map listing the specific CIDR blocks desired for each private-persistence subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="inspection_subnet_custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the inspection subnets, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="inspection_subnet_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the inspection subnet tier. This is used to tag the subnet and its resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;inspection&quot;"/>
+</HclListItem>
+
+<HclListItem name="inspection_subnet_spacing" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of spacing between the inspection subnets.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -3396,11 +3612,11 @@ Indicates whether or not the VPC has finished creating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/networking/vpc/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/networking/vpc/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/networking/vpc/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/networking/vpc/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/networking/vpc/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d2a1aff80915db0b82504a0887c51f61"
+  "hash": "6e605120d73c3b11115a03e0b5316288"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="0.74.5" lastModifiedVersion="0.69.2"/>
+<VersionBadge repoTitle="Security Modules" version="1.1.0" lastModifiedVersion="0.75.7"/>
 
 # AWS Organizations Config Rules
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-config-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/aws-config-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.69.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.75.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module allows you to configure [AWS Config Managed Rules](https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html) for your AWS accounts.
 
@@ -37,31 +37,31 @@ This module allows you to configure [AWS Config Managed Rules](https://docs.aws.
 
 Note
 
-This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://gruntwork.io/guides/foundations/how-to-use-gruntwork-infrastructure-as-code-library/)!
+This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/), a collection of reusable, battle-tested, production ready infrastructure code. If you’ve never used the Infrastructure as Code Library before, make sure to read [How to use the Gruntwork Infrastructure as Code Library](https://docs.gruntwork.io/library/overview/)!
 
 ### Core concepts
 
-*   [What is AWS Organizations?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-organizations/core-concepts.md#what-is-aws-organizations)
+*   [What is AWS Organizations?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/aws-organizations/core-concepts.md#what-is-aws-organizations)
 
-*   [What is AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-config/core-concepts.md#what-is-aws-config)
+*   [What is AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/aws-config/core-concepts.md#what-is-aws-config)
 
-*   [What are Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-config/core-concepts.md#what-are-config-rules)
+*   [What are Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/aws-config/core-concepts.md#what-are-config-rules)
 
-*   [What are Managed Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-config-rules/core-concepts.md#what-are-managed-config-rules)
+*   [What are Managed Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/aws-config-rules/core-concepts.md#what-are-managed-config-rules)
 
-*   [How do Organization-Level Config Rules Compare to Account-Level Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-config-rules/core-concepts.md#how-do-organization-level-config-rules-compare-to-account-level-config-rules)
+*   [How do Organization-Level Config Rules Compare to Account-Level Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/aws-config-rules/core-concepts.md#how-do-organization-level-config-rules-compare-to-account-level-config-rules)
 
-*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-config-rules/core-concepts.md#what-resources-does-this-module-create)
+*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/aws-config-rules/core-concepts.md#what-resources-does-this-module-create)
 
-*   [How to configure a production-grade AWS account structure](https://gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/)
+*   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -69,7 +69,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/aws-config-rules](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/examples/aws-config-rules): The `examples/aws-organizations-config-rules` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/aws-config-rules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/examples/aws-config-rules): The `examples/aws-organizations-config-rules` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -77,17 +77,17 @@ If you want to deploy this repo in production, check out the following resources
 
 *   ***Coming soon***. We have not yet added this module to the [Acme example Reference Architecture](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme).
 
-*   [How to configure a production-grade AWS account structure](https://gruntwork.io/guides/foundations/how-to-configure-production-grade-aws-account-structure/)
+*   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone)
 
 ## Manage
 
 ### Day-to-day operations
 
-*   [How do I configure the rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-config-rules/core-concepts.md#how-do-i-configure-the-rules)
+*   [How do I configure the rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/aws-config-rules/core-concepts.md#how-do-i-configure-the-rules)
 
-*   [How do I add additional rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-config-rules/core-concepts.md#how-do-i-add-additional-rules)
+*   [How do I add additional rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/aws-config-rules/core-concepts.md#how-do-i-add-additional-rules)
 
-*   [How do I exclude specific accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-config-rules/core-concepts.md#how-do-i-exclude-specific-accounts)
+*   [How do I exclude specific accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/aws-config-rules/core-concepts.md#how-do-i-exclude-specific-accounts)
 
 ## Sample Usage
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aws_config_rules" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-rules?ref=v0.74.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-rules?ref=v1.1.0"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -237,7 +237,7 @@ module "aws_config_rules" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-rules?ref=v0.74.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-rules?ref=v1.1.0"
 }
 
 inputs = {
@@ -674,15 +674,14 @@ Map of config rule ARNs. Key is rule ID, value is rule ARN
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-config-rules/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-config-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v0.74.5/modules/aws-config-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/aws-config-rules/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/aws-config-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.1.0/modules/aws-config-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "23cf95c6c0ab5df382cf813e8f3b3368"
+  "hash": "ebb57212181f664fefa022fa4ce1a957"
 }
 ##DOCS-SOURCER-END -->

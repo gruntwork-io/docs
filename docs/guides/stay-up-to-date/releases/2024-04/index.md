@@ -551,6 +551,25 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/1047/fil
 ## terraform-aws-asg
 
 
+### [v0.21.15](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.15)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 4/5/2024 | Modules affected: asg-rolling-deploy | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.15">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- asg-rolling-deploy: support autoscaling lifecycle hook
+
+
+
+
+
+</div>
+
+
 ### [v0.21.14](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.14)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -567,25 +586,6 @@ https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/1047/fil
 
 
 - https://github.com/gruntwork-io/terraform-aws-asg/pull/211
-
-
-
-</div>
-
-
-### [v0.21.15](https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.15)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 4/5/2024 | Modules affected: asg-rolling-deploy | <a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.15">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- asg-rolling-deploy: support autoscaling lifecycle hook
-
-
 
 
 
@@ -1627,12 +1627,9 @@ Default EKS version is 1.29 with this release! Please see the links below for fu
 
 </div>
 
-
-
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b44ec71f293d81bc47600053ec5ef6ab"
+  "hash": "d089e2fec7b5c23e83918eec936e3908"
 }
 ##DOCS-SOURCER-END -->

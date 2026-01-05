@@ -17,21 +17,21 @@ import CardGroup from "/src/components/CardGroup"
 <CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
 
 <!-- START_DOCS_SOURCER_DYNAMIC_CONTENT id=gruntwork-releases-cards -->
+<Card title="Update to 2025-11" href="/guides/stay-up-to-date/releases/2025-11" />
+<Card title="Update to 2025-10" href="/guides/stay-up-to-date/releases/2025-10" />
+<Card title="Update to 2025-09" href="/guides/stay-up-to-date/releases/2025-09" />
+<Card title="Update to 2025-08" href="/guides/stay-up-to-date/releases/2025-08" />
+<Card title="Update to 2025-07" href="/guides/stay-up-to-date/releases/2025-07" />
+<Card title="Update to 2025-06" href="/guides/stay-up-to-date/releases/2025-06" />
+<Card title="Update to 2025-05" href="/guides/stay-up-to-date/releases/2025-05" />
+<Card title="Update to 2025-04" href="/guides/stay-up-to-date/releases/2025-04" />
+<Card title="Update to 2025-03" href="/guides/stay-up-to-date/releases/2025-03" />
+<Card title="Update to 2025-02" href="/guides/stay-up-to-date/releases/2025-02" />
+<Card title="Update to 2025-01" href="/guides/stay-up-to-date/releases/2025-01" />
+<Card title="Update to 2024-12" href="/guides/stay-up-to-date/releases/2024-12" />
 <Card title="Update to 2024-11" href="/guides/stay-up-to-date/releases/2024-11" />
 <Card title="Update to 2024-10" href="/guides/stay-up-to-date/releases/2024-10" />
 <Card title="Update to 2024-09" href="/guides/stay-up-to-date/releases/2024-09" />
-<Card title="Update to 2024-08" href="/guides/stay-up-to-date/releases/2024-08" />
-<Card title="Update to 2024-07" href="/guides/stay-up-to-date/releases/2024-07" />
-<Card title="Update to 2024-06" href="/guides/stay-up-to-date/releases/2024-06" />
-<Card title="Update to 2024-05" href="/guides/stay-up-to-date/releases/2024-05" />
-<Card title="Update to 2024-04" href="/guides/stay-up-to-date/releases/2024-04" />
-<Card title="Update to 2024-03" href="/guides/stay-up-to-date/releases/2024-03" />
-<Card title="Update to 2024-02" href="/guides/stay-up-to-date/releases/2024-02" />
-<Card title="Update to 2024-01" href="/guides/stay-up-to-date/releases/2024-01" />
-<Card title="Update to 2023-12" href="/guides/stay-up-to-date/releases/2023-12" />
-<Card title="Update to 2023-11" href="/guides/stay-up-to-date/releases/2023-11" />
-<Card title="Update to 2023-10" href="/guides/stay-up-to-date/releases/2023-10" />
-<Card title="Update to 2023-09" href="/guides/stay-up-to-date/releases/2023-09" />
 <Card title="See older releases" href="/guides/stay-up-to-date/releases" />
 <!-- END_DOCS_SOURCER_DYNAMIC_CONTENT -->
 
@@ -115,6 +115,6 @@ href="/guides/stay-up-to-date/cis/cis-1.5.0"
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "1cb8da7049693e1d1a779e4d89bcbfa7"
+  "hash": "f2a2e5de20a6ff54ac9fdab2e19eadd0"
 }
 ##DOCS-SOURCER-END -->

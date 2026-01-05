@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Auto Scaling Group Modules" version="0.21.17" lastModifiedVersion="0.21.17"/>
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="1.1.0" lastModifiedVersion="1.1.0"/>
 
 # Auto Scaling Group with Rolling Deployment Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.1.0/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v0.21.17" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v1.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an Auto Scaling Group (ASG) that can do a zero-downtime rolling deployment. That means
 every time you update your app (e.g. publish a new AMI), all you have to do is run `terraform apply` and the new
@@ -56,7 +56,7 @@ update your launch templates (e.g. by specifying a new AMI to deploy), Terraform
 Note that if all we did was use `create_before_destroy`, on each redeploy, our ASG would reset to its hard-coded
 `desired_capacity`, losing the capacity changes from auto scaling policies. We solve this problem by using an
 [external data source](https://www.terraform.io/docs/providers/external/data_source.html) that runs the Python script
-[get-desired-capacity.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/asg-rolling-deploy/describe-autoscaling-group/get-desired-capacity.py) to fetch the latest value of the
+[get-desired-capacity.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.1.0/modules/asg-rolling-deploy/describe-autoscaling-group/get-desired-capacity.py) to fetch the latest value of the
 `desired_capacity` parameter:
 
 *   If the script finds a value from an already-existing ASG, we use it, to ensure that the changes form auto scaling
@@ -77,7 +77,7 @@ Note that if all we did was use `create_before_destroy`, on each redeploy, our A
 
 module "asg_rolling_deploy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.17"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v1.1.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -231,7 +231,7 @@ module "asg_rolling_deploy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v0.21.17"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v1.1.0"
 }
 
 inputs = {
@@ -726,15 +726,14 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/asg-rolling-deploy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/asg-rolling-deploy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v0.21.17/modules/asg-rolling-deploy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.1.0/modules/asg-rolling-deploy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.1.0/modules/asg-rolling-deploy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.1.0/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7d4591c405cef8f09e1637479654cb1b"
+  "hash": "c17c66babf257b71d44cf5b06f3b32d6"
 }
 ##DOCS-SOURCER-END -->

@@ -3,18 +3,18 @@ import TabItem from '@theme/TabItem';
 
 # Updating Versioned Modules
 
-Updating a module or service requires changing the tagged version in the `source` attribute of the module block. For backwards compatible changes, this is as simple as incrementing the version number. For backwards incompatible changes, refer to the release notes for a migration guide in each module's Github repository release page.
+Updating a module or service requires changing the tagged version in the `source` attribute of the module block. For backwards-compatible changes, this involves incrementing the version number. For backwards-incompatible changes, review the release notes in the module's GitHub repository release page for migration guidance.
 
-We recommend updating module versions in your development environment first, followed by staging, then production, to ensure that the update and any required changes are well understood.
+We recommend updating module versions in your development environment first, followed by staging, and then production. This approach ensures the update and any necessary changes are fully tested and understood.
 
 ## Example: Update a version
 
 <Tabs groupId="tool-choice">
 <TabItem value="Terraform" label="Terraform" default>
 
-Below is a module block referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
+Below is a Terraform configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
 
-To update to version `0.15.4`, you update the value to the right of `ref=` in the source attribute. Since the version number denotes that this update is backwards compatible, it should not require any other changes.
+To update to version `0.15.4`, change the value to the right of `ref=` in the `source` attribute. Since the version number indicates a backwards-compatible update, no additional changes should be required.
 
 ```hcl
 module "my_instance" {
@@ -33,14 +33,14 @@ module "my_instance" {
   subnet_id = "${var.subnet_id}"
 }
 ```
+After making the change, run `terraform plan`, review the output to confirm it matches your expectations, then execute `terraform apply`.
 
-After making the change, run `terraform plan`, inspect the output to ensure it looks as you expect, then run `terraform apply`.
 </TabItem>
 <TabItem value="Terragrunt" label="Terragrunt">
 
-Below is a module block referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
+Below is a Terragrunt configuration referencing version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module.
 
-To update to version `0.15.4`, you update the value to the right of `ref=` in the source attribute. Since the version number denotes that this update is backwards compatible, it should not require any other changes.
+To update to version `0.15.4`, change the value to the right of `ref=` in the `source` attribute. Since the version number indicates a backwards-compatible update, no additional changes should be required.
 
 ```hcl
 terraform {
@@ -71,15 +71,18 @@ inputs = {
 }
 ```
 
-After making the change, run `terragrunt plan`, inspect the output to ensure it looks as you expect, then run `terragrunt apply`.
+After making the change, run `terragrunt plan`, review the output to confirm it matches your expectations, then execute `terragrunt apply`.
 
 </TabItem>
 <TabItem value="Terragrunt with _envcommon" label="_envcommon (Terragrunt)">
 
-When following the `_envcommon` pattern, there are two places that reference the git tag created by the release — the `.hcl` file with the reference to the module in the `_envcommon` directory and the environment and region specific references to the _envcommon file.
+When using the `_envcommon` pattern, there are two locations where the git tag from the release is referenced: 
+1. The `.hcl` file in the `_envcommon` directory, which defines the shared module configuration.
+2. The environment- and region-specific `.hcl` files, which include the `_envcommon` file for consistency and reuse.
 
-Below is an example using the `_envcommon` pattern to reference version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module. To update to version `0.15.4`, you update the value to the right of `ref=` in the source attribute. Since the version number denotes that this update is backwards compatible, it should not require any other changes.
+The example below illustrates how to use the `_envcommon` pattern to reference version `0.15.3` of the `single-server` submodule from the `terraform-aws-server` module. To update to version `0.15.4`, adjust the value of `ref=` in the `source` attribute. Since this update is backward compatible, no additional changes are typically required.
 
+#### _envcommon example:
 ```hcl title=_envcommon/services/single_ec2_instance.hcl
 terraform {
   # Old
@@ -92,6 +95,9 @@ locals {
   source_base_url = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server"
 }
 ```
+This _envcommon file defines a shared configuration for the single-server submodule, including the Git repository and version reference. By centralizing the module reference in a common file, updates to the module version can be made in a single location, ensuring consistency across all environments and regions that include this file.
+
+#### Environment-specific example:
 
 ```hcl title=/<your-environment>/<your-region>/services/single_ec2_instance/terragrunt.hcl
 terraform {
@@ -100,11 +106,9 @@ terraform {
   # New
   source = "${include.envcommon.locals.source_base_url}?ref=v0.15.4"
 }
-
 include "root" {
   path = find_in_parent_folders()
 }
-
 include "envcommon" {
   path = "${dirname(find_in_parent_folders())}/_envcommon/services/single_ec2_instance.hcl"
   merge_strategy = "deep"
@@ -129,4 +133,5 @@ After making the change, run `terragrunt plan`, inspect the output to ensure it 
 
 ## Patcher
 
-Keeping track of all references to modules and services is a complicated, error prone task. To solve this problem, Gruntwork developed [Patcher](/2.0/docs/patcher/concepts/), which shows the version of a module you are using, the latest version available, and the changelog for the module.
+Keeping track of all references to modules and services is complex and prone to errors. To simplify this process, Gruntwork developed [Patcher](/2.0/docs/patcher/concepts/). Patcher displays the version of a module currently in use, the latest available version, and the corresponding changelog, enabling efficient and accurate updates.
+

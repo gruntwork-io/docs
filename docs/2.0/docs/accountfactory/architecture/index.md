@@ -2,39 +2,41 @@
 
 ## Overview
 
-Account Factory builds upon Gruntwork's [AWS Control Tower Multi Account Factory](/reference/modules/terraform-aws-control-tower/control-tower-multi-account-factory/) and Pipelines to provide automated account creation, baselining, and managed IAM policies.
+Account Factory uses Gruntwork's [AWS Control Tower Multi Account Factory](/reference/modules/terraform-aws-control-tower/control-tower-multi-account-factory/) and Pipelines to automate account creation, baselining, and IAM policy management.
 
-Within your `infrastructure-live-root` account, the `_new-account-requests` directory serves as an input to the Gruntwork Control Tower Module. This module runs within your management account and uses AWS Control Tower to provision new accounts.
+In your `infrastructure-live-root` repository, the `_new-account-requests` directory acts as input for the Gruntwork Control Tower Module. The module, functioning within your management account, employs AWS Control Tower to efficiently provision new accounts and manage existing ones.
 
-Each provisioned account is tracked in your `infrastructure-live-root` repository as a new base directory containing Terragrunt units that are automatically tracked by Pipelines.
+Pipelines tracks each provisioned account as a new base directory containing Terragrunt units in your `infrastructure-live-root` repository.
 
 ![Architecture Overview Diagram](/img/accountfactory/architecture.png)
 
-## Account Vending
+## Account vending
 
-Account Vending begins by using the Account Factory Workflow to generate a Pull Request against `infrastructure-live-root` that adds a file to the `_new-account-requests` directory. Pipelines detects these new account requests and begins executing terragrunt plan/apply on this module in the management account.
+Account vending begins when the Account Factory Workflow creates a pull request in `infrastructure-live-root`, adding a file to the `_new-account-requests` directory. Pipelines detects these new account requests and runs terragrunt plan/apply commands on the `control-tower-multi-account-factory` unit in the management account.
 
-Once the account has been created Pipelines can begin provisioning resources into the account, this includes the IaC controlled OIDC authentication Pipelines will use to deploy infrastructure changes within the account, and IAM policies used to restrict the scope of changes that Pipelines can deploy.
+After creating the account(s), Pipelines provisions resources such as IaC-controlled OIDC-authenticated roles. These roles, combined with IAM policies that define the scope of permissible changes, allow Pipelines to deploy infrastructure updates within the account.
 
-Once this infrastructure has been added to the repository Pipelines deploys it into the AWS account, and runs account baselines in the logs, security, and shared accounts to finish provisioning the new account.
+Once this infrastructure is added to the repository, Pipelines deploys the resources into the AWS account and runs account baselines in the logs, security, and shared accounts to complete the provisioning process.
 
 ```mermaid
 sequenceDiagram
-   Account Factory Workflow ->> Infra Live Repository: Create account request file;
-   Infra Live Repository ->> Pipelines: Trigger Account Requested;
-   Pipelines ->> AWS Control Tower Module: Execute terragrunt to create account
-   AWS Control Tower Module ->> Pipelines: Account Created
-   Pipelines ->> Infra Live Repository: Add Account Infrastructure
-   Infra Live Repository ->> Pipelines: Trigger Account Added
-   Pipelines ->> Core Accounts: Execute terragrunt to baseline account
+  Account Factory Workflow ->> Infra Live Repository: Create account request file;
+  Infra Live Repository ->> Pipelines: Trigger Account Requested;
+  Pipelines ->> AWS Control Tower Module: Execute terragrunt to create account
+  AWS Control Tower Module ->> Pipelines: Account Created
+  Pipelines ->> Infra Live Repository: Add Account Infrastructure
+  Infra Live Repository ->> Pipelines: Trigger Account Added
+  Pipelines ->> Core Accounts: Execute terragrunt to baseline account
 ```
 
-## IAM Roles
+## IAM roles
 
-Each new account has a set of IAM policies that determine the scope of changes Pipelines can plan/apply within AWS. Pipelines will automatically assume the appropriate roles for each account when changes are detected. Read about the [roles in full here](/2.0/docs/pipelines/architecture/security-controls#roles-provisioned-by-devops-foundations).
+Newly created accounts include IAM policies that define the scope of changes Pipelines is authorized to perform within AWS. Pipelines automatically assumes the necessary roles for each account when it detects changes. Detailed information about the provisioned roles can be found [here](/2.0/docs/pipelines/architecture/security-controls#roles-provisioned-by-devops-foundations).
 
-## Delegated Repositories
+## Delegated repositories
 
-Delegated repositories provide additional control over your infrastructure by expanding on the above architecture. When vending delegated repositories new account security baselines are still tracked in your `infrastructure-live-root` repository, however other infrastructure is tracked in a new repository specific to this account(s). New IAM roles are added to your `infrastructure-live-access-control` repository that are inherited by pipelines when deploying infrastructure in the delegated repositories, allowing the central platform team to control what changes can be implemented via Pipelines in the delegated repository.
+Delegated repositories enhance the architecture of infrastructure management by introducing additional layers of access control. When delegated repositories are created, Pipelines continues to manage new account security baselines within the `infrastructure-live-root` repository, while other infrastructure resources are managed in a new repository specific to the delegated account(s).
+
+Pipelines uses IAM roles from the `infrastructure-live-access-control` repository to deploy infrastructure in these delegated repositories. This setup enables the central platform team to define and restrict the scope of changes individual teams can make via Pipelines in delegated repositories.
 
 ![Delegated Architecture Overview Diagram](/img/accountfactory/delegated-architecture.png)

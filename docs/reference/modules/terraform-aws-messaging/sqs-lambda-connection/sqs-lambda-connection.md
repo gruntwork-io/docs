@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.12.5" lastModifiedVersion="0.12.4"/>
+<VersionBadge repoTitle="AWS Messaging" version="1.0.2" lastModifiedVersion="0.13.0"/>
 
 # Simple Queuing Service (SQS) To Lambda Connection Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sqs-lambda-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sqs-lambda-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.13.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module wraps the basics for using SQS to trigger a Lambda for processing
 
@@ -32,7 +32,7 @@ This module wraps the basics for using SQS to trigger a Lambda for processing
 
 module "sqs_lambda_connection" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v0.12.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v1.0.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -52,6 +52,15 @@ module "sqs_lambda_connection" {
   # source at the time of invocation. Defaults to 10 for SQS
   batch_size = 10
 
+  # The maximum amount of time to gather records before invoking the function,
+  # in seconds (between 0 and 300). Only available for stream sources (DynamoDB
+  # and Kinesis) and SQS standard queues.
+  maximum_batching_window_in_seconds = null
+
+  # Limits the number of concurrent instances that the Amazon SQS event source
+  # can invoke. Must be greater than or equal to 2.
+  maximum_concurrency = null
+
 }
 
 
@@ -67,7 +76,7 @@ module "sqs_lambda_connection" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v0.12.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v1.0.2"
 }
 
 inputs = {
@@ -89,6 +98,15 @@ inputs = {
   # The largest number of records that Lambda will retrieve from your event
   # source at the time of invocation. Defaults to 10 for SQS
   batch_size = 10
+
+  # The maximum amount of time to gather records before invoking the function,
+  # in seconds (between 0 and 300). Only available for stream sources (DynamoDB
+  # and Kinesis) and SQS standard queues.
+  maximum_batching_window_in_seconds = null
+
+  # Limits the number of concurrent instances that the Amazon SQS event source
+  # can invoke. Must be greater than or equal to 2.
+  maximum_concurrency = null
 
 }
 
@@ -135,6 +153,24 @@ The largest number of records that Lambda will retrieve from your event source a
 <HclListItemDefaultValue defaultValue="10"/>
 </HclListItem>
 
+<HclListItem name="maximum_batching_window_in_seconds" requirement="optional" type="number">
+<HclListItemDescription>
+
+The maximum amount of time to gather records before invoking the function, in seconds (between 0 and 300). Only available for stream sources (DynamoDB and Kinesis) and SQS standard queues.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="maximum_concurrency" requirement="optional" type="number">
+<HclListItemDescription>
+
+Limits the number of concurrent instances that the Amazon SQS event source can invoke. Must be greater than or equal to 2.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -144,15 +180,14 @@ The largest number of records that Lambda will retrieve from your event source a
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sqs-lambda-connection/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sqs-lambda-connection/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/sqs-lambda-connection/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sqs-lambda-connection/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sqs-lambda-connection/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sqs-lambda-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "edee06a2e0c20ea785fbc7ade190b7d6"
+  "hash": "1783eecb9ef975123546ff33a8fd51d2"
 }
 ##DOCS-SOURCER-END -->

@@ -1,116 +1,116 @@
 # Upgrading from the ECS Deploy Runner
 
 :::warning
-This document is deprecated.  It covers upgrading from the ecs-deploy-runner to infrastructure-pipelines, however infrastructure-pipelines has been [deprecated](https://docs.gruntwork.io/infrastructure-pipelines/overview/deprecation) in favor of Gruntwork Pipelines.  If you're interested in upgrading from ecs-deploy-runner directly to the latest Gruntwork Pipelines please reach out to us at [support@gruntwork.io](mailto:support@gruntwork.io).
-
+This document is deprecated. It outlines the upgrade path from the ECS Deploy Runner to infrastructure-pipelines, which has since been [deprecated](https://docs.gruntwork.io/infrastructure-pipelines/overview/deprecation) in favor of Gruntwork Pipelines. If you want to upgrade directly from ECS Deploy Runner to the latest Gruntwork Pipelines, contact us at [support@gruntwork.io](mailto:support@gruntwork.io).
 :::
 
+This migration guide is intended for users of the ECS Deploy Runner (EDR) who wish to upgrade to the latest version of Gruntwork Pipelines. For this guide, the latest version of Gruntwork Pipelines is referred to as "Pipelines."
 
-This migration guide is intended for those running the previous version of Gruntwork Pipelines, known as "ECS Deploy Runner" (EDR), who want to upgrade to the latest version of Gruntwork Pipelines. We will refer to the latest version of Gruntwork Pipelines simply as "Pipelines" in the rest of this document.
+The upgrade process starts by deploying Pipelines through the ECS Deploy Runner and then using Pipelines to phase out the ECS Deploy Runner.
 
-To accomplish this task, we'll be using ECS Deploy Runner to deploy Pipelines, then using Pipelines to destroy ECS Deploy Runner.
+## What's new
 
-## What's New
+ECS Deploy Runner provided a secure approach to CI/CD for infrastructure. Pipelines builds on these principles, integrating with modern CI systems like GitHub Actions for improved usability and setup simplicity. Key improvements include:
 
-ECS Deploy Runner was designed as a highly secure approach to CI/CD for infrastructure. With Pipelines, we adapted the security principles built into ECS Deploy Runner to embrace modern CI system functionality, leaning heavily on GitHub Actions native functionality to create a more streamlined setup experience, and better overall UX. The major changes in Pipelines include:
-
-- **Easier setup.** There are no resources to deploy in AWS (other than granting an OIDC token), and setting up Pipelines amounts to configuring a few GitHub Actions workflows.
-- **Pull-request centric UX.** Pipelines organizes the user experience around the pull request, adding rich indicating of everything that occurred directly in the pull request comments.
-- **Streamlined updates.** Pipelines has been designed to make getting the latest version published by Gruntwork an easy experience.
+- **Simplified Setup:** Pipelines removes the need for deploying AWS resources (aside from setting up an OIDC token), relying solely on GitHub Actions workflows for setup.
+- **Pull Request-Centric UX:** Pipelines organizes its operations around pull requests, offering detailed feedback in pull request comments.
+- **Streamlined Updates:** Pipelines is designed for seamless updates, ensuring users can easily stay on the latest version.
 
 ## Prerequisites
 
-- Ability to create repositories in your GitHub Organization
-- Ability to add users to your GitHub Organization and the Gruntwork Developer Portal
+Before starting, ensure you have the following:
+
+- Permissions to create repositories in your GitHub Organization
+- Ability to add users to your GitHub Organization and Gruntwork Developer Portal
 - Permissions to create secrets in GitHub repositories
-- [Terragrunt](https://terragrunt.gruntwork.io/) installed on your system
+- [Terragrunt](https://terragrunt.gruntwork.io/) installed locally
 
-## Create your infrastructure-pipelines repository
+## Create Your `infrastructure-pipelines` repository
 
-Pipelines separates code (IaC) and deployment using two different GitHub repositories. One repository holds both the deployment code and the AWS account access, and assigns write privileges only to a select group of admins. This repository uses OpenID Connect and AWS IAM roles to generate temporary session credentials, avoiding the need to store long-lasting secrets.
+Pipelines employs a dual-repository approach, separating code (IaC) from deployment workflows. A dedicated repository, typically named `infrastructure-pipelines`, is used for deployment workflows and AWS account access, with strict access control. This repository leverages OpenID Connect (OIDC) for generating temporary session credentials, eliminating long-lived secrets.
 
-We strongly recommend naming this repository `infrastructure-pipelines`. All code generated assumes the repository will be located at `<your GitHub Organization>/infrastructure-pipelines`, so using a different name will require manual work on your behalf.
+Name this repository `infrastructure-pipelines` to align with the default configuration and avoid additional setup adjustments.
 
-### Initialize infrastructure-pipelines repository
+### Initialize `infrastructure-pipelines` repository
 
-Create a new Pipelines repository from the template below:
+Create a new Pipelines repository using the provided template:
 
-- [gruntwork-pipelines-standalone-template](https://github.com/gruntwork-io/gruntwork-pipelines-standalone-template)
+- [Gruntwork pipelines standalone template](https://github.com/gruntwork-io/gruntwork-pipelines-standalone-template)
 
-1. Click `Use this template`
-1. Click `Create a new repository`
-1. Select your preferred organization from the owner dropdown
-1. Name the repo anything you like and make note of the name.
-1. Select the `Private` radio button
-1. Click `Create Repository`
+Steps:
+
+1. Click **Use this template.**
+2. Click **Create a new repository.**
+3. Select your preferred organization as the owner.
+4. Name the repository (e.g., `infrastructure-pipelines`) and note the name.
+5. Select **Private** as the visibility.
+6. Click **Create Repository.**
 
 ![GitHub form for creating a new repository](/img/pipelines/tutorial/create_new_repo_form.png)
 
 :::info
-For a simple proof of concept, the default repo configuration will suffice. Before using this repository in a production environment, we recommend setting up a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for your `main` branch. At a minimum, we recommend enabling requiring a pull request before merging with at least one reviewer required.
+For production use, configure a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for the `main` branch. At a minimum, enable **Require a pull request before merging** and require at least one reviewer.
 :::
 
-### Create Temporary Bootstrap Token
-Create a temporary PAT with your own GitHub account so it has the ability to open PRs In your `infrastructure-pipelines` repository by using a classic PAT with `repo` and `workflow` access. Once you've generated this token, create a secret called `CUSTOMER_BOOTSTRAP_ACCESS_TOKEN` in `infrastructure-pipelines` and place this value in it.
+### Create temporary bootstrap token
 
-### Bootstrap the Pipelines Repo
+Generate a classic Personal Access Token (PAT) with `repo` and `workflow` access using your GitHub account. Store this token as a secret named `CUSTOMER_BOOTSTRAP_ACCESS_TOKEN` in the `infrastructure-pipelines` repository.
 
-In the newly created repository, go to Actions and run the **Infrastructure Pipelines Bootstrap** and enter in the name of your `infrastructure-live` repository. This will open up a pull request that you can merge.
+### Bootstrap the Pipelines repository
 
-### Delete Temporary Bootstrap Token
-Once the Pipelines repository is bootstrapped successfully, you can delete the `CUSTOMER_BOOTSTRAP_ACCESS_TOKEN`.
+Navigate to **Actions** in the newly created repository and run the **Infrastructure Pipelines Bootstrap** workflow. Provide the name of your `infrastructure-live` repository as input. This will create a pull request that you can merge.
 
-## GitHub CI Machine Users and Secrets Setup
+### Delete temporary bootstrap token
 
-Pipelines utilizes two machine users, one for read-only and another elevated operations. Follow this [guide](/infrastructure-pipelines/security/machine-users) to create them and and set up the correct access tokens in each of the repositories.
+Once the repository is successfully bootstrapped, delete the `CUSTOMER_BOOTSTRAP_ACCESS_TOKEN` secret.
+
+## Set up GitHub CI machine Users and secrets
+
+Pipelines uses two machine users: one for read-only operations and another for elevated privileges. Follow the [Machine Users Guide](/infrastructure-pipelines/security/machine-users) to set up these accounts and configure their access tokens in the appropriate repositories.
 
 ## Create AWS IAM roles for Pipelines
 
-In Pipelines, each of your accounts must have an AWS IAM role. This role shares the same permissions as the one used in ECS Deploy Runner, except for the new role's trust policy, which enables GitHub Actions Workflows running in your `infrastructure-pipelines` to assume the role using OIDC. This capability allows workflows to create and utilize short-lived session tokens whenever they run, in contrast to relying on long-lived credentials stored as secrets.
+Each AWS account requires an IAM role for Pipelines. These roles mirror those used by ECS Deploy Runner but with updated trust policies to enable OIDC-based authentication. This approach leverages short-lived tokens generated by GitHub Actions workflows instead of long-lived credentials.
 
-For more information see [security hardening with OpenID Connect](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect) and [OpenID Connect in AWS](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services).
+For additional context, see [Security Hardening with OpenID Connect](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect) and [OpenID Connect in AWS](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services).
 
-### Generate the Pipelines IAM code using GitHub Actions for each account
+### Generate Pipelines IAM code using GitHub Actions
 
-In `infrastructure-live`, open a pull request and copy this [GitHub Actions workflow file](https://github.com/gruntwork-io/gruntwork-infra-live-standalone-template/blob/main/.github/workflows/bootstrap.yml) into your `.github/workflows` directory.
-
-Once that has been merged into `main`, run the **Infrastructure Live Bootstrap** for each account to generate the Terraform needed to create the IAM Roles and the GitHub OIDC connection to securely do deploys. Each workflow run will open a PR that needs to be merged.
+In your `infrastructure-live` repository, create a pull request to add a [GitHub Actions workflow](https://github.com/gruntwork-io/gruntwork-infra-live-standalone-template/blob/main/.github/workflows/bootstrap.yml) into your `.github/workflows` directory for bootstrapping IAM roles. Once merged into `main`, run the **Infrastructure Live Bootstrap** workflow for each account. Each run generates a pull request containing Terraform code to create the required IAM roles and OIDC providers.
 
 :::tip
-We recommend trying out Pipelines in non-production environments first, before rolling out to production environments.
+Start by testing Pipelines in non-production environments before rolling it out to production.
 :::
 
-The ECS Deploy Runner will detect the change and run a `plan` to create the IAM Roles, OpenID Connect providers, and all requires IAM policies. Review the `plan` output and confirm it looks as expected.
+Review the `plan` output generated by ECS Deploy Runner for creating these resources. Once satisfied, merge the pull request to apply the changes.
 
-Once you have reviewed the `plan` output and gotten any necessary approvals, merge the PR. The EDR version of Pipelines will run `apply` to create the resources.
+## Update your accounts file
 
-## Updating your accounts file
+The `accounts.json` file has been replaced by `accounts.yml` for improved readability and compatibility with Terraform's YAML formatter. To migrate:
 
-As part of a separate product improvement initiative, we have transitioned from the `accounts.json` file to `accounts.yml`. This change not only enhances readability but is also functionally better, with Terraform's built-in YAML formatter better meeting our requirement for regenerating a formatted file to facilitate the addition of new accounts through GitOps workflows. It's important to note that there is no functional distinction between these two file types in either the EDR version of Pipelines or Pipelines.
+### Convert `accounts.json` to `accounts.yml`
 
-### Upgrade from accounts.json to accounts.yml
-
-The data required in `accounts.yml` is the same that is required in `accounts.json`. You can quickly convert your `accounts.json` to `accounts.yml` by using the [yq](https://github.com/mikefarah/yq) CLI tool and the following command.
+Use the [yq](https://github.com/mikefarah/yq) CLI to convert your `accounts.json` file to `accounts.yml` using the [yq](https://github.com/mikefarah/yq) CLI tool and the following command. 
 
 ```bash
 cat accounts.json | yq -P > accounts.yml
 ```
 
-Confirm the data matches between your `accounts.json` and `accounts.yml`. If you are upgrading all of your deployments at once, you may delete your `accounts.json` file. If you will use both ECS Deploy Runner and Pipelines at the same time, do not delete `accounts.json`.
+Confirm that the data in your `accounts.json` matches the newly generated `accounts.yml`. If you are upgrading all deployments simultaneously, you can safely delete the `accounts.json` file. However, if you plan to use both ECS Deploy Runner and Pipelines concurrently during the transition, do not delete `accounts.json`.
 
-## Add new workflows in your infrastructure-live repository
+## Add new workflows in your `infrastructure-live` repository
 
-Similar to ECS Deploy Runner, Pipelines employs GitHub Actions as the computing layer to execute actions on your infrastructure. However,  Pipelines uses a different workflow with a smaller number of steps and the Pipelines binary responsible for orchestrating changes. To simplify the upgrade process, we've created a template that can be used to generate the workflow with a small number of parameters. In both workflows, the workflow file named `pipelines.yml` is utilized, so generating the new workflow will overwrite the old.
+Pipelines, like ECS Deploy Runner, uses GitHub Actions as its execution layer for infrastructure changes. The key difference is that Pipelines employs a more streamlined workflow, utilizing a lightweight set of steps orchestrated by the Pipelines binary. To facilitate the upgrade, we provide a template to generate the necessary workflows with minimal input parameters. Both workflows utilize a file named `pipelines.yml`, so generating the new workflow will overwrite the existing one.
 
 :::warning
-If you plan to use ECS Deploy Runner and Pipelines at the same time, to migrate from one to the other, you will need to rename your existing `pipelines.yml` to another name before generating the new `pipelines.yml` for Pipelines.
+If you plan to operate ECS Deploy Runner and Pipelines simultaneously during migration, rename your existing `pipelines.yml` file to avoid overwriting it before generating the new `pipelines.yml` for Pipelines.
 
-You will also need to ignore changes to files in account based directories that you have and have not migrated yet using `paths-ignore` in the appropriate workflow file. For example, if you have migrated your development account to Pipelines, you would add `development/` to `paths-ignore` in the ECS Deploy Runner workflow yaml, then add `development` to `paths` in the Pipelines workflow yaml.
+Additionally, you will need to configure path-based filters to exclude migrated directories from the ECS Deploy Runner workflow while including them in the Pipelines workflow. For instance, if you migrate the `development` account to Pipelines, add `development/` to `paths-ignore` in the ECS Deploy Runner workflow YAML. Simultaneously, include `development/` in `paths` within the Pipelines workflow YAML.
 
-See the GitHub docs on [including and excluding paths](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-including-paths) to learn more.
+Refer to GitHub documentation on [including and excluding paths](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-including-paths) for further details.
 :::
 
-To generate the new `pipelines.yml` file, run the following command, replacing the values in `<>` with appropriate values for your organization -
+To generate the new `pipelines.yml` workflow file, execute the following command, replacing the values in `<>` with appropriate values for your organization -
 
 ```bash
 boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architecture-catalog.git//templates/infra-live-github-base" \
@@ -121,26 +121,25 @@ boilerplate --template-url "git@github.com:gruntwork-io/terraform-aws-architectu
     --non-interactive
 ```
 
-Next, create a branch, commit your changes, and push your branch to the remote repository. Then create a pull request targeting your default branch (e.g., `main`). Gather any required approvals then
+Next, create a branch, commit your changes, and push the branch to the remote repository. Afterward, create a pull request targeting your default branch (e.g., `main`). Obtain the necessary approvals before proceeding.
 
 ## Remove old ECS Deploy Runner infrastructure
 
-After you have confirmed Pipelines is running in your account(s), you can destroy the infrastructure that the ECS Deploy Runner used. With Pipelines now fully functional, you can initiate the infrastructure destruction process by submitting a pull request (PR) for each of the directories containing the EDR configuration. Subsequently, you can submit a final PR to remove any remaining EDR configuration within your _envcommon directory.
+Once Pipelines is successfully operating within your accounts, the infrastructure used by the ECS Deploy Runner can be safely dismantled. Begin by submitting a pull request (PR) for each directory containing the ECS Deploy Runner configuration. Following this, submit a final PR to remove any remaining ECS Deploy Runner configurations from the `_envcommon` directory.
 
-### Delete code for old pipelines
+### Delete code for old Pipelines
 
-For each environment in which you have deployed the ECS deploy runner, remove the `ecs-deploy-runner` directory. This can be found in the file path `<account name>/<region name>/mgmt`.
+For every environment where the ECS Deploy Runner was deployed, locate and delete the `ecs-deploy-runner` directory. This directory is typically found in the file path `<account name>/<region name>/mgmt`.
 
 :::tip
-We recommend migrating to Pipelines in non-production accounts first, then migrating production accounts after a few weeks of trying out Pipelines. This allows time for you to familiarize yourself with Pipelines and reduces the likelihood of disruption to your workflows and day-to-day operations.
+It is advisable to migrate non-production accounts to Pipelines first. After gaining familiarity with Pipelines and ensuring smooth operation over a few weeks, proceed with migrating production accounts. This staggered approach minimizes disruption to your workflows and day-to-day operations.
 :::
 
-Create a branch, commit your changes, and push your branch to the remote repository. Then create a pull request targeting your default branch (e.g., `main`). Pipelines will detect the change and run a `plan -destroy` to remove the ECS deploy runner infrastructure. Gather any required approvals then merge the PR. On PR merge, Pipelines will run a `destroy` to remove all of the infrastructure.
+Create a branch, commit your changes, and push the branch to the remote repository. Then, create a pull request targeting your default branch (e.g., `main`). Pipelines will detect the changes and execute a `plan -destroy` to preview the removal of the ECS Deploy Runner infrastructure. Gather any required approvals and merge the PR. Upon merging, Pipelines will automatically run a `destroy` action to remove all infrastructure associated with the ECS Deploy Runner.
 
 ## Wrapping up
 
-Congratulations! If you have followed this guide, you will be deploying infrastructure to at least one AWS account using Pipelines. If you have feedback, please reach out to `feedback@gruntwork.io`.
-
+Congratulations! By completing this guide, you should now be deploying infrastructure to at least one AWS account using Pipelines. If you have any feedback or suggestions, please reach out to `feedback@gruntwork.io`.
 
 <!-- ##DOCS-SOURCER-START
 {

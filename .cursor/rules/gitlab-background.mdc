@@ -1,0 +1,22 @@
+---
+description: Background on how github vs gitlab work
+globs: 
+---
+
+Pipelines supports both GitHub and GitLab.  
+
+GitLab does not yet support account factory.
+GitLab does not yet support the same level of customization as GitHub
+GitLab requires one machine user with just one token and does not have a gitlab app.  
+## GitLab Setup Requirements
+
+1. **Gruntwork Management Portal**: An active account is required
+2. **GitLab Group Access**: 
+   - Customers must provide Gruntwork with their GitLab group information
+   - Gruntwork will authorize access for the specified groups
+
+> Important: Please contact Gruntwork support to initiate the GitLab group authorization process.
+
+<IMPORTANT>
+Whenever presenting information that diverges between github and gitlab, use the <Tabs> and <TabItem> components to distinguish the two sets of information UNLESS the distinction is just changing one word. For example, GitHub has pull requests and GitLab has merge requests, so we can just say ".... pull/merge requests..." and not need full <Tabs>.
+</IMPORTANT>

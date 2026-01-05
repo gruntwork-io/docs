@@ -9,16 +9,16 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.28.0" lastModifiedVersion="0.28.0"/>
+<VersionBadge repoTitle="VPC Modules" version="0.28.9" lastModifiedVersion="0.28.9"/>
 
 # VPC-App Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.9/modules/vpc-app" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches a single VPC meant to house applications. By contrast, DevOps-related services such as
-Jenkins or InfluxDB should be in a "mgmt" VPC. (See the [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules/vpc-mgmt) module.)
+Jenkins or InfluxDB should be in a "mgmt" VPC. (See the [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.9/modules/vpc-mgmt) module.)
 
 ## Background
 
@@ -78,7 +78,7 @@ nearly all use-cases, and is consistent with many examples and existing document
 
 ### Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.9/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
 ## IPv6
 
@@ -118,7 +118,7 @@ module "vpc_app_ipv6_example" {
 
 module "vpc_app" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.28.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.28.9"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -282,6 +282,12 @@ module "vpc_app" {
   # same fields as the ingress block in the aws_default_security_group resource:
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#ingress-block.
   default_security_group_ingress_rules = {"AllowAllFromSelf":{"from_port":0,"protocol":"-1","self":true,"to_port":0}}
+
+  # The DHCP Options Set ID to associate with the VPC. After specifying this
+  # attribute, removing it will delete the DHCP option assignment, leaving the
+  # VPC without any DHCP option set, rather than reverting to the one set by
+  # default.
+  dhcp_options_id = null
 
   # IAM policy to restrict what resources can call this endpoint. For example,
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
@@ -646,7 +652,7 @@ module "vpc_app" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.28.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-app?ref=v0.28.9"
 }
 
 inputs = {
@@ -813,6 +819,12 @@ inputs = {
   # same fields as the ingress block in the aws_default_security_group resource:
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_security_group#ingress-block.
   default_security_group_ingress_rules = {"AllowAllFromSelf":{"from_port":0,"protocol":"-1","self":true,"to_port":0}}
+
+  # The DHCP Options Set ID to associate with the VPC. After specifying this
+  # attribute, removing it will delete the DHCP option assignment, leaving the
+  # VPC without any DHCP option set, rather than reverting to the one set by
+  # default.
+  dhcp_options_id = null
 
   # IAM policy to restrict what resources can call this endpoint. For example,
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
@@ -1561,6 +1573,15 @@ Any types represent complex values of variable type. For details, please consult
 ```
 
 </HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="dhcp_options_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The DHCP Options Set ID to associate with the VPC. After specifying this attribute, removing it will delete the DHCP option assignment, leaving the VPC without any DHCP option set, rather than reverting to the one set by default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="dynamodb_endpoint_policy" requirement="optional" type="string">
@@ -2398,15 +2419,14 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules/vpc-app/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules/vpc-app/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.0/modules/vpc-app/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.9/modules/vpc-app/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.9/modules/vpc-app/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.9/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "42b7c8e16d6adea13bcad365cfaf9e95"
+  "hash": "36c4781104f5b04752a17cd304b27637"
 }
 ##DOCS-SOURCER-END -->

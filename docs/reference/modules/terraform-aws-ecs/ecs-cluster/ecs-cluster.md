@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.38.3" lastModifiedVersion="0.38.2"/>
+<VersionBadge repoTitle="Amazon ECS" version="1.3.0" lastModifiedVersion="1.3.0"/>
 
 # ECS Cluster Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.38.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches an [EC2 Container Service
 Cluster](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_clusters.html) that you can use to run
-Docker containers and services (see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/README.adoc)).
+Docker containers and services (see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-service/README.adoc)).
 
 **WARNING: Launch Configurations:** [Launch configurations](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-configurations.html) are being phased out in favor of [Launch Templates](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html). Before upgrading to the latest release please be sure to test and plan any changes to infrastructure that may be impacted. Launch templates are being introduced in [PR #371](https://github.com/gruntwork-io/terraform-aws-ecs/pull/371)
 
@@ -32,7 +32,7 @@ ECS and register itself as part of the right cluster.
 
 ## How do you run Docker containers on the cluster?
 
-See the [service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service/README.adoc).
+See the [service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-service/README.adoc).
 
 ## How do you add additional security group rules?
 
@@ -97,7 +97,7 @@ currently no way in ECS to manage IAM policies on a per-Docker-container basis.
 
 ## How do you make changes to the EC2 Instances in the cluster?
 
-To deploy an update to an ECS Service, see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-service). To deploy an update to the
+To deploy an update to an ECS Service, see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-service). To deploy an update to the
 EC2 Instances in your ECS cluster, such as a new AMI, read on.
 
 Terraform and AWS do not provide a way to automatically roll out a change to the Instances in an ECS Cluster. Due to
@@ -127,8 +127,8 @@ To deploy a change such as rolling out a new AMI to all ECS Instances:
     python3 roll-out-ecs-cluster-update.py --asg-name ASG_NAME --cluster-name CLUSTER_NAME --aws-region AWS_REGION
     ```
 
-    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/examples/docker-service-with-elb/outputs.tf)
-    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/examples/docker-service-with-elb), you can use the `terraform output`
+    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/examples/docker-service-with-elb/outputs.tf)
+    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/examples/docker-service-with-elb), you can use the `terraform output`
     command to fill in most of the arguments automatically:
 
     ```
@@ -181,8 +181,8 @@ To deploy a change such as rolling out a new AMI to all ECS Instances:
     python3 asg-instance-refresh.py --asg-name ASG_NAME --aws-region AWS_REGION
     ```
 
-    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/examples/docker-service-with-elb/outputs.tf)
-    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/examples/docker-service-with-elb), you can use the `terraform output`
+    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/examples/docker-service-with-elb/outputs.tf)
+    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/examples/docker-service-with-elb), you can use the `terraform output`
     command to fill in most of the arguments automatically:
 
     ```
@@ -235,7 +235,7 @@ enable Capacity Providers on an existing ECS cluster that did not have Capacity 
 instances to ensure all the instances get associated with the new Capacity Provider.
 
 To rotate the instances, you can run the
-[roll-out-ecs-cluster-update.py](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster/roll-out-ecs-cluster-update.py)
+[roll-out-ecs-cluster-update.py](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-cluster/roll-out-ecs-cluster-update.py)
 script in the `terraform-aws-ecs` module. Refer to the
 [documentation](#how-do-you-make-changes-to-the-ec2-instances-in-the-cluster)
 for more information on the script.
@@ -253,7 +253,7 @@ for more information on the script.
 
 module "ecs_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.38.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v1.3.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -335,6 +335,14 @@ module "ecs_cluster" {
   # GroupStandbyCapacity, GroupTerminatingCapacity, GroupTerminatingInstances,
   # GroupTotalCapacity, GroupTotalInstances.
   cluster_asg_metrics_enabled = []
+
+  # Amount of time, in seconds, until a newly launched instance can contribute
+  # to the Amazon CloudWatch metrics. This delay lets an instance finish
+  # initializing before Amazon EC2 Auto Scaling aggregates instance metrics,
+  # resulting in more reliable usage data. Set this value equal to the amount of
+  # time that it takes for resource consumption to become stable after an
+  # instance reaches the InService state.
+  cluster_default_instance_warmup = null
 
   # Enables/disables detailed CloudWatch monitoring for EC2 instances
   cluster_detailed_monitoring = true
@@ -421,6 +429,10 @@ module "ecs_cluster" {
   # Value is the maximum bid price for the instance on the EC2 Spot Market.
   cluster_instance_spot_price = null
 
+  # The list of EC2-instance-type overrides allowed for each of the ECS
+  # Cluster's EC2 Instances
+  cluster_instance_type_overrides = null
+
   # The User Data script to run on each of the ECS Cluster's EC2 Instances on
   # their first boot.
   cluster_instance_user_data = null
@@ -453,6 +465,20 @@ module "ecs_cluster" {
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
+  # List of CIDR blocks that will be allowed for egress access.
+  egress_allow_outbound_all = ["0.0.0.0/0"]
+
+  # The from port range (paired with egress_to_port) to be used for for egress
+  # access.
+  egress_from_port = 0
+
+  # The protocol to be used for for egress access.
+  egress_protocol = "-1"
+
+  # The end port range (paired with egress_from_port) to be used for for egress
+  # access.
+  egress_to_port = 0
+
   # Enables additional block device mapping. Change to false if you wish to
   # disable additional EBS volume attachment to EC2 instances. Defaults to true.
   enable_block_device_mappings = true
@@ -480,6 +506,9 @@ module "ecs_cluster" {
   # Strategy to use for instance refresh. If not specified then instance_refresh
   # is disabled
   instance_refresh_strategy = null
+
+  # Whether to update Default Version for the Launch Template with each update.
+  launch_template_update_default_version = true
 
   # Maximum amount of time, in seconds, that an instance can be in service,
   # values must be either equal to 0 or between 86400 and 31536000 seconds.
@@ -530,7 +559,7 @@ module "ecs_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v0.38.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v1.3.0"
 }
 
 inputs = {
@@ -616,6 +645,14 @@ inputs = {
   # GroupTotalCapacity, GroupTotalInstances.
   cluster_asg_metrics_enabled = []
 
+  # Amount of time, in seconds, until a newly launched instance can contribute
+  # to the Amazon CloudWatch metrics. This delay lets an instance finish
+  # initializing before Amazon EC2 Auto Scaling aggregates instance metrics,
+  # resulting in more reliable usage data. Set this value equal to the amount of
+  # time that it takes for resource consumption to become stable after an
+  # instance reaches the InService state.
+  cluster_default_instance_warmup = null
+
   # Enables/disables detailed CloudWatch monitoring for EC2 instances
   cluster_detailed_monitoring = true
 
@@ -701,6 +738,10 @@ inputs = {
   # Value is the maximum bid price for the instance on the EC2 Spot Market.
   cluster_instance_spot_price = null
 
+  # The list of EC2-instance-type overrides allowed for each of the ECS
+  # Cluster's EC2 Instances
+  cluster_instance_type_overrides = null
+
   # The User Data script to run on each of the ECS Cluster's EC2 Instances on
   # their first boot.
   cluster_instance_user_data = null
@@ -733,6 +774,20 @@ inputs = {
   # The key is the tag name and the value is the tag value.
   custom_tags_security_group = {}
 
+  # List of CIDR blocks that will be allowed for egress access.
+  egress_allow_outbound_all = ["0.0.0.0/0"]
+
+  # The from port range (paired with egress_to_port) to be used for for egress
+  # access.
+  egress_from_port = 0
+
+  # The protocol to be used for for egress access.
+  egress_protocol = "-1"
+
+  # The end port range (paired with egress_from_port) to be used for for egress
+  # access.
+  egress_to_port = 0
+
   # Enables additional block device mapping. Change to false if you wish to
   # disable additional EBS volume attachment to EC2 instances. Defaults to true.
   enable_block_device_mappings = true
@@ -760,6 +815,9 @@ inputs = {
   # Strategy to use for instance refresh. If not specified then instance_refresh
   # is disabled
   instance_refresh_strategy = null
+
+  # Whether to update Default Version for the Launch Template with each update.
+  launch_template_update_default_version = true
 
   # Maximum amount of time, in seconds, that an instance can be in service,
   # values must be either equal to 0 or between 86400 and 31536000 seconds.
@@ -967,6 +1025,15 @@ A list of metrics to collect. The allowed values are GroupDesiredCapacity, Group
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cluster_default_instance_warmup" requirement="optional" type="number">
+<HclListItemDescription>
+
+Amount of time, in seconds, until a newly launched instance can contribute to the Amazon CloudWatch metrics. This delay lets an instance finish initializing before Amazon EC2 Auto Scaling aggregates instance metrics, resulting in more reliable usage data. Set this value equal to the amount of time that it takes for resource consumption to become stable after an instance reaches the InService state.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cluster_detailed_monitoring" requirement="optional" type="bool">
@@ -1185,6 +1252,25 @@ Value is the maximum bid price for the instance on the EC2 Spot Market.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="cluster_instance_type_overrides" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+The list of EC2-instance-type overrides allowed for each of the ECS Cluster's EC2 Instances
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    type   = string
+    weight = number
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="cluster_instance_user_data" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1246,6 +1332,44 @@ A map of custom tags to apply to the Security Group for this ECS Cluster. The ke
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="egress_allow_outbound_all" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of CIDR blocks that will be allowed for egress access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[
+  &quot;0.0.0.0/0&quot;
+]"/>
+</HclListItem>
+
+<HclListItem name="egress_from_port" requirement="optional" type="number">
+<HclListItemDescription>
+
+The from port range (paired with egress_to_port) to be used for for egress access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
+</HclListItem>
+
+<HclListItem name="egress_protocol" requirement="optional" type="string">
+<HclListItemDescription>
+
+The protocol to be used for for egress access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;-1&quot;"/>
+</HclListItem>
+
+<HclListItem name="egress_to_port" requirement="optional" type="number">
+<HclListItemDescription>
+
+The end port range (paired with egress_from_port) to be used for for egress access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
 <HclListItem name="enable_block_device_mappings" requirement="optional" type="bool">
@@ -1325,6 +1449,15 @@ Strategy to use for instance refresh. If not specified then instance_refresh is 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="launch_template_update_default_version" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to update Default Version for the Launch Template with each update.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="max_instance_lifetime" requirement="optional" type="number">
@@ -1425,15 +1558,14 @@ Set this variable to true to enable the use of Instance Metadata Service Version
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-cluster/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d8fcdea67e68a0c749f6376f28f4711a"
+  "hash": "777898f1702fae00c08b815ad792f30d"
 }
 ##DOCS-SOURCER-END -->

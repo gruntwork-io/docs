@@ -89,23 +89,6 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
-#### enable-terragrunt-provider-cache
-
-<HclListItem name="enable-terragrunt-provider-cache" requirement="optional" type="boolean">
-<HclListItemDescription>
-Enables the <span class="external-link"><a href="https://terragrunt.gruntwork.io/docs/features/provider-cache/">Terragrunt Provider Cache</a></span> for plans and applies.
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-<HclListItemExample>
-
-```yaml
-pipelines:
-  enable-terragrunt-provider-cache: true
-```
-
-</HclListItemExample>
-</HclListItem>
-
 #### env
 
 <HclListItem name="env" requirement="optional" type="sequence(mapping)">
@@ -192,7 +175,42 @@ pipelines:
 </HclListItemExample>
 </HclListItem>
 
+#### ignore-list
+
+<HclListItem name="ignore-list" requirement="required" type="string">
+<HclListItemDescription>
+A comma separate list of ignore filters to exclude from pipelines runs. See the full documentation [here](/2.0/reference/pipelines/ignore-list)
+</HclListItemDescription>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  ignore-list: README.md,**/README.md
+```
+
+</HclListItemExample>
+</HclListItem>
+
 ## Deprecated Configuration Options
+
+#### enable-terragrunt-provider-cache
+
+<HclListItem name="enable-terragrunt-provider-cache" requirement="optional" type="boolean">
+<HclListItemDescription>
+Enables the <span class="external-link"><a href="https://terragrunt.gruntwork.io/docs/features/provider-cache/">Terragrunt Provider Cache</a></span> for plans and applies.
+
+This option is deprecated in favor of setting `TERRAGRUNT_PROVIDER_CACHE` as an [`env`](#env) option.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemExample>
+
+```yaml
+pipelines:
+  enable-terragrunt-provider-cache: true
+```
+
+</HclListItemExample>
+</HclListItem>
 
 #### cli-version
 

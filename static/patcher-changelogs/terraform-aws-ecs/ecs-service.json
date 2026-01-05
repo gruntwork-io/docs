@@ -1,6 +1,69 @@
 {
   "module": "ecs-service",
   "releases": {
+    "v1.0.0": {
+      "contains_changes": false
+    },
+    "v0.38.10": {
+      "contains_changes": false
+    },
+    "v0.38.9": {
+      "contains_changes": false
+    },
+    "v0.38.8": {
+      "contains_changes": false
+    },
+    "v0.38.7": {
+      "contains_changes": true
+    },
+    "v0.38.6": {
+      "contains_changes": false
+    },
+    "v0.38.5": {
+      "contains_changes": true
+    },
+    "v0.38.4": {
+      "contains_changes": true
+    },
+    "v0.38.3": {
+      "contains_changes": true
+    },
+    "v0.38.2": {
+      "contains_changes": false
+    },
+    "v0.38.1": {
+      "contains_changes": true
+    },
+    "v0.38.0": {
+      "contains_changes": true
+    },
+    "v0.37.0": {
+      "contains_changes": true
+    },
+    "v0.36.1": {
+      "contains_changes": true
+    },
+    "v0.36.0": {
+      "contains_changes": true
+    },
+    "v0.35.16": {
+      "contains_changes": true
+    },
+    "v0.35.15": {
+      "contains_changes": true
+    },
+    "v0.35.14": {
+      "contains_changes": false
+    },
+    "v0.35.13": {
+      "contains_changes": true
+    },
+    "v0.35.12": {
+      "contains_changes": true
+    },
+    "v0.35.11": {
+      "contains_changes": true
+    },
     "v0.35.10": {
       "contains_changes": true
     },

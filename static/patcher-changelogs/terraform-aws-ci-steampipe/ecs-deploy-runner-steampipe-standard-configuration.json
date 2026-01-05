@@ -1,6 +1,9 @@
 {
   "module": "ecs-deploy-runner-steampipe-standard-configuration",
   "releases": {
+    "v0.3.5": {
+      "contains_changes": false
+    },
     "v0.3.4": {
       "contains_changes": false
     },

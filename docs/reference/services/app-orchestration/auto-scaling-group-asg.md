@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.3" lastModifiedVersion="0.115.2"/>
+<VersionBadge version="0.142.0" lastModifiedVersion="0.129.0"/>
 
 # Auto Scaling Group
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/services/asg-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/asg-service" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fasg-service" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -55,7 +55,7 @@ access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 *   [ASG Documentation](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html):
     Amazon’s docs for ASG that cover core concepts such as launch templates and auto scaling groups.
-*   [User Data](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/services/asg-service/core-concepts.md)
+*   [User Data](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/asg-service/core-concepts.md)
 
 ## Deploy
 
@@ -63,7 +63,7 @@ access to this repo, email [support@gruntwork.io](mailto:support@gruntwork.io).
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -71,7 +71,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -90,7 +90,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "asg_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/asg-service?ref=v0.118.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/asg-service?ref=v0.142.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -165,6 +165,21 @@ module "asg_service" {
   # The security group IDs from which to allow SSH access
   allow_ssh_security_group_ids = []
 
+  # The name of the device to mount the volume on the instance.
+  block_device_mappings_device_name = "/dev/xvda"
+
+  # Whether the root volume should be encrypted.
+  block_device_mappings_root_volume_encrypted = null
+
+  # The number of IOPS to provision for the root volume.
+  block_device_mappings_root_volume_iops = null
+
+  # The size of the root volume in GB.
+  block_device_mappings_root_volume_size = null
+
+  # The throughput to provision for the root volume.
+  block_device_mappings_root_volume_throughput = null
+
   # Cloud init scripts to run on the ASG instances during boot. See the part
   # blocks in
   # https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for
@@ -192,10 +207,10 @@ module "asg_service" {
   # propagate_at_launch.
   custom_tags = []
 
-  # Optional override that can be used to specify a custom user data file. Note
-  # that setting this will disable the module's cloud_init user data. This
-  # override is useful for deploying Windows servers that may need custom user
-  # data scripts not covered by this module's user_data.sh.
+  # Optional override that can be used to specify a custom user data. Note that
+  # setting this will disable the module's cloud_init user data. This override
+  # is useful for deploying Windows servers that may need custom user data
+  # scripts not covered by this module's user_data.sh.
   custom_user_data_override = null
 
   # The ARN of the Target Group to which to route traffic.
@@ -214,6 +229,10 @@ module "asg_service" {
   # The domain name to register in var.hosted_zone_id (e.g. foo.example.com).
   # Only used if var.create_route53_entry is true.
   domain_name = null
+
+  # Specify volumes to attach to the instance besides the volumes specified by
+  # the AMI
+  ebs_block_device_mappings = {}
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -324,6 +343,10 @@ module "asg_service" {
   # The name of a Key Pair that can be used to SSH to the EC2 Instances in the
   # ASG. Set to null if you don't want to enable Key Pair auth.
   key_pair_name = null
+
+  # When true, the launch template will be updated to the default version. When
+  # false, the launch template will be updated to the latest version.
+  launch_template_update_default_version = true
 
   # The ID of the Route 53 Hosted Zone in which to create a DNS A record for the
   # Auto Scaling Group. Optional if create_route53_entry = false.
@@ -474,7 +497,7 @@ module "asg_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/asg-service?ref=v0.118.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/asg-service?ref=v0.142.0"
 }
 
 inputs = {
@@ -552,6 +575,21 @@ inputs = {
   # The security group IDs from which to allow SSH access
   allow_ssh_security_group_ids = []
 
+  # The name of the device to mount the volume on the instance.
+  block_device_mappings_device_name = "/dev/xvda"
+
+  # Whether the root volume should be encrypted.
+  block_device_mappings_root_volume_encrypted = null
+
+  # The number of IOPS to provision for the root volume.
+  block_device_mappings_root_volume_iops = null
+
+  # The size of the root volume in GB.
+  block_device_mappings_root_volume_size = null
+
+  # The throughput to provision for the root volume.
+  block_device_mappings_root_volume_throughput = null
+
   # Cloud init scripts to run on the ASG instances during boot. See the part
   # blocks in
   # https://www.terraform.io/docs/providers/template/d/cloudinit_config.html for
@@ -579,10 +617,10 @@ inputs = {
   # propagate_at_launch.
   custom_tags = []
 
-  # Optional override that can be used to specify a custom user data file. Note
-  # that setting this will disable the module's cloud_init user data. This
-  # override is useful for deploying Windows servers that may need custom user
-  # data scripts not covered by this module's user_data.sh.
+  # Optional override that can be used to specify a custom user data. Note that
+  # setting this will disable the module's cloud_init user data. This override
+  # is useful for deploying Windows servers that may need custom user data
+  # scripts not covered by this module's user_data.sh.
   custom_user_data_override = null
 
   # The ARN of the Target Group to which to route traffic.
@@ -601,6 +639,10 @@ inputs = {
   # The domain name to register in var.hosted_zone_id (e.g. foo.example.com).
   # Only used if var.create_route53_entry is true.
   domain_name = null
+
+  # Specify volumes to attach to the instance besides the volumes specified by
+  # the AMI
+  ebs_block_device_mappings = {}
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -711,6 +753,10 @@ inputs = {
   # The name of a Key Pair that can be used to SSH to the EC2 Instances in the
   # ASG. Set to null if you don't want to enable Key Pair auth.
   key_pair_name = null
+
+  # When true, the launch template will be updated to the default version. When
+  # false, the launch template will be updated to the latest version.
+  launch_template_update_default_version = true
 
   # The ID of the Route 53 Hosted Zone in which to create a DNS A record for the
   # Auto Scaling Group. Optional if create_route53_entry = false.
@@ -1024,6 +1070,51 @@ The security group IDs from which to allow SSH access
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="block_device_mappings_device_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the device to mount the volume on the instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;/dev/xvda&quot;"/>
+</HclListItem>
+
+<HclListItem name="block_device_mappings_root_volume_encrypted" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether the root volume should be encrypted.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="block_device_mappings_root_volume_iops" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of IOPS to provision for the root volume.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="block_device_mappings_root_volume_size" requirement="optional" type="number">
+<HclListItemDescription>
+
+The size of the root volume in GB.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="block_device_mappings_root_volume_throughput" requirement="optional" type="number">
+<HclListItemDescription>
+
+The throughput to provision for the root volume.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="cloud_init_parts" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
@@ -1126,7 +1217,7 @@ list(object({
 <HclListItem name="custom_user_data_override" requirement="optional" type="string">
 <HclListItemDescription>
 
-Optional override that can be used to specify a custom user data file. Note that setting this will disable the module's cloud_init user data. This override is useful for deploying Windows servers that may need custom user data scripts not covered by this module's user_data.sh.
+Optional override that can be used to specify a custom user data. Note that setting this will disable the module's cloud_init user data. This override is useful for deploying Windows servers that may need custom user data scripts not covered by this module's user_data.sh.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1189,6 +1280,123 @@ The domain name to register in <a href="#hosted_zone_id"><code>hosted_zone_id</c
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="ebs_block_device_mappings" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Specify volumes to attach to the instance besides the volumes specified by the AMI
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    # Whether the volume should be destroyed on instance termination.
+    delete_on_termination = optional(bool)
+
+    # Enables EBS encryption on the volume.
+    encrypted = optional(bool)
+
+    # The amount of provisioned IOPS. This must be set with a volume_type of "io1/io2/gp3".
+    iops = optional(number)
+
+    # The ARN of the AWS KMS customer master key (CMK) to use when creating the encrypted volume.
+    # "encrypted" must be set to true when this is set.
+    kms_key_id = optional(string)
+
+    # The throughput to provision for a gp3 volume in MiB/s (specified as an integer, e.g., 500), with a maximum of 1,000 MiB/s.
+    throughput = optional(number)
+
+    # The size of the volume in gigabytes.
+    volume_size = optional(number)
+
+    # The volume type.
+    # Allowed values: standard, gp2, gp3, io1, io2, sc1 or st1.
+    volume_type = optional(string)
+
+    # The Snapshot ID to mount.
+    snapshot_id = optional(string)
+
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+     Enables EBS encryption on the volume.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The amount of provisioned IOPS. This must be set with a volume_type of "io1/io2/gp3".
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The ARN of the AWS KMS customer master key (CMK) to use when creating the encrypted volume.
+     "encrypted" must be set to true when this is set.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The throughput to provision for a gp3 volume in MiB/s (specified as an integer, e.g., 500), with a maximum of 1,000 MiB/s.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The size of the volume in gigabytes.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The volume type.
+     Allowed values: standard, gp2, gp3, io1, io2, sc1 or st1.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+     The Snapshot ID to mount.
+
+```
+</details>
+
+</HclGeneralListItem>
 </HclListItem>
 
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
@@ -1635,6 +1843,15 @@ The name of a Key Pair that can be used to SSH to the EC2 Instances in the ASG. 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="launch_template_update_default_version" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, the launch template will be updated to the default version. When false, the launch template will be updated to the latest version.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="lb_hosted_zone_id" requirement="optional" type="string">
@@ -2129,11 +2346,11 @@ The ID of the Security Group that belongs to the ASG.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/services/asg-service/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/services/asg-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/services/asg-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/asg-service/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/asg-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/services/asg-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e8a81e3cdab0b876838a54f7a517edca"
+  "hash": "3de2cb01f35bbadd6f669eabcf9e64ae"
 }
 ##DOCS-SOURCER-END -->

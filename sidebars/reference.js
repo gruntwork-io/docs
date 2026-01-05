@@ -28,12 +28,17 @@ const sidebar = [
     id: "2.0/reference/pipelines/index",
   },
   {
+    label: "Terragrunt Version Compatibility",
+    type: "doc",
+    id: "2.0/reference/pipelines/terragrunt-version-compatibility",
+  },
+  {
     label: "Configurations (YAML)",
     type: "doc",
     id: "2.0/reference/pipelines/configurations",
   },
   {
-    label: "Configurations as Code (HCL - Beta)",
+    label: "Configurations as Code (HCL)",
     type: "category",
     items: [
       {
@@ -47,6 +52,16 @@ const sidebar = [
         id: "2.0/reference/pipelines/configurations-as-code/api",
       },
     ],
+  },
+  {
+    label: "Ignore List",
+    type: "doc",
+    id: "2.0/reference/pipelines/ignore-list",
+  },
+  {
+    label: "Feature Flags",
+    type: "doc",
+    id: "2.0/reference/pipelines/feature-flags",
   },
   {
     value: "Gruntwork Patcher",
@@ -64,9 +79,19 @@ const sidebar = [
     className: "sidebar-header",
   },
   {
+    label: "Overview",
+    type: "doc",
+    id: "2.0/reference/accountfactory/index",
+  },
+  {
     label: "Configurations",
     type: "doc",
     id: "2.0/reference/accountfactory/configurations",
+  },
+  {
+    label: "Configurations as Code (HCL)",
+    type: "doc",
+    id: "2.0/reference/accountfactory/configurations-as-code",
   },
 ]
 

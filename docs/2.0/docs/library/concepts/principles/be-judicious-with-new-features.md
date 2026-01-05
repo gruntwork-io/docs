@@ -1,25 +1,17 @@
-# Be Judicious With New Features
+# Be Judicious with New Features
 
-Sometimes new features in OpenTofu are released that make module authoring more convenient.
+Introducing new OpenTofu features can enhance module development and expand functionality. However, adopting these features may require users to upgrade to newer OpenTofu versions. This requirement can create challenges for organizations that are unable to update OpenTofu promptly but still wish to utilize the latest module versions.
 
-Leveraging them can make it convenient author modules, but it can be really inconvenient for module consumers, as they can be inadvertently forced into adopting the newer version of OpenTofu in order to use the new version of the module. Some organizations may not have the bandwidth to invest in upgrading to a newer version of OpenTofu just to use the latest version of a module.
+Modules within the library often have interdependencies. If a module update introduces a dependency on a newer OpenTofu version, **all related modules must be updated** to reflect this version requirement.
 
-This is compounded by the way in which modules in the library can depend upon each other. If a module is updated to require a newer version of OpenTofu, all modules that depend on it will also need to be updated to require the newer version of OpenTofu.
+## Guidelines for adopting new features
 
-## How to Decide to Use Newer Features
+Evaluate the following factors when determining whether to adopt a new feature:
 
-Some individual judgement is required to decide when this trade-off is worth making.
+### Feature stability and maturity
 
-Qualities of OpenTofu features to keep in mind when deciding if they should be adopted for modules include:
+Well-established features typically offer greater compatibility with existing module-consumer environments. While incorporating newer features is not discouraged, prioritizing stable and widely adopted features helps maintain consistency and reliability.
 
-### Age of Feature
+### Impact on module users
 
-The older the feature, the more likely it is that consumers of the module will be able to use it without updating their versions of OpenTofu.
-
-It is not necessarily a good idea to only use features that are excessively old, as you don't want consumers to miss out on the latest and greatest from OpenTofu.
-
-### Impact to Module Consumers
-
-Even when features are relatively new, however, there can be advantages to requiring that consumers upgrade OpenTofu to adopt newer versions of modules.
-
-Take, for example, the [moved](https://opentofu.org/docs/v1.6/language/modules/develop/refactoring/#moved-block-syntax) block. Using this block can allow consumers to upgrade to newer versions of modules despite addresses of resources in modules changing without manual intervention. If the cost to a consumer to manually move state is greater than the cost of requiring that they upgrade to `v1.1` of Terraform at the earliest, it can be worth it to introduce the `moved` block in a release.
+Upgrading OpenTofu versions may sometimes be necessary. For instance, the [`moved`](https://opentofu.org/docs/v1.6/language/modules/develop/refactoring/#moved-block-syntax) block allows seamless upgrades even when resource addresses change. When the benefits of upgrading outweigh the effort of manual adjustments, adopting newer versions is recommended.

@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.3" lastModifiedVersion="0.111.1"/>
+<VersionBadge version="0.142.0" lastModifiedVersion="0.126.2"/>
 
 # Account Baseline for root account
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/landingzone/account-baseline-root" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/landingzone/account-baseline-root" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=landingzone%2Faccount-baseline-root" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -58,16 +58,16 @@ If you’ve never used the Service Catalog before, make sure to read
 
 *   Learn more about each individual module, click the link in the [Features](#features) section
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone/)
-*   [How to create child accounts](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/core-concepts.md#creating-child-accounts)
-*   [How to aggregate AWS Config and CloudTrail data in a logs account](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/core-concepts.md#aggregating-aws-config-and-cloudtrail-data-in-a-logs-account)
-*   [Why does this module use account-level AWS Config Rules?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/core-concepts.md#why-does-this-module-use-account-level-aws-config-rules)
-*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/core-concepts.md#how-to-use-multi-region-services)
+*   [How to create child accounts](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/core-concepts.md#creating-child-accounts)
+*   [How to aggregate AWS Config and CloudTrail data in a logs account](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/core-concepts.md#aggregating-aws-config-and-cloudtrail-data-in-a-logs-account)
+*   [Why does this module use account-level AWS Config Rules?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/core-concepts.md#why-does-this-module-use-account-level-aws-config-rules)
+*   [How to use multi-region services](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/core-concepts.md#how-to-use-multi-region-services)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -75,7 +75,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples/for-learning-and-testing/landingzone): The
+*   [examples/for-learning-and-testing/landingzone folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-learning-and-testing/landingzone): The
     `examples/for-learning-and-testing/landingzone` folder contains standalone sample code optimized for learning,
     experimenting, and testing (but not direct production usage).
 
@@ -83,7 +83,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end integrated tech stack on top of the Gruntwork Service Catalog.
@@ -104,7 +104,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "account_baseline_root" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-root?ref=v0.118.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-root?ref=v0.142.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -256,6 +256,11 @@ module "account_baseline_root" {
   # IAM role
   aws_config_iam_role_permissions_boundary = null
 
+  # Map of child accounts to create. Identical in structure to child_accounts
+  # but useful if you have too many accounts to manage in an input var. Merged
+  # with var.child_accounts
+  child_accounts_yaml = null
+
   # Additional IAM policies to apply to cloudtrail S3 bucket. You can use this
   # to grant read/write access beyond what is provided to Cloudtrail. This
   # should be a map, where each key is a unique statement ID (SID), and each
@@ -275,6 +280,10 @@ module "account_baseline_root" {
   # access to the CloudTrail bucket. This is useful during deployment so that
   # you don't have to pass around the KMS key ARN.
   cloudtrail_allow_kms_describe_key_to_external_aws_accounts = false
+
+  # After cloudtrail_num_days_after_which_archive_log_data it will
+  # moved/archived to this storage class
+  cloudtrail_archive_storage_class = "GLACIER"
 
   # Specify the name of the CloudWatch Logs group to publish the CloudTrail logs
   # to. This log group exists in the current account. Set this value to `null`
@@ -319,6 +328,10 @@ module "account_baseline_root" {
   # IAM role
   cloudtrail_iam_role_permissions_boundary = null
 
+  # Type of insights to log on a trail. Valid values are: ApiCallRateInsight and
+  # ApiErrorRateInsight.
+  cloudtrail_insight_selector = []
+
   # Specifies whether the trail is an AWS Organizations trail. Organization
   # trails log events for the root account and all member accounts. Can only be
   # created in the organization root account. (true or false)
@@ -360,7 +373,7 @@ module "account_baseline_root" {
   cloudtrail_kms_key_user_iam_arns = []
 
   # After this number of days, log files should be transitioned from S3 to
-  # Glacier. Enter 0 to never archive log data.
+  # var.cloudtrail_archive_storage_class. Enter 0 to never archive log data.
   cloudtrail_num_days_after_which_archive_log_data = 30
 
   # After this number of days, log files should be deleted from S3. Enter 0 to
@@ -457,6 +470,11 @@ module "account_baseline_root" {
   # After this number of days, log files should be deleted from S3. Enter 0 to
   # never delete log data.
   config_num_days_after_which_delete_log_data = 730
+
+  # Recording Groups to define in AWS Config. See the upstream module for how to
+  # define the variable, the default of null will use the module's default:
+  # https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
+  config_recording_groups = null
 
   # Optional KMS key (in logs account) to use for encrypting S3 objects on the
   # AWS Config bucket, when the S3 bucket is created within this module
@@ -883,6 +901,43 @@ module "account_baseline_root" {
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
 
+  # The mode for AWS Config to record configuration changes.
+  #
+  # recording_frequency:
+  # The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
+  # - CONTINUOUS
+  # - DAILY
+  #
+  # You can also override the recording frequency for specific resource types.
+  # recording_mode_override:
+  #   description:
+  #     A description for the override.
+  #   recording_frequency:
+  #     The frequency with which AWS Config records configuration changes for the specified resource types.
+  #     - CONTINUOUS
+  #     - DAILY
+  #   resource_types:
+  #     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
+  #
+  # See the following for more information:
+  # https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
+  #
+  # /*
+  # recording_mode = {
+  #   recording_frequency = "DAILY"
+  #   recording_mode_override = {
+  #     description         = "Override for specific resource types"
+  #     recording_frequency = "CONTINUOUS"
+  #     resource_types      = ["AWS::EC2::Instance"]
+  #   }
+  # }
+  # */
+  #
+  recording_mode = null
+
+  # Manages S3 account-level Public Access Block configuration.
+  s3_account_public_access_block = null
+
   # Should we create the IAM Group for auto-deploy? Allows automated deployment
   # by granting the permissions specified in var.auto_deploy_permissions. (true
   # or false)
@@ -962,7 +1017,7 @@ module "account_baseline_root" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-root?ref=v0.118.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/landingzone/account-baseline-root?ref=v0.142.0"
 }
 
 inputs = {
@@ -1117,6 +1172,11 @@ inputs = {
   # IAM role
   aws_config_iam_role_permissions_boundary = null
 
+  # Map of child accounts to create. Identical in structure to child_accounts
+  # but useful if you have too many accounts to manage in an input var. Merged
+  # with var.child_accounts
+  child_accounts_yaml = null
+
   # Additional IAM policies to apply to cloudtrail S3 bucket. You can use this
   # to grant read/write access beyond what is provided to Cloudtrail. This
   # should be a map, where each key is a unique statement ID (SID), and each
@@ -1136,6 +1196,10 @@ inputs = {
   # access to the CloudTrail bucket. This is useful during deployment so that
   # you don't have to pass around the KMS key ARN.
   cloudtrail_allow_kms_describe_key_to_external_aws_accounts = false
+
+  # After cloudtrail_num_days_after_which_archive_log_data it will
+  # moved/archived to this storage class
+  cloudtrail_archive_storage_class = "GLACIER"
 
   # Specify the name of the CloudWatch Logs group to publish the CloudTrail logs
   # to. This log group exists in the current account. Set this value to `null`
@@ -1180,6 +1244,10 @@ inputs = {
   # IAM role
   cloudtrail_iam_role_permissions_boundary = null
 
+  # Type of insights to log on a trail. Valid values are: ApiCallRateInsight and
+  # ApiErrorRateInsight.
+  cloudtrail_insight_selector = []
+
   # Specifies whether the trail is an AWS Organizations trail. Organization
   # trails log events for the root account and all member accounts. Can only be
   # created in the organization root account. (true or false)
@@ -1221,7 +1289,7 @@ inputs = {
   cloudtrail_kms_key_user_iam_arns = []
 
   # After this number of days, log files should be transitioned from S3 to
-  # Glacier. Enter 0 to never archive log data.
+  # var.cloudtrail_archive_storage_class. Enter 0 to never archive log data.
   cloudtrail_num_days_after_which_archive_log_data = 30
 
   # After this number of days, log files should be deleted from S3. Enter 0 to
@@ -1318,6 +1386,11 @@ inputs = {
   # After this number of days, log files should be deleted from S3. Enter 0 to
   # never delete log data.
   config_num_days_after_which_delete_log_data = 730
+
+  # Recording Groups to define in AWS Config. See the upstream module for how to
+  # define the variable, the default of null will use the module's default:
+  # https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
+  config_recording_groups = null
 
   # Optional KMS key (in logs account) to use for encrypting S3 objects on the
   # AWS Config bucket, when the S3 bucket is created within this module
@@ -1743,6 +1816,43 @@ inputs = {
   # KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS
   # storage encryption config rule.
   rds_storage_encrypted_kms_id = null
+
+  # The mode for AWS Config to record configuration changes.
+  #
+  # recording_frequency:
+  # The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
+  # - CONTINUOUS
+  # - DAILY
+  #
+  # You can also override the recording frequency for specific resource types.
+  # recording_mode_override:
+  #   description:
+  #     A description for the override.
+  #   recording_frequency:
+  #     The frequency with which AWS Config records configuration changes for the specified resource types.
+  #     - CONTINUOUS
+  #     - DAILY
+  #   resource_types:
+  #     A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
+  #
+  # See the following for more information:
+  # https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
+  #
+  # /*
+  # recording_mode = {
+  #   recording_frequency = "DAILY"
+  #   recording_mode_override = {
+  #     description         = "Override for specific resource types"
+  #     recording_frequency = "CONTINUOUS"
+  #     resource_types      = ["AWS::EC2::Instance"]
+  #   }
+  # }
+  # */
+  #
+  recording_mode = null
+
+  # Manages S3 account-level Public Access Block configuration.
+  s3_account_public_access_block = null
 
   # Should we create the IAM Group for auto-deploy? Allows automated deployment
   # by granting the permissions specified in var.auto_deploy_permissions. (true
@@ -2216,6 +2326,15 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="child_accounts_yaml" requirement="optional" type="string">
+<HclListItemDescription>
+
+Map of child accounts to create. Identical in structure to child_accounts but useful if you have too many accounts to manage in an input <a href="#"><code></code></a> Merged with <a href="#child_accounts"><code>child_accounts</code></a>
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="cloudtrail_additional_bucket_policy_statements" requirement="optional" type="any">
 <HclListItemDescription>
 
@@ -2390,6 +2509,15 @@ Whether or not to allow kms:DescribeKey to external AWS accounts with write acce
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="cloudtrail_archive_storage_class" requirement="optional" type="string">
+<HclListItemDescription>
+
+After cloudtrail_num_days_after_which_archive_log_data it will moved/archived to this storage class
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;GLACIER&quot;"/>
+</HclListItem>
+
 <HclListItem name="cloudtrail_cloudwatch_logs_group_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2467,6 +2595,15 @@ The ARN of the policy that is used to set the permissions boundary for the IAM r
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cloudtrail_insight_selector" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+Type of insights to log on a trail. Valid values are: ApiCallRateInsight and ApiErrorRateInsight.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="cloudtrail_is_organization_trail" requirement="optional" type="bool">
@@ -2601,7 +2738,7 @@ All CloudTrail Logs will be encrypted with a KMS Key (a Customer Master Key) tha
 <HclListItem name="cloudtrail_num_days_after_which_archive_log_data" requirement="optional" type="number">
 <HclListItemDescription>
 
-After this number of days, log files should be transitioned from S3 to Glacier. Enter 0 to never archive log data.
+After this number of days, log files should be transitioned from S3 to <a href="#cloudtrail_archive_storage_class"><code>cloudtrail_archive_storage_class</code></a>. Enter 0 to never archive log data.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
@@ -2731,6 +2868,32 @@ After this number of days, log files should be deleted from S3. Enter 0 to never
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="730"/>
+</HclListItem>
+
+<HclListItem name="config_recording_groups" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Recording Groups to define in AWS Config. See the upstream module for how to define the variable, the default of null will use the module's default: https://github.com/gruntwork-io/terraform-aws-security/tree/main/modules/aws-config-multi-region
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    all_supported                 = bool
+    include_global_resource_types = bool
+    resource_types                = list(string)
+    recording_strategy = object({
+      use_only = string
+    })
+    exclusion_by_resource_types = optional(object({
+      resource_types = list(string)
+    }))
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="config_s3_bucket_kms_key_arn" requirement="optional" type="string">
@@ -3739,6 +3902,81 @@ KMS key ID or ARN used to encrypt the storage. Used for configuring the RDS stor
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="recording_mode" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+The mode for AWS Config to record configuration changes.
+
+recording_frequency:
+The frequency with which AWS Config records configuration changes (service defaults to CONTINUOUS).
+- CONTINUOUS
+- DAILY
+
+You can also override the recording frequency for specific resource types.
+recording_mode_override:
+  description:
+    A description for the override.
+  recording_frequency:
+    The frequency with which AWS Config records configuration changes for the specified resource types.
+    - CONTINUOUS
+    - DAILY
+  resource_types:
+    A list of resource types for which AWS Config records configuration changes. For example, AWS::EC2::Instance.
+
+See the following for more information:
+https://docs.aws.amazon.com/config/latest/developerguide/stop-start-recorder.html
+
+```
+recording_mode = &#123;
+  recording_frequency = 'DAILY'
+  recording_mode_override = &#123;
+    description         = 'Override for specific resource types'
+    recording_frequency = 'CONTINUOUS'
+    resource_types      = ['AWS::EC2::Instance']
+  &#125;
+&#125;
+```
+
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    recording_frequency = string
+    recording_mode_override = optional(object({
+      description         = string
+      recording_frequency = string
+      resource_types      = list(string)
+    }))
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="s3_account_public_access_block" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Manages S3 account-level Public Access Block configuration.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    block_public_acls       = optional(bool)
+    ignore_public_acls      = optional(bool)
+    block_public_policy     = optional(bool)
+    restrict_public_buckets = optional(bool)
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="should_create_iam_group_auto_deploy" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -4394,11 +4632,11 @@ A map of user name to that user's AWS Web Console password, encrypted with that 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/landingzone/account-baseline-root/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/landingzone/account-baseline-root/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/landingzone/account-baseline-root/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/landingzone/account-baseline-root/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/landingzone/account-baseline-root/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/landingzone/account-baseline-root/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "578373a54c6b96e30b1e2af56430014f"
+  "hash": "7a295877a20a75069bbed6c5e9daf251"
 }
 ##DOCS-SOURCER-END -->

@@ -1,6 +1,72 @@
 {
   "module": "lb-listener-rules",
   "releases": {
+    "v1.0.0": {
+      "contains_changes": false
+    },
+    "v0.30.5": {
+      "contains_changes": false
+    },
+    "v0.30.4": {
+      "contains_changes": false
+    },
+    "v0.30.3": {
+      "contains_changes": true
+    },
+    "v0.30.2": {
+      "contains_changes": false
+    },
+    "v0.30.1": {
+      "contains_changes": false
+    },
+    "v0.30.0": {
+      "contains_changes": false
+    },
+    "v0.29.26": {
+      "contains_changes": false
+    },
+    "v0.29.25": {
+      "contains_changes": false
+    },
+    "v0.29.24": {
+      "contains_changes": true
+    },
+    "v0.29.23": {
+      "contains_changes": false
+    },
+    "v0.29.22": {
+      "contains_changes": true
+    },
+    "v0.29.21": {
+      "contains_changes": false
+    },
+    "v0.29.20": {
+      "contains_changes": false
+    },
+    "v0.29.19": {
+      "contains_changes": false
+    },
+    "v0.29.18": {
+      "contains_changes": false
+    },
+    "v0.29.17": {
+      "contains_changes": true
+    },
+    "v0.29.16": {
+      "contains_changes": true
+    },
+    "v0.29.15": {
+      "contains_changes": false
+    },
+    "v0.29.14": {
+      "contains_changes": true
+    },
+    "v0.29.13": {
+      "contains_changes": false
+    },
+    "v0.29.12": {
+      "contains_changes": true
+    },
     "v0.29.11": {
       "contains_changes": true
     },

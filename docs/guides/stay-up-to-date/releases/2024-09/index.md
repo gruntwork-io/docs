@@ -328,6 +328,15 @@ This introduces a change in how tags are managed for AWS Accounts. Now, any tag 
   
 
 - Add support for new Cloudwatch Logs plugin
+    - **NOTE:** There is an [upstream issue ](https://github.com/aws/eks-charts/issues/931) with the default version of the `aws-for-fluent-bit` chart where default values are defined for `logGroupTemplate` and `logStreamTemplate` which cause these values to be set to the default values if not explicitly set. There are 3 main workarounds for this:
+        - Set the variables to empty strings which will override the default values set in the upstream.
+        - Override the default Helm Chart version and use a newer version of the chart which resolves the issue. This can be accomplished by setting `aws_for_fluent_bit_chart_version` to `0.1.32`.
+        - Upgrade to [v0.73.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.73.0) of the `terraform-aws-eks` library module which uses a newer chart version as well as contains several enhancements to the module.
+          ```yaml
+          # Default values in upstream Helm Chart
+          logGroupTemplate: /aws/eks/fluentbit-cloudwatch/workload/$kubernetes[&apos;namespace_name&apos;]
+          logStreamTemplate: $kubernetes[&apos;pod_name&apos;].$kubernetes[&apos;container_name&apos;]
+          ```
 - Bump github.com/hashicorp/go-getter from 1.7.1 to 1.7.5 in /test
 - Bump golang.org/x/net from 0.17.0 to 0.23.0 in /test
 
@@ -765,12 +774,9 @@ Default version of EKS is `1.30` with this release! Please see the links below f
 
 </div>
 
-
-
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "5525ad0b573ab56f5b56ffe147485021"
+  "hash": "3beb9ec84e60041fa01bf0bb383d9596"
 }
 ##DOCS-SOURCER-END -->

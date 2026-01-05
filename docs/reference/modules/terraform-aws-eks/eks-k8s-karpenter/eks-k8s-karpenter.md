@@ -9,24 +9,24 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="0.72.1" lastModifiedVersion="0.72.1"/>
+<VersionBadge repoTitle="Amazon EKS" version="3.1.2" lastModifiedVersion="3.1.2"/>
 
 # EKS K8s Karpenter Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-karpenter" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/modules/eks-k8s-karpenter" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.72.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v3.1.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Module can be used to deploy [Karpenter](https://karpenter.sh/) as an alternative to the [Cluster Autoscaler](https://github.com/kubernetes/autoscaler/tree/b6d53e8/cluster-autoscaler) for autoscaling capabilities of an EKS cluster.
-This module will create all of the necessary resources for a functional installation of Karpenter as well as the installation of Karpenter. This module does not create Karpenter [Provisioners](https://karpenter.sh/v0.27.0/concepts/provisioners/) or [Node Templates](https://karpenter.sh/v0.27.0/concepts/node-templates/), only the installation of the Karpenter Controller. See the [Karpenter Example](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/examples/eks-cluster-with-karpenter/) for an example of how to deploy the additional `CRDs` (Provisioners, Node Templates, etc) to the EKS cluster.
+This module will create all of the necessary resources for a functional installation of Karpenter as well as the installation of Karpenter. This module does not create Karpenter [Provisioners](https://karpenter.sh/v0.27.0/concepts/provisioners/) or [Node Templates](https://karpenter.sh/v0.27.0/concepts/node-templates/), only the installation of the Karpenter Controller. See the [Karpenter Example](https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/examples/eks-cluster-with-karpenter/) for an example of how to deploy the additional `CRDs` (Provisioners, Node Templates, etc) to the EKS cluster.
 
-> Note: For EKS cluster autoscaling capabilities, either `Karpenter` OR the `cluster-autoscaler` should be used; not both. To migrate to using `karpenter` instead of the `cluster-autoscaler` see [Migrating to Karpenter from the Cluster Autoscaler](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-karpenter/migrating-to-karpenter-from-cas.md)
+> Note: For EKS cluster autoscaling capabilities, either `Karpenter` OR the `cluster-autoscaler` should be used; not both. To migrate to using `karpenter` instead of the `cluster-autoscaler` see [Migrating to Karpenter from the Cluster Autoscaler](https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/modules/eks-k8s-karpenter/migrating-to-karpenter-from-cas.md)
 
-To leverage the full power and potential of Karpenter, one must understand the [Karpenter Core Concepts](https://karpenter.sh/v0.27.0/concepts/). Deploying this module without additional configuration (ie deploying Karpenter CRDs) will not enable EKS cluster autoscaling. As use-cases are presented, we will do our best effort to continue to add meaningful examples to the [examples](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/examples/) folder to help ease the complexities of configuring Karpenter. At minimum, one should configure and deploy a default `Provisioner` and `Node Template` for just in time node provisioning via Karpenter.
+To leverage the full power and potential of Karpenter, one must understand the [Karpenter Core Concepts](https://karpenter.sh/v0.27.0/concepts/). Deploying this module without additional configuration (ie deploying Karpenter CRDs) will not enable EKS cluster autoscaling. As use-cases are presented, we will do our best effort to continue to add meaningful examples to the [examples](https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/examples/) folder to help ease the complexities of configuring Karpenter. At minimum, one should configure and deploy a default `Provisioner` and `Node Template` for just in time node provisioning via Karpenter.
 
 ### Resources Created
 
-This module will create the following core resources, some of which are optional which are noted in the [input variables](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-karpenter/variables.tf):
+This module will create the following core resources, some of which are optional which are noted in the [input variables](https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/modules/eks-k8s-karpenter/variables.tf):
 
 | AWS Resource | Description |
 | --- | --- |
@@ -66,7 +66,7 @@ This is particularly useful to users that rely on Spot Instances that can be ter
 
 For more information read the [Karpenter Intrerruption section](https://karpenter.sh/preview/concepts/deprovisioning/#interruption)
 
-*   From [variables.tf](https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-karpenter/variables.tf) enable `create_karpenter_deprovisioning_queue`t
+*   From [variables.tf](https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/modules/eks-k8s-karpenter/variables.tf) enable `create_karpenter_deprovisioning_queue`t
 
 ## Sample Usage
 
@@ -81,7 +81,7 @@ For more information read the [Karpenter Intrerruption section](https://karpente
 
 module "eks_k_8_s_karpenter" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-karpenter?ref=v0.72.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-karpenter?ref=v3.1.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -152,12 +152,12 @@ module "eks_k_8_s_karpenter" {
   karpenter_chart_repository_username = null
 
   # Whether or not to install CRDs with the Karpenter Helm Chart. This should be
-  # set to true if using the karpenter-crd Helm Chart
-  # (karpenter_chart_additional_values = true).
-  karpenter_chart_skip_crds = false
+  # set to true if using the karpenter-crd Helm Chart (karpenter_crd_helm_create
+  # = true).
+  karpenter_chart_skip_crds = true
 
   # The version of the Karpenter Helm chart.
-  karpenter_chart_version = "v0.32.7"
+  karpenter_chart_version = "1.6.2"
 
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
   # Service Account. This is required if `create_karpenter_controller_irsa` is
@@ -193,15 +193,20 @@ module "eks_k_8_s_karpenter" {
 
   # The version of the Karpenter CRD Helm chart. This should typically be the
   # same version as karpenter_chart_version.
-  karpenter_crd_chart_version = "v0.32.7"
+  karpenter_crd_chart_version = "1.6.2"
 
-  # Whether or not to create the Karpneter CRDs via the karpenter-crd Helm
-  # chart. It is suggested to manage the Karpenter CRDs via this Helm chart.
+  # Whether or not to create the Karpenter CRDs via the karpenter-crd Helm
+  # chart. It is strongly recommended to manage the Karpenter CRDs via this Helm
+  # chart.
   karpenter_crd_helm_create = true
 
   # A map of custom tags to apply to the Karpenter Deprovisioning Queue IAM
   # Policies if enabled. The key is the tag name and the value is the tag value.
   karpenter_deprovisioning_queue_iam_policy_tags = {}
+
+  # Optional Name for the Karpenter SQS Deprovisioning Queue. If omitted, a name
+  # will be generated.
+  karpenter_deprovisioning_queue_name = null
 
   # Additional tags to add to the Karpenter Deprovisioning Queue.
   karpenter_deprovisioning_queue_tags = {}
@@ -221,6 +226,10 @@ module "eks_k_8_s_karpenter" {
   # This is required if `create_karpenter_node_iam_role` is set to false. This
   # should be the Name of the IAM Role.
   karpenter_node_existing_iam_role_name = null
+
+  # A list of additional IAM policy ARNs to attach to the Karpenter Node IAM
+  # Role. This allows you to attach custom policies to Karpenter nodes
+  karpenter_node_iam_role_additional_policy_arns = []
 
   # A description of the Karpenter Node IAM Role.
   karpenter_node_iam_role_description = "IAM Role attached to nodes launched by Karpenter."
@@ -264,7 +273,7 @@ module "eks_k_8_s_karpenter" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-karpenter?ref=v0.72.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-karpenter?ref=v3.1.2"
 }
 
 inputs = {
@@ -338,12 +347,12 @@ inputs = {
   karpenter_chart_repository_username = null
 
   # Whether or not to install CRDs with the Karpenter Helm Chart. This should be
-  # set to true if using the karpenter-crd Helm Chart
-  # (karpenter_chart_additional_values = true).
-  karpenter_chart_skip_crds = false
+  # set to true if using the karpenter-crd Helm Chart (karpenter_crd_helm_create
+  # = true).
+  karpenter_chart_skip_crds = true
 
   # The version of the Karpenter Helm chart.
-  karpenter_chart_version = "v0.32.7"
+  karpenter_chart_version = "1.6.2"
 
   # Provide an existing IAM Role ARN to be used with the Karpenter Controller
   # Service Account. This is required if `create_karpenter_controller_irsa` is
@@ -379,15 +388,20 @@ inputs = {
 
   # The version of the Karpenter CRD Helm chart. This should typically be the
   # same version as karpenter_chart_version.
-  karpenter_crd_chart_version = "v0.32.7"
+  karpenter_crd_chart_version = "1.6.2"
 
-  # Whether or not to create the Karpneter CRDs via the karpenter-crd Helm
-  # chart. It is suggested to manage the Karpenter CRDs via this Helm chart.
+  # Whether or not to create the Karpenter CRDs via the karpenter-crd Helm
+  # chart. It is strongly recommended to manage the Karpenter CRDs via this Helm
+  # chart.
   karpenter_crd_helm_create = true
 
   # A map of custom tags to apply to the Karpenter Deprovisioning Queue IAM
   # Policies if enabled. The key is the tag name and the value is the tag value.
   karpenter_deprovisioning_queue_iam_policy_tags = {}
+
+  # Optional Name for the Karpenter SQS Deprovisioning Queue. If omitted, a name
+  # will be generated.
+  karpenter_deprovisioning_queue_name = null
 
   # Additional tags to add to the Karpenter Deprovisioning Queue.
   karpenter_deprovisioning_queue_tags = {}
@@ -407,6 +421,10 @@ inputs = {
   # This is required if `create_karpenter_node_iam_role` is set to false. This
   # should be the Name of the IAM Role.
   karpenter_node_existing_iam_role_name = null
+
+  # A list of additional IAM policy ARNs to attach to the Karpenter Node IAM
+  # Role. This allows you to attach custom policies to Karpenter nodes
+  karpenter_node_iam_role_additional_policy_arns = []
 
   # A description of the Karpenter Node IAM Role.
   karpenter_node_iam_role_description = "IAM Role attached to nodes launched by Karpenter."
@@ -613,10 +631,10 @@ Optionally provide a Username for HTTP basic authentication against the Karpente
 <HclListItem name="karpenter_chart_skip_crds" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Whether or not to install CRDs with the Karpenter Helm Chart. This should be set to true if using the karpenter-crd Helm Chart (karpenter_chart_additional_values = true).
+Whether or not to install CRDs with the Karpenter Helm Chart. This should be set to true if using the karpenter-crd Helm Chart (karpenter_crd_helm_create = true).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="karpenter_chart_version" requirement="optional" type="string">
@@ -625,7 +643,7 @@ Whether or not to install CRDs with the Karpenter Helm Chart. This should be set
 The version of the Karpenter Helm chart.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v0.32.7&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.6.2&quot;"/>
 </HclListItem>
 
 <HclListItem name="karpenter_controller_existing_role_arn" requirement="optional" type="string">
@@ -715,13 +733,13 @@ Optionally provide a Username for HTTP basic authentication against the Karpente
 The version of the Karpenter CRD Helm chart. This should typically be the same version as karpenter_chart_version.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v0.32.7&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.6.2&quot;"/>
 </HclListItem>
 
 <HclListItem name="karpenter_crd_helm_create" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Whether or not to create the Karpneter CRDs via the karpenter-crd Helm chart. It is suggested to manage the Karpenter CRDs via this Helm chart.
+Whether or not to create the Karpenter CRDs via the karpenter-crd Helm chart. It is strongly recommended to manage the Karpenter CRDs via this Helm chart.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -734,6 +752,15 @@ A map of custom tags to apply to the Karpenter Deprovisioning Queue IAM Policies
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="karpenter_deprovisioning_queue_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Optional Name for the Karpenter SQS Deprovisioning Queue. If omitted, a name will be generated.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="karpenter_deprovisioning_queue_tags" requirement="optional" type="map(string)">
@@ -779,6 +806,15 @@ Use an existing IAM Role to be used for the Karpenter Node Instance Profile. Thi
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="karpenter_node_iam_role_additional_policy_arns" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of additional IAM policy ARNs to attach to the Karpenter Node IAM Role. This allows you to attach custom policies to Karpenter nodes
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="karpenter_node_iam_role_description" requirement="optional" type="string">
@@ -902,11 +938,11 @@ The name of the Karpenter Node IAM Role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-karpenter/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-karpenter/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v0.72.1/modules/eks-k8s-karpenter/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/modules/eks-k8s-karpenter/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/modules/eks-k8s-karpenter/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c927b0fdf9bd7b78d581d6d982a5d5af"
+  "hash": "a78bc7ffbd1ec393bcd9c96b87915223"
 }
 ##DOCS-SOURCER-END -->

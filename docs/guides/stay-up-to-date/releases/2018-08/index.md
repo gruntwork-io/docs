@@ -287,12 +287,9 @@ Fix a bug in the `aws-auth` script so that you can now assume an IAM role _and_ 
 
 </div>
 
-
-
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a75b0aec4cd605abf17a3c7b121f7b76"
+  "hash": "77a6179d7409622b770039d146c5aa73"
 }
 ##DOCS-SOURCER-END -->

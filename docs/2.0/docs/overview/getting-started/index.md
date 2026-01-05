@@ -1,34 +1,46 @@
 # Setting up DevOps Foundations & Components
 import PersistentCheckbox from '/src/components/PersistentCheckbox';
 
-### Step 1: [Activate Your Gruntwork Account](/2.0/docs/overview/getting-started/create-account)
+### Step 1: [Activate your Gruntwork account](/2.0/docs/overview/getting-started/create-account)
 
-Set up your Gruntwork account and invite your teammates to gain access to Gruntwork resources.
+Create your Gruntwork account and invite your team members to access Gruntwork resources.
 
 <PersistentCheckbox id="install-df-1" label="Gruntwork Account Ready" />
 
-### Step 2: [Set Up a Landing Zone](/2.0/docs/pipelines/installation/prerequisites/awslandingzone)
+### Step 2: [Set up a Landing Zone](/2.0/docs/accountfactory/prerequisites/awslandingzone)
 
-Gruntwork's AWS Landing Zone walkthrough provides a best practice multi-account setup ready to use with DevOps Foundations.
+Follow Gruntwork's AWS Landing Zone walkthrough to implement a best-practice multi-account setup, ready for use with DevOps Foundations.
 
 <PersistentCheckbox id="install-df-2" label="AWS Landing Zone Ready" />
 
-### Step 3: [Configure Pipelines Authentication](/2.0/docs/pipelines/installation/authoverview)
+### Step 3: [Configure Pipelines authentication](/2.0/docs/pipelines/installation/authoverview)
+
+Set up authentication for Pipelines to enable secure automation of infrastructure changes.
 
 <PersistentCheckbox id="install-df-3" label="Pipelines Auth Configured" />
 
-### Step 4: [Create New Pipelines Repositories](/2.0/docs/pipelines/installation/addingnewrepo)
+### Step 4: Create new Pipelines repositories
 
-Or alternatively [Add Pipelines To An Existing Repository](/2.0/docs/pipelines/installation/addingexistingrepo).
+- [New GitHub repository](/2.0/docs/pipelines/installation/addingnewrepo)
+- [New GitLab repository](/2.0/docs/pipelines/installation/addinggitlabrepo)
+
+Alternatively, you can add Pipelines to an existing repository:
+
+- [Existing GitHub repository](/2.0/docs/pipelines/installation/addingexistingrepo)
+- [Existing GitLab repository](/2.0/docs/pipelines/installation/addingexistinggitlabrepo)
 
 <PersistentCheckbox id="install-df-4" label="Pipelines Repositories Ready" />
 
-### Step 5: [Configure Account Factory](/2.0/reference/accountfactory/configurations).
+### Step 5: [Configure Account Factory](/2.0/reference/accountfactory/configurations)
 
-As part of your Pipelines installation, you will now have Gruntwork Account Factory
+During the Pipelines setup process, configure Gruntwork Account Factory for AWS account management.
 
 <PersistentCheckbox id="install-df-5" label="Account Factory Configured" />
 
-### Step 6: Start Using DevOps Foundations
+### Step 6: Start using DevOps Foundations
 
-That's it! You're ready to [build with Gruntwork IaC Library](/2.0/docs/library/tutorials/deploying-your-first-gruntwork-module) automatically [plan and apply IaC changes with Pipelines](/2.0/docs/pipelines/guides/running-plan-apply), [vend new AWS Accounts with Account Factory](/2.0/docs/accountfactory/guides/vend-aws-account), and [keep your infrastructure up to date with Patcher](/2.0/docs/patcher/concepts/).
+You're all set! You can now:
+- [Build with the Gruntwork IaC Library](/2.0/docs/library/tutorials/deploying-your-first-gruntwork-module)
+- Automatically [plan and apply IaC changes with Pipelines](/2.0/docs/pipelines/guides/running-plan-apply)
+- [Vend new AWS accounts with Account Factory](/2.0/docs/accountfactory/guides/vend-aws-account)
+- [Keep your infrastructure up to date with Patcher](/2.0/docs/patcher/concepts/)

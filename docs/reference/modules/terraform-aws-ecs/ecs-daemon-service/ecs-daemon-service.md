@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="0.38.3" lastModifiedVersion="0.38.1"/>
+<VersionBadge repoTitle="Amazon ECS" version="1.3.0" lastModifiedVersion="1.3.0"/>
 
 # ECS Daemon Service Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-daemon-service" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.38.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an [ECS Daemon Service](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html)
 that you can use to deploy exactly one task on each active container instance that meets all of the task placement constraints
@@ -33,7 +33,7 @@ environment variables to set, and so on. To actually run an ECS Task, you define
 
 ## How do you create an ECS cluster?
 
-To use ECS, you first deploy one or more EC2 Instances into a "cluster". See the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-cluster)
+To use ECS, you first deploy one or more EC2 Instances into a "cluster". See the [ecs-cluster module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-cluster)
 for how to create a cluster.
 
 ## How do you add additional IAM policies?
@@ -82,7 +82,7 @@ EOF
 
 module "ecs_daemon_service" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.38.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v1.3.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -109,6 +109,12 @@ module "ecs_daemon_service" {
   # A list of additional principals who can assume the task and task execution
   # roles
   additional_task_assume_role_policy_principals = []
+
+  # ECS automatically redistributes tasks within a service across Availability
+  # Zones (AZs) to mitigate the risk of impaired application availability due to
+  # underlying infrastructure failures and task lifecycle activities. The valid
+  # values are ENABLED and DISABLED. Defaults to DISABLED.
+  availability_zone_rebalancing = "DISABLED"
 
   # Prefix for name of the IAM role used by the ECS task. If not provide, will
   # be set to var.service_name.
@@ -198,7 +204,7 @@ module "ecs_daemon_service" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v0.38.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-daemon-service?ref=v1.3.0"
 }
 
 inputs = {
@@ -228,6 +234,12 @@ inputs = {
   # A list of additional principals who can assume the task and task execution
   # roles
   additional_task_assume_role_policy_principals = []
+
+  # ECS automatically redistributes tasks within a service across Availability
+  # Zones (AZs) to mitigate the risk of impaired application availability due to
+  # underlying infrastructure failures and task lifecycle activities. The valid
+  # values are ENABLED and DISABLED. Defaults to DISABLED.
+  availability_zone_rebalancing = "DISABLED"
 
   # Prefix for name of the IAM role used by the ECS task. If not provide, will
   # be set to var.service_name.
@@ -353,6 +365,15 @@ A list of additional principals who can assume the task and task execution roles
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="availability_zone_rebalancing" requirement="optional" type="string">
+<HclListItemDescription>
+
+ECS automatically redistributes tasks within a service across Availability Zones (AZs) to mitigate the risk of impaired application availability due to underlying infrastructure failures and task lifecycle activities. The valid values are ENABLED and DISABLED. Defaults to DISABLED.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;DISABLED&quot;"/>
 </HclListItem>
 
 <HclListItem name="custom_iam_role_name_prefix" requirement="optional" type="string">
@@ -563,15 +584,14 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.38.3/modules/ecs-daemon-service/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-daemon-service/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-daemon-service/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-daemon-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b3be7f105cd2d7c1b5b815e3ad662ccf"
+  "hash": "8398c44495b53584a1c9948145f83290"
 }
 ##DOCS-SOURCER-END -->

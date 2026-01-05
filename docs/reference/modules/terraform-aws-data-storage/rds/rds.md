@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.40.0" lastModifiedVersion="0.40.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.43.0" lastModifiedVersion="0.43.0"/>
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.43.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.40.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.43.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Relational Database Service (RDS) cluster that can run MySQL, Postgres, MariaDB, Oracle,
 or SQL Server. The cluster is managed by AWS and automatically handles standby failover, read replicas, backups,
@@ -90,9 +90,51 @@ RDS supports automatically installing major version upgrades. To enable this fun
 1.  Set the `allow_major_version_upgrade` parameter to `true`.
 2.  Set the `engine_version` parameter to `MAJOR.MINOR` and omit the `PATCH` number.
 
-**Note**: consider temporarily setting parameter and option group variables to engine defaults during the major version upgrade process. This step is important to prevent upgrade failures that might occur due to custom configurations not being compatible with the new version. By reverting these configurations to default settings temporarily, you minimize the risk of incompatibility issues during the upgrade process. After the upgrade is successfully completed, these configurations can be reverted back to their custom values, ensuring that your database operates with the desired settings while being compatible with the upgraded version.
-
 **Note**: A minimal downtime is expected during a major version upgrade. Make sure to communicate the potential downtime to relevant stakeholders in advance.
+
+#### PostgreSQL Major Version Upgrades: Two-Phase Process Required
+
+PostgreSQL major version upgrades (e.g., 15→16) require a **two-phase process** due to parameter group family incompatibility. Each PostgreSQL major version requires a specific parameter group family (`postgres15` for v15, `postgres16` for v16), and Terraform cannot handle the transition in a single operation.
+
+**Root Cause**: The Terraform AWS provider cannot simultaneously detach the old parameter group and attach the new one, creating an unresolvable dependency cycle. See [terraform-provider-aws #38984](https://github.com/hashicorp/terraform-provider-aws/issues/38984) and [#6448](https://github.com/hashicorp/terraform-provider-aws/issues/6448).
+
+##### Step-by-Step Upgrade Process
+
+**Phase 1: Detach Custom Parameter Group**
+
+```hcl
+# Temporarily use AWS default parameter group
+parameter_group_name        = "default.postgres15"  # Use default for current version
+allow_major_version_upgrade = true
+engine_version             = "15.7"  # Keep current version
+```
+
+Apply: `terraform apply`
+
+**Phase 2: Upgrade Version with New Parameter Group**
+
+```hcl
+# Update version and parameter group together
+engine_version             = "16.3"
+parameter_group_name       = aws_db_parameter_group.postgres16.name
+allow_major_version_upgrade = true
+
+# Create new parameter group
+resource "aws_db_parameter_group" "postgres16" {
+  name   = "${var.name}-postgres16"
+  family = "postgres16"
+  # Add custom parameters here
+}
+```
+
+Apply: `terraform apply`
+
+**Critical Notes:**
+
+*   Always backup before upgrading
+*   Expect 5-30 minutes downtime
+*   Test in non-production first
+*   After upgrade, set `allow_major_version_upgrade = false` to prevent accidental upgrades
 
 ### Blue/Green Deployment for Low-Downtime Updates
 
@@ -117,7 +159,7 @@ Set `multi_az=true`. When setting up a multi-AZ (Availability Zone) RDS deployme
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.40.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.43.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -274,9 +316,17 @@ module "rds" {
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The mode of Database Insights to enable for the DB instance. Valid options
+  # are 'standard' or 'advanced'. When setting this to 'advanced' then
+  # performance_insights_enabled must be set to true and
+  # 'performance_insights_retention_period' set to at least 465 days.
+  database_insights_mode = null
+
+  # The name for your database. Must contain 1-64 alphanumeric characters for
+  # MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a
+  # letter. Cannot be a reserved word. Not supported for SQL Server (must be
+  # null). If you do not provide a name, Amazon RDS will not create a database
+  # in the DB instance you are creating.
   db_name = null
 
   # A map of the default license to use for each supported RDS engine.
@@ -479,6 +529,13 @@ module "rds" {
   # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
 
+  # Time zone of the DB instance. timezone is currently only supported by
+  # Microsoft SQL Server. The timezone can only be set on creation. See MSSQL
+  # User Guide
+  # (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone)
+  # for more information.
+  timezone = null
+
   # Timeout for DB updating
   updating_timeout = "80m"
 
@@ -497,7 +554,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.40.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v0.43.0"
 }
 
 inputs = {
@@ -657,9 +714,17 @@ inputs = {
   # created for it. The key is the tag name and the value is the tag value.
   custom_tags = {}
 
-  # The name for your database of up to 8 alpha-numeric characters. If you do
-  # not provide a name, Amazon RDS will not create a database in the DB cluster
-  # you are creating.
+  # The mode of Database Insights to enable for the DB instance. Valid options
+  # are 'standard' or 'advanced'. When setting this to 'advanced' then
+  # performance_insights_enabled must be set to true and
+  # 'performance_insights_retention_period' set to at least 465 days.
+  database_insights_mode = null
+
+  # The name for your database. Must contain 1-64 alphanumeric characters for
+  # MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a
+  # letter. Cannot be a reserved word. Not supported for SQL Server (must be
+  # null). If you do not provide a name, Amazon RDS will not create a database
+  # in the DB instance you are creating.
   db_name = null
 
   # A map of the default license to use for each supported RDS engine.
@@ -861,6 +926,13 @@ inputs = {
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
   # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
   storage_type = "gp2"
+
+  # Time zone of the DB instance. timezone is currently only supported by
+  # Microsoft SQL Server. The timezone can only be set on creation. See MSSQL
+  # User Guide
+  # (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone)
+  # for more information.
+  timezone = null
 
   # Timeout for DB updating
   updating_timeout = "80m"
@@ -1242,10 +1314,19 @@ A map of custom tags to apply to the RDS Instance and the Security Group created
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="database_insights_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+The mode of Database Insights to enable for the DB instance. Valid options are 'standard' or 'advanced'. When setting this to 'advanced' then performance_insights_enabled must be set to true and 'performance_insights_retention_period' set to at least 465 days.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="db_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create a database in the DB cluster you are creating.
+The name for your database. Must contain 1-64 alphanumeric characters for MySQL/MariaDB, 1-63 for PostgreSQL, 1-8 for Oracle. Must begin with a letter. Cannot be a reserved word. Not supported for SQL Server (must be null). If you do not provide a name, Amazon RDS will not create a database in the DB instance you are creating.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1672,6 +1753,15 @@ The type of storage to use for the primary instance. Must be one of 'standard' (
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
 </HclListItem>
 
+<HclListItem name="timezone" requirement="optional" type="string">
+<HclListItemDescription>
+
+Time zone of the DB instance. timezone is currently only supported by Microsoft SQL Server. The timezone can only be set on creation. See MSSQL User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone) for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="updating_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1729,15 +1819,14 @@ Timeout for DB updating
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.40.0/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.43.0/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.43.0/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.43.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "454b84ef5e28629dafe03b995762c06a"
+  "hash": "c6f5a99495df1b69984a8553407972e9"
 }
 ##DOCS-SOURCER-END -->

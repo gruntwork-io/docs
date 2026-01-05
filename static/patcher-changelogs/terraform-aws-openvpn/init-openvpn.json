@@ -1,6 +1,42 @@
 {
   "module": "init-openvpn",
   "releases": {
+    "v0.27.10": {
+      "contains_changes": false
+    },
+    "v0.27.9": {
+      "contains_changes": false
+    },
+    "v0.27.8": {
+      "contains_changes": false
+    },
+    "v0.27.7": {
+      "contains_changes": false
+    },
+    "v0.27.6": {
+      "contains_changes": false
+    },
+    "v0.27.5": {
+      "contains_changes": false
+    },
+    "v0.27.4": {
+      "contains_changes": false
+    },
+    "v0.27.3": {
+      "contains_changes": false
+    },
+    "v0.27.2": {
+      "contains_changes": false
+    },
+    "v0.27.1": {
+      "contains_changes": false
+    },
+    "v0.27.0": {
+      "contains_changes": false
+    },
+    "v0.26.6": {
+      "contains_changes": false
+    },
     "v0.26.5": {
       "contains_changes": false
     },

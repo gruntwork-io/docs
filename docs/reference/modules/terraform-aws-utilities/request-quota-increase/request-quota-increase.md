@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Terraform Utility Modules" version="0.10.5" lastModifiedVersion="0.10.0"/>
+<VersionBadge repoTitle="Terraform Utility Modules" version="0.10.7" lastModifiedVersion="0.10.0"/>
 
 # Request AWS Quota Increase
 
-<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/request-quota-increase" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/request-quota-increase" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-utilities/releases/tag/v0.10.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module can be used to request a quota increase for AWS Resources. The module is [generated](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/codegen/quotas/) using [AWS Service Quotas API](https://docs.aws.amazon.com/servicequotas/2019-06-24/apireference/Welcome.html), and inputs for each adjustable quota for different services are added to the module.
+This module can be used to request a quota increase for AWS Resources. The module is [generated](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/codegen/quotas/) using [AWS Service Quotas API](https://docs.aws.amazon.com/servicequotas/2019-06-24/apireference/Welcome.html), and inputs for each adjustable quota for different services are added to the module.
 
-**NOTE:** The service quotas for certain services have duplicate items. Those duplicate quotas have been named differently in the [input variables](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/request-quota-increase/variables.tf) by appending the service quota code at the end of the variable name, e.g. `networkmonitor_number_of_probes_per_monitor` and `networkmonitor_number_of_probes_per_monitor_l_f192a8d6`.
+**NOTE:** The service quotas for certain services have duplicate items. Those duplicate quotas have been named differently in the [input variables](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/request-quota-increase/variables.tf) by appending the service quota code at the end of the variable name, e.g. `networkmonitor_number_of_probes_per_monitor` and `networkmonitor_number_of_probes_per_monitor_l_f192a8d6`.
 
 ## Features
 
@@ -30,11 +30,11 @@ This module can be used to request a quota increase for AWS Resources. The modul
 ### Core Concepts
 
 *   [AWS Service Quotas Documentation](https://docs.aws.amazon.com/servicequotas/?id=docs_gateway)
-*   [AWS Service Quotas Generator](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/codegen/quotas/)
+*   [AWS Service Quotas Generator](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/codegen/quotas/)
 
 ### Example code
 
-See the [request-quota-increase example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/examples/request-quota-increase) for working sample code.
+See the [request-quota-increase example](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/examples/request-quota-increase) for working sample code.
 
 ## Usage
 
@@ -50,7 +50,7 @@ module "quota_increase" {
 }
 ```
 
-The [input variables](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/request-quota-increase/variables.tf) for the module have been automatically generated using the [AWS Service Quotas Generator](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/codegen/quotas/). All adjustable Service Quotas are as separate input variables.
+The [input variables](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/request-quota-increase/variables.tf) for the module have been automatically generated using the [AWS Service Quotas Generator](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/codegen/quotas/). All adjustable Service Quotas are as separate input variables.
 
 When you run `apply`, the `new_quotas` output variable will confirm to you that a quota request has been made!
 
@@ -83,7 +83,7 @@ aws service-quotas list-requested-service-quota-change-history --region <REGION>
 
 ### Finding out the Service Code and Quota Code
 
-You can check adjustable quotas in the [input variables](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/request-quota-increase/variables.tf).
+You can check adjustable quotas in the [input variables](https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/request-quota-increase/variables.tf).
 
 Alternatively, you can check the available services with
 
@@ -138,7 +138,7 @@ values; once they have been increased, they stay that way!
 
 module "request_quota_increase" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/request-quota-increase?ref=v0.10.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/request-quota-increase?ref=v0.10.7"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -14894,7 +14894,7 @@ module "request_quota_increase" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/request-quota-increase?ref=v0.10.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-utilities.git//modules/request-quota-increase?ref=v0.10.7"
 }
 
 inputs = {
@@ -68302,15 +68302,14 @@ Quota for [xray]: Custom sampling rules per region (L-8C0C998A)
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/request-quota-increase/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/request-quota-increase/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.5/modules/request-quota-increase/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/request-quota-increase/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/request-quota-increase/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.7/modules/request-quota-increase/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "eb4b21a3e39d9ac94ef30e47c9de04eb"
+  "hash": "6ac3a7eaf505cb7e22665a311e9589d8"
 }
 ##DOCS-SOURCER-END -->

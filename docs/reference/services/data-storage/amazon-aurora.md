@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.3" lastModifiedVersion="0.112.15"/>
+<VersionBadge version="0.142.0" lastModifiedVersion="0.130.6"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.118.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.142.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -178,6 +178,25 @@ module "aurora" {
   # rds-ca-rsa2048-g1, rds-ca-rsa4096-g1, rds-ca-ecc384-g1.
   ca_cert_identifier = null
 
+  # List of IAM role ARNs to attach to the cluster. Be sure these roles exists.
+  # They will not be created here. Serverless aurora does not support attaching
+  # IAM roles.
+  cluster_iam_roles = []
+
+  # Specifies whether cluster level Performance Insights is enabled or not. On
+  # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
+  # instance classes.
+  cluster_performance_insights_enabled = false
+
+  # The ARN for the KMS key to encrypt cluster level Performance Insights data.
+  cluster_performance_insights_kms_key_id = null
+
+  # Specifies the amount of time to retain cluster level Performance Insights
+  # data for. Defaults to 7 days if Performance Insights are enabled. Valid
+  # values are 7, month * 31 (where month is a number of months from 1-23), and
+  # 731.
+  cluster_performance_insights_retention_period = null
+
   # Copy all the Aurora cluster tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
 
@@ -219,6 +238,12 @@ module "aurora" {
   # Parameters for the read latency widget to output for use in a CloudWatch
   # dashboard.
   dashboard_write_latency_widget_parameters = {"height":6,"period":60,"width":8}
+
+  # The mode of Database Insights to enable for the DB cluster. Valid options
+  # are 'standard' or 'advanced'. When setting this to 'advanced' then
+  # cluster_performance_insights_enabled must be set to true and
+  # 'cluster_performance_insights_retention_period' set to at least 465 days.
+  database_insights_mode = null
 
   # Configure a custom parameter group for the RDS DB cluster. This will create
   # a new parameter group with the given parameters. When null, the database
@@ -404,6 +429,12 @@ module "aurora" {
 
   # The ARN for the KMS key to encrypt Performance Insights data.
   performance_insights_kms_key_id = null
+
+  # The amount of time in days to retain Performance Insights data. Either 7 (7
+  # days) or 731 (2 years). When specifying
+  # performance_insights_retention_period, performance_insights_enabled needs to
+  # be set to true. Defaults to 7.
+  performance_insights_retention_period = null
 
   # The port the DB will listen on (e.g. 3306). This can also be provided via
   # AWS Secrets Manager. See the description of db_config_secrets_manager_id. A
@@ -538,7 +569,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.118.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.142.0"
 }
 
 inputs = {
@@ -617,6 +648,25 @@ inputs = {
   # rds-ca-rsa2048-g1, rds-ca-rsa4096-g1, rds-ca-ecc384-g1.
   ca_cert_identifier = null
 
+  # List of IAM role ARNs to attach to the cluster. Be sure these roles exists.
+  # They will not be created here. Serverless aurora does not support attaching
+  # IAM roles.
+  cluster_iam_roles = []
+
+  # Specifies whether cluster level Performance Insights is enabled or not. On
+  # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
+  # instance classes.
+  cluster_performance_insights_enabled = false
+
+  # The ARN for the KMS key to encrypt cluster level Performance Insights data.
+  cluster_performance_insights_kms_key_id = null
+
+  # Specifies the amount of time to retain cluster level Performance Insights
+  # data for. Defaults to 7 days if Performance Insights are enabled. Valid
+  # values are 7, month * 31 (where month is a number of months from 1-23), and
+  # 731.
+  cluster_performance_insights_retention_period = null
+
   # Copy all the Aurora cluster tags to snapshots. Default is false.
   copy_tags_to_snapshot = false
 
@@ -658,6 +708,12 @@ inputs = {
   # Parameters for the read latency widget to output for use in a CloudWatch
   # dashboard.
   dashboard_write_latency_widget_parameters = {"height":6,"period":60,"width":8}
+
+  # The mode of Database Insights to enable for the DB cluster. Valid options
+  # are 'standard' or 'advanced'. When setting this to 'advanced' then
+  # cluster_performance_insights_enabled must be set to true and
+  # 'cluster_performance_insights_retention_period' set to at least 465 days.
+  database_insights_mode = null
 
   # Configure a custom parameter group for the RDS DB cluster. This will create
   # a new parameter group with the given parameters. When null, the database
@@ -843,6 +899,12 @@ inputs = {
 
   # The ARN for the KMS key to encrypt Performance Insights data.
   performance_insights_kms_key_id = null
+
+  # The amount of time in days to retain Performance Insights data. Either 7 (7
+  # days) or 731 (2 years). When specifying
+  # performance_insights_retention_period, performance_insights_enabled needs to
+  # be set to true. Defaults to 7.
+  performance_insights_retention_period = null
 
   # The port the DB will listen on (e.g. 3306). This can also be provided via
   # AWS Secrets Manager. See the description of db_config_secrets_manager_id. A
@@ -1098,6 +1160,42 @@ How many days to keep backup snapshots around before cleaning them up. Max: 35
 <HclListItemDescription>
 
 The Certificate Authority (CA) certificate bundle to use on the Aurora DB instances. Possible values: rds-ca-2019 (default if nothing is specified), rds-ca-rsa2048-g1, rds-ca-rsa4096-g1, rds-ca-ecc384-g1.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_iam_roles" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of IAM role ARNs to attach to the cluster. Be sure these roles exists. They will not be created here. Serverless aurora does not support attaching IAM roles.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cluster_performance_insights_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Specifies whether cluster level Performance Insights is enabled or not. On Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB instance classes.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="cluster_performance_insights_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN for the KMS key to encrypt cluster level Performance Insights data.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_performance_insights_retention_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+Specifies the amount of time to retain cluster level Performance Insights data for. Defaults to 7 days if Performance Insights are enabled. Valid values are 7, month * 31 (where month is a number of months from 1-23), and 731.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1419,6 +1517,15 @@ object({
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="database_insights_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+The mode of Database Insights to enable for the DB cluster. Valid options are 'standard' or 'advanced'. When setting this to 'advanced' then cluster_performance_insights_enabled must be set to true and 'cluster_performance_insights_retention_period' set to at least 465 days.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="db_cluster_custom_parameter_group" requirement="optional" type="object(…)">
@@ -1943,6 +2050,15 @@ The ARN for the KMS key to encrypt Performance Insights data.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="performance_insights_retention_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of time in days to retain Performance Insights data. Either 7 (7 days) or 731 (2 years). When specifying performance_insights_retention_period, performance_insights_enabled needs to be set to true. Defaults to 7.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="port" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2322,11 +2438,11 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e52f6dc1409c7adea848197d5d718ce2"
+  "hash": "c511aad7b07e6d9d2bd566a2490d12d8"
 }
 ##DOCS-SOURCER-END -->

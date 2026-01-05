@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": ">18.17.0 < 19.0.0"
+    "node": ">=22.18.0 <23"
   },
   "scripts": {
     "docusaurus": "docusaurus",
@@ -13,7 +13,7 @@
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
-    "spellcheck": "npx cspell docs/2.0/ lint",
+    "spellcheck": "cspell docs/2.0/",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
@@ -24,12 +24,12 @@
     "test": "jest"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.6.0",
-    "@docusaurus/faster": "^3.6.0",
-    "@docusaurus/plugin-client-redirects": "^3.6.0",
-    "@docusaurus/preset-classic": "^3.6.0",
-    "@docusaurus/theme-common": "^3.6.0",
-    "@docusaurus/theme-mermaid": "^3.6.0",
+    "@docusaurus/core": "^3.7.0",
+    "@docusaurus/faster": "^3.7.0",
+    "@docusaurus/plugin-client-redirects": "^3.7.0",
+    "@docusaurus/preset-classic": "^3.7.0",
+    "@docusaurus/theme-common": "^3.7.0",
+    "@docusaurus/theme-mermaid": "^3.7.0",
     "@mdx-js/react": "^3.0.1",
     "@svgr/webpack": "^5.5.0",
     "@twilio-labs/docusaurus-plugin-segment": "^0.1.0",
@@ -42,7 +42,6 @@
     "file-loader": "^6.2.0",
     "path": "^0.12.7",
     "plugin-image-zoom": "ataft/plugin-image-zoom",
-    "posthog-docusaurus": "^1.0.3",
     "prism-react-renderer": "^2.1.0",
     "raw-loader": "^4.0.2",
     "react": "^18.2.0",
@@ -54,9 +53,11 @@
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.6.0",
-    "@docusaurus/tsconfig": "3.6.0",
-    "@docusaurus/types": "^3.6.0",
+    "@docusaurus/module-type-aliases": "^3.7.0",
+    "@docusaurus/tsconfig": "3.7.0",
+    "@docusaurus/types": "^3.7.0",
+    "cspell": "^8.19.4",
+    "husky": "^9.1.7",
     "jest": "^27.4.7",
     "onchange": "^7.1.0",
     "ts-node": "^10.7.0",

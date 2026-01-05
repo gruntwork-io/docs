@@ -1,6 +1,51 @@
 {
   "module": "persistent-ebs-volume",
   "releases": {
+    "v1.0.0": {
+      "contains_changes": false
+    },
+    "v0.16.3": {
+      "contains_changes": false
+    },
+    "v0.16.2": {
+      "contains_changes": false
+    },
+    "v0.16.1": {
+      "contains_changes": false
+    },
+    "v0.16.0": {
+      "contains_changes": false
+    },
+    "v0.15.16": {
+      "contains_changes": false
+    },
+    "v0.15.15": {
+      "contains_changes": false
+    },
+    "v0.15.14": {
+      "contains_changes": false
+    },
+    "v0.15.13": {
+      "contains_changes": false
+    },
+    "v0.15.12": {
+      "contains_changes": false
+    },
+    "v0.15.11": {
+      "contains_changes": false
+    },
+    "v0.15.10": {
+      "contains_changes": false
+    },
+    "v0.15.9": {
+      "contains_changes": false
+    },
+    "v0.15.8": {
+      "contains_changes": false
+    },
+    "v0.15.7": {
+      "contains_changes": false
+    },
     "v0.15.6": {
       "contains_changes": false
     },

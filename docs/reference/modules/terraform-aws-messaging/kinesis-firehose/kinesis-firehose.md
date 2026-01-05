@@ -9,22 +9,23 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="0.12.5" lastModifiedVersion="0.12.4"/>
+<VersionBadge repoTitle="AWS Messaging" version="1.0.2" lastModifiedVersion="0.13.0"/>
 
 # Kinesis Firehose Delivery Stream Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/kinesis-firehose" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/kinesis-firehose" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.12.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.13.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates
 an [Amazon Kinesis Data Firehose](https://docs.aws.amazon.com/firehose/latest/dev/what-is-this-service.html).
 
 ## Destination to Amazon S3
 
-This module currently only supports a fully managed service for delivering real-time streaming data to Amazon S3. Use
-the `var.s3_bucket_arn` to specify the s3 destination path and the `var.kinesis_stream_arn` to specify the kinesis data
-stream.
+This module currently only supports a fully managed service for delivering real-time streaming data to Amazon S3 and
+also deployed lambda for data transformation. Use the `var.s3_bucket_arn` to specify the s3 destination path and
+the `var.kinesis_stream_arn` to specify the kinesis data stream, we also have a Map variable
+`var.processing_configurations` which provides a way to configure the attributes for data transformation.
 
 ## Sample Usage
 
@@ -39,7 +40,7 @@ stream.
 
 module "kinesis_firehose" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis-firehose?ref=v0.12.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis-firehose?ref=v1.0.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -53,6 +54,13 @@ module "kinesis_firehose" {
 
   # The ARN of the S3 bucket you want to export the data to.
   s3_bucket_arn = <string>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The processing configuration for the Kinesis Data Firehose.
+  extended_s3_processors = []
 
 }
 
@@ -69,7 +77,7 @@ module "kinesis_firehose" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis-firehose?ref=v0.12.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/kinesis-firehose?ref=v1.0.2"
 }
 
 inputs = {
@@ -86,6 +94,13 @@ inputs = {
 
   # The ARN of the S3 bucket you want to export the data to.
   s3_bucket_arn = <string>
+
+  # ----------------------------------------------------------------------------------------------------
+  # OPTIONAL VARIABLES
+  # ----------------------------------------------------------------------------------------------------
+
+  # The processing configuration for the Kinesis Data Firehose.
+  extended_s3_processors = []
 
 }
 
@@ -129,6 +144,30 @@ The ARN of the S3 bucket you want to export the data to.
 </HclListItemDescription>
 </HclListItem>
 
+### Optional
+
+<HclListItem name="extended_s3_processors" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+The processing configuration for the Kinesis Data Firehose.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    type = string
+    parameters = list(object({
+      parameter_name  = string
+      parameter_value = string
+    }))
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -148,18 +187,33 @@ Name of the Kinesis Firehose delivery stream.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="kinesis_firehose_role_arn">
+<HclListItemDescription>
+
+ARN of the role for Kinesis Firehose
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="kinesis_firehose_role_name">
+<HclListItemDescription>
+
+Name of the role for Kinesis Firehose
+
+</HclListItemDescription>
+</HclListItem>
+
 </TabItem>
 </Tabs>
-
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/kinesis-firehose/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/kinesis-firehose/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v0.12.5/modules/kinesis-firehose/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/kinesis-firehose/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/kinesis-firehose/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/kinesis-firehose/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "234a6837df98457258a75b3cc8da6092"
+  "hash": "8db9113fa20e099ec86d9419e57763ea"
 }
 ##DOCS-SOURCER-END -->

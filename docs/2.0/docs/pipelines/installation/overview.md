@@ -1,24 +1,37 @@
 # Pipelines Installation Overview
 
-Given that Pipelines is a collection of multiple different technologies working in concert to deliver a comprehensive CI/CD solution, there are a number of different ways to achieve installation of Pipelines.
+Pipelines integrates multiple technologies to deliver a comprehensive CI/CD solution. This guide outlines the available installation methods and their respective use cases.
 
-This will cover the different ways to install Pipelines, and how they can be used to achieve different goals.
+## Installation as part of Account Factory
 
-## Installation as part of DevOps Foundations
-
-Customers that have setup DevOps Foundations have a white glove setup process that automatically results in the full installation of Pipelines as a side effect of the setup process.
-
-A Gruntwork solutions engineer will walk you through the process of:
+Customers using Account Factory benefit from a guided setup process that includes the complete installation of Gruntwork Pipelines. This process is facilitated by a Gruntwork solutions engineer and includes the following steps:
 
 1. Creating a new `infrastructure-live-root` repository from the [`infrastructure-live-root-template`](https://github.com/gruntwork-io/infrastructure-live-root-template) template.
-2. Installation of the [Gruntwork.io GitHub App](https://github.com/apps/gruntwork-io) on the `infrastructure-live-root` repository, or on the organization as a whole. For more information on this, click [here](/2.0/docs/pipelines/installation/viagithubapp).
-3. Running the associated `Infrastructure Live Root Bootstrap` workflow to customize the generated repository so that it can be used to deploy infrastructure.
+2. (On GitHub) Installing the [Gruntwork.io GitHub App](https://github.com/apps/gruntwork-io) on the `infrastructure-live-root` repository or across the entire organization. For detailed instructions, refer to [this guide](/2.0/docs/pipelines/installation/viagithubapp).
+3. Running the `Infrastructure Live Root Bootstrap` workflow to customize the generated repository for infrastructure deployment.
 
-The outcome of following these steps is that you will have a GitHub repository that will deploy infrastructure changes in a GitOps manner without any further manual intervention.
+Completing these steps results in a repository fully configured for automated infrastructure deployments using GitOps workflows.
 
-## Installation via manual setup
+## Standalone Installation
 
-If you are not using DevOps Foundations, or need Pipelines for a standalone repository that already has Terragrunt configurations, you can still install Pipelines directly as a standalone GitHub Actions workflow.
+For users not leveraging Account Factory or needing Gruntwork Pipelines for a standalone repository with existing Terragrunt configurations, Gruntwork Pipelines can be installed as an independent GitHub Actions Workflow or GitLab CI Pipeline.
 
-To learn how to do this, navigate to the dedicated documentation for [Adding Pipelines to an Existing Repository](/2.0/docs/pipelines/installation/addingexistingrepo).
+To learn more about this process, consult the documentation for [Adding Pipelines to a New Repository](/2.0/docs/pipelines/installation/addingnewrepo) or [Adding Pipelines to an Existing Repository](/2.0/docs/pipelines/installation/addingexistingrepo).
 
+## Platform differences
+
+Gruntwork Pipelines supports both GitHub Actions and GitLab CI/CD. The installation process differs depending on your platform choice:
+
+### GitHub Actions
+
+For GitHub Actions, you have two authentication options:
+
+1. [GitHub App Authentication](/2.0/docs/pipelines/installation/viagithubapp) (Recommended)
+2. [Machine User Authentication](/2.0/docs/pipelines/installation/viamachineusers)
+
+### GitLab CI/CD
+
+For GitLab CI/CD:
+
+1. [Machine User Authentication](/2.0/docs/pipelines/installation/viamachineusers) is the only supported method
+2. Contact [Gruntwork support](/support) to authorize your GitLab groups

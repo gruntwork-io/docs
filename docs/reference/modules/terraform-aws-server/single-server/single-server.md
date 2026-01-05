@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="0.16.1" lastModifiedVersion="0.16.1"/>
+<VersionBadge repoTitle="Module Server" version="1.0.3" lastModifiedVersion="1.0.2"/>
 
 # Single Server Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.16.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v1.0.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy a single server--that is, a single EC2 instance (e.g. a bastion host, Jenkins
 server) rather than an Auto Scaling Group or ECS Cluster--along with the all the resources it typically needs:
@@ -105,7 +105,7 @@ resource "aws_iam_policy_attachment" "attachment" {
 
 module "single_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.16.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v1.0.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -324,6 +324,10 @@ module "single_server" {
   # The IOPS to allocate for the root volume.
   root_volume_iops = null
 
+  # Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting
+  # the volume
+  root_volume_kms_key_id = null
+
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
 
@@ -390,7 +394,7 @@ module "single_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v0.16.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v1.0.3"
 }
 
 inputs = {
@@ -611,6 +615,10 @@ inputs = {
 
   # The IOPS to allocate for the root volume.
   root_volume_iops = null
+
+  # Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting
+  # the volume
+  root_volume_kms_key_id = null
 
   # The size of the root volume, in gigabytes.
   root_volume_size = 8
@@ -1142,6 +1150,15 @@ The IOPS to allocate for the root volume.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="root_volume_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting the volume
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="root_volume_size" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1298,15 +1315,14 @@ When used in combination with user_data or user_data_base64, a user_data change 
 </TabItem>
 </Tabs>
 
-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/single-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/single-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v0.16.1/modules/single-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/single-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/single-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "059aff6c29fc1efcd7feb763c2f5bbba"
+  "hash": "1dbd58627cfb79eb186c184c8b265f1c"
 }
 ##DOCS-SOURCER-END -->

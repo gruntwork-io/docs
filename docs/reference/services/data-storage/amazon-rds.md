@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.118.3" lastModifiedVersion="0.118.2"/>
+<VersionBadge version="0.142.0" lastModifiedVersion="0.130.6"/>
 
 # Amazon Relational Database Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -69,7 +69,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,12 +77,12 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
-*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
+*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
 
 
 ## Sample Usage
@@ -103,7 +103,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.142.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -243,6 +243,9 @@ module "rds" {
   # name.
   create_snapshot_cloudwatch_metric_namespace = null
 
+  # Timeout for DB creating
+  creating_timeout = "40m"
+
   # Configure a custom parameter group for the RDS DB. This will create a new
   # parameter group with the given parameters. When null, the database will be
   # launched with the default parameter group.
@@ -297,6 +300,9 @@ module "rds" {
   # Specifies whether to remove automated backups immediately after the DB
   # instance is deleted
   delete_automated_backups = true
+
+  # Timeout for DB deleting
+  deleting_timeout = "60m"
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -487,6 +493,10 @@ module "rds" {
   # https://aws.amazon.com/rds/performance-insights/ for more details.
   performance_insights_enabled = false
 
+  # Amount of time in days to retain Performance Insights data. Valid values are
+  # 7, 731 (2 years) or a multiple of 31.
+  performance_insights_retention_period = 7
+
   # The port the DB will listen on (e.g. 3306). Alternatively, this can be
   # provided via AWS Secrets Manager. See the description of
   # db_config_secrets_manager_id.
@@ -547,10 +557,22 @@ module "rds" {
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
 
+  # The storage throughput value for the DB instance. Can only be set when
+  # var.storage_type is 'gp3'. Cannot be specified if the allocated_storage
+  # value is below a per-engine threshold.
+  storage_throughput = null
+
   # The type of storage to use for the primary instance. Must be one of
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
   # SSD that needs iops independently), or 'io1' (provisioned IOPS SSD).
   storage_type = "gp2"
+
+  # Time zone of the DB instance. timezone is currently only supported by
+  # Microsoft SQL Server. The timezone can only be set on creation. See MSSQL
+  # User Guide
+  # (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone)
+  # for more information.
+  timezone = null
 
   # The number of datapoints in CloudWatch Metric statistic, which triggers the
   # alarm. Setting this as empty string (the default) will make it equal to the
@@ -578,6 +600,9 @@ module "rds" {
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   too_many_db_connections_treat_missing_data = "missing"
 
+  # Timeout for DB updating
+  updating_timeout = "80m"
+
 }
 
 
@@ -598,7 +623,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.118.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v0.142.0"
 }
 
 inputs = {
@@ -741,6 +766,9 @@ inputs = {
   # name.
   create_snapshot_cloudwatch_metric_namespace = null
 
+  # Timeout for DB creating
+  creating_timeout = "40m"
+
   # Configure a custom parameter group for the RDS DB. This will create a new
   # parameter group with the given parameters. When null, the database will be
   # launched with the default parameter group.
@@ -795,6 +823,9 @@ inputs = {
   # Specifies whether to remove automated backups immediately after the DB
   # instance is deleted
   delete_automated_backups = true
+
+  # Timeout for DB deleting
+  deleting_timeout = "60m"
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -985,6 +1016,10 @@ inputs = {
   # https://aws.amazon.com/rds/performance-insights/ for more details.
   performance_insights_enabled = false
 
+  # Amount of time in days to retain Performance Insights data. Valid values are
+  # 7, 731 (2 years) or a multiple of 31.
+  performance_insights_retention_period = 7
+
   # The port the DB will listen on (e.g. 3306). Alternatively, this can be
   # provided via AWS Secrets Manager. See the description of
   # db_config_secrets_manager_id.
@@ -1045,10 +1080,22 @@ inputs = {
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
 
+  # The storage throughput value for the DB instance. Can only be set when
+  # var.storage_type is 'gp3'. Cannot be specified if the allocated_storage
+  # value is below a per-engine threshold.
+  storage_throughput = null
+
   # The type of storage to use for the primary instance. Must be one of
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
   # SSD that needs iops independently), or 'io1' (provisioned IOPS SSD).
   storage_type = "gp2"
+
+  # Time zone of the DB instance. timezone is currently only supported by
+  # Microsoft SQL Server. The timezone can only be set on creation. See MSSQL
+  # User Guide
+  # (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone)
+  # for more information.
+  timezone = null
 
   # The number of datapoints in CloudWatch Metric statistic, which triggers the
   # alarm. Setting this as empty string (the default) will make it equal to the
@@ -1075,6 +1122,9 @@ inputs = {
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   too_many_db_connections_treat_missing_data = "missing"
+
+  # Timeout for DB updating
+  updating_timeout = "80m"
 
 }
 
@@ -1370,6 +1420,15 @@ The namespace to use for the CloudWatch metric we report every time a new RDS sn
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="creating_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Timeout for DB creating
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;40m&quot;"/>
 </HclListItem>
 
 <HclListItem name="custom_parameter_group" requirement="optional" type="object(…)">
@@ -1779,6 +1838,15 @@ Specifies whether to remove automated backups immediately after the DB instance 
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="deleting_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Timeout for DB deleting
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;60m&quot;"/>
+</HclListItem>
+
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2181,6 +2249,15 @@ Specifies whether Performance Insights are enabled. Performance Insights can be 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="performance_insights_retention_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+Amount of time in days to retain Performance Insights data. Valid values are 7, 731 (2 years) or a multiple of 31.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="7"/>
+</HclListItem>
+
 <HclListItem name="port" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2289,6 +2366,15 @@ Specifies whether the DB instance is encrypted.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="storage_throughput" requirement="optional" type="number">
+<HclListItemDescription>
+
+The storage throughput value for the DB instance. Can only be set when <a href="#storage_type"><code>storage_type</code></a> is 'gp3'. Cannot be specified if the allocated_storage value is below a per-engine threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="storage_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2296,6 +2382,15 @@ The type of storage to use for the primary instance. Must be one of 'standard' (
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+</HclListItem>
+
+<HclListItem name="timezone" requirement="optional" type="string">
+<HclListItemDescription>
+
+Time zone of the DB instance. timezone is currently only supported by Microsoft SQL Server. The timezone can only be set on creation. See MSSQL User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.TimeZone) for more information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="too_many_db_connections_datapoints_to_alarm" requirement="optional" type="number">
@@ -2363,6 +2458,15 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+</HclListItem>
+
+<HclListItem name="updating_timeout" requirement="optional" type="string">
+<HclListItemDescription>
+
+Timeout for DB updating
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;80m&quot;"/>
 </HclListItem>
 
 </TabItem>
@@ -2534,11 +2638,11 @@ The ID of the Security Group that controls access to the RDS DB instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/data-stores/rds/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/data-stores/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.118.3/modules/data-stores/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/rds/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.142.0/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "996d2827ad1a1125430d9bac27c5ce2a"
+  "hash": "a4237d9fbacbf187a48b350954e30321"
 }
 ##DOCS-SOURCER-END -->

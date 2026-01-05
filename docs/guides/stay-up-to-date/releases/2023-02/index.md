@@ -516,12 +516,9 @@ Migrated the example in examples/asg-alarms to use a launch template instead of 
 
 </div>
 
-
-
-
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "97ccf3f3a620e4fa04f61d20a7a8cbd0"
+  "hash": "bd82a2241d0ca7e23899e37b7e8d606b"
 }
 ##DOCS-SOURCER-END -->

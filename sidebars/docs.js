@@ -82,6 +82,11 @@ const sidebar = [
     id: "support",
   },
   {
+    label: "SLO Policy",
+    type: "doc",
+    id: "slo-policy",
+  },
+  {
     value: "Getting Started",
     type: "html",
     className: "sidebar-header emoji-rocket",
@@ -121,9 +126,31 @@ const sidebar = [
     },
     items: [
       {
-        label: "Authenticating with Cloud Providers",
-        type: "doc",
-        id: "2.0/docs/pipelines/concepts/cloud-auth",
+        label: "Authenticating to the Cloud",
+        type: "category",
+        collapsed: false,
+        items: [
+          {
+            label: "Overview",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/index",
+          },
+          {
+            label: "AWS",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/aws",
+          },
+          {
+            label: "Azure",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/azure",
+          },
+          {
+            label: "Custom",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/custom",
+          },
+        ],
       },
       {
         label: "Drift Detection",
@@ -147,14 +174,19 @@ const sidebar = [
     },
     items: [
       {
-        label: "Components",
+        label: "Execution flow",
         type: "doc",
-        id: "2.0/docs/pipelines/architecture/components",
+        id: "2.0/docs/pipelines/architecture/execution-flow",
       },
       {
         label: "Actions",
         type: "doc",
         id: "2.0/docs/pipelines/architecture/actions",
+      },
+      {
+        label: "Pull Request Behaviors",
+        type: "doc",
+        id: "2.0/docs/pipelines/architecture/change-types",
       },
       {
         label: "Security Controls",
@@ -167,9 +199,9 @@ const sidebar = [
         id: "2.0/docs/pipelines/architecture/audit-logs",
       },
       {
-        label: "GitHub Workflows",
+        label: "CI Workflows",
         type: "doc",
-        id: "2.0/docs/pipelines/architecture/github-workflows",
+        id: "2.0/docs/pipelines/architecture/ci-workflows",
       },
       {
         label: "Usage Data",
@@ -188,34 +220,27 @@ const sidebar = [
     },
     items: [
       {
-        label: "Prerequisites",
-        type: "category",
-        collapsed: false,
-        items: [
-          {
-            label: "AWS Landing Zone",
-            type: "doc",
-            id: "2.0/docs/pipelines/installation/prerequisites/awslandingzone",
-          },
-        ],
+        label: "Platform Differences",
+        type: "doc",
+        id: "2.0/docs/pipelines/installation/scm-comparison",
       },
       {
         type: "category",
-        label: "Enable Auth for Pipelines",
+        label: "Set up SCM Authentication",
         collapsed: false,
         items: [
           {
-            label: "Auth Overview",
+            label: "Overview",
             type: "doc",
             id: "2.0/docs/pipelines/installation/authoverview",
           },
           {
-            label: "Auth via GitHub App",
+            label: "GitHub App",
             type: "doc",
             id: "2.0/docs/pipelines/installation/viagithubapp",
           },
           {
-            label: "Auth via Machine Users",
+            label: "Machine Users",
             type: "doc",
             id: "2.0/docs/pipelines/installation/viamachineusers",
           },
@@ -227,19 +252,48 @@ const sidebar = [
         collapsed: false,
         items: [
           {
-            label: "Creating a New Repository with Pipelines",
-            type: "doc",
-            id: "2.0/docs/pipelines/installation/addingnewrepo",
+            type: "category",
+            label: "GitHub",
+            collapsed: false,
+            items: [
+              {
+                label: "Bootstrap Pipelines in a New GitHub Repository",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/addingnewrepo",
+              },
+              {
+                label: "Bootstrap Pipelines in an Existing GitHub Repository",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/addingexistingrepo",
+              },
+              {
+                label: "Adding Branch Protection to a GitHub Repository",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/branch-protection",
+              },
+            ],
           },
           {
-            label: "Adding Pipelines to an Existing Repository",
-            type: "doc",
-            id: "2.0/docs/pipelines/installation/addingexistingrepo",
-          },
-          {
-            label: "Adding Branch Protection to a Repository",
-            type: "doc",
-            id: "2.0/docs/pipelines/installation/branch-protection",
+            type: "category",
+            label: "GitLab",
+            collapsed: false,
+            items: [
+              {
+                label: "Bootstrap Pipelines in a new GitLab Project",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/addinggitlabrepo",
+              },
+              {
+                label: "Bootstrap Pipelines in an Existing GitLab Project",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/addingexistinggitlabrepo",
+              },
+              {
+                label: "Adding Branch Protection to a GitLab Project",
+                type: "doc",
+                id: "2.0/docs/pipelines/installation/gitlab-branch-protection",
+              },
+            ],
           },
         ],
       },
@@ -276,6 +330,11 @@ const sidebar = [
         label: "Destroying infrastructure with Pipelines",
         type: "doc",
         id: "2.0/docs/pipelines/tutorials/destroying-infrastructure",
+      },
+      {
+        label: "Deploying to AWS GovCloud",
+        type: "doc",
+        id: "2.0/docs/pipelines/tutorials/deploying-to-aws-gov-cloud",
       },
     ],
   },
@@ -315,14 +374,34 @@ const sidebar = [
         id: "2.0/docs/pipelines/guides/running-drift-detection",
       },
       {
+        label: "File Dependencies",
+        type: "doc",
+        id: "2.0/docs/pipelines/guides/file-dependencies",
+      },
+      {
         label: "Leveraging advanced Terragrunt Features",
         type: "doc",
         id: "2.0/docs/pipelines/guides/terragrunt-env-vars",
       },
       {
-        label: "Setup a Delegated Repository",
+        label: "Handling Broken IaC",
         type: "doc",
-        id: "2.0/docs/pipelines/guides/setup-delegated-repo",
+        id: "2.0/docs/pipelines/guides/handling-broken-iac",
+      },
+      {
+        label: "Using Terragrunt Stacks",
+        type: "doc",
+        id: "2.0/docs/pipelines/guides/stacks",
+      },
+      {
+        label: "Ignoring Files & Directories",
+        type: "doc",
+        id: "2.0/docs/pipelines/guides/ignore-files-directories",
+      },
+      {
+        label: "Unlocking State Locks",
+        type: "doc",
+        id: "2.0/docs/pipelines/guides/unlock",
       },
     ],
   },
@@ -330,6 +409,16 @@ const sidebar = [
     label: "Previous Versions",
     type: "category",
     items: [
+      {
+        label: "Upgrading from Pipelines GitHub Workflows v3 to v4",
+        type: "doc",
+        id: "2.0/docs/pipelines/previous-versions/upgrading-github-v3-to-v4",
+      },
+      {
+        label: "Upgrading from Pipelines GitLab Workflows v1 to v2",
+        type: "doc",
+        id: "2.0/docs/pipelines/previous-versions/upgrading-gitlab-v1-to-v2",
+      },
       {
         label: "Upgrading from Infrastructure-Pipelines",
         type: "doc",
@@ -373,7 +462,7 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/accountfactory/concepts/delegated-repositories",
       },
-    ]
+    ],
   },
   {
     label: "Architecture",
@@ -394,12 +483,40 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/accountfactory/architecture/network-topology",
       },
+      {
+        label: "Repository Topology",
+        type: "doc",
+        id: "2.0/docs/accountfactory/architecture/repository-topology",
+      },
+    ],
+  },
+  {
+    label: "Prerequisites",
+    type: "category",
+    collapsed: false,
+    items: [
+      {
+        label: "AWS Landing Zone",
+        type: "doc",
+        id: "2.0/docs/accountfactory/prerequisites/awslandingzone",
+      },
     ],
   },
   {
     label: "Setup & Installation",
-    type: "doc",
-    id: "2.0/docs/accountfactory/installation/index",
+    type: "category",
+    collapsed: true,
+    link: {
+      type: "doc",
+      id: "2.0/docs/accountfactory/installation/index",
+    },
+    items: [
+      {
+        label: "Adding Account Factory to a new repository",
+        type: "doc",
+        id: "2.0/docs/accountfactory/installation/addingnewrepo",
+      },
+    ],
   },
   {
     label: "Guides",
@@ -427,6 +544,11 @@ const sidebar = [
         id: "2.0/docs/accountfactory/guides/delegated-repositories",
       },
       {
+        label: "Setup a Delegated Repository",
+        type: "doc",
+        id: "2.0/docs/accountfactory/guides/setup-delegated-repo",
+      },
+      {
         label: "Adding Collaborators to Delegated Repositories",
         type: "doc",
         id: "2.0/docs/accountfactory/guides/collaborators",
@@ -435,6 +557,12 @@ const sidebar = [
         label: "Adding IAM Permissions To Delegated Repositories",
         type: "doc",
         id: "2.0/docs/accountfactory/guides/iam-roles",
+      },
+      {
+        label:
+          "Automatically Remediate AWS Control Tower Drift with Async Multi-Account Factory Module",
+        type: "doc",
+        id: "2.0/docs/accountfactory/guides/drift-remediation-with-async-module",
       },
     ],
   },
@@ -513,6 +641,11 @@ const sidebar = [
     collapsed: true,
     items: [
       {
+        label: "Ongoing Updates",
+        type: "doc",
+        id: "2.0/docs/patcher/guides/ongoing-updates",
+      },
+      {
         label: "Setting up Promotion Workflows",
         type: "doc",
         id: "2.0/docs/patcher/guides/promotion-workflows",
@@ -531,6 +664,11 @@ const sidebar = [
         label: "Using Patcher Upgrade",
         type: "doc",
         id: "2.0/docs/patcher/guides/upgrade",
+      },
+      {
+        label: "Self-hosting Patcher",
+        type: "doc",
+        id: "2.0/docs/patcher/guides/self-hosting",
       },
       {
         label: "Disable Telemetry",
@@ -597,6 +735,11 @@ const sidebar = [
             label: "Quality In Depth",
             type: "doc",
             id: "2.0/docs/library/concepts/principles/quality-in-depth",
+          },
+          {
+            label: "Support Smooth OpenTofu Adoption",
+            type: "doc",
+            id: "2.0/docs/library/concepts/principles/opentofu-adoption",
           },
         ],
       },
