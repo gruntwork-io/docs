@@ -9,20 +9,20 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="3.1.2" lastModifiedVersion="0.64.3"/>
+<VersionBadge repoTitle="Amazon EKS" version="3.2.0" lastModifiedVersion="3.2.0"/>
 
 # EKS IAM Role Assume Role Policy for Kubernetes Service Accounts
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/modules/eks-iam-role-assume-role-policy-for-service-account" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-iam-role-assume-role-policy-for-service-account" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v0.64.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v3.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform module can be used to create Assume Role policies for IAM Roles such that they can be used with
 Kubernetes Service Accounts. This requires a compatible EKS cluster that supports the [IAM Roles for Service
 Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) feature.
 
 See the [corresponding section of the eks-cluster-control-plane module
-README](https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/modules/eks-cluster-control-plane/README.md#how-do-i-associate-iam-roles-to-the-pods) for information on how to set
+README](https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-cluster-control-plane/README.md#how-do-i-associate-iam-roles-to-the-pods) for information on how to set
 up IRSA and how it works.
 
 ## Sample Usage
@@ -38,7 +38,7 @@ up IRSA and how it works.
 
 module "eks_iam_role_assume_role_policy_for_service_account" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v3.1.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v3.2.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -89,7 +89,7 @@ module "eks_iam_role_assume_role_policy_for_service_account" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v3.1.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-iam-role-assume-role-policy-for-service-account?ref=v3.2.0"
 }
 
 inputs = {
@@ -216,11 +216,11 @@ JSON value for IAM Role Assume Role Policy that allows Kubernetes Service Accoun
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/modules/eks-iam-role-assume-role-policy-for-service-account/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/modules/eks-iam-role-assume-role-policy-for-service-account/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.1.2/modules/eks-iam-role-assume-role-policy-for-service-account/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-iam-role-assume-role-policy-for-service-account/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-iam-role-assume-role-policy-for-service-account/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-iam-role-assume-role-policy-for-service-account/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b676a300cda4d35589c8728602a7dda3"
+  "hash": "5c5bbe932ce5c789e2bb68b76f020cc1"
 }
 ##DOCS-SOURCER-END -->
