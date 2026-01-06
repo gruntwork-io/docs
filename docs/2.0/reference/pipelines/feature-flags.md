@@ -124,6 +124,25 @@ Enables Terragrunt features to reduce the potential changes during a run-all. Te
 </li>
 </ul>
 
+#### `PIPELINES_FEATURE_EXPERIMENT_USE_MISE_EXEC_TG_WRAPPER`
+<ul>
+<li>
+Enables Pipelines to wrap OpenTofu/Terraform execution with `mise exec`. When enabled, individual units can override the default OpenTofu/Terraform version specified in the repository root by including a `mise.toml` or `.mise.toml` configuration file in their directory.
+
+Example `mise.toml` configuration:
+```toml
+[tools]
+opentofu = "1.6.2"
+```
+</li>
+<li>
+**Default Value**: Disabled
+</li>
+<li>
+**How to Enable**: Set to `"true"`
+</li>
+</ul>
+
 ## Deprecated Flags
 
 The following flags are valid in Pipelines GitHub v3/GitLab v1 but are deprecated in Pipelines GitHub v4+/GitLab v2+.
