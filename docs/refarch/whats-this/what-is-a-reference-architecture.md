@@ -1,4 +1,4 @@
-# What is AWS Platform Architecture?
+# What is a Reference Architecture?
 
 :::note Legacy Product
 
@@ -6,13 +6,13 @@ The Gruntwork Reference Architecture has been superseded by the **AWS Platform A
 
 :::
 
-The AWS Platform Architecture (formerly Gruntwork Reference Architecture) is an implementation of best practices for infrastructure in the cloud. It is an end-to-end tech stack built on top of our AWS IaC Library, deployed into your AWS accounts.
+The Gruntwork Reference Architecture is an implementation of best practices for infrastructure in the cloud. It is an end-to-end tech stack built on top of our AWS IaC Library, deployed into your AWS accounts.
 
-AWS Platform Architecture is opinionated, and delivered as code. It is written in [Terragrunt](https://terragrunt.gruntwork.io/), our thin wrapper that provides extra tools for managing remote state and keeping your configurations [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Our `_envcommon` pattern reduces the amount of code you need to copy from one place to another when creating additional identical infrastructure.
+The Reference Architecture is opinionated, and delivered as code. It is written in [Terragrunt](https://terragrunt.gruntwork.io/), our thin wrapper that provides extra tools for managing remote state and keeping your configurations [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Our `_envcommon` pattern reduces the amount of code you need to copy from one place to another when creating additional identical infrastructure.
 
 ## Components
 
-AWS Platform Architecture has three main components — AWS Account Factory, Gruntwork Pipelines, and a Sample Application.
+The Reference Architecture has three main components — AWS Account Factory, Gruntwork Pipelines, and a Sample Application.
 
 ### AWS Account Factory
 
