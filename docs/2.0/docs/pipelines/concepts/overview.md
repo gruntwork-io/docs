@@ -1,6 +1,6 @@
 # What is Gruntwork Pipelines?
 
-**Gruntwork Pipelines enables your organization to deploy infrastructure changes to cloud environments with simplicity, control, and confidence.**
+**Gruntwork Pipelines is a core component of [Terragrunt Scale](/products) that enables your organization to deploy infrastructure changes to cloud environments with simplicity, control, and confidence.**
 
 After working with hundreds of organizations to improve DevOps processes, we’ve identified two key truths about managing infrastructure changes:
 

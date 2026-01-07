@@ -102,11 +102,11 @@ export const redirects = [
         from: "/pipelines/data-collection"
     },
     {
-        to: "/2.0/docs/overview/concepts/devopsfoundations",
+        to: "/2.0/docs/overview/concepts/gruntworkplatform",
         from: "/foundations/overview/index"
     },
     {
-        to: "/2.0/docs/overview/concepts/devopsfoundations",
+        to: "/2.0/docs/overview/concepts/gruntworkplatform",
         from: "/foundations/overview"
     },
     {
@@ -339,23 +339,27 @@ export const redirects = [
     },
     {
         from: '/intro/overview/getting-started',
-        to: '/2.0/docs/overview/concepts/devopsfoundations'
+        to: '/2.0/docs/overview/concepts/gruntworkplatform'
     },
     {
         from: '/intro/overview/intro-to-gruntwork',
-        to: '/2.0/docs/overview/concepts/devopsfoundations'
+        to: '/2.0/docs/overview/concepts/gruntworkplatform'
     },
     {
         from: '/intro/overview/prerequisites',
-        to: '/2.0/docs/overview/concepts/devopsfoundations'
+        to: '/2.0/docs/overview/concepts/gruntworkplatform'
     },
     {
         from: '/intro/overview/what-you-provide',
-        to: '/2.0/docs/overview/concepts/devopsfoundations'
+        to: '/2.0/docs/overview/concepts/gruntworkplatform'
     },
     {
         from: '/intro/overview/what-we-provide',
-        to: '/2.0/docs/overview/concepts/devopsfoundations'
+        to: '/2.0/docs/overview/concepts/gruntworkplatform'
+    },
+    {
+        from: '/2.0/docs/overview/concepts/devopsfoundations',
+        to: '/2.0/docs/overview/concepts/gruntworkplatform'
     },
     {
         from: '/2.0/docs/accountfactory/tutorials/vend-aws-account',

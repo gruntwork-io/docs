@@ -8,7 +8,7 @@ We use the term "Patcher" to refer to the [Patcher CLI](https://github.com/grunt
 
 Manually identifying updates and assessing whether they can be safely applied can consume significant engineering time for each module dependency. Patcher eliminates this inefficiency by streamlining the update process.
 
-Patcher supports keeping any set of OpenTofu/Terraform modules up to date, whether they be your in-house modules, third-party open source modules, or modules from the [Gruntwork IaC Library](/2.0/docs/library/concepts/overview).
+Patcher supports keeping any set of OpenTofu/Terraform modules up to date, whether they be your in-house modules, third-party open source modules, or modules from the [AWS IaC Library](/2.0/docs/library/concepts/overview).
 
 Patcher specializes in keeping infrastructure code up to date and currently supports automatic updates for:
 
@@ -32,7 +32,7 @@ For ongoing updates, you can use Patcher in conjunction with our [published GitH
 
 ## How does Patcher work?
 
-Patcher handles both non-breaking and breaking changes. For non-breaking changes, for the [Gruntwork IaC Library](/docs/2.0/docs/library/concepts/overview.md), Patcher uses a set of pre-generated changelog files to identify the "next safe change," enabling upgrades to automatically bypass "empty" version upgrades where a module is available at a newer version but in fact has had no actual file changes. Upon request, we can work with you to implement these pre-generated changelogs in your own organization.
+Patcher handles both non-breaking and breaking changes. For non-breaking changes, for the [AWS IaC Library](/docs/2.0/docs/library/concepts/overview.md), Patcher uses a set of pre-generated changelog files to identify the "next safe change," enabling upgrades to automatically bypass "empty" version upgrades where a module is available at a newer version but in fact has had no actual file changes. Upon request, we can work with you to implement these pre-generated changelogs in your own organization.
 
 For breaking changes, Patcher offers a systematic approach to doing code transformations -- we call these "patches" -- so that module consumers can automatically apply breaking changes to their modules. Or if Patcher detects a breaking change but a patch does not exist, Patcher updates the relevant module to the next breaking change and generates a `README` file in the folder with the updated file that outlines the release notes and details the breaking changes. Users review the `README`, address any necessary actions, and remove the file before re-running Patcher.
 

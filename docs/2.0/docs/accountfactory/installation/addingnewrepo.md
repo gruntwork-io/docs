@@ -352,7 +352,7 @@ You can utilize the AWS SSO Portal to obtain temporary AWS credentials necessary
 
     1. - [ ] Increase Account Quota Limit (OPTIONAL)
 
-        Note that DevOps Foundations makes it very convenient, and therefore likely, that you will encounter one of the soft limits imposed by AWS on the number of accounts you can create.
+        Note that AWS Account Factory makes it very convenient, and therefore likely, that you will encounter one of the soft limits imposed by AWS on the number of accounts you can create.
 
         You may need to request a limit increase for the number of accounts you can create in the management account, as the default is currently 10 accounts.
 

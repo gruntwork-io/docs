@@ -2,7 +2,7 @@
 import PersistentCheckbox from '/src/components/PersistentCheckbox';
 
 :::note
-Vending Delegated Repositories by Account Factory is only available to DevOps Foundations Enterprise customers.
+Vending Delegated Repositories by AWS Account Factory is only available to AWS Accelerator Enterprise customers.
 :::
 
 ## Introduction

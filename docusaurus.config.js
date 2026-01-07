@@ -362,7 +362,7 @@ async function createConfig() {
                   href: "https://app.gruntwork.io",
                 },
                 {
-                  label: "IaC Library on GitHub",
+                  label: "AWS IaC Library on GitHub",
                   href: "https://github.com/gruntwork-io",
                 },
                 {
@@ -451,7 +451,7 @@ async function createConfig() {
           {
             name: "keywords",
             content:
-              "gruntwork, devops, devops platform, infrastructure as code, iac, account factory, account vending, pipelines, terragrunt pipelines, opentofu, tofu, terraform, terragrunt, terratest, aws, devops library, devops tools, devops courses",
+              "gruntwork, gruntwork platform, aws accelerator, terragrunt scale, aws iac library, aws account factory, aws platform architecture, infrastructure as code, iac, gruntwork pipelines, drift detection, patcher, opentofu, tofu, terraform, terragrunt, terratest, aws",
           },
           { name: "buildVersion", content: buildVersion },
           { name: "buildTime", content: new Date().toString() },

@@ -34,9 +34,9 @@ const sidebar = [
     className: "hidden",
   },
   {
-    label: "Devops Foundations",
+    label: "Gruntwork Platform",
     type: "doc",
-    id: "2.0/docs/overview/concepts/devopsfoundations",
+    id: "2.0/docs/overview/concepts/gruntworkplatform",
   },
   {
     type: "category",
@@ -113,7 +113,7 @@ const sidebar = [
   },
   {
     type: "html",
-    value: "Pipelines",
+    value: "Gruntwork Pipelines",
     className: "sidebar-header emoji-rocket",
   },
   {
@@ -443,7 +443,7 @@ const sidebar = [
     href: pipelinesKBLink,
   },
   {
-    value: "Account Factory",
+    value: "AWS Account Factory",
     className: "sidebar-header emoji-rocket",
     type: "html",
   },
@@ -684,7 +684,7 @@ const sidebar = [
     href: "/2.0/reference/patcher",
   },
   {
-    value: "IaC Library",
+    value: "AWS IaC Library",
     type: "html",
     className: "sidebar-header",
   },

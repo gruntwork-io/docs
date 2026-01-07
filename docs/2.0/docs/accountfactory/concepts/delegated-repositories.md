@@ -2,7 +2,7 @@
 
 :::note 
 
-Account Factory-created Delegated Repositories are only available to DevOps Foundations Enterprise customers.
+AWS Account Factory-created Delegated Repositories are only available to AWS Accelerator Enterprise customers.
 
 :::
 

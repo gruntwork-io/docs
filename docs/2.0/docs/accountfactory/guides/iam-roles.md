@@ -3,7 +3,7 @@
 import CustomizableValue from '/src/components/CustomizableValue';
 
 :::note
-Delegated Repositories are only available to DevOps Foundations Enterprise customers.
+Delegated Repositories are only available to AWS Accelerator Enterprise customers.
 :::
 
 ## Introduction

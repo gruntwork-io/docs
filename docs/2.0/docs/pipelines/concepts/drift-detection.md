@@ -1,7 +1,7 @@
 # Pipelines Drift Detection
 
 :::note
-Pipelines Drift Detection is available exclusively to DevOps Foundations Enterprise customers on GitHub and GitLab.
+Pipelines Drift Detection is available exclusively to AWS Accelerator Enterprise or Terragrunt Scale Enterprise customers on GitHub and GitLab.
 :::
 
 ## What is Pipelines Drift Detection
