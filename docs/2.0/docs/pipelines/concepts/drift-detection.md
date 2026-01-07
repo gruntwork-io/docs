@@ -1,9 +1,5 @@
 # Pipelines Drift Detection
 
-:::note
-Pipelines Drift Detection is available exclusively to AWS Accelerator Enterprise or Terragrunt Scale Enterprise customers on GitHub and GitLab.
-:::
-
 ## What is Pipelines Drift Detection
 
 Infrastructure drift occurs when the applied Terragrunt cloud configuration no longer matches the committed Infrastructure as Code (IaC).
