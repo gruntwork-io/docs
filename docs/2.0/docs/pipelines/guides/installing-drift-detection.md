@@ -4,9 +4,6 @@ import PersistentCheckbox from '/src/components/PersistentCheckbox';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::note
-Pipelines Drift Detection is exclusively available to AWS Accelerator Enterprise customers on GitHub and GitLab.
-:::
 
 For new pipelines repositories using the latest version of Pipelines, Drift Detection is installed automatically and requires no additional action.
 
