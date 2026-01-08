@@ -34,9 +34,9 @@ const sidebar = [
     className: "hidden",
   },
   {
-    label: "Devops Foundations",
+    label: "Gruntwork Platform",
     type: "doc",
-    id: "2.0/docs/overview/concepts/devopsfoundations",
+    id: "2.0/docs/overview/concepts/gruntworkplatform",
   },
   {
     type: "category",
@@ -113,7 +113,7 @@ const sidebar = [
   },
   {
     type: "html",
-    value: "Pipelines",
+    value: "Gruntwork Pipelines",
     className: "sidebar-header emoji-rocket",
   },
   {
@@ -153,7 +153,7 @@ const sidebar = [
         ],
       },
       {
-        label: "Drift Detection",
+        label: "Gruntwork Drift Detection",
         type: "doc",
         id: "2.0/docs/pipelines/concepts/drift-detection",
       },
@@ -308,7 +308,7 @@ const sidebar = [
             id: "2.0/docs/pipelines/configuration/settings",
           },
           {
-            label: "Setting up Drift Detection",
+            label: "Setting up Gruntwork Drift Detection",
             type: "doc",
             id: "2.0/docs/pipelines/configuration/driftdetection",
           },
@@ -364,12 +364,12 @@ const sidebar = [
         id: "2.0/docs/pipelines/guides/extending-pipelines",
       },
       {
-        label: "Installing Drift Detection",
+        label: "Installing Gruntwork Drift Detection",
         type: "doc",
         id: "2.0/docs/pipelines/guides/installing-drift-detection",
       },
       {
-        label: "Running Drift Detection",
+        label: "Running Gruntwork Drift Detection",
         type: "doc",
         id: "2.0/docs/pipelines/guides/running-drift-detection",
       },
@@ -443,7 +443,7 @@ const sidebar = [
     href: pipelinesKBLink,
   },
   {
-    value: "Account Factory",
+    value: "Gruntwork AWS Account Factory",
     className: "sidebar-header emoji-rocket",
     type: "html",
   },
@@ -512,7 +512,7 @@ const sidebar = [
     },
     items: [
       {
-        label: "Adding Account Factory to a new repository",
+        label: "Adding Gruntwork AWS Account Factory to a new repository",
         type: "doc",
         id: "2.0/docs/accountfactory/installation/addingnewrepo",
       },
@@ -573,7 +573,7 @@ const sidebar = [
     href: "/2.0/reference/accountfactory/configurations",
   },
   {
-    value: "Patcher",
+    value: "Gruntwork Patcher",
     type: "html",
     className: "sidebar-header emoji-rocket",
   },
@@ -651,22 +651,22 @@ const sidebar = [
         id: "2.0/docs/patcher/guides/promotion-workflows",
       },
       {
-        label: "Using Patcher Report",
+        label: "Using Gruntwork Patcher Report",
         type: "doc",
         id: "2.0/docs/patcher/guides/report",
       },
       {
-        label: "Using Patcher Update",
+        label: "Using Gruntwork Patcher Update",
         type: "doc",
         id: "2.0/docs/patcher/guides/update",
       },
       {
-        label: "Using Patcher Upgrade",
+        label: "Using Gruntwork Patcher Upgrade",
         type: "doc",
         id: "2.0/docs/patcher/guides/upgrade",
       },
       {
-        label: "Self-hosting Patcher",
+        label: "Self-hosting Gruntwork Patcher",
         type: "doc",
         id: "2.0/docs/patcher/guides/self-hosting",
       },
@@ -684,7 +684,7 @@ const sidebar = [
     href: "/2.0/reference/patcher",
   },
   {
-    value: "IaC Library",
+    value: "Gruntwork AWS IaC Library",
     type: "html",
     className: "sidebar-header",
   },

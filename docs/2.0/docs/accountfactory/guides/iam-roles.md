@@ -3,12 +3,12 @@
 import CustomizableValue from '/src/components/CustomizableValue';
 
 :::note
-Delegated Repositories are only available to DevOps Foundations Enterprise customers.
+Delegated Repositories are only available to Gruntwork AWS Accelerator Enterprise customers.
 :::
 
 ## Introduction
 
-When delegated repositories are created using Account Factory, they are granted a minimal set of AWS permissions for managing infrastructure. These permissions are controlled through IAM policies, which are tracked as Infrastructure as Code (IaC) in your `infrastructure-live-access-control` repository. As part of account provisioning, a pull request is automatically created in the access control repository to add the necessary IAM policies.
+When delegated repositories are created using Gruntwork AWS Account Factory, they are granted a minimal set of AWS permissions for managing infrastructure. These permissions are controlled through IAM policies, which are tracked as Infrastructure as Code (IaC) in your `infrastructure-live-access-control` repository. As part of account provisioning, a pull request is automatically created in the access control repository to add the necessary IAM policies.
 
 ## Adding permissions
 

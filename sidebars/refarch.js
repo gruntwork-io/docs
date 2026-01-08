@@ -5,7 +5,7 @@ const kbLink =
 
 const sidebar = [
   {
-    label: "Reference Architecture",
+    label: "AWS Platform Architecture (Legacy)",
     type: "category",
     collapsible: false,
     items: [

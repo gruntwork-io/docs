@@ -1,7 +1,7 @@
 # Adding Collaborators to Delegated Repositories
 
 :::note
-Delegated Repositories are only available to DevOps Foundations Enterprise customers.
+Delegated Repositories are only available to Gruntwork AWS Accelerator Enterprise customers.
 :::
 
 ## Introduction

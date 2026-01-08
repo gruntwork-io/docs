@@ -18,11 +18,11 @@ Self-service enables platform teams to operate efficiently at scale. By centrali
 
 ## Terragrunt catalog
 
-Terragrunt provides [native support](https://terragrunt.gruntwork.io/docs/features/catalog/) for an interface that allows developers to browse modules using a terminal-based UI and [scaffold](https://terragrunt.gruntwork.io/docs/features/scaffold/) new modules with [boilerplate](https://github.com/gruntwork-io/boilerplate). Repositories vended through DevOps Foundations include a `catalog` configuration in the root `terragrunt.hcl` file, pointing to a starter `infrastructure-catalog` repository with examples for expanding the catalog.
+Terragrunt provides [native support](https://terragrunt.gruntwork.io/docs/features/catalog/) for an interface that allows developers to browse modules using a terminal-based UI and [scaffold](https://terragrunt.gruntwork.io/docs/features/scaffold/) new modules with [boilerplate](https://github.com/gruntwork-io/boilerplate). Repositories vended through Gruntwork AWS Accelerator include a `catalog` configuration in the root `terragrunt.hcl` file, pointing to a starter `infrastructure-catalog` repository with examples for expanding the catalog.
 
 ### Using catalog
 
-In a DevOps Foundations repository, create a new directory for the new Terragrunt unit, then navigate to this directory.
+In a Gruntwork AWS Accelerator repository, create a new directory for the new Terragrunt unit, then navigate to this directory.
 
 Running `terragrunt catalog` opens an interactive terminal UI to browse available units in the `infrastructure-catalog`.
 

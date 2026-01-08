@@ -16,7 +16,7 @@ jobs:
     uses: gruntwork-io-team/pipelines-workflows/.github/workflows/pipelines-root.yml@v3.0.0
 ```
 
-Due to our integration with [Dependabot](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide), you can automatically receive pull requests suggesting updates to the `pipelines.yml` file in your repository by including a `.github/dependabot.yml` file. This ensures your repository stays aligned with the latest changes in Gruntwork Pipelines. DevOps Foundations customers receive this configuration as part of their `infrastructure-live` repositories by default.
+Due to our integration with [Dependabot](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide), you can automatically receive pull requests suggesting updates to the `pipelines.yml` file in your repository by including a `.github/dependabot.yml` file. This ensures your repository stays aligned with the latest changes in Gruntwork Pipelines. Gruntwork AWS Accelerator customers receive this configuration as part of their `infrastructure-live` repositories by default.
 
 :::note
 

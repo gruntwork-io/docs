@@ -27,7 +27,7 @@ Once your account is linked, the notice on the home page will disappear, and you
 
 ## Next steps
 
-Now that you’ve linked your GitHub account, return to the [DevOps Foundations Getting Started Checklist](/2.0/docs/overview/getting-started/index.md) to continue setting up your DevOps Foundations.
+Now that you've linked your GitHub account, return to the [Getting Started Checklist](/2.0/docs/overview/getting-started/index.md) to continue setting up the Gruntwork Platform.
 
 ## Related knowledge base discussions
 

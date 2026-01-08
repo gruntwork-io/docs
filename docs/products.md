@@ -14,24 +14,24 @@ import CenterLayout from "/src/components/CenterLayout"
 <CardGroup cols={2}>
 
 <Card
-  title="Library"
-  href="/library/overview/">
-A collection of reusable code that enables you to deploy and manage infrastructure quickly and reliably.
+  title="Gruntwork AWS Accelerator"
+  href="/2.0/docs/overview/concepts/gruntworkplatform">
+A comprehensive solution that combines the Gruntwork AWS IaC Library, Gruntwork AWS Account Factory, and AWS Platform Architecture with Terragrunt Scale to accelerate your cloud infrastructure.
 </Card>
 <Card
-  title="Reference Architecture"
-  href="/refarch/whats-this/what-is-a-reference-architecture">
-An end-to-end tech stack built using best practices on top of our Infrastructure as Code Library, deployed into your AWS accounts.
+  title="Terragrunt Scale"
+  href="/2.0/docs/pipelines/concepts/overview">
+Deploy infrastructure at scale with Gruntwork Pipelines, Gruntwork Drift Detection, and Gruntwork Patcher—tools that simplify CI/CD for infrastructure code.
 </Card>
 <Card
-  title="Pipelines"
-  href="/pipelines/overview">
-A framework for running secure deployments for infrastructure code and application code.
+  title="Gruntwork AWS IaC Library"
+  href="/2.0/docs/library/concepts/overview">
+A collection of reusable Infrastructure as Code modules that enables you to deploy and manage AWS infrastructure quickly and reliably.
 </Card>
 <Card
-title="Developer Portal"
-href="/developer-portal/create-account">
-Gain access to all resources included in your Gruntwork subscription.
+  title="Gruntwork AWS Account Factory"
+  href="/2.0/docs/accountfactory/concepts/">
+Create and manage AWS accounts with best-practice baselines, security configurations, and automated provisioning.
 </Card>
 
 </CardGroup>

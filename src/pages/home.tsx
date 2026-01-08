@@ -21,12 +21,12 @@ export const HomeContent = () => {
           </div>
           <CardGroup cols={3}>
             <Card
-              title="Learn About DevOps Foundations"
-              href="/2.0/docs/overview/concepts/devopsfoundations"
+              title="Learn About Gruntwork AWS Accelerator"
+              href="/2.0/docs/overview/concepts/gruntworkplatform"
               icon="/img/icons/learn.svg"
             >
-              Learn how Gruntwork's DevOps Foundations can help you deploy a
-              world class infrastructure.
+              Learn how Gruntwork AWS Accelerator can help you deploy
+              world-class infrastructure on AWS.
             </Card>
             <Card
               title="Create your Gruntwork Account"
@@ -37,43 +37,43 @@ export const HomeContent = () => {
               teammates.
             </Card>
             <Card
-              title="Browse the Library Reference"
+              title="Browse the AWS IaC Library"
               href="/library/reference"
               icon="/img/icons/refarch.svg"
             >
-              Find a specific module in the Gruntwork Library
+              Find a specific module in the AWS IaC Library
             </Card>
           </CardGroup>
         </div>
         <div style={{ margin: "6rem auto" }}>
           <h1>The Gruntwork Platform</h1>
           <p>
-            The Gruntwork platform provides the foundations for a streamlined,
+            The Gruntwork Platform provides the foundations for a streamlined,
             end-to-end DevOps workflow that's secure, scalable, and easy to
             maintain.
           </p>
           <CardGroup cols={2} commonCardProps={{ appearance: "flush" }}>
             <Card
-              title="Pipelines"
+              title="Gruntwork Pipelines"
               href="/2.0/docs/pipelines/concepts/overview"
             >
               A framework for running secure deployments for infrastructure code
               and application code.
             </Card>
             <Card
-              title="Account Factory"
+              title="AWS Account Factory"
               href="/2.0/docs/accountfactory/concepts/"
             >
-              A tool for creating and managing AWS accounts with a focus on
-              security and compliance.
+              Create and manage AWS accounts with best-practice baselines,
+              security configurations, and compliance.
             </Card>
             <Card title="Patcher" href="/2.0/docs/patcher/concepts/">
               Keep your infrastructure up to date, with support for automatic
               updates and patches for any breaking changes.
             </Card>
-            <Card title="Library" href="/2.0/docs/library/concepts/overview">
-              A collection of reusable code that enables you to deploy and
-              manage infrastructure quickly and reliably.
+            <Card title="AWS IaC Library" href="/2.0/docs/library/concepts/overview">
+              A collection of reusable Infrastructure as Code modules that enables you to deploy and
+              manage AWS infrastructure quickly and reliably.
             </Card>
           </CardGroup>
         </div>
