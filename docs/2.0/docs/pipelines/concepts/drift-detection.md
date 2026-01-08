@@ -1,11 +1,11 @@
-# Pipelines Drift Detection
+# Gruntwork Drift Detection
 
-## What is Pipelines Drift Detection
+## What is Gruntwork Drift Detection
 
 Infrastructure drift occurs when the applied Terragrunt cloud configuration no longer matches the committed Infrastructure as Code (IaC).
 
-Pipelines Drift Detection helps address drift in your repositories by running `terragrunt plan` on infrastructure units. If drift is detected, Pipelines creates a Drift Detected Pull Request (GitHub) or Merge Request (GitLab) to track the changes in your repository.
+Gruntwork Drift Detection helps address drift in your repositories by running `terragrunt plan` on infrastructure units. If drift is detected, Gruntwork Pipelines creates a Drift Detected Pull Request (GitHub) or Merge Request (GitLab) to track the changes in your repository.
 
-When the Drift Detected Pull/Merge Request is merged, Pipelines runs `terragrunt apply` on all units where drift was identified, ensuring that resources align with the specifications in your code.
+When the Drift Detected Pull/Merge Request is merged, Gruntwork Pipelines runs `terragrunt apply` on all units where drift was identified, ensuring that resources align with the specifications in your code.
 
-For more information on detecting and resolving drift, see [Setting up Drift Detection](/2.0/docs/pipelines/configuration/driftdetection) and [Running Drift Detection](/2.0/docs/pipelines/guides/running-drift-detection).
+For more information on detecting and resolving drift, see [Setting up Gruntwork Drift Detection](/2.0/docs/pipelines/configuration/driftdetection) and [Running Gruntwork Drift Detection](/2.0/docs/pipelines/guides/running-drift-detection).

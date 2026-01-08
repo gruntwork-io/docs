@@ -8,7 +8,7 @@ This page is intended for users who:
 
 ## Procedure
 
-We recommend a two-step process to close AWS accounts managed by AWS Account Factory:
+We recommend a two-step process to close AWS accounts managed by Gruntwork AWS Account Factory:
 
 1. [Cleanup Infrastructure Code](#1-cleanup-infrastructure-code) and modify OpenTofu/Terraform state for the Control Tower module.
 1. [Close Account with Clickops](#2-close-the-accounts-in-aws-organizations)

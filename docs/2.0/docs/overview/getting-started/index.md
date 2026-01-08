@@ -31,16 +31,16 @@ Alternatively, you can add Gruntwork Pipelines to an existing repository:
 
 <PersistentCheckbox id="install-df-4" label="Gruntwork Pipelines Repositories Ready" />
 
-### Step 5: [Configure AWS Account Factory](/2.0/reference/accountfactory/configurations)
+### Step 5: [Configure Gruntwork AWS Account Factory](/2.0/reference/accountfactory/configurations)
 
-During the Gruntwork Pipelines setup process, configure AWS Account Factory for AWS account management.
+During the Gruntwork Pipelines setup process, configure Gruntwork AWS Account Factory for AWS account management.
 
-<PersistentCheckbox id="install-df-5" label="AWS Account Factory Configured" />
+<PersistentCheckbox id="install-df-5" label="Gruntwork AWS Account Factory Configured" />
 
 ### Step 6: Start using the Gruntwork Platform
 
 You're all set! You can now:
-- [Build with the AWS IaC Library](/2.0/docs/library/tutorials/deploying-your-first-gruntwork-module)
+- [Build with the Gruntwork AWS IaC Library](/2.0/docs/library/tutorials/deploying-your-first-gruntwork-module)
 - Automatically [plan and apply IaC changes with Gruntwork Pipelines](/2.0/docs/pipelines/guides/running-plan-apply)
-- [Vend new AWS accounts with AWS Account Factory](/2.0/docs/accountfactory/guides/vend-aws-account)
-- [Keep your infrastructure up to date with Patcher](/2.0/docs/patcher/concepts/)
+- [Vend new AWS accounts with Gruntwork AWS Account Factory](/2.0/docs/accountfactory/guides/vend-aws-account)
+- [Keep your infrastructure up to date with Gruntwork Patcher](/2.0/docs/patcher/concepts/)

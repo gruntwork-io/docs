@@ -2,9 +2,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CustomizableValue from '/src/components/CustomizableValue';
 
-# Adding Account Factory to a new repository
+# Adding Gruntwork AWS Account Factory to a new repository
 
-To configure Gruntwork Account Factory in a new GitHub/GitLab repository, the following steps are required (and will be explained in detail below):
+To configure Gruntwork AWS Account Factory in a new GitHub/GitLab repository, the following steps are required (and will be explained in detail below):
 
 1. Create your infrastructure-live root, access-control and catalog repositories.
 2. Configure the authentication for the repositories to ensure that required access tokens are available.

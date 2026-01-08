@@ -6,17 +6,17 @@ The Gruntwork Reference Architecture has been superseded by the **AWS Platform A
 
 :::
 
-The Gruntwork Reference Architecture is an implementation of best practices for infrastructure in the cloud. It is an end-to-end tech stack built on top of our AWS IaC Library, deployed into your AWS accounts.
+The Gruntwork Reference Architecture is an implementation of best practices for infrastructure in the cloud. It is an end-to-end tech stack built on top of our Gruntwork AWS IaC Library, deployed into your AWS accounts.
 
 The Reference Architecture is opinionated, and delivered as code. It is written in [Terragrunt](https://terragrunt.gruntwork.io/), our thin wrapper that provides extra tools for managing remote state and keeping your configurations [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Our `_envcommon` pattern reduces the amount of code you need to copy from one place to another when creating additional identical infrastructure.
 
 ## Components
 
-The Reference Architecture has three main components — AWS Account Factory, Gruntwork Pipelines, and a Sample Application.
+The Reference Architecture has three main components — Gruntwork AWS Account Factory, Gruntwork Pipelines, and a Sample Application.
 
-### AWS Account Factory
+### Gruntwork AWS Account Factory
 
-[AWS Account Factory](/2.0/docs/accountfactory/concepts/) is a Terraform-native approach to [AWS Landing Zone / Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html). This uses Terragrunt to quickly create new AWS accounts, configure them with a standard security baseline, and defines a best-practices multi-account setup.
+[Gruntwork AWS Account Factory](/2.0/docs/accountfactory/concepts/) is a Terraform-native approach to [AWS Landing Zone / Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html). This uses Terragrunt to quickly create new AWS accounts, configure them with a standard security baseline, and defines a best-practices multi-account setup.
 
 
 ### Gruntwork Pipelines

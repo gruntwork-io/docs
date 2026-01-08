@@ -1,27 +1,27 @@
-# Installing Drift Detection
+# Installing Gruntwork Drift Detection
 
 import PersistentCheckbox from '/src/components/PersistentCheckbox';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-For new pipelines repositories using the latest version of Pipelines, Drift Detection is installed automatically and requires no additional action.
+For new pipelines repositories using the latest version of Gruntwork Pipelines, Gruntwork Drift Detection is installed automatically and requires no additional action.
 
-To upgrade an existing repository and enable Drift Detection, follow these steps:
+To upgrade an existing repository and enable Gruntwork Drift Detection, follow these steps:
 
 ### Step 1 - Ensure authentication is properly configured
 
 <Tabs groupId="platform">
 <TabItem value="github" label="GitHub">
 
-Verify that the [GitHub App](/2.0/docs/pipelines/installation/viagithubapp) is installed and in use for this repository. Drift Detection relies on permissions granted by the GitHub App and is not compatible with machine user tokens.
+Verify that the [GitHub App](/2.0/docs/pipelines/installation/viagithubapp) is installed and in use for this repository. Gruntwork Drift Detection relies on permissions granted by the GitHub App and is not compatible with machine user tokens.
 
 <PersistentCheckbox id="install-drift-1" label="GitHub App In Use" />
 
 </TabItem>
 <TabItem value="gitlab" label="GitLab">
 
-Verify that your GitLab project has the necessary [Machine User tokens](/2.0/docs/pipelines/installation/viamachineusers) configured. Drift Detection requires:
+Verify that your GitLab project has the necessary [Machine User tokens](/2.0/docs/pipelines/installation/viamachineusers) configured. Gruntwork Drift Detection requires:
 - `PIPELINES_GITLAB_TOKEN`: A GitLab access token with `api` scope
 - `PIPELINES_GITLAB_READ_TOKEN`: A GitLab access token with `read_repository` scope
 
@@ -73,7 +73,7 @@ jobs:
 </TabItem>
 <TabItem value="gitlab" label="GitLab">
 
-Drift Detection for GitLab is implemented in the `pipelines-workflows` GitLab CI/CD Component. Add the following configuration to your `.gitlab-ci.yml` file:
+Gruntwork Drift Detection for GitLab is implemented in the `pipelines-workflows` GitLab CI/CD Component. Add the following configuration to your `.gitlab-ci.yml` file:
 
 ```yml
 spec:
@@ -111,6 +111,6 @@ include:
 </TabItem>
 </Tabs>
 
-### Step 3 - Run your first drift detection job
+### Step 3 - Run your first Gruntwork Drift Detection job
 
-Follow the instructions at [Running Drift Detection](/2.0/docs/pipelines/guides/running-drift-detection) to start using the new workflow.
+Follow the instructions at [Running Gruntwork Drift Detection](/2.0/docs/pipelines/guides/running-drift-detection) to start using the new workflow.

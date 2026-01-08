@@ -20,8 +20,8 @@ Gruntwork offers two main product packages:
 
 **Gruntwork AWS Accelerator** is a comprehensive solution for organizations deploying infrastructure on AWS. It includes:
 
-* **[AWS IaC Library](/2.0/docs/library/concepts/overview)**: A robust collection of over 300,000 lines of OpenTofu/Terraform code modules, providing foundational components such as VPCs, ECS clusters, and S3 buckets for building infrastructure.
-* **[AWS Account Factory](/2.0/docs/accountfactory/concepts/)**: Automated workflows for provisioning new AWS accounts, applying compliance and security baselines, and enforcing infrastructure business rules across multiple accounts.
+* **[Gruntwork AWS IaC Library](/2.0/docs/library/concepts/overview)**: A robust collection of over 300,000 lines of OpenTofu/Terraform code modules, providing foundational components such as VPCs, ECS clusters, and S3 buckets for building infrastructure.
+* **[Gruntwork AWS Account Factory](/2.0/docs/accountfactory/concepts/)**: Automated workflows for provisioning new AWS accounts, applying compliance and security baselines, and enforcing infrastructure business rules across multiple accounts.
 * **AWS Platform Architecture**: Best-practice multi-account architecture with network topology, security configurations, and compliance baselines.
 * **Terragrunt Scale**: All the tools included in the Terragrunt Scale package (see below).
 
@@ -30,8 +30,8 @@ Gruntwork offers two main product packages:
 **Terragrunt Scale** provides essential tools for managing infrastructure at scale, regardless of your IaC library:
 
 * **[Gruntwork Pipelines](/2.0/docs/pipelines/concepts/overview.md)**: A comprehensive CI/CD pipeline for infrastructure code, including guidelines for structuring OpenTofu code and scripts to manage pipeline operations.
-* **[Patcher](/2.0/docs/patcher/concepts/)**: Tools for identifying outdated modules in repositories, creating pull requests to update versions, and automatically refactoring code to handle breaking changes without developer intervention.
-* **[Drift Detection](/2.0/docs/pipelines/concepts/drift-detection)**: Automated detection of configuration drift between your infrastructure code and actual cloud resources.
+* **[Gruntwork Patcher](/2.0/docs/patcher/concepts/)**: Tools for identifying outdated modules in repositories, creating pull requests to update versions, and automatically refactoring code to handle breaking changes without developer intervention.
+* **[Gruntwork Drift Detection](/2.0/docs/pipelines/concepts/drift-detection)**: Automated detection of configuration drift between your infrastructure code and actual cloud resources.
 
 ## Additional concepts
 

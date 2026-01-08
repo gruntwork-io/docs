@@ -2,19 +2,19 @@
 import PersistentCheckbox from '/src/components/PersistentCheckbox';
 
 :::note
-Vending Delegated Repositories by AWS Account Factory is only available to Gruntwork AWS Accelerator Enterprise customers.
+Vending Delegated Repositories by Gruntwork AWS Account Factory is only available to Gruntwork AWS Accelerator Enterprise customers.
 :::
 
 ## Introduction
 
-When using Account Factory to request new accounts, you can choose to delegate management of the new accounts. Delegating management automatically generates a dedicated GitHub repository for each account, empowering developer teams to manage their infrastructure independently.
+When using Gruntwork AWS Account Factory to request new accounts, you can choose to delegate management of the new accounts. Delegating management automatically generates a dedicated GitHub repository for each account, empowering developer teams to manage their infrastructure independently.
 
 Specific permissions for IaC changes are managed via IAM roles in your `infrastructure-live-access-control` repository, enabling your infrastructure team to act as a central authority for permissions.
 
 
-### Step 1 - Update Account Factory settings
+### Step 1 - Update Gruntwork AWS Account Factory settings
 
-Account Factory options are defined in the `.gruntwork/config.yml` file. For a full description of all available options, refer to the [configuration reference](/2.0/reference/accountfactory/configurations).
+Gruntwork AWS Account Factory options are defined in the `.gruntwork/config.yml` file. For a full description of all available options, refer to the [configuration reference](/2.0/reference/accountfactory/configurations).
 
 The following options are especially relevant for delegated repositories and should be reviewed or updated before creating new accounts:
 
@@ -52,21 +52,21 @@ Click "Generate" and copy the resulting JSON payload. This payload will be passe
 
 <PersistentCheckbox id="vending-delegated-repositories-2" label="Payload Created" />
 
-### Step 3 - Run the Account Factory workflow
+### Step 3 - Run the Gruntwork AWS Account Factory workflow
 
 Go to the Actions tab in your `infrastructure-live-root` repository and select the Account Factory workflow from the left-hand pane.
 
 Click "Run Workflow," paste the JSON payload into the input field, and execute the workflow.
 
-![Screenshot of Account Factory Workflow Dispatch](/img/accountfactory/run-workflow.png)
+![Screenshot of Gruntwork AWS Account Factory Workflow Dispatch](/img/accountfactory/run-workflow.png)
 
-<PersistentCheckbox id="vending-delegated-repositories-3" label="Account Factory Workflow Run" />
+<PersistentCheckbox id="vending-delegated-repositories-3" label="Gruntwork AWS Account Factory Workflow Run" />
 
 ### Step 4 - Merge the Request PR
 
-The Account Factory workflow will generate a new Pull Request, adding a YAML file to the `_new-account-requests` directory.
+The Gruntwork AWS Account Factory workflow will generate a new Pull Request, adding a YAML file to the `_new-account-requests` directory.
 
-Review the Pull Request to ensure everything looks correct, then merge it. Once merged into the main branch, Pipelines will automatically run a `terragrunt apply` to create the new account in AWS.
+Review the Pull Request to ensure everything looks correct, then merge it. Once merged into the main branch, Gruntwork Pipelines will automatically run a `terragrunt apply` to create the new account in AWS.
 
 Provisioning typically takes around 10 minutes, but it may vary. Once complete, a new Pull Request will be created in the `infrastructure-live-root` repository to baseline the account.
 

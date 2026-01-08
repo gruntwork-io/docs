@@ -6,11 +6,11 @@ The Gruntwork Reference Architecture has been superseded by the **AWS Platform A
 
 :::
 
-The AWS Platform Architecture (formerly Gruntwork Reference Architecture) is an implementation of best practices for infrastructure in the cloud. It is an opinionated, end-to-end tech stack built on top of our AWS IaC Library, deployed into the customer's AWS accounts. It is comprised of three pieces.
+The AWS Platform Architecture (formerly Gruntwork Reference Architecture) is an implementation of best practices for infrastructure in the cloud. It is an opinionated, end-to-end tech stack built on top of our Gruntwork AWS IaC Library, deployed into the customer's AWS accounts. It is comprised of three pieces.
 
-## AWS Account Factory
+## Gruntwork AWS Account Factory
 
-[AWS Account Factory](/2.0/docs/accountfactory/concepts/) is a Terraform-native approach to [AWS Landing Zone / Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html). This uses Terraform to quickly create new AWS accounts, configure them with a standard security baseline, and defines a best-practices multi-account setup.
+[Gruntwork AWS Account Factory](/2.0/docs/accountfactory/concepts/) is a Terraform-native approach to [AWS Landing Zone / Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html). This uses Terraform to quickly create new AWS accounts, configure them with a standard security baseline, and defines a best-practices multi-account setup.
 
 ## Sample Application
 
