@@ -14,7 +14,7 @@ import CenterLayout from "/src/components/CenterLayout"
 <CardGroup cols={2}>
 
 <Card
-  title="AWS Accelerator"
+  title="Gruntwork AWS Accelerator"
   href="/2.0/docs/overview/concepts/gruntworkplatform">
 A comprehensive solution that combines the AWS IaC Library, AWS Account Factory, and AWS Platform Architecture with Terragrunt Scale to accelerate your cloud infrastructure.
 </Card>

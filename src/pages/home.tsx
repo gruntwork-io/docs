@@ -21,11 +21,11 @@ export const HomeContent = () => {
           </div>
           <CardGroup cols={3}>
             <Card
-              title="Learn About AWS Accelerator"
+              title="Learn About Gruntwork AWS Accelerator"
               href="/2.0/docs/overview/concepts/gruntworkplatform"
               icon="/img/icons/learn.svg"
             >
-              Learn how Gruntwork's AWS Accelerator can help you deploy
+              Learn how Gruntwork AWS Accelerator can help you deploy
               world-class infrastructure on AWS.
             </Card>
             <Card

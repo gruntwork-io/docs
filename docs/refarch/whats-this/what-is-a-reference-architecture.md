@@ -2,7 +2,7 @@
 
 :::note Legacy Product
 
-The Gruntwork Reference Architecture has been superseded by the **AWS Platform Architecture** component of [AWS Accelerator](/2.0/docs/overview/concepts/gruntworkplatform). New customers should use AWS Accelerator for the latest best practices and features.
+The Gruntwork Reference Architecture has been superseded by the **AWS Platform Architecture** component of [Gruntwork AWS Accelerator](/2.0/docs/overview/concepts/gruntworkplatform). New customers should use Gruntwork AWS Accelerator for the latest best practices and features.
 
 :::
 

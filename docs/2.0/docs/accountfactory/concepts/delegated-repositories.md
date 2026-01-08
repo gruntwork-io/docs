@@ -2,7 +2,7 @@
 
 :::note 
 
-AWS Account Factory-created Delegated Repositories are only available to AWS Accelerator Enterprise customers.
+AWS Account Factory-created Delegated Repositories are only available to Gruntwork AWS Accelerator Enterprise customers.
 
 :::
 

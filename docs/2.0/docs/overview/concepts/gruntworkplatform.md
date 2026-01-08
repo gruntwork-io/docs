@@ -16,9 +16,9 @@ When setting up a new component, customers also have access to guidance from Gru
 
 Gruntwork offers two main product packages:
 
-### AWS Accelerator
+### Gruntwork AWS Accelerator
 
-**AWS Accelerator** is a comprehensive solution for organizations deploying infrastructure on AWS. It includes:
+**Gruntwork AWS Accelerator** is a comprehensive solution for organizations deploying infrastructure on AWS. It includes:
 
 * **[AWS IaC Library](/2.0/docs/library/concepts/overview)**: A robust collection of over 300,000 lines of OpenTofu/Terraform code modules, providing foundational components such as VPCs, ECS clusters, and S3 buckets for building infrastructure.
 * **[AWS Account Factory](/2.0/docs/accountfactory/concepts/)**: Automated workflows for provisioning new AWS accounts, applying compliance and security baselines, and enforcing infrastructure business rules across multiple accounts.

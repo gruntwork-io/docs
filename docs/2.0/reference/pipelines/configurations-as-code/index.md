@@ -186,7 +186,7 @@ In this example, the `all` AWS accounts block is specified within an `aws` block
 
 The `all` accounts block uses the `path` attribute to reference an external file, `aws/accounts.yml`, which contains AWS account definitions in YAML format.
 
-Customers familiar with AWS Accelerator may recognize the `accounts.yml` file as a configuration file used by AWS Account Factory to define AWS account settings. Gruntwork Pipelines leverages the same schema for the `accounts.yml` file as AWS Account Factory. As a result, the `accounts.yml` file from AWS Account Factory can be directly utilized within the `accounts` block without requiring modifications.
+Customers familiar with Gruntwork AWS Accelerator may recognize the `accounts.yml` file as a configuration file used by AWS Account Factory to define AWS account settings. Gruntwork Pipelines leverages the same schema for the `accounts.yml` file as AWS Account Factory. As a result, the `accounts.yml` file from AWS Account Factory can be directly utilized within the `accounts` block without requiring modifications.
 
 The `accounts.yml` file must adhere to the following schema:
 
