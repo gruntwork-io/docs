@@ -37,7 +37,7 @@ For more details, refer to [GitHub OIDC documentation](https://docs.github.com/e
 
 ## Step 2 - Confirm the `infrastructure-live-access-control` repository setup
 
-The [infrastructure-live-access-control](/2.0/docs/pipelines/architecture/security-controls.md#infrastructure-access-control) repository is an optional but recommended component of DevOps Foundations for delegating access to infrastructure.
+The [infrastructure-live-access-control](/2.0/docs/pipelines/architecture/security-controls#platform-specific-access-controls) repository is an optional but recommended component of Gruntwork AWS Accelerator for delegating access to infrastructure.
 
 If this repository is not already set up, you can provision it using the steps in the [infrastructure-live-root-template](https://github.com/gruntwork-io/infrastructure-live-root-template).
 
@@ -136,7 +136,7 @@ inputs = {
 }
 ```
 
-Take note of the `envcommon` include, which incorporates the recommended baseline configurations for delegated roles within DevOps Foundations.
+Take note of the `envcommon` include, which incorporates the recommended baseline configurations for delegated roles within Gruntwork AWS Accelerator.
 
 You will probably need to extend the `iam_policy` block to define permissions tailored to your specific workflow requirements.
 
