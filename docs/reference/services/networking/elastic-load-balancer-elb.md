@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.146.0" lastModifiedVersion="0.146.0"/>
+<VersionBadge version="0.146.2" lastModifiedVersion="0.146.0"/>
 
 # Application Load Balancer
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/networking/alb" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.2/modules/networking/alb" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=networking%2Falb" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -62,7 +62,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.2/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -70,7 +70,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.2/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -89,7 +89,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/alb?ref=v0.146.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/alb?ref=v0.146.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -135,9 +135,6 @@ module "alb" {
   # https_listener_ports_and_acm_ssl_certs, only match certs of the given types.
   # Valid values are AMAZON_ISSUED and IMPORTED.
   acm_cert_types = ["AMAZON_ISSUED","IMPORTED"]
-
-  # Add additional security groups to the ALB
-  additional_security_group_ids = []
 
   # List of additional SSL certs (non-ACM and ACM) to bind to the given listener
   # port. Note that this must not overlap with the certificates defined in
@@ -298,7 +295,7 @@ module "alb" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/alb?ref=v0.146.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/networking/alb?ref=v0.146.2"
 }
 
 inputs = {
@@ -347,9 +344,6 @@ inputs = {
   # https_listener_ports_and_acm_ssl_certs, only match certs of the given types.
   # Valid values are AMAZON_ISSUED and IMPORTED.
   acm_cert_types = ["AMAZON_ISSUED","IMPORTED"]
-
-  # Add additional security groups to the ALB
-  additional_security_group_ids = []
 
   # List of additional SSL certs (non-ACM and ACM) to bind to the given listener
   # port. Note that this must not overlap with the certificates defined in
@@ -599,15 +593,6 @@ When looking up the ACM certs passed in via https_listener_ports_and_acm_ssl_cer
 ```
 
 </HclListItemDefaultValue>
-</HclListItem>
-
-<HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Add additional security groups to the ALB
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="additional_ssl_certs_for_ports" requirement="optional" type="map(list(…))">
@@ -1055,11 +1040,11 @@ The AWS-managed DNS name assigned to the ALB.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/networking/alb/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/networking/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/networking/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.2/modules/networking/alb/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.2/modules/networking/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.2/modules/networking/alb/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "fc1fad17f6b02b0d075e4a4705c97646"
+  "hash": "f71c3fea95553f287208437b7665143b"
 }
 ##DOCS-SOURCER-END -->

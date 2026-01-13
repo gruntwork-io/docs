@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.146.0" lastModifiedVersion="0.146.0"/>
+<VersionBadge version="0.146.2" lastModifiedVersion="0.146.1"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.2/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.2/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.2/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.146.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.146.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -274,11 +274,6 @@ module "aurora" {
   # value in db_config_secrets_manager_id.
   db_name = null
 
-  # If true, delete all automated backups when the DB cluster is deleted. If
-  # false, automated backups are retained until the retention period expires.
-  # Defaults to true.
-  delete_automated_backups = null
-
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
@@ -291,10 +286,6 @@ module "aurora" {
   # Enable deletion protection on the database instance. If this is enabled, the
   # database cannot be deleted.
   enable_deletion_protection = false
-
-  # If true, enables the HTTP endpoint used for Data API. Only valid when
-  # engine_mode is set to serverless.
-  enable_http_endpoint = null
 
   # Set to true to enable alarms related to performance, such as read and write
   # latency alarms. Set to false to disable those alarms if you aren't sure what
@@ -486,11 +477,6 @@ module "aurora" {
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT.html
   restore_source_cluster_identifier = null
 
-  # Only used if 'restore_source_cluster_identifier' is non-empty. Date and time
-  # in UTC format to restore the database cluster to (e.g,
-  # 2009-09-07T23:45:00Z). When null, the latest restorable time will be used.
-  restore_to_time = null
-
   # Only used if 'restore_source_cluster_identifier' is non-empty. Type of
   # restore to be performed. Valid options are 'full-copy' and 'copy-on-write'.
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clone.html
@@ -583,7 +569,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.146.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.146.2"
 }
 
 inputs = {
@@ -758,11 +744,6 @@ inputs = {
   # value in db_config_secrets_manager_id.
   db_name = null
 
-  # If true, delete all automated backups when the DB cluster is deleted. If
-  # false, automated backups are retained until the retention period expires.
-  # Defaults to true.
-  delete_automated_backups = null
-
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
@@ -775,10 +756,6 @@ inputs = {
   # Enable deletion protection on the database instance. If this is enabled, the
   # database cannot be deleted.
   enable_deletion_protection = false
-
-  # If true, enables the HTTP endpoint used for Data API. Only valid when
-  # engine_mode is set to serverless.
-  enable_http_endpoint = null
 
   # Set to true to enable alarms related to performance, such as read and write
   # latency alarms. Set to false to disable those alarms if you aren't sure what
@@ -969,11 +946,6 @@ inputs = {
   # snapshot_identifier is null. For more information see
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT.html
   restore_source_cluster_identifier = null
-
-  # Only used if 'restore_source_cluster_identifier' is non-empty. Date and time
-  # in UTC format to restore the database cluster to (e.g,
-  # 2009-09-07T23:45:00Z). When null, the latest restorable time will be used.
-  restore_to_time = null
 
   # Only used if 'restore_source_cluster_identifier' is non-empty. Type of
   # restore to be performed. Valid options are 'full-copy' and 'copy-on-write'.
@@ -1726,15 +1698,6 @@ The name for your database of up to 8 alpha-numeric characters. If you do not pr
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="delete_automated_backups" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, delete all automated backups when the DB cluster is deleted. If false, automated backups are retained until the retention period expires. Defaults to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1760,15 +1723,6 @@ Enable deletion protection on the database instance. If this is enabled, the dat
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="enable_http_endpoint" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, enables the HTTP endpoint used for Data API. Only valid when engine_mode is set to serverless.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="enable_perf_alarms" requirement="optional" type="bool">
@@ -2177,15 +2131,6 @@ If non-empty, the Aurora cluster will be restored from the given source cluster 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="restore_to_time" requirement="optional" type="string">
-<HclListItemDescription>
-
-Only used if 'restore_source_cluster_identifier' is non-empty. Date and time in UTC format to restore the database cluster to (e.g, 2009-09-07T23:45:00Z). When null, the latest restorable time will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="restore_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2493,11 +2438,11 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.2/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.2/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.2/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d0ec177d5797263d053093d2bc7dd206"
+  "hash": "1e592e8c9d43077b403ad8e39e5640ab"
 }
 ##DOCS-SOURCER-END -->
