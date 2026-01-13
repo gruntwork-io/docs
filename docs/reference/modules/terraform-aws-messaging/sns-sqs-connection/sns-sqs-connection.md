@@ -19,6 +19,10 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 This module makes it easy to subscribe a SQS to a SNS topic after both have been successfully created.
 
+## Managing Queue Policy Separately
+
+By default, this module creates an SQS queue policy allowing the SNS topic to send messages. Set `create_queue_policy = false` if you manage the policy elsewhere (e.g., via the [sqs module](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sqs)'s `queue_policy` variable).
+
 ## Sample Usage
 
 <Tabs>
@@ -50,6 +54,11 @@ module "sns_sqs_connection" {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # Whether to create an SQS queue policy that allows the SNS topic to send
+  # messages to the SQS queue. Set to false if you are managing the queue policy
+  # separately (e.g., in the SQS module).
+  create_queue_policy = true
 
   # (Optional) JSON String with the filter policy that will be used in the
   # subscription to filter messages seen by the target resource. Refer to the
@@ -102,6 +111,11 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # Whether to create an SQS queue policy that allows the SNS topic to send
+  # messages to the SQS queue. Set to false if you are managing the queue policy
+  # separately (e.g., in the SQS module).
+  create_queue_policy = true
 
   # (Optional) JSON String with the filter policy that will be used in the
   # subscription to filter messages seen by the target resource. Refer to the
@@ -162,6 +176,15 @@ The queue URL for the Simple Queue Service (SQS).
 
 ### Optional
 
+<HclListItem name="create_queue_policy" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to create an SQS queue policy that allows the SNS topic to send messages to the SQS queue. Set to false if you are managing the queue policy separately (e.g., in the SQS module).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="filter_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -206,6 +229,6 @@ Whether to enable raw message delivery (the original message is directly passed,
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sns-sqs-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a2a59719346aa3a316db882b5ae978f9"
+  "hash": "051ea5a9ed1840aadcfbf35d6d88dd51"
 }
 ##DOCS-SOURCER-END -->

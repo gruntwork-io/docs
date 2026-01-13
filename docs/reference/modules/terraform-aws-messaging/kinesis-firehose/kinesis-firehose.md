@@ -46,9 +46,6 @@ module "kinesis_firehose" {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The ARN of the kinesis data stream.
-  kinesis_stream_arn = <string>
-
   # The name of the Kinesis Data Firehose.
   name = <string>
 
@@ -59,8 +56,20 @@ module "kinesis_firehose" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Set to true to use a Kinesis Data Stream as the source for the Firehose.
+  # When true, kinesis_stream_arn must also be provided. When false, the
+  # Firehose will use Direct PUT as the source. This variable is needed because
+  # kinesis_stream_arn may come from a resource that isn't created yet, and
+  # Terraform needs to know at plan time whether to create the kinesis source
+  # configuration.
+  enable_kinesis_source = false
+
   # The processing configuration for the Kinesis Data Firehose.
   extended_s3_processors = []
+
+  # The ARN of the kinesis data stream. Must be set when enable_kinesis_source
+  # is true.
+  kinesis_stream_arn = null
 
 }
 
@@ -86,9 +95,6 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The ARN of the kinesis data stream.
-  kinesis_stream_arn = <string>
-
   # The name of the Kinesis Data Firehose.
   name = <string>
 
@@ -99,8 +105,20 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Set to true to use a Kinesis Data Stream as the source for the Firehose.
+  # When true, kinesis_stream_arn must also be provided. When false, the
+  # Firehose will use Direct PUT as the source. This variable is needed because
+  # kinesis_stream_arn may come from a resource that isn't created yet, and
+  # Terraform needs to know at plan time whether to create the kinesis source
+  # configuration.
+  enable_kinesis_source = false
+
   # The processing configuration for the Kinesis Data Firehose.
   extended_s3_processors = []
+
+  # The ARN of the kinesis data stream. Must be set when enable_kinesis_source
+  # is true.
+  kinesis_stream_arn = null
 
 }
 
@@ -120,14 +138,6 @@ inputs = {
 
 ### Required
 
-<HclListItem name="kinesis_stream_arn" requirement="required" type="string">
-<HclListItemDescription>
-
-The ARN of the kinesis data stream.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="name" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -145,6 +155,15 @@ The ARN of the S3 bucket you want to export the data to.
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="enable_kinesis_source" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to use a Kinesis Data Stream as the source for the Firehose. When true, kinesis_stream_arn must also be provided. When false, the Firehose will use Direct PUT as the source. This variable is needed because kinesis_stream_arn may come from a resource that isn't created yet, and Terraform needs to know at plan time whether to create the kinesis source configuration.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
 
 <HclListItem name="extended_s3_processors" requirement="optional" type="list(object(…))">
 <HclListItemDescription>
@@ -166,6 +185,15 @@ list(object({
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="kinesis_stream_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the kinesis data stream. Must be set when enable_kinesis_source is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
@@ -214,6 +242,6 @@ Name of the role for Kinesis Firehose
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/kinesis-firehose/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8db9113fa20e099ec86d9419e57763ea"
+  "hash": "7648e37bc02e1dd917fc70936b81a19c"
 }
 ##DOCS-SOURCER-END -->
