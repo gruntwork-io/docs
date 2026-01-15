@@ -1005,7 +1005,7 @@ The DNS name of the cluster
 <HclListItem name="endpoint">
 <HclListItemDescription>
 
-The cluter's connection endpoint
+The cluster's connection endpoint
 
 </HclListItemDescription>
 </HclListItem>
@@ -1061,6 +1061,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.44.0/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9391929056d4f453329aa41e9936bb17"
+  "hash": "2338c8ec1095e1905bfe74787f37e99f"
 }
 ##DOCS-SOURCER-END -->

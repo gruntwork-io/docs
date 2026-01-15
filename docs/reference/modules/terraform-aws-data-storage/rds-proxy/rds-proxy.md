@@ -186,6 +186,11 @@ module "rds_proxy" {
   # plus any other networks that need access.
   allow_connections_from_cidr_blocks = []
 
+  # A list of IPv6 CIDR blocks that are allowed to connect to the proxy. These
+  # should typically be the IPv6 CIDR blocks of the private application subnets
+  # in the VPC plus any other networks that need access.
+  allow_connections_from_ipv6_cidr_blocks = []
+
   # Configuration block for authentication and authorization mechanisms to
   # connect to the associated instances or clusters.
   auth = {}
@@ -277,6 +282,11 @@ inputs = {
   # typically be the CIDR blocks of the private application subnets in the VPC
   # plus any other networks that need access.
   allow_connections_from_cidr_blocks = []
+
+  # A list of IPv6 CIDR blocks that are allowed to connect to the proxy. These
+  # should typically be the IPv6 CIDR blocks of the private application subnets
+  # in the VPC plus any other networks that need access.
+  allow_connections_from_ipv6_cidr_blocks = []
 
   # Configuration block for authentication and authorization mechanisms to
   # connect to the associated instances or clusters.
@@ -399,6 +409,15 @@ A list of CIDR blocks that are allowed to connect to the proxy. These should typ
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 CIDR blocks that are allowed to connect to the proxy. These should typically be the IPv6 CIDR blocks of the private application subnets in the VPC plus any other networks that need access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="auth" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
@@ -513,6 +532,6 @@ The ID of the security group associated with the RDS proxy. This security group 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.44.0/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "28105edbafe6b7c1eb5376b816533738"
+  "hash": "025082bad4a74c8c25cac0c5c393567c"
 }
 ##DOCS-SOURCER-END -->
