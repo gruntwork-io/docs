@@ -177,6 +177,12 @@ module "aurora" {
   # private app subnets, plus the private subnets in the mgmt VPC.
   allow_connections_from_cidr_blocks = []
 
+  # A list of IPv6 CIDR-formatted IP address ranges that can connect to this DB.
+  # In the standard Gruntwork VPC setup with dual-stack enabled, these should be
+  # the IPv6 CIDR blocks of the private app subnets, plus the private subnets in
+  # the mgmt VPC.
+  allow_connections_from_ipv6_cidr_blocks = []
+
   # Specifies a list of Security Groups to allow connections from.
   allow_connections_from_security_groups = []
 
@@ -585,6 +591,12 @@ inputs = {
   # the standard Gruntwork VPC setup, these should be the CIDR blocks of the
   # private app subnets, plus the private subnets in the mgmt VPC.
   allow_connections_from_cidr_blocks = []
+
+  # A list of IPv6 CIDR-formatted IP address ranges that can connect to this DB.
+  # In the standard Gruntwork VPC setup with dual-stack enabled, these should be
+  # the IPv6 CIDR blocks of the private app subnets, plus the private subnets in
+  # the mgmt VPC.
+  allow_connections_from_ipv6_cidr_blocks = []
 
   # Specifies a list of Security Groups to allow connections from.
   allow_connections_from_security_groups = []
@@ -1001,6 +1013,15 @@ The id of the VPC in which this DB should be deployed.
 <HclListItemDescription>
 
 A list of CIDR-formatted IP address ranges that can connect to this DB. In the standard Gruntwork VPC setup, these should be the CIDR blocks of the private app subnets, plus the private subnets in the mgmt VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 CIDR-formatted IP address ranges that can connect to this DB. In the standard Gruntwork VPC setup with dual-stack enabled, these should be the IPv6 CIDR blocks of the private app subnets, plus the private subnets in the mgmt VPC.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1755,6 +1776,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.44.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d2a1a77466a15580c7011899833ba455"
+  "hash": "300aa77ecc305bd2568e1c0eebaa7dae"
 }
 ##DOCS-SOURCER-END -->

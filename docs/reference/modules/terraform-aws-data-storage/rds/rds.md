@@ -223,6 +223,16 @@ module "rds" {
   # group as master instance.
   allow_connections_from_cidr_blocks_to_read_replicas = []
 
+  # A list of IPv6 CIDR-formatted IP address ranges that can connect to this DB.
+  # Should typically be the IPv6 CIDR blocks of the private app subnet in this
+  # VPC plus the private subnet in the mgmt VPC.
+  allow_connections_from_ipv6_cidr_blocks = []
+
+  # A list of IPv6 CIDR-formatted IP address ranges that can connect to read
+  # replica instances. If not set read replica instances will use the same
+  # security group as master instance.
+  allow_connections_from_ipv6_cidr_blocks_to_read_replicas = []
+
   # A list of Security Groups that can connect to this DB.
   allow_connections_from_security_groups = []
 
@@ -237,9 +247,14 @@ module "rds" {
   allow_major_version_upgrade = true
 
   # A list of CIDR-formatted IP address ranges that the database is allowed to
-  # send traffit to. Should typically be the CIDR blocks of the private app
+  # send traffic to. Should typically be the CIDR blocks of the private app
   # subnet in this VPC plus the private subnet in the mgmt VPC.
   allow_outbound_connections_to_cidr_blocks = []
+
+  # A list of IPv6 CIDR-formatted IP address ranges that the database is allowed
+  # to send traffic to. Should typically be the IPv6 CIDR blocks of the private
+  # app subnet in this VPC plus the private subnet in the mgmt VPC.
+  allow_outbound_connections_to_ipv6_cidr_blocks = []
 
   # The availability zones within which it should be possible to spin up
   # replicas
@@ -621,6 +636,16 @@ inputs = {
   # group as master instance.
   allow_connections_from_cidr_blocks_to_read_replicas = []
 
+  # A list of IPv6 CIDR-formatted IP address ranges that can connect to this DB.
+  # Should typically be the IPv6 CIDR blocks of the private app subnet in this
+  # VPC plus the private subnet in the mgmt VPC.
+  allow_connections_from_ipv6_cidr_blocks = []
+
+  # A list of IPv6 CIDR-formatted IP address ranges that can connect to read
+  # replica instances. If not set read replica instances will use the same
+  # security group as master instance.
+  allow_connections_from_ipv6_cidr_blocks_to_read_replicas = []
+
   # A list of Security Groups that can connect to this DB.
   allow_connections_from_security_groups = []
 
@@ -635,9 +660,14 @@ inputs = {
   allow_major_version_upgrade = true
 
   # A list of CIDR-formatted IP address ranges that the database is allowed to
-  # send traffit to. Should typically be the CIDR blocks of the private app
+  # send traffic to. Should typically be the CIDR blocks of the private app
   # subnet in this VPC plus the private subnet in the mgmt VPC.
   allow_outbound_connections_to_cidr_blocks = []
+
+  # A list of IPv6 CIDR-formatted IP address ranges that the database is allowed
+  # to send traffic to. Should typically be the IPv6 CIDR blocks of the private
+  # app subnet in this VPC plus the private subnet in the mgmt VPC.
+  allow_outbound_connections_to_ipv6_cidr_blocks = []
 
   # The availability zones within which it should be possible to spin up
   # replicas
@@ -1058,6 +1088,24 @@ A list of CIDR-formatted IP address ranges that can connect to read replica inst
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 CIDR-formatted IP address ranges that can connect to this DB. Should typically be the IPv6 CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_connections_from_ipv6_cidr_blocks_to_read_replicas" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 CIDR-formatted IP address ranges that can connect to read replica instances. If not set read replica instances will use the same security group as master instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1088,7 +1136,16 @@ Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be perm
 <HclListItem name="allow_outbound_connections_to_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-A list of CIDR-formatted IP address ranges that the database is allowed to send traffit to. Should typically be the CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
+A list of CIDR-formatted IP address ranges that the database is allowed to send traffic to. Should typically be the CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_outbound_connections_to_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 CIDR-formatted IP address ranges that the database is allowed to send traffic to. Should typically be the IPv6 CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1827,6 +1884,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.44.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "42c1e0cdb2467d01d388ae5acd1c9dc1"
+  "hash": "897707cc1d0ae71eca9177a860243552"
 }
 ##DOCS-SOURCER-END -->

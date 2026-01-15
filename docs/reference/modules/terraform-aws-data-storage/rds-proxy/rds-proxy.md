@@ -186,6 +186,20 @@ module "rds_proxy" {
   # plus any other networks that need access.
   allow_connections_from_cidr_blocks = []
 
+  # A list of IPv6 CIDR blocks that are allowed to connect to the proxy. These
+  # should typically be the IPv6 CIDR blocks of the private application subnets
+  # in the VPC plus any other networks that need access.
+  allow_connections_from_ipv6_cidr_blocks = []
+
+  # A list of CIDR blocks that the RDS Proxy is allowed to connect to. This is
+  # used to allow the proxy to connect to the RDS instances.
+  allow_outbound_connections_to_cidr_blocks = ["0.0.0.0/0"]
+
+  # A list of IPv6 CIDR blocks that the RDS Proxy is allowed to connect to. This
+  # is used to allow the proxy to connect to the RDS instances in dual-stack
+  # networks.
+  allow_outbound_connections_to_ipv6_cidr_blocks = []
+
   # Configuration block for authentication and authorization mechanisms to
   # connect to the associated instances or clusters.
   auth = {}
@@ -277,6 +291,20 @@ inputs = {
   # typically be the CIDR blocks of the private application subnets in the VPC
   # plus any other networks that need access.
   allow_connections_from_cidr_blocks = []
+
+  # A list of IPv6 CIDR blocks that are allowed to connect to the proxy. These
+  # should typically be the IPv6 CIDR blocks of the private application subnets
+  # in the VPC plus any other networks that need access.
+  allow_connections_from_ipv6_cidr_blocks = []
+
+  # A list of CIDR blocks that the RDS Proxy is allowed to connect to. This is
+  # used to allow the proxy to connect to the RDS instances.
+  allow_outbound_connections_to_cidr_blocks = ["0.0.0.0/0"]
+
+  # A list of IPv6 CIDR blocks that the RDS Proxy is allowed to connect to. This
+  # is used to allow the proxy to connect to the RDS instances in dual-stack
+  # networks.
+  allow_outbound_connections_to_ipv6_cidr_blocks = []
 
   # Configuration block for authentication and authorization mechanisms to
   # connect to the associated instances or clusters.
@@ -399,6 +427,35 @@ A list of CIDR blocks that are allowed to connect to the proxy. These should typ
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 CIDR blocks that are allowed to connect to the proxy. These should typically be the IPv6 CIDR blocks of the private application subnets in the VPC plus any other networks that need access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_outbound_connections_to_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of CIDR blocks that the RDS Proxy is allowed to connect to. This is used to allow the proxy to connect to the RDS instances.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[
+  &quot;0.0.0.0/0&quot;
+]"/>
+</HclListItem>
+
+<HclListItem name="allow_outbound_connections_to_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 CIDR blocks that the RDS Proxy is allowed to connect to. This is used to allow the proxy to connect to the RDS instances in dual-stack networks.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="auth" requirement="optional" type="map(object(…))">
 <HclListItemDescription>
 
@@ -513,6 +570,6 @@ The ID of the security group associated with the RDS proxy. This security group 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.44.0/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "28105edbafe6b7c1eb5376b816533738"
+  "hash": "2e0245469df9132e4e4b6693c034adaf"
 }
 ##DOCS-SOURCER-END -->
