@@ -142,6 +142,12 @@ module "efs" {
   # this VPC plus the private subnet in the mgmt VPC.
   allow_connections_from_cidr_blocks = []
 
+  # A list of IPv6 CIDR-formatted IP address ranges that can connect to this
+  # file system. Should typically be the IPv6 CIDR blocks of the private app
+  # subnet in this VPC plus the private subnet in the mgmt VPC for dual-stack
+  # networks.
+  allow_connections_from_ipv6_cidr_blocks = []
+
   # A list of Security Groups that can connect to this file system.
   allow_connections_from_security_groups = []
 
@@ -257,6 +263,12 @@ inputs = {
   # system. Should typically be the CIDR blocks of the private app subnet in
   # this VPC plus the private subnet in the mgmt VPC.
   allow_connections_from_cidr_blocks = []
+
+  # A list of IPv6 CIDR-formatted IP address ranges that can connect to this
+  # file system. Should typically be the IPv6 CIDR blocks of the private app
+  # subnet in this VPC plus the private subnet in the mgmt VPC for dual-stack
+  # networks.
+  allow_connections_from_ipv6_cidr_blocks = []
 
   # A list of Security Groups that can connect to this file system.
   allow_connections_from_security_groups = []
@@ -379,6 +391,15 @@ The id of the VPC in which this file system should be deployed.
 <HclListItemDescription>
 
 A list of CIDR-formatted IP address ranges that can connect to this file system. Should typically be the CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 CIDR-formatted IP address ranges that can connect to this file system. Should typically be the IPv6 CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC for dual-stack networks.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -625,6 +646,6 @@ The IDs of the security groups created for the file system.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.44.0/modules/efs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c7e010e63b67cedf900f494dacfd83f2"
+  "hash": "da9e59bd714f05effcdcb305459a9732"
 }
 ##DOCS-SOURCER-END -->

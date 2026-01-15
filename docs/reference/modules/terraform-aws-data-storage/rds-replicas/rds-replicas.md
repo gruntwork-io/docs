@@ -114,6 +114,11 @@ module "rds_replicas" {
   # group as master instance.
   allow_connections_from_cidr_blocks = []
 
+  # A list of IPv6 CIDR-formatted IP address ranges that can connect to read
+  # replica instances. If not set read replica instances will use the same
+  # security group as master instance.
+  allow_connections_from_ipv6_cidr_blocks = []
+
   # A list of Security Groups that can connect to read replica instances. If not
   # set read replica instances will use the same security group as master
   # instance.
@@ -354,6 +359,11 @@ inputs = {
   # instances. If not set read replica instances will use the same security
   # group as master instance.
   allow_connections_from_cidr_blocks = []
+
+  # A list of IPv6 CIDR-formatted IP address ranges that can connect to read
+  # replica instances. If not set read replica instances will use the same
+  # security group as master instance.
+  allow_connections_from_ipv6_cidr_blocks = []
 
   # A list of Security Groups that can connect to read replica instances. If not
   # set read replica instances will use the same security group as master
@@ -614,6 +624,15 @@ List of IDs of AWS Security Groups to attach to the read replica RDS instance.
 <HclListItemDescription>
 
 A list of CIDR-formatted IP address ranges that can connect to read replica instances. If not set read replica instances will use the same security group as master instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 CIDR-formatted IP address ranges that can connect to read replica instances. If not set read replica instances will use the same security group as master instance.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1011,6 +1030,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.44.0/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7c022780cabb6f342c40adc2aa302d26"
+  "hash": "bf29f13477be4758d4a10bff380468aa"
 }
 ##DOCS-SOURCER-END -->

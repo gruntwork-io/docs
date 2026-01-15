@@ -88,6 +88,11 @@ module "redshift" {
   # create_subnet_group=false.
   allow_connections_from_cidr_blocks = []
 
+  # A list of IPv6 CIDR-formatted IP address ranges that can connect to this DB.
+  # Should typically be the IPv6 CIDR blocks of the private app subnet in this
+  # VPC plus the private subnet in the mgmt VPC for dual-stack networks.
+  allow_connections_from_ipv6_cidr_blocks = []
+
   # A list of Security Groups that can connect to this DB.
   allow_connections_from_security_groups = []
 
@@ -100,6 +105,11 @@ module "redshift" {
   # this if the database needs to connect to certain IP addresses for special
   # operation
   allow_outbound_connections_from_cidr_blocks = []
+
+  # A list of IPv6 CIDR-formatted IP address ranges that this DB can connect.
+  # Use this if the database needs to connect to certain IPv6 addresses for
+  # special operation in dual-stack networks.
+  allow_outbound_connections_from_ipv6_cidr_blocks = []
 
   # Specifies whether any cluster modifications are applied immediately, or
   # during the next maintenance window.
@@ -322,6 +332,11 @@ inputs = {
   # create_subnet_group=false.
   allow_connections_from_cidr_blocks = []
 
+  # A list of IPv6 CIDR-formatted IP address ranges that can connect to this DB.
+  # Should typically be the IPv6 CIDR blocks of the private app subnet in this
+  # VPC plus the private subnet in the mgmt VPC for dual-stack networks.
+  allow_connections_from_ipv6_cidr_blocks = []
+
   # A list of Security Groups that can connect to this DB.
   allow_connections_from_security_groups = []
 
@@ -334,6 +349,11 @@ inputs = {
   # this if the database needs to connect to certain IP addresses for special
   # operation
   allow_outbound_connections_from_cidr_blocks = []
+
+  # A list of IPv6 CIDR-formatted IP address ranges that this DB can connect.
+  # Use this if the database needs to connect to certain IPv6 addresses for
+  # special operation in dual-stack networks.
+  allow_outbound_connections_from_ipv6_cidr_blocks = []
 
   # Specifies whether any cluster modifications are applied immediately, or
   # during the next maintenance window.
@@ -563,6 +583,15 @@ A list of CIDR-formatted IP address ranges that can connect to this DB. Should t
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 CIDR-formatted IP address ranges that can connect to this DB. Should typically be the IPv6 CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC for dual-stack networks.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -585,6 +614,15 @@ Indicates whether major version upgrades (e.g. 9.4.x to 9.5.x) will ever be perm
 <HclListItemDescription>
 
 A list of CIDR-formatted IP address ranges that this DB can connect. Use this if the database needs to connect to certain IP addresses for special operation
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_outbound_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 CIDR-formatted IP address ranges that this DB can connect. Use this if the database needs to connect to certain IPv6 addresses for special operation in dual-stack networks.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1005,7 +1043,7 @@ The DNS name of the cluster
 <HclListItem name="endpoint">
 <HclListItemDescription>
 
-The cluter's connection endpoint
+The cluster's connection endpoint
 
 </HclListItemDescription>
 </HclListItem>
@@ -1061,6 +1099,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.44.0/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9391929056d4f453329aa41e9936bb17"
+  "hash": "f651c9f17ffb448c977e1599e51efe92"
 }
 ##DOCS-SOURCER-END -->
