@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="1.0.2" lastModifiedVersion="0.13.0"/>
+<VersionBadge repoTitle="AWS Messaging" version="1.0.3" lastModifiedVersion="1.0.3"/>
 
 # Simple Notification Service (SNS) Topic Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.13.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v1.0.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy a SNS topic along with the publisher and subscriber policies for the topic.
 
@@ -42,7 +42,7 @@ including:
 
 module "sns" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v1.0.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v1.0.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -126,7 +126,7 @@ module "sns" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v1.0.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v1.0.3"
 }
 
 inputs = {
@@ -295,19 +295,12 @@ Enable or disable creation of the resources of this module.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="delivery_policy" requirement="optional" type="any">
+<HclListItem name="delivery_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
 Delivery policy for sns topic.
 
 </HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
-```
-
-</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -395,11 +388,11 @@ A map of key value pairs to apply as tags to the SNS topic.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sns/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sns/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/sns/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sns/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sns/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1832cdd513fbf69e7c6c539310f7d560"
+  "hash": "3a9650a34f42aa52c488c490af3462a3"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="1.0.2" lastModifiedVersion="1.0.1"/>
+<VersionBadge repoTitle="AWS Messaging" version="1.0.3" lastModifiedVersion="1.0.3"/>
 
 # Amazon Managed Streaming for Apache Kafka (Amazon MSK) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/msk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/msk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v1.0.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v1.0.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform module configures and launches an [Amazon MSK](https://aws.amazon.com/msk/) cluster.
 
@@ -145,11 +145,57 @@ The MSK module supports the following authentication and authorization methods:
 
 *   [IAM access control](https://docs.aws.amazon.com/msk/latest/developerguide/iam-access-control.html)
     using `var.enable_client_sasl_iam`. You can refer
-    to the [msk-with-iam-auth example module](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/examples/msk-with-iam-auth).
-*   [TLS](https://docs.aws.amazon.com/msk/latest/developerguide/msk-authentication.html) using `var.enable_client_tls`
-    and `var.client_tls_certificate_authority_arns`
+    to the [msk-with-iam-auth example module](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/examples/msk-with-iam-auth).
+*   [SASL/SCRAM authentication](https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html) using
+    `var.enable_client_sasl_scram` and `var.client_sasl_scram_secret_arns`.
+*   [TLS (Mutual TLS)](https://docs.aws.amazon.com/msk/latest/developerguide/msk-authentication.html) using `var.enable_client_tls`
+    and `var.client_tls_certificate_authority_arns`.
 *   [Apache Kafka ACLs](https://docs.aws.amazon.com/msk/latest/developerguide/msk-acls.html)
     using `var.server_properties`.
+
+#### Using Multiple Authentication Methods
+
+Amazon MSK supports enabling multiple authentication methods simultaneously. You can activate any combination
+of authentication modes (mutual TLS, SASL/SCRAM, or IAM access control) on new or existing clusters. This is
+useful if you are migrating to a new authentication mode or must run multiple authentication modes simultaneously.
+
+To enable multiple authentication methods, set the corresponding variables to `true`:
+
+```hcl
+module "msk" {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v0.x.x"
+
+  # ... other required variables ...
+
+  # Enable multiple authentication methods
+  enable_client_tls                      = true
+  client_tls_certificate_authority_arns  = ["arn:aws:acm-pca:..."]
+  enable_client_sasl_iam                 = true
+  enable_client_sasl_scram               = true
+  client_sasl_scram_secret_arns          = ["arn:aws:secretsmanager:..."]
+
+  # TLS encryption is required for SASL authentication
+  encryption_in_transit_client_broker = "TLS"
+}
+```
+
+**Note**: When using multiple authentication methods, ensure `encryption_in_transit_client_broker` is set to
+`TLS` or `TLS_PLAINTEXT` as SASL authentication requires TLS encryption for client-broker communication.
+
+**Important**: This feature requires Terraform AWS Provider version 4.13.0 or later. If you encounter a
+`ConflictsWith` error when enabling both TLS and SASL, please upgrade your AWS provider version.
+
+#### Unauthenticated Access
+
+By default, the module sets `enable_client_unauthenticated = false`, which disables unauthenticated client access
+when any authentication method is enabled. If you need to allow unauthenticated access alongside authenticated
+methods (e.g., during a migration), you can set `enable_client_unauthenticated = true`.
+
+**Note**: If you have an existing cluster with `unauthenticated = true` and want to enable authentication methods,
+you should explicitly set `enable_client_unauthenticated = true` to prevent Terraform from changing the
+unauthenticated setting unexpectedly.
+
+See the [msk-with-multi-auth example](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/examples/msk-with-multi-auth) for a complete working example.
 
 You can read more about available authentication and authorization options from
 the [Authentication and authorization for Apache Kafka APIs page](https://docs.aws.amazon.com/msk/latest/developerguide/kafka_apis_iam.html)
@@ -246,7 +292,7 @@ the [Tiered storage](https://docs.aws.amazon.com/msk/latest/developerguide/msk-t
 You can enable the tiered storage by setting the following variables:
 
 *   `var.storage_info = "TIERED"`
-*   `var.kafka_version = "2.8.2.tiered"` (Note: this is the only supported kafka version for tiered storage)
+*   `var.kafka_version`: set to version 3.6.0 or higher (e.g., "3.6.0", "3.7.x", "3.8.x", etc.)
 *   `var.instance_type`: set to other than `kafka.t3.small`.
 
 It's only supported for the provisioned cluster type (non-serverless mode).
@@ -264,7 +310,7 @@ It's only supported for the provisioned cluster type (non-serverless mode).
 
 module "msk" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v1.0.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v1.0.3"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -336,6 +382,11 @@ module "msk" {
 
   # Whether TLS client authentication is enabled.
   enable_client_tls = false
+
+  # Whether unauthenticated client access is enabled. When set to true, clients
+  # can connect without authentication. When using TLS or SASL authentication,
+  # you typically want this set to false.
+  enable_client_unauthenticated = false
 
   # Indicates whether you want to enable or disable streaming broker logs to
   # Cloudwatch Logs.
@@ -444,7 +495,7 @@ module "msk" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v1.0.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v1.0.3"
 }
 
 inputs = {
@@ -519,6 +570,11 @@ inputs = {
 
   # Whether TLS client authentication is enabled.
   enable_client_tls = false
+
+  # Whether unauthenticated client access is enabled. When set to true, clients
+  # can connect without authentication. When using TLS or SASL authentication,
+  # you typically want this set to false.
+  enable_client_unauthenticated = false
 
   # Indicates whether you want to enable or disable streaming broker logs to
   # Cloudwatch Logs.
@@ -816,6 +872,15 @@ Whether SASL SCRAM client authentication is enabled.
 <HclListItemDescription>
 
 Whether TLS client authentication is enabled.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_client_unauthenticated" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether unauthenticated client access is enabled. When set to true, clients can connect without authentication. When using TLS or SASL authentication, you typically want this set to false.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -1180,11 +1245,11 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/msk/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/msk/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.2/modules/msk/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/msk/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/msk/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/msk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "59f6d6055769f56876cab99505541f86"
+  "hash": "6638bb3b448949c0f5682284c3b40ddf"
 }
 ##DOCS-SOURCER-END -->
