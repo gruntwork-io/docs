@@ -61,6 +61,132 @@ AWS Service Catalog currently enforces a [hard limit of 5 account-related operat
 
 To respect this limitation and offer flexibility, this module provides a configurable variable `lambda_worker_max_concurrent_operations` that governs how many updates will be performed in parallel. While the upper limit is 5 (per AWS constraints), setting it lower may be preferred in environments where other Service Catalog actions must occur concurrently (such as provisioning new accounts). This ensures that background remediation work does not block critical operations or trigger rate limiting.
 
+## Filtering Managed vs Non-Managed Accounts
+
+When enabled, the drift detection system uses AWS Organizations tags to distinguish between accounts managed by Account Factory and other accounts that may be enrolled in Control Tower but should not be automatically updated.
+
+### How It Works
+
+*   Tag Check: Before updating an account, the worker Lambda checks if the account has the tag "key:value" set as defined by `var.managed_account_tag_key` and `var.managed_account_tag_value`.
+*   Skip Non-Managed: Accounts without the tag or with a different value are skipped and removed from the update queue
+*   Fail-Safe: If the Lambda cannot read tags due to permissions or API errors, the account is treated as non-managed and skipped
+
+### Default Configuration
+
+By default, filtering is disabled (`var.managed_account_tag_key` is set to `null`). With the default setting, ALL accounts will be updated (no filtering). Example of how this may be set:
+
+```hcl
+module "multi_account_factory" {
+  source = "..."
+
+  account_requests_folder = "./accounts"
+
+  # WARNING: This will update ALL accounts in Control Tower
+  managed_account_tag_key = null
+
+  # ... other variables
+}
+```
+
+### Enabling Filtering
+
+To enable filtering, you will need to set the desired `var.managed_account_tag_key` and `var.managed_account_tag_value`. Example:
+
+```hcl
+module "multi_account_factory" {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory-async?ref=v0.x.x"
+
+  account_requests_folder = "./accounts"
+
+  # Optional: Customize tag key/value
+  managed_account_tag_key   = "account-factory-managed"
+  managed_account_tag_value = "true"
+
+  # ... other variables
+}
+```
+
+### Tagging Managed Accounts
+
+Tags are automatically applied by Terraform when you define them in your account YAML files:
+
+```yaml
+# accounts/account-example.yml or _new-account-requests/account-example.yml
+account_email: prod@example.com
+sso_user_first_name: John
+sso_user_last_name: Doe
+sso_user_email: john@example.com
+organizational_unit_name: Production
+tags:
+  account-factory-managed: "true"
+  environment: production
+```
+
+When you run `terraform apply`, the module will:
+
+1.  Create the account via Service Catalog
+2.  Apply the specified tags to the account in AWS Organizations
+3.  The drift detection system will respect the `account-factory-managed` tag when deciding whether to update the account
+
+### Upgrading from Previous Versions (Migration Required)
+
+If you are upgrading from a previous version and wish to use filtering of managed accounts, you should tag your accounts before upgrading to avoid drift detection being disabled for all existing accounts.
+
+#### Migration Steps
+
+##### Step 1: Tag Your Managed Accounts (Before Upgrading)
+
+Add the desired 'key:value' tag to each managed account's YAML file. In the below example, we use account-factory-managed:true:
+
+```yaml
+# accounts/account-example.yml or _new-account-requests/account-example.yml
+account_email: prod@example.com
+sso_user_first_name: John
+sso_user_last_name: Doe
+sso_user_email: john@example.com
+organizational_unit_name: Production
+tags:
+  account-factory-managed: "true"  # ADD THIS TAG (change to match your chosen tag)
+  environment: production
+```
+
+##### Step 2: Apply Tags to AWS Organizations
+
+Run OpenTofu/Terraform apply with your **current version** to tag all managed accounts in AWS Organizations. This applies the tags without changing any Lambda code.
+
+##### Step 3: Verify Tags Applied
+
+Verify that your accounts are tagged in AWS Organizations:
+
+```bash
+aws organizations list-tags-for-resource --resource-id <account-id>
+```
+
+You should see:
+
+```json
+{
+  "Tags": [
+    {
+      "Key": "account-factory-managed",
+      "Value": "true"
+    }
+  ]
+}
+```
+
+##### Step 4: Upgrade Module Version
+
+Now it's safe to upgrade to the new version. Update your module source and run an OpenTofu/Terraform plan + apply.
+
+#### After Migration
+
+After successful migration:
+
+*   Managed accounts (with the tag) will receive drift detection updates
+*   Non-managed accounts (without the tag) will be skipped automatically
+*   New accounts created with tags will automatically be managed
+
 ## Sample Usage
 
 <Tabs>
@@ -156,6 +282,19 @@ module "control_tower_multi_account_factory_async" {
   # Sets the timeout in seconds for the worker lambda function used for async
   # provisioning_artifact_id updates.
   lambda_worker_timeout = 900
+
+  # The AWS Organizations tag key used to identify managed accounts. Only
+  # accounts with this tag set to the value specified in
+  # managed_account_tag_value will be updated during drift detection. Set to
+  # null to disable filtering and update all accounts. Defaults to null
+  # (disabled).
+  managed_account_tag_key = null
+
+  # The AWS Organizations tag value that indicates an account is managed by
+  # Account Factory. Accounts must have the tag specified in
+  # managed_account_tag_key set to this value to be included in drift detection
+  # updates.
+  managed_account_tag_value = null
 
   # The name of your AWS Control Tower Account Factory Portfolio
   portfolio_name = "AWS Control Tower Account Factory Portfolio"
@@ -281,6 +420,19 @@ inputs = {
   # Sets the timeout in seconds for the worker lambda function used for async
   # provisioning_artifact_id updates.
   lambda_worker_timeout = 900
+
+  # The AWS Organizations tag key used to identify managed accounts. Only
+  # accounts with this tag set to the value specified in
+  # managed_account_tag_value will be updated during drift detection. Set to
+  # null to disable filtering and update all accounts. Defaults to null
+  # (disabled).
+  managed_account_tag_key = null
+
+  # The AWS Organizations tag value that indicates an account is managed by
+  # Account Factory. Accounts must have the tag specified in
+  # managed_account_tag_key set to this value to be included in drift detection
+  # updates.
+  managed_account_tag_value = null
 
   # The name of your AWS Control Tower Account Factory Portfolio
   portfolio_name = "AWS Control Tower Account Factory Portfolio"
@@ -451,6 +603,24 @@ Sets the timeout in seconds for the worker lambda function used for async provis
 <HclListItemDefaultValue defaultValue="900"/>
 </HclListItem>
 
+<HclListItem name="managed_account_tag_key" requirement="optional" type="string">
+<HclListItemDescription>
+
+The AWS Organizations tag key used to identify managed accounts. Only accounts with this tag set to the value specified in managed_account_tag_value will be updated during drift detection. Set to null to disable filtering and update all accounts. Defaults to null (disabled).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="managed_account_tag_value" requirement="optional" type="string">
+<HclListItemDescription>
+
+The AWS Organizations tag value that indicates an account is managed by Account Factory. Accounts must have the tag specified in managed_account_tag_key set to this value to be included in drift detection updates.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="portfolio_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -527,6 +697,6 @@ The data from all the AWS accounts created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/control-tower-multi-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "983c7d97bbda5cdb272cdb4640745fe8"
+  "hash": "b555c03b03dcb825ce6309600c6caf62"
 }
 ##DOCS-SOURCER-END -->

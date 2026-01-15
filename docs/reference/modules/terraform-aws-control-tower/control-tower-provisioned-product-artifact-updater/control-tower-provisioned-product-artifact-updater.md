@@ -124,6 +124,18 @@ module "control_tower_provisioned_product_artifact_updater" {
   # provisioning_artifact_id updates.
   lambda_worker_timeout = 900
 
+  # The AWS Organizations tag key used to identify managed accounts. Only
+  # accounts with this tag set to the value specified in
+  # managed_account_tag_value will be updated during drift detection. Set to
+  # null to disable filtering and update all accounts (not recommended).
+  managed_account_tag_key = "account-factory-managed"
+
+  # The AWS Organizations tag value that indicates an account is managed by
+  # Account Factory. Accounts must have the tag specified in
+  # managed_account_tag_key set to this value to be included in drift detection
+  # updates.
+  managed_account_tag_value = "true"
+
   # The name of your AWS Control Tower Account Factory Portfolio
   portfolio_name = "AWS Control Tower Account Factory Portfolio"
 
@@ -203,6 +215,18 @@ inputs = {
   # provisioning_artifact_id updates.
   lambda_worker_timeout = 900
 
+  # The AWS Organizations tag key used to identify managed accounts. Only
+  # accounts with this tag set to the value specified in
+  # managed_account_tag_value will be updated during drift detection. Set to
+  # null to disable filtering and update all accounts (not recommended).
+  managed_account_tag_key = "account-factory-managed"
+
+  # The AWS Organizations tag value that indicates an account is managed by
+  # Account Factory. Accounts must have the tag specified in
+  # managed_account_tag_key set to this value to be included in drift detection
+  # updates.
+  managed_account_tag_value = "true"
+
   # The name of your AWS Control Tower Account Factory Portfolio
   portfolio_name = "AWS Control Tower Account Factory Portfolio"
 
@@ -233,6 +257,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/control-tower-provisioned-product-artifact-updater/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cb0b2f6f990469c0a688dba55ac6ef04"
+  "hash": "b623cf26779a1b8df903729eb5235da5"
 }
 ##DOCS-SOURCER-END -->
