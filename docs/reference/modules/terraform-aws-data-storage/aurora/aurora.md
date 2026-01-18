@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.44.0" lastModifiedVersion="0.42.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.45.0" lastModifiedVersion="0.42.0"/>
 
 # Aurora Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.44.0/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.45.0/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.42.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -59,7 +59,7 @@ Cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Managing.h
 ## How do you configure this module?
 
 This module allows you to configure a number of parameters, such as backup windows, maintenance window, port number,
-and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.44.0/modules/aurora/variables.tf).
+and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.45.0/modules/aurora/variables.tf).
 
 ## How do you create a cross-region read replica cluster?
 
@@ -77,7 +77,7 @@ module "replica" {
 }
 ```
 
-See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.44.0/examples/aurora-with-cross-region-replica) for more details.
+See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.45.0/examples/aurora-with-cross-region-replica) for more details.
 
 ## How do you destroy a cross-region read replica?
 
@@ -137,7 +137,7 @@ see [Limitations of Aurora Serverless](https://docs.aws.amazon.com/AmazonRDS/lat
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.44.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.45.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -176,6 +176,12 @@ module "aurora" {
   # the standard Gruntwork VPC setup, these should be the CIDR blocks of the
   # private app subnets, plus the private subnets in the mgmt VPC.
   allow_connections_from_cidr_blocks = []
+
+  # A list of IPv6 CIDR-formatted IP address ranges that can connect to this DB.
+  # In the standard Gruntwork VPC setup with dual-stack enabled, these should be
+  # the IPv6 CIDR blocks of the private app subnets, plus the private subnets in
+  # the mgmt VPC.
+  allow_connections_from_ipv6_cidr_blocks = []
 
   # Specifies a list of Security Groups to allow connections from.
   allow_connections_from_security_groups = []
@@ -543,7 +549,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.44.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.45.0"
 }
 
 inputs = {
@@ -585,6 +591,12 @@ inputs = {
   # the standard Gruntwork VPC setup, these should be the CIDR blocks of the
   # private app subnets, plus the private subnets in the mgmt VPC.
   allow_connections_from_cidr_blocks = []
+
+  # A list of IPv6 CIDR-formatted IP address ranges that can connect to this DB.
+  # In the standard Gruntwork VPC setup with dual-stack enabled, these should be
+  # the IPv6 CIDR blocks of the private app subnets, plus the private subnets in
+  # the mgmt VPC.
+  allow_connections_from_ipv6_cidr_blocks = []
 
   # Specifies a list of Security Groups to allow connections from.
   allow_connections_from_security_groups = []
@@ -1001,6 +1013,15 @@ The id of the VPC in which this DB should be deployed.
 <HclListItemDescription>
 
 A list of CIDR-formatted IP address ranges that can connect to this DB. In the standard Gruntwork VPC setup, these should be the CIDR blocks of the private app subnets, plus the private subnets in the mgmt VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of IPv6 CIDR-formatted IP address ranges that can connect to this DB. In the standard Gruntwork VPC setup with dual-stack enabled, these should be the IPv6 CIDR blocks of the private app subnets, plus the private subnets in the mgmt VPC.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1750,11 +1771,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.44.0/modules/aurora/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.44.0/modules/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.44.0/modules/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.45.0/modules/aurora/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.45.0/modules/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.45.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d2a1a77466a15580c7011899833ba455"
+  "hash": "04251076b69a54a3057058274a706b1b"
 }
 ##DOCS-SOURCER-END -->
