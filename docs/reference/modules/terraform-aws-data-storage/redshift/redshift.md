@@ -952,7 +952,7 @@ If non-null, the name of the cluster the source snapshot was created from.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="snapshot_copy" requirement="optional" type="map(any)">
+<HclListItem name="snapshot_copy" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
 Configuration of automatic copy of snapshots from one region to another. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_snapshot_copy for more detail
@@ -961,7 +961,12 @@ Configuration of automatic copy of snapshots from one region to another. See htt
 <HclListItemTypeDetails>
 
 ```hcl
-Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+object({
+    destination_region               = string
+    grant_name                       = optional(string)
+    retention_period                 = optional(number)
+    manual_snapshot_retention_period = optional(number)
+  })
 ```
 
 </HclListItemTypeDetails>
@@ -1099,6 +1104,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.45.0/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ba2181ba3bd58549c846838c154f303e"
+  "hash": "5cbb31b5412482851c1efb9f394fcf9e"
 }
 ##DOCS-SOURCER-END -->
