@@ -9,15 +9,15 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="1.1.0" lastModifiedVersion="1.0.1"/>
+<VersionBadge repoTitle="Control Tower" version="1.2.0" lastModifiedVersion="1.0.1"/>
 
 # Control Tower Multi-Account Factory Async
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/landingzone/control-tower-multi-account-factory-async" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.2.0/modules/landingzone/control-tower-multi-account-factory-async" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v1.0.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This OpenTofu/Terraform module provisions multiple AWS accounts using AWS Control Tower Account Factory. Under the hood, it leverages the [control-tower-account-factory-async](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/control-tower-account-factory-async) module for account creation. It also includes a separate mechanism to detect and remediate drifted or outdated AWS Service Catalog products asynchronously, outside of OpenTofu/Terraform, using an EventBridge rule, SQS, Lambda, and AWS Step Functions.
+This OpenTofu/Terraform module provisions multiple AWS accounts using AWS Control Tower Account Factory. Under the hood, it leverages the [control-tower-account-factory-async](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.2.0/modules/control-tower-account-factory-async) module for account creation. It also includes a separate mechanism to detect and remediate drifted or outdated AWS Service Catalog products asynchronously, outside of OpenTofu/Terraform, using an EventBridge rule, SQS, Lambda, and AWS Step Functions.
 
 ## Background and Justification
 
@@ -200,7 +200,7 @@ After successful migration:
 
 module "control_tower_multi_account_factory_async" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory-async?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory-async?ref=v1.2.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -283,6 +283,15 @@ module "control_tower_multi_account_factory_async" {
   # provisioning_artifact_id updates.
   lambda_worker_timeout = 900
 
+  # Enable priority-based update mode. When true, tagged accounts are updated
+  # first using full concurrency (lambda_worker_max_concurrent_operations), then
+  # non-tagged accounts are updated with concurrency of 1. Requires
+  # managed_account_tag_key to be set (not null). When false, behavior depends
+  # on tag filtering: if enabled, only tagged accounts are updated; if disabled,
+  # all accounts are updated. Default: false (opt-in for backward
+  # compatibility).
+  managed_account_priority_mode = false
+
   # The AWS Organizations tag key used to identify managed accounts. Only
   # accounts with this tag set to the value specified in
   # managed_account_tag_value will be updated during drift detection. Set to
@@ -335,7 +344,7 @@ module "control_tower_multi_account_factory_async" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory-async?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory-async?ref=v1.2.0"
 }
 
 inputs = {
@@ -420,6 +429,15 @@ inputs = {
   # Sets the timeout in seconds for the worker lambda function used for async
   # provisioning_artifact_id updates.
   lambda_worker_timeout = 900
+
+  # Enable priority-based update mode. When true, tagged accounts are updated
+  # first using full concurrency (lambda_worker_max_concurrent_operations), then
+  # non-tagged accounts are updated with concurrency of 1. Requires
+  # managed_account_tag_key to be set (not null). When false, behavior depends
+  # on tag filtering: if enabled, only tagged accounts are updated; if disabled,
+  # all accounts are updated. Default: false (opt-in for backward
+  # compatibility).
+  managed_account_priority_mode = false
 
   # The AWS Organizations tag key used to identify managed accounts. Only
   # accounts with this tag set to the value specified in
@@ -603,6 +621,15 @@ Sets the timeout in seconds for the worker lambda function used for async provis
 <HclListItemDefaultValue defaultValue="900"/>
 </HclListItem>
 
+<HclListItem name="managed_account_priority_mode" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable priority-based update mode. When true, tagged accounts are updated first using full concurrency (lambda_worker_max_concurrent_operations), then non-tagged accounts are updated with concurrency of 1. Requires managed_account_tag_key to be set (not null). When false, behavior depends on tag filtering: if enabled, only tagged accounts are updated; if disabled, all accounts are updated. Default: false (opt-in for backward compatibility).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="managed_account_tag_key" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -692,11 +719,11 @@ The data from all the AWS accounts created.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/control-tower-multi-account-factory-async/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/control-tower-multi-account-factory-async/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/control-tower-multi-account-factory-async/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.2.0/modules/control-tower-multi-account-factory-async/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.2.0/modules/control-tower-multi-account-factory-async/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.2.0/modules/control-tower-multi-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b555c03b03dcb825ce6309600c6caf62"
+  "hash": "3a0ee2f3f03ae29fe8bfac9a532f52a7"
 }
 ##DOCS-SOURCER-END -->
