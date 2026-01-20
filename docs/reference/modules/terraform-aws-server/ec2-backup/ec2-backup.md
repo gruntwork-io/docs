@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="1.0.3" lastModifiedVersion="0.15.10"/>
+<VersionBadge repoTitle="Module Server" version="1.0.4" lastModifiedVersion="1.0.4"/>
 
 # EC2 Backup Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/ec2-backup" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v0.15.10" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v1.0.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy a [data lifecycle manager policy](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-lifecycle.html) that will automatically create snapshots of EBS volumes whose tags match the target you configure. This is ideal for managing automatic backups of your EC2 instances' EBS volumes.
 
@@ -32,7 +32,7 @@ This module makes it easy to deploy a [data lifecycle manager policy](https://do
 
 module "ec_2_backup" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/ec2-backup?ref=v1.0.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/ec2-backup?ref=v1.0.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -98,7 +98,7 @@ module "ec_2_backup" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/ec2-backup?ref=v1.0.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/ec2-backup?ref=v1.0.4"
 }
 
 inputs = {
@@ -304,11 +304,11 @@ The name of the IAM role associated with the data lifecycle manager
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/ec2-backup/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/ec2-backup/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/ec2-backup/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/ec2-backup/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/ec2-backup/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c1e29c97ea779590cf90e764edff9b64"
+  "hash": "4f6f6011601e8665053cf4ea02e2a959"
 }
 ##DOCS-SOURCER-END -->
