@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Module Server" version="1.0.3" lastModifiedVersion="1.0.2"/>
+<VersionBadge repoTitle="Module Server" version="1.0.4" lastModifiedVersion="1.0.4"/>
 
 # Single Server Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/single-server" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v1.0.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-server/releases/tag/v1.0.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy a single server--that is, a single EC2 instance (e.g. a bastion host, Jenkins
 server) rather than an Auto Scaling Group or ECS Cluster--along with the all the resources it typically needs:
@@ -105,7 +105,7 @@ resource "aws_iam_policy_attachment" "attachment" {
 
 module "single_server" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v1.0.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v1.0.4"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -394,7 +394,7 @@ module "single_server" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v1.0.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-server.git//modules/single-server?ref=v1.0.4"
 }
 
 inputs = {
@@ -1318,11 +1318,11 @@ When used in combination with user_data or user_data_base64, a user_data change 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/single-server/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/single-server/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.3/modules/single-server/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/single-server/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/single-server/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1dbd58627cfb79eb186c184c8b265f1c"
+  "hash": "1f326a9a9320e372f533b639b1660d78"
 }
 ##DOCS-SOURCER-END -->
