@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.2.0" lastModifiedVersion="1.2.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.3.0" lastModifiedVersion="1.3.0"/>
 
 # GuardDuty Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/guardduty-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/guardduty-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an S3 bucket for storing GuardDuty findings and optionally a KMS Customer Master Key (CMK) for encrypting that
 data, including all the appropriate lifecycle, encryption, and permission settings for GuardDuty.
@@ -35,7 +35,7 @@ It is particularly useful when configuring cross account access, for example whe
 
 module "guardduty_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-bucket?ref=v1.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-bucket?ref=v1.3.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -152,7 +152,7 @@ module "guardduty_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-bucket?ref=v1.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-bucket?ref=v1.3.0"
 }
 
 inputs = {
@@ -627,11 +627,11 @@ The name of the S3 bucket where GuardDuty findings are delivered.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/guardduty-bucket/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/guardduty-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/guardduty-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/guardduty-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/guardduty-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/guardduty-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "242e05bd09918466dec84ae014eafde9"
+  "hash": "e35b5fc9caf72f34aa1f6ba6aa08179a"
 }
 ##DOCS-SOURCER-END -->

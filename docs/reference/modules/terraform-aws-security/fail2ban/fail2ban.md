@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.2.0" lastModifiedVersion="1.0.1"/>
+<VersionBadge repoTitle="Security Modules" version="1.3.0" lastModifiedVersion="1.0.1"/>
 
 # Fail2Ban Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/fail2ban" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/fail2ban" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.0.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -27,11 +27,11 @@ Instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/fail2ban/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/fail2ban/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/fail2ban/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/fail2ban/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/fail2ban/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/fail2ban/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1efa6a5f2f16771a700a43c2823e3263"
+  "hash": "e0b9ba87e538dc39c24ae81292175c81"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.2.0" lastModifiedVersion="1.2.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.3.0" lastModifiedVersion="1.3.0"/>
 
 # AWS Organizations
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-organizations" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-organizations" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module allows you to create and manage your [AWS Organization](https://aws.amazon.com/organizations/) and all child [AWS accounts](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts.html) as code.
 
@@ -39,23 +39,23 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is AWS Organizations?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-organizations/core-concepts.md#what-is-aws-organizations)
+*   [What is AWS Organizations?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-organizations/core-concepts.md#what-is-aws-organizations)
 
-*   [What is a Root account?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-organizations/core-concepts.md#what-is-a-root-account)
+*   [What is a Root account?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-organizations/core-concepts.md#what-is-a-root-account)
 
-*   [What are Organization Accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-organizations/core-concepts.md#what-are-organization-accounts)
+*   [What are Organization Accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-organizations/core-concepts.md#what-are-organization-accounts)
 
-*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-organizations/core-concepts.md#what-resources-does-this-module-create)
+*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-organizations/core-concepts.md#what-resources-does-this-module-create)
 
 *   [How to configure a production-grade AWS account structure](https://docs.gruntwork.io/guides/build-it-yourself/landing-zone)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -63,7 +63,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/aws-organizations](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/examples/aws-organizations): The `examples/aws-organizations` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/aws-organizations](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/examples/aws-organizations): The `examples/aws-organizations` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -77,9 +77,9 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Day-to-day operations
 
-*   [How do I provision new accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-organizations/core-concepts.md#how-do-i-provision-new-accounts)
+*   [How do I provision new accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-organizations/core-concepts.md#how-do-i-provision-new-accounts)
 
-*   [How do I remove accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-organizations/core-concepts.md#how-do-i-remove-accounts)
+*   [How do I remove accounts?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-organizations/core-concepts.md#how-do-i-remove-accounts)
 
 ## Sample Usage
 
@@ -94,7 +94,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aws_organizations" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v1.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v1.3.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -160,7 +160,7 @@ module "aws_organizations" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v1.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-organizations?ref=v1.3.0"
 }
 
 inputs = {
@@ -436,11 +436,11 @@ Identifier of the root of this organization.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-organizations/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-organizations/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-organizations/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-organizations/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-organizations/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-organizations/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "65758710d09b439434a6104644f1770c"
+  "hash": "2b195424e51c8a4b068021e101778ac4"
 }
 ##DOCS-SOURCER-END -->
