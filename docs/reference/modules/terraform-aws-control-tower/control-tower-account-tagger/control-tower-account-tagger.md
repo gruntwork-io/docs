@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="1.1.0" lastModifiedVersion="0.8.1"/>
+<VersionBadge repoTitle="Control Tower" version="1.3.0" lastModifiedVersion="0.8.1"/>
 
 # Control Tower Account Tagger
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/landingzone/control-tower-account-tagger" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.3.0/modules/landingzone/control-tower-account-tagger" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.8.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -62,7 +62,7 @@ This module assume that the account is managed by AWS Control Tower and has two 
 
 module "control_tower_account_tagger" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-tagger?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-tagger?ref=v1.3.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -103,7 +103,7 @@ module "control_tower_account_tagger" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-tagger?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-account-tagger?ref=v1.3.0"
 }
 
 inputs = {
@@ -143,11 +143,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/control-tower-account-tagger/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/control-tower-account-tagger/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.1.0/modules/control-tower-account-tagger/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.3.0/modules/control-tower-account-tagger/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.3.0/modules/control-tower-account-tagger/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.3.0/modules/control-tower-account-tagger/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5b87f444c19bbdd71c1f28c1be65d181"
+  "hash": "b6f4af1987567a3f1f39ad5c9699abd2"
 }
 ##DOCS-SOURCER-END -->
