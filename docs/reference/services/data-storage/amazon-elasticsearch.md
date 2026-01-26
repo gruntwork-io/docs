@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.146.0" lastModifiedVersion="0.144.0"/>
+<VersionBadge version="0.147.0" lastModifiedVersion="0.146.1"/>
 
 # Amazon Elasticsearch Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/elasticsearch" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.147.0/modules/data-stores/elasticsearch" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Felasticsearch" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -63,7 +63,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.147.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -76,7 +76,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.147.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -101,7 +101,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "elasticsearch" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/elasticsearch?ref=v0.146.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/elasticsearch?ref=v0.147.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -128,7 +128,7 @@ module "elasticsearch" {
   volume_size = <number>
 
   # The type of EBS volumes to use in the cluster. Must be one of: standard,
-  # gp2, io1, sc1, or st1. For a comparison of EBS volume types, see
+  # gp2, gp3, io1, sc1, or st1. For a comparison of EBS volume types, see
   # https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
   volume_type = <string>
 
@@ -345,8 +345,7 @@ module "elasticsearch" {
   internal_user_database_enabled = false
 
   # The baseline input/output (I/O) performance of EBS volumes attached to data
-  # nodes. Must be between 1000 and 4000. Applicable only if var.volume_type is
-  # io1.
+  # nodes. Applicable only if var.volume_type is gp3 or io1.
   iops = null
 
   # Whether the cluster is publicly accessible.
@@ -437,6 +436,10 @@ module "elasticsearch" {
   # ids are used, depending on var.availability_zone_count. Otherwise only the
   # first one is used.
   subnet_ids = []
+
+  # The throughput (in MiB/s) of EBS volumes attached to data nodes. Valid
+  # values are between 125 and 1000. Applicable only if var.volume_type is gp3.
+  throughput = null
 
   # The name of the TLS security policy that needs to be applied to the HTTPS
   # endpoint. Valid values are Policy-Min-TLS-1-0-2019-07 and
@@ -475,7 +478,7 @@ module "elasticsearch" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/elasticsearch?ref=v0.146.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/elasticsearch?ref=v0.147.0"
 }
 
 inputs = {
@@ -505,7 +508,7 @@ inputs = {
   volume_size = <number>
 
   # The type of EBS volumes to use in the cluster. Must be one of: standard,
-  # gp2, io1, sc1, or st1. For a comparison of EBS volume types, see
+  # gp2, gp3, io1, sc1, or st1. For a comparison of EBS volume types, see
   # https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
   volume_type = <string>
 
@@ -722,8 +725,7 @@ inputs = {
   internal_user_database_enabled = false
 
   # The baseline input/output (I/O) performance of EBS volumes attached to data
-  # nodes. Must be between 1000 and 4000. Applicable only if var.volume_type is
-  # io1.
+  # nodes. Applicable only if var.volume_type is gp3 or io1.
   iops = null
 
   # Whether the cluster is publicly accessible.
@@ -814,6 +816,10 @@ inputs = {
   # ids are used, depending on var.availability_zone_count. Otherwise only the
   # first one is used.
   subnet_ids = []
+
+  # The throughput (in MiB/s) of EBS volumes attached to data nodes. Valid
+  # values are between 125 and 1000. Applicable only if var.volume_type is gp3.
+  throughput = null
 
   # The name of the TLS security policy that needs to be applied to the HTTPS
   # endpoint. Valid values are Policy-Min-TLS-1-0-2019-07 and
@@ -885,7 +891,7 @@ The size in GiB of the EBS volume for each node in the cluster (e.g. 10, or 512)
 <HclListItem name="volume_type" requirement="required" type="string">
 <HclListItemDescription>
 
-The type of EBS volumes to use in the cluster. Must be one of: standard, gp2, io1, sc1, or st1. For a comparison of EBS volume types, see https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
+The type of EBS volumes to use in the cluster. Must be one of: standard, gp2, gp3, io1, sc1, or st1. For a comparison of EBS volume types, see https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1308,7 +1314,7 @@ Whether the internal user database is enabled. Enable this to use master account
 <HclListItem name="iops" requirement="optional" type="number">
 <HclListItemDescription>
 
-The baseline input/output (I/O) performance of EBS volumes attached to data nodes. Must be between 1000 and 4000. Applicable only if <a href="#volume_type"><code>volume_type</code></a> is io1.
+The baseline input/output (I/O) performance of EBS volumes attached to data nodes. Applicable only if <a href="#volume_type"><code>volume_type</code></a> is gp3 or io1.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1494,6 +1500,15 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="throughput" requirement="optional" type="number">
+<HclListItemDescription>
+
+The throughput (in MiB/s) of EBS volumes attached to data nodes. Valid values are between 125 and 1000. Applicable only if <a href="#volume_type"><code>volume_type</code></a> is gp3.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="tls_security_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1578,11 +1593,11 @@ Domain-specific endpoint for Kibana without https scheme.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/elasticsearch/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/elasticsearch/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/elasticsearch/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.147.0/modules/data-stores/elasticsearch/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.147.0/modules/data-stores/elasticsearch/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.147.0/modules/data-stores/elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7a8cbdea4d5172c269255a7726b3ffd5"
+  "hash": "aec68edbcf09c97521267d8e4e6bc8a8"
 }
 ##DOCS-SOURCER-END -->

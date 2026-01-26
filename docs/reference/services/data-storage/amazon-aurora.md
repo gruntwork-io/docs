@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.146.0" lastModifiedVersion="0.146.0"/>
+<VersionBadge version="0.147.0" lastModifiedVersion="0.146.1"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.147.0/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.147.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.147.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.146.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.147.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -318,7 +318,11 @@ module "aurora" {
   # value here overrides the value in db_config_secrets_manager_id.
   engine = null
 
-  # The version of aurora to run - provisioned or serverless.
+  # The DB engine mode of the DB cluster: either provisioned or serverless. Note
+  # that serverless (v1) is deprecated and no longer available for new clusters.
+  # For Aurora Serverless v2, use provisioned with
+  # scaling_configuration_min_capacity_V2 and
+  # scaling_configuration_max_capacity_V2.
   engine_mode = "provisioned"
 
   # The Amazon Aurora DB engine version for the selected engine and engine_mode.
@@ -583,7 +587,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.146.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v0.147.0"
 }
 
 inputs = {
@@ -802,7 +806,11 @@ inputs = {
   # value here overrides the value in db_config_secrets_manager_id.
   engine = null
 
-  # The version of aurora to run - provisioned or serverless.
+  # The DB engine mode of the DB cluster: either provisioned or serverless. Note
+  # that serverless (v1) is deprecated and no longer available for new clusters.
+  # For Aurora Serverless v2, use provisioned with
+  # scaling_configuration_min_capacity_V2 and
+  # scaling_configuration_max_capacity_V2.
   engine_mode = "provisioned"
 
   # The Amazon Aurora DB engine version for the selected engine and engine_mode.
@@ -1810,7 +1818,7 @@ The name of the database engine to be used for this DB cluster. Valid Values: au
 <HclListItem name="engine_mode" requirement="optional" type="string">
 <HclListItemDescription>
 
-The version of aurora to run - provisioned or serverless.
+The DB engine mode of the DB cluster: either provisioned or serverless. Note that serverless (v1) is deprecated and no longer available for new clusters. For Aurora Serverless v2, use provisioned with scaling_configuration_min_capacity_V2 and scaling_configuration_max_capacity_V2.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;provisioned&quot;"/>
@@ -2493,11 +2501,11 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.147.0/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.147.0/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.147.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d0ec177d5797263d053093d2bc7dd206"
+  "hash": "e1dd49b8a5e6d968a20cd2001eb35de5"
 }
 ##DOCS-SOURCER-END -->
