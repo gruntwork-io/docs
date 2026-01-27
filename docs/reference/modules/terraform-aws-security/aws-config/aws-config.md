@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.2.0" lastModifiedVersion="1.2.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.3.0" lastModifiedVersion="1.3.0"/>
 
 # AWS Config
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-config" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-config" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module configures [AWS Config](https://aws.amazon.com/config/), a service that allows you to assess, audit, and evaluate the configurations of your AWS resources. You can use AWS Config to ensure that AWS resources are configured in a manner that is in compliance with your company policies or regulatory requirements.
 
@@ -39,19 +39,19 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-config/core-concepts.md#what-is-aws-config)
+*   [What is AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-config/core-concepts.md#what-is-aws-config)
 
-*   [What are Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-config/core-concepts.md#what-are-config-rules)
+*   [What are Config Rules?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-config/core-concepts.md#what-are-config-rules)
 
-*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-config/core-concepts.md#what-resources-does-this-module-create)
+*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-config/core-concepts.md#what-resources-does-this-module-create)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -59,7 +59,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/aws-config](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/examples/aws-config): The `examples/aws-config` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/aws-config](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/examples/aws-config): The `examples/aws-config` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -71,9 +71,9 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Day-to-day operations
 
-*   [What does a configuration item look like, and how do I view it?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-config/core-concepts.md#what-does-a-configuration-item-look-like-and-how-do-i-view-it)
+*   [What does a configuration item look like, and how do I view it?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-config/core-concepts.md#what-does-a-configuration-item-look-like-and-how-do-i-view-it)
 
-*   [How does Config work with multiple AWS accounts and multiple regions?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-config-multi-region/core-concepts.md#how-does-config-work-with-multiple-aws-accounts-and-multiple-regions)
+*   [How does Config work with multiple AWS accounts and multiple regions?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-config-multi-region/core-concepts.md#how-does-config-work-with-multiple-aws-accounts-and-multiple-regions)
 
 ## Sample Usage
 
@@ -88,7 +88,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aws_config" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config?ref=v1.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config?ref=v1.3.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -382,7 +382,7 @@ module "aws_config" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config?ref=v1.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config?ref=v1.3.0"
 }
 
 inputs = {
@@ -1237,11 +1237,11 @@ The ARN of the SNS topic to which Config delivers notifications.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-config/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-config/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.2.0/modules/aws-config/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-config/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-config/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/aws-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b46aa667664a2bd68a909ff7b45adce3"
+  "hash": "ef4d6fd54c713ccdf65946d483762924"
 }
 ##DOCS-SOURCER-END -->
