@@ -112,9 +112,10 @@ Next, update the `.patcher/config.yaml` file to include the new patch in your re
 The `config.yaml` file acts as an index of patches for the repository. 
 Patcher uses this file to quickly determine if dependencies need to be updated when evaluating a version bump. 
 
-The general structure of an entry in `config.yaml` is as follows: 
+The general structure of an entry in `config.yaml` is as follows:
 
 ```yaml
+versions:
   - tag: <VERSION>
     patches:
       - slug: "<PATCH_NAME_SLUG>"
@@ -127,9 +128,10 @@ The following fields are defined as:
 * `<PATCH_NAME_SLUG>`: The slug used as the directory name for the patch. 
 * `<MODULE_NAME>`: The name of the module that includes the breaking change. 
 
-Once you have filled out these fields, the new entry in the `config.yaml` file will look like this: 
+Once you have filled out these fields, the new entry in the `config.yaml` file will look like this:
 
 ```yaml
+versions:
   - tag: v0.10.4
     patches:
       - slug: "sample-breaking-change"
