@@ -326,7 +326,9 @@ See the [documentation](https://docs.gruntwork.io/2.0/reference/pipelines/featur
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
 
-  
+  This release updates the module&apos;s AWS provider version constraint to support `hashicorp/aws` v6.x.
+
+
 This release updates the module&apos;s AWS provider version constraint to support `hashicorp/aws` v6.x.
 - The module previously required AWS provider `&lt; 6.0.0`. This constraint has been relaxed to allow v6.x.
 - The EKS module does not use any resources or attributes that have breaking changes in provider v6. Users can upgrade to provider v6 without module changes.
@@ -615,6 +617,6 @@ This release updates the module&apos;s AWS provider version constraint to suppor
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "09a66d422affa3d38c4d6b35b1985a70"
+  "hash": "83f87c9ce826703a48232f1a343c5e14"
 }
 ##DOCS-SOURCER-END -->
