@@ -187,6 +187,12 @@ module "control_tower_account_factory_async" {
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
   delete_operation_timeout = "60m"
 
+  # The name of the AWS Service Catalog provisioned product. When importing an
+  # existing (brownfield) account that already has a provisioned product
+  # registered in Control Tower, set this to match the existing provisioned
+  # product name. Defaults to the account_name if not specified.
+  provisioned_product_name = null
+
   # The amount of time allowed for the read operation to take before being
   # considered to have failed.
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
@@ -279,6 +285,12 @@ inputs = {
   # considered to have failed.
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
   delete_operation_timeout = "60m"
+
+  # The name of the AWS Service Catalog provisioned product. When importing an
+  # existing (brownfield) account that already has a provisioned product
+  # registered in Control Tower, set this to match the existing provisioned
+  # product name. Defaults to the account_name if not specified.
+  provisioned_product_name = null
 
   # The amount of time allowed for the read operation to take before being
   # considered to have failed.
@@ -434,6 +446,15 @@ The amount of time allowed for the delete operation to take before being conside
 <HclListItemDefaultValue defaultValue="&quot;60m&quot;"/>
 </HclListItem>
 
+<HclListItem name="provisioned_product_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the AWS Service Catalog provisioned product. When importing an existing (brownfield) account that already has a provisioned product registered in Control Tower, set this to match the existing provisioned product name. Defaults to the account_name if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="read_operation_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -558,6 +579,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.3.0/modules/control-tower-account-factory-async/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1462ad121cdb7b61bccd9e9431cbfeb7"
+  "hash": "2e12fa9c4fa519fee3b7f3f545401c78"
 }
 ##DOCS-SOURCER-END -->

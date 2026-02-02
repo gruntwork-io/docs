@@ -194,6 +194,12 @@ module "control_tower_account_factory" {
   # that this script requires the AWS CLI to be installed and on the PATH.
   find_provisioning_artifact_id_using_script = true
 
+  # The name of the AWS Service Catalog provisioned product. When importing an
+  # existing (brownfield) account that already has a provisioned product
+  # registered in Control Tower, set this to match the existing provisioned
+  # product name. Defaults to the account_name if not specified.
+  provisioned_product_name = null
+
   # The ID of the AWS Control Tower Account Factory provisioning artifact in AWS
   # Service Catalog to use. If find_provisioning_artifact_id_using_script is set
   # to true, we will look up the ID automatically, and you don't need to set
@@ -311,6 +317,12 @@ inputs = {
   # provisioning_artifact_id manually—and update it every time it changes! Note
   # that this script requires the AWS CLI to be installed and on the PATH.
   find_provisioning_artifact_id_using_script = true
+
+  # The name of the AWS Service Catalog provisioned product. When importing an
+  # existing (brownfield) account that already has a provisioned product
+  # registered in Control Tower, set this to match the existing provisioned
+  # product name. Defaults to the account_name if not specified.
+  provisioned_product_name = null
 
   # The ID of the AWS Control Tower Account Factory provisioning artifact in AWS
   # Service Catalog to use. If find_provisioning_artifact_id_using_script is set
@@ -490,6 +502,15 @@ If set to true, this module will use a Bash script to try to find the Control To
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="provisioned_product_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the AWS Service Catalog provisioned product. When importing an existing (brownfield) account that already has a provisioned product registered in Control Tower, set this to match the existing provisioned product name. Defaults to the account_name if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="provisioning_artifact_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -604,6 +625,6 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.3.0/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7821602a0dbcb1b4b99173b73ad85608"
+  "hash": "d120cb5c714b460416c736dee7ad1216"
 }
 ##DOCS-SOURCER-END -->
