@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="1.0.0" lastModifiedVersion="0.50.11"/>
+<VersionBadge repoTitle="CI Modules" version="1.2.0" lastModifiedVersion="1.2.0"/>
 
 # Build Helpers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.0.0/modules/build-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.2.0/modules/build-helpers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v1.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This folder contains several helper scripts for automatically building deployable, versioned artifacts of your apps:
 
@@ -72,7 +72,7 @@ job using the [Jenkins Parameterized Trigger
 Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin). The `deploy-app` CI job, in turn,
 would be a [parameterized build](https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Build) that takes as input
 a parameter called `ARTIFACT_ID` (the same parameter name that's in the `artifacts.properties` file) and use it, along
-with the scripts in the [terraform-helpers module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.0.0/modules/terraform-helpers) to automatically deploy the new AMI:
+with the scripts in the [terraform-helpers module](https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.2.0/modules/terraform-helpers) to automatically deploy the new AMI:
 
 ```bash
 cd templates
@@ -186,11 +186,11 @@ Note that the following conditions must be true in order to use this feature:
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.0.0/modules/build-helpers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.0.0/modules/build-helpers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.0.0/modules/build-helpers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.2.0/modules/build-helpers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.2.0/modules/build-helpers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.2.0/modules/build-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7d9a46b628f422d46bcdc17e075556f0"
+  "hash": "9716e2469b1a33d0fe1ad7d71cfef1e9"
 }
 ##DOCS-SOURCER-END -->
