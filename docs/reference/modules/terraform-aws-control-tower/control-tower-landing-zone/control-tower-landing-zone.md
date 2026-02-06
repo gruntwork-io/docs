@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="1.3.0" lastModifiedVersion="0.8.7"/>
+<VersionBadge repoTitle="Control Tower" version="1.4.1" lastModifiedVersion="0.8.7"/>
 
 # Control Tower Landing Zone
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.3.0/modules/landingzone/control-tower-landing-zone" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.4.1/modules/landingzone/control-tower-landing-zone" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.8.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -78,10 +78,8 @@ In the following table you can find examples for all the resources that need to 
 | `module.<module_name>.aws_organizations_account.log_archive`     | `aws organizations list-accounts --query "Accounts[?Name=='Logs'].Id"`                                            |
 | `module.<module_name>.aws_organizations_account.audit`           | `aws organizations list-accounts --query "Accounts[?Name=='Security'].Id"`                                        |
 | `module.<module_name>.aws_iam_role.controltower_admin`           | In this case the ID is static `AWSControlTowerAdmin`                                                              |
-| `module.<module_name>.aws_iam_role.controltower_execution`       |  In this case the ID is static `AWSControlTowerExecution` (depending on the version this one may not exist)       |
 | `module.<module_name>.aws_iam_policy.controltower_admin_policy`  | `aws iam list-policies --no-paginate --query "Policies[?PolicyName=='AWSControlTowerAdminPolicy'].Arn"`           |
 | `module.<module_name>.aws_iam_role.cloudtrail`                   |  In this case the ID is static `AWSControlTowerCloudTrailRole`                                                    |
-| `module.<module_name>.aws_iam_policy.cloudtrail_policy`          | `aws iam list-policies --no-paginate --query "Policies[?PolicyName=='AWSControlTowerCloudTrailRolePolicy'].Arn"`  |
 | `module.<module_name>.aws_iam_role.stackset`                     |  In this case the ID is static `AWSControlTowerStackSetRole`                                                      |
 | `module.<module_name>.aws_iam_policy.stackset_policy`            | `aws iam list-policies --no-paginate --query "Policies[?PolicyName=='AWSControlTowerStackSetRolePolicy'].Arn"`    |
 | `module.<module_name>.aws_iam_role.config_aggregator`            |  In this case the ID is static `AWSControlTowerConfigAggregatorRoleForOrganizations`                              |
@@ -117,7 +115,7 @@ The goal of the import is to have a plan with no operations to be performed. If 
 
 module "control_tower_landing_zone" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-landing-zone?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-landing-zone?ref=v1.4.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -143,28 +141,66 @@ module "control_tower_landing_zone" {
   # The name of the account to use for centralized logging.
   account_name_log_archiver = "Logs"
 
-  # The name of an additional organizational unit to create in AWS Control
-  # Tower.
+  # DEPRECATED: Not used in Landing Zone v4.0. The name of an additional
+  # organizational unit.
   additional_organizational_unit_name = "Pre-prod"
+
+  # The AWS account ID for the Backup administrator account. Required if
+  # enable_backup is true.
+  backup_admin_account_id = ""
+
+  # The ARN of a KMS key to use for AWS Backup encryption. When empty, reuses
+  # the same KMS key as centralized logging.
+  backup_kms_key_arn = ""
+
+  # The AWS account ID for the central backup account. Required if enable_backup
+  # is true.
+  central_backup_account_id = ""
+
+  # The number of days to retain log objects in the AWS Config access logging
+  # bucket.
+  config_access_logging_bucket_retention_days = 3650
+
+  # The ARN of a KMS key to use for AWS Config data. When empty, reuses the same
+  # KMS key as centralized logging.
+  config_kms_key_arn = ""
+
+  # The number of days to retain log objects in the AWS Config logging bucket.
+  config_logging_bucket_retention_days = 365
 
   # The amount of time allowed for the create operation to take before being
   # considered to have failed.
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/controltower_landing_zone#timeouts
   create_operation_timeout = "60m"
 
   # The amount of time allowed for the delete operation to take before being
   # considered to have failed.
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/controltower_landing_zone#timeouts
   delete_operation_timeout = "60m"
 
   # Whether to enable access management in AWS Control Tower.
   enable_access_management = true
 
+  # Whether to enable AWS Backup integration in the landing zone. Requires
+  # enable_security_roles to be true.
+  enable_backup = false
+
+  # Whether to enable centralized logging in the landing zone.
+  enable_centralized_logging = true
+
+  # Whether to enable AWS Config integration in the landing zone. Required if
+  # enable_security_roles is true.
+  enable_config = true
+
+  # Whether to enable Control Tower Security Roles integration. Requires
+  # enable_config to be true.
+  enable_security_roles = true
+
   # The ARN of an existing KMS key to use for AWS Control Tower.
   existing_key_arn = ""
 
-  # The name of the foundational organizational unit to create in AWS Control
-  # Tower.
+  # DEPRECATED: Not used in Landing Zone v4.0. The name of the foundational
+  # organizational unit.
   foundational_organizational_unit_name = "Security"
 
   # A list of AWS regions to govern with AWS Control Tower. The region where you
@@ -182,8 +218,9 @@ module "control_tower_landing_zone" {
   # key.
   kms_key_users = []
 
-  # The version of the AWS Control Tower landing zone to deploy.
-  landing_zone_version = "3.3"
+  # The version of the AWS Control Tower landing zone to deploy. Must be 4.0 or
+  # later for new landing zones.
+  landing_zone_version = "4.0"
 
   # The number of days to retain log objects in the centralized logging bucket.
   logging_bucket_retention_days = 365
@@ -200,7 +237,7 @@ module "control_tower_landing_zone" {
 
   # The amount of time allowed for the update operation to take before being
   # considered to have failed.
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/controltower_landing_zone#timeouts
   update_operation_timeout = "60m"
 
 }
@@ -218,7 +255,7 @@ module "control_tower_landing_zone" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-landing-zone?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-landing-zone?ref=v1.4.1"
 }
 
 inputs = {
@@ -247,28 +284,66 @@ inputs = {
   # The name of the account to use for centralized logging.
   account_name_log_archiver = "Logs"
 
-  # The name of an additional organizational unit to create in AWS Control
-  # Tower.
+  # DEPRECATED: Not used in Landing Zone v4.0. The name of an additional
+  # organizational unit.
   additional_organizational_unit_name = "Pre-prod"
+
+  # The AWS account ID for the Backup administrator account. Required if
+  # enable_backup is true.
+  backup_admin_account_id = ""
+
+  # The ARN of a KMS key to use for AWS Backup encryption. When empty, reuses
+  # the same KMS key as centralized logging.
+  backup_kms_key_arn = ""
+
+  # The AWS account ID for the central backup account. Required if enable_backup
+  # is true.
+  central_backup_account_id = ""
+
+  # The number of days to retain log objects in the AWS Config access logging
+  # bucket.
+  config_access_logging_bucket_retention_days = 3650
+
+  # The ARN of a KMS key to use for AWS Config data. When empty, reuses the same
+  # KMS key as centralized logging.
+  config_kms_key_arn = ""
+
+  # The number of days to retain log objects in the AWS Config logging bucket.
+  config_logging_bucket_retention_days = 365
 
   # The amount of time allowed for the create operation to take before being
   # considered to have failed.
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/controltower_landing_zone#timeouts
   create_operation_timeout = "60m"
 
   # The amount of time allowed for the delete operation to take before being
   # considered to have failed.
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/controltower_landing_zone#timeouts
   delete_operation_timeout = "60m"
 
   # Whether to enable access management in AWS Control Tower.
   enable_access_management = true
 
+  # Whether to enable AWS Backup integration in the landing zone. Requires
+  # enable_security_roles to be true.
+  enable_backup = false
+
+  # Whether to enable centralized logging in the landing zone.
+  enable_centralized_logging = true
+
+  # Whether to enable AWS Config integration in the landing zone. Required if
+  # enable_security_roles is true.
+  enable_config = true
+
+  # Whether to enable Control Tower Security Roles integration. Requires
+  # enable_config to be true.
+  enable_security_roles = true
+
   # The ARN of an existing KMS key to use for AWS Control Tower.
   existing_key_arn = ""
 
-  # The name of the foundational organizational unit to create in AWS Control
-  # Tower.
+  # DEPRECATED: Not used in Landing Zone v4.0. The name of the foundational
+  # organizational unit.
   foundational_organizational_unit_name = "Security"
 
   # A list of AWS regions to govern with AWS Control Tower. The region where you
@@ -286,8 +361,9 @@ inputs = {
   # key.
   kms_key_users = []
 
-  # The version of the AWS Control Tower landing zone to deploy.
-  landing_zone_version = "3.3"
+  # The version of the AWS Control Tower landing zone to deploy. Must be 4.0 or
+  # later for new landing zones.
+  landing_zone_version = "4.0"
 
   # The number of days to retain log objects in the centralized logging bucket.
   logging_bucket_retention_days = 365
@@ -304,7 +380,7 @@ inputs = {
 
   # The amount of time allowed for the update operation to take before being
   # considered to have failed.
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/controltower_landing_zone#timeouts
   update_operation_timeout = "60m"
 
 }
@@ -373,16 +449,70 @@ The name of the account to use for centralized logging.
 <HclListItem name="additional_organizational_unit_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name of an additional organizational unit to create in AWS Control Tower.
+DEPRECATED: Not used in Landing Zone v4.0. The name of an additional organizational unit.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;Pre-prod&quot;"/>
 </HclListItem>
 
+<HclListItem name="backup_admin_account_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The AWS account ID for the Backup administrator account. Required if enable_backup is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="backup_kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of a KMS key to use for AWS Backup encryption. When empty, reuses the same KMS key as centralized logging.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="central_backup_account_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The AWS account ID for the central backup account. Required if enable_backup is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="config_access_logging_bucket_retention_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days to retain log objects in the AWS Config access logging bucket.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="3650"/>
+</HclListItem>
+
+<HclListItem name="config_kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of a KMS key to use for AWS Config data. When empty, reuses the same KMS key as centralized logging.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="config_logging_bucket_retention_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days to retain log objects in the AWS Config logging bucket.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="365"/>
+</HclListItem>
+
 <HclListItem name="create_operation_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
-The amount of time allowed for the create operation to take before being considered to have failed. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+The amount of time allowed for the create operation to take before being considered to have failed. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/controltower_landing_zone#timeouts
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;60m&quot;"/>
@@ -391,7 +521,7 @@ The amount of time allowed for the create operation to take before being conside
 <HclListItem name="delete_operation_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
-The amount of time allowed for the delete operation to take before being considered to have failed. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+The amount of time allowed for the delete operation to take before being considered to have failed. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/controltower_landing_zone#timeouts
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;60m&quot;"/>
@@ -401,6 +531,42 @@ The amount of time allowed for the delete operation to take before being conside
 <HclListItemDescription>
 
 Whether to enable access management in AWS Control Tower.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_backup" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable AWS Backup integration in the landing zone. Requires enable_security_roles to be true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_centralized_logging" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable centralized logging in the landing zone.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_config" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable AWS Config integration in the landing zone. Required if enable_security_roles is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_security_roles" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable Control Tower Security Roles integration. Requires enable_config to be true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -418,7 +584,7 @@ The ARN of an existing KMS key to use for AWS Control Tower.
 <HclListItem name="foundational_organizational_unit_name" requirement="optional" type="string">
 <HclListItemDescription>
 
-The name of the foundational organizational unit to create in AWS Control Tower.
+DEPRECATED: Not used in Landing Zone v4.0. The name of the foundational organizational unit.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;Security&quot;"/>
@@ -472,10 +638,10 @@ A list of IAM users or roles that should be granted user access to the KMS key.
 <HclListItem name="landing_zone_version" requirement="optional" type="string">
 <HclListItemDescription>
 
-The version of the AWS Control Tower landing zone to deploy.
+The version of the AWS Control Tower landing zone to deploy. Must be 4.0 or later for new landing zones.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;3.3&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;4.0&quot;"/>
 </HclListItem>
 
 <HclListItem name="logging_bucket_retention_days" requirement="optional" type="number">
@@ -517,7 +683,7 @@ A map of tags to apply to the AWS Control Tower landing zone.
 <HclListItem name="update_operation_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
-The amount of time allowed for the update operation to take before being considered to have failed. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
+The amount of time allowed for the update operation to take before being considered to have failed. https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/controltower_landing_zone#timeouts
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;60m&quot;"/>
@@ -544,11 +710,11 @@ The amount of time allowed for the update operation to take before being conside
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.3.0/modules/control-tower-landing-zone/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.3.0/modules/control-tower-landing-zone/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.3.0/modules/control-tower-landing-zone/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.4.1/modules/control-tower-landing-zone/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.4.1/modules/control-tower-landing-zone/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.4.1/modules/control-tower-landing-zone/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "de79a43819d41378c323304cd24cf122"
+  "hash": "3d4cb58a6be1014f2cad5cbbd82ff0d5"
 }
 ##DOCS-SOURCER-END -->
