@@ -16,13 +16,13 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.146.0" lastModifiedVersion="0.146.0"/>
+<VersionBadge version="1.1.0" lastModifiedVersion="0.146.0"/>
 
 # RDS Read Replicas Module
 
 This module creates a read replica (read-only copy) of a DB instance.
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/rds-replica" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.1.0/modules/data-stores/rds-replica" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds-replica" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -48,7 +48,7 @@ This module creates a read replica (read-only copy) of a DB instance.
 
 module "rds_replica" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds-replica?ref=v0.146.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds-replica?ref=v1.1.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -79,6 +79,11 @@ module "rds_replica" {
   # var.allow_connections_from_security_groups must be specified for the
   # database to be reachable.
   allow_connections_from_cidr_blocks = []
+
+  # The list of IPv6 CIDR blocks to allow network access to RDS read replicas
+  # from for dual-stack configurations. If not set, read replica instances will
+  # use the same security group as the master instance.
+  allow_connections_from_ipv6_cidr_blocks = []
 
   # The list of IDs or Security Groups to allow network access to RDS from. All
   # security groups must either be in the VPC specified by var.vpc_id, or a
@@ -350,7 +355,7 @@ module "rds_replica" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds-replica?ref=v0.146.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds-replica?ref=v1.1.0"
 }
 
 inputs = {
@@ -384,6 +389,11 @@ inputs = {
   # var.allow_connections_from_security_groups must be specified for the
   # database to be reachable.
   allow_connections_from_cidr_blocks = []
+
+  # The list of IPv6 CIDR blocks to allow network access to RDS read replicas
+  # from for dual-stack configurations. If not set, read replica instances will
+  # use the same security group as the master instance.
+  allow_connections_from_ipv6_cidr_blocks = []
 
   # The list of IDs or Security Groups to allow network access to RDS from. All
   # security groups must either be in the VPC specified by var.vpc_id, or a
@@ -697,6 +707,15 @@ The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk 
 <HclListItemDescription>
 
 The list of network CIDR blocks to allow network access to RDS from. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The list of IPv6 CIDR blocks to allow network access to RDS read replicas from for dual-stack configurations. If not set, read replica instances will use the same security group as the master instance.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1668,11 +1687,11 @@ A list of IDs of the RDS DB instance's read replicas.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/rds-replica/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/rds-replica/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/data-stores/rds-replica/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.1.0/modules/data-stores/rds-replica/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.1.0/modules/data-stores/rds-replica/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.1.0/modules/data-stores/rds-replica/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e8f497b6610694d5600de5b0ced36d32"
+  "hash": "f4f52e0cb6bfb6683a86c6fb80db62ff"
 }
 ##DOCS-SOURCER-END -->
