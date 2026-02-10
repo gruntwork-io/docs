@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="3.2.0" lastModifiedVersion="3.2.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="4.0.0" lastModifiedVersion="3.2.0"/>
 
 # EKS CloudWatch Agent Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-cloudwatch-agent" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.0.0/modules/eks-cloudwatch-agent" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v3.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -67,7 +67,7 @@ docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerIn
 
 module "eks_cloudwatch_agent" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v3.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v4.0.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -108,7 +108,7 @@ module "eks_cloudwatch_agent" {
   # The version of the aws-cloudwatch-metrics helm chart to deploy. Note that
   # this is different from the app/container version (use
   # var.aws_cloudwatch_agent_version to control the app/container version).
-  aws_cloudwatch_metrics_chart_version = "0.0.11"
+  aws_cloudwatch_metrics_chart_version = "0.0.7"
 
   # Tags to apply to all AWS resources managed by this module.
   default_tags = {}
@@ -157,7 +157,7 @@ module "eks_cloudwatch_agent" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v3.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cloudwatch-agent?ref=v4.0.0"
 }
 
 inputs = {
@@ -201,7 +201,7 @@ inputs = {
   # The version of the aws-cloudwatch-metrics helm chart to deploy. Note that
   # this is different from the app/container version (use
   # var.aws_cloudwatch_agent_version to control the app/container version).
-  aws_cloudwatch_metrics_chart_version = "0.0.11"
+  aws_cloudwatch_metrics_chart_version = "0.0.7"
 
   # Tags to apply to all AWS resources managed by this module.
   default_tags = {}
@@ -246,11 +246,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-cloudwatch-agent/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-cloudwatch-agent/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-cloudwatch-agent/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.0.0/modules/eks-cloudwatch-agent/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.0.0/modules/eks-cloudwatch-agent/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.0.0/modules/eks-cloudwatch-agent/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6b2ee4b15ae5069c179a823f8c6dd8d2"
+  "hash": "d4da50c842580f8b6f2b9ae18fb8264b"
 }
 ##DOCS-SOURCER-END -->
