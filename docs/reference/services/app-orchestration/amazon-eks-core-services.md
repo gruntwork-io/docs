@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.146.0" lastModifiedVersion="0.141.0"/>
+<VersionBadge version="1.2.0" lastModifiedVersion="1.1.0"/>
 
 # Amazon EKS Core Services
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/services/eks-core-services" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/modules/services/eks-core-services" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-core-services" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ For information on each of the core services deployed by this service, see the d
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ For information on each of the core services deployed by this service, see the d
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -108,7 +108,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "eks_core_services" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.146.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v1.2.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -342,7 +342,7 @@ module "eks_core_services" {
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
-  cluster_autoscaler_version = "v1.32.0"
+  cluster_autoscaler_version = "v1.33.0"
 
   # When set to true, create a new dedicated IAM Role for the cluster
   # autoscaler. When set to true, var.iam_role_for_service_accounts_config is
@@ -707,19 +707,9 @@ module "eks_core_services" {
   # use short-lived authentication tokens that can expire in the middle of an
   # 'apply' or 'destroy', and since the native Kubernetes provider in Terraform
   # doesn't have a way to fetch up-to-date tokens, we recommend using an
-  # exec-based provider as a workaround. Use the use_kubergrunt_to_fetch_token
-  # input variable to control whether kubergrunt or aws is used to fetch tokens.
+  # exec-based provider as a workaround. The aws CLI is used to fetch tokens,
+  # and must be installed and on your PATH.
   use_exec_plugin_for_auth = true
-
-  # EKS clusters use short-lived authentication tokens that can expire in the
-  # middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based
-  # plugin to fetch an up-to-date token. If this variable is set to true, we'll
-  # use kubergrunt to fetch the token (in which case, kubergrunt must be
-  # installed and on PATH); if this variable is set to false, we'll use the aws
-  # CLI to fetch the token (in which case, aws must be installed and on PATH).
-  # Note this functionality is only enabled if use_exec_plugin_for_auth is set
-  # to true.
-  use_kubergrunt_to_fetch_token = true
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -743,7 +733,7 @@ module "eks_core_services" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v0.146.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v1.2.0"
 }
 
 inputs = {
@@ -980,7 +970,7 @@ inputs = {
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
-  cluster_autoscaler_version = "v1.32.0"
+  cluster_autoscaler_version = "v1.33.0"
 
   # When set to true, create a new dedicated IAM Role for the cluster
   # autoscaler. When set to true, var.iam_role_for_service_accounts_config is
@@ -1345,19 +1335,9 @@ inputs = {
   # use short-lived authentication tokens that can expire in the middle of an
   # 'apply' or 'destroy', and since the native Kubernetes provider in Terraform
   # doesn't have a way to fetch up-to-date tokens, we recommend using an
-  # exec-based provider as a workaround. Use the use_kubergrunt_to_fetch_token
-  # input variable to control whether kubergrunt or aws is used to fetch tokens.
+  # exec-based provider as a workaround. The aws CLI is used to fetch tokens,
+  # and must be installed and on your PATH.
   use_exec_plugin_for_auth = true
-
-  # EKS clusters use short-lived authentication tokens that can expire in the
-  # middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based
-  # plugin to fetch an up-to-date token. If this variable is set to true, we'll
-  # use kubergrunt to fetch the token (in which case, kubergrunt must be
-  # installed and on PATH); if this variable is set to false, we'll use the aws
-  # CLI to fetch the token (in which case, aws must be installed and on PATH).
-  # Note this functionality is only enabled if use_exec_plugin_for_auth is set
-  # to true.
-  use_kubergrunt_to_fetch_token = true
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -2157,7 +2137,7 @@ The name of the service account to create for the cluster autoscaler.
 Which version of the cluster autoscaler to install. This should match the major/minor version (e.g., v1.20) of your Kubernetes Installation. See https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases for a list of versions.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v1.32.0&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v1.33.0&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_cluster_autoscaler_role" requirement="optional" type="bool">
@@ -5451,16 +5431,7 @@ map(object({
 <HclListItem name="use_exec_plugin_for_auth" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If this variable is set to true, then use an exec-based plugin to authenticate and fetch tokens for EKS. This is useful because EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy', and since the native Kubernetes provider in Terraform doesn't have a way to fetch up-to-date tokens, we recommend using an exec-based provider as a workaround. Use the use_kubergrunt_to_fetch_token input variable to control whether kubergrunt or aws is used to fetch tokens.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="use_kubergrunt_to_fetch_token" requirement="optional" type="bool">
-<HclListItemDescription>
-
-EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based plugin to fetch an up-to-date token. If this variable is set to true, we'll use kubergrunt to fetch the token (in which case, kubergrunt must be installed and on PATH); if this variable is set to false, we'll use the aws CLI to fetch the token (in which case, aws must be installed and on PATH). Note this functionality is only enabled if use_exec_plugin_for_auth is set to true.
+If this variable is set to true, then use an exec-based plugin to authenticate and fetch tokens for EKS. This is useful because EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy', and since the native Kubernetes provider in Terraform doesn't have a way to fetch up-to-date tokens, we recommend using an exec-based provider as a workaround. The aws CLI is used to fetch tokens, and must be installed and on your PATH.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -5500,11 +5471,11 @@ A list of names of Kubernetes PriorityClass objects created by this module.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/services/eks-core-services/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/services/eks-core-services/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/services/eks-core-services/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/modules/services/eks-core-services/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/modules/services/eks-core-services/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "de6a42220c7efd1039a8ceff988f9092"
+  "hash": "42490690bcc5d6e7854870da09be0540"
 }
 ##DOCS-SOURCER-END -->

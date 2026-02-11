@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="0.146.0" lastModifiedVersion="0.143.1"/>
+<VersionBadge version="1.2.0" lastModifiedVersion="1.1.0"/>
 
 # Amazon EKS
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -116,7 +116,7 @@ To add and manage additional worker groups, refer to the [eks-workers module](/r
 
 module "eks_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.146.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v1.2.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -347,6 +347,12 @@ module "eks_cluster" {
   # use the key `default`.
   cloud_init_parts = {}
 
+  # ARN of an existing IAM role to use for the EKS cluster. When null, a new
+  # role will be created. WARNING: This can ONLY be set during initial cluster
+  # creation. Changing this value on an existing cluster will DESTROY and
+  # RECREATE the cluster (destructive operation).
+  cluster_iam_role_arn = null
+
   # ARN of permissions boundary to apply to the cluster IAM role - the IAM role
   # created for the EKS cluster.
   cluster_iam_role_permissions_boundary = null
@@ -387,6 +393,12 @@ module "eks_cluster" {
   # CIDR block when you create a cluster, changing this value will force a new
   # cluster to be created.
   cluster_network_config_service_ipv4_cidr = null
+
+  # ID of an existing security group to use for the EKS cluster control plane.
+  # When null or empty, a new security group will be created. This is the
+  # primary cluster security group; additional security groups can be provided
+  # via the additional_security_groups_for_control_plane variable.
+  cluster_security_group_id = null
 
   # Specify the log class of the cloudwatch log group
   control_plane_cloudwatch_log_group_class = "STANDARD"
@@ -580,14 +592,17 @@ module "eks_cluster" {
 
   # When set to true, the module configures EKS add-ons
   # (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html)
-  # specified with `eks_addons`. VPC CNI configurations with
-  # `use_vpc_cni_customize_script` isn't fully supported with addons, as the
-  # automated add-on lifecycles could potentially undo the configuration
-  # changes.
+  # specified with `eks_addons`.
   enable_eks_addons = false
 
   # Enable fail2ban to block brute force log in attempts. Defaults to true.
   enable_fail2ban = true
+
+  # Set to true to enable several basic CloudWatch alarms around CPU usage,
+  # memory usage, and disk space usage for worker ASGs. If set to true, make
+  # sure to specify SNS topics to send notifications to using
+  # var.alarms_sns_topic_arn.
+  enable_worker_cloudwatch_alarms = true
 
   # Set to true to send worker system logs to CloudWatch. This is useful in
   # combination with
@@ -674,16 +689,10 @@ module "eks_cluster" {
   # the user.
   iam_user_to_rbac_group_mapping = {}
 
-  # The URL from which to download Kubergrunt if it's not installed already. Use
-  # to specify a version of kubergrunt that is compatible with your specified
-  # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>'
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>"
-
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.32"
+  kubernetes_version = "1.33"
 
   # Configure one or more Node Groups to manage the EC2 instances in this
   # cluster. Set to empty object ({}) if you do not wish to configure managed
@@ -798,8 +807,8 @@ module "eks_cluster" {
   num_worker_vpc_subnet_ids = null
 
   # When true, configures control plane services to run on Fargate so that the
-  # cluster can run without worker nodes. If true, requires kubergrunt to be
-  # available on the system, and create_default_fargate_iam_role be set to true.
+  # cluster can run without worker nodes. If true, requires
+  # create_default_fargate_iam_role be set to true.
   schedule_control_plane_services_on_fargate = false
 
   # ARN for KMS Key to use for envelope encryption of Kubernetes Secrets. By
@@ -831,33 +840,12 @@ module "eks_cluster" {
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
 
-  # When set to true, the sync-core-components command will skip updating
-  # coredns. This variable is ignored if `use_kubergrunt_sync_components` is
-  # false.
-  upgrade_cluster_script_skip_coredns = false
-
-  # When set to true, the sync-core-components command will skip updating
-  # kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is
-  # false.
-  upgrade_cluster_script_skip_kube_proxy = false
-
-  # When set to true, the sync-core-components command will skip updating
-  # aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is
-  # false.
-  upgrade_cluster_script_skip_vpc_cni = false
-
-  # When set to true, the sync-core-components command will wait until the new
-  # versions are rolled out in the cluster. This variable is ignored if
-  # `use_kubergrunt_sync_components` is false.
-  upgrade_cluster_script_wait_for_rollout = true
-
   # If this variable is set to true, then use an exec-based plugin to
   # authenticate and fetch tokens for EKS. This is useful because EKS clusters
   # use short-lived authentication tokens that can expire in the middle of an
   # 'apply' or 'destroy', and since the native Kubernetes provider in Terraform
   # doesn't have a way to fetch up-to-date tokens, we recommend using an
-  # exec-based provider as a workaround. Use the use_kubergrunt_to_fetch_token
-  # input variable to control whether kubergrunt or aws is used to fetch tokens.
+  # exec-based provider as a workaround.
   use_exec_plugin_for_auth = true
 
   # Set this variable to true to enable the use of Instance Metadata Service
@@ -867,64 +855,12 @@ module "eks_cluster" {
   # IMDSv1.
   use_imdsv1 = false
 
-  # When set to true, this will enable kubergrunt based component syncing. This
-  # step ensures that the core EKS components that are installed are upgraded to
-  # a matching version everytime the cluster's Kubernetes version is updated.
-  use_kubergrunt_sync_components = true
-
-  # EKS clusters use short-lived authentication tokens that can expire in the
-  # middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based
-  # plugin to fetch an up-to-date token. If this variable is set to true, we'll
-  # use kubergrunt to fetch the token (in which case, kubergrunt must be
-  # installed and on PATH); if this variable is set to false, we'll use the aws
-  # CLI to fetch the token (in which case, aws must be installed and on PATH).
-  # Note this functionality is only enabled if use_exec_plugin_for_auth is set
-  # to true.
-  use_kubergrunt_to_fetch_token = true
-
-  # When set to true, this will enable kubergrunt verification to wait for the
-  # Kubernetes API server to come up before completing. If false, reverts to a
-  # 30 second timed wait instead.
-  use_kubergrunt_verification = true
-
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
   # are friendlier to automated policy checkers, which may scan a single
   # resource for findings. As such, it is important to avoid inline policies
   # when targeting compliance with various security standards.
   use_managed_iam_policies = true
-
-  # When set to true, this will enable management of the aws-vpc-cni
-  # configuration options using kubergrunt running as a local-exec provisioner.
-  # If you set this to false, the vpc_cni_* variables will be ignored.
-  use_vpc_cni_customize_script = true
-
-  # When true, enable prefix delegation mode for the AWS VPC CNI component of
-  # the EKS cluster. In prefix delegation mode, each ENI will be allocated 16 IP
-  # addresses (/28) instead of 1, allowing you to pack more Pods per node. Note
-  # that by default, AWS VPC CNI will always preallocate 1 full prefix - this
-  # means that you can potentially take up 32 IP addresses from the VPC network
-  # space even if you only have 1 Pod on the node. You can tweak this behavior
-  # by configuring the var.vpc_cni_warm_ip_target input variable.
-  vpc_cni_enable_prefix_delegation = true
-
-  # The minimum number of IP addresses (free and used) each node should start
-  # with. When null, defaults to the aws-vpc-cni application setting (currently
-  # 16 as of version 1.9.0). For example, if this is set to 25, every node will
-  # allocate 2 prefixes (32 IP addresses). On the other hand, if this was set to
-  # the default value, then each node will allocate only 1 prefix (16 IP
-  # addresses).
-  vpc_cni_minimum_ip_target = null
-
-  # The number of free IP addresses each node should maintain. When null,
-  # defaults to the aws-vpc-cni application setting (currently 16 as of version
-  # 1.9.0). In prefix delegation mode, determines whether the node will
-  # preallocate another full prefix. For example, if this is set to 5 and a node
-  # is currently has 9 Pods scheduled, then the node will NOT preallocate a new
-  # prefix block of 16 IP addresses. On the other hand, if this was set to the
-  # default value, then the node will allocate a new block when the first pod is
-  # scheduled.
-  vpc_cni_warm_ip_target = null
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting worker system log data. Only used if
@@ -978,7 +914,7 @@ module "eks_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v0.146.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v1.2.0"
 }
 
 inputs = {
@@ -1212,6 +1148,12 @@ inputs = {
   # use the key `default`.
   cloud_init_parts = {}
 
+  # ARN of an existing IAM role to use for the EKS cluster. When null, a new
+  # role will be created. WARNING: This can ONLY be set during initial cluster
+  # creation. Changing this value on an existing cluster will DESTROY and
+  # RECREATE the cluster (destructive operation).
+  cluster_iam_role_arn = null
+
   # ARN of permissions boundary to apply to the cluster IAM role - the IAM role
   # created for the EKS cluster.
   cluster_iam_role_permissions_boundary = null
@@ -1252,6 +1194,12 @@ inputs = {
   # CIDR block when you create a cluster, changing this value will force a new
   # cluster to be created.
   cluster_network_config_service_ipv4_cidr = null
+
+  # ID of an existing security group to use for the EKS cluster control plane.
+  # When null or empty, a new security group will be created. This is the
+  # primary cluster security group; additional security groups can be provided
+  # via the additional_security_groups_for_control_plane variable.
+  cluster_security_group_id = null
 
   # Specify the log class of the cloudwatch log group
   control_plane_cloudwatch_log_group_class = "STANDARD"
@@ -1445,14 +1393,17 @@ inputs = {
 
   # When set to true, the module configures EKS add-ons
   # (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html)
-  # specified with `eks_addons`. VPC CNI configurations with
-  # `use_vpc_cni_customize_script` isn't fully supported with addons, as the
-  # automated add-on lifecycles could potentially undo the configuration
-  # changes.
+  # specified with `eks_addons`.
   enable_eks_addons = false
 
   # Enable fail2ban to block brute force log in attempts. Defaults to true.
   enable_fail2ban = true
+
+  # Set to true to enable several basic CloudWatch alarms around CPU usage,
+  # memory usage, and disk space usage for worker ASGs. If set to true, make
+  # sure to specify SNS topics to send notifications to using
+  # var.alarms_sns_topic_arn.
+  enable_worker_cloudwatch_alarms = true
 
   # Set to true to send worker system logs to CloudWatch. This is useful in
   # combination with
@@ -1539,16 +1490,10 @@ inputs = {
   # the user.
   iam_user_to_rbac_group_mapping = {}
 
-  # The URL from which to download Kubergrunt if it's not installed already. Use
-  # to specify a version of kubergrunt that is compatible with your specified
-  # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>'
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>"
-
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.32"
+  kubernetes_version = "1.33"
 
   # Configure one or more Node Groups to manage the EC2 instances in this
   # cluster. Set to empty object ({}) if you do not wish to configure managed
@@ -1663,8 +1608,8 @@ inputs = {
   num_worker_vpc_subnet_ids = null
 
   # When true, configures control plane services to run on Fargate so that the
-  # cluster can run without worker nodes. If true, requires kubergrunt to be
-  # available on the system, and create_default_fargate_iam_role be set to true.
+  # cluster can run without worker nodes. If true, requires
+  # create_default_fargate_iam_role be set to true.
   schedule_control_plane_services_on_fargate = false
 
   # ARN for KMS Key to use for envelope encryption of Kubernetes Secrets. By
@@ -1696,33 +1641,12 @@ inputs = {
   # The tenancy of this server. Must be one of: default, dedicated, or host.
   tenancy = "default"
 
-  # When set to true, the sync-core-components command will skip updating
-  # coredns. This variable is ignored if `use_kubergrunt_sync_components` is
-  # false.
-  upgrade_cluster_script_skip_coredns = false
-
-  # When set to true, the sync-core-components command will skip updating
-  # kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is
-  # false.
-  upgrade_cluster_script_skip_kube_proxy = false
-
-  # When set to true, the sync-core-components command will skip updating
-  # aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is
-  # false.
-  upgrade_cluster_script_skip_vpc_cni = false
-
-  # When set to true, the sync-core-components command will wait until the new
-  # versions are rolled out in the cluster. This variable is ignored if
-  # `use_kubergrunt_sync_components` is false.
-  upgrade_cluster_script_wait_for_rollout = true
-
   # If this variable is set to true, then use an exec-based plugin to
   # authenticate and fetch tokens for EKS. This is useful because EKS clusters
   # use short-lived authentication tokens that can expire in the middle of an
   # 'apply' or 'destroy', and since the native Kubernetes provider in Terraform
   # doesn't have a way to fetch up-to-date tokens, we recommend using an
-  # exec-based provider as a workaround. Use the use_kubergrunt_to_fetch_token
-  # input variable to control whether kubergrunt or aws is used to fetch tokens.
+  # exec-based provider as a workaround.
   use_exec_plugin_for_auth = true
 
   # Set this variable to true to enable the use of Instance Metadata Service
@@ -1732,64 +1656,12 @@ inputs = {
   # IMDSv1.
   use_imdsv1 = false
 
-  # When set to true, this will enable kubergrunt based component syncing. This
-  # step ensures that the core EKS components that are installed are upgraded to
-  # a matching version everytime the cluster's Kubernetes version is updated.
-  use_kubergrunt_sync_components = true
-
-  # EKS clusters use short-lived authentication tokens that can expire in the
-  # middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based
-  # plugin to fetch an up-to-date token. If this variable is set to true, we'll
-  # use kubergrunt to fetch the token (in which case, kubergrunt must be
-  # installed and on PATH); if this variable is set to false, we'll use the aws
-  # CLI to fetch the token (in which case, aws must be installed and on PATH).
-  # Note this functionality is only enabled if use_exec_plugin_for_auth is set
-  # to true.
-  use_kubergrunt_to_fetch_token = true
-
-  # When set to true, this will enable kubergrunt verification to wait for the
-  # Kubernetes API server to come up before completing. If false, reverts to a
-  # 30 second timed wait instead.
-  use_kubergrunt_verification = true
-
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
   # are friendlier to automated policy checkers, which may scan a single
   # resource for findings. As such, it is important to avoid inline policies
   # when targeting compliance with various security standards.
   use_managed_iam_policies = true
-
-  # When set to true, this will enable management of the aws-vpc-cni
-  # configuration options using kubergrunt running as a local-exec provisioner.
-  # If you set this to false, the vpc_cni_* variables will be ignored.
-  use_vpc_cni_customize_script = true
-
-  # When true, enable prefix delegation mode for the AWS VPC CNI component of
-  # the EKS cluster. In prefix delegation mode, each ENI will be allocated 16 IP
-  # addresses (/28) instead of 1, allowing you to pack more Pods per node. Note
-  # that by default, AWS VPC CNI will always preallocate 1 full prefix - this
-  # means that you can potentially take up 32 IP addresses from the VPC network
-  # space even if you only have 1 Pod on the node. You can tweak this behavior
-  # by configuring the var.vpc_cni_warm_ip_target input variable.
-  vpc_cni_enable_prefix_delegation = true
-
-  # The minimum number of IP addresses (free and used) each node should start
-  # with. When null, defaults to the aws-vpc-cni application setting (currently
-  # 16 as of version 1.9.0). For example, if this is set to 25, every node will
-  # allocate 2 prefixes (32 IP addresses). On the other hand, if this was set to
-  # the default value, then each node will allocate only 1 prefix (16 IP
-  # addresses).
-  vpc_cni_minimum_ip_target = null
-
-  # The number of free IP addresses each node should maintain. When null,
-  # defaults to the aws-vpc-cni application setting (currently 16 as of version
-  # 1.9.0). In prefix delegation mode, determines whether the node will
-  # preallocate another full prefix. For example, if this is set to 5 and a node
-  # is currently has 9 Pods scheduled, then the node will NOT preallocate a new
-  # prefix block of 16 IP addresses. On the other hand, if this was set to the
-  # default value, then the node will allocate a new block when the first pod is
-  # scheduled.
-  vpc_cni_warm_ip_target = null
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting worker system log data. Only used if
@@ -2543,6 +2415,15 @@ map(object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="cluster_iam_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of an existing IAM role to use for the EKS cluster. When null, a new role will be created. WARNING: This can ONLY be set during initial cluster creation. Changing this value on an existing cluster will DESTROY and RECREATE the cluster (destructive operation).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="cluster_iam_role_permissions_boundary" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2633,6 +2514,15 @@ The IP family used to assign Kubernetes pod and service addresses. Valid values 
 <HclListItemDescription>
 
 The CIDR block to assign Kubernetes pod and service IP addresses from. If you don't specify a block, Kubernetes assigns addresses from either the 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. You can only specify a custom CIDR block when you create a cluster, changing this value will force a new cluster to be created.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_security_group_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+ID of an existing security group to use for the EKS cluster control plane. When null or empty, a new security group will be created. This is the primary cluster security group; additional security groups can be provided via the additional_security_groups_for_control_plane variable.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -3395,7 +3285,7 @@ When set to true, the module configures and install the EBS CSI Driver as an EKS
 <HclListItem name="enable_eks_addons" requirement="optional" type="bool">
 <HclListItemDescription>
 
-When set to true, the module configures EKS add-ons (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html) specified with `eks_addons`. VPC CNI configurations with `use_vpc_cni_customize_script` isn't fully supported with addons, as the automated add-on lifecycles could potentially undo the configuration changes.
+When set to true, the module configures EKS add-ons (https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html) specified with `eks_addons`.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -3405,6 +3295,15 @@ When set to true, the module configures EKS add-ons (https://docs.aws.amazon.com
 <HclListItemDescription>
 
 Enable fail2ban to block brute force log in attempts. Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="enable_worker_cloudwatch_alarms" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage for worker ASGs. If set to true, make sure to specify SNS topics to send notifications to using <a href="#alarms_sns_topic_arn"><code>alarms_sns_topic_arn</code></a>.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -3625,22 +3524,13 @@ map(list(string))
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="kubergrunt_download_url" requirement="optional" type="string">
-<HclListItemDescription>
-
-The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_&lt;platform>'
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>&quot;"/>
-</HclListItem>
-
 <HclListItem name="kubernetes_version" requirement="optional" type="string">
 <HclListItemDescription>
 
 Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.32&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.33&quot;"/>
 </HclListItem>
 
 <HclListItem name="managed_node_group_configurations" requirement="optional" type="any">
@@ -3995,7 +3885,7 @@ Number of subnets provided in the <a href="#worker_vpc_subnet_ids"><code>worker_
 <HclListItem name="schedule_control_plane_services_on_fargate" requirement="optional" type="bool">
 <HclListItemDescription>
 
-When true, configures control plane services to run on Fargate so that the cluster can run without worker nodes. If true, requires kubergrunt to be available on the system, and create_default_fargate_iam_role be set to true.
+When true, configures control plane services to run on Fargate so that the cluster can run without worker nodes. If true, requires create_default_fargate_iam_role be set to true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -4046,46 +3936,10 @@ The tenancy of this server. Must be one of: default, dedicated, or host.
 <HclListItemDefaultValue defaultValue="&quot;default&quot;"/>
 </HclListItem>
 
-<HclListItem name="upgrade_cluster_script_skip_coredns" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, the sync-core-components command will skip updating coredns. This variable is ignored if `use_kubergrunt_sync_components` is false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="upgrade_cluster_script_skip_kube_proxy" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, the sync-core-components command will skip updating kube-proxy. This variable is ignored if `use_kubergrunt_sync_components` is false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="upgrade_cluster_script_skip_vpc_cni" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, the sync-core-components command will skip updating aws-vpc-cni. This variable is ignored if `use_kubergrunt_sync_components` is false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="upgrade_cluster_script_wait_for_rollout" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, the sync-core-components command will wait until the new versions are rolled out in the cluster. This variable is ignored if `use_kubergrunt_sync_components` is false.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="use_exec_plugin_for_auth" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If this variable is set to true, then use an exec-based plugin to authenticate and fetch tokens for EKS. This is useful because EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy', and since the native Kubernetes provider in Terraform doesn't have a way to fetch up-to-date tokens, we recommend using an exec-based provider as a workaround. Use the use_kubergrunt_to_fetch_token input variable to control whether kubergrunt or aws is used to fetch tokens.
+If this variable is set to true, then use an exec-based plugin to authenticate and fetch tokens for EKS. This is useful because EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy', and since the native Kubernetes provider in Terraform doesn't have a way to fetch up-to-date tokens, we recommend using an exec-based provider as a workaround.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -4100,33 +3954,6 @@ Set this variable to true to enable the use of Instance Metadata Service Version
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="use_kubergrunt_sync_components" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, this will enable kubergrunt based component syncing. This step ensures that the core EKS components that are installed are upgraded to a matching version everytime the cluster's Kubernetes version is updated.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="use_kubergrunt_to_fetch_token" requirement="optional" type="bool">
-<HclListItemDescription>
-
-EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based plugin to fetch an up-to-date token. If this variable is set to true, we'll use kubergrunt to fetch the token (in which case, kubergrunt must be installed and on PATH); if this variable is set to false, we'll use the aws CLI to fetch the token (in which case, aws must be installed and on PATH). Note this functionality is only enabled if use_exec_plugin_for_auth is set to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="use_kubergrunt_verification" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, this will enable kubergrunt verification to wait for the Kubernetes API server to come up before completing. If false, reverts to a 30 second timed wait instead.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -4134,42 +3961,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="use_vpc_cni_customize_script" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When set to true, this will enable management of the aws-vpc-cni configuration options using kubergrunt running as a local-exec provisioner. If you set this to false, the vpc_cni_* variables will be ignored.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="vpc_cni_enable_prefix_delegation" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, enable prefix delegation mode for the AWS VPC CNI component of the EKS cluster. In prefix delegation mode, each ENI will be allocated 16 IP addresses (/28) instead of 1, allowing you to pack more Pods per node. Note that by default, AWS VPC CNI will always preallocate 1 full prefix - this means that you can potentially take up 32 IP addresses from the VPC network space even if you only have 1 Pod on the node. You can tweak this behavior by configuring the <a href="#vpc_cni_warm_ip_target"><code>vpc_cni_warm_ip_target</code></a> input variable.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="vpc_cni_minimum_ip_target" requirement="optional" type="number">
-<HclListItemDescription>
-
-The minimum number of IP addresses (free and used) each node should start with. When null, defaults to the aws-vpc-cni application setting (currently 16 as of version 1.9.0). For example, if this is set to 25, every node will allocate 2 prefixes (32 IP addresses). On the other hand, if this was set to the default value, then each node will allocate only 1 prefix (16 IP addresses).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="vpc_cni_warm_ip_target" requirement="optional" type="number">
-<HclListItemDescription>
-
-The number of free IP addresses each node should maintain. When null, defaults to the aws-vpc-cni application setting (currently 16 as of version 1.9.0). In prefix delegation mode, determines whether the node will preallocate another full prefix. For example, if this is set to 5 and a node is currently has 9 Pods scheduled, then the node will NOT preallocate a new prefix block of 16 IP addresses. On the other hand, if this was set to the default value, then the node will allocate a new block when the first pod is scheduled.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="worker_cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
@@ -4396,11 +4187,11 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/services/eks-cluster/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/services/eks-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v0.146.0/modules/services/eks-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/modules/services/eks-cluster/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/modules/services/eks-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.2.0/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d79888612862141c444990604c793dcf"
+  "hash": "b516ac28078ef43158fa8fcb399cd8e4"
 }
 ##DOCS-SOURCER-END -->
