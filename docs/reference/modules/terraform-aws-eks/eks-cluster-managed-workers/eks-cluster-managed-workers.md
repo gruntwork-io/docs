@@ -9,23 +9,23 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="3.2.0" lastModifiedVersion="3.2.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="4.1.0" lastModifiedVersion="4.1.0"/>
 
 # EKS Cluster Managed Workers Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-cluster-managed-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.1.0/modules/eks-cluster-managed-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v3.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v4.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-**This module provisions [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html), as opposed to self managed ASGs. See the [eks-cluster-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-cluster-workers) module for a module to provision self managed worker groups.**
+**This module provisions [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html), as opposed to self managed ASGs. See the [eks-cluster-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.1.0/modules/eks-cluster-workers) module for a module to provision self managed worker groups.**
 
 This Terraform module launches worker nodes using [EKS Managed Node
 Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html) that you can use to run Kubernetes
 Pods and Deployments.
 
 This module is responsible for the EKS Worker Nodes in [the EKS cluster
-topology](https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-cluster-control-plane/README.md#what-is-an-eks-cluster). You must launch a control plane in order
-for the worker nodes to function. See the [eks-cluster-control-plane module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-cluster-control-plane) for
+topology](https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.1.0/modules/eks-cluster-control-plane/README.md#what-is-an-eks-cluster). You must launch a control plane in order
+for the worker nodes to function. See the [eks-cluster-control-plane module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.1.0/modules/eks-cluster-control-plane) for
 managing an EKS control plane.
 
 ## Differences with self managed workers
@@ -39,8 +39,7 @@ includes:
 *   Security Groups
 
 Instead of manually managing Auto Scaling Groups and AMIs, you rely on EKS to manage those for you. This allows you to
-offload concerns such as upgrading and graceful scale out of your worker pools to AWS so that you don't have to manage
-them using tools like `kubergrunt`.
+offload concerns such as upgrading and graceful scale out of your worker pools to AWS.
 
 Which flavor of worker pools to use depends on your infrastructure needs. Note that you can have both managed and self
 managed worker pools on a single EKS cluster, should you find the need for additional customizations.
@@ -49,7 +48,7 @@ Here is a list of additional tradeoffs to consider between the two flavors:
 
 |                                 | Managed Node Groups                                                                                                        | Self Managed Node Groups                                                                                                 |
 |---------------------------------|----------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Graceful Scale in and Scale out | Supported automatically without needing additional tooling.                                                                | Requires specialized tooling (e.g `kubergrunt`) to implement.                                                            |
+| Graceful Scale in and Scale out | Supported automatically without needing additional tooling.                                                                | Requires manual coordination with `kubectl cordon` and `kubectl drain`.                                                  |
 | Boot scripts                    | Not supported.                                                                                                             | Supported via user-data scripts in the ASG configuration.                                                                |
 | OS                              | Only supports Amazon Linux.                                                                                                | Supports any arbitrary AMI, including Windows.                                                                           |
 | SSH access                      | Only supports EC2 key pair, and restrictions by Security Group ID.                                                         | Supports any PAM customized either in the AMI or boot scripts. Also supports any arbitrary security group configuration. |
@@ -61,7 +60,7 @@ Here is a list of additional tradeoffs to consider between the two flavors:
 
 This module will not automatically scale in response to resource usage by default, the
 `autoscaling_group_configurations.*.max_size` option is only used to give room for new instances during rolling updates.
-To enable auto-scaling in response to resource utilization, deploy the [Kubernetes Cluster Autoscaler module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-k8s-cluster-autoscaler).
+To enable auto-scaling in response to resource utilization, deploy the [Kubernetes Cluster Autoscaler module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.1.0/modules/eks-k8s-cluster-autoscaler).
 
 Note that the cluster autoscaler supports ASGs that manage nodes in a single availability zone or ASGs that manage nodes in multiple availability zones. However, there is a caveat:
 
@@ -134,14 +133,7 @@ The following are the steps you can take to perform a blue-green release for thi
     system logs.
 
 *   Once the new workers are up and registered to the Kubernetes Control Plane, you can run `kubectl cordon` and `kubectl
-    drain` on each instance in the old ASG to transition the workload over to the new worker pool. `kubergrunt` provides
-    [a helper command](https://github.com/gruntwork-io/kubergrunt/#drain) to make it easier to run this:
-
-    ```
-    kubergrunt eks drain --asg-name my-asg-a --asg-name my-asg-b --asg-name my-asg-c --region us-east-2
-    ```
-
-    This command will cordon and drain all the nodes associated with the given ASGs.
+    drain` on each instance in the old ASG to transition the workload over to the new worker pool.
 
 *   Once the workload is transitioned, you can tear down the old worker pool by dropping the old module block and running
     `terraform apply`.
@@ -159,7 +151,7 @@ The following are the steps you can take to perform a blue-green release for thi
 
 module "eks_cluster_managed_workers" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-managed-workers?ref=v3.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-managed-workers?ref=v4.1.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -187,6 +179,11 @@ module "eks_cluster_managed_workers" {
   # the documentation for more information
   # https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
   ami_source = "auto"
+
+  # Whether to attach the default IAM policies (AmazonEKSWorkerNodePolicy,
+  # AmazonEKS_CNI_Policy, AmazonEC2ContainerRegistryReadOnly) to the IAM role.
+  # Set to false if your existing IAM role already has these policies attached.
+  attach_default_iam_policies = true
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
@@ -335,7 +332,7 @@ module "eks_cluster_managed_workers" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-managed-workers?ref=v3.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-managed-workers?ref=v4.1.0"
 }
 
 inputs = {
@@ -366,6 +363,11 @@ inputs = {
   # the documentation for more information
   # https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html#mng-ami-id-conditions
   ami_source = "auto"
+
+  # Whether to attach the default IAM policies (AmazonEKSWorkerNodePolicy,
+  # AmazonEKS_CNI_Policy, AmazonEC2ContainerRegistryReadOnly) to the IAM role.
+  # Set to false if your existing IAM role already has these policies attached.
+  attach_default_iam_policies = true
 
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
@@ -659,6 +661,15 @@ Where to get the AMI from. Can be 'auto', 'launch_template', or 'eks_nodegroup'.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;auto&quot;"/>
+</HclListItem>
+
+<HclListItem name="attach_default_iam_policies" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to attach the default IAM policies (AmazonEKSWorkerNodePolicy, AmazonEKS_CNI_Policy, AmazonEC2ContainerRegistryReadOnly) to the IAM role. Set to false if your existing IAM role already has these policies attached.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="aws_partition" requirement="optional" type="string">
@@ -1009,11 +1020,11 @@ Map of Node Group names to ARNs of the created EKS Node Groups
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-cluster-managed-workers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-cluster-managed-workers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v3.2.0/modules/eks-cluster-managed-workers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.1.0/modules/eks-cluster-managed-workers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.1.0/modules/eks-cluster-managed-workers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.1.0/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ded6a8d98148bd90fc58474b3476fb2c"
+  "hash": "59ce48f8de6d859065fa7b9085791947"
 }
 ##DOCS-SOURCER-END -->
