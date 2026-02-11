@@ -108,7 +108,7 @@ module "eks_cloudwatch_agent" {
   # The version of the aws-cloudwatch-metrics helm chart to deploy. Note that
   # this is different from the app/container version (use
   # var.aws_cloudwatch_agent_version to control the app/container version).
-  aws_cloudwatch_metrics_chart_version = "0.0.7"
+  aws_cloudwatch_metrics_chart_version = "0.0.11"
 
   # Tags to apply to all AWS resources managed by this module.
   default_tags = {}
@@ -201,7 +201,7 @@ inputs = {
   # The version of the aws-cloudwatch-metrics helm chart to deploy. Note that
   # this is different from the app/container version (use
   # var.aws_cloudwatch_agent_version to control the app/container version).
-  aws_cloudwatch_metrics_chart_version = "0.0.7"
+  aws_cloudwatch_metrics_chart_version = "0.0.11"
 
   # Tags to apply to all AWS resources managed by this module.
   default_tags = {}
@@ -251,6 +251,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.0.0/modules/eks-cloudwatch-agent/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d4da50c842580f8b6f2b9ae18fb8264b"
+  "hash": "21046cc05861fc960f95f2485dde4f23"
 }
 ##DOCS-SOURCER-END -->

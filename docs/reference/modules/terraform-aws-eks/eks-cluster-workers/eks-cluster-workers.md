@@ -165,10 +165,8 @@ Provider (e.g. Google, ADFS, Okta, etc), see [ssh-grunt](https://github.com/grun
 
 Terraform and AWS do not provide a way to automatically roll out a change to the Instances in an EKS Cluster. Due to
 Terraform limitations (see [here for a discussion](https://github.com/gruntwork-io/terraform-aws-ecs/pull/29)), there is
-currently no way to implement this purely in Terraform code. Therefore, we've embedded this functionality into
-`kubergrunt` that can do a zero-downtime roll out for you.
-
-Refer to the [`deploy` subcommand documentation](https://github.com/gruntwork-io/kubergrunt#deploy) for more details on how this works.
+currently no way to implement this purely in Terraform code. You can perform a blue-green release as described below,
+or use `kubectl` commands to cordon and drain nodes during the update.
 
 ## How do I perform a blue green release to roll out new versions of the module?
 
@@ -211,14 +209,7 @@ The following are the steps you can take to perform a blue-green release for thi
     system logs.
 
 *   Once the new workers are up and registered to the Kubernetes Control Plane, you can run `kubectl cordon` and `kubectl
-    drain` on each instance in the old ASG to transition the workload over to the new worker pool. `kubergrunt` provides
-    [a helper command](https://github.com/gruntwork-io/kubergrunt/#drain) to make it easier to run this:
-
-    ```
-    kubergrunt eks drain --asg-name my-asg-a --asg-name my-asg-b --asg-name my-asg-c --region us-east-2
-    ```
-
-    This command will cordon and drain all the nodes associated with the given ASGs.
+    drain` on each instance in the old ASG to transition the workload over to the new worker pool.
 
 *   Once the workload is transitioned, you can tear down the old worker pool by dropping the old module block and running
     `terraform apply`.
@@ -283,6 +274,11 @@ module "eks_cluster_workers" {
   # Default value for the enable_detailed_monitoring field of
   # autoscaling_group_configurations.
   asg_default_enable_detailed_monitoring = true
+
+  # Default value for the extra_block_device_mappings field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # extra_block_device_mappings will use this value.
+  asg_default_extra_block_device_mappings = []
 
   # Default value for the http_put_response_hop_limit field of
   # autoscaling_group_configurations.
@@ -588,6 +584,11 @@ inputs = {
   # Default value for the enable_detailed_monitoring field of
   # autoscaling_group_configurations.
   asg_default_enable_detailed_monitoring = true
+
+  # Default value for the extra_block_device_mappings field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # extra_block_device_mappings will use this value.
+  asg_default_extra_block_device_mappings = []
 
   # Default value for the http_put_response_hop_limit field of
   # autoscaling_group_configurations.
@@ -945,7 +946,17 @@ Any types represent complex values of variable type. For details, please consult
                                                When using a multi_instances_policy the maximum price per unit hour that the user is willing to pay for the Spot instances.
    - http_put_response_hop_limit     number  : (Defaults to value from var.asg_default_http_put_response_hop_limit) The
                                                desired HTTP PUT response hop limit for instance metadata requests.
-  
+   - extra_block_device_mappings             : (Defaults to value from var.asg_default_extra_block_device_mappings) Additional block device mappings
+                                                to attach to instances. Useful for Bottlerocket or custom storage configs.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
    - instance_maintenance_policy     object(Health_Percentage)
   
    Structure of Health_Percentage object:
@@ -1018,6 +1029,35 @@ Default value for the enable_detailed_monitoring field of autoscaling_group_conf
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="asg_default_extra_block_device_mappings" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Default value for the extra_block_device_mappings field of autoscaling_group_configurations. Any map entry that does not specify extra_block_device_mappings will use this value.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    device_name  = string
+    no_device    = optional(string)
+    virtual_name = optional(string)
+    ebs = optional(object({
+      volume_size           = optional(number)
+      volume_type           = optional(string)
+      iops                  = optional(number)
+      throughput            = optional(number)
+      delete_on_termination = optional(bool)
+      encrypted             = optional(bool)
+      kms_key_id            = optional(string)
+    }))
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="asg_default_http_put_response_hop_limit" requirement="optional" type="number">
@@ -1627,6 +1667,6 @@ AWS ID of the security group created for the EKS worker nodes.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.0.0/modules/eks-cluster-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aa8e34f126c8bd1131befa2684f2d23a"
+  "hash": "1e064b479798f0a202a5b7bde99c3046"
 }
 ##DOCS-SOURCER-END -->

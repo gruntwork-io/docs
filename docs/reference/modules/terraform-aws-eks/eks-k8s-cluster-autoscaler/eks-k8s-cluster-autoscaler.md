@@ -124,7 +124,7 @@ module "eks_k_8_s_cluster_autoscaler" {
   # The version of the cluster-autoscaler helm chart to deploy. Note that this
   # is different from the app/container version, which is sepecified with
   # var.cluster_autoscaler_version.
-  cluster_autoscaler_chart_version = "9.21.0"
+  cluster_autoscaler_chart_version = "9.50.0"
 
   # Which docker repository to use to install the cluster autoscaler. Check the
   # following link for valid repositories to use
@@ -136,7 +136,7 @@ module "eks_k_8_s_cluster_autoscaler" {
   cluster_autoscaler_role_arn = null
 
   # Which version of the cluster autoscaler to install.
-  cluster_autoscaler_version = "v1.32.0"
+  cluster_autoscaler_version = "v1.33.0"
 
   # Map of extra arguments to pass to the container.
   container_extra_args = {}
@@ -309,7 +309,7 @@ inputs = {
   # The version of the cluster-autoscaler helm chart to deploy. Note that this
   # is different from the app/container version, which is sepecified with
   # var.cluster_autoscaler_version.
-  cluster_autoscaler_chart_version = "9.21.0"
+  cluster_autoscaler_chart_version = "9.50.0"
 
   # Which docker repository to use to install the cluster autoscaler. Check the
   # following link for valid repositories to use
@@ -321,7 +321,7 @@ inputs = {
   cluster_autoscaler_role_arn = null
 
   # Which version of the cluster autoscaler to install.
-  cluster_autoscaler_version = "v1.32.0"
+  cluster_autoscaler_version = "v1.33.0"
 
   # Map of extra arguments to pass to the container.
   container_extra_args = {}
@@ -430,6 +430,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.0.0/modules/eks-k8s-cluster-autoscaler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "722754efd79e9a37c92dcb05a5851c27"
+  "hash": "42f9270a803730d3f0e838c41f7457d3"
 }
 ##DOCS-SOURCER-END -->

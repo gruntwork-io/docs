@@ -360,6 +360,23 @@ module "eks_container_logs" {
   # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
+  # Volume mounts for the fluent-bit container. IMPORTANT: Setting this variable
+  # replaces the chart's default volume mounts. You must include the default
+  # mounts (varlog at /var/log and varlibdockercontainers at
+  # /var/lib/docker/containers with readOnly=true) plus any additional mounts.
+  # Each mount should specify name, mountPath, and optionally readOnly. These
+  # should correspond to volumes defined in the volumes variable.
+  volume_mounts = []
+
+  # Volumes to mount in the fluent-bit DaemonSet pods. IMPORTANT: Setting this
+  # variable replaces the chart's default volumes. You must include the default
+  # volumes (varlog at /var/log and varlibdockercontainers at
+  # /var/lib/docker/containers) plus any additional volumes you need. Useful for
+  # hostPath mounts like /var/log/journal for systemd input. Each volume should
+  # be an object with appropriate volume spec fields (e.g., name, hostPath). See
+  # https://kubernetes.io/docs/concepts/storage/volumes/ for volume types.
+  volumes = []
+
 }
 
 
@@ -587,6 +604,23 @@ inputs = {
   # when targeting compliance with various security standards.
   use_managed_iam_policies = true
 
+  # Volume mounts for the fluent-bit container. IMPORTANT: Setting this variable
+  # replaces the chart's default volume mounts. You must include the default
+  # mounts (varlog at /var/log and varlibdockercontainers at
+  # /var/lib/docker/containers with readOnly=true) plus any additional mounts.
+  # Each mount should specify name, mountPath, and optionally readOnly. These
+  # should correspond to volumes defined in the volumes variable.
+  volume_mounts = []
+
+  # Volumes to mount in the fluent-bit DaemonSet pods. IMPORTANT: Setting this
+  # variable replaces the chart's default volumes. You must include the default
+  # volumes (varlog at /var/log and varlibdockercontainers at
+  # /var/lib/docker/containers) plus any additional volumes you need. Useful for
+  # hostPath mounts like /var/log/journal for systemd input. Each volume should
+  # be an object with appropriate volume spec fields (e.g., name, hostPath). See
+  # https://kubernetes.io/docs/concepts/storage/volumes/ for volume types.
+  volumes = []
+
 }
 
 
@@ -603,6 +637,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.0.0/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f3a05e37c0d92ff132ea1fe8c74e487a"
+  "hash": "c2f6c6cc70cc1bb366ab858533323138"
 }
 ##DOCS-SOURCER-END -->

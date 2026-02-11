@@ -39,8 +39,7 @@ includes:
 *   Security Groups
 
 Instead of manually managing Auto Scaling Groups and AMIs, you rely on EKS to manage those for you. This allows you to
-offload concerns such as upgrading and graceful scale out of your worker pools to AWS so that you don't have to manage
-them using tools like `kubergrunt`.
+offload concerns such as upgrading and graceful scale out of your worker pools to AWS.
 
 Which flavor of worker pools to use depends on your infrastructure needs. Note that you can have both managed and self
 managed worker pools on a single EKS cluster, should you find the need for additional customizations.
@@ -49,7 +48,7 @@ Here is a list of additional tradeoffs to consider between the two flavors:
 
 |                                 | Managed Node Groups                                                                                                        | Self Managed Node Groups                                                                                                 |
 |---------------------------------|----------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| Graceful Scale in and Scale out | Supported automatically without needing additional tooling.                                                                | Requires specialized tooling (e.g `kubergrunt`) to implement.                                                            |
+| Graceful Scale in and Scale out | Supported automatically without needing additional tooling.                                                                | Requires manual coordination with `kubectl cordon` and `kubectl drain`.                                                  |
 | Boot scripts                    | Not supported.                                                                                                             | Supported via user-data scripts in the ASG configuration.                                                                |
 | OS                              | Only supports Amazon Linux.                                                                                                | Supports any arbitrary AMI, including Windows.                                                                           |
 | SSH access                      | Only supports EC2 key pair, and restrictions by Security Group ID.                                                         | Supports any PAM customized either in the AMI or boot scripts. Also supports any arbitrary security group configuration. |
@@ -134,14 +133,7 @@ The following are the steps you can take to perform a blue-green release for thi
     system logs.
 
 *   Once the new workers are up and registered to the Kubernetes Control Plane, you can run `kubectl cordon` and `kubectl
-    drain` on each instance in the old ASG to transition the workload over to the new worker pool. `kubergrunt` provides
-    [a helper command](https://github.com/gruntwork-io/kubergrunt/#drain) to make it easier to run this:
-
-    ```
-    kubergrunt eks drain --asg-name my-asg-a --asg-name my-asg-b --asg-name my-asg-c --region us-east-2
-    ```
-
-    This command will cordon and drain all the nodes associated with the given ASGs.
+    drain` on each instance in the old ASG to transition the workload over to the new worker pool.
 
 *   Once the workload is transitioned, you can tear down the old worker pool by dropping the old module block and running
     `terraform apply`.
@@ -262,7 +254,7 @@ module "eks_cluster_managed_workers" {
   name_suffix = ""
 
   # Default value for ami_type field of node_group_configurations.
-  node_group_default_ami_type = "AL2_x86_64"
+  node_group_default_ami_type = "AL2023_x86_64_STANDARD"
 
   # Default value for ami_version field of node_group_configurations.
   node_group_default_ami_version = null
@@ -316,6 +308,10 @@ module "eks_cluster_managed_workers" {
   # resource that is not available at plan time to work around terraform
   # limitations with for_each.
   node_group_names = null
+
+  # Configuration block for node auto repair in EKS node groups. If null, auto
+  # repair will not be configured.
+  node_repair_config = null
 
   # ARN of permissions boundary to apply to the worker IAM role - the IAM role
   # created for the EKS worker nodes.
@@ -442,7 +438,7 @@ inputs = {
   name_suffix = ""
 
   # Default value for ami_type field of node_group_configurations.
-  node_group_default_ami_type = "AL2_x86_64"
+  node_group_default_ami_type = "AL2023_x86_64_STANDARD"
 
   # Default value for ami_version field of node_group_configurations.
   node_group_default_ami_version = null
@@ -496,6 +492,10 @@ inputs = {
   # resource that is not available at plan time to work around terraform
   # limitations with for_each.
   node_group_names = null
+
+  # Configuration block for node auto repair in EKS node groups. If null, auto
+  # repair will not be configured.
+  node_repair_config = null
 
   # ARN of permissions boundary to apply to the worker IAM role - the IAM role
   # created for the EKS worker nodes.
@@ -804,7 +804,7 @@ Suffix resource names with this string. When you have multiple worker groups for
 Default value for ami_type field of node_group_configurations.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;AL2_x86_64&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;AL2023_x86_64_STANDARD&quot;"/>
 </HclListItem>
 
 <HclListItem name="node_group_default_ami_version" requirement="optional" type="string">
@@ -953,6 +953,15 @@ The names of the node groups. When null, this value is automatically calculated 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="node_repair_config" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Configuration block for node auto repair in EKS node groups. If null, auto repair will not be configured.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="worker_iam_role_permissions_boundary" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1016,6 +1025,6 @@ Map of Node Group names to ARNs of the created EKS Node Groups
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.0.0/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fe598845ad0612970e38508248f9a610"
+  "hash": "36765539129ffd354dac8c2f58fc3298"
 }
 ##DOCS-SOURCER-END -->
