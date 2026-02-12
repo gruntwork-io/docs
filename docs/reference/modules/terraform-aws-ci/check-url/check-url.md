@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="CI Modules" version="1.2.1" lastModifiedVersion="0.50.11"/>
+<VersionBadge repoTitle="CI Modules" version="1.3.0" lastModifiedVersion="0.50.11"/>
 
 # Check Url
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.2.1/modules/check-url" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/check-url" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ci/releases/tag/v0.50.11" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -80,11 +80,11 @@ Success! Got expected status code '200' and text '2.0.0' from URL http://www.my-
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.2.1/modules/check-url/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.2.1/modules/check-url/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.2.1/modules/check-url/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/check-url/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/check-url/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/check-url/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f0870b640dd643b70fa7adfd3b31dcc2"
+  "hash": "675f2b2225099e162325d9ac5ad984c8"
 }
 ##DOCS-SOURCER-END -->
