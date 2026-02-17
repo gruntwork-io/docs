@@ -665,18 +665,18 @@ The URL of the broker's ActiveMQ Web Console or RabbitMQ Management UI for the p
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="primary_endpoints">
+<HclListItem name="primary_endpoint">
 <HclListItemDescription>
 
-The list of all broker endpoints for the primary instance (e.g., OpenWire, AMQP, MQTT, STOMP, WSS for ActiveMQ; AMQP for RabbitMQ).
+The broker's primary endpoint (e.g., OpenWire SSL for ActiveMQ, AMQP for RabbitMQ).
 
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="primary_ssl_endpoint">
+<HclListItem name="primary_endpoints">
 <HclListItemDescription>
 
-The broker's primary SSL endpoint.
+The list of all broker endpoints for the primary instance (e.g., OpenWire, AMQP, MQTT, STOMP, WSS for ActiveMQ; AMQP for RabbitMQ).
 
 </HclListItemDescription>
 </HclListItem>
@@ -700,6 +700,6 @@ The ID of the security group created for the broker.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/amazon-mq/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "89a8234a7d3d3f18d5cbca267ee922b8"
+  "hash": "604dd8db89ee676e8f6d286fc0f5300c"
 }
 ##DOCS-SOURCER-END -->
