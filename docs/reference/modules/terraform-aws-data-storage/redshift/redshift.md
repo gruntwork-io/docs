@@ -56,6 +56,11 @@ workaround, you can re-run the destroy command once the workspace gets deleted c
 
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S REDSHIFT MODULE
+#
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE".
+# When using values other than defaults for these variables, set them through environment variables or
+# another secure method.
+#
 # ------------------------------------------------------------------------------------------------------
 
 module "redshift" {
@@ -232,7 +237,7 @@ module "redshift" {
 
   # The password for the master user. If var.snapshot_identifier is non-empty,
   # this value is ignored. Conflicts with manage_master_password.
-  master_password = null
+  master_password = null # SENSITIVE
 
   # KMS key ID for encrypting the managed master password secret. Only used when
   # manage_master_password is true.
@@ -308,6 +313,11 @@ module "redshift" {
 
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S REDSHIFT MODULE
+#
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE".
+# When using values other than defaults for these variables, set them through environment variables or
+# another secure method.
+#
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
@@ -486,7 +496,7 @@ inputs = {
 
   # The password for the master user. If var.snapshot_identifier is non-empty,
   # this value is ignored. Conflicts with manage_master_password.
-  master_password = null
+  master_password = null # SENSITIVE
 
   # KMS key ID for encrypting the managed master password secret. Only used when
   # manage_master_password is true.
@@ -648,7 +658,7 @@ A list of IPv6 CIDR-formatted IP address ranges that this DB can connect. Use th
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="apply_immediately" requirement="optional" type="string">
+<HclListItem name="apply_immediately" requirement="optional" type="bool">
 <HclListItemDescription>
 
 Specifies whether any cluster modifications are applied immediately, or during the next maintenance window.
@@ -1150,6 +1160,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2312b15c6b4bfcb203fc64c3f14db591"
+  "hash": "5f022bb029154c8cb7cd1d3f22dc933c"
 }
 ##DOCS-SOURCER-END -->
