@@ -254,6 +254,11 @@ module "ecs_task_scheduler" {
   # Set to true to enable the rule and false to disable
   is_enabled = true
 
+  # A name prefix to use for the EventBridge rule and IAM role. Creates a unique
+  # name beginning with the specified prefix. Note: Due to the length of the
+  # generated suffix, must be 38 characters or less.
+  name_prefix = "ecs-task-scheduler"
+
   # The event pattern to use. See README for usage examples. Leave null if using
   # task_schedule_expression.
   task_event_pattern = null
@@ -338,6 +343,11 @@ inputs = {
 
   # Set to true to enable the rule and false to disable
   is_enabled = true
+
+  # A name prefix to use for the EventBridge rule and IAM role. Creates a unique
+  # name beginning with the specified prefix. Note: Due to the length of the
+  # generated suffix, must be 38 characters or less.
+  name_prefix = "ecs-task-scheduler"
 
   # The event pattern to use. See README for usage examples. Leave null if using
   # task_schedule_expression.
@@ -518,6 +528,15 @@ Set to true to enable the rule and false to disable
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="name_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+A name prefix to use for the EventBridge rule and IAM role. Creates a unique name beginning with the specified prefix. Note: Due to the length of the generated suffix, must be 38 characters or less.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;ecs-task-scheduler&quot;"/>
+</HclListItem>
+
 <HclListItem name="task_event_pattern" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -562,6 +581,6 @@ The scheduling expression to use (rate or cron - see README for usage examples).
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-task-scheduler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "896c40c26b06bc39cbeae996e7ca849a"
+  "hash": "c56fcf8e7260e4a4cbf8f55a97ca8739"
 }
 ##DOCS-SOURCER-END -->
