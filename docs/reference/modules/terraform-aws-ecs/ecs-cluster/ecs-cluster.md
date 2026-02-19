@@ -329,6 +329,12 @@ module "ecs_cluster" {
   # 100.
   capacity_provider_target = 75
 
+  # Indicates whether capacity rebalance is enabled on the Auto Scaling Group.
+  # When enabled, Amazon EC2 Auto Scaling attempts to launch a Spot Instance
+  # whenever Amazon EC2 notifies that a Spot Instance is at an elevated risk of
+  # interruption.
+  capacity_rebalance = false
+
   # A list of metrics to collect. The allowed values are GroupDesiredCapacity,
   # GroupInServiceCapacity, GroupPendingCapacity, GroupMinSize, GroupMaxSize,
   # GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances,
@@ -390,6 +396,21 @@ module "ecs_cluster" {
   # The end date of the request.
   cluster_instance_market_valid_until = null
 
+  # The strategy for allocating on-demand capacity. Valid value: prioritized.
+  # Only used when cluster_instance_type_overrides is set.
+  cluster_instance_on_demand_allocation_strategy = null
+
+  # The minimum number of on-demand instances that must be provisioned in the
+  # Auto Scaling Group. The remaining instances will be a mix of on-demand and
+  # spot, governed by cluster_instance_on_demand_percentage_above_base_capacity.
+  # Only used when cluster_instance_type_overrides is set.
+  cluster_instance_on_demand_base_capacity = null
+
+  # The percentage of on-demand instances above the base capacity. Set to 0 to
+  # use only spot instances above the base capacity, or 100 to use only
+  # on-demand. Only used when cluster_instance_type_overrides is set.
+  cluster_instance_on_demand_percentage_above_base_capacity = null
+
   # The affinity setting for an instance on a Dedicated Host.
   cluster_instance_placement_affinity = null
 
@@ -425,6 +446,21 @@ module "ecs_cluster" {
   # The volume type for the root volume for each of the ECS Cluster's EC2
   # Instances. Can be standard, gp2, or io1
   cluster_instance_root_volume_type = "gp2"
+
+  # The strategy for allocating spot capacity. Valid values: lowest-price,
+  # capacity-optimized, capacity-optimized-prioritized,
+  # price-capacity-optimized. Only used when cluster_instance_type_overrides is
+  # set.
+  cluster_instance_spot_allocation_strategy = null
+
+  # The number of Spot Instance pools across which to allocate your Spot
+  # Instances. Only relevant when cluster_instance_spot_allocation_strategy is
+  # lowest-price. Only used when cluster_instance_type_overrides is set.
+  cluster_instance_spot_instance_pools = null
+
+  # The maximum price per unit hour that you are willing to pay for a Spot
+  # Instance. Only used when cluster_instance_type_overrides is set.
+  cluster_instance_spot_max_price = null
 
   # Value is the maximum bid price for the instance on the EC2 Spot Market.
   cluster_instance_spot_price = null
@@ -638,6 +674,12 @@ inputs = {
   # 100.
   capacity_provider_target = 75
 
+  # Indicates whether capacity rebalance is enabled on the Auto Scaling Group.
+  # When enabled, Amazon EC2 Auto Scaling attempts to launch a Spot Instance
+  # whenever Amazon EC2 notifies that a Spot Instance is at an elevated risk of
+  # interruption.
+  capacity_rebalance = false
+
   # A list of metrics to collect. The allowed values are GroupDesiredCapacity,
   # GroupInServiceCapacity, GroupPendingCapacity, GroupMinSize, GroupMaxSize,
   # GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances,
@@ -699,6 +741,21 @@ inputs = {
   # The end date of the request.
   cluster_instance_market_valid_until = null
 
+  # The strategy for allocating on-demand capacity. Valid value: prioritized.
+  # Only used when cluster_instance_type_overrides is set.
+  cluster_instance_on_demand_allocation_strategy = null
+
+  # The minimum number of on-demand instances that must be provisioned in the
+  # Auto Scaling Group. The remaining instances will be a mix of on-demand and
+  # spot, governed by cluster_instance_on_demand_percentage_above_base_capacity.
+  # Only used when cluster_instance_type_overrides is set.
+  cluster_instance_on_demand_base_capacity = null
+
+  # The percentage of on-demand instances above the base capacity. Set to 0 to
+  # use only spot instances above the base capacity, or 100 to use only
+  # on-demand. Only used when cluster_instance_type_overrides is set.
+  cluster_instance_on_demand_percentage_above_base_capacity = null
+
   # The affinity setting for an instance on a Dedicated Host.
   cluster_instance_placement_affinity = null
 
@@ -734,6 +791,21 @@ inputs = {
   # The volume type for the root volume for each of the ECS Cluster's EC2
   # Instances. Can be standard, gp2, or io1
   cluster_instance_root_volume_type = "gp2"
+
+  # The strategy for allocating spot capacity. Valid values: lowest-price,
+  # capacity-optimized, capacity-optimized-prioritized,
+  # price-capacity-optimized. Only used when cluster_instance_type_overrides is
+  # set.
+  cluster_instance_spot_allocation_strategy = null
+
+  # The number of Spot Instance pools across which to allocate your Spot
+  # Instances. Only relevant when cluster_instance_spot_allocation_strategy is
+  # lowest-price. Only used when cluster_instance_type_overrides is set.
+  cluster_instance_spot_instance_pools = null
+
+  # The maximum price per unit hour that you are willing to pay for a Spot
+  # Instance. Only used when cluster_instance_type_overrides is set.
+  cluster_instance_spot_max_price = null
 
   # Value is the maximum bid price for the instance on the EC2 Spot Market.
   cluster_instance_spot_price = null
@@ -1018,6 +1090,15 @@ Target cluster utilization for the capacity provider; a number from 1 to 100.
 <HclListItemDefaultValue defaultValue="75"/>
 </HclListItem>
 
+<HclListItem name="capacity_rebalance" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Indicates whether capacity rebalance is enabled on the Auto Scaling Group. When enabled, Amazon EC2 Auto Scaling attempts to launch a Spot Instance whenever Amazon EC2 notifies that a Spot Instance is at an elevated risk of interruption.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="cluster_asg_metrics_enabled" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1153,6 +1234,33 @@ The end date of the request.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="cluster_instance_on_demand_allocation_strategy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The strategy for allocating on-demand capacity. Valid value: prioritized. Only used when cluster_instance_type_overrides is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_on_demand_base_capacity" requirement="optional" type="number">
+<HclListItemDescription>
+
+The minimum number of on-demand instances that must be provisioned in the Auto Scaling Group. The remaining instances will be a mix of on-demand and spot, governed by cluster_instance_on_demand_percentage_above_base_capacity. Only used when cluster_instance_type_overrides is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_on_demand_percentage_above_base_capacity" requirement="optional" type="number">
+<HclListItemDescription>
+
+The percentage of on-demand instances above the base capacity. Set to 0 to use only spot instances above the base capacity, or 100 to use only on-demand. Only used when cluster_instance_type_overrides is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="cluster_instance_placement_affinity" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1241,6 +1349,33 @@ The volume type for the root volume for each of the ECS Cluster's EC2 Instances.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_spot_allocation_strategy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The strategy for allocating spot capacity. Valid values: lowest-price, capacity-optimized, capacity-optimized-prioritized, price-capacity-optimized. Only used when cluster_instance_type_overrides is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_spot_instance_pools" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of Spot Instance pools across which to allocate your Spot Instances. Only relevant when cluster_instance_spot_allocation_strategy is lowest-price. Only used when cluster_instance_type_overrides is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_spot_max_price" requirement="optional" type="string">
+<HclListItemDescription>
+
+The maximum price per unit hour that you are willing to pay for a Spot Instance. Only used when cluster_instance_type_overrides is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cluster_instance_spot_price" requirement="optional" type="string">
@@ -1566,6 +1701,6 @@ Set this variable to true to enable the use of Instance Metadata Service Version
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "777898f1702fae00c08b815ad792f30d"
+  "hash": "0d78f915e6955fec7f0feba11f7b61a0"
 }
 ##DOCS-SOURCER-END -->
