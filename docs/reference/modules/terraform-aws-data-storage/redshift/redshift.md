@@ -224,11 +224,21 @@ module "redshift" {
   # there may even be a downtime during maintenance windows.
   maintenance_window = "sun:07:00-sun:08:00"
 
+  # Whether to automatically manage the cluster admin credentials with AWS
+  # SecretsManager. When true, AWS will auto-generate and rotate the master
+  # password. Conflicts with master_password. See
+  # https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-secrets-manager-integration.html.
+  manage_master_password = null
+
   # The password for the master user. If var.snapshot_identifier is non-empty,
-  # this value is ignored. Required unless var.replicate_source_db is set.
+  # this value is ignored. Conflicts with manage_master_password.
   master_password = null
 
-  # The username for the master user. Required unless var.replicate_source_db is
+  # KMS key ID for encrypting the managed master password secret. Only used when
+  # manage_master_password is true.
+  master_password_secret_kms_key_id = null
+
+  # The username for the master user. Required unless var.snapshot_identifier is
   # set.
   master_username = null
 
@@ -468,11 +478,21 @@ inputs = {
   # there may even be a downtime during maintenance windows.
   maintenance_window = "sun:07:00-sun:08:00"
 
+  # Whether to automatically manage the cluster admin credentials with AWS
+  # SecretsManager. When true, AWS will auto-generate and rotate the master
+  # password. Conflicts with master_password. See
+  # https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-secrets-manager-integration.html.
+  manage_master_password = null
+
   # The password for the master user. If var.snapshot_identifier is non-empty,
-  # this value is ignored. Required unless var.replicate_source_db is set.
+  # this value is ignored. Conflicts with manage_master_password.
   master_password = null
 
-  # The username for the master user. Required unless var.replicate_source_db is
+  # KMS key ID for encrypting the managed master password secret. Only used when
+  # manage_master_password is true.
+  master_password_secret_kms_key_id = null
+
+  # The username for the master user. Required unless var.snapshot_identifier is
   # set.
   master_username = null
 
@@ -871,10 +891,28 @@ The weekly day and time range during which system maintenance can occur (e.g. we
 <HclListItemDefaultValue defaultValue="&quot;sun:07:00-sun:08:00&quot;"/>
 </HclListItem>
 
+<HclListItem name="manage_master_password" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to automatically manage the cluster admin credentials with AWS SecretsManager. When true, AWS will auto-generate and rotate the master password. Conflicts with master_password. See https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-secrets-manager-integration.html.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="master_password" requirement="optional" type="string">
 <HclListItemDescription>
 
-The password for the master user. If <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is non-empty, this value is ignored. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+The password for the master user. If <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is non-empty, this value is ignored. Conflicts with manage_master_password.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="master_password_secret_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+KMS key ID for encrypting the managed master password secret. Only used when manage_master_password is true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -883,7 +921,7 @@ The password for the master user. If <a href="#snapshot_identifier"><code>snapsh
 <HclListItem name="master_username" requirement="optional" type="string">
 <HclListItemDescription>
 
-The username for the master user. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+The username for the master user. Required unless <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is set.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1061,6 +1099,14 @@ The Redshift Cluster ID
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="master_password_secret_arn">
+<HclListItemDescription>
+
+ARN of the auto-generated Secrets Manager secret containing admin credentials. Only populated when manage_master_password is true.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="name">
 <HclListItemDescription>
 
@@ -1104,6 +1150,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e1f14be18ac31a63293d2b10da5bbef5"
+  "hash": "2312b15c6b4bfcb203fc64c3f14db591"
 }
 ##DOCS-SOURCER-END -->
