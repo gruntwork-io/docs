@@ -11,11 +11,16 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <VersionBadge repoTitle="Data Storage Modules" version="0.46.1" lastModifiedVersion="0.41.0"/>
 
-# Share Snapshot Lambda Module
+> **DEPRECATED:** This module is deprecated. Use [AWS Backup](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/backup-plan) instead, which natively supports
+> scheduled backups, cross-account copy with automatic KMS re-encryption, and lifecycle retention. See the
+> [backup-rds-cross-account example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/examples/backup-rds-cross-account) for a full end-to-end replacement, and the
+> [backup-vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/backup-vault) and [backup-plan](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/backup-plan) modules for details.
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/lambda-share-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.41.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+
+# Share Snapshot Lambda Module
 
 This module creates an [AWS Lambda](https://aws.amazon.com/lambda/) function that can share snapshots of an [Amazon
 Relational Database (RDS)](https://aws.amazon.com/rds/) database with another AWS account. Typically, the snapshots
@@ -205,6 +210,6 @@ The amount of time, in seconds, between retries.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/lambda-share-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "91c1cdcbc00cb2e3fecec4633fc24feb"
+  "hash": "808c5be12eb172950c940588f50210f2"
 }
 ##DOCS-SOURCER-END -->
