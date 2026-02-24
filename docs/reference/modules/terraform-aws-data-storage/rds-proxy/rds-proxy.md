@@ -159,9 +159,9 @@ module "rds_proxy" {
   db_secret_arn = <string>
 
   # The kind of database engine that the proxy will connect to. Valid values are
-  # MYSQL or POSTGRESQL. This value determines which database network protocol
-  # the proxy recognizes when it interprets network traffic to and from the
-  # database.
+  # MYSQL, POSTGRESQL, or SQLSERVER. This value determines which database
+  # network protocol the proxy recognizes when it interprets network traffic to
+  # and from the database.
   engine_family = <string>
 
   # The identifier for the proxy. This name must be unique for all proxies owned
@@ -191,6 +191,9 @@ module "rds_proxy" {
   # in the VPC plus any other networks that need access.
   allow_connections_from_ipv6_cidr_blocks = []
 
+  # A list of Security Groups that are allowed to connect to the proxy.
+  allow_connections_from_security_groups = []
+
   # A list of CIDR blocks that the RDS Proxy is allowed to connect to. This is
   # used to allow the proxy to connect to the RDS instances.
   allow_outbound_connections_to_cidr_blocks = ["0.0.0.0/0"]
@@ -203,6 +206,10 @@ module "rds_proxy" {
   # Configuration block for authentication and authorization mechanisms to
   # connect to the associated instances or clusters.
   auth = {}
+
+  # A map of custom tags to apply to the RDS Proxy and its associated resources.
+  # The key is the tag name and the value is the tag value.
+  custom_tags = {}
 
   # The identifier of the Aurora DB cluster to be associated with the proxy.
   # Required if connecting to an Aurora cluster. Either db_instance_identifier
@@ -217,6 +224,15 @@ module "rds_proxy" {
   # The ARN of the KMS key used to encrypt the database secret in AWS Secrets
   # Manager.
   db_secret_kms_key_arn = null
+
+  # Whether the proxy includes detailed information about SQL statements in its
+  # logs. This information helps you to debug issues involving SQL behavior or
+  # the performance and scalability of the proxy connections. The debug
+  # information includes the text of SQL statements that you submit through the
+  # proxy. Thus, only enable this setting when needed for debugging, and only
+  # when you have security measures in place to safeguard any sensitive
+  # information that appears in the logs.
+  debug_logging = false
 
   # The number of seconds that a connection to the proxy can be inactive before
   # the proxy disconnects it. Minimum: 1, Maximum: 7200.
@@ -265,9 +281,9 @@ inputs = {
   db_secret_arn = <string>
 
   # The kind of database engine that the proxy will connect to. Valid values are
-  # MYSQL or POSTGRESQL. This value determines which database network protocol
-  # the proxy recognizes when it interprets network traffic to and from the
-  # database.
+  # MYSQL, POSTGRESQL, or SQLSERVER. This value determines which database
+  # network protocol the proxy recognizes when it interprets network traffic to
+  # and from the database.
   engine_family = <string>
 
   # The identifier for the proxy. This name must be unique for all proxies owned
@@ -297,6 +313,9 @@ inputs = {
   # in the VPC plus any other networks that need access.
   allow_connections_from_ipv6_cidr_blocks = []
 
+  # A list of Security Groups that are allowed to connect to the proxy.
+  allow_connections_from_security_groups = []
+
   # A list of CIDR blocks that the RDS Proxy is allowed to connect to. This is
   # used to allow the proxy to connect to the RDS instances.
   allow_outbound_connections_to_cidr_blocks = ["0.0.0.0/0"]
@@ -309,6 +328,10 @@ inputs = {
   # Configuration block for authentication and authorization mechanisms to
   # connect to the associated instances or clusters.
   auth = {}
+
+  # A map of custom tags to apply to the RDS Proxy and its associated resources.
+  # The key is the tag name and the value is the tag value.
+  custom_tags = {}
 
   # The identifier of the Aurora DB cluster to be associated with the proxy.
   # Required if connecting to an Aurora cluster. Either db_instance_identifier
@@ -323,6 +346,15 @@ inputs = {
   # The ARN of the KMS key used to encrypt the database secret in AWS Secrets
   # Manager.
   db_secret_kms_key_arn = null
+
+  # Whether the proxy includes detailed information about SQL statements in its
+  # logs. This information helps you to debug issues involving SQL behavior or
+  # the performance and scalability of the proxy connections. The debug
+  # information includes the text of SQL statements that you submit through the
+  # proxy. Thus, only enable this setting when needed for debugging, and only
+  # when you have security measures in place to safeguard any sensitive
+  # information that appears in the logs.
+  debug_logging = false
 
   # The number of seconds that a connection to the proxy can be inactive before
   # the proxy disconnects it. Minimum: 1, Maximum: 7200.
@@ -387,7 +419,7 @@ The ARN of the Secrets Manager secret containing the database credentials. The s
 <HclListItem name="engine_family" requirement="required" type="string">
 <HclListItemDescription>
 
-The kind of database engine that the proxy will connect to. Valid values are MYSQL or POSTGRESQL. This value determines which database network protocol the proxy recognizes when it interprets network traffic to and from the database.
+The kind of database engine that the proxy will connect to. Valid values are MYSQL, POSTGRESQL, or SQLSERVER. This value determines which database network protocol the proxy recognizes when it interprets network traffic to and from the database.
 
 </HclListItemDescription>
 </HclListItem>
@@ -436,6 +468,15 @@ A list of IPv6 CIDR blocks that are allowed to connect to the proxy. These shoul
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="allow_connections_from_security_groups" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of Security Groups that are allowed to connect to the proxy.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="allow_outbound_connections_to_cidr_blocks" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -470,11 +511,20 @@ map(object({
     secret_arn                = string                       # The ARN of the Secrets Manager secret containing the database credentials
     description               = optional(string)             # A user-specified description about the authentication used by a proxy to connect to the underlying database
     iam_auth                  = optional(string, "DISABLED") # Whether to require or disallow AWS Identity and Access Management (IAM) authentication for connections to the proxy. Valid values: REQUIRED, DISABLED
-    client_password_auth_type = optional(string)             # The type of authentication the proxy uses for connections from clients. Valid values: MYSQL_NATIVE_PASSWORD, POSTGRES_SCRAM_SHA_256, POSTGRES_MD5
+    client_password_auth_type = optional(string)             # The type of authentication the proxy uses for connections from clients. Valid values: MYSQL_NATIVE_PASSWORD, MYSQL_CACHING_SHA2_PASSWORD, POSTGRES_SCRAM_SHA_256, POSTGRES_MD5, SQL_SERVER_AUTHENTICATION
   }))
 ```
 
 </HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of custom tags to apply to the RDS Proxy and its associated resources. The key is the tag name and the value is the tag value.
+
+</HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -503,6 +553,15 @@ The ARN of the KMS key used to encrypt the database secret in AWS Secrets Manage
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="debug_logging" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether the proxy includes detailed information about SQL statements in its logs. This information helps you to debug issues involving SQL behavior or the performance and scalability of the proxy connections. The debug information includes the text of SQL statements that you submit through the proxy. Thus, only enable this setting when needed for debugging, and only when you have security measures in place to safeguard any sensitive information that appears in the logs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="idle_client_timeout" requirement="optional" type="number">
@@ -578,6 +637,6 @@ The ID of the security group associated with the RDS proxy. This security group 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1870b9a8b0d43b7b16093dee37c5bc6e"
+  "hash": "90b110ede749f5e3f929a8684a328233"
 }
 ##DOCS-SOURCER-END -->
