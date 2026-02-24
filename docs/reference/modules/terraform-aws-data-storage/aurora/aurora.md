@@ -331,6 +331,14 @@ module "aurora" {
   # can't be deleted when this value is set to true.
   deletion_protection = false
 
+  # Whether to enable global write forwarding on this Aurora cluster. When
+  # enabled on a secondary cluster in a global database, write SQL statements
+  # are forwarded to the primary cluster. Only applies to secondary clusters —
+  # setting this on the primary cluster has no effect. Supported on Aurora MySQL
+  # version 2.08.1+. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-write-forwarding.html
+  enable_global_write_forwarding = null
+
   # If true, enables the HTTP endpoint used for Data API. Only valid when
   # engine_mode is set to serverless.
   enable_http_endpoint = null
@@ -345,13 +353,27 @@ module "aurora" {
   enable_local_write_forwarding = null
 
   # If non-empty, the Aurora cluster will export the specified logs to
-  # Cloudwatch. Must be zero or more of: audit, error, general and slowquery
+  # Cloudwatch. Aurora MySQL valid values: audit, error, general, slowquery.
+  # Aurora PostgreSQL valid values: postgresql. Both engines also support:
+  # instance (OS-level metrics) and iam-db-auth-error (IAM authentication
+  # failure logs, available since Feb 2025).
   enabled_cloudwatch_logs_exports = []
 
   # The name of the database engine to be used for this DB cluster. Valid
   # Values: aurora-mysql (for MySQL 5.7-compatible Aurora), and
   # aurora-postgresql
   engine = "aurora-mysql"
+
+  # The life cycle type for this DB cluster. Valid values are
+  # 'open-source-rds-extended-support' (default) and
+  # 'open-source-rds-extended-support-disabled'. When set to the default, the
+  # cluster will automatically enroll in RDS Extended Support after the engine
+  # version reaches end of standard support, which incurs additional charges.
+  # Set to 'open-source-rds-extended-support-disabled' to opt out and avoid
+  # unexpected billing — the cluster will then be upgraded to the next major
+  # version at the end of standard support. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html
+  engine_lifecycle_support = null
 
   # The DB engine mode of the DB cluster: either provisioned, parallelquery,
   # multimaster or global which only applies for global database clusters
@@ -425,6 +447,13 @@ module "aurora" {
   # here. You must specify a MonitoringInterval value other than 0 when you
   # specify a MonitoringRoleARN value that is not empty string.
   monitoring_role_arn = null
+
+  # The network type of the DB cluster. Valid values: 'IPV4' (default) or 'DUAL'
+  # for dual-stack with both IPv4 and IPv6. Dual-stack clusters must use private
+  # subnets with IPv6 CIDR blocks and cannot be publicly accessible. Not all
+  # instance classes support dual-stack. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.IP_Addressing
+  network_type = null
 
   # Specifies whether instance-level Performance Insights is enabled or not. On
   # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
@@ -516,7 +545,7 @@ module "aurora" {
 
   # The maximum capacity for an Aurora DB cluster in provisioned DB engine mode.
   # The maximum capacity must be greater than or equal to the minimum capacity.
-  # Valid capacity values are in a range of 0.5 up to 128 in steps of 0.5.
+  # Valid capacity values are in a range of 0.5 up to 256 in steps of 0.5.
   scaling_configuration_max_capacity_V2 = 128
 
   # The minimum capacity. The minimum capacity must be lesser than or equal to
@@ -526,7 +555,10 @@ module "aurora" {
 
   # The minimum capacity for an Aurora DB cluster in provisioned DB engine mode.
   # The minimum capacity must be lesser than or equal to the maximum capacity.
-  # Valid capacity values are in a range of 0.5 up to 128 in steps of 0.5.
+  # Valid capacity values are in a range of 0 up to 256 in steps of 0.5. Set to
+  # 0 to enable scale-to-zero (requires provider >= 5.80.0). When min_capacity
+  # is 0, the cluster pauses after the seconds_until_auto_pause period of
+  # inactivity.
   scaling_configuration_min_capacity_V2 = 0.5
 
   # The time, in seconds, before an Aurora DB cluster in serverless mode is
@@ -784,6 +816,14 @@ inputs = {
   # can't be deleted when this value is set to true.
   deletion_protection = false
 
+  # Whether to enable global write forwarding on this Aurora cluster. When
+  # enabled on a secondary cluster in a global database, write SQL statements
+  # are forwarded to the primary cluster. Only applies to secondary clusters —
+  # setting this on the primary cluster has no effect. Supported on Aurora MySQL
+  # version 2.08.1+. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-write-forwarding.html
+  enable_global_write_forwarding = null
+
   # If true, enables the HTTP endpoint used for Data API. Only valid when
   # engine_mode is set to serverless.
   enable_http_endpoint = null
@@ -798,13 +838,27 @@ inputs = {
   enable_local_write_forwarding = null
 
   # If non-empty, the Aurora cluster will export the specified logs to
-  # Cloudwatch. Must be zero or more of: audit, error, general and slowquery
+  # Cloudwatch. Aurora MySQL valid values: audit, error, general, slowquery.
+  # Aurora PostgreSQL valid values: postgresql. Both engines also support:
+  # instance (OS-level metrics) and iam-db-auth-error (IAM authentication
+  # failure logs, available since Feb 2025).
   enabled_cloudwatch_logs_exports = []
 
   # The name of the database engine to be used for this DB cluster. Valid
   # Values: aurora-mysql (for MySQL 5.7-compatible Aurora), and
   # aurora-postgresql
   engine = "aurora-mysql"
+
+  # The life cycle type for this DB cluster. Valid values are
+  # 'open-source-rds-extended-support' (default) and
+  # 'open-source-rds-extended-support-disabled'. When set to the default, the
+  # cluster will automatically enroll in RDS Extended Support after the engine
+  # version reaches end of standard support, which incurs additional charges.
+  # Set to 'open-source-rds-extended-support-disabled' to opt out and avoid
+  # unexpected billing — the cluster will then be upgraded to the next major
+  # version at the end of standard support. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html
+  engine_lifecycle_support = null
 
   # The DB engine mode of the DB cluster: either provisioned, parallelquery,
   # multimaster or global which only applies for global database clusters
@@ -878,6 +932,13 @@ inputs = {
   # here. You must specify a MonitoringInterval value other than 0 when you
   # specify a MonitoringRoleARN value that is not empty string.
   monitoring_role_arn = null
+
+  # The network type of the DB cluster. Valid values: 'IPV4' (default) or 'DUAL'
+  # for dual-stack with both IPv4 and IPv6. Dual-stack clusters must use private
+  # subnets with IPv6 CIDR blocks and cannot be publicly accessible. Not all
+  # instance classes support dual-stack. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.IP_Addressing
+  network_type = null
 
   # Specifies whether instance-level Performance Insights is enabled or not. On
   # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
@@ -969,7 +1030,7 @@ inputs = {
 
   # The maximum capacity for an Aurora DB cluster in provisioned DB engine mode.
   # The maximum capacity must be greater than or equal to the minimum capacity.
-  # Valid capacity values are in a range of 0.5 up to 128 in steps of 0.5.
+  # Valid capacity values are in a range of 0.5 up to 256 in steps of 0.5.
   scaling_configuration_max_capacity_V2 = 128
 
   # The minimum capacity. The minimum capacity must be lesser than or equal to
@@ -979,7 +1040,10 @@ inputs = {
 
   # The minimum capacity for an Aurora DB cluster in provisioned DB engine mode.
   # The minimum capacity must be lesser than or equal to the maximum capacity.
-  # Valid capacity values are in a range of 0.5 up to 128 in steps of 0.5.
+  # Valid capacity values are in a range of 0 up to 256 in steps of 0.5. Set to
+  # 0 to enable scale-to-zero (requires provider >= 5.80.0). When min_capacity
+  # is 0, the cluster pauses after the seconds_until_auto_pause period of
+  # inactivity.
   scaling_configuration_min_capacity_V2 = 0.5
 
   # The time, in seconds, before an Aurora DB cluster in serverless mode is
@@ -1382,6 +1446,15 @@ If the DB instance should have deletion protection enabled. The database can't b
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_global_write_forwarding" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable global write forwarding on this Aurora cluster. When enabled on a secondary cluster in a global database, write SQL statements are forwarded to the primary cluster. Only applies to secondary clusters — setting this on the primary cluster has no effect. Supported on Aurora MySQL version 2.08.1+. See https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-write-forwarding.html
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="enable_http_endpoint" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1403,7 +1476,7 @@ Whether to enable local write forwarding on the Aurora cluster. When enabled, wr
 <HclListItem name="enabled_cloudwatch_logs_exports" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
-If non-empty, the Aurora cluster will export the specified logs to Cloudwatch. Must be zero or more of: audit, error, general and slowquery
+If non-empty, the Aurora cluster will export the specified logs to Cloudwatch. Aurora MySQL valid values: audit, error, general, slowquery. Aurora PostgreSQL valid values: postgresql. Both engines also support: instance (OS-level metrics) and iam-db-auth-error (IAM authentication failure logs, available since Feb 2025).
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1416,6 +1489,15 @@ The name of the database engine to be used for this DB cluster. Valid Values: au
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;aurora-mysql&quot;"/>
+</HclListItem>
+
+<HclListItem name="engine_lifecycle_support" requirement="optional" type="string">
+<HclListItemDescription>
+
+The life cycle type for this DB cluster. Valid values are 'open-source-rds-extended-support' (default) and 'open-source-rds-extended-support-disabled'. When set to the default, the cluster will automatically enroll in RDS Extended Support after the engine version reaches end of standard support, which incurs additional charges. Set to 'open-source-rds-extended-support-disabled' to opt out and avoid unexpected billing — the cluster will then be upgraded to the next major version at the end of standard support. See https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="engine_mode" requirement="optional" type="string">
@@ -1530,6 +1612,15 @@ The interval, in seconds, between points when Enhanced Monitoring metrics are co
 <HclListItemDescription>
 
 The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. Be sure this role exists. It will not be created here. You must specify a MonitoringInterval value other than 0 when you specify a MonitoringRoleARN value that is not empty string.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="network_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The network type of the DB cluster. Valid values: 'IPV4' (default) or 'DUAL' for dual-stack with both IPv4 and IPv6. Dual-stack clusters must use private subnets with IPv6 CIDR blocks and cannot be publicly accessible. Not all instance classes support dual-stack. See https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.IP_Addressing
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1700,7 +1791,7 @@ The maximum capacity. The maximum capacity must be greater than or equal to the 
 <HclListItem name="scaling_configuration_max_capacity_V2" requirement="optional" type="number">
 <HclListItemDescription>
 
-The maximum capacity for an Aurora DB cluster in provisioned DB engine mode. The maximum capacity must be greater than or equal to the minimum capacity. Valid capacity values are in a range of 0.5 up to 128 in steps of 0.5.
+The maximum capacity for an Aurora DB cluster in provisioned DB engine mode. The maximum capacity must be greater than or equal to the minimum capacity. Valid capacity values are in a range of 0.5 up to 256 in steps of 0.5.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="128"/>
@@ -1718,7 +1809,7 @@ The minimum capacity. The minimum capacity must be lesser than or equal to the m
 <HclListItem name="scaling_configuration_min_capacity_V2" requirement="optional" type="number">
 <HclListItemDescription>
 
-The minimum capacity for an Aurora DB cluster in provisioned DB engine mode. The minimum capacity must be lesser than or equal to the maximum capacity. Valid capacity values are in a range of 0.5 up to 128 in steps of 0.5.
+The minimum capacity for an Aurora DB cluster in provisioned DB engine mode. The minimum capacity must be lesser than or equal to the maximum capacity. Valid capacity values are in a range of 0 up to 256 in steps of 0.5. Set to 0 to enable scale-to-zero (requires provider >= 5.80.0). When min_capacity is 0, the cluster pauses after the seconds_until_auto_pause period of inactivity.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="0.5"/>
@@ -1861,6 +1952,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f47ed757857740a85288cbfb45cfef5c"
+  "hash": "30ba6149bf89b68f87bf9d6881d48464"
 }
 ##DOCS-SOURCER-END -->

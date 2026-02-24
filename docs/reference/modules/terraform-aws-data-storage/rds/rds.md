@@ -388,6 +388,17 @@ module "rds" {
   # upgrade (PostgreSQL).
   enabled_cloudwatch_logs_exports = []
 
+  # The life cycle type for this DB instance. Valid values are
+  # 'open-source-rds-extended-support' (default) and
+  # 'open-source-rds-extended-support-disabled'. When set to the default, the
+  # instance will automatically enroll in RDS Extended Support after the engine
+  # version reaches end of standard support, which incurs additional charges.
+  # Set to 'open-source-rds-extended-support-disabled' to opt out and avoid
+  # unexpected billing — the instance will then be upgraded to the next major
+  # version at the end of standard support. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html
+  engine_lifecycle_support = null
+
   # The name of the final_snapshot_identifier. Defaults to
   # var.name-final-snapshot if not specified.
   final_snapshot_name = null
@@ -828,6 +839,17 @@ inputs = {
   # error, general, listener, slowquery, trace, postgresql (PostgreSQL) and
   # upgrade (PostgreSQL).
   enabled_cloudwatch_logs_exports = []
+
+  # The life cycle type for this DB instance. Valid values are
+  # 'open-source-rds-extended-support' (default) and
+  # 'open-source-rds-extended-support-disabled'. When set to the default, the
+  # instance will automatically enroll in RDS Extended Support after the engine
+  # version reaches end of standard support, which incurs additional charges.
+  # Set to 'open-source-rds-extended-support-disabled' to opt out and avoid
+  # unexpected billing — the instance will then be upgraded to the next major
+  # version at the end of standard support. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html
+  engine_lifecycle_support = null
 
   # The name of the final_snapshot_identifier. Defaults to
   # var.name-final-snapshot if not specified.
@@ -1528,6 +1550,15 @@ List of log types to enable for exporting to CloudWatch logs. If omitted, no log
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="engine_lifecycle_support" requirement="optional" type="string">
+<HclListItemDescription>
+
+The life cycle type for this DB instance. Valid values are 'open-source-rds-extended-support' (default) and 'open-source-rds-extended-support-disabled'. When set to the default, the instance will automatically enroll in RDS Extended Support after the engine version reaches end of standard support, which incurs additional charges. Set to 'open-source-rds-extended-support-disabled' to opt out and avoid unexpected billing — the instance will then be upgraded to the next major version at the end of standard support. See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="final_snapshot_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1949,6 +1980,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "962082d417f55fce4ff35ab2f0b5c4b4"
+  "hash": "3d93d51cf17a91feebfcc4d19f4d2969"
 }
 ##DOCS-SOURCER-END -->
