@@ -173,10 +173,17 @@ module "rds" {
   # MAJOR.MINOR and omit the PATCH (e.g., set it to 5.7 and not 5.7.11) to avoid
   # state drift. See
   # https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version
-  # for more details.
+  # for more details. NOTE: Running database engine versions past their
+  # end-of-standard-support date will automatically enroll in RDS Extended
+  # Support, which incurs additional charges. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html
+  # for details.
   engine_version = <string>
 
-  # The instance type to use for the db (e.g. db.t2.micro)
+  # The instance type to use for the db (e.g. db.t3.micro). For best
+  # price-performance, consider Graviton-based instances (db.m7g.*, db.r7g.*,
+  # db.m8g.*, db.r8g.*). Graviton4 (M8g/R8g) instances offer up to 40% better
+  # performance vs. Graviton3.
   instance_type = <string>
 
   # The name used to namespace all resources created by these templates,
@@ -332,8 +339,11 @@ module "rds" {
   custom_tags = {}
 
   # The mode of Database Insights to enable for the DB instance. Valid options
-  # are 'standard' or 'advanced'. When setting this to 'advanced' then
-  # performance_insights_enabled must be set to true and
+  # are 'standard' or 'advanced'. This is the recommended replacement for
+  # Performance Insights (deprecated June 30, 2026). 'standard' provides 7 days
+  # of counter metrics at no extra cost. 'advanced' provides 15 months of all
+  # metrics, execution plans, and on-demand analysis. When setting this to
+  # 'advanced', performance_insights_enabled must be set to true and
   # 'performance_insights_retention_period' set to at least 465 days.
   database_insights_mode = null
 
@@ -343,6 +353,14 @@ module "rds" {
   # null). If you do not provide a name, Amazon RDS will not create a database
   # in the DB instance you are creating.
   db_name = null
+
+  # Use a dedicated log volume (DLV) for the DB instance. A DLV moves database
+  # transaction logs onto a separate storage volume, which can improve database
+  # write performance. Only supported for Provisioned IOPS storage types
+  # (io1/io2) — gp3 is NOT supported. Engine version requirements: MariaDB
+  # 10.6.7+, MySQL 8.0.28+, PostgreSQL 13.10+/14.7+/15.2+. A reboot is required
+  # after enabling/disabling on an existing instance.
+  dedicated_log_volume = false
 
   # A map of the default license to use for each supported RDS engine.
   default_license_models = {"mariadb":"general-public-license","mysql":"general-public-license","oracle-ee":"bring-your-own-license","oracle-ee-cdb":"bring-your-own-license","oracle-se":"bring-your-own-license","oracle-se1":"bring-your-own-license","oracle-se2":"bring-your-own-license","oracle-se2-cdb":"bring-your-own-license","postgres":"postgresql-license","sqlserver-ee":"license-included","sqlserver-ex":"license-included","sqlserver-se":"license-included","sqlserver-web":"license-included"}
@@ -473,7 +491,11 @@ module "rds" {
 
   # Specifies whether Performance Insights are enabled. Performance Insights can
   # be enabled for specific versions of database engines. See
-  # https://aws.amazon.com/rds/performance-insights/ for more details.
+  # https://aws.amazon.com/rds/performance-insights/ for more details. NOTE: The
+  # Performance Insights console and flexible retention periods are deprecated
+  # as of June 30, 2026. Consider using var.database_insights_mode ('standard'
+  # or 'advanced') instead, which replaces Performance Insights with CloudWatch
+  # Database Insights.
   performance_insights_enabled = false
 
   # The ARN for the KMS key to encrypt Performance Insights data. When
@@ -485,7 +507,10 @@ module "rds" {
   # The amount of time in days to retain Performance Insights data. Either 7 (7
   # days) or 731 (2 years). When specifying
   # performance_insights_retention_period, performance_insights_enabled needs to
-  # be set to true. Defaults to `7`.
+  # be set to true. Defaults to `7`. NOTE: Flexible PI retention periods (paid
+  # tier) are deprecated as of June 30, 2026. For long-term retention, use
+  # var.database_insights_mode = 'advanced' which provides 15 months of
+  # retention via CloudWatch Database Insights.
   performance_insights_retention_period = null
 
   # The ARN of the policy that is used to set the permissions boundary for the
@@ -541,7 +566,10 @@ module "rds" {
 
   # The type of storage to use for the primary instance. Must be one of
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
-  # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+  # SSD), 'io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+  # AWS recommends 'gp3' for most workloads as it provides a baseline of 3,000
+  # IOPS and 125 MiB/s at a lower cost than gp2, with the ability to provision
+  # up to 64,000 IOPS independently of storage size.
   storage_type = "gp2"
 
   # Time zone of the DB instance. timezone is currently only supported by
@@ -586,10 +614,17 @@ inputs = {
   # MAJOR.MINOR and omit the PATCH (e.g., set it to 5.7 and not 5.7.11) to avoid
   # state drift. See
   # https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version
-  # for more details.
+  # for more details. NOTE: Running database engine versions past their
+  # end-of-standard-support date will automatically enroll in RDS Extended
+  # Support, which incurs additional charges. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html
+  # for details.
   engine_version = <string>
 
-  # The instance type to use for the db (e.g. db.t2.micro)
+  # The instance type to use for the db (e.g. db.t3.micro). For best
+  # price-performance, consider Graviton-based instances (db.m7g.*, db.r7g.*,
+  # db.m8g.*, db.r8g.*). Graviton4 (M8g/R8g) instances offer up to 40% better
+  # performance vs. Graviton3.
   instance_type = <string>
 
   # The name used to namespace all resources created by these templates,
@@ -745,8 +780,11 @@ inputs = {
   custom_tags = {}
 
   # The mode of Database Insights to enable for the DB instance. Valid options
-  # are 'standard' or 'advanced'. When setting this to 'advanced' then
-  # performance_insights_enabled must be set to true and
+  # are 'standard' or 'advanced'. This is the recommended replacement for
+  # Performance Insights (deprecated June 30, 2026). 'standard' provides 7 days
+  # of counter metrics at no extra cost. 'advanced' provides 15 months of all
+  # metrics, execution plans, and on-demand analysis. When setting this to
+  # 'advanced', performance_insights_enabled must be set to true and
   # 'performance_insights_retention_period' set to at least 465 days.
   database_insights_mode = null
 
@@ -756,6 +794,14 @@ inputs = {
   # null). If you do not provide a name, Amazon RDS will not create a database
   # in the DB instance you are creating.
   db_name = null
+
+  # Use a dedicated log volume (DLV) for the DB instance. A DLV moves database
+  # transaction logs onto a separate storage volume, which can improve database
+  # write performance. Only supported for Provisioned IOPS storage types
+  # (io1/io2) — gp3 is NOT supported. Engine version requirements: MariaDB
+  # 10.6.7+, MySQL 8.0.28+, PostgreSQL 13.10+/14.7+/15.2+. A reboot is required
+  # after enabling/disabling on an existing instance.
+  dedicated_log_volume = false
 
   # A map of the default license to use for each supported RDS engine.
   default_license_models = {"mariadb":"general-public-license","mysql":"general-public-license","oracle-ee":"bring-your-own-license","oracle-ee-cdb":"bring-your-own-license","oracle-se":"bring-your-own-license","oracle-se1":"bring-your-own-license","oracle-se2":"bring-your-own-license","oracle-se2-cdb":"bring-your-own-license","postgres":"postgresql-license","sqlserver-ee":"license-included","sqlserver-ex":"license-included","sqlserver-se":"license-included","sqlserver-web":"license-included"}
@@ -886,7 +932,11 @@ inputs = {
 
   # Specifies whether Performance Insights are enabled. Performance Insights can
   # be enabled for specific versions of database engines. See
-  # https://aws.amazon.com/rds/performance-insights/ for more details.
+  # https://aws.amazon.com/rds/performance-insights/ for more details. NOTE: The
+  # Performance Insights console and flexible retention periods are deprecated
+  # as of June 30, 2026. Consider using var.database_insights_mode ('standard'
+  # or 'advanced') instead, which replaces Performance Insights with CloudWatch
+  # Database Insights.
   performance_insights_enabled = false
 
   # The ARN for the KMS key to encrypt Performance Insights data. When
@@ -898,7 +948,10 @@ inputs = {
   # The amount of time in days to retain Performance Insights data. Either 7 (7
   # days) or 731 (2 years). When specifying
   # performance_insights_retention_period, performance_insights_enabled needs to
-  # be set to true. Defaults to `7`.
+  # be set to true. Defaults to `7`. NOTE: Flexible PI retention periods (paid
+  # tier) are deprecated as of June 30, 2026. For long-term retention, use
+  # var.database_insights_mode = 'advanced' which provides 15 months of
+  # retention via CloudWatch Database Insights.
   performance_insights_retention_period = null
 
   # The ARN of the policy that is used to set the permissions boundary for the
@@ -954,7 +1007,10 @@ inputs = {
 
   # The type of storage to use for the primary instance. Must be one of
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
-  # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+  # SSD), 'io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+  # AWS recommends 'gp3' for most workloads as it provides a baseline of 3,000
+  # IOPS and 125 MiB/s at a lower cost than gp2, with the ability to provision
+  # up to 64,000 IOPS independently of storage size.
   storage_type = "gp2"
 
   # Time zone of the DB instance. timezone is currently only supported by
@@ -996,7 +1052,7 @@ The DB engine to use (e.g. mysql).
 <HclListItem name="engine_version" requirement="required" type="string">
 <HclListItemDescription>
 
-The version of <a href="#engine"><code>engine</code></a> to use (e.g. 5.7.11 for mysql). If <a href="#auto_minor_version_upgrade"><code>auto_minor_version_upgrade</code></a> is set to true, set the version number to MAJOR.MINOR and omit the PATCH (e.g., set it to 5.7 and not 5.7.11) to avoid state drift. See https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version for more details.
+The version of <a href="#engine"><code>engine</code></a> to use (e.g. 5.7.11 for mysql). If <a href="#auto_minor_version_upgrade"><code>auto_minor_version_upgrade</code></a> is set to true, set the version number to MAJOR.MINOR and omit the PATCH (e.g., set it to 5.7 and not 5.7.11) to avoid state drift. See https://www.terraform.io/docs/providers/aws/r/db_instance.html#engine_version for more details. NOTE: Running database engine versions past their end-of-standard-support date will automatically enroll in RDS Extended Support, which incurs additional charges. See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html for details.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1004,7 +1060,7 @@ The version of <a href="#engine"><code>engine</code></a> to use (e.g. 5.7.11 for
 <HclListItem name="instance_type" requirement="required" type="string">
 <HclListItemDescription>
 
-The instance type to use for the db (e.g. db.t2.micro)
+The instance type to use for the db (e.g. db.t3.micro). For best price-performance, consider Graviton-based instances (db.m7g.*, db.r7g.*, db.m8g.*, db.r8g.*). Graviton4 (M8g/R8g) instances offer up to 40% better performance vs. Graviton3.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1374,7 +1430,7 @@ A map of custom tags to apply to the RDS Instance and the Security Group created
 <HclListItem name="database_insights_mode" requirement="optional" type="string">
 <HclListItemDescription>
 
-The mode of Database Insights to enable for the DB instance. Valid options are 'standard' or 'advanced'. When setting this to 'advanced' then performance_insights_enabled must be set to true and 'performance_insights_retention_period' set to at least 465 days.
+The mode of Database Insights to enable for the DB instance. Valid options are 'standard' or 'advanced'. This is the recommended replacement for Performance Insights (deprecated June 30, 2026). 'standard' provides 7 days of counter metrics at no extra cost. 'advanced' provides 15 months of all metrics, execution plans, and on-demand analysis. When setting this to 'advanced', performance_insights_enabled must be set to true and 'performance_insights_retention_period' set to at least 465 days.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1387,6 +1443,15 @@ The name for your database. Must contain 1-64 alphanumeric characters for MySQL/
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="dedicated_log_volume" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Use a dedicated log volume (DLV) for the DB instance. A DLV moves database transaction logs onto a separate storage volume, which can improve database write performance. Only supported for Provisioned IOPS storage types (io1/io2) — gp3 is NOT supported. Engine version requirements: MariaDB 10.6.7+, MySQL 8.0.28+, PostgreSQL 13.10+/14.7+/15.2+. A reboot is required after enabling/disabling on an existing instance.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="default_license_models" requirement="optional" type="map(string)">
@@ -1664,7 +1729,7 @@ Name of a DB parameter group to associate with read replica instances. Defaults 
 <HclListItem name="performance_insights_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Specifies whether Performance Insights are enabled. Performance Insights can be enabled for specific versions of database engines. See https://aws.amazon.com/rds/performance-insights/ for more details.
+Specifies whether Performance Insights are enabled. Performance Insights can be enabled for specific versions of database engines. See https://aws.amazon.com/rds/performance-insights/ for more details. NOTE: The Performance Insights console and flexible retention periods are deprecated as of June 30, 2026. Consider using <a href="#database_insights_mode"><code>database_insights_mode</code></a> ('standard' or 'advanced') instead, which replaces Performance Insights with CloudWatch Database Insights.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -1682,7 +1747,7 @@ The ARN for the KMS key to encrypt Performance Insights data. When specifying pe
 <HclListItem name="performance_insights_retention_period" requirement="optional" type="number">
 <HclListItemDescription>
 
-The amount of time in days to retain Performance Insights data. Either 7 (7 days) or 731 (2 years). When specifying performance_insights_retention_period, performance_insights_enabled needs to be set to true. Defaults to `7`.
+The amount of time in days to retain Performance Insights data. Either 7 (7 days) or 731 (2 years). When specifying performance_insights_retention_period, performance_insights_enabled needs to be set to true. Defaults to `7`. NOTE: Flexible PI retention periods (paid tier) are deprecated as of June 30, 2026. For long-term retention, use <a href="#database_insights_mode"><code>database_insights_mode</code></a> = 'advanced' which provides 15 months of retention via CloudWatch Database Insights.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1804,7 +1869,7 @@ The storage throughput value for the DB instance. Can only be set when <a href="
 <HclListItem name="storage_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The type of storage to use for the primary instance. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+The type of storage to use for the primary instance. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD), 'io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD). AWS recommends 'gp3' for most workloads as it provides a baseline of 3,000 IOPS and 125 MiB/s at a lower cost than gp2, with the ability to provision up to 64,000 IOPS independently of storage size.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
@@ -1884,6 +1949,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8ec31668af2e0b0132efd93738988906"
+  "hash": "962082d417f55fce4ff35ab2f0b5c4b4"
 }
 ##DOCS-SOURCER-END -->

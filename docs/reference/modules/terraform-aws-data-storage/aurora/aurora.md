@@ -151,7 +151,9 @@ module "aurora" {
   # selected engine_mode. Amazon Aurora supports 2 types of instance classes:
   # Memory Optimized (db.r) and Burstable Performance (db.t). Aurora Global
   # Clusters require instance class of either db.r5 (latest) or db.r4 (current).
-  # See AWS documentation on Amazon Aurora supported instance class types:
+  # For Aurora Serverless v2, use 'db.serverless'. For best price-performance,
+  # consider Graviton-based instances (db.r7g.*, db.r8g.*). Graviton4 R8g
+  # instances offer up to 40% better performance. See AWS documentation:
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html#Concepts.DBInstanceClass.Types
   instance_type = <string>
 
@@ -253,18 +255,24 @@ module "aurora" {
   # or threads on a DB instance use the CPU.
   cluster_monitoring_interval = null
 
-  # Specifies whether cluster level Performance Insights is enabled or not. On
+  # Specifies whether cluster-level Performance Insights is enabled or not. On
   # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
-  # instance classes.
+  # instance classes. NOTE: The Performance Insights console and flexible
+  # retention periods are deprecated as of June 30, 2026. Consider using
+  # var.database_insights_mode ('standard' or 'advanced') instead, which
+  # replaces Performance Insights with CloudWatch Database Insights.
   cluster_performance_insights_enabled = false
 
   # The ARN for the KMS key to encrypt cluster level Performance Insights data.
   cluster_performance_insights_kms_key_id = null
 
-  # Specifies the amount of time to retain cluster level Performance Insights
+  # Specifies the amount of time to retain cluster-level Performance Insights
   # data for. Defaults to 7 days if Performance Insights are enabled. Valid
-  # values are 7, month = 31 (where month is a number of months from 1-23), and
-  # 731
+  # values are 7, month * 31 (where month is a number of months from 1-23), and
+  # 731. NOTE: Flexible PI retention periods (paid tier) are deprecated as of
+  # June 30, 2026. For long-term retention, use var.database_insights_mode =
+  # 'advanced' which provides 15 months of retention via CloudWatch Database
+  # Insights.
   cluster_performance_insights_retention_period = null
 
   # A map of tags to apply to the Aurora RDS Cluster. The key is the tag name
@@ -287,8 +295,11 @@ module "aurora" {
   custom_tags = {}
 
   # The mode of Database Insights to enable for the DB cluster. Valid options
-  # are 'standard' or 'advanced'. When setting this to 'advanced' then
-  # cluster_performance_insights_enabled must be set to true and
+  # are 'standard' or 'advanced'. This is the recommended replacement for
+  # Performance Insights (deprecated June 30, 2026). 'standard' provides 7 days
+  # of counter metrics at no extra cost. 'advanced' provides 15 months of all
+  # metrics, execution plans, and on-demand analysis. When setting this to
+  # 'advanced', cluster_performance_insights_enabled must be set to true and
   # 'cluster_performance_insights_retention_period' set to at least 465 days.
   database_insights_mode = null
 
@@ -324,6 +335,15 @@ module "aurora" {
   # engine_mode is set to serverless.
   enable_http_endpoint = null
 
+  # Whether to enable local write forwarding on the Aurora cluster. When
+  # enabled, write operations on reader instances are forwarded to the writer
+  # instance. Only supported on Aurora MySQL (not PostgreSQL). Requires the
+  # 'aurora_replica_read_consistency' DB parameter to be set to EVENTUAL,
+  # SESSION, or GLOBAL for write forwarding to function on reader instances. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-mysql-write-forwarding.html
+  # for details.
+  enable_local_write_forwarding = null
+
   # If non-empty, the Aurora cluster will export the specified logs to
   # Cloudwatch. Must be zero or more of: audit, error, general and slowquery
   enabled_cloudwatch_logs_exports = []
@@ -336,15 +356,22 @@ module "aurora" {
   # The DB engine mode of the DB cluster: either provisioned, parallelquery,
   # multimaster or global which only applies for global database clusters
   # created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions,
-  # the clusters in a global database use provisioned engine mode.. Limitations
+  # the clusters in a global database use provisioned engine mode. Limitations
   # and requirements apply to some DB engine modes. See AWS documentation:
-  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraSettingUp.html
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraSettingUp.html.
+  # NOTE: Aurora Serverless v1 (engine_mode = 'serverless') has reached end of
+  # standard support. For serverless workloads, use Aurora Serverless v2 instead
+  # (engine_mode = 'provisioned' with instance_type = 'db.serverless').
   engine_mode = "provisioned"
 
   # The Amazon Aurora DB engine version for the selected engine and engine_mode.
   # Note: Starting with Aurora MySQL 2.03.2, Aurora engine versions have the
   # following syntax <mysql-major-version>.mysql_aurora.<aurora-mysql-version>.
-  # e.g. 5.7.mysql_aurora.2.08.1.
+  # e.g. 5.7.mysql_aurora.2.08.1. NOTE: Running database engine versions past
+  # their end-of-standard-support date will automatically enroll in RDS Extended
+  # Support, which incurs additional charges. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html
+  # for details.
   engine_version = null
 
   # The name of the final_snapshot_identifier. Defaults to
@@ -399,17 +426,24 @@ module "aurora" {
   # specify a MonitoringRoleARN value that is not empty string.
   monitoring_role_arn = null
 
-  # Specifies whether Performance Insights is enabled or not. On Aurora MySQL,
-  # Performance Insights is not supported on db.t2 or db.t3 DB instance classes.
+  # Specifies whether instance-level Performance Insights is enabled or not. On
+  # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
+  # instance classes. NOTE: The Performance Insights console and flexible
+  # retention periods are deprecated as of June 30, 2026. Consider using
+  # var.database_insights_mode ('standard' or 'advanced') instead, which
+  # replaces Performance Insights with CloudWatch Database Insights.
   performance_insights_enabled = false
 
   # The ARN for the KMS key to encrypt Performance Insights data.
   performance_insights_kms_key_id = null
 
-  # The amount of time in days to retain Performance Insights data. Either 7 (7
-  # days) or 731 (2 years). When specifying
+  # The amount of time in days to retain instance-level Performance Insights
+  # data. Either 7 (7 days) or 731 (2 years). When specifying
   # performance_insights_retention_period, performance_insights_enabled needs to
-  # be set to true. Defaults to `7`.
+  # be set to true. Defaults to `7`. NOTE: Flexible PI retention periods (paid
+  # tier) are deprecated as of June 30, 2026. For long-term retention, use
+  # var.database_insights_mode = 'advanced' which provides 15 months of
+  # retention via CloudWatch Database Insights.
   performance_insights_retention_period = null
 
   # The port the DB will listen on (e.g. 3306)
@@ -470,7 +504,9 @@ module "aurora" {
   # Whether to enable automatic pause. A DB cluster can be paused only when it's
   # idle (it has no connections). If a DB cluster is paused for more than seven
   # days, the DB cluster might be backed up with a snapshot. In this case, the
-  # DB cluster is restored when there is a request to connect to it.
+  # DB cluster is restored when there is a request to connect to it. NOTE: This
+  # only applies to Aurora Serverless v1, which has reached end of standard
+  # support. Use Aurora Serverless v2 for new deployments.
   scaling_configuration_auto_pause = true
 
   # The maximum capacity. The maximum capacity must be greater than or equal to
@@ -527,8 +563,10 @@ module "aurora" {
 
   # Specifies the storage type to be associated with the DB cluster. For Aurora
   # DB clusters, storage_type modifications can be done in-place. For Multi-AZ
-  # DB Clusters, the iops argument must also be set. Valid values are:
-  # aurora-iopt1 (Aurora DB Clusters); io1 (Multi-AZ DB Clusters).
+  # DB Clusters, the iops argument must also be set. Valid values are: null
+  # (default Aurora Standard), 'aurora-iopt1' (Aurora I/O-Optimized, higher
+  # storage cost but zero I/O charges — recommended for I/O-intensive
+  # workloads), or 'io1' (Multi-AZ DB Clusters only).
   storage_type = null
 
   # Timeout for DB updating
@@ -566,7 +604,9 @@ inputs = {
   # selected engine_mode. Amazon Aurora supports 2 types of instance classes:
   # Memory Optimized (db.r) and Burstable Performance (db.t). Aurora Global
   # Clusters require instance class of either db.r5 (latest) or db.r4 (current).
-  # See AWS documentation on Amazon Aurora supported instance class types:
+  # For Aurora Serverless v2, use 'db.serverless'. For best price-performance,
+  # consider Graviton-based instances (db.r7g.*, db.r8g.*). Graviton4 R8g
+  # instances offer up to 40% better performance. See AWS documentation:
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html#Concepts.DBInstanceClass.Types
   instance_type = <string>
 
@@ -668,18 +708,24 @@ inputs = {
   # or threads on a DB instance use the CPU.
   cluster_monitoring_interval = null
 
-  # Specifies whether cluster level Performance Insights is enabled or not. On
+  # Specifies whether cluster-level Performance Insights is enabled or not. On
   # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
-  # instance classes.
+  # instance classes. NOTE: The Performance Insights console and flexible
+  # retention periods are deprecated as of June 30, 2026. Consider using
+  # var.database_insights_mode ('standard' or 'advanced') instead, which
+  # replaces Performance Insights with CloudWatch Database Insights.
   cluster_performance_insights_enabled = false
 
   # The ARN for the KMS key to encrypt cluster level Performance Insights data.
   cluster_performance_insights_kms_key_id = null
 
-  # Specifies the amount of time to retain cluster level Performance Insights
+  # Specifies the amount of time to retain cluster-level Performance Insights
   # data for. Defaults to 7 days if Performance Insights are enabled. Valid
-  # values are 7, month = 31 (where month is a number of months from 1-23), and
-  # 731
+  # values are 7, month * 31 (where month is a number of months from 1-23), and
+  # 731. NOTE: Flexible PI retention periods (paid tier) are deprecated as of
+  # June 30, 2026. For long-term retention, use var.database_insights_mode =
+  # 'advanced' which provides 15 months of retention via CloudWatch Database
+  # Insights.
   cluster_performance_insights_retention_period = null
 
   # A map of tags to apply to the Aurora RDS Cluster. The key is the tag name
@@ -702,8 +748,11 @@ inputs = {
   custom_tags = {}
 
   # The mode of Database Insights to enable for the DB cluster. Valid options
-  # are 'standard' or 'advanced'. When setting this to 'advanced' then
-  # cluster_performance_insights_enabled must be set to true and
+  # are 'standard' or 'advanced'. This is the recommended replacement for
+  # Performance Insights (deprecated June 30, 2026). 'standard' provides 7 days
+  # of counter metrics at no extra cost. 'advanced' provides 15 months of all
+  # metrics, execution plans, and on-demand analysis. When setting this to
+  # 'advanced', cluster_performance_insights_enabled must be set to true and
   # 'cluster_performance_insights_retention_period' set to at least 465 days.
   database_insights_mode = null
 
@@ -739,6 +788,15 @@ inputs = {
   # engine_mode is set to serverless.
   enable_http_endpoint = null
 
+  # Whether to enable local write forwarding on the Aurora cluster. When
+  # enabled, write operations on reader instances are forwarded to the writer
+  # instance. Only supported on Aurora MySQL (not PostgreSQL). Requires the
+  # 'aurora_replica_read_consistency' DB parameter to be set to EVENTUAL,
+  # SESSION, or GLOBAL for write forwarding to function on reader instances. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-mysql-write-forwarding.html
+  # for details.
+  enable_local_write_forwarding = null
+
   # If non-empty, the Aurora cluster will export the specified logs to
   # Cloudwatch. Must be zero or more of: audit, error, general and slowquery
   enabled_cloudwatch_logs_exports = []
@@ -751,15 +809,22 @@ inputs = {
   # The DB engine mode of the DB cluster: either provisioned, parallelquery,
   # multimaster or global which only applies for global database clusters
   # created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions,
-  # the clusters in a global database use provisioned engine mode.. Limitations
+  # the clusters in a global database use provisioned engine mode. Limitations
   # and requirements apply to some DB engine modes. See AWS documentation:
-  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraSettingUp.html
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraSettingUp.html.
+  # NOTE: Aurora Serverless v1 (engine_mode = 'serverless') has reached end of
+  # standard support. For serverless workloads, use Aurora Serverless v2 instead
+  # (engine_mode = 'provisioned' with instance_type = 'db.serverless').
   engine_mode = "provisioned"
 
   # The Amazon Aurora DB engine version for the selected engine and engine_mode.
   # Note: Starting with Aurora MySQL 2.03.2, Aurora engine versions have the
   # following syntax <mysql-major-version>.mysql_aurora.<aurora-mysql-version>.
-  # e.g. 5.7.mysql_aurora.2.08.1.
+  # e.g. 5.7.mysql_aurora.2.08.1. NOTE: Running database engine versions past
+  # their end-of-standard-support date will automatically enroll in RDS Extended
+  # Support, which incurs additional charges. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html
+  # for details.
   engine_version = null
 
   # The name of the final_snapshot_identifier. Defaults to
@@ -814,17 +879,24 @@ inputs = {
   # specify a MonitoringRoleARN value that is not empty string.
   monitoring_role_arn = null
 
-  # Specifies whether Performance Insights is enabled or not. On Aurora MySQL,
-  # Performance Insights is not supported on db.t2 or db.t3 DB instance classes.
+  # Specifies whether instance-level Performance Insights is enabled or not. On
+  # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
+  # instance classes. NOTE: The Performance Insights console and flexible
+  # retention periods are deprecated as of June 30, 2026. Consider using
+  # var.database_insights_mode ('standard' or 'advanced') instead, which
+  # replaces Performance Insights with CloudWatch Database Insights.
   performance_insights_enabled = false
 
   # The ARN for the KMS key to encrypt Performance Insights data.
   performance_insights_kms_key_id = null
 
-  # The amount of time in days to retain Performance Insights data. Either 7 (7
-  # days) or 731 (2 years). When specifying
+  # The amount of time in days to retain instance-level Performance Insights
+  # data. Either 7 (7 days) or 731 (2 years). When specifying
   # performance_insights_retention_period, performance_insights_enabled needs to
-  # be set to true. Defaults to `7`.
+  # be set to true. Defaults to `7`. NOTE: Flexible PI retention periods (paid
+  # tier) are deprecated as of June 30, 2026. For long-term retention, use
+  # var.database_insights_mode = 'advanced' which provides 15 months of
+  # retention via CloudWatch Database Insights.
   performance_insights_retention_period = null
 
   # The port the DB will listen on (e.g. 3306)
@@ -885,7 +957,9 @@ inputs = {
   # Whether to enable automatic pause. A DB cluster can be paused only when it's
   # idle (it has no connections). If a DB cluster is paused for more than seven
   # days, the DB cluster might be backed up with a snapshot. In this case, the
-  # DB cluster is restored when there is a request to connect to it.
+  # DB cluster is restored when there is a request to connect to it. NOTE: This
+  # only applies to Aurora Serverless v1, which has reached end of standard
+  # support. Use Aurora Serverless v2 for new deployments.
   scaling_configuration_auto_pause = true
 
   # The maximum capacity. The maximum capacity must be greater than or equal to
@@ -942,8 +1016,10 @@ inputs = {
 
   # Specifies the storage type to be associated with the DB cluster. For Aurora
   # DB clusters, storage_type modifications can be done in-place. For Multi-AZ
-  # DB Clusters, the iops argument must also be set. Valid values are:
-  # aurora-iopt1 (Aurora DB Clusters); io1 (Multi-AZ DB Clusters).
+  # DB Clusters, the iops argument must also be set. Valid values are: null
+  # (default Aurora Standard), 'aurora-iopt1' (Aurora I/O-Optimized, higher
+  # storage cost but zero I/O charges — recommended for I/O-intensive
+  # workloads), or 'io1' (Multi-AZ DB Clusters only).
   storage_type = null
 
   # Timeout for DB updating
@@ -978,7 +1054,7 @@ How many instances to launch. RDS will automatically pick a leader and configure
 <HclListItem name="instance_type" requirement="required" type="string">
 <HclListItemDescription>
 
-The instance type from an Amazon Aurora supported instance class based on a selected engine_mode. Amazon Aurora supports 2 types of instance classes: Memory Optimized (db.r) and Burstable Performance (db.t). Aurora Global Clusters require instance class of either db.r5 (latest) or db.r4 (current). See AWS documentation on Amazon Aurora supported instance class types: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html#Concepts.DBInstanceClass.Types
+The instance type from an Amazon Aurora supported instance class based on a selected engine_mode. Amazon Aurora supports 2 types of instance classes: Memory Optimized (db.r) and Burstable Performance (db.t). Aurora Global Clusters require instance class of either db.r5 (latest) or db.r4 (current). For Aurora Serverless v2, use 'db.serverless'. For best price-performance, consider Graviton-based instances (db.r7g.*, db.r8g.*). Graviton4 R8g instances offer up to 40% better performance. See AWS documentation: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html#Concepts.DBInstanceClass.Types
 
 </HclListItemDescription>
 </HclListItem>
@@ -1174,7 +1250,7 @@ The interval, in seconds, between points when Enhanced Monitoring metrics are co
 <HclListItem name="cluster_performance_insights_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Specifies whether cluster level Performance Insights is enabled or not. On Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB instance classes.
+Specifies whether cluster-level Performance Insights is enabled or not. On Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB instance classes. NOTE: The Performance Insights console and flexible retention periods are deprecated as of June 30, 2026. Consider using <a href="#database_insights_mode"><code>database_insights_mode</code></a> ('standard' or 'advanced') instead, which replaces Performance Insights with CloudWatch Database Insights.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -1192,7 +1268,7 @@ The ARN for the KMS key to encrypt cluster level Performance Insights data.
 <HclListItem name="cluster_performance_insights_retention_period" requirement="optional" type="number">
 <HclListItemDescription>
 
-Specifies the amount of time to retain cluster level Performance Insights data for. Defaults to 7 days if Performance Insights are enabled. Valid values are 7, month = 31 (where month is a number of months from 1-23), and 731
+Specifies the amount of time to retain cluster-level Performance Insights data for. Defaults to 7 days if Performance Insights are enabled. Valid values are 7, month * 31 (where month is a number of months from 1-23), and 731. NOTE: Flexible PI retention periods (paid tier) are deprecated as of June 30, 2026. For long-term retention, use <a href="#database_insights_mode"><code>database_insights_mode</code></a> = 'advanced' which provides 15 months of retention via CloudWatch Database Insights.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1246,7 +1322,7 @@ A map of custom tags to apply to the Aurora RDS Instance and the Security Group 
 <HclListItem name="database_insights_mode" requirement="optional" type="string">
 <HclListItemDescription>
 
-The mode of Database Insights to enable for the DB cluster. Valid options are 'standard' or 'advanced'. When setting this to 'advanced' then cluster_performance_insights_enabled must be set to true and 'cluster_performance_insights_retention_period' set to at least 465 days.
+The mode of Database Insights to enable for the DB cluster. Valid options are 'standard' or 'advanced'. This is the recommended replacement for Performance Insights (deprecated June 30, 2026). 'standard' provides 7 days of counter metrics at no extra cost. 'advanced' provides 15 months of all metrics, execution plans, and on-demand analysis. When setting this to 'advanced', cluster_performance_insights_enabled must be set to true and 'cluster_performance_insights_retention_period' set to at least 465 days.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1315,6 +1391,15 @@ If true, enables the HTTP endpoint used for Data API. Only valid when engine_mod
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="enable_local_write_forwarding" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable local write forwarding on the Aurora cluster. When enabled, write operations on reader instances are forwarded to the writer instance. Only supported on Aurora MySQL (not PostgreSQL). Requires the 'aurora_replica_read_consistency' DB parameter to be set to EVENTUAL, SESSION, or GLOBAL for write forwarding to function on reader instances. See https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-mysql-write-forwarding.html for details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="enabled_cloudwatch_logs_exports" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1336,7 +1421,7 @@ The name of the database engine to be used for this DB cluster. Valid Values: au
 <HclListItem name="engine_mode" requirement="optional" type="string">
 <HclListItemDescription>
 
-The DB engine mode of the DB cluster: either provisioned, parallelquery, multimaster or global which only applies for global database clusters created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions, the clusters in a global database use provisioned engine mode.. Limitations and requirements apply to some DB engine modes. See AWS documentation: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraSettingUp.html
+The DB engine mode of the DB cluster: either provisioned, parallelquery, multimaster or global which only applies for global database clusters created with Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions, the clusters in a global database use provisioned engine mode. Limitations and requirements apply to some DB engine modes. See AWS documentation: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraSettingUp.html. NOTE: Aurora Serverless v1 (engine_mode = 'serverless') has reached end of standard support. For serverless workloads, use Aurora Serverless v2 instead (engine_mode = 'provisioned' with instance_type = 'db.serverless').
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;provisioned&quot;"/>
@@ -1345,7 +1430,7 @@ The DB engine mode of the DB cluster: either provisioned, parallelquery, multima
 <HclListItem name="engine_version" requirement="optional" type="string">
 <HclListItemDescription>
 
-The Amazon Aurora DB engine version for the selected engine and engine_mode. Note: Starting with Aurora MySQL 2.03.2, Aurora engine versions have the following syntax &lt;mysql-major-version>.mysql_aurora.&lt;aurora-mysql-version>. e.g. 5.7.mysql_aurora.2.08.1.
+The Amazon Aurora DB engine version for the selected engine and engine_mode. Note: Starting with Aurora MySQL 2.03.2, Aurora engine versions have the following syntax &lt;mysql-major-version>.mysql_aurora.&lt;aurora-mysql-version>. e.g. 5.7.mysql_aurora.2.08.1. NOTE: Running database engine versions past their end-of-standard-support date will automatically enroll in RDS Extended Support, which incurs additional charges. See https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html for details.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1453,7 +1538,7 @@ The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to
 <HclListItem name="performance_insights_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Specifies whether Performance Insights is enabled or not. On Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB instance classes.
+Specifies whether instance-level Performance Insights is enabled or not. On Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB instance classes. NOTE: The Performance Insights console and flexible retention periods are deprecated as of June 30, 2026. Consider using <a href="#database_insights_mode"><code>database_insights_mode</code></a> ('standard' or 'advanced') instead, which replaces Performance Insights with CloudWatch Database Insights.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -1471,7 +1556,7 @@ The ARN for the KMS key to encrypt Performance Insights data.
 <HclListItem name="performance_insights_retention_period" requirement="optional" type="number">
 <HclListItemDescription>
 
-The amount of time in days to retain Performance Insights data. Either 7 (7 days) or 731 (2 years). When specifying performance_insights_retention_period, performance_insights_enabled needs to be set to true. Defaults to `7`.
+The amount of time in days to retain instance-level Performance Insights data. Either 7 (7 days) or 731 (2 years). When specifying performance_insights_retention_period, performance_insights_enabled needs to be set to true. Defaults to `7`. NOTE: Flexible PI retention periods (paid tier) are deprecated as of June 30, 2026. For long-term retention, use <a href="#database_insights_mode"><code>database_insights_mode</code></a> = 'advanced' which provides 15 months of retention via CloudWatch Database Insights.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1597,7 +1682,7 @@ Only used if 'restore_source_cluster_identifier' is non-empty. Type of restore t
 <HclListItem name="scaling_configuration_auto_pause" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Whether to enable automatic pause. A DB cluster can be paused only when it's idle (it has no connections). If a DB cluster is paused for more than seven days, the DB cluster might be backed up with a snapshot. In this case, the DB cluster is restored when there is a request to connect to it.
+Whether to enable automatic pause. A DB cluster can be paused only when it's idle (it has no connections). If a DB cluster is paused for more than seven days, the DB cluster might be backed up with a snapshot. In this case, the DB cluster is restored when there is a request to connect to it. NOTE: This only applies to Aurora Serverless v1, which has reached end of standard support. Use Aurora Serverless v2 for new deployments.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -1705,7 +1790,7 @@ Specifies whether the DB cluster uses encryption for data at rest in the underly
 <HclListItem name="storage_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-Specifies the storage type to be associated with the DB cluster. For Aurora DB clusters, storage_type modifications can be done in-place. For Multi-AZ DB Clusters, the iops argument must also be set. Valid values are: aurora-iopt1 (Aurora DB Clusters); io1 (Multi-AZ DB Clusters).
+Specifies the storage type to be associated with the DB cluster. For Aurora DB clusters, storage_type modifications can be done in-place. For Multi-AZ DB Clusters, the iops argument must also be set. Valid values are: null (default Aurora Standard), 'aurora-iopt1' (Aurora I/O-Optimized, higher storage cost but zero I/O charges — recommended for I/O-intensive workloads), or 'io1' (Multi-AZ DB Clusters only).
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1776,6 +1861,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d0bffddbe632660114dd8938acc67e45"
+  "hash": "f47ed757857740a85288cbfb45cfef5c"
 }
 ##DOCS-SOURCER-END -->

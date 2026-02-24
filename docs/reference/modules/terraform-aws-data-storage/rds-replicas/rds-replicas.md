@@ -254,7 +254,10 @@ module "rds_replicas" {
 
   # Specifies whether Performance Insights are enabled. Performance Insights can
   # be enabled for specific versions of database engines. See
-  # https://aws.amazon.com/rds/performance-insights/ for more details.
+  # https://aws.amazon.com/rds/performance-insights/ for more details. NOTE: The
+  # Performance Insights console and flexible retention periods are deprecated
+  # as of June 30, 2026. Consider using database_insights_mode ('standard' or
+  # 'advanced') on the primary instance instead.
   performance_insights_enabled = false
 
   # The ARN for the KMS key to encrypt Performance Insights data. When
@@ -266,7 +269,8 @@ module "rds_replicas" {
   # The amount of time in days to retain Performance Insights data. Either 7 (7
   # days) or 731 (2 years). When specifying
   # performance_insights_retention_period, performance_insights_enabled needs to
-  # be set to true. Defaults to `7`.
+  # be set to true. Defaults to `7`. NOTE: Flexible PI retention periods (paid
+  # tier) are deprecated as of June 30, 2026.
   performance_insights_retention_period = null
 
   # WARNING: - In nearly all cases a database should NOT be publicly accessible.
@@ -285,9 +289,10 @@ module "rds_replicas" {
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
 
-  # The type of storage to use for the primary instance. Must be one of
+  # The type of storage to use for the read replica instance. Must be one of
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
-  # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+  # SSD), 'io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+  # AWS recommends 'gp3' for most workloads.
   storage_type = "gp2"
 
   # A list of subnet ids where the database should be deployed. In the standard
@@ -500,7 +505,10 @@ inputs = {
 
   # Specifies whether Performance Insights are enabled. Performance Insights can
   # be enabled for specific versions of database engines. See
-  # https://aws.amazon.com/rds/performance-insights/ for more details.
+  # https://aws.amazon.com/rds/performance-insights/ for more details. NOTE: The
+  # Performance Insights console and flexible retention periods are deprecated
+  # as of June 30, 2026. Consider using database_insights_mode ('standard' or
+  # 'advanced') on the primary instance instead.
   performance_insights_enabled = false
 
   # The ARN for the KMS key to encrypt Performance Insights data. When
@@ -512,7 +520,8 @@ inputs = {
   # The amount of time in days to retain Performance Insights data. Either 7 (7
   # days) or 731 (2 years). When specifying
   # performance_insights_retention_period, performance_insights_enabled needs to
-  # be set to true. Defaults to `7`.
+  # be set to true. Defaults to `7`. NOTE: Flexible PI retention periods (paid
+  # tier) are deprecated as of June 30, 2026.
   performance_insights_retention_period = null
 
   # WARNING: - In nearly all cases a database should NOT be publicly accessible.
@@ -531,9 +540,10 @@ inputs = {
   # Specifies whether the DB instance is encrypted.
   storage_encrypted = true
 
-  # The type of storage to use for the primary instance. Must be one of
+  # The type of storage to use for the read replica instance. Must be one of
   # 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose
-  # SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+  # SSD), 'io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+  # AWS recommends 'gp3' for most workloads.
   storage_type = "gp2"
 
   # A list of subnet ids where the database should be deployed. In the standard
@@ -902,7 +912,7 @@ Name of a DB parameter group to associate.
 <HclListItem name="performance_insights_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Specifies whether Performance Insights are enabled. Performance Insights can be enabled for specific versions of database engines. See https://aws.amazon.com/rds/performance-insights/ for more details.
+Specifies whether Performance Insights are enabled. Performance Insights can be enabled for specific versions of database engines. See https://aws.amazon.com/rds/performance-insights/ for more details. NOTE: The Performance Insights console and flexible retention periods are deprecated as of June 30, 2026. Consider using database_insights_mode ('standard' or 'advanced') on the primary instance instead.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -920,7 +930,7 @@ The ARN for the KMS key to encrypt Performance Insights data. When specifying pe
 <HclListItem name="performance_insights_retention_period" requirement="optional" type="number">
 <HclListItemDescription>
 
-The amount of time in days to retain Performance Insights data. Either 7 (7 days) or 731 (2 years). When specifying performance_insights_retention_period, performance_insights_enabled needs to be set to true. Defaults to `7`.
+The amount of time in days to retain Performance Insights data. Either 7 (7 days) or 731 (2 years). When specifying performance_insights_retention_period, performance_insights_enabled needs to be set to true. Defaults to `7`. NOTE: Flexible PI retention periods (paid tier) are deprecated as of June 30, 2026.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -965,7 +975,7 @@ Specifies whether the DB instance is encrypted.
 <HclListItem name="storage_type" requirement="optional" type="string">
 <HclListItemDescription>
 
-The type of storage to use for the primary instance. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD), io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD).
+The type of storage to use for the read replica instance. Must be one of 'standard' (magnetic), 'gp2' (general purpose SSD), 'gp3' (general purpose SSD), 'io1' (provisioned IOPS SSD), or 'io2' (2nd gen provisioned IOPS SSD). AWS recommends 'gp3' for most workloads.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
@@ -1030,6 +1040,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "75926612fd3e2a80462bcf13860e958c"
+  "hash": "42ecf7ba23a63aa15d2b0c33a429dfe8"
 }
 ##DOCS-SOURCER-END -->
