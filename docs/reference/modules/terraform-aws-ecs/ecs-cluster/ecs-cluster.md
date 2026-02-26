@@ -9,17 +9,17 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="1.3.0" lastModifiedVersion="1.3.0"/>
+<VersionBadge repoTitle="Amazon ECS" version="1.4.1" lastModifiedVersion="1.4.1"/>
 
 # ECS Cluster Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.1/modules/ecs-cluster" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v1.4.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches an [EC2 Container Service
 Cluster](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_clusters.html) that you can use to run
-Docker containers and services (see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-service/README.adoc)).
+Docker containers and services (see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.1/modules/ecs-service/README.adoc)).
 
 **WARNING: Launch Configurations:** [Launch configurations](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-configurations.html) are being phased out in favor of [Launch Templates](https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html). Before upgrading to the latest release please be sure to test and plan any changes to infrastructure that may be impacted. Launch templates are being introduced in [PR #371](https://github.com/gruntwork-io/terraform-aws-ecs/pull/371)
 
@@ -32,7 +32,7 @@ ECS and register itself as part of the right cluster.
 
 ## How do you run Docker containers on the cluster?
 
-See the [service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-service/README.adoc).
+See the [service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.1/modules/ecs-service/README.adoc).
 
 ## How do you add additional security group rules?
 
@@ -97,7 +97,7 @@ currently no way in ECS to manage IAM policies on a per-Docker-container basis.
 
 ## How do you make changes to the EC2 Instances in the cluster?
 
-To deploy an update to an ECS Service, see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-service). To deploy an update to the
+To deploy an update to an ECS Service, see the [ecs-service module](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.1/modules/ecs-service). To deploy an update to the
 EC2 Instances in your ECS cluster, such as a new AMI, read on.
 
 Terraform and AWS do not provide a way to automatically roll out a change to the Instances in an ECS Cluster. Due to
@@ -127,8 +127,8 @@ To deploy a change such as rolling out a new AMI to all ECS Instances:
     python3 roll-out-ecs-cluster-update.py --asg-name ASG_NAME --cluster-name CLUSTER_NAME --aws-region AWS_REGION
     ```
 
-    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/examples/docker-service-with-elb/outputs.tf)
-    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/examples/docker-service-with-elb), you can use the `terraform output`
+    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.1/examples/docker-service-with-elb/outputs.tf)
+    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.1/examples/docker-service-with-elb), you can use the `terraform output`
     command to fill in most of the arguments automatically:
 
     ```
@@ -181,8 +181,8 @@ To deploy a change such as rolling out a new AMI to all ECS Instances:
     python3 asg-instance-refresh.py --asg-name ASG_NAME --aws-region AWS_REGION
     ```
 
-    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/examples/docker-service-with-elb/outputs.tf)
-    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/examples/docker-service-with-elb), you can use the `terraform output`
+    If you have your output variables configured as shown in [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.1/examples/docker-service-with-elb/outputs.tf)
+    of the [docker-service-with-elb example](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.1/examples/docker-service-with-elb), you can use the `terraform output`
     command to fill in most of the arguments automatically:
 
     ```
@@ -235,7 +235,7 @@ enable Capacity Providers on an existing ECS cluster that did not have Capacity 
 instances to ensure all the instances get associated with the new Capacity Provider.
 
 To rotate the instances, you can run the
-[roll-out-ecs-cluster-update.py](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-cluster/roll-out-ecs-cluster-update.py)
+[roll-out-ecs-cluster-update.py](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.1/modules/ecs-cluster/roll-out-ecs-cluster-update.py)
 script in the `terraform-aws-ecs` module. Refer to the
 [documentation](#how-do-you-make-changes-to-the-ec2-instances-in-the-cluster)
 for more information on the script.
@@ -253,7 +253,7 @@ for more information on the script.
 
 module "ecs_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v1.4.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -329,6 +329,12 @@ module "ecs_cluster" {
   # 100.
   capacity_provider_target = 75
 
+  # Indicates whether capacity rebalance is enabled on the Auto Scaling Group.
+  # When enabled, Amazon EC2 Auto Scaling attempts to launch a Spot Instance
+  # whenever Amazon EC2 notifies that a Spot Instance is at an elevated risk of
+  # interruption.
+  capacity_rebalance = false
+
   # A list of metrics to collect. The allowed values are GroupDesiredCapacity,
   # GroupInServiceCapacity, GroupPendingCapacity, GroupMinSize, GroupMaxSize,
   # GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances,
@@ -390,6 +396,21 @@ module "ecs_cluster" {
   # The end date of the request.
   cluster_instance_market_valid_until = null
 
+  # The strategy for allocating on-demand capacity. Valid value: prioritized.
+  # Only used when cluster_instance_type_overrides is set.
+  cluster_instance_on_demand_allocation_strategy = null
+
+  # The minimum number of on-demand instances that must be provisioned in the
+  # Auto Scaling Group. The remaining instances will be a mix of on-demand and
+  # spot, governed by cluster_instance_on_demand_percentage_above_base_capacity.
+  # Only used when cluster_instance_type_overrides is set.
+  cluster_instance_on_demand_base_capacity = null
+
+  # The percentage of on-demand instances above the base capacity. Set to 0 to
+  # use only spot instances above the base capacity, or 100 to use only
+  # on-demand. Only used when cluster_instance_type_overrides is set.
+  cluster_instance_on_demand_percentage_above_base_capacity = null
+
   # The affinity setting for an instance on a Dedicated Host.
   cluster_instance_placement_affinity = null
 
@@ -425,6 +446,21 @@ module "ecs_cluster" {
   # The volume type for the root volume for each of the ECS Cluster's EC2
   # Instances. Can be standard, gp2, or io1
   cluster_instance_root_volume_type = "gp2"
+
+  # The strategy for allocating spot capacity. Valid values: lowest-price,
+  # capacity-optimized, capacity-optimized-prioritized,
+  # price-capacity-optimized. Only used when cluster_instance_type_overrides is
+  # set.
+  cluster_instance_spot_allocation_strategy = null
+
+  # The number of Spot Instance pools across which to allocate your Spot
+  # Instances. Only relevant when cluster_instance_spot_allocation_strategy is
+  # lowest-price. Only used when cluster_instance_type_overrides is set.
+  cluster_instance_spot_instance_pools = null
+
+  # The maximum price per unit hour that you are willing to pay for a Spot
+  # Instance. Only used when cluster_instance_type_overrides is set.
+  cluster_instance_spot_max_price = null
 
   # Value is the maximum bid price for the instance on the EC2 Spot Market.
   cluster_instance_spot_price = null
@@ -496,7 +532,9 @@ module "ecs_cluster" {
   enable_imds = true
 
   # The desired HTTP PUT response hop limit for instance metadata requests.
-  http_put_response_hop_limit = null
+  # Defaults to 2 because the ECS agent runs inside a Docker container, which
+  # adds an extra network hop to reach the Instance Metadata Service (IMDS).
+  http_put_response_hop_limit = 2
 
   # Override default parameters for Instance Refresh. See
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group#preferences
@@ -559,7 +597,7 @@ module "ecs_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-cluster?ref=v1.4.1"
 }
 
 inputs = {
@@ -638,6 +676,12 @@ inputs = {
   # 100.
   capacity_provider_target = 75
 
+  # Indicates whether capacity rebalance is enabled on the Auto Scaling Group.
+  # When enabled, Amazon EC2 Auto Scaling attempts to launch a Spot Instance
+  # whenever Amazon EC2 notifies that a Spot Instance is at an elevated risk of
+  # interruption.
+  capacity_rebalance = false
+
   # A list of metrics to collect. The allowed values are GroupDesiredCapacity,
   # GroupInServiceCapacity, GroupPendingCapacity, GroupMinSize, GroupMaxSize,
   # GroupInServiceInstances, GroupPendingInstances, GroupStandbyInstances,
@@ -699,6 +743,21 @@ inputs = {
   # The end date of the request.
   cluster_instance_market_valid_until = null
 
+  # The strategy for allocating on-demand capacity. Valid value: prioritized.
+  # Only used when cluster_instance_type_overrides is set.
+  cluster_instance_on_demand_allocation_strategy = null
+
+  # The minimum number of on-demand instances that must be provisioned in the
+  # Auto Scaling Group. The remaining instances will be a mix of on-demand and
+  # spot, governed by cluster_instance_on_demand_percentage_above_base_capacity.
+  # Only used when cluster_instance_type_overrides is set.
+  cluster_instance_on_demand_base_capacity = null
+
+  # The percentage of on-demand instances above the base capacity. Set to 0 to
+  # use only spot instances above the base capacity, or 100 to use only
+  # on-demand. Only used when cluster_instance_type_overrides is set.
+  cluster_instance_on_demand_percentage_above_base_capacity = null
+
   # The affinity setting for an instance on a Dedicated Host.
   cluster_instance_placement_affinity = null
 
@@ -734,6 +793,21 @@ inputs = {
   # The volume type for the root volume for each of the ECS Cluster's EC2
   # Instances. Can be standard, gp2, or io1
   cluster_instance_root_volume_type = "gp2"
+
+  # The strategy for allocating spot capacity. Valid values: lowest-price,
+  # capacity-optimized, capacity-optimized-prioritized,
+  # price-capacity-optimized. Only used when cluster_instance_type_overrides is
+  # set.
+  cluster_instance_spot_allocation_strategy = null
+
+  # The number of Spot Instance pools across which to allocate your Spot
+  # Instances. Only relevant when cluster_instance_spot_allocation_strategy is
+  # lowest-price. Only used when cluster_instance_type_overrides is set.
+  cluster_instance_spot_instance_pools = null
+
+  # The maximum price per unit hour that you are willing to pay for a Spot
+  # Instance. Only used when cluster_instance_type_overrides is set.
+  cluster_instance_spot_max_price = null
 
   # Value is the maximum bid price for the instance on the EC2 Spot Market.
   cluster_instance_spot_price = null
@@ -805,7 +879,9 @@ inputs = {
   enable_imds = true
 
   # The desired HTTP PUT response hop limit for instance metadata requests.
-  http_put_response_hop_limit = null
+  # Defaults to 2 because the ECS agent runs inside a Docker container, which
+  # adds an extra network hop to reach the Instance Metadata Service (IMDS).
+  http_put_response_hop_limit = 2
 
   # Override default parameters for Instance Refresh. See
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group#preferences
@@ -1018,6 +1094,15 @@ Target cluster utilization for the capacity provider; a number from 1 to 100.
 <HclListItemDefaultValue defaultValue="75"/>
 </HclListItem>
 
+<HclListItem name="capacity_rebalance" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Indicates whether capacity rebalance is enabled on the Auto Scaling Group. When enabled, Amazon EC2 Auto Scaling attempts to launch a Spot Instance whenever Amazon EC2 notifies that a Spot Instance is at an elevated risk of interruption.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="cluster_asg_metrics_enabled" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -1153,6 +1238,33 @@ The end date of the request.
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="cluster_instance_on_demand_allocation_strategy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The strategy for allocating on-demand capacity. Valid value: prioritized. Only used when cluster_instance_type_overrides is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_on_demand_base_capacity" requirement="optional" type="number">
+<HclListItemDescription>
+
+The minimum number of on-demand instances that must be provisioned in the Auto Scaling Group. The remaining instances will be a mix of on-demand and spot, governed by cluster_instance_on_demand_percentage_above_base_capacity. Only used when cluster_instance_type_overrides is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_on_demand_percentage_above_base_capacity" requirement="optional" type="number">
+<HclListItemDescription>
+
+The percentage of on-demand instances above the base capacity. Set to 0 to use only spot instances above the base capacity, or 100 to use only on-demand. Only used when cluster_instance_type_overrides is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="cluster_instance_placement_affinity" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1241,6 +1353,33 @@ The volume type for the root volume for each of the ECS Cluster's EC2 Instances.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_spot_allocation_strategy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The strategy for allocating spot capacity. Valid values: lowest-price, capacity-optimized, capacity-optimized-prioritized, price-capacity-optimized. Only used when cluster_instance_type_overrides is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_spot_instance_pools" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of Spot Instance pools across which to allocate your Spot Instances. Only relevant when cluster_instance_spot_allocation_strategy is lowest-price. Only used when cluster_instance_type_overrides is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cluster_instance_spot_max_price" requirement="optional" type="string">
+<HclListItemDescription>
+
+The maximum price per unit hour that you are willing to pay for a Spot Instance. Only used when cluster_instance_type_overrides is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cluster_instance_spot_price" requirement="optional" type="string">
@@ -1420,10 +1559,10 @@ Set this variable to true to enable the Instance Metadata Service (IMDS) endpoin
 <HclListItem name="http_put_response_hop_limit" requirement="optional" type="number">
 <HclListItemDescription>
 
-The desired HTTP PUT response hop limit for instance metadata requests.
+The desired HTTP PUT response hop limit for instance metadata requests. Defaults to 2 because the ECS agent runs inside a Docker container, which adds an extra network hop to reach the Instance Metadata Service (IMDS).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
+<HclListItemDefaultValue defaultValue="2"/>
 </HclListItem>
 
 <HclListItem name="instance_refresh_preferences" requirement="optional" type="map(any)">
@@ -1561,11 +1700,11 @@ Set this variable to true to enable the use of Instance Metadata Service Version
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-cluster/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.1/modules/ecs-cluster/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.1/modules/ecs-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.1/modules/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "777898f1702fae00c08b815ad792f30d"
+  "hash": "78206cc15239286c9e69d649873b90cc"
 }
 ##DOCS-SOURCER-END -->
