@@ -11,11 +11,16 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <VersionBadge repoTitle="Data Storage Modules" version="0.46.1" lastModifiedVersion="0.41.0"/>
 
-# Database backup
+> **DEPRECATED:** This module is deprecated. Use [AWS Backup](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/backup-plan) instead, which natively supports
+> scheduled backups, cross-account copy with automatic KMS re-encryption, and lifecycle retention. See the
+> [backup-rds-cross-account example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/examples/backup-rds-cross-account) for a full end-to-end replacement, and the
+> [backup-vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/backup-vault) and [backup-plan](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/backup-plan) modules for details.
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/lambda-create-snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.41.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+
+# Database backup
 
 This module, along with the [lambda-share-snapshot](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/lambda-share-snapshot) and
 [lambda-copy-shared-snapshot](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/lambda-copy-shared-snapshot) modules, can be used to backup your RDS database
@@ -470,6 +475,6 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/lambda-create-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aba83d77d9db67b8b729bfbfaaa1a1cd"
+  "hash": "00d8e61150eeed4453ca56e67189bb75"
 }
 ##DOCS-SOURCER-END -->

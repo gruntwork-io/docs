@@ -11,11 +11,16 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <VersionBadge repoTitle="Data Storage Modules" version="0.46.1" lastModifiedVersion="0.41.0"/>
 
-# Delete Snapshots Lambda Module
+> **DEPRECATED:** This module is deprecated. Use [AWS Backup](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/backup-plan) instead, which natively supports
+> scheduled backups, cross-account copy with automatic KMS re-encryption, and lifecycle retention. See the
+> [backup-rds-cross-account example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/examples/backup-rds-cross-account) for a full end-to-end replacement, and the
+> [backup-vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/backup-vault) and [backup-plan](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/backup-plan) modules for details.
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/lambda-cleanup-snapshots" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.41.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+
+# Delete Snapshots Lambda Module
 
 This module creates an [AWS Lambda](https://aws.amazon.com/lambda/) function that runs periodically and deletes old
 snapshots of an [Amazon Relational Database (RDS)](https://aws.amazon.com/rds/) database. The module allows you to
@@ -300,6 +305,6 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/lambda-cleanup-snapshots/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4fe427dea9124fcbe9bab89f0a1e5f3b"
+  "hash": "2c041c4a3d8797b4802981e848328fed"
 }
 ##DOCS-SOURCER-END -->
