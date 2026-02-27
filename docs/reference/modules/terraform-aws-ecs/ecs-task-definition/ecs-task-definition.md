@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon ECS" version="1.3.0" lastModifiedVersion="1.3.0"/>
+<VersionBadge repoTitle="Amazon ECS" version="1.4.2" lastModifiedVersion="1.3.0"/>
 
 # ECS Task Definition Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-task-definition" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-task-definition" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -104,11 +104,11 @@ module "ecs_task_definition" {
 
 ## What are the optional variables?
 
-See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-task-definition/variables.tf) for all the variables you can set on this module.
+See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-task-definition/variables.tf) for all the variables you can set on this module.
 
 ## What does this module output?
 
-See [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-task-definition/outputs.tf) for all the outputs this module provides.
+See [outputs.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-task-definition/outputs.tf) for all the outputs this module provides.
 
 ## How do I use this with ecs-task-scheduler?
 
@@ -154,7 +154,7 @@ For Graviton instances, configure the `runtime_platform` variable with the appro
 
 Use the `task_definition_tags` variable to apply tags to your task definition.
 
-See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-task-definition/variables.tf) for specific variable definitions.
+See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-task-definition/variables.tf) for specific variable definitions.
 
 ## Sample Usage
 
@@ -169,7 +169,7 @@ See [variables.tf](https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0
 
 module "ecs_task_definition" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-definition?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-definition?ref=v1.4.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -306,7 +306,7 @@ module "ecs_task_definition" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-definition?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-ecs.git//modules/ecs-task-definition?ref=v1.4.2"
 }
 
 inputs = {
@@ -829,11 +829,11 @@ Any types represent complex values of variable type. For details, please consult
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-task-definition/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-task-definition/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.3.0/modules/ecs-task-definition/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-task-definition/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-task-definition/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-task-definition/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "705b522aa46cd9b7f3f30ae5aa29ebb8"
+  "hash": "eaa131685d9674399611b8b437e07556"
 }
 ##DOCS-SOURCER-END -->
