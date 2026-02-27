@@ -153,7 +153,8 @@ module "aurora" {
   # Clusters require instance class of either db.r5 (latest) or db.r4 (current).
   # For Aurora Serverless v2, use 'db.serverless'. For best price-performance,
   # consider Graviton-based instances (db.r7g.*, db.r8g.*). Graviton4 R8g
-  # instances offer up to 40% better performance. See AWS documentation:
+  # instances offer up to 40% better price-performance vs. Graviton3 (R7g). See
+  # AWS documentation:
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html#Concepts.DBInstanceClass.Types
   instance_type = <string>
 
@@ -557,8 +558,7 @@ module "aurora" {
   # The minimum capacity must be lesser than or equal to the maximum capacity.
   # Valid capacity values are in a range of 0 up to 256 in steps of 0.5. Set to
   # 0 to enable scale-to-zero (requires provider >= 5.80.0). When min_capacity
-  # is 0, the cluster pauses after the seconds_until_auto_pause period of
-  # inactivity.
+  # is 0, the cluster automatically pauses after a period of inactivity.
   scaling_configuration_min_capacity_V2 = 0.5
 
   # The time, in seconds, before an Aurora DB cluster in serverless mode is
@@ -638,7 +638,8 @@ inputs = {
   # Clusters require instance class of either db.r5 (latest) or db.r4 (current).
   # For Aurora Serverless v2, use 'db.serverless'. For best price-performance,
   # consider Graviton-based instances (db.r7g.*, db.r8g.*). Graviton4 R8g
-  # instances offer up to 40% better performance. See AWS documentation:
+  # instances offer up to 40% better price-performance vs. Graviton3 (R7g). See
+  # AWS documentation:
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html#Concepts.DBInstanceClass.Types
   instance_type = <string>
 
@@ -1042,8 +1043,7 @@ inputs = {
   # The minimum capacity must be lesser than or equal to the maximum capacity.
   # Valid capacity values are in a range of 0 up to 256 in steps of 0.5. Set to
   # 0 to enable scale-to-zero (requires provider >= 5.80.0). When min_capacity
-  # is 0, the cluster pauses after the seconds_until_auto_pause period of
-  # inactivity.
+  # is 0, the cluster automatically pauses after a period of inactivity.
   scaling_configuration_min_capacity_V2 = 0.5
 
   # The time, in seconds, before an Aurora DB cluster in serverless mode is
@@ -1118,7 +1118,7 @@ How many instances to launch. RDS will automatically pick a leader and configure
 <HclListItem name="instance_type" requirement="required" type="string">
 <HclListItemDescription>
 
-The instance type from an Amazon Aurora supported instance class based on a selected engine_mode. Amazon Aurora supports 2 types of instance classes: Memory Optimized (db.r) and Burstable Performance (db.t). Aurora Global Clusters require instance class of either db.r5 (latest) or db.r4 (current). For Aurora Serverless v2, use 'db.serverless'. For best price-performance, consider Graviton-based instances (db.r7g.*, db.r8g.*). Graviton4 R8g instances offer up to 40% better performance. See AWS documentation: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html#Concepts.DBInstanceClass.Types
+The instance type from an Amazon Aurora supported instance class based on a selected engine_mode. Amazon Aurora supports 2 types of instance classes: Memory Optimized (db.r) and Burstable Performance (db.t). Aurora Global Clusters require instance class of either db.r5 (latest) or db.r4 (current). For Aurora Serverless v2, use 'db.serverless'. For best price-performance, consider Graviton-based instances (db.r7g.*, db.r8g.*). Graviton4 R8g instances offer up to 40% better price-performance vs. Graviton3 (R7g). See AWS documentation: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html#Concepts.DBInstanceClass.Types
 
 </HclListItemDescription>
 </HclListItem>
@@ -1809,7 +1809,7 @@ The minimum capacity. The minimum capacity must be lesser than or equal to the m
 <HclListItem name="scaling_configuration_min_capacity_V2" requirement="optional" type="number">
 <HclListItemDescription>
 
-The minimum capacity for an Aurora DB cluster in provisioned DB engine mode. The minimum capacity must be lesser than or equal to the maximum capacity. Valid capacity values are in a range of 0 up to 256 in steps of 0.5. Set to 0 to enable scale-to-zero (requires provider >= 5.80.0). When min_capacity is 0, the cluster pauses after the seconds_until_auto_pause period of inactivity.
+The minimum capacity for an Aurora DB cluster in provisioned DB engine mode. The minimum capacity must be lesser than or equal to the maximum capacity. Valid capacity values are in a range of 0 up to 256 in steps of 0.5. Set to 0 to enable scale-to-zero (requires provider >= 5.80.0). When min_capacity is 0, the cluster automatically pauses after a period of inactivity.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="0.5"/>
@@ -1952,6 +1952,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "30ba6149bf89b68f87bf9d6881d48464"
+  "hash": "064bedfe9d2fb637f2af60fcd75dc596"
 }
 ##DOCS-SOURCER-END -->

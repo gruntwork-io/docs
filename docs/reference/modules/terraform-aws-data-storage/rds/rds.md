@@ -360,7 +360,7 @@ module "rds" {
   # (io1/io2) — gp3 is NOT supported. Engine version requirements: MariaDB
   # 10.6.7+, MySQL 8.0.28+, PostgreSQL 13.10+/14.7+/15.2+. A reboot is required
   # after enabling/disabling on an existing instance.
-  dedicated_log_volume = false
+  dedicated_log_volume = null
 
   # A map of the default license to use for each supported RDS engine.
   default_license_models = {"mariadb":"general-public-license","mysql":"general-public-license","oracle-ee":"bring-your-own-license","oracle-ee-cdb":"bring-your-own-license","oracle-se":"bring-your-own-license","oracle-se1":"bring-your-own-license","oracle-se2":"bring-your-own-license","oracle-se2-cdb":"bring-your-own-license","postgres":"postgresql-license","sqlserver-ee":"license-included","sqlserver-ex":"license-included","sqlserver-se":"license-included","sqlserver-web":"license-included"}
@@ -812,7 +812,7 @@ inputs = {
   # (io1/io2) — gp3 is NOT supported. Engine version requirements: MariaDB
   # 10.6.7+, MySQL 8.0.28+, PostgreSQL 13.10+/14.7+/15.2+. A reboot is required
   # after enabling/disabling on an existing instance.
-  dedicated_log_volume = false
+  dedicated_log_volume = null
 
   # A map of the default license to use for each supported RDS engine.
   default_license_models = {"mariadb":"general-public-license","mysql":"general-public-license","oracle-ee":"bring-your-own-license","oracle-ee-cdb":"bring-your-own-license","oracle-se":"bring-your-own-license","oracle-se1":"bring-your-own-license","oracle-se2":"bring-your-own-license","oracle-se2-cdb":"bring-your-own-license","postgres":"postgresql-license","sqlserver-ee":"license-included","sqlserver-ex":"license-included","sqlserver-se":"license-included","sqlserver-web":"license-included"}
@@ -1473,7 +1473,7 @@ The name for your database. Must contain 1-64 alphanumeric characters for MySQL/
 Use a dedicated log volume (DLV) for the DB instance. A DLV moves database transaction logs onto a separate storage volume, which can improve database write performance. Only supported for Provisioned IOPS storage types (io1/io2) — gp3 is NOT supported. Engine version requirements: MariaDB 10.6.7+, MySQL 8.0.28+, PostgreSQL 13.10+/14.7+/15.2+. A reboot is required after enabling/disabling on an existing instance.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="default_license_models" requirement="optional" type="map(string)">
@@ -1980,6 +1980,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3d93d51cf17a91feebfcc4d19f4d2969"
+  "hash": "3f62ef58261400de747d1dac6c5dbd33"
 }
 ##DOCS-SOURCER-END -->
