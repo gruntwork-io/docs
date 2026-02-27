@@ -142,16 +142,6 @@ module "rds" {
   # database to be reachable.
   allow_connections_from_cidr_blocks = []
 
-  # The list of IPv6 CIDR blocks to allow network access to RDS from for
-  # dual-stack configurations. Should typically be the IPv6 CIDR blocks of the
-  # private app subnet in this VPC plus the private subnet in the mgmt VPC.
-  allow_connections_from_ipv6_cidr_blocks = []
-
-  # The list of IPv6 CIDR blocks to allow network access to RDS read replicas
-  # from for dual-stack configurations. If not set, read replica instances will
-  # use the same security group as the master instance.
-  allow_connections_from_ipv6_cidr_blocks_to_read_replicas = []
-
   # The list of IDs or Security Groups to allow network access to RDS from. All
   # security groups must either be in the VPC specified by var.vpc_id, or a
   # peered VPC with the VPC specified by var.vpc_id. One of
@@ -382,24 +372,12 @@ module "rds" {
   # taken per disk I/O operation), in seconds, is above this threshold.
   high_read_latency_threshold = 5
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_read_latency_treat_missing_data = "missing"
-
   # The period, in seconds, over which to measure the write latency.
   high_write_latency_period = 60
 
   # Trigger an alarm if the DB instance write latency (average amount of time
   # taken per disk I/O operation), in seconds, is above this threshold.
   high_write_latency_threshold = 5
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_write_latency_treat_missing_data = "missing"
 
   # The ID of the Route 53 hosted zone into which the Route 53 DNS record should
   # be written
@@ -687,16 +665,6 @@ inputs = {
   # database to be reachable.
   allow_connections_from_cidr_blocks = []
 
-  # The list of IPv6 CIDR blocks to allow network access to RDS from for
-  # dual-stack configurations. Should typically be the IPv6 CIDR blocks of the
-  # private app subnet in this VPC plus the private subnet in the mgmt VPC.
-  allow_connections_from_ipv6_cidr_blocks = []
-
-  # The list of IPv6 CIDR blocks to allow network access to RDS read replicas
-  # from for dual-stack configurations. If not set, read replica instances will
-  # use the same security group as the master instance.
-  allow_connections_from_ipv6_cidr_blocks_to_read_replicas = []
-
   # The list of IDs or Security Groups to allow network access to RDS from. All
   # security groups must either be in the VPC specified by var.vpc_id, or a
   # peered VPC with the VPC specified by var.vpc_id. One of
@@ -927,24 +895,12 @@ inputs = {
   # taken per disk I/O operation), in seconds, is above this threshold.
   high_read_latency_threshold = 5
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_read_latency_treat_missing_data = "missing"
-
   # The period, in seconds, over which to measure the write latency.
   high_write_latency_period = 60
 
   # Trigger an alarm if the DB instance write latency (average amount of time
   # taken per disk I/O operation), in seconds, is above this threshold.
   high_write_latency_threshold = 5
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_write_latency_treat_missing_data = "missing"
 
   # The ID of the Route 53 hosted zone into which the Route 53 DNS record should
   # be written
@@ -1243,24 +1199,6 @@ The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk 
 <HclListItemDescription>
 
 The list of network CIDR blocks to allow network access to RDS from. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The list of IPv6 CIDR blocks to allow network access to RDS from for dual-stack configurations. Should typically be the IPv6 CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_connections_from_ipv6_cidr_blocks_to_read_replicas" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The list of IPv6 CIDR blocks to allow network access to RDS read replicas from for dual-stack configurations. If not set, read replica instances will use the same security group as the master instance.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -2044,15 +1982,6 @@ Trigger an alarm if the DB instance read latency (average amount of time taken p
 <HclListItemDefaultValue defaultValue="5"/>
 </HclListItem>
 
-<HclListItem name="high_read_latency_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="high_write_latency_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2069,15 +1998,6 @@ Trigger an alarm if the DB instance write latency (average amount of time taken 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="5"/>
-</HclListItem>
-
-<HclListItem name="high_write_latency_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
@@ -2723,6 +2643,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.3.0/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "393d8f6cbe313e48e8cd268ffb9a3571"
+  "hash": "4e18578d874e1746ab7d9c2d78e9a3a0"
 }
 ##DOCS-SOURCER-END -->

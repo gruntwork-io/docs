@@ -136,9 +136,6 @@ module "alb" {
   # Valid values are AMAZON_ISSUED and IMPORTED.
   acm_cert_types = ["AMAZON_ISSUED","IMPORTED"]
 
-  # Add additional security groups to the ALB
-  additional_security_group_ids = []
-
   # List of additional SSL certs (non-ACM and ACM) to bind to the given listener
   # port. Note that this must not overlap with the certificates defined in
   # var.https_listener_ports_and_ssl_certs and
@@ -347,9 +344,6 @@ inputs = {
   # https_listener_ports_and_acm_ssl_certs, only match certs of the given types.
   # Valid values are AMAZON_ISSUED and IMPORTED.
   acm_cert_types = ["AMAZON_ISSUED","IMPORTED"]
-
-  # Add additional security groups to the ALB
-  additional_security_group_ids = []
 
   # List of additional SSL certs (non-ACM and ACM) to bind to the given listener
   # port. Note that this must not overlap with the certificates defined in
@@ -599,15 +593,6 @@ When looking up the ACM certs passed in via https_listener_ports_and_acm_ssl_cer
 ```
 
 </HclListItemDefaultValue>
-</HclListItem>
-
-<HclListItem name="additional_security_group_ids" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-Add additional security groups to the ALB
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="additional_ssl_certs_for_ports" requirement="optional" type="map(list(…))">
@@ -1060,6 +1045,6 @@ The AWS-managed DNS name assigned to the ALB.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.3.0/modules/networking/alb/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "52a9a03e4b75eba202f3e13bd15d1deb"
+  "hash": "7428118dafaad28a4dc3ea790b258784"
 }
 ##DOCS-SOURCER-END -->

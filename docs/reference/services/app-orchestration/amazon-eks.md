@@ -347,12 +347,6 @@ module "eks_cluster" {
   # use the key `default`.
   cloud_init_parts = {}
 
-  # ARN of an existing IAM role to use for the EKS cluster. When null, a new
-  # role will be created. WARNING: This can ONLY be set during initial cluster
-  # creation. Changing this value on an existing cluster will DESTROY and
-  # RECREATE the cluster (destructive operation).
-  cluster_iam_role_arn = null
-
   # ARN of permissions boundary to apply to the cluster IAM role - the IAM role
   # created for the EKS cluster.
   cluster_iam_role_permissions_boundary = null
@@ -393,15 +387,6 @@ module "eks_cluster" {
   # CIDR block when you create a cluster, changing this value will force a new
   # cluster to be created.
   cluster_network_config_service_ipv4_cidr = null
-
-  # ID of an existing security group to use for the EKS cluster control plane.
-  # When null or empty, a new security group will be created. This is the
-  # primary cluster security group; additional security groups can be provided
-  # via the additional_security_groups_for_control_plane variable.
-  cluster_security_group_id = null
-
-  # Specify the log class of the cloudwatch log group
-  control_plane_cloudwatch_log_group_class = "STANDARD"
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data in the CloudWatch log group for EKS control plane logs.
@@ -601,12 +586,6 @@ module "eks_cluster" {
   # Enable fail2ban to block brute force log in attempts. Defaults to true.
   enable_fail2ban = true
 
-  # Set to true to enable several basic CloudWatch alarms around CPU usage,
-  # memory usage, and disk space usage for worker ASGs. If set to true, make
-  # sure to specify SNS topics to send notifications to using
-  # var.alarms_sns_topic_arn.
-  enable_worker_cloudwatch_alarms = true
-
   # Set to true to send worker system logs to CloudWatch. This is useful in
   # combination with
   # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts
@@ -695,13 +674,13 @@ module "eks_cluster" {
   # The URL from which to download Kubergrunt if it's not installed already. Use
   # to specify a version of kubergrunt that is compatible with your specified
   # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.4/kubergrunt'
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.4/kubergrunt"
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>'
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.33"
+  kubernetes_version = "1.32"
 
   # Configure one or more Node Groups to manage the EC2 instances in this
   # cluster. Set to empty object ({}) if you do not wish to configure managed
@@ -1230,12 +1209,6 @@ inputs = {
   # use the key `default`.
   cloud_init_parts = {}
 
-  # ARN of an existing IAM role to use for the EKS cluster. When null, a new
-  # role will be created. WARNING: This can ONLY be set during initial cluster
-  # creation. Changing this value on an existing cluster will DESTROY and
-  # RECREATE the cluster (destructive operation).
-  cluster_iam_role_arn = null
-
   # ARN of permissions boundary to apply to the cluster IAM role - the IAM role
   # created for the EKS cluster.
   cluster_iam_role_permissions_boundary = null
@@ -1276,15 +1249,6 @@ inputs = {
   # CIDR block when you create a cluster, changing this value will force a new
   # cluster to be created.
   cluster_network_config_service_ipv4_cidr = null
-
-  # ID of an existing security group to use for the EKS cluster control plane.
-  # When null or empty, a new security group will be created. This is the
-  # primary cluster security group; additional security groups can be provided
-  # via the additional_security_groups_for_control_plane variable.
-  cluster_security_group_id = null
-
-  # Specify the log class of the cloudwatch log group
-  control_plane_cloudwatch_log_group_class = "STANDARD"
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
   # encrypting log data in the CloudWatch log group for EKS control plane logs.
@@ -1484,12 +1448,6 @@ inputs = {
   # Enable fail2ban to block brute force log in attempts. Defaults to true.
   enable_fail2ban = true
 
-  # Set to true to enable several basic CloudWatch alarms around CPU usage,
-  # memory usage, and disk space usage for worker ASGs. If set to true, make
-  # sure to specify SNS topics to send notifications to using
-  # var.alarms_sns_topic_arn.
-  enable_worker_cloudwatch_alarms = true
-
   # Set to true to send worker system logs to CloudWatch. This is useful in
   # combination with
   # https://github.com/gruntwork-io/terraform-aws-monitoring/tree/master/modules/logs/cloudwatch-log-aggregation-scripts
@@ -1578,13 +1536,13 @@ inputs = {
   # The URL from which to download Kubergrunt if it's not installed already. Use
   # to specify a version of kubergrunt that is compatible with your specified
   # kubernetes version. Ex.
-  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.4/kubergrunt'
-  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.4/kubergrunt"
+  # 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>'
+  kubergrunt_download_url = "https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>"
 
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.33"
+  kubernetes_version = "1.32"
 
   # Configure one or more Node Groups to manage the EC2 instances in this
   # cluster. Set to empty object ({}) if you do not wish to configure managed
@@ -2579,15 +2537,6 @@ map(object({
 </HclGeneralListItem>
 </HclListItem>
 
-<HclListItem name="cluster_iam_role_arn" requirement="optional" type="string">
-<HclListItemDescription>
-
-ARN of an existing IAM role to use for the EKS cluster. When null, a new role will be created. WARNING: This can ONLY be set during initial cluster creation. Changing this value on an existing cluster will DESTROY and RECREATE the cluster (destructive operation).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="cluster_iam_role_permissions_boundary" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2681,24 +2630,6 @@ The CIDR block to assign Kubernetes pod and service IP addresses from. If you do
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="cluster_security_group_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-ID of an existing security group to use for the EKS cluster control plane. When null or empty, a new security group will be created. This is the primary cluster security group; additional security groups can be provided via the additional_security_groups_for_control_plane variable.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="control_plane_cloudwatch_log_group_class" requirement="optional" type="string">
-<HclListItemDescription>
-
-Specify the log class of the cloudwatch log group
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;STANDARD&quot;"/>
 </HclListItem>
 
 <HclListItem name="control_plane_cloudwatch_log_group_kms_key_id" requirement="optional" type="string">
@@ -3464,15 +3395,6 @@ Enable fail2ban to block brute force log in attempts. Defaults to true.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="enable_worker_cloudwatch_alarms" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage for worker ASGs. If set to true, make sure to specify SNS topics to send notifications to using <a href="#alarms_sns_topic_arn"><code>alarms_sns_topic_arn</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="enable_worker_cloudwatch_log_aggregation" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -3691,10 +3613,10 @@ map(list(string))
 <HclListItem name="kubergrunt_download_url" requirement="optional" type="string">
 <HclListItemDescription>
 
-The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.4/kubergrunt'
+The URL from which to download Kubergrunt if it's not installed already. Use to specify a version of kubergrunt that is compatible with your specified kubernetes version. Ex. 'https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_&lt;platform>'
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.4/kubergrunt&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;https://github.com/gruntwork-io/kubergrunt/releases/download/v0.18.1/kubergrunt_<platform>&quot;"/>
 </HclListItem>
 
 <HclListItem name="kubernetes_version" requirement="optional" type="string">
@@ -3703,7 +3625,7 @@ The URL from which to download Kubergrunt if it's not installed already. Use to 
 Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.33&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.32&quot;"/>
 </HclListItem>
 
 <HclListItem name="managed_node_group_configurations" requirement="optional" type="any">
@@ -4464,6 +4386,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.3.0/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ee7705e913b354a639cd538dd0fb7246"
+  "hash": "3194971e8cc9bfa2ab42fc541a9898e7"
 }
 ##DOCS-SOURCER-END -->
