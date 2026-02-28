@@ -135,12 +135,6 @@ module "aurora" {
   # database to be reachable.
   allow_connections_from_cidr_blocks = []
 
-  # The list of IPv6 CIDR blocks to allow network access to Aurora from for
-  # dual-stack configurations. In the standard Gruntwork VPC setup with
-  # dual-stack enabled, these should be the IPv6 CIDR blocks of the private app
-  # subnets, plus the private subnets in the mgmt VPC.
-  allow_connections_from_ipv6_cidr_blocks = []
-
   # The list of IDs or Security Groups to allow network access to Aurora from.
   # All security groups must either be in the VPC specified by var.vpc_id, or a
   # peered VPC with the VPC specified by var.vpc_id. One of
@@ -188,6 +182,11 @@ module "aurora" {
   # They will not be created here. Serverless aurora does not support attaching
   # IAM roles.
   cluster_iam_roles = []
+
+  # The interval, in seconds, between points when Enhanced Monitoring metrics
+  # are collected for the cluster instances. To disable collecting Enhanced
+  # Monitoring metrics, specify 0. Allowed values: 0, 1, 5, 10, 15, 30, 60.
+  cluster_monitoring_interval = null
 
   # Specifies whether cluster level Performance Insights is enabled or not. On
   # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
@@ -249,6 +248,7 @@ module "aurora" {
   # are 'standard' or 'advanced'. When setting this to 'advanced' then
   # cluster_performance_insights_enabled must be set to true and
   # 'cluster_performance_insights_retention_period' set to at least 465 days.
+  # This replaces Performance Insights which is deprecated June 30, 2026.
   database_insights_mode = null
 
   # Configure a custom parameter group for the RDS DB cluster. This will create
@@ -280,11 +280,6 @@ module "aurora" {
   # value in db_config_secrets_manager_id.
   db_name = null
 
-  # If true, delete all automated backups when the DB cluster is deleted. If
-  # false, automated backups are retained until the retention period expires.
-  # Defaults to true.
-  delete_automated_backups = null
-
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
@@ -298,9 +293,14 @@ module "aurora" {
   # database cannot be deleted.
   enable_deletion_protection = false
 
-  # If true, enables the HTTP endpoint used for Data API. Only valid when
-  # engine_mode is set to serverless.
-  enable_http_endpoint = null
+  # Whether cluster should forward writes to an associated global cluster.
+  # Applied to secondary clusters to enable them to forward writes to an
+  # aws_rds_global_cluster's primary cluster.
+  enable_global_write_forwarding = null
+
+  # Whether read replicas can forward write operations to the writer DB instance
+  # in the DB cluster. Aurora MySQL only.
+  enable_local_write_forwarding = null
 
   # Set to true to enable alarms related to performance, such as read and write
   # latency alarms. Set to false to disable those alarms if you aren't sure what
@@ -324,11 +324,13 @@ module "aurora" {
   # value here overrides the value in db_config_secrets_manager_id.
   engine = null
 
-  # The DB engine mode of the DB cluster: either provisioned or serverless. Note
-  # that serverless (v1) is deprecated and no longer available for new clusters.
-  # For Aurora Serverless v2, use provisioned with
-  # scaling_configuration_min_capacity_V2 and
-  # scaling_configuration_max_capacity_V2.
+  # The life cycle type for this DB cluster. Valid values are
+  # 'open-source-rds-extended-support' and
+  # 'open-source-rds-extended-support-disabled'. Controls enrollment in RDS
+  # Extended Support and associated costs.
+  engine_lifecycle_support = null
+
+  # The version of aurora to run - provisioned or serverless.
   engine_mode = "provisioned"
 
   # The Amazon Aurora DB engine version for the selected engine and engine_mode.
@@ -442,6 +444,16 @@ module "aurora" {
   # db_config_secrets_manager_id.
   master_username = null
 
+  # The ARN for the IAM role that permits RDS to send enhanced monitoring
+  # metrics to CloudWatch Logs. Be sure this role exists. It will not be created
+  # here. You must specify a MonitoringInterval value other than 0 when you
+  # specify a MonitoringRoleARN value that is not empty string.
+  monitoring_role_arn = null
+
+  # The network type of the DB cluster. Valid values: IPV4, DUAL. Use DUAL for
+  # dual-stack mode with IPv4 and IPv6 support.
+  network_type = null
+
   # Specifies whether Performance Insights is enabled or not. On Aurora MySQL,
   # Performance Insights is not supported on db.t2 or db.t3 DB instance classes.
   performance_insights_enabled = false
@@ -496,11 +508,6 @@ module "aurora" {
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT.html
   restore_source_cluster_identifier = null
 
-  # Only used if 'restore_source_cluster_identifier' is non-empty. Date and time
-  # in UTC format to restore the database cluster to (e.g,
-  # 2009-09-07T23:45:00Z). When null, the latest restorable time will be used.
-  restore_to_time = null
-
   # Only used if 'restore_source_cluster_identifier' is non-empty. Type of
   # restore to be performed. Valid options are 'full-copy' and 'copy-on-write'.
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clone.html
@@ -548,8 +555,8 @@ module "aurora" {
   # if var.share_snapshot_with_another_account is true.
   share_snapshot_with_account_id = null
 
-  # If set to true, take periodic snapshots of the Aurora DB that should be
-  # shared with another account.
+  # DEPRECATED: Use AWS Backup instead. If set to true, take periodic snapshots
+  # of the Aurora DB that should be shared with another account.
   share_snapshot_with_another_account = false
 
   # Determines whether a final DB snapshot is created before the DB instance is
@@ -629,12 +636,6 @@ inputs = {
   # database to be reachable.
   allow_connections_from_cidr_blocks = []
 
-  # The list of IPv6 CIDR blocks to allow network access to Aurora from for
-  # dual-stack configurations. In the standard Gruntwork VPC setup with
-  # dual-stack enabled, these should be the IPv6 CIDR blocks of the private app
-  # subnets, plus the private subnets in the mgmt VPC.
-  allow_connections_from_ipv6_cidr_blocks = []
-
   # The list of IDs or Security Groups to allow network access to Aurora from.
   # All security groups must either be in the VPC specified by var.vpc_id, or a
   # peered VPC with the VPC specified by var.vpc_id. One of
@@ -682,6 +683,11 @@ inputs = {
   # They will not be created here. Serverless aurora does not support attaching
   # IAM roles.
   cluster_iam_roles = []
+
+  # The interval, in seconds, between points when Enhanced Monitoring metrics
+  # are collected for the cluster instances. To disable collecting Enhanced
+  # Monitoring metrics, specify 0. Allowed values: 0, 1, 5, 10, 15, 30, 60.
+  cluster_monitoring_interval = null
 
   # Specifies whether cluster level Performance Insights is enabled or not. On
   # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
@@ -743,6 +749,7 @@ inputs = {
   # are 'standard' or 'advanced'. When setting this to 'advanced' then
   # cluster_performance_insights_enabled must be set to true and
   # 'cluster_performance_insights_retention_period' set to at least 465 days.
+  # This replaces Performance Insights which is deprecated June 30, 2026.
   database_insights_mode = null
 
   # Configure a custom parameter group for the RDS DB cluster. This will create
@@ -774,11 +781,6 @@ inputs = {
   # value in db_config_secrets_manager_id.
   db_name = null
 
-  # If true, delete all automated backups when the DB cluster is deleted. If
-  # false, automated backups are retained until the retention period expires.
-  # Defaults to true.
-  delete_automated_backups = null
-
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
@@ -792,9 +794,14 @@ inputs = {
   # database cannot be deleted.
   enable_deletion_protection = false
 
-  # If true, enables the HTTP endpoint used for Data API. Only valid when
-  # engine_mode is set to serverless.
-  enable_http_endpoint = null
+  # Whether cluster should forward writes to an associated global cluster.
+  # Applied to secondary clusters to enable them to forward writes to an
+  # aws_rds_global_cluster's primary cluster.
+  enable_global_write_forwarding = null
+
+  # Whether read replicas can forward write operations to the writer DB instance
+  # in the DB cluster. Aurora MySQL only.
+  enable_local_write_forwarding = null
 
   # Set to true to enable alarms related to performance, such as read and write
   # latency alarms. Set to false to disable those alarms if you aren't sure what
@@ -818,11 +825,13 @@ inputs = {
   # value here overrides the value in db_config_secrets_manager_id.
   engine = null
 
-  # The DB engine mode of the DB cluster: either provisioned or serverless. Note
-  # that serverless (v1) is deprecated and no longer available for new clusters.
-  # For Aurora Serverless v2, use provisioned with
-  # scaling_configuration_min_capacity_V2 and
-  # scaling_configuration_max_capacity_V2.
+  # The life cycle type for this DB cluster. Valid values are
+  # 'open-source-rds-extended-support' and
+  # 'open-source-rds-extended-support-disabled'. Controls enrollment in RDS
+  # Extended Support and associated costs.
+  engine_lifecycle_support = null
+
+  # The version of aurora to run - provisioned or serverless.
   engine_mode = "provisioned"
 
   # The Amazon Aurora DB engine version for the selected engine and engine_mode.
@@ -936,6 +945,16 @@ inputs = {
   # db_config_secrets_manager_id.
   master_username = null
 
+  # The ARN for the IAM role that permits RDS to send enhanced monitoring
+  # metrics to CloudWatch Logs. Be sure this role exists. It will not be created
+  # here. You must specify a MonitoringInterval value other than 0 when you
+  # specify a MonitoringRoleARN value that is not empty string.
+  monitoring_role_arn = null
+
+  # The network type of the DB cluster. Valid values: IPV4, DUAL. Use DUAL for
+  # dual-stack mode with IPv4 and IPv6 support.
+  network_type = null
+
   # Specifies whether Performance Insights is enabled or not. On Aurora MySQL,
   # Performance Insights is not supported on db.t2 or db.t3 DB instance classes.
   performance_insights_enabled = false
@@ -990,11 +1009,6 @@ inputs = {
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT.html
   restore_source_cluster_identifier = null
 
-  # Only used if 'restore_source_cluster_identifier' is non-empty. Date and time
-  # in UTC format to restore the database cluster to (e.g,
-  # 2009-09-07T23:45:00Z). When null, the latest restorable time will be used.
-  restore_to_time = null
-
   # Only used if 'restore_source_cluster_identifier' is non-empty. Type of
   # restore to be performed. Valid options are 'full-copy' and 'copy-on-write'.
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clone.html
@@ -1042,8 +1056,8 @@ inputs = {
   # if var.share_snapshot_with_another_account is true.
   share_snapshot_with_account_id = null
 
-  # If set to true, take periodic snapshots of the Aurora DB that should be
-  # shared with another account.
+  # DEPRECATED: Use AWS Backup instead. If set to true, take periodic snapshots
+  # of the Aurora DB that should be shared with another account.
   share_snapshot_with_another_account = false
 
   # Determines whether a final DB snapshot is created before the DB instance is
@@ -1124,15 +1138,6 @@ The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk 
 <HclListItemDescription>
 
 The list of network CIDR blocks to allow network access to Aurora from. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The list of IPv6 CIDR blocks to allow network access to Aurora from for dual-stack configurations. In the standard Gruntwork VPC setup with dual-stack enabled, these should be the IPv6 CIDR blocks of the private app subnets, plus the private subnets in the mgmt VPC.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1229,6 +1234,15 @@ List of IAM role ARNs to attach to the cluster. Be sure these roles exists. They
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cluster_monitoring_interval" requirement="optional" type="number">
+<HclListItemDescription>
+
+The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the cluster instances. To disable collecting Enhanced Monitoring metrics, specify 0. Allowed values: 0, 1, 5, 10, 15, 30, 60.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cluster_performance_insights_enabled" requirement="optional" type="bool">
@@ -1579,7 +1593,7 @@ object({
 <HclListItem name="database_insights_mode" requirement="optional" type="string">
 <HclListItemDescription>
 
-The mode of Database Insights to enable for the DB cluster. Valid options are 'standard' or 'advanced'. When setting this to 'advanced' then cluster_performance_insights_enabled must be set to true and 'cluster_performance_insights_retention_period' set to at least 465 days.
+The mode of Database Insights to enable for the DB cluster. Valid options are 'standard' or 'advanced'. When setting this to 'advanced' then cluster_performance_insights_enabled must be set to true and 'cluster_performance_insights_retention_period' set to at least 465 days. This replaces Performance Insights which is deprecated June 30, 2026.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1755,15 +1769,6 @@ The name for your database of up to 8 alpha-numeric characters. If you do not pr
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="delete_automated_backups" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If true, delete all automated backups when the DB cluster is deleted. If false, automated backups are retained until the retention period expires. Defaults to true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1791,10 +1796,19 @@ Enable deletion protection on the database instance. If this is enabled, the dat
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="enable_http_endpoint" requirement="optional" type="bool">
+<HclListItem name="enable_global_write_forwarding" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If true, enables the HTTP endpoint used for Data API. Only valid when engine_mode is set to serverless.
+Whether cluster should forward writes to an associated global cluster. Applied to secondary clusters to enable them to forward writes to an aws_rds_global_cluster's primary cluster.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="enable_local_write_forwarding" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether read replicas can forward write operations to the writer DB instance in the DB cluster. Aurora MySQL only.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1836,10 +1850,19 @@ The name of the database engine to be used for this DB cluster. Valid Values: au
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="engine_lifecycle_support" requirement="optional" type="string">
+<HclListItemDescription>
+
+The life cycle type for this DB cluster. Valid values are 'open-source-rds-extended-support' and 'open-source-rds-extended-support-disabled'. Controls enrollment in RDS Extended Support and associated costs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="engine_mode" requirement="optional" type="string">
 <HclListItemDescription>
 
-The DB engine mode of the DB cluster: either provisioned or serverless. Note that serverless (v1) is deprecated and no longer available for new clusters. For Aurora Serverless v2, use provisioned with scaling_configuration_min_capacity_V2 and scaling_configuration_max_capacity_V2.
+The version of aurora to run - provisioned or serverless.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;provisioned&quot;"/>
@@ -2107,6 +2130,24 @@ The value to use for the master username of the database. This can also be provi
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="monitoring_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. Be sure this role exists. It will not be created here. You must specify a MonitoringInterval value other than 0 when you specify a MonitoringRoleARN value that is not empty string.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="network_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The network type of the DB cluster. Valid values: IPV4, DUAL. Use DUAL for dual-stack mode with IPv4 and IPv6 support.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="performance_insights_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2206,15 +2247,6 @@ If non-empty, the Aurora cluster will be restored from the given source cluster 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="restore_to_time" requirement="optional" type="string">
-<HclListItemDescription>
-
-Only used if 'restore_source_cluster_identifier' is non-empty. Date and time in UTC format to restore the database cluster to (e.g, 2009-09-07T23:45:00Z). When null, the latest restorable time will be used.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="restore_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2298,7 +2330,7 @@ The ID of the AWS Account that the snapshot should be shared with. Required if <
 <HclListItem name="share_snapshot_with_another_account" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If set to true, take periodic snapshots of the Aurora DB that should be shared with another account.
+DEPRECATED: Use AWS Backup instead. If set to true, take periodic snapshots of the Aurora DB that should be shared with another account.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -2527,6 +2559,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.3.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2a2fca8438bd191b987611829be47813"
+  "hash": "bccbecc861cd03bf38c829fc36acfac6"
 }
 ##DOCS-SOURCER-END -->

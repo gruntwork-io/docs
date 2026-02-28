@@ -96,12 +96,6 @@ If you want to deploy this repo in production, check out the following resources
 
 ## Manage
 
-### Migrating from AL2 to AL2023
-
-**IMPORTANT**: Starting with EKS 1.33, this module defaults to Amazon Linux 2023 (AL2023) instead of Amazon Linux 2 (AL2). If you have existing clusters using AL2, see the [AL2 to AL2023 Migration Guide](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.3.0/modules/services/eks-workers/AL2-TO-AL2023-MIGRATION.md) for detailed migration instructions.
-
-### Worker Management
-
 For information on registering the worker IAM role to the EKS control plane, refer to the
 [IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.3.0/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
 
@@ -200,7 +194,7 @@ module "eks_workers" {
   # Default value for asg_ami_type field of autoscaling_group_configurations.
   # See the AWS documentation for valid values. Docs:
   # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
-  asg_default_ami_type = "AL2023_x86_64_STANDARD"
+  asg_default_ami_type = "AL2_x86_64"
 
   # Default value for enable_detailed_monitoring field of
   # autoscaling_group_configurations.
@@ -520,7 +514,7 @@ module "eks_workers" {
   # Default value for ami_type field of managed_node_group_configurations. See
   # the AWS documentation for valid values. Docs:
   # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
-  node_group_default_ami_type = "AL2023_x86_64_STANDARD"
+  node_group_default_ami_type = "AL2_x86_64"
 
   # Default value for capacity_type field of managed_node_group_configurations.
   node_group_default_capacity_type = "ON_DEMAND"
@@ -782,7 +776,7 @@ inputs = {
   # Default value for asg_ami_type field of autoscaling_group_configurations.
   # See the AWS documentation for valid values. Docs:
   # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
-  asg_default_ami_type = "AL2023_x86_64_STANDARD"
+  asg_default_ami_type = "AL2_x86_64"
 
   # Default value for enable_detailed_monitoring field of
   # autoscaling_group_configurations.
@@ -1102,7 +1096,7 @@ inputs = {
   # Default value for ami_type field of managed_node_group_configurations. See
   # the AWS documentation for valid values. Docs:
   # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
-  node_group_default_ami_type = "AL2023_x86_64_STANDARD"
+  node_group_default_ami_type = "AL2_x86_64"
 
   # Default value for capacity_type field of managed_node_group_configurations.
   node_group_default_capacity_type = "ON_DEMAND"
@@ -1671,7 +1665,7 @@ Custom name for the IAM role for the Self-managed workers. When null, a default 
 Default value for asg_ami_type field of autoscaling_group_configurations. See the AWS documentation for valid values. Docs: https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;AL2023_x86_64_STANDARD&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;AL2_x86_64&quot;"/>
 </HclListItem>
 
 <HclListItem name="asg_default_enable_detailed_monitoring" requirement="optional" type="bool">
@@ -2557,7 +2551,7 @@ ARN of the IAM role to use if iam_role_already_exists = true. When null, uses ma
 Default value for ami_type field of managed_node_group_configurations. See the AWS documentation for valid values. Docs: https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;AL2023_x86_64_STANDARD&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;AL2_x86_64&quot;"/>
 </HclListItem>
 
 <HclListItem name="node_group_default_capacity_type" requirement="optional" type="string">
@@ -3007,6 +3001,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.3.0/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8c271354d9cf7dabe90713af820f7fee"
+  "hash": "7a98aae4eece6b6787a036d274993f4e"
 }
 ##DOCS-SOURCER-END -->

@@ -342,7 +342,7 @@ module "eks_core_services" {
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
-  cluster_autoscaler_version = "v1.33.0"
+  cluster_autoscaler_version = "v1.32.0"
 
   # When set to true, create a new dedicated IAM Role for the cluster
   # autoscaler. When set to true, var.iam_role_for_service_accounts_config is
@@ -980,7 +980,7 @@ inputs = {
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
-  cluster_autoscaler_version = "v1.33.0"
+  cluster_autoscaler_version = "v1.32.0"
 
   # When set to true, create a new dedicated IAM Role for the cluster
   # autoscaler. When set to true, var.iam_role_for_service_accounts_config is
@@ -2157,7 +2157,7 @@ The name of the service account to create for the cluster autoscaler.
 Which version of the cluster autoscaler to install. This should match the major/minor version (e.g., v1.20) of your Kubernetes Installation. See https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases for a list of versions.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v1.33.0&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v1.32.0&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_cluster_autoscaler_role" requirement="optional" type="bool">
@@ -5505,6 +5505,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.3.0/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a83231663dc09828c2f0755e3121efda"
+  "hash": "c08450e339022e3a04036e27e2d11258"
 }
 ##DOCS-SOURCER-END -->

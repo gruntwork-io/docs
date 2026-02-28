@@ -80,11 +80,6 @@ module "rds_replica" {
   # database to be reachable.
   allow_connections_from_cidr_blocks = []
 
-  # The list of IPv6 CIDR blocks to allow network access to RDS read replicas
-  # from for dual-stack configurations. If not set, read replica instances will
-  # use the same security group as the master instance.
-  allow_connections_from_ipv6_cidr_blocks = []
-
   # The list of IDs or Security Groups to allow network access to RDS from. All
   # security groups must either be in the VPC specified by var.vpc_id, or a
   # peered VPC with the VPC specified by var.vpc_id. One of
@@ -290,6 +285,10 @@ module "rds_replica" {
   # differences to allocated_storage. Must be greater than or equal to
   # allocated_storage or 0 to disable Storage Autoscaling.
   max_allocated_storage = 0
+
+  # The network type of the DB instance. Valid values: IPV4, DUAL. Use DUAL for
+  # dual-stack mode with IPv4 and IPv6 support.
+  network_type = null
 
   # The number of read replicas to deploy
   num_read_replicas = 0
@@ -390,11 +389,6 @@ inputs = {
   # database to be reachable.
   allow_connections_from_cidr_blocks = []
 
-  # The list of IPv6 CIDR blocks to allow network access to RDS read replicas
-  # from for dual-stack configurations. If not set, read replica instances will
-  # use the same security group as the master instance.
-  allow_connections_from_ipv6_cidr_blocks = []
-
   # The list of IDs or Security Groups to allow network access to RDS from. All
   # security groups must either be in the VPC specified by var.vpc_id, or a
   # peered VPC with the VPC specified by var.vpc_id. One of
@@ -600,6 +594,10 @@ inputs = {
   # differences to allocated_storage. Must be greater than or equal to
   # allocated_storage or 0 to disable Storage Autoscaling.
   max_allocated_storage = 0
+
+  # The network type of the DB instance. Valid values: IPV4, DUAL. Use DUAL for
+  # dual-stack mode with IPv4 and IPv6 support.
+  network_type = null
 
   # The number of read replicas to deploy
   num_read_replicas = 0
@@ -707,15 +705,6 @@ The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk 
 <HclListItemDescription>
 
 The list of network CIDR blocks to allow network access to RDS from. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The list of IPv6 CIDR blocks to allow network access to RDS read replicas from for dual-stack configurations. If not set, read replica instances will use the same security group as the master instance.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1471,6 +1460,15 @@ When configured, the upper limit to which Amazon RDS can automatically scale the
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
+<HclListItem name="network_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The network type of the DB instance. Valid values: IPV4, DUAL. Use DUAL for dual-stack mode with IPv4 and IPv6 support.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="num_read_replicas" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1692,6 +1690,6 @@ A list of IDs of the RDS DB instance's read replicas.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.3.0/modules/data-stores/rds-replica/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "453dfcf9bbcef376886ab778454e0a97"
+  "hash": "8713a24bcb73ae8826de9c14d38e26e6"
 }
 ##DOCS-SOURCER-END -->
