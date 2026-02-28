@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.46.1" lastModifiedVersion="0.46.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.47.0" lastModifiedVersion="0.47.0"/>
 
 # Redshift Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/redshift" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.46.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.47.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Redshift cluster that you can use as a data warehouse. The cluster is managed by AWS and
 automatically handles leader nodes, worker nodes, backups, patching, and encryption.
@@ -56,11 +56,16 @@ workaround, you can re-run the destroy command once the workspace gets deleted c
 
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S REDSHIFT MODULE
+#
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE".
+# When using values other than defaults for these variables, set them through environment variables or
+# another secure method.
+#
 # ------------------------------------------------------------------------------------------------------
 
 module "redshift" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.46.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.47.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -224,11 +229,21 @@ module "redshift" {
   # there may even be a downtime during maintenance windows.
   maintenance_window = "sun:07:00-sun:08:00"
 
-  # The password for the master user. If var.snapshot_identifier is non-empty,
-  # this value is ignored. Required unless var.replicate_source_db is set.
-  master_password = null
+  # Whether to automatically manage the cluster admin credentials with AWS
+  # SecretsManager. When true, AWS will auto-generate and rotate the master
+  # password. Conflicts with master_password. See
+  # https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-secrets-manager-integration.html.
+  manage_master_password = null
 
-  # The username for the master user. Required unless var.replicate_source_db is
+  # The password for the master user. If var.snapshot_identifier is non-empty,
+  # this value is ignored. Conflicts with manage_master_password.
+  master_password = null # SENSITIVE
+
+  # KMS key ID for encrypting the managed master password secret. Only used when
+  # manage_master_password is true.
+  master_password_secret_kms_key_id = null
+
+  # The username for the master user. Required unless var.snapshot_identifier is
   # set.
   master_username = null
 
@@ -298,10 +313,15 @@ module "redshift" {
 
 # ------------------------------------------------------------------------------------------------------
 # DEPLOY GRUNTWORK'S REDSHIFT MODULE
+#
+# NOTE: This module uses some sensitive variables marked inline with "# SENSITIVE".
+# When using values other than defaults for these variables, set them through environment variables or
+# another secure method.
+#
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.46.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/redshift?ref=v0.47.0"
 }
 
 inputs = {
@@ -468,11 +488,21 @@ inputs = {
   # there may even be a downtime during maintenance windows.
   maintenance_window = "sun:07:00-sun:08:00"
 
-  # The password for the master user. If var.snapshot_identifier is non-empty,
-  # this value is ignored. Required unless var.replicate_source_db is set.
-  master_password = null
+  # Whether to automatically manage the cluster admin credentials with AWS
+  # SecretsManager. When true, AWS will auto-generate and rotate the master
+  # password. Conflicts with master_password. See
+  # https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-secrets-manager-integration.html.
+  manage_master_password = null
 
-  # The username for the master user. Required unless var.replicate_source_db is
+  # The password for the master user. If var.snapshot_identifier is non-empty,
+  # this value is ignored. Conflicts with manage_master_password.
+  master_password = null # SENSITIVE
+
+  # KMS key ID for encrypting the managed master password secret. Only used when
+  # manage_master_password is true.
+  master_password_secret_kms_key_id = null
+
+  # The username for the master user. Required unless var.snapshot_identifier is
   # set.
   master_username = null
 
@@ -628,7 +658,7 @@ A list of IPv6 CIDR-formatted IP address ranges that this DB can connect. Use th
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
-<HclListItem name="apply_immediately" requirement="optional" type="string">
+<HclListItem name="apply_immediately" requirement="optional" type="bool">
 <HclListItemDescription>
 
 Specifies whether any cluster modifications are applied immediately, or during the next maintenance window.
@@ -871,10 +901,28 @@ The weekly day and time range during which system maintenance can occur (e.g. we
 <HclListItemDefaultValue defaultValue="&quot;sun:07:00-sun:08:00&quot;"/>
 </HclListItem>
 
+<HclListItem name="manage_master_password" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to automatically manage the cluster admin credentials with AWS SecretsManager. When true, AWS will auto-generate and rotate the master password. Conflicts with master_password. See https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-secrets-manager-integration.html.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="master_password" requirement="optional" type="string">
 <HclListItemDescription>
 
-The password for the master user. If <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is non-empty, this value is ignored. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+The password for the master user. If <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is non-empty, this value is ignored. Conflicts with manage_master_password.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="master_password_secret_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+KMS key ID for encrypting the managed master password secret. Only used when manage_master_password is true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -883,7 +931,7 @@ The password for the master user. If <a href="#snapshot_identifier"><code>snapsh
 <HclListItem name="master_username" requirement="optional" type="string">
 <HclListItemDescription>
 
-The username for the master user. Required unless <a href="#replicate_source_db"><code>replicate_source_db</code></a> is set.
+The username for the master user. Required unless <a href="#snapshot_identifier"><code>snapshot_identifier</code></a> is set.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1061,6 +1109,14 @@ The Redshift Cluster ID
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="master_password_secret_arn">
+<HclListItemDescription>
+
+ARN of the auto-generated Secrets Manager secret containing admin credentials. Only populated when manage_master_password is true.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="name">
 <HclListItemDescription>
 
@@ -1099,11 +1155,11 @@ The ID of the Security Group that controls access to the cluster
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/redshift/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/redshift/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/redshift/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/redshift/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/redshift/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e1f14be18ac31a63293d2b10da5bbef5"
+  "hash": "e72a2825d08f0a6020888bfcae75a551"
 }
 ##DOCS-SOURCER-END -->
