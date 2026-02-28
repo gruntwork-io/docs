@@ -9,13 +9,18 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.46.1" lastModifiedVersion="0.41.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="0.47.0" lastModifiedVersion="0.47.0"/>
+
+> **DEPRECATED:** This module is deprecated. Use [AWS Backup](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/backup-plan) instead, which natively supports
+> scheduled backups, cross-account copy with automatic KMS re-encryption, and lifecycle retention. See the
+> [backup-rds-cross-account example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/examples/backup-rds-cross-account) for a full end-to-end replacement, and the
+> [backup-vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/backup-vault) and [backup-plan](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/backup-plan) modules for details.
+
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/lambda-cleanup-snapshots" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.47.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 # Delete Snapshots Lambda Module
-
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/lambda-cleanup-snapshots" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
-
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.41.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an [AWS Lambda](https://aws.amazon.com/lambda/) function that runs periodically and deletes old
 snapshots of an [Amazon Relational Database (RDS)](https://aws.amazon.com/rds/) database. The module allows you to
@@ -29,7 +34,7 @@ Note that to use this module, you must have access to the Gruntwork [Continuous 
 
 This module allows you to configure a number of parameters, such as which database to backup, how often to run the
 backups, what account to share the backups with, and more. For a list of all available variables and their
-descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/lambda-cleanup-snapshots/variables.tf).
+descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/lambda-cleanup-snapshots/variables.tf).
 
 ## Sample Usage
 
@@ -44,7 +49,7 @@ descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-d
 
 module "lambda_cleanup_snapshots" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-cleanup-snapshots?ref=v0.46.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-cleanup-snapshots?ref=v0.47.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -114,7 +119,7 @@ module "lambda_cleanup_snapshots" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-cleanup-snapshots?ref=v0.46.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/lambda-cleanup-snapshots?ref=v0.47.0"
 }
 
 inputs = {
@@ -295,11 +300,11 @@ Namespace of snapshots that will be cleaned up by this module. If specified then
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/lambda-cleanup-snapshots/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/lambda-cleanup-snapshots/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.46.1/modules/lambda-cleanup-snapshots/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/lambda-cleanup-snapshots/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/lambda-cleanup-snapshots/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/lambda-cleanup-snapshots/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4fe427dea9124fcbe9bab89f0a1e5f3b"
+  "hash": "b8b52514bc446c71a2a05339efb33816"
 }
 ##DOCS-SOURCER-END -->
