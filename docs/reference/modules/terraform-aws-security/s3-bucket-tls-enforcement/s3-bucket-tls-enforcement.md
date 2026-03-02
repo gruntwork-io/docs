@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.3.0" />
+<VersionBadge repoTitle="Security Modules" version="1.3.1" />
 
 # S3 Bucket TLS Enforcement
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/s3-bucket-tls-enforcement" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.1/modules/s3-bucket-tls-enforcement" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases?q=s3-bucket-tls-enforcement" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -45,11 +45,11 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.1/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.1/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -57,7 +57,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this module out, check out the following resources:
 
-*   [examples/s3-bucket-tls-enforcement](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/examples/s3-bucket-tls-enforcement): A sample configuration optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/s3-bucket-tls-enforcement](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.1/examples/s3-bucket-tls-enforcement): A sample configuration optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -101,7 +101,7 @@ module "s3_bucket_tls_enforcement" {
 
 module "s_3_bucket_tls_enforcement" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/s3-bucket-tls-enforcement?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/s3-bucket-tls-enforcement?ref=v1.3.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -141,7 +141,7 @@ module "s_3_bucket_tls_enforcement" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/s3-bucket-tls-enforcement?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/s3-bucket-tls-enforcement?ref=v1.3.1"
 }
 
 inputs = {
@@ -232,11 +232,11 @@ Map of bucket name to the bucket policy resource ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/s3-bucket-tls-enforcement/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/s3-bucket-tls-enforcement/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.0/modules/s3-bucket-tls-enforcement/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.1/modules/s3-bucket-tls-enforcement/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.1/modules/s3-bucket-tls-enforcement/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.3.1/modules/s3-bucket-tls-enforcement/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7a6bb8664e356836d1abd924c9d9c47e"
+  "hash": "0871f2db0818111b1bb110c87ac8b969"
 }
 ##DOCS-SOURCER-END -->
