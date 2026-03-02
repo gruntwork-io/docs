@@ -92,7 +92,7 @@ on:
   schedule:
     # 04:15 UTC on Mondays
     - cron: "15 4 * * 1"
-  pull_request_target:
+  pull_request:
     types:
       - closed
     branches:
@@ -185,7 +185,7 @@ on:
   workflow_dispatch:
   repository_dispatch:
     types: [dev_updates_merged]
-  pull_request_target:
+  pull_request:
     types:
       - closed
     branches:
