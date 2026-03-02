@@ -120,7 +120,7 @@ Once the code has been merged into <CustomizableValue id='main' />, you can trig
 name: Patcher - Update Dependencies
 
 on:
-  pull_request_target:
+  pull_request:
     types:
       - closed
     branches:
