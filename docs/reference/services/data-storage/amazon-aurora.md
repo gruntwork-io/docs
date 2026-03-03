@@ -135,6 +135,12 @@ module "aurora" {
   # database to be reachable.
   allow_connections_from_cidr_blocks = []
 
+  # The list of IPv6 CIDR blocks to allow network access to Aurora from for
+  # dual-stack configurations. In the standard Gruntwork VPC setup with
+  # dual-stack enabled, these should be the IPv6 CIDR blocks of the private app
+  # subnets, plus the private subnets in the mgmt VPC.
+  allow_connections_from_ipv6_cidr_blocks = []
+
   # The list of IDs or Security Groups to allow network access to Aurora from.
   # All security groups must either be in the VPC specified by var.vpc_id, or a
   # peered VPC with the VPC specified by var.vpc_id. One of
@@ -274,6 +280,11 @@ module "aurora" {
   # value in db_config_secrets_manager_id.
   db_name = null
 
+  # If true, delete all automated backups when the DB cluster is deleted. If
+  # false, automated backups are retained until the retention period expires.
+  # Defaults to true.
+  delete_automated_backups = null
+
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
@@ -286,6 +297,10 @@ module "aurora" {
   # Enable deletion protection on the database instance. If this is enabled, the
   # database cannot be deleted.
   enable_deletion_protection = false
+
+  # If true, enables the HTTP endpoint used for Data API. Only valid when
+  # engine_mode is set to serverless.
+  enable_http_endpoint = null
 
   # Set to true to enable alarms related to performance, such as read and write
   # latency alarms. Set to false to disable those alarms if you aren't sure what
@@ -309,7 +324,11 @@ module "aurora" {
   # value here overrides the value in db_config_secrets_manager_id.
   engine = null
 
-  # The version of aurora to run - provisioned or serverless.
+  # The DB engine mode of the DB cluster: either provisioned or serverless. Note
+  # that serverless (v1) is deprecated and no longer available for new clusters.
+  # For Aurora Serverless v2, use provisioned with
+  # scaling_configuration_min_capacity_V2 and
+  # scaling_configuration_max_capacity_V2.
   engine_mode = "provisioned"
 
   # The Amazon Aurora DB engine version for the selected engine and engine_mode.
@@ -476,6 +495,11 @@ module "aurora" {
   # snapshot_identifier is null. For more information see
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT.html
   restore_source_cluster_identifier = null
+
+  # Only used if 'restore_source_cluster_identifier' is non-empty. Date and time
+  # in UTC format to restore the database cluster to (e.g,
+  # 2009-09-07T23:45:00Z). When null, the latest restorable time will be used.
+  restore_to_time = null
 
   # Only used if 'restore_source_cluster_identifier' is non-empty. Type of
   # restore to be performed. Valid options are 'full-copy' and 'copy-on-write'.
@@ -605,6 +629,12 @@ inputs = {
   # database to be reachable.
   allow_connections_from_cidr_blocks = []
 
+  # The list of IPv6 CIDR blocks to allow network access to Aurora from for
+  # dual-stack configurations. In the standard Gruntwork VPC setup with
+  # dual-stack enabled, these should be the IPv6 CIDR blocks of the private app
+  # subnets, plus the private subnets in the mgmt VPC.
+  allow_connections_from_ipv6_cidr_blocks = []
+
   # The list of IDs or Security Groups to allow network access to Aurora from.
   # All security groups must either be in the VPC specified by var.vpc_id, or a
   # peered VPC with the VPC specified by var.vpc_id. One of
@@ -744,6 +774,11 @@ inputs = {
   # value in db_config_secrets_manager_id.
   db_name = null
 
+  # If true, delete all automated backups when the DB cluster is deleted. If
+  # false, automated backups are retained until the retention period expires.
+  # Defaults to true.
+  delete_automated_backups = null
+
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
@@ -756,6 +791,10 @@ inputs = {
   # Enable deletion protection on the database instance. If this is enabled, the
   # database cannot be deleted.
   enable_deletion_protection = false
+
+  # If true, enables the HTTP endpoint used for Data API. Only valid when
+  # engine_mode is set to serverless.
+  enable_http_endpoint = null
 
   # Set to true to enable alarms related to performance, such as read and write
   # latency alarms. Set to false to disable those alarms if you aren't sure what
@@ -779,7 +818,11 @@ inputs = {
   # value here overrides the value in db_config_secrets_manager_id.
   engine = null
 
-  # The version of aurora to run - provisioned or serverless.
+  # The DB engine mode of the DB cluster: either provisioned or serverless. Note
+  # that serverless (v1) is deprecated and no longer available for new clusters.
+  # For Aurora Serverless v2, use provisioned with
+  # scaling_configuration_min_capacity_V2 and
+  # scaling_configuration_max_capacity_V2.
   engine_mode = "provisioned"
 
   # The Amazon Aurora DB engine version for the selected engine and engine_mode.
@@ -946,6 +989,11 @@ inputs = {
   # snapshot_identifier is null. For more information see
   # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PIT.html
   restore_source_cluster_identifier = null
+
+  # Only used if 'restore_source_cluster_identifier' is non-empty. Date and time
+  # in UTC format to restore the database cluster to (e.g,
+  # 2009-09-07T23:45:00Z). When null, the latest restorable time will be used.
+  restore_to_time = null
 
   # Only used if 'restore_source_cluster_identifier' is non-empty. Type of
   # restore to be performed. Valid options are 'full-copy' and 'copy-on-write'.
@@ -1076,6 +1124,15 @@ The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk 
 <HclListItemDescription>
 
 The list of network CIDR blocks to allow network access to Aurora from. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The list of IPv6 CIDR blocks to allow network access to Aurora from for dual-stack configurations. In the standard Gruntwork VPC setup with dual-stack enabled, these should be the IPv6 CIDR blocks of the private app subnets, plus the private subnets in the mgmt VPC.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1698,6 +1755,15 @@ The name for your database of up to 8 alpha-numeric characters. If you do not pr
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="delete_automated_backups" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, delete all automated backups when the DB cluster is deleted. If false, automated backups are retained until the retention period expires. Defaults to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1723,6 +1789,15 @@ Enable deletion protection on the database instance. If this is enabled, the dat
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_http_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, enables the HTTP endpoint used for Data API. Only valid when engine_mode is set to serverless.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="enable_perf_alarms" requirement="optional" type="bool">
@@ -1764,7 +1839,7 @@ The name of the database engine to be used for this DB cluster. Valid Values: au
 <HclListItem name="engine_mode" requirement="optional" type="string">
 <HclListItemDescription>
 
-The version of aurora to run - provisioned or serverless.
+The DB engine mode of the DB cluster: either provisioned or serverless. Note that serverless (v1) is deprecated and no longer available for new clusters. For Aurora Serverless v2, use provisioned with scaling_configuration_min_capacity_V2 and scaling_configuration_max_capacity_V2.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;provisioned&quot;"/>
@@ -2131,6 +2206,15 @@ If non-empty, the Aurora cluster will be restored from the given source cluster 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="restore_to_time" requirement="optional" type="string">
+<HclListItemDescription>
+
+Only used if 'restore_source_cluster_identifier' is non-empty. Date and time in UTC format to restore the database cluster to (e.g, 2009-09-07T23:45:00Z). When null, the latest restorable time will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="restore_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2443,6 +2527,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v1.3.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b467cbfa4325e2008e3becb0f902416d"
+  "hash": "2a2fca8438bd191b987611829be47813"
 }
 ##DOCS-SOURCER-END -->
