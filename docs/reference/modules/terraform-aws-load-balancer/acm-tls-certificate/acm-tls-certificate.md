@@ -410,6 +410,10 @@ Any types represent complex values of variable type. For details, please consult
                                                               See ACM Certificate characteristics for more details (https://docs.aws.amazon.com/acm/latest/userguide/acm-certificate.htmlalgorithms)
                                                               If not specified, defaults to RSA 2048
   
+   - certificate_transparency_logging_preference [string] : (Optional) Specifies whether certificate details should be added to a certificate transparency log.
+                                                              Valid values are "ENABLED" or "DISABLED".
+                                                              See https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.htmlconcept-transparency for more details.
+  
 
 ```
 </details>
@@ -548,6 +552,6 @@ Global tags to apply to all ACM certificates issued via this module. These globa
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.1.1/modules/acm-tls-certificate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c046e40eeeb671d4a8f8df46423a9627"
+  "hash": "743f3e6d6556d5aeac21b911e234e2bb"
 }
 ##DOCS-SOURCER-END -->
