@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="1.1.1" lastModifiedVersion="1.1.1"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="1.2.0" lastModifiedVersion="1.1.1"/>
 
 # Application Load Balancer (ALB) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.1.1/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.0/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v1.1.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -191,7 +191,7 @@ There are two ways for you to override this behavior:
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v1.1.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v1.2.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -438,7 +438,7 @@ module "alb" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v1.1.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v1.2.0"
 }
 
 inputs = {
@@ -1417,11 +1417,11 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.1.1/modules/alb/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.1.1/modules/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.1.1/modules/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.0/modules/alb/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.0/modules/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.0/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5b2d57a11dfe8eabaa0d368de85a7d18"
+  "hash": "18b36160240c45130167e91a13818c0a"
 }
 ##DOCS-SOURCER-END -->
