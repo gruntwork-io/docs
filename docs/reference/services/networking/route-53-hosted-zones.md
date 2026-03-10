@@ -515,6 +515,12 @@ Any types represent complex values of variable type. For details, please consult
    Whether or not to create ACM TLS certificates for the domain. When true, Route53 certificates will automatically be
    created for the root domain. Defaults to true.
     provision_certificates = bool
+  
+   Whether or not the certificate can be exported. Valid values are "ENABLED" or "DISABLED".
+   This setting is immutable after creation - changing it forces certificate replacement.
+   Note: exportable public certificates incur additional AWS charges.
+   Requires AWS provider >= 6.4.0.
+    export = string
 
 ```
 </details>
@@ -626,6 +632,6 @@ A map of domains to resource arns and hosted zones of the created Service Discov
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.0.0/modules/networking/route53/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "75b93add4d6d298a15905c39a1ceceb9"
+  "hash": "011444d68646cfed9bc1e576709ddb8a"
 }
 ##DOCS-SOURCER-END -->
