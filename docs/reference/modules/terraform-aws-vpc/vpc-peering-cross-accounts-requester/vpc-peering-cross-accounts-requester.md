@@ -85,9 +85,6 @@ module "vpc_peering_cross_accounts_requester" {
   # The region of the accepter VPC.
   accepter_region = <string>
 
-  # The VPC CIDR of the accepter VPC.
-  accepter_vpc_cidr = <string>
-
   # The ID of the accepter VPC.
   accepter_vpc_id = <string>
 
@@ -100,6 +97,15 @@ module "vpc_peering_cross_accounts_requester" {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # DEPRECATED: Use accepter_vpc_cidrs instead. The VPC CIDR of the accepter
+  # VPC.
+  accepter_vpc_cidr = null
+
+  # A list of CIDR blocks of the accepter VPC. When the accepter VPC has
+  # multiple CIDR blocks, all of them should be listed here so that routes are
+  # created for each. If not set, falls back to accepter_vpc_cidr.
+  accepter_vpc_cidrs = []
 
   # Allow a local VPC to resolve public DNS hostnames to private IP addresses
   # when queried from instances in the peer VPC.
@@ -146,9 +152,6 @@ inputs = {
   # The region of the accepter VPC.
   accepter_region = <string>
 
-  # The VPC CIDR of the accepter VPC.
-  accepter_vpc_cidr = <string>
-
   # The ID of the accepter VPC.
   accepter_vpc_id = <string>
 
@@ -161,6 +164,15 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # DEPRECATED: Use accepter_vpc_cidrs instead. The VPC CIDR of the accepter
+  # VPC.
+  accepter_vpc_cidr = null
+
+  # A list of CIDR blocks of the accepter VPC. When the accepter VPC has
+  # multiple CIDR blocks, all of them should be listed here so that routes are
+  # created for each. If not set, falls back to accepter_vpc_cidr.
+  accepter_vpc_cidrs = []
 
   # Allow a local VPC to resolve public DNS hostnames to private IP addresses
   # when queried from instances in the peer VPC.
@@ -211,14 +223,6 @@ The region of the accepter VPC.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="accepter_vpc_cidr" requirement="required" type="string">
-<HclListItemDescription>
-
-The VPC CIDR of the accepter VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="accepter_vpc_id" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -244,6 +248,24 @@ The VPC ID.
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="accepter_vpc_cidr" requirement="optional" type="string">
+<HclListItemDescription>
+
+DEPRECATED: Use accepter_vpc_cidrs instead. The VPC CIDR of the accepter VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="accepter_vpc_cidrs" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of CIDR blocks of the accepter VPC. When the accepter VPC has multiple CIDR blocks, all of them should be listed here so that routes are created for each. If not set, falls back to accepter_vpc_cidr.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
 <HclListItem name="allow_remote_vpc_dns_resolution" requirement="optional" type="bool">
 <HclListItemDescription>
@@ -303,6 +325,6 @@ Peering connection ID.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-peering-cross-accounts-requester/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5d7184210e4a0a7f44ec48d49ccf1fda"
+  "hash": "3ec98a152bdc97f7fb69b77ad37c0609"
 }
 ##DOCS-SOURCER-END -->
