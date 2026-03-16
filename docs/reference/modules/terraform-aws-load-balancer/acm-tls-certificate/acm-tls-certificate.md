@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="1.1.1" lastModifiedVersion="1.1.0"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="1.2.1" lastModifiedVersion="1.2.1"/>
 
 # ACM TLS Certificate
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.1.1/modules/acm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.1/modules/acm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v1.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v1.2.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to issue and validate free, auto-renewing TLS certificates using [AWS Certificate
 Manager (ACM)](https://aws.amazon.com/certificate-manager/). It supports issuing and validating multiple ACM certificates.
@@ -232,7 +232,7 @@ In this example, the `acm-tls-certificates` module will "wait" until your `aws_r
 
 module "acm_tls_certificate" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v1.1.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v1.2.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -290,7 +290,7 @@ module "acm_tls_certificate" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v1.1.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v1.2.1"
 }
 
 inputs = {
@@ -409,6 +409,16 @@ Any types represent complex values of variable type. For details, please consult
    - key_algorithm                          [string]       : (Optional) Specifies the algorithm of the public and private key pair that your Amazon issued certificate uses to encrypt data
                                                               See ACM Certificate characteristics for more details (https://docs.aws.amazon.com/acm/latest/userguide/acm-certificate.htmlalgorithms)
                                                               If not specified, defaults to RSA 2048
+  
+   - certificate_transparency_logging_preference [string] : (Optional) Specifies whether certificate details should be added to a certificate transparency log.
+                                                              Valid values are "ENABLED" or "DISABLED".
+                                                              See https://docs.aws.amazon.com/acm/latest/userguide/acm-concepts.htmlconcept-transparency for more details.
+  
+   - export                                     [string] : (Optional) Specifies whether the certificate can be exported. Valid values are "ENABLED" or "DISABLED".
+                                                              This setting is immutable after creation - changing it forces certificate replacement.
+                                                              Note: exportable public certificates incur additional AWS charges ($15/FQDN, $149/wildcard).
+                                                              Requires AWS provider >= 6.4.0.
+                                                              See https://docs.aws.amazon.com/acm/latest/userguide/acm-exportable-certificates.html for more details.
   
 
 ```
@@ -543,11 +553,11 @@ Global tags to apply to all ACM certificates issued via this module. These globa
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.1.1/modules/acm-tls-certificate/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.1.1/modules/acm-tls-certificate/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.1.1/modules/acm-tls-certificate/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.1/modules/acm-tls-certificate/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.1/modules/acm-tls-certificate/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.1/modules/acm-tls-certificate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c046e40eeeb671d4a8f8df46423a9627"
+  "hash": "76ff1a8cbbe72c8d4f5d05309ea5494d"
 }
 ##DOCS-SOURCER-END -->
