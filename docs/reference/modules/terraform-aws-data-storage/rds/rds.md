@@ -541,6 +541,9 @@ module "rds" {
   # use the same value as the primary, which is set in var.iops.
   read_replica_iops = null
 
+  # Redefine replica multi-AZ settings.
+  read_replica_multi_az = null
+
   # The type of storage to use for read replicas. If null, the replica will use
   # the same value as the primary, which is set in var.storage_type.
   read_replica_storage_type = null
@@ -992,6 +995,9 @@ inputs = {
   # The amount of provisioned IOPS for read replicas. If null, the replica will
   # use the same value as the primary, which is set in var.iops.
   read_replica_iops = null
+
+  # Redefine replica multi-AZ settings.
+  read_replica_multi_az = null
 
   # The type of storage to use for read replicas. If null, the replica will use
   # the same value as the primary, which is set in var.storage_type.
@@ -1820,6 +1826,15 @@ The amount of provisioned IOPS for read replicas. If null, the replica will use 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="read_replica_multi_az" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Redefine replica multi-AZ settings.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="read_replica_storage_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1980,6 +1995,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "931e74e2157106e23a2d42ea79971efc"
+  "hash": "14d734539f3342ad17cb276e47e0fd44"
 }
 ##DOCS-SOURCER-END -->

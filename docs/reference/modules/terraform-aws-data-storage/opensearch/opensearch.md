@@ -17,6 +17,8 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.47.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
+> **Note:** This module was recently added and may have rough edges. Please report any issues you encounter.
+
 This module creates an [Amazon OpenSearch Service](https://aws.amazon.com/opensearch-service/) domain (the successor to Amazon Elasticsearch Service).
 
 ## Features
@@ -1228,6 +1230,6 @@ The ID of the security group created for the OpenSearch domain. Null if not in V
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/opensearch/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4b4f32fc5e3aa2835a68b0434bcd4710"
+  "hash": "fe64a05681e3112442bba209e26b2641"
 }
 ##DOCS-SOURCER-END -->
