@@ -90,6 +90,12 @@ module "sns" {
   # name of the topic.
   enable_fifo = false
 
+  # **Requires `enable_fifo = true`.** Specifies whether the FIFO topic
+  # throughput quota applies to the entire topic or per message group. Valid
+  # values are `Topic` and `MessageGroup`. Only used if `enable_fifo` is set to
+  # true.
+  fifo_throughput_scope = null
+
   # ARN of the http failure feedback role - when using delivery policy for sns
   # topic.
   http_failure_feedback_role_arn = null
@@ -108,8 +114,17 @@ module "sns" {
   # Docs](https://docs.aws.amazon.com/sns/latest/dg/message-archiving-and-replay-topic-owner.html)
   message_retention_period = null
 
+  # The signature version corresponds to the hashing algorithm used while
+  # creating the signature of the notifications, subscription confirmations, or
+  # unsubscribe confirmation messages sent by Amazon SNS. Valid values: `1`
+  # (SHA1, default), `2` (SHA256).
+  signature_version = null
+
   # A map of key value pairs to apply as tags to the SNS topic.
   tags = {}
+
+  # Tracing mode of an Amazon SNS topic. Valid values: `PassThrough`, `Active`.
+  tracing_config = null
 
 }
 
@@ -177,6 +192,12 @@ inputs = {
   # name of the topic.
   enable_fifo = false
 
+  # **Requires `enable_fifo = true`.** Specifies whether the FIFO topic
+  # throughput quota applies to the entire topic or per message group. Valid
+  # values are `Topic` and `MessageGroup`. Only used if `enable_fifo` is set to
+  # true.
+  fifo_throughput_scope = null
+
   # ARN of the http failure feedback role - when using delivery policy for sns
   # topic.
   http_failure_feedback_role_arn = null
@@ -195,8 +216,17 @@ inputs = {
   # Docs](https://docs.aws.amazon.com/sns/latest/dg/message-archiving-and-replay-topic-owner.html)
   message_retention_period = null
 
+  # The signature version corresponds to the hashing algorithm used while
+  # creating the signature of the notifications, subscription confirmations, or
+  # unsubscribe confirmation messages sent by Amazon SNS. Valid values: `1`
+  # (SHA1, default), `2` (SHA256).
+  signature_version = null
+
   # A map of key value pairs to apply as tags to the SNS topic.
   tags = {}
+
+  # Tracing mode of an Amazon SNS topic. Valid values: `PassThrough`, `Active`.
+  tracing_config = null
 
 }
 
@@ -322,6 +352,15 @@ Flag to indicate if the SNS topic is FIFO. This will append `.fifo` to the name 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="fifo_throughput_scope" requirement="optional" type="string">
+<HclListItemDescription>
+
+**Requires `enable_fifo = true`.** Specifies whether the FIFO topic throughput quota applies to the entire topic or per message group. Valid values are `Topic` and `MessageGroup`. Only used if `enable_fifo` is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="http_failure_feedback_role_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -358,6 +397,15 @@ The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CM
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="signature_version" requirement="optional" type="number">
+<HclListItemDescription>
+
+The signature version corresponds to the hashing algorithm used while creating the signature of the notifications, subscription confirmations, or unsubscribe confirmation messages sent by Amazon SNS. Valid values: `1` (SHA1, default), `2` (SHA256).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -365,6 +413,15 @@ A map of key value pairs to apply as tags to the SNS topic.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="tracing_config" requirement="optional" type="string">
+<HclListItemDescription>
+
+Tracing mode of an Amazon SNS topic. Valid values: `PassThrough`, `Active`.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
@@ -393,6 +450,6 @@ A map of key value pairs to apply as tags to the SNS topic.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3a9650a34f42aa52c488c490af3462a3"
+  "hash": "9b531ad092ff1b57e9f4f094b2cd2737"
 }
 ##DOCS-SOURCER-END -->
