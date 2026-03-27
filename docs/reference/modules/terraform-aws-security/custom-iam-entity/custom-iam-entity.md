@@ -154,6 +154,9 @@ module "custom_iam_entity" {
   # Should we create an IAM role with the attached policies? (default false)
   should_create_iam_role = false
 
+  # A map of tags to apply to the IAM roles.
+  tags = {}
+
 }
 
 
@@ -259,6 +262,9 @@ inputs = {
 
   # Should we create an IAM role with the attached policies? (default false)
   should_create_iam_role = false
+
+  # A map of tags to apply to the IAM roles.
+  tags = {}
 
 }
 
@@ -461,6 +467,15 @@ Should we create an IAM role with the attached policies? (default false)
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the IAM roles.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -507,6 +522,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/custom-iam-entity/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "64b3819ace38fcaba65f7d123ae65e7b"
+  "hash": "165cf198a6273bd8e3ae8938a86c05d5"
 }
 ##DOCS-SOURCER-END -->
