@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.4.0" lastModifiedVersion="1.4.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.4.1" lastModifiedVersion="1.4.0"/>
 
 # S3 TLS Enforcement SCP
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/s3-tls-enforcement-scp" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules/s3-tls-enforcement-scp" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.4.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -41,11 +41,11 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -53,7 +53,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this module out, check out the following resources:
 
-*   [examples/s3-tls-enforcement-scp](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/examples/s3-tls-enforcement-scp): A sample configuration optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/s3-tls-enforcement-scp](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/examples/s3-tls-enforcement-scp): A sample configuration optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -78,7 +78,7 @@ This module must be deployed from the **management account** (root account) of y
 
 module "s_3_tls_enforcement_scp" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/s3-tls-enforcement-scp?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/s3-tls-enforcement-scp?ref=v1.4.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -114,7 +114,7 @@ module "s_3_tls_enforcement_scp" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/s3-tls-enforcement-scp?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/s3-tls-enforcement-scp?ref=v1.4.1"
 }
 
 inputs = {
@@ -200,11 +200,11 @@ The ID of the S3 TLS enforcement SCP.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/s3-tls-enforcement-scp/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/s3-tls-enforcement-scp/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/s3-tls-enforcement-scp/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules/s3-tls-enforcement-scp/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules/s3-tls-enforcement-scp/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules/s3-tls-enforcement-scp/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5037adafe66eae53a8c4b691988f2104"
+  "hash": "2e39739be1d77fed07c129618c4894f9"
 }
 ##DOCS-SOURCER-END -->

@@ -9,25 +9,25 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.4.0" lastModifiedVersion="0.13.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.4.1" lastModifiedVersion="0.13.0"/>
 
 # ssh-iam has been renamed!
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/ssh-iam" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules/ssh-iam" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v0.13.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-`ssh-iam` has been renamed to [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/ssh-grunt). Please update all links to point to
-[ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/ssh-grunt)!
+`ssh-iam` has been renamed to [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules/ssh-grunt). Please update all links to point to
+[ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules/ssh-grunt)!
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/ssh-iam/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/ssh-iam/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/ssh-iam/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules/ssh-iam/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules/ssh-iam/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules/ssh-iam/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6e3f841e0956d99da80a24b206ac6f91"
+  "hash": "8f27540f57cdfbf781151c1411f30e97"
 }
 ##DOCS-SOURCER-END -->
