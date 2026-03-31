@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.4.0" lastModifiedVersion="1.4.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.4.1" lastModifiedVersion="1.4.0"/>
 
 # S3 Account Public Access Block
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/s3-account-public-access-block" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules/s3-account-public-access-block" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.4.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -47,11 +47,11 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -59,7 +59,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this module out, check out the following resources:
 
-*   [examples/s3-account-public-access-block](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/examples/s3-account-public-access-block): A sample configuration optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/s3-account-public-access-block](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/examples/s3-account-public-access-block): A sample configuration optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -80,7 +80,7 @@ If you want to deploy this module in production, check out the following resourc
 
 module "s_3_account_public_access_block" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/s3-account-public-access-block?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/s3-account-public-access-block?ref=v1.4.1"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -121,7 +121,7 @@ module "s_3_account_public_access_block" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/s3-account-public-access-block?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/s3-account-public-access-block?ref=v1.4.1"
 }
 
 inputs = {
@@ -262,11 +262,11 @@ Whether Amazon S3 should restrict public bucket policies for buckets in this acc
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/s3-account-public-access-block/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/s3-account-public-access-block/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/s3-account-public-access-block/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules/s3-account-public-access-block/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules/s3-account-public-access-block/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.1/modules/s3-account-public-access-block/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ce59e9f38d7c25c330b9a422a99b5515"
+  "hash": "15bd9b8367ba26dcf61818350c14fd1e"
 }
 ##DOCS-SOURCER-END -->
