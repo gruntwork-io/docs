@@ -59,6 +59,7 @@ const publicGruntworkRepoNames = [
   "terraform-training-solutions",
   "terragrunt",
   "terragrunt-infrastructure-live-example",
+  "terragrunt-scale-catalog",
   "terragrunt-infrastructure-modules-example",
   "terratest",
   "terratest-helm-testing-example",

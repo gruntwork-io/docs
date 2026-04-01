@@ -46,9 +46,9 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
 1. Create the folder structure for the new S3 bucket in your environment. Replace <CustomizableValue id="ACCOUNT_NAME" /> with the account name you are deploying to and <CustomizableValue id="REGION" /> with the AWS region where the S3 bucket will be deployed.
 
    ```bash
-   mkdir -p $$ACCOUNT_NAME$$/$$REGION$$/data-storage/s3
-   touch $$ACCOUNT_NAME$$/$$REGION$$/region.hcl
-   touch $$ACCOUNT_NAME$$/$$REGION$$/data-storage/s3/terragrunt.hcl
+   mkdir -p '$$ACCOUNT_NAME$$/$$REGION$$/data-storage/s3'
+   touch '$$ACCOUNT_NAME$$/$$REGION$$/region.hcl'
+   touch '$$ACCOUNT_NAME$$/$$REGION$$/data-storage/s3/terragrunt.hcl'
    ```
 
 2. Add the following content to the `region.hcl` file created earlier.
@@ -91,11 +91,11 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
 1. Create the folder structure for the new Resource Group and Storage Account in your environment. Replace <CustomizableValue id="SUBSCRIPTION_NAME" /> with the subscription name you are deploying to, <CustomizableValue id="LOCATION" /> with the Azure location where the resources will be deployed, and <CustomizableValue id="RESOURCE_GROUP_NAME" /> with your desired resource group name.
 
    ```bash
-   mkdir -p $$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/resource-group
-   mkdir -p $$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/data-storage/storage-account
-   touch $$SUBSCRIPTION_NAME$$/$$LOCATION$$/region.hcl
-   touch $$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/resource-group/terragrunt.hcl
-   touch $$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/data-storage/storage-account/terragrunt.hcl
+   mkdir -p '$$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/resource-group'
+   mkdir -p '$$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/data-storage/storage-account'
+   touch '$$SUBSCRIPTION_NAME$$/$$LOCATION$$/region.hcl'
+   touch '$$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/resource-group/terragrunt.hcl'
+   touch '$$SUBSCRIPTION_NAME$$/$$LOCATION$$/resource-groups/$$RESOURCE_GROUP_NAME$$/data-storage/storage-account/terragrunt.hcl'
    ```
 
 2. Add the following content to the `region.hcl` file created earlier.

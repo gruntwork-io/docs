@@ -349,6 +349,11 @@ const sidebar = [
         id: "2.0/docs/pipelines/guides/running-plan-apply",
       },
       {
+        label: "Updating Terragrunt Scale Plan and Apply Roles",
+        type: "doc",
+        id: "2.0/docs/pipelines/guides/updating-plan-apply-roles",
+      },
+      {
         label: "Managing Secrets in your Pipelines",
         type: "doc",
         id: "2.0/docs/pipelines/guides/managing-secrets",
