@@ -541,6 +541,9 @@ module "rds" {
   # use the same value as the primary, which is set in var.iops.
   read_replica_iops = null
 
+  # Redefine replica multi-AZ settings.
+  read_replica_multi_az = null
+
   # The type of storage to use for read replicas. If null, the replica will use
   # the same value as the primary, which is set in var.storage_type.
   read_replica_storage_type = null
@@ -992,6 +995,9 @@ inputs = {
   # The amount of provisioned IOPS for read replicas. If null, the replica will
   # use the same value as the primary, which is set in var.iops.
   read_replica_iops = null
+
+  # Redefine replica multi-AZ settings.
+  read_replica_multi_az = null
 
   # The type of storage to use for read replicas. If null, the replica will use
   # the same value as the primary, which is set in var.storage_type.
@@ -1820,6 +1826,15 @@ The amount of provisioned IOPS for read replicas. If null, the replica will use 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="read_replica_multi_az" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Redefine replica multi-AZ settings.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="read_replica_storage_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1928,45 +1943,115 @@ Timeout for DB updating
 <TabItem value="outputs" label="Outputs">
 
 <HclListItem name="db_name">
+<HclListItemDescription>
+
+The name of the database created on the RDS instance.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="master_password_secret_arn">
+<HclListItemDescription>
+
+The ARN of the Secrets Manager secret containing the master user password, when manage_master_user_password is enabled.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="name">
+<HclListItemDescription>
+
+The name (identifier) of the RDS instance.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="port">
+<HclListItemDescription>
+
+The port number on which the RDS instance accepts connections.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="primary_address">
+<HclListItemDescription>
+
+The hostname of the primary RDS instance. Unlike the endpoint, this does not include the port.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="primary_arn">
+<HclListItemDescription>
+
+The ARN of the primary RDS instance.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="primary_endpoint">
+<HclListItemDescription>
+
+The connection endpoint for the primary RDS instance in address:port format.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="primary_id">
+<HclListItemDescription>
+
+The identifier of the primary RDS instance.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="read_replica_addresses">
+<HclListItemDescription>
+
+A list of hostnames of the read replica RDS instances.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="read_replica_arns">
+<HclListItemDescription>
+
+A list of ARNs of the read replica RDS instances.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="read_replica_endpoints">
+<HclListItemDescription>
+
+A list of connection endpoints for the read replica RDS instances in address:port format.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="read_replica_ids">
+<HclListItemDescription>
+
+A list of identifiers of the read replica RDS instances.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="resource_id">
+<HclListItemDescription>
+
+The RDS resource ID of the primary instance (e.g., db-ABCDEFGHIJKL1MNOPQRS2TUVWX).
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="security_group_id">
+<HclListItemDescription>
+
+The ID of the security group created for the RDS instance.
+
+</HclListItemDescription>
 </HclListItem>
 
 </TabItem>
@@ -1980,6 +2065,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "931e74e2157106e23a2d42ea79971efc"
+  "hash": "5fb11776ed98416b5ad30d0a126e318e"
 }
 ##DOCS-SOURCER-END -->

@@ -1900,45 +1900,115 @@ Timeout for DB updating
 <TabItem value="outputs" label="Outputs">
 
 <HclListItem name="cluster_arn">
+<HclListItemDescription>
+
+The ARN of the Aurora cluster.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="cluster_endpoint">
+<HclListItemDescription>
+
+The connection endpoint for the primary (writer) instance of the Aurora cluster.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="cluster_id">
+<HclListItemDescription>
+
+The DB cluster identifier (name), e.g. 'my-aurora-cluster'.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="cluster_instances_maintenance_window">
+<HclListItemDescription>
+
+The maintenance window for each Aurora cluster instance.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="cluster_master_password_secret_arn">
+<HclListItemDescription>
+
+The ARN of the Secrets Manager secret containing the master user password, when manage_master_user_password is enabled.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="cluster_resource_id">
+<HclListItemDescription>
+
+The unique resource ID assigned to the cluster (e.g. 'cluster-POBCBQUFQC56EBAAWXGFJ77GRU'). Useful for IAM database authentication.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="db_name">
+<HclListItemDescription>
+
+The name of the database created in the Aurora cluster.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="instance_endpoints">
+<HclListItemDescription>
+
+A list of endpoints for each Aurora cluster instance.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="instance_ids">
+<HclListItemDescription>
+
+A list of identifiers for all Aurora cluster instances.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="port">
+<HclListItemDescription>
+
+The port number on which the Aurora cluster accepts connections.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="read_replica_instance_ids">
+<HclListItemDescription>
+
+A list of identifiers for Aurora cluster instances that are read replicas (non-writer).
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="reader_endpoint">
+<HclListItemDescription>
+
+A read-only endpoint that load-balances connections across the Aurora read replicas.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="security_group_id">
+<HclListItemDescription>
+
+The ID of the security group created for the Aurora cluster.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="write_replica_instance_ids">
+<HclListItemDescription>
+
+A list of identifiers for Aurora cluster instances that are writers.
+
+</HclListItemDescription>
 </HclListItem>
 
 </TabItem>
@@ -1952,6 +2022,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d9ddfe7a13ffe98884fc909b1a245159"
+  "hash": "34c171492cedef2c758c164338ca0b0b"
 }
 ##DOCS-SOURCER-END -->
