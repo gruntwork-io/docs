@@ -349,7 +349,7 @@ const sidebar = [
         id: "2.0/docs/pipelines/guides/running-plan-apply",
       },
       {
-        label: "Updating Terragrunt Scale Plan and Apply Roles",
+        label: "Updating Plan and Apply Roles",
         type: "doc",
         id: "2.0/docs/pipelines/guides/updating-plan-apply-roles",
       },

@@ -1,4 +1,8 @@
-# Updating Terragrunt Scale Plan and Apply Roles
+---
+toc_max_heading_level: 2
+---
+
+# Updating Plan and Apply Roles
 
 :::info
 This guide is specifically for infrastructure-live repositories that use the <span class="external-link"><a href="https://github.com/gruntwork-io/terragrunt-scale-catalog">terragrunt-scale-catalog</a></span>. For repositories using the Account Factory, see [Configuring IAM Roles](/2.0/docs/accountfactory/guides/iam-roles).
