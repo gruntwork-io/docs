@@ -112,11 +112,21 @@ module "sns_topics" {
   # A list of protocols that can be used to subscribe to the SNS topic.
   allow_subscribe_protocols = ["http","https","email","email-json","sms","sqs","application","lambda"]
 
+  # **Requires `enable_fifo = true`.** Flag to enable content-based
+  # deduplication for the SNS topic. If set to true, messages with identical
+  # content will be treated as duplicates and only delivered once. For more see
+  # the [Amazon
+  # Docs](https://docs.aws.amazon.com/sns/latest/dg/fifo-message-dedup.html)
+  content_based_deduplication = null
+
   # Set to false to have this module create no resources. This weird parameter
   # exists solely because Terraform does not support conditional modules.
   # Therefore, this is a hack to allow you to conditionally decide if the
   # resources should be created or not.
   create_resources = true
+
+  # Delivery policy for sns topic.
+  delivery_policy = null
 
   # The display name of the SNS topic
   display_name = ""
@@ -125,14 +135,35 @@ module "sns_topics" {
   # This will use the CloudWatchNotification class for richer messages.
   enable_advanced_formatting = false
 
+  # Flag to indicate if the SNS topic is FIFO. This will append `.fifo` to the
+  # name of the topic.
+  enable_fifo = false
+
+  # ARN of the http failure feedback role - when using delivery policy for sns
+  # topic.
+  http_failure_feedback_role_arn = null
+
+  # ARN of the http success feedback role - when using delivery policy for sns
+  # topic.
+  http_success_feedback_role_arn = null
+
   # The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a
   # custom CMK
   kms_master_key_id = "alias/aws/sns"
+
+  # **Requires `enable_fifo = true`.** The number of days (up to 365) for Amazon
+  # SNS to retain messages. This will be used to create the archive policy for
+  # the SNS topic. For more see the [Amazon
+  # Docs](https://docs.aws.amazon.com/sns/latest/dg/message-archiving-and-replay-topic-owner.html)
+  message_retention_period = null
 
   # The ARN of a Secrets Manager entry that contains the Slack Webhook URL
   # (e.g., https://hooks.slack.com/services/FOO/BAR/BAZ) that SNS messages are
   # sent to.
   slack_webhook_url_secrets_manager_arn = null
+
+  # A map of key value pairs to apply as tags to the SNS topic.
+  tags = {}
 
 }
 
@@ -180,11 +211,21 @@ inputs = {
   # A list of protocols that can be used to subscribe to the SNS topic.
   allow_subscribe_protocols = ["http","https","email","email-json","sms","sqs","application","lambda"]
 
+  # **Requires `enable_fifo = true`.** Flag to enable content-based
+  # deduplication for the SNS topic. If set to true, messages with identical
+  # content will be treated as duplicates and only delivered once. For more see
+  # the [Amazon
+  # Docs](https://docs.aws.amazon.com/sns/latest/dg/fifo-message-dedup.html)
+  content_based_deduplication = null
+
   # Set to false to have this module create no resources. This weird parameter
   # exists solely because Terraform does not support conditional modules.
   # Therefore, this is a hack to allow you to conditionally decide if the
   # resources should be created or not.
   create_resources = true
+
+  # Delivery policy for sns topic.
+  delivery_policy = null
 
   # The display name of the SNS topic
   display_name = ""
@@ -193,14 +234,35 @@ inputs = {
   # This will use the CloudWatchNotification class for richer messages.
   enable_advanced_formatting = false
 
+  # Flag to indicate if the SNS topic is FIFO. This will append `.fifo` to the
+  # name of the topic.
+  enable_fifo = false
+
+  # ARN of the http failure feedback role - when using delivery policy for sns
+  # topic.
+  http_failure_feedback_role_arn = null
+
+  # ARN of the http success feedback role - when using delivery policy for sns
+  # topic.
+  http_success_feedback_role_arn = null
+
   # The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a
   # custom CMK
   kms_master_key_id = "alias/aws/sns"
+
+  # **Requires `enable_fifo = true`.** The number of days (up to 365) for Amazon
+  # SNS to retain messages. This will be used to create the archive policy for
+  # the SNS topic. For more see the [Amazon
+  # Docs](https://docs.aws.amazon.com/sns/latest/dg/message-archiving-and-replay-topic-owner.html)
+  message_retention_period = null
 
   # The ARN of a Secrets Manager entry that contains the Slack Webhook URL
   # (e.g., https://hooks.slack.com/services/FOO/BAR/BAZ) that SNS messages are
   # sent to.
   slack_webhook_url_secrets_manager_arn = null
+
+  # A map of key value pairs to apply as tags to the SNS topic.
+  tags = {}
 
 }
 
@@ -281,6 +343,15 @@ A list of protocols that can be used to subscribe to the SNS topic.
 </HclListItemDefaultValue>
 </HclListItem>
 
+<HclListItem name="content_based_deduplication" requirement="optional" type="bool">
+<HclListItemDescription>
+
+**Requires `enable_fifo = true`.** Flag to enable content-based deduplication for the SNS topic. If set to true, messages with identical content will be treated as duplicates and only delivered once. For more see the [Amazon Docs](https://docs.aws.amazon.com/sns/latest/dg/fifo-message-dedup.html)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="create_resources" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -288,6 +359,15 @@ Set to false to have this module create no resources. This weird parameter exist
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="delivery_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+Delivery policy for sns topic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="display_name" requirement="optional" type="string">
@@ -308,6 +388,33 @@ Set to true to enable advanced formatting for CloudWatch alarms in Slack. This w
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_fifo" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Flag to indicate if the SNS topic is FIFO. This will append `.fifo` to the name of the topic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="http_failure_feedback_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the http failure feedback role - when using delivery policy for sns topic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="http_success_feedback_role_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+ARN of the http success feedback role - when using delivery policy for sns topic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="kms_master_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -317,6 +424,15 @@ The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CM
 <HclListItemDefaultValue defaultValue="&quot;alias/aws/sns&quot;"/>
 </HclListItem>
 
+<HclListItem name="message_retention_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+**Requires `enable_fifo = true`.** The number of days (up to 365) for Amazon SNS to retain messages. This will be used to create the archive policy for the SNS topic. For more see the [Amazon Docs](https://docs.aws.amazon.com/sns/latest/dg/message-archiving-and-replay-topic-owner.html)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="slack_webhook_url_secrets_manager_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -324,6 +440,15 @@ The ARN of a Secrets Manager entry that contains the Slack Webhook URL (e.g., ht
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of key value pairs to apply as tags to the SNS topic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 </TabItem>
@@ -348,6 +473,6 @@ The ARN of the SNS topic.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/networking/sns-topics/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ae9e705dd0ab60e13cd93d6b0dfee5fd"
+  "hash": "1a74db2b240dec01683d099168c7feeb"
 }
 ##DOCS-SOURCER-END -->

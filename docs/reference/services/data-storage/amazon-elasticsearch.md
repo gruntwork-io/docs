@@ -128,7 +128,7 @@ module "elasticsearch" {
   volume_size = <number>
 
   # The type of EBS volumes to use in the cluster. Must be one of: standard,
-  # gp2, io1, sc1, or st1. For a comparison of EBS volume types, see
+  # gp2, gp3, io1, sc1, or st1. For a comparison of EBS volume types, see
   # https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
   volume_type = <string>
 
@@ -345,8 +345,7 @@ module "elasticsearch" {
   internal_user_database_enabled = false
 
   # The baseline input/output (I/O) performance of EBS volumes attached to data
-  # nodes. Must be between 1000 and 4000. Applicable only if var.volume_type is
-  # io1.
+  # nodes. Applicable only if var.volume_type is gp3 or io1.
   iops = null
 
   # Whether the cluster is publicly accessible.
@@ -437,6 +436,10 @@ module "elasticsearch" {
   # ids are used, depending on var.availability_zone_count. Otherwise only the
   # first one is used.
   subnet_ids = []
+
+  # The throughput (in MiB/s) of EBS volumes attached to data nodes. Valid
+  # values are between 125 and 1000. Applicable only if var.volume_type is gp3.
+  throughput = null
 
   # The name of the TLS security policy that needs to be applied to the HTTPS
   # endpoint. Valid values are Policy-Min-TLS-1-0-2019-07 and
@@ -505,7 +508,7 @@ inputs = {
   volume_size = <number>
 
   # The type of EBS volumes to use in the cluster. Must be one of: standard,
-  # gp2, io1, sc1, or st1. For a comparison of EBS volume types, see
+  # gp2, gp3, io1, sc1, or st1. For a comparison of EBS volume types, see
   # https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
   volume_type = <string>
 
@@ -722,8 +725,7 @@ inputs = {
   internal_user_database_enabled = false
 
   # The baseline input/output (I/O) performance of EBS volumes attached to data
-  # nodes. Must be between 1000 and 4000. Applicable only if var.volume_type is
-  # io1.
+  # nodes. Applicable only if var.volume_type is gp3 or io1.
   iops = null
 
   # Whether the cluster is publicly accessible.
@@ -814,6 +816,10 @@ inputs = {
   # ids are used, depending on var.availability_zone_count. Otherwise only the
   # first one is used.
   subnet_ids = []
+
+  # The throughput (in MiB/s) of EBS volumes attached to data nodes. Valid
+  # values are between 125 and 1000. Applicable only if var.volume_type is gp3.
+  throughput = null
 
   # The name of the TLS security policy that needs to be applied to the HTTPS
   # endpoint. Valid values are Policy-Min-TLS-1-0-2019-07 and
@@ -885,7 +891,7 @@ The size in GiB of the EBS volume for each node in the cluster (e.g. 10, or 512)
 <HclListItem name="volume_type" requirement="required" type="string">
 <HclListItemDescription>
 
-The type of EBS volumes to use in the cluster. Must be one of: standard, gp2, io1, sc1, or st1. For a comparison of EBS volume types, see https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
+The type of EBS volumes to use in the cluster. Must be one of: standard, gp2, gp3, io1, sc1, or st1. For a comparison of EBS volume types, see https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ebs-volume-types.html.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1308,7 +1314,7 @@ Whether the internal user database is enabled. Enable this to use master account
 <HclListItem name="iops" requirement="optional" type="number">
 <HclListItemDescription>
 
-The baseline input/output (I/O) performance of EBS volumes attached to data nodes. Must be between 1000 and 4000. Applicable only if <a href="#volume_type"><code>volume_type</code></a> is io1.
+The baseline input/output (I/O) performance of EBS volumes attached to data nodes. Applicable only if <a href="#volume_type"><code>volume_type</code></a> is gp3 or io1.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1494,6 +1500,15 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="throughput" requirement="optional" type="number">
+<HclListItemDescription>
+
+The throughput (in MiB/s) of EBS volumes attached to data nodes. Valid values are between 125 and 1000. Applicable only if <a href="#volume_type"><code>volume_type</code></a> is gp3.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="tls_security_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1583,6 +1598,6 @@ Domain-specific endpoint for Kibana without https scheme.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/data-stores/elasticsearch/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "02154d701be6a08bb3a3527a48530af4"
+  "hash": "9f6e589fba1fc067230d5d1cac51858a"
 }
 ##DOCS-SOURCER-END -->

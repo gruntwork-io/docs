@@ -221,6 +221,12 @@ module "vpc_mgmt" {
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = false
 
+  # The list of ports to exclude from the inbound allow all rules in Network
+  # ACLs. This is useful for adhering to certain compliance standards like CIS
+  # or SOC2 that explicitly deny any allow rule for administrative ports (22,
+  # 3389).
+  exclude_ports_from_inbound_all = []
+
   # Specifies the number of days you want to retain log events. Possible values
   # are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096,
   # 1827, 2192, 2557, 2922, 3288, 3653, and 0. If you select 0, the events in
@@ -445,6 +451,12 @@ inputs = {
 
   # If set to false, the default security groups will NOT be created.
   enable_default_security_group = false
+
+  # The list of ports to exclude from the inbound allow all rules in Network
+  # ACLs. This is useful for adhering to certain compliance standards like CIS
+  # or SOC2 that explicitly deny any allow rule for administrative ports (22,
+  # 3389).
+  exclude_ports_from_inbound_all = []
 
   # Specifies the number of days you want to retain log events. Possible values
   # are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096,
@@ -813,6 +825,15 @@ If set to false, the default security groups will NOT be created.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="exclude_ports_from_inbound_all" requirement="optional" type="list(number)">
+<HclListItemDescription>
+
+The list of ports to exclude from the inbound allow all rules in Network ACLs. This is useful for adhering to certain compliance standards like CIS or SOC2 that explicitly deny any allow rule for administrative ports (22, 3389).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="flow_log_cloudwatch_log_group_retention_in_days" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1092,6 +1113,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/networking/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e6ad5636213ff546f42c58530551bb60"
+  "hash": "5961c626daf81d5ea0cf5a9b7a9bfa9b"
 }
 ##DOCS-SOURCER-END -->

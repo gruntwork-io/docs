@@ -272,6 +272,9 @@ module "ec_2_instance" {
   # 'ubuntu'.
   default_user = "ubuntu"
 
+  # If true, enables EC2 Instance Termination Protection.
+  disable_api_termination = false
+
   # DNS Time To Live in seconds.
   dns_ttl = 300
 
@@ -409,8 +412,11 @@ module "ec_2_instance" {
   # If set to true, the root volume will be encrypted. Default is set to false
   root_volume_encrypted = false
 
-  # Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting
-  # the volume
+  # The ID of the KMS key to use for encrypting the root volume. Only used if
+  # root_volume_encrypted is true. If null, the default EBS encryption key for
+  # the account will be used. See
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#kms_key_id
+  # for more information.
   root_volume_kms_key_id = null
 
   # The size of the root volume, in gigabytes.
@@ -631,6 +637,9 @@ inputs = {
   # 'ubuntu'.
   default_user = "ubuntu"
 
+  # If true, enables EC2 Instance Termination Protection.
+  disable_api_termination = false
+
   # DNS Time To Live in seconds.
   dns_ttl = 300
 
@@ -768,8 +777,11 @@ inputs = {
   # If set to true, the root volume will be encrypted. Default is set to false
   root_volume_encrypted = false
 
-  # Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting
-  # the volume
+  # The ID of the KMS key to use for encrypting the root volume. Only used if
+  # root_volume_encrypted is true. If null, the default EBS encryption key for
+  # the account will be used. See
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#kms_key_id
+  # for more information.
   root_volume_kms_key_id = null
 
   # The size of the root volume, in gigabytes.
@@ -1175,6 +1187,15 @@ The default OS user for the EC2 instance AMI. For AWS Ubuntu AMIs, which is what
 <HclListItemDefaultValue defaultValue="&quot;ubuntu&quot;"/>
 </HclListItem>
 
+<HclListItem name="disable_api_termination" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, enables EC2 Instance Termination Protection.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="dns_ttl" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1457,7 +1478,7 @@ If set to true, the root volume will be encrypted. Default is set to false
 <HclListItem name="root_volume_kms_key_id" requirement="optional" type="string">
 <HclListItemDescription>
 
-Optional Amazon Resource Name (ARN) of the KMS Key to use when encrypting the volume
+The ID of the KMS key to use for encrypting the root volume. Only used if root_volume_encrypted is true. If null, the default EBS encryption key for the account will be used. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#kms_key_id for more information.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1638,6 +1659,6 @@ The input parameters for the EBS volumes.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/services/ec2-instance/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "e52ac09afcee8e8f726d118eab96634d"
+  "hash": "91ec6db49146ed181236467b637c34f7"
 }
 ##DOCS-SOURCER-END -->

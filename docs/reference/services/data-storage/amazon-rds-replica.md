@@ -80,6 +80,11 @@ module "rds_replica" {
   # database to be reachable.
   allow_connections_from_cidr_blocks = []
 
+  # The list of IPv6 CIDR blocks to allow network access to RDS read replicas
+  # from for dual-stack configurations. If not set, read replica instances will
+  # use the same security group as the master instance.
+  allow_connections_from_ipv6_cidr_blocks = []
+
   # The list of IDs or Security Groups to allow network access to RDS from. All
   # security groups must either be in the VPC specified by var.vpc_id, or a
   # peered VPC with the VPC specified by var.vpc_id. One of
@@ -388,6 +393,11 @@ inputs = {
   # var.allow_connections_from_security_groups must be specified for the
   # database to be reachable.
   allow_connections_from_cidr_blocks = []
+
+  # The list of IPv6 CIDR blocks to allow network access to RDS read replicas
+  # from for dual-stack configurations. If not set, read replica instances will
+  # use the same security group as the master instance.
+  allow_connections_from_ipv6_cidr_blocks = []
 
   # The list of IDs or Security Groups to allow network access to RDS from. All
   # security groups must either be in the VPC specified by var.vpc_id, or a
@@ -705,6 +715,15 @@ The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk 
 <HclListItemDescription>
 
 The list of network CIDR blocks to allow network access to RDS from. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The list of IPv6 CIDR blocks to allow network access to RDS read replicas from for dual-stack configurations. If not set, read replica instances will use the same security group as the master instance.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1690,6 +1709,6 @@ A list of IDs of the RDS DB instance's read replicas.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/data-stores/rds-replica/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2ee950bfbae1794fbc960e140bbcbaa6"
+  "hash": "8c16a1db23a05ec10c8bc1b950713ff3"
 }
 ##DOCS-SOURCER-END -->
