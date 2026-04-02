@@ -291,6 +291,10 @@ module "rds_replica" {
   # allocated_storage or 0 to disable Storage Autoscaling.
   max_allocated_storage = 0
 
+  # The network type of the DB instance. Valid values: IPV4, DUAL. Use DUAL for
+  # dual-stack mode with IPv4 and IPv6 support.
+  network_type = null
+
   # The number of read replicas to deploy
   num_read_replicas = 0
 
@@ -600,6 +604,10 @@ inputs = {
   # differences to allocated_storage. Must be greater than or equal to
   # allocated_storage or 0 to disable Storage Autoscaling.
   max_allocated_storage = 0
+
+  # The network type of the DB instance. Valid values: IPV4, DUAL. Use DUAL for
+  # dual-stack mode with IPv4 and IPv6 support.
+  network_type = null
 
   # The number of read replicas to deploy
   num_read_replicas = 0
@@ -1471,6 +1479,15 @@ When configured, the upper limit to which Amazon RDS can automatically scale the
 <HclListItemDefaultValue defaultValue="0"/>
 </HclListItem>
 
+<HclListItem name="network_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The network type of the DB instance. Valid values: IPV4, DUAL. Use DUAL for dual-stack mode with IPv4 and IPv6 support.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="num_read_replicas" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1692,6 +1709,6 @@ A list of IDs of the RDS DB instance's read replicas.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/data-stores/rds-replica/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d7ebd922ad72c31bebe2d939a634b43f"
+  "hash": "8c16a1db23a05ec10c8bc1b950713ff3"
 }
 ##DOCS-SOURCER-END -->
