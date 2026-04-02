@@ -131,13 +131,7 @@ module "memcached" {
   # Based on
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  alarm_high_cpu_utilization_treat_missing_data = "missing"
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  alarm_low_memory_available_treat_missing_data = "missing"
+  alarm_treat_missing_data = "missing"
 
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
@@ -236,13 +230,7 @@ inputs = {
   # Based on
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  alarm_high_cpu_utilization_treat_missing_data = "missing"
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  alarm_low_memory_available_treat_missing_data = "missing"
+  alarm_treat_missing_data = "missing"
 
   # The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and
   # disk space usage) should send notifications.
@@ -351,16 +339,7 @@ The ID of the VPC in which to deploy RDS.
 
 ### Optional
 
-<HclListItem name="alarm_high_cpu_utilization_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
-<HclListItem name="alarm_low_memory_available_treat_missing_data" requirement="optional" type="string">
+<HclListItem name="alarm_treat_missing_data" requirement="optional" type="string">
 <HclListItemDescription>
 
 Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
@@ -495,6 +474,6 @@ The configuration endpoint to allow host discovery.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/data-stores/memcached/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "37ccb84cd13233db25c08cf6eaca816b"
+  "hash": "27e29eefc1f0ebb346c25010a2db486c"
 }
 ##DOCS-SOURCER-END -->

@@ -384,12 +384,6 @@ module "vpc" {
   # 'var.create_transit_subnets = true'. Defaults false.
   enable_private_nat = false
 
-  # The list of ports to exclude from the inbound allow all rules in Network
-  # ACLs. This is useful for adhering to certain compliance standards like CIS
-  # or SOC2 that explicitly deny any allow rule for administrative ports (22,
-  # 3389).
-  exclude_ports_from_inbound_all = []
-
   # Additional IAM policies to apply to the S3 bucket to store flow logs. You
   # can use this to grant read/write access beyond what is provided to the VPC.
   # This should be a map, where each key is a unique statement ID (SID), and
@@ -1148,12 +1142,6 @@ inputs = {
   # are deployed into transit subnets and require setting
   # 'var.create_transit_subnets = true'. Defaults false.
   enable_private_nat = false
-
-  # The list of ports to exclude from the inbound allow all rules in Network
-  # ACLs. This is useful for adhering to certain compliance standards like CIS
-  # or SOC2 that explicitly deny any allow rule for administrative ports (22,
-  # 3389).
-  exclude_ports_from_inbound_all = []
 
   # Additional IAM policies to apply to the S3 bucket to store flow logs. You
   # can use this to grant read/write access beyond what is provided to the VPC.
@@ -2226,15 +2214,6 @@ If set to false, the default security groups will NOT be created.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="exclude_ports_from_inbound_all" requirement="optional" type="list(number)">
-<HclListItemDescription>
-
-The list of ports to exclude from the inbound allow all rules in Network ACLs. This is useful for adhering to certain compliance standards like CIS or SOC2 that explicitly deny any allow rule for administrative ports (22, 3389).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="flow_log_additional_s3_bucket_policy_statements" requirement="optional" type="any">
@@ -3638,6 +3617,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "7704a5a5ec0ab3fd2ba6b5f9101ec283"
+  "hash": "45a94739f030a882f78d22cc7f9159c6"
 }
 ##DOCS-SOURCER-END -->

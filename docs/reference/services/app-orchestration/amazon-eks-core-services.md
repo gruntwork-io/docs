@@ -177,11 +177,6 @@ module "eks_core_services" {
   # The key is the tag name and the value is the tag value.
   alb_ingress_controller_eks_fargate_profile_tags = {}
 
-  # Additional container arguments for the AWS Load Balancer Controller. For
-  # example, use this to pass feature gates like
-  # --feature-gates=NLBGatewayAPI=true,ALBGatewayAPI=true.
-  alb_ingress_controller_extra_args = {}
-
   # A map of custom tags to apply to the Controller IAM Policies if enabled. The
   # key is the tag name and the value is the tag value.
   alb_ingress_controller_iam_policy_tags = {}
@@ -347,7 +342,7 @@ module "eks_core_services" {
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
-  cluster_autoscaler_version = "v1.33.0"
+  cluster_autoscaler_version = "v1.32.0"
 
   # When set to true, create a new dedicated IAM Role for the cluster
   # autoscaler. When set to true, var.iam_role_for_service_accounts_config is
@@ -712,9 +707,19 @@ module "eks_core_services" {
   # use short-lived authentication tokens that can expire in the middle of an
   # 'apply' or 'destroy', and since the native Kubernetes provider in Terraform
   # doesn't have a way to fetch up-to-date tokens, we recommend using an
-  # exec-based provider as a workaround. The aws CLI is used to fetch tokens,
-  # and must be installed and on your PATH.
+  # exec-based provider as a workaround. Use the use_kubergrunt_to_fetch_token
+  # input variable to control whether kubergrunt or aws is used to fetch tokens.
   use_exec_plugin_for_auth = true
+
+  # EKS clusters use short-lived authentication tokens that can expire in the
+  # middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based
+  # plugin to fetch an up-to-date token. If this variable is set to true, we'll
+  # use kubergrunt to fetch the token (in which case, kubergrunt must be
+  # installed and on PATH); if this variable is set to false, we'll use the aws
+  # CLI to fetch the token (in which case, aws must be installed and on PATH).
+  # Note this functionality is only enabled if use_exec_plugin_for_auth is set
+  # to true.
+  use_kubergrunt_to_fetch_token = true
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -810,11 +815,6 @@ inputs = {
   # The key is the tag name and the value is the tag value.
   alb_ingress_controller_eks_fargate_profile_tags = {}
 
-  # Additional container arguments for the AWS Load Balancer Controller. For
-  # example, use this to pass feature gates like
-  # --feature-gates=NLBGatewayAPI=true,ALBGatewayAPI=true.
-  alb_ingress_controller_extra_args = {}
-
   # A map of custom tags to apply to the Controller IAM Policies if enabled. The
   # key is the tag name and the value is the tag value.
   alb_ingress_controller_iam_policy_tags = {}
@@ -980,7 +980,7 @@ inputs = {
   # major/minor version (e.g., v1.20) of your Kubernetes Installation. See
   # https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases
   # for a list of versions.
-  cluster_autoscaler_version = "v1.33.0"
+  cluster_autoscaler_version = "v1.32.0"
 
   # When set to true, create a new dedicated IAM Role for the cluster
   # autoscaler. When set to true, var.iam_role_for_service_accounts_config is
@@ -1345,9 +1345,19 @@ inputs = {
   # use short-lived authentication tokens that can expire in the middle of an
   # 'apply' or 'destroy', and since the native Kubernetes provider in Terraform
   # doesn't have a way to fetch up-to-date tokens, we recommend using an
-  # exec-based provider as a workaround. The aws CLI is used to fetch tokens,
-  # and must be installed and on your PATH.
+  # exec-based provider as a workaround. Use the use_kubergrunt_to_fetch_token
+  # input variable to control whether kubergrunt or aws is used to fetch tokens.
   use_exec_plugin_for_auth = true
+
+  # EKS clusters use short-lived authentication tokens that can expire in the
+  # middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based
+  # plugin to fetch an up-to-date token. If this variable is set to true, we'll
+  # use kubergrunt to fetch the token (in which case, kubergrunt must be
+  # installed and on PATH); if this variable is set to false, we'll use the aws
+  # CLI to fetch the token (in which case, aws must be installed and on PATH).
+  # Note this functionality is only enabled if use_exec_plugin_for_auth is set
+  # to true.
+  use_kubergrunt_to_fetch_token = true
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -1492,15 +1502,6 @@ A map of custom tags to apply to the Controller Fargate Profile IAM Execution Ro
 <HclListItemDescription>
 
 A map of custom tags to apply to the Controller Fargate Profile if enabled. The key is the tag name and the value is the tag value.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="{}"/>
-</HclListItem>
-
-<HclListItem name="alb_ingress_controller_extra_args" requirement="optional" type="map(string)">
-<HclListItemDescription>
-
-Additional container arguments for the AWS Load Balancer Controller. For example, use this to pass feature gates like --feature-gates=NLBGatewayAPI=true,ALBGatewayAPI=true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
@@ -2156,7 +2157,7 @@ The name of the service account to create for the cluster autoscaler.
 Which version of the cluster autoscaler to install. This should match the major/minor version (e.g., v1.20) of your Kubernetes Installation. See https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#releases for a list of versions.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;v1.33.0&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;v1.32.0&quot;"/>
 </HclListItem>
 
 <HclListItem name="create_cluster_autoscaler_role" requirement="optional" type="bool">
@@ -5450,7 +5451,16 @@ map(object({
 <HclListItem name="use_exec_plugin_for_auth" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If this variable is set to true, then use an exec-based plugin to authenticate and fetch tokens for EKS. This is useful because EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy', and since the native Kubernetes provider in Terraform doesn't have a way to fetch up-to-date tokens, we recommend using an exec-based provider as a workaround. The aws CLI is used to fetch tokens, and must be installed and on your PATH.
+If this variable is set to true, then use an exec-based plugin to authenticate and fetch tokens for EKS. This is useful because EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy', and since the native Kubernetes provider in Terraform doesn't have a way to fetch up-to-date tokens, we recommend using an exec-based provider as a workaround. Use the use_kubergrunt_to_fetch_token input variable to control whether kubergrunt or aws is used to fetch tokens.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="use_kubergrunt_to_fetch_token" requirement="optional" type="bool">
+<HclListItemDescription>
+
+EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based plugin to fetch an up-to-date token. If this variable is set to true, we'll use kubergrunt to fetch the token (in which case, kubergrunt must be installed and on PATH); if this variable is set to false, we'll use the aws CLI to fetch the token (in which case, aws must be installed and on PATH). Note this functionality is only enabled if use_exec_plugin_for_auth is set to true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -5495,6 +5505,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "69184e101f982fa2915f90294caf6918"
+  "hash": "e005100df99f9a4df8b5ffcb3b48e4cf"
 }
 ##DOCS-SOURCER-END -->

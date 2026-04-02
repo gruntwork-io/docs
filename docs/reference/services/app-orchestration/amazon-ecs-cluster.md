@@ -287,10 +287,6 @@ module "ecs_cluster" {
   # Instances. Can be one of standard, gp2, gp3, io1, io2, sc1 or st1.
   cluster_instance_root_volume_type = "gp2"
 
-  # When set, name the IAM role for the ECS cluster using this variable. When
-  # null, the IAM role name will be derived from var.cluster_name.
-  custom_iam_role_name = null
-
   # A list of custom tags to apply to the EC2 Instances in this ASG. Each item
   # in this list should be a map with the parameters key, value, and
   # propagate_at_launch.
@@ -591,10 +587,6 @@ inputs = {
   # The volume type for the root volume for each of the ECS Cluster's EC2
   # Instances. Can be one of standard, gp2, gp3, io1, io2, sc1 or st1.
   cluster_instance_root_volume_type = "gp2"
-
-  # When set, name the IAM role for the ECS cluster using this variable. When
-  # null, the IAM role name will be derived from var.cluster_name.
-  custom_iam_role_name = null
 
   # A list of custom tags to apply to the EC2 Instances in this ASG. Each item
   # in this list should be a map with the parameters key, value, and
@@ -1050,15 +1042,6 @@ The volume type for the root volume for each of the ECS Cluster's EC2 Instances.
 <HclListItemDefaultValue defaultValue="&quot;gp2&quot;"/>
 </HclListItem>
 
-<HclListItem name="custom_iam_role_name" requirement="optional" type="string">
-<HclListItemDescription>
-
-When set, name the IAM role for the ECS cluster using this variable. When null, the IAM role name will be derived from <a href="#cluster_name"><code>cluster_name</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
 <HclListItem name="custom_tags_ec2_instances" requirement="optional" type="list">
 <HclListItemDescription>
 
@@ -1506,6 +1489,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/services/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "3359d1456500f7677f7ded726c154227"
+  "hash": "a9a4cfd64bce6cf9a7690691d91d5bf1"
 }
 ##DOCS-SOURCER-END -->

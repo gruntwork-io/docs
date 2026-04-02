@@ -142,16 +142,6 @@ module "rds" {
   # database to be reachable.
   allow_connections_from_cidr_blocks = []
 
-  # The list of IPv6 CIDR blocks to allow network access to RDS from for
-  # dual-stack configurations. Should typically be the IPv6 CIDR blocks of the
-  # private app subnet in this VPC plus the private subnet in the mgmt VPC.
-  allow_connections_from_ipv6_cidr_blocks = []
-
-  # The list of IPv6 CIDR blocks to allow network access to RDS read replicas
-  # from for dual-stack configurations. If not set, read replica instances will
-  # use the same security group as the master instance.
-  allow_connections_from_ipv6_cidr_blocks_to_read_replicas = []
-
   # The list of IDs or Security Groups to allow network access to RDS from. All
   # security groups must either be in the VPC specified by var.vpc_id, or a
   # peered VPC with the VPC specified by var.vpc_id. One of
@@ -289,6 +279,11 @@ module "rds" {
   # dashboard.
   dashboard_write_latency_widget_parameters = {"height":6,"period":60,"width":8}
 
+  # The mode of Database Insights to enable for the DB instance. Valid options
+  # are 'standard' or 'advanced'. This replaces Performance Insights which is
+  # deprecated June 30, 2026.
+  database_insights_mode = null
+
   # The friendly name or ARN of an AWS Secrets Manager secret that contains
   # database configuration information in the format outlined by this document:
   # https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html.
@@ -307,12 +302,26 @@ module "rds" {
   # description of db_config_secrets_manager_id.
   db_name = null
 
+  # Use a dedicated log volume (DLV) for the DB instance. A DLV moves database
+  # transaction logs onto a separate storage volume, which can improve database
+  # write performance. Only supported for Provisioned IOPS storage types
+  # (io1/io2) — gp3 is NOT supported. Engine version requirements: MariaDB
+  # 10.6.7+, MySQL 8.0.28+, PostgreSQL 13.10+/14.7+/15.2+. A reboot is required
+  # after enabling/disabling on an existing instance.
+  dedicated_log_volume = null
+
   # Specifies whether to remove automated backups immediately after the DB
   # instance is deleted
   delete_automated_backups = true
 
   # Timeout for DB deleting
   deleting_timeout = "60m"
+
+  # Enable blue/green deployment to minimize down time due to changes made to
+  # the RDS Instance. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-overview.html
+  # for more detailed information.
+  enable_blue_green_update = false
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -348,6 +357,13 @@ module "rds" {
   # Manager. See the description of db_config_secrets_manager_id.
   engine = null
 
+  # The life cycle type for this DB instance. This setting applies to RDS for
+  # MySQL and RDS for PostgreSQL. Valid values are
+  # 'open-source-rds-extended-support' and
+  # 'open-source-rds-extended-support-disabled'. Controls enrollment in RDS
+  # Extended Support and associated costs.
+  engine_lifecycle_support = null
+
   # The number of datapoints in CloudWatch Metric statistic, which triggers the
   # alarm. Setting this as null (the default) will make it equal to the
   # evaluation period
@@ -382,24 +398,12 @@ module "rds" {
   # taken per disk I/O operation), in seconds, is above this threshold.
   high_read_latency_threshold = 5
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_read_latency_treat_missing_data = "missing"
-
   # The period, in seconds, over which to measure the write latency.
   high_write_latency_period = 60
 
   # Trigger an alarm if the DB instance write latency (average amount of time
   # taken per disk I/O operation), in seconds, is above this threshold.
   high_write_latency_threshold = 5
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_write_latency_treat_missing_data = "missing"
 
   # The ID of the Route 53 hosted zone into which the Route 53 DNS record should
   # be written
@@ -468,6 +472,11 @@ module "rds" {
   # db_config_secrets_manager_id.
   master_password = null # SENSITIVE
 
+  # The Amazon Web Services KMS key identifier used to encrypt the secret for
+  # the master user password. Only used when manage_master_user_password is
+  # true.
+  master_user_secret_kms_key_id = null
+
   # The value to use for the master username of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
   # db_config_secrets_manager_id.
@@ -503,6 +512,10 @@ module "rds" {
   # Specifies if a standby instance should be deployed in another availability
   # zone. If the primary fails, this instance will automatically take over.
   multi_az = false
+
+  # The network type of the DB instance. Valid values: IPV4, DUAL. Use DUAL for
+  # dual-stack mode with IPv4 and IPv6 support.
+  network_type = null
 
   # The number of read replicas to deploy
   num_read_replicas = 0
@@ -543,6 +556,12 @@ module "rds" {
   # The domain name to create a route 53 record for the read replicas of the RDS
   # database.
   replica_domain_name = null
+
+  # A configuration block for restoring a DB instance to an arbitrary point in
+  # time. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time
+  # for more details
+  restore_to_point_in_time = null
 
   # The maximum number of snapshots to keep around for the purpose of cross
   # account sharing. Once this number is exceeded, a lambda function will delete
@@ -687,16 +706,6 @@ inputs = {
   # database to be reachable.
   allow_connections_from_cidr_blocks = []
 
-  # The list of IPv6 CIDR blocks to allow network access to RDS from for
-  # dual-stack configurations. Should typically be the IPv6 CIDR blocks of the
-  # private app subnet in this VPC plus the private subnet in the mgmt VPC.
-  allow_connections_from_ipv6_cidr_blocks = []
-
-  # The list of IPv6 CIDR blocks to allow network access to RDS read replicas
-  # from for dual-stack configurations. If not set, read replica instances will
-  # use the same security group as the master instance.
-  allow_connections_from_ipv6_cidr_blocks_to_read_replicas = []
-
   # The list of IDs or Security Groups to allow network access to RDS from. All
   # security groups must either be in the VPC specified by var.vpc_id, or a
   # peered VPC with the VPC specified by var.vpc_id. One of
@@ -834,6 +843,11 @@ inputs = {
   # dashboard.
   dashboard_write_latency_widget_parameters = {"height":6,"period":60,"width":8}
 
+  # The mode of Database Insights to enable for the DB instance. Valid options
+  # are 'standard' or 'advanced'. This replaces Performance Insights which is
+  # deprecated June 30, 2026.
+  database_insights_mode = null
+
   # The friendly name or ARN of an AWS Secrets Manager secret that contains
   # database configuration information in the format outlined by this document:
   # https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html.
@@ -852,12 +866,26 @@ inputs = {
   # description of db_config_secrets_manager_id.
   db_name = null
 
+  # Use a dedicated log volume (DLV) for the DB instance. A DLV moves database
+  # transaction logs onto a separate storage volume, which can improve database
+  # write performance. Only supported for Provisioned IOPS storage types
+  # (io1/io2) — gp3 is NOT supported. Engine version requirements: MariaDB
+  # 10.6.7+, MySQL 8.0.28+, PostgreSQL 13.10+/14.7+/15.2+. A reboot is required
+  # after enabling/disabling on an existing instance.
+  dedicated_log_volume = null
+
   # Specifies whether to remove automated backups immediately after the DB
   # instance is deleted
   delete_automated_backups = true
 
   # Timeout for DB deleting
   deleting_timeout = "60m"
+
+  # Enable blue/green deployment to minimize down time due to changes made to
+  # the RDS Instance. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-overview.html
+  # for more detailed information.
+  enable_blue_green_update = false
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -893,6 +921,13 @@ inputs = {
   # Manager. See the description of db_config_secrets_manager_id.
   engine = null
 
+  # The life cycle type for this DB instance. This setting applies to RDS for
+  # MySQL and RDS for PostgreSQL. Valid values are
+  # 'open-source-rds-extended-support' and
+  # 'open-source-rds-extended-support-disabled'. Controls enrollment in RDS
+  # Extended Support and associated costs.
+  engine_lifecycle_support = null
+
   # The number of datapoints in CloudWatch Metric statistic, which triggers the
   # alarm. Setting this as null (the default) will make it equal to the
   # evaluation period
@@ -927,24 +962,12 @@ inputs = {
   # taken per disk I/O operation), in seconds, is above this threshold.
   high_read_latency_threshold = 5
 
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_read_latency_treat_missing_data = "missing"
-
   # The period, in seconds, over which to measure the write latency.
   high_write_latency_period = 60
 
   # Trigger an alarm if the DB instance write latency (average amount of time
   # taken per disk I/O operation), in seconds, is above this threshold.
   high_write_latency_threshold = 5
-
-  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
-  # Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  high_write_latency_treat_missing_data = "missing"
 
   # The ID of the Route 53 hosted zone into which the Route 53 DNS record should
   # be written
@@ -1013,6 +1036,11 @@ inputs = {
   # db_config_secrets_manager_id.
   master_password = null # SENSITIVE
 
+  # The Amazon Web Services KMS key identifier used to encrypt the secret for
+  # the master user password. Only used when manage_master_user_password is
+  # true.
+  master_user_secret_kms_key_id = null
+
   # The value to use for the master username of the database. This can also be
   # provided via AWS Secrets Manager. See the description of
   # db_config_secrets_manager_id.
@@ -1048,6 +1076,10 @@ inputs = {
   # Specifies if a standby instance should be deployed in another availability
   # zone. If the primary fails, this instance will automatically take over.
   multi_az = false
+
+  # The network type of the DB instance. Valid values: IPV4, DUAL. Use DUAL for
+  # dual-stack mode with IPv4 and IPv6 support.
+  network_type = null
 
   # The number of read replicas to deploy
   num_read_replicas = 0
@@ -1088,6 +1120,12 @@ inputs = {
   # The domain name to create a route 53 record for the read replicas of the RDS
   # database.
   replica_domain_name = null
+
+  # A configuration block for restoring a DB instance to an arbitrary point in
+  # time. Refer to
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time
+  # for more details
+  restore_to_point_in_time = null
 
   # The maximum number of snapshots to keep around for the purpose of cross
   # account sharing. Once this number is exceeded, a lambda function will delete
@@ -1243,24 +1281,6 @@ The ARNs of SNS topics where CloudWatch alarms (e.g., for CPU, memory, and disk 
 <HclListItemDescription>
 
 The list of network CIDR blocks to allow network access to RDS from. One of <a href="#allow_connections_from_cidr_blocks"><code>allow_connections_from_cidr_blocks</code></a> or <a href="#allow_connections_from_security_groups"><code>allow_connections_from_security_groups</code></a> must be specified for the database to be reachable.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_connections_from_ipv6_cidr_blocks" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The list of IPv6 CIDR blocks to allow network access to RDS from for dual-stack configurations. Should typically be the IPv6 CIDR blocks of the private app subnet in this VPC plus the private subnet in the mgmt VPC.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
-</HclListItem>
-
-<HclListItem name="allow_connections_from_ipv6_cidr_blocks_to_read_replicas" requirement="optional" type="list(string)">
-<HclListItemDescription>
-
-The list of IPv6 CIDR blocks to allow network access to RDS read replicas from for dual-stack configurations. If not set, read replica instances will use the same security group as the master instance.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
@@ -1873,6 +1893,15 @@ object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="database_insights_mode" requirement="optional" type="string">
+<HclListItemDescription>
+
+The mode of Database Insights to enable for the DB instance. Valid options are 'standard' or 'advanced'. This replaces Performance Insights which is deprecated June 30, 2026.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="db_config_secrets_manager_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1886,6 +1915,15 @@ The friendly name or ARN of an AWS Secrets Manager secret that contains database
 <HclListItemDescription>
 
 The name for your database of up to 8 alpha-numeric characters. If you do not provide a name, Amazon RDS will not create an empty database on the RDS instance. This can also be provided via AWS Secrets Manager. See the description of db_config_secrets_manager_id.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="dedicated_log_volume" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Use a dedicated log volume (DLV) for the DB instance. A DLV moves database transaction logs onto a separate storage volume, which can improve database write performance. Only supported for Provisioned IOPS storage types (io1/io2) — gp3 is NOT supported. Engine version requirements: MariaDB 10.6.7+, MySQL 8.0.28+, PostgreSQL 13.10+/14.7+/15.2+. A reboot is required after enabling/disabling on an existing instance.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1907,6 +1945,15 @@ Timeout for DB deleting
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;60m&quot;"/>
+</HclListItem>
+
+<HclListItem name="enable_blue_green_update" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable blue/green deployment to minimize down time due to changes made to the RDS Instance. See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-overview.html for more detailed information.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
@@ -1967,6 +2014,15 @@ List of log types to enable for exporting to CloudWatch logs. If omitted, no log
 <HclListItemDescription>
 
 The DB engine to use (e.g. mysql). This can also be provided via AWS Secrets Manager. See the description of db_config_secrets_manager_id.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="engine_lifecycle_support" requirement="optional" type="string">
+<HclListItemDescription>
+
+The life cycle type for this DB instance. This setting applies to RDS for MySQL and RDS for PostgreSQL. Valid values are 'open-source-rds-extended-support' and 'open-source-rds-extended-support-disabled'. Controls enrollment in RDS Extended Support and associated costs.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -2044,15 +2100,6 @@ Trigger an alarm if the DB instance read latency (average amount of time taken p
 <HclListItemDefaultValue defaultValue="5"/>
 </HclListItem>
 
-<HclListItem name="high_read_latency_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
-</HclListItem>
-
 <HclListItem name="high_write_latency_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2069,15 +2116,6 @@ Trigger an alarm if the DB instance write latency (average amount of time taken 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="5"/>
-</HclListItem>
-
-<HclListItem name="high_write_latency_treat_missing_data" requirement="optional" type="string">
-<HclListItemDescription>
-
-Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
 <HclListItem name="hosted_zone_id" requirement="optional" type="string">
@@ -2239,6 +2277,15 @@ The value to use for the master password of the database. This can also be provi
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="master_user_secret_kms_key_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Amazon Web Services KMS key identifier used to encrypt the secret for the master user password. Only used when manage_master_user_password is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="master_username" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2300,6 +2347,15 @@ Specifies if a standby instance should be deployed in another availability zone.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="network_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The network type of the DB instance. Valid values: IPV4, DUAL. Use DUAL for dual-stack mode with IPv4 and IPv6 support.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="num_read_replicas" requirement="optional" type="number">
@@ -2380,6 +2436,28 @@ How many days to keep backup snapshots around before cleaning them up on the rea
 The domain name to create a route 53 record for the read replicas of the RDS database.
 
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="restore_to_point_in_time" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+A configuration block for restoring a DB instance to an arbitrary point in time. Refer to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#restore-to-point-in-time for more details
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    restore_time                             = string
+    source_db_instance_identifier            = string
+    source_db_instance_automated_backups_arn = string
+    source_dbi_resource_id                   = string
+    use_latest_restorable_time               = string
+  }))
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
@@ -2723,6 +2801,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "44a522919418b6191155245f2a8fd27c"
+  "hash": "a3058ea1ece5047d40ad12b66ee24c27"
 }
 ##DOCS-SOURCER-END -->
