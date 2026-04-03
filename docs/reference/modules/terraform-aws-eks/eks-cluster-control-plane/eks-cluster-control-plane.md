@@ -695,7 +695,7 @@ module "eks_cluster_control_plane" {
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.33"
+  kubernetes_version = "1.34"
 
   # The thumbprint to use for the OpenID Connect Provider. You can retrieve the
   # thumbprint by following the instructions in the AWS docs:
@@ -1061,7 +1061,7 @@ inputs = {
   # Version of Kubernetes to use. Refer to EKS docs for list of available
   # versions
   # (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
-  kubernetes_version = "1.33"
+  kubernetes_version = "1.34"
 
   # The thumbprint to use for the OpenID Connect Provider. You can retrieve the
   # thumbprint by following the instructions in the AWS docs:
@@ -1878,7 +1878,7 @@ Path to the kubectl config file. Defaults to $HOME/.kube/config
 Version of Kubernetes to use. Refer to EKS docs for list of available versions (https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html).
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;1.33&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;1.34&quot;"/>
 </HclListItem>
 
 <HclListItem name="openid_connect_provider_thumbprint" requirement="optional" type="string">
@@ -2143,6 +2143,6 @@ The IPv4 CIDR block that Kubernetes pod and service IP addresses are assigned fr
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.3.0/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "26181a5f28b296637b5738acdbcb76c1"
+  "hash": "1500b5961aa9e48d231858538bf483eb"
 }
 ##DOCS-SOURCER-END -->
