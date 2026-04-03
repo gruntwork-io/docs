@@ -63,16 +63,6 @@ module "lambda_function_url" {
   # Name of the CloudFront Origin Access Control
   cloudfront_oac_name = <string>
 
-  # CORS configuration for the Lambda function URL
-  cors_config = <object(
-    allow_credentials = bool
-    allow_origins     = list(string)
-    allow_methods     = list(string)
-    allow_headers     = list(string)
-    expose_headers    = list(string)
-    max_age           = number
-  )>
-
   # The name of the iam role to be created
   iam_role_name = <string>
 
@@ -90,6 +80,10 @@ module "lambda_function_url" {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # CORS configuration for the Lambda function URL. When null, no CORS
+  # configuration will be applied.
+  cors_config = null
 
   # The type of origin that this Origin Access Control is for. Valid values are
   # lambda, mediapackagev2, mediastore, and s3
@@ -131,16 +125,6 @@ inputs = {
   # Name of the CloudFront Origin Access Control
   cloudfront_oac_name = <string>
 
-  # CORS configuration for the Lambda function URL
-  cors_config = <object(
-    allow_credentials = bool
-    allow_origins     = list(string)
-    allow_methods     = list(string)
-    allow_headers     = list(string)
-    expose_headers    = list(string)
-    max_age           = number
-  )>
-
   # The name of the iam role to be created
   iam_role_name = <string>
 
@@ -158,6 +142,10 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # CORS configuration for the Lambda function URL. When null, no CORS
+  # configuration will be applied.
+  cors_config = null
 
   # The type of origin that this Origin Access Control is for. Valid values are
   # lambda, mediapackagev2, mediastore, and s3
@@ -213,28 +201,6 @@ Name of the CloudFront Origin Access Control
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="cors_config" requirement="required" type="object(…)">
-<HclListItemDescription>
-
-CORS configuration for the Lambda function URL
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    allow_credentials = bool
-    allow_origins     = list(string)
-    allow_methods     = list(string)
-    allow_headers     = list(string)
-    expose_headers    = list(string)
-    max_age           = number
-  })
-```
-
-</HclListItemTypeDetails>
-</HclListItem>
-
 <HclListItem name="iam_role_name" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -268,6 +234,29 @@ Determines how CloudFront signs (authenticates) requests. The only valid value i
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="cors_config" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+CORS configuration for the Lambda function URL. When null, no CORS configuration will be applied.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    allow_credentials = optional(bool)
+    allow_origins     = optional(list(string))
+    allow_methods     = optional(list(string))
+    allow_headers     = optional(list(string))
+    expose_headers    = optional(list(string))
+    max_age           = optional(number)
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
 <HclListItem name="oac_origin_type" requirement="optional" type="string">
 <HclListItemDescription>
@@ -324,6 +313,6 @@ A generated ID for the endpoint.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/lambda-function-url/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a6ba795659cabfb0ffe1c1f28fe2bf7b"
+  "hash": "ac769933cd6aff834d9a40528f4fe93b"
 }
 ##DOCS-SOURCER-END -->
