@@ -163,6 +163,11 @@ module "dms" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # If true, create the DMS service-linked IAM roles (dms-vpc-role,
+  # dms-cloudwatch-logs-role, dms-access-for-endpoint). Set to false if these
+  # roles already exist in your account.
+  create_iam_roles = true
+
   # If false, the DMS instance will bind to `instance_subnet_group_id` variable.
   create_subnet_group = true
 
@@ -409,6 +414,11 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # If true, create the DMS service-linked IAM roles (dms-vpc-role,
+  # dms-cloudwatch-logs-role, dms-access-for-endpoint). Set to false if these
+  # roles already exist in your account.
+  create_iam_roles = true
 
   # If false, the DMS instance will bind to `instance_subnet_group_id` variable.
   create_subnet_group = true
@@ -670,6 +680,15 @@ The id of the VPC in which this Replication Instance should be deployed.
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="create_iam_roles" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, create the DMS service-linked IAM roles (dms-vpc-role, dms-cloudwatch-logs-role, dms-access-for-endpoint). Set to false if these roles already exist in your account.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
 <HclListItem name="create_subnet_group" requirement="optional" type="bool">
 <HclListItemDescription>
@@ -1182,6 +1201,6 @@ A map of maps containing the replication tasks created and their full output of 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/dms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9df3c823f9677d9d880720f2b16b8b49"
+  "hash": "11b6d3266043306b3fd605870826c6d4"
 }
 ##DOCS-SOURCER-END -->
