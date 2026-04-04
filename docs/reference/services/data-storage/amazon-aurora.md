@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.2.0" lastModifiedVersion="0.149.0"/>
+<VersionBadge version="2.3.0" lastModifiedVersion="2.3.0"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.3.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -162,22 +162,44 @@ module "aurora" {
   # the engine is allowed. Default value is true.
   auto_minor_version_upgrade = true
 
-  # How often, in seconds, the backup job is expected to run. This is the same
-  # as var.schedule_expression, but unfortunately, Terraform offers no way to
-  # convert rate expressions to seconds. We add a CloudWatch alarm that triggers
-  # if the metric in var.create_snapshot_cloudwatch_metric_namespace isn't
-  # updated within this time period, as that indicates the backup failed to run.
-  backup_job_alarm_period = 3600
+  # The number of days to retain recovery points in the destination backup vault
+  # before automatic deletion. Only used if var.backup_destination_vault_arn is
+  # set.
+  backup_destination_retention_days = 90
 
-  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
-  # state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  backup_job_alarm_treat_missing_data = "missing"
+  # The ARN of a destination backup vault for cross-account or cross-region
+  # copies. If null, no cross-account copy is configured.
+  backup_destination_vault_arn = null
 
   # How many days to keep backup snapshots around before cleaning them up. Max:
   # 35
   backup_retention_period = 30
+
+  # A CRON expression specifying when AWS Backup should run the backup job (e.g.
+  # cron(0 0 * * ? *) for daily at midnight UTC). Required if var.enable_backup
+  # is true.
+  backup_schedule = null
+
+  # The name of the IAM service role for AWS Backup. Defaults to
+  # '<var.name>-backup-service-role' if not specified.
+  backup_service_role_name = null
+
+  # The number of days to retain recovery points in the source backup vault
+  # before automatic deletion.
+  backup_source_retention_days = 30
+
+  # The ARN of a KMS key used to encrypt the backup vault. If null, the default
+  # AWS Backup encryption will be used.
+  backup_vault_kms_key_arn = null
+
+  # The name of the AWS Backup vault to create. Defaults to
+  # '<var.name>-backup-vault' if not specified.
+  backup_vault_name = null
+
+  # An optional vault access policy to attach to the backup vault. Useful for
+  # granting cross-account access. Set to null to skip. See the backup-vault
+  # module for the expected structure.
+  backup_vault_policy = null
 
   # The Certificate Authority (CA) certificate bundle to use on the Aurora DB
   # instances. Possible values: rds-ca-2019 (default if nothing is specified),
@@ -209,12 +231,6 @@ module "aurora" {
   # Set to true if you want a DNS record automatically created and pointed at
   # the RDS endpoints.
   create_route53_entry = false
-
-  # The namespace to use for the CloudWatch metric we report every time a new
-  # RDS snapshot is created. We add a CloudWatch alarm on this metric to notify
-  # us if the backup job fails to run for any reason. Defaults to the cluster
-  # name.
-  create_snapshot_cloudwatch_metric_namespace = null
 
   # A map of custom tags to apply to the RDS cluster and all associated
   # resources created for it. The key is the tag name and the value is the tag
@@ -285,14 +301,15 @@ module "aurora" {
   # Defaults to true.
   delete_automated_backups = null
 
+  # If set to true, create an AWS Backup vault and plan to periodically back up
+  # the Aurora DB. Supports optional cross-account copy via
+  # var.backup_destination_vault_arn.
+  enable_backup = false
+
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
   enable_cloudwatch_alarms = true
-
-  # When true, enable CloudWatch metrics for the manual snapshots created for
-  # the purpose of sharing with another account.
-  enable_cloudwatch_metrics = true
 
   # Enable deletion protection on the database instance. If this is enabled, the
   # database cannot be deleted.
@@ -307,11 +324,6 @@ module "aurora" {
   # would be reasonable perf numbers for your RDS set up or if those numbers are
   # too unpredictable.
   enable_perf_alarms = true
-
-  # When true, enable CloudWatch alarms for the manual snapshots created for the
-  # purpose of sharing with another account. Only used if
-  # var.share_snapshot_with_another_account is true.
-  enable_share_snapshot_cloudwatch_alarms = true
 
   # If non-empty, the Aurora cluster will export the specified logs to
   # Cloudwatch. Must be zero or more of: audit, error, general and slowquery
@@ -532,26 +544,6 @@ module "aurora" {
   # is set to serverless.
   scaling_configuration_seconds_until_auto_pause = 300
 
-  # The maximum number of snapshots to keep around for the purpose of cross
-  # account sharing. Once this number is exceeded, a lambda function will delete
-  # the oldest snapshots. Only used if var.share_snapshot_with_another_account
-  # is true.
-  share_snapshot_max_snapshots = 30
-
-  # An expression that defines how often to run the lambda function to take
-  # snapshots for the purpose of cross account sharing. For example, cron(0 20 *
-  # * ? *) or rate(5 minutes). Required if
-  # var.share_snapshot_with_another_account is true
-  share_snapshot_schedule_expression = null
-
-  # The ID of the AWS Account that the snapshot should be shared with. Required
-  # if var.share_snapshot_with_another_account is true.
-  share_snapshot_with_account_id = null
-
-  # If set to true, take periodic snapshots of the Aurora DB that should be
-  # shared with another account.
-  share_snapshot_with_another_account = false
-
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
   # this DB instance, you will not have any backups of the data! You almost
@@ -593,7 +585,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.3.0"
 }
 
 inputs = {
@@ -656,22 +648,44 @@ inputs = {
   # the engine is allowed. Default value is true.
   auto_minor_version_upgrade = true
 
-  # How often, in seconds, the backup job is expected to run. This is the same
-  # as var.schedule_expression, but unfortunately, Terraform offers no way to
-  # convert rate expressions to seconds. We add a CloudWatch alarm that triggers
-  # if the metric in var.create_snapshot_cloudwatch_metric_namespace isn't
-  # updated within this time period, as that indicates the backup failed to run.
-  backup_job_alarm_period = 3600
+  # The number of days to retain recovery points in the destination backup vault
+  # before automatic deletion. Only used if var.backup_destination_vault_arn is
+  # set.
+  backup_destination_retention_days = 90
 
-  # Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA
-  # state. Based on
-  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
-  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
-  backup_job_alarm_treat_missing_data = "missing"
+  # The ARN of a destination backup vault for cross-account or cross-region
+  # copies. If null, no cross-account copy is configured.
+  backup_destination_vault_arn = null
 
   # How many days to keep backup snapshots around before cleaning them up. Max:
   # 35
   backup_retention_period = 30
+
+  # A CRON expression specifying when AWS Backup should run the backup job (e.g.
+  # cron(0 0 * * ? *) for daily at midnight UTC). Required if var.enable_backup
+  # is true.
+  backup_schedule = null
+
+  # The name of the IAM service role for AWS Backup. Defaults to
+  # '<var.name>-backup-service-role' if not specified.
+  backup_service_role_name = null
+
+  # The number of days to retain recovery points in the source backup vault
+  # before automatic deletion.
+  backup_source_retention_days = 30
+
+  # The ARN of a KMS key used to encrypt the backup vault. If null, the default
+  # AWS Backup encryption will be used.
+  backup_vault_kms_key_arn = null
+
+  # The name of the AWS Backup vault to create. Defaults to
+  # '<var.name>-backup-vault' if not specified.
+  backup_vault_name = null
+
+  # An optional vault access policy to attach to the backup vault. Useful for
+  # granting cross-account access. Set to null to skip. See the backup-vault
+  # module for the expected structure.
+  backup_vault_policy = null
 
   # The Certificate Authority (CA) certificate bundle to use on the Aurora DB
   # instances. Possible values: rds-ca-2019 (default if nothing is specified),
@@ -703,12 +717,6 @@ inputs = {
   # Set to true if you want a DNS record automatically created and pointed at
   # the RDS endpoints.
   create_route53_entry = false
-
-  # The namespace to use for the CloudWatch metric we report every time a new
-  # RDS snapshot is created. We add a CloudWatch alarm on this metric to notify
-  # us if the backup job fails to run for any reason. Defaults to the cluster
-  # name.
-  create_snapshot_cloudwatch_metric_namespace = null
 
   # A map of custom tags to apply to the RDS cluster and all associated
   # resources created for it. The key is the tag name and the value is the tag
@@ -779,14 +787,15 @@ inputs = {
   # Defaults to true.
   delete_automated_backups = null
 
+  # If set to true, create an AWS Backup vault and plan to periodically back up
+  # the Aurora DB. Supports optional cross-account copy via
+  # var.backup_destination_vault_arn.
+  enable_backup = false
+
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
   enable_cloudwatch_alarms = true
-
-  # When true, enable CloudWatch metrics for the manual snapshots created for
-  # the purpose of sharing with another account.
-  enable_cloudwatch_metrics = true
 
   # Enable deletion protection on the database instance. If this is enabled, the
   # database cannot be deleted.
@@ -801,11 +810,6 @@ inputs = {
   # would be reasonable perf numbers for your RDS set up or if those numbers are
   # too unpredictable.
   enable_perf_alarms = true
-
-  # When true, enable CloudWatch alarms for the manual snapshots created for the
-  # purpose of sharing with another account. Only used if
-  # var.share_snapshot_with_another_account is true.
-  enable_share_snapshot_cloudwatch_alarms = true
 
   # If non-empty, the Aurora cluster will export the specified logs to
   # Cloudwatch. Must be zero or more of: audit, error, general and slowquery
@@ -1025,26 +1029,6 @@ inputs = {
   # paused. Valid values are 300 through 86400. Only used when var.engine_mode
   # is set to serverless.
   scaling_configuration_seconds_until_auto_pause = 300
-
-  # The maximum number of snapshots to keep around for the purpose of cross
-  # account sharing. Once this number is exceeded, a lambda function will delete
-  # the oldest snapshots. Only used if var.share_snapshot_with_another_account
-  # is true.
-  share_snapshot_max_snapshots = 30
-
-  # An expression that defines how often to run the lambda function to take
-  # snapshots for the purpose of cross account sharing. For example, cron(0 20 *
-  # * ? *) or rate(5 minutes). Required if
-  # var.share_snapshot_with_another_account is true
-  share_snapshot_schedule_expression = null
-
-  # The ID of the AWS Account that the snapshot should be shared with. Required
-  # if var.share_snapshot_with_another_account is true.
-  share_snapshot_with_account_id = null
-
-  # If set to true, take periodic snapshots of the Aurora DB that should be
-  # shared with another account.
-  share_snapshot_with_another_account = false
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -1174,34 +1158,22 @@ Configure the auto minor version upgrade behavior. This is applied to the cluste
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-<HclListItem name="backup_job_alarm_period" requirement="optional" type="number">
+<HclListItem name="backup_destination_retention_days" requirement="optional" type="number">
 <HclListItemDescription>
 
-How often, in seconds, the backup job is expected to run. This is the same as <a href="#schedule_expression"><code>schedule_expression</code></a>, but unfortunately, Terraform offers no way to convert rate expressions to seconds. We add a CloudWatch alarm that triggers if the metric in <a href="#create_snapshot_cloudwatch_metric_namespace"><code>create_snapshot_cloudwatch_metric_namespace</code></a> isn't updated within this time period, as that indicates the backup failed to run.
+The number of days to retain recovery points in the destination backup vault before automatic deletion. Only used if <a href="#backup_destination_vault_arn"><code>backup_destination_vault_arn</code></a> is set.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="3600"/>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Default to hourly
-
-```
-</details>
-
-</HclGeneralListItem>
+<HclListItemDefaultValue defaultValue="90"/>
 </HclListItem>
 
-<HclListItem name="backup_job_alarm_treat_missing_data" requirement="optional" type="string">
+<HclListItem name="backup_destination_vault_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-Sets how the backup job alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+The ARN of a destination backup vault for cross-account or cross-region copies. If null, no cross-account copy is configured.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="backup_retention_period" requirement="optional" type="number">
@@ -1211,6 +1183,67 @@ How many days to keep backup snapshots around before cleaning them up. Max: 35
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="backup_schedule" requirement="optional" type="string">
+<HclListItemDescription>
+
+A CRON expression specifying when AWS Backup should run the backup job (e.g. cron(0 0 * * ? *) for daily at midnight UTC). Required if <a href="#enable_backup"><code>enable_backup</code></a> is true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="backup_service_role_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the IAM service role for AWS Backup. Defaults to '&lt;<a href="#name"><code>name</code></a>>-backup-service-role' if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="backup_source_retention_days" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of days to retain recovery points in the source backup vault before automatic deletion.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="backup_vault_kms_key_arn" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of a KMS key used to encrypt the backup vault. If null, the default AWS Backup encryption will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="backup_vault_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the AWS Backup vault to create. Defaults to '&lt;<a href="#name"><code>name</code></a>>-backup-vault' if not specified.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="backup_vault_policy" requirement="optional" type="any">
+<HclListItemDescription>
+
+An optional vault access policy to attach to the backup vault. Useful for granting cross-account access. Set to null to skip. See the backup-vault module for the expected structure.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="ca_cert_identifier" requirement="optional" type="string">
@@ -1274,15 +1307,6 @@ Set to true if you want a DNS record automatically created and pointed at the RD
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="create_snapshot_cloudwatch_metric_namespace" requirement="optional" type="string">
-<HclListItemDescription>
-
-The namespace to use for the CloudWatch metric we report every time a new RDS snapshot is created. We add a CloudWatch alarm on this metric to notify us if the backup job fails to run for any reason. Defaults to the cluster name.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="custom_tags" requirement="optional" type="map(string)">
@@ -1764,19 +1788,19 @@ If true, delete all automated backups when the DB cluster is deleted. If false, 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="enable_backup" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If set to true, create an AWS Backup vault and plan to periodically back up the Aurora DB. Supports optional cross-account copy via <a href="#backup_destination_vault_arn"><code>backup_destination_vault_arn</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
 <HclListItemDescription>
 
 Set to true to enable several basic CloudWatch alarms around CPU usage, memory usage, and disk space usage. If set to true, make sure to specify SNS topics to send notifications to using <a href="#alarms_sns_topic_arn"><code>alarms_sns_topic_arn</code></a>.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_cloudwatch_metrics" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, enable CloudWatch metrics for the manual snapshots created for the purpose of sharing with another account.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -1804,15 +1828,6 @@ If true, enables the HTTP endpoint used for Data API. Only valid when engine_mod
 <HclListItemDescription>
 
 Set to true to enable alarms related to performance, such as read and write latency alarms. Set to false to disable those alarms if you aren't sure what would be reasonable perf numbers for your RDS set up or if those numbers are too unpredictable.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
-<HclListItem name="enable_share_snapshot_cloudwatch_alarms" requirement="optional" type="bool">
-<HclListItemDescription>
-
-When true, enable CloudWatch alarms for the manual snapshots created for the purpose of sharing with another account. Only used if <a href="#share_snapshot_with_another_account"><code>share_snapshot_with_another_account</code></a> is true.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -2268,42 +2283,6 @@ The time, in seconds, before an Aurora DB cluster in serverless mode is paused. 
 <HclListItemDefaultValue defaultValue="300"/>
 </HclListItem>
 
-<HclListItem name="share_snapshot_max_snapshots" requirement="optional" type="number">
-<HclListItemDescription>
-
-The maximum number of snapshots to keep around for the purpose of cross account sharing. Once this number is exceeded, a lambda function will delete the oldest snapshots. Only used if <a href="#share_snapshot_with_another_account"><code>share_snapshot_with_another_account</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="30"/>
-</HclListItem>
-
-<HclListItem name="share_snapshot_schedule_expression" requirement="optional" type="string">
-<HclListItemDescription>
-
-An expression that defines how often to run the lambda function to take snapshots for the purpose of cross account sharing. For example, cron(0 20 * * ? *) or rate(5 minutes). Required if <a href="#share_snapshot_with_another_account"><code>share_snapshot_with_another_account</code></a> is true
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="share_snapshot_with_account_id" requirement="optional" type="string">
-<HclListItemDescription>
-
-The ID of the AWS Account that the snapshot should be shared with. Required if <a href="#share_snapshot_with_another_account"><code>share_snapshot_with_another_account</code></a> is true.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="null"/>
-</HclListItem>
-
-<HclListItem name="share_snapshot_with_another_account" requirement="optional" type="bool">
-<HclListItemDescription>
-
-If set to true, take periodic snapshots of the Aurora DB that should be shared with another account.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2364,10 +2343,26 @@ A list of all the CloudWatch Dashboard metric widgets available in this module.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="cleanup_snapshots_lambda_arn">
+<HclListItem name="backup_plan_arns">
 <HclListItemDescription>
 
-The ARN of the AWS Lambda Function used for cleaning up manual snapshots taken for sharing with secondary accounts.
+A list of ARNs of the AWS Backup plans created. Only populated if <a href="#enable_backup"><code>enable_backup</code></a> is true.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="backup_service_role_arn">
+<HclListItemDescription>
+
+The ARN of the IAM service role used by AWS Backup.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="backup_vault_arns">
+<HclListItemDescription>
+
+A map of backup vault names to their ARNs. Only populated if <a href="#enable_backup"><code>enable_backup</code></a> is true.
 
 </HclListItemDescription>
 </HclListItem>
@@ -2400,14 +2395,6 @@ The ARN of master user secret. Only available when `manage_master_user_password`
 <HclListItemDescription>
 
 The unique resource ID assigned to the cluster e.g. cluster-POBCBQUFQC56EBAAWXGFJ77GRU. This is useful for allowing database authentication via IAM.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="create_snapshot_lambda_arn">
-<HclListItemDescription>
-
-The ARN of the AWS Lambda Function used for periodically taking snapshots to share with secondary accounts.
 
 </HclListItemDescription>
 </HclListItem>
@@ -2508,25 +2495,17 @@ ID of security group created by aurora module.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="share_snapshot_lambda_arn">
-<HclListItemDescription>
-
-The ARN of the AWS Lambda Function used for sharing manual snapshots with secondary accounts.
-
-</HclListItemDescription>
-</HclListItem>
-
 </TabItem>
 </Tabs>
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d33e57d740cb6335cb383695e5abbdf7"
+  "hash": "30f396dca8b686b4c9cca53b679db595"
 }
 ##DOCS-SOURCER-END -->

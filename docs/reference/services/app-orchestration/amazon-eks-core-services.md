@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.2.0" lastModifiedVersion="2.2.0"/>
+<VersionBadge version="2.3.0" lastModifiedVersion="2.2.0"/>
 
 # Amazon EKS Core Services
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/services/eks-core-services" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/modules/services/eks-core-services" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-core-services" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ For information on each of the core services deployed by this service, see the d
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ For information on each of the core services deployed by this service, see the d
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -108,7 +108,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "eks_core_services" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v2.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v2.3.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -149,16 +149,59 @@ module "eks_core_services" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Labels to add to each object of the chart.
+  alb_ingress_controller_additional_labels = {}
+
   # ARN of IAM Role to assume to create and control ALB's. This is useful if
   # your VPC is shared from another account and needs to be created somewhere
   # else.
   alb_ingress_controller_alb_iam_role_arn = null
 
+  # Custom AWS API endpoints (serviceID1=URL1,serviceID2=URL2).
+  alb_ingress_controller_aws_api_endpoints = null
+
+  # Custom AWS API throttle settings (serviceID1:operationRegex1=rate:burst).
+  alb_ingress_controller_aws_api_throttle = null
+
+  # Maximum retries for AWS APIs.
+  alb_ingress_controller_aws_max_retries = null
+
+  # Backend security group ID. If empty, controller will auto-create one.
+  alb_ingress_controller_backend_security_group = null
+
   # The version of the aws-load-balancer-controller helmchart to use.
   alb_ingress_controller_chart_version = "1.4.1"
 
+  # Configurations specific to the kubernetes cluster.
+  alb_ingress_controller_cluster = {"dnsDomain":"cluster.local"}
+
+  # RBAC permissions configuration for secret resources.
+  alb_ingress_controller_cluster_secrets_permissions = null
+
+  # Whether to configure default anti-affinity to prevent co-location on the
+  # same node. Ignored if custom affinity is set.
+  alb_ingress_controller_configure_default_affinity = true
+
+  # Whether to create the IngressClass resource.
+  alb_ingress_controller_create_ingress_class_resource = true
+
+  # Default SSL policy to use for TLS/HTTPS listeners.
+  alb_ingress_controller_default_ssl_policy = null
+
   # Tags to apply to all AWS resources managed by this controller
   alb_ingress_controller_default_tags = {}
+
+  # Annotations for the controller deployment.
+  alb_ingress_controller_deployment_annotations = {}
+
+  # Disables the usage of kubernetes.io/ingress.class annotation.
+  alb_ingress_controller_disable_ingress_class_annotation = null
+
+  # Disables the usage of alb.ingress.kubernetes.io/group.name annotation.
+  alb_ingress_controller_disable_ingress_group_name_annotation = null
+
+  # The dnsPolicy for pods in the deployment.
+  alb_ingress_controller_dns_policy = null
 
   # The repository of the aws-load-balancer-controller docker image that should
   # be deployed.
@@ -177,10 +220,53 @@ module "eks_core_services" {
   # The key is the tag name and the value is the tag value.
   alb_ingress_controller_eks_fargate_profile_tags = {}
 
-  # Additional container arguments for the AWS Load Balancer Controller. For
-  # example, use this to pass feature gates like
-  # --feature-gates=NLBGatewayAPI=true,ALBGatewayAPI=true.
-  alb_ingress_controller_extra_args = {}
+  # Enable shared security group for backend traffic.
+  alb_ingress_controller_enable_backend_security_group = null
+
+  # Enable cert-manager for webhook TLS certificates.
+  alb_ingress_controller_enable_cert_manager = false
+
+  # Enable k8s EndpointSlices for IP targets instead of Endpoints.
+  alb_ingress_controller_enable_endpoint_slices = null
+
+  # Whether targetHealth readiness gate will get injected to the pod spec for
+  # matching endpoint pods.
+  alb_ingress_controller_enable_pod_readiness_gate_inject = null
+
+  # Enables restricted Security Group rules for the load balancers managed by
+  # the controller.
+  alb_ingress_controller_enable_restricted_sg_rules = false
+
+  # Enable Shield addon for ALB.
+  alb_ingress_controller_enable_shield = null
+
+  # Enable WAF addon for ALB.
+  alb_ingress_controller_enable_waf = null
+
+  # Enable WAF V2 addon for ALB.
+  alb_ingress_controller_enable_wafv2 = null
+
+  # Environment variables to set for the controller pod.
+  alb_ingress_controller_env = {}
+
+  # List of tag keys on AWS resources that will be managed externally.
+  alb_ingress_controller_external_managed_tags = []
+
+  # Additional volume mounts for the controller container.
+  alb_ingress_controller_extra_volume_mounts = []
+
+  # Additional volumes for the controller pod.
+  alb_ingress_controller_extra_volumes = []
+
+  # Feature gates to enable or disable on the AWS Load Balancer Controller. Each
+  # key is a feature gate name and the value is a boolean.
+  alb_ingress_controller_feature_gates = {}
+
+  # Override the full name of the chart.
+  alb_ingress_controller_full_name_override = ""
+
+  # Whether the controller should be started in hostNetwork mode.
+  alb_ingress_controller_host_network = false
 
   # A map of custom tags to apply to the Controller IAM Policies if enabled. The
   # key is the tag name and the value is the tag value.
@@ -190,6 +276,48 @@ module "eks_core_services" {
   # is the tag name and the value is the tag value.
   alb_ingress_controller_iam_role_tags = {}
 
+  # The image pull policy for the controller Docker image.
+  alb_ingress_controller_image_pull_policy = "IfNotPresent"
+
+  # List of image pull secret names for the controller Pod.
+  alb_ingress_controller_image_pull_secrets = []
+
+  # The ingress class this controller will satisfy.
+  alb_ingress_controller_ingress_class = "alb"
+
+  # Configurations specific to the ingress class.
+  alb_ingress_controller_ingress_class_config = null
+
+  # IngressClassParams that enforce settings for a set of Ingresses.
+  alb_ingress_controller_ingress_class_params = {"create":true,"name":null,"spec":{}}
+
+  # Maximum number of concurrently running reconcile loops for ingress.
+  alb_ingress_controller_ingress_max_concurrent_reconciles = null
+
+  # Whether to reuse existing TLS secret for chart upgrade.
+  alb_ingress_controller_keep_tls_secret = true
+
+  # Liveness probe configuration for the controller.
+  alb_ingress_controller_liveness_probe = {"failureThreshold":2,"httpGet":{"path":"/healthz","port":61779,"scheme":"HTTP"},"initialDelaySeconds":30,"timeoutSeconds":10}
+
+  # Set the controller log level (info, debug).
+  alb_ingress_controller_log_level = null
+
+  # The address the metric endpoint binds to.
+  alb_ingress_controller_metrics_bind_addr = ""
+
+  # Override the name of the chart.
+  alb_ingress_controller_name_override = ""
+
+  # Node selector for the controller Pod.
+  alb_ingress_controller_node_selector = {}
+
+  # Object selector for webhook.
+  alb_ingress_controller_object_selector = null
+
+  # Pod disruption budget configuration for the controller pods.
+  alb_ingress_controller_pod_disruption_budget = {}
+
   # Configure affinity rules for the ALB Ingress Controller Pod to control which
   # nodes to schedule on. Each item in the list should be a map with the keys
   # `key`, `values`, and `operator`, corresponding to the 3 properties of
@@ -197,10 +325,74 @@ module "eks_core_services" {
   # the node.
   alb_ingress_controller_pod_node_affinity = []
 
+  # Number of replicas of the ingress controller Pod to deploy.
+  alb_ingress_controller_pod_replica_count = 1
+
+  # Security context for the controller Pod.
+  alb_ingress_controller_pod_security_context = {"fsGroup":65534}
+
   # Configure tolerations rules to allow the ALB Ingress Controller Pod to
   # schedule on nodes that have been tainted. Each item in the list specifies a
   # toleration rule.
   alb_ingress_controller_pod_tolerations = []
+
+  # PriorityClass to indicate the importance of controller pods.
+  alb_ingress_controller_priority_class_name = "system-cluster-critical"
+
+  # CPU and memory resource requests and limits for the controller Pod.
+  alb_ingress_controller_resources = {}
+
+  # Security context for the controller container.
+  alb_ingress_controller_security_context = {"allowPrivilegeEscalation":false,"readOnlyRootFilesystem":true,"runAsNonRoot":true}
+
+  # Automount API credentials for the service account.
+  alb_ingress_controller_service_account_automount_token = true
+
+  # List of image pull secrets to add to the service account.
+  alb_ingress_controller_service_account_image_pull_secrets = []
+
+  # Annotations to add to the webhook service resource.
+  alb_ingress_controller_service_annotations = {}
+
+  # Maximum number of concurrently running reconcile loops for service.
+  alb_ingress_controller_service_max_concurrent_reconciles = null
+
+  # ServiceMonitor configuration for Prometheus.
+  alb_ingress_controller_service_monitor = null
+
+  # Period at which the controller forces the repopulation of its local object
+  # stores.
+  alb_ingress_controller_sync_period = null
+
+  # Maximum number of concurrently running reconcile loops for
+  # targetGroupBinding.
+  alb_ingress_controller_targetgroup_binding_max_concurrent_reconciles = null
+
+  # Maximum duration of exponential backoff for targetGroupBinding reconcile
+  # failures.
+  alb_ingress_controller_targetgroup_binding_max_exponential_backoff_delay = null
+
+  # Time period for the controller pod to do a graceful shutdown.
+  alb_ingress_controller_termination_grace_period_seconds = 10
+
+  # Topology spread constraints for the controller Pod.
+  alb_ingress_controller_topology_spread_constraints = {}
+
+  # Update strategy for the controller deployment.
+  alb_ingress_controller_update_strategy = {}
+
+  # Namespace the controller watches for updates to Kubernetes objects. If
+  # empty, all namespaces are watched.
+  alb_ingress_controller_watch_namespace = null
+
+  # The TCP port the Webhook server binds to.
+  alb_ingress_controller_webhook_bind_port = null
+
+  # Array of namespace selectors for the webhook.
+  alb_ingress_controller_webhook_namespace_selectors = null
+
+  # TLS cert/key for the webhook.
+  alb_ingress_controller_webhook_tls = null
 
   # Minimum time to wait after a scale up event before any node is considered
   # for scale down.
@@ -738,7 +930,7 @@ module "eks_core_services" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v2.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-core-services?ref=v2.3.0"
 }
 
 inputs = {
@@ -782,16 +974,59 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Labels to add to each object of the chart.
+  alb_ingress_controller_additional_labels = {}
+
   # ARN of IAM Role to assume to create and control ALB's. This is useful if
   # your VPC is shared from another account and needs to be created somewhere
   # else.
   alb_ingress_controller_alb_iam_role_arn = null
 
+  # Custom AWS API endpoints (serviceID1=URL1,serviceID2=URL2).
+  alb_ingress_controller_aws_api_endpoints = null
+
+  # Custom AWS API throttle settings (serviceID1:operationRegex1=rate:burst).
+  alb_ingress_controller_aws_api_throttle = null
+
+  # Maximum retries for AWS APIs.
+  alb_ingress_controller_aws_max_retries = null
+
+  # Backend security group ID. If empty, controller will auto-create one.
+  alb_ingress_controller_backend_security_group = null
+
   # The version of the aws-load-balancer-controller helmchart to use.
   alb_ingress_controller_chart_version = "1.4.1"
 
+  # Configurations specific to the kubernetes cluster.
+  alb_ingress_controller_cluster = {"dnsDomain":"cluster.local"}
+
+  # RBAC permissions configuration for secret resources.
+  alb_ingress_controller_cluster_secrets_permissions = null
+
+  # Whether to configure default anti-affinity to prevent co-location on the
+  # same node. Ignored if custom affinity is set.
+  alb_ingress_controller_configure_default_affinity = true
+
+  # Whether to create the IngressClass resource.
+  alb_ingress_controller_create_ingress_class_resource = true
+
+  # Default SSL policy to use for TLS/HTTPS listeners.
+  alb_ingress_controller_default_ssl_policy = null
+
   # Tags to apply to all AWS resources managed by this controller
   alb_ingress_controller_default_tags = {}
+
+  # Annotations for the controller deployment.
+  alb_ingress_controller_deployment_annotations = {}
+
+  # Disables the usage of kubernetes.io/ingress.class annotation.
+  alb_ingress_controller_disable_ingress_class_annotation = null
+
+  # Disables the usage of alb.ingress.kubernetes.io/group.name annotation.
+  alb_ingress_controller_disable_ingress_group_name_annotation = null
+
+  # The dnsPolicy for pods in the deployment.
+  alb_ingress_controller_dns_policy = null
 
   # The repository of the aws-load-balancer-controller docker image that should
   # be deployed.
@@ -810,10 +1045,53 @@ inputs = {
   # The key is the tag name and the value is the tag value.
   alb_ingress_controller_eks_fargate_profile_tags = {}
 
-  # Additional container arguments for the AWS Load Balancer Controller. For
-  # example, use this to pass feature gates like
-  # --feature-gates=NLBGatewayAPI=true,ALBGatewayAPI=true.
-  alb_ingress_controller_extra_args = {}
+  # Enable shared security group for backend traffic.
+  alb_ingress_controller_enable_backend_security_group = null
+
+  # Enable cert-manager for webhook TLS certificates.
+  alb_ingress_controller_enable_cert_manager = false
+
+  # Enable k8s EndpointSlices for IP targets instead of Endpoints.
+  alb_ingress_controller_enable_endpoint_slices = null
+
+  # Whether targetHealth readiness gate will get injected to the pod spec for
+  # matching endpoint pods.
+  alb_ingress_controller_enable_pod_readiness_gate_inject = null
+
+  # Enables restricted Security Group rules for the load balancers managed by
+  # the controller.
+  alb_ingress_controller_enable_restricted_sg_rules = false
+
+  # Enable Shield addon for ALB.
+  alb_ingress_controller_enable_shield = null
+
+  # Enable WAF addon for ALB.
+  alb_ingress_controller_enable_waf = null
+
+  # Enable WAF V2 addon for ALB.
+  alb_ingress_controller_enable_wafv2 = null
+
+  # Environment variables to set for the controller pod.
+  alb_ingress_controller_env = {}
+
+  # List of tag keys on AWS resources that will be managed externally.
+  alb_ingress_controller_external_managed_tags = []
+
+  # Additional volume mounts for the controller container.
+  alb_ingress_controller_extra_volume_mounts = []
+
+  # Additional volumes for the controller pod.
+  alb_ingress_controller_extra_volumes = []
+
+  # Feature gates to enable or disable on the AWS Load Balancer Controller. Each
+  # key is a feature gate name and the value is a boolean.
+  alb_ingress_controller_feature_gates = {}
+
+  # Override the full name of the chart.
+  alb_ingress_controller_full_name_override = ""
+
+  # Whether the controller should be started in hostNetwork mode.
+  alb_ingress_controller_host_network = false
 
   # A map of custom tags to apply to the Controller IAM Policies if enabled. The
   # key is the tag name and the value is the tag value.
@@ -823,6 +1101,48 @@ inputs = {
   # is the tag name and the value is the tag value.
   alb_ingress_controller_iam_role_tags = {}
 
+  # The image pull policy for the controller Docker image.
+  alb_ingress_controller_image_pull_policy = "IfNotPresent"
+
+  # List of image pull secret names for the controller Pod.
+  alb_ingress_controller_image_pull_secrets = []
+
+  # The ingress class this controller will satisfy.
+  alb_ingress_controller_ingress_class = "alb"
+
+  # Configurations specific to the ingress class.
+  alb_ingress_controller_ingress_class_config = null
+
+  # IngressClassParams that enforce settings for a set of Ingresses.
+  alb_ingress_controller_ingress_class_params = {"create":true,"name":null,"spec":{}}
+
+  # Maximum number of concurrently running reconcile loops for ingress.
+  alb_ingress_controller_ingress_max_concurrent_reconciles = null
+
+  # Whether to reuse existing TLS secret for chart upgrade.
+  alb_ingress_controller_keep_tls_secret = true
+
+  # Liveness probe configuration for the controller.
+  alb_ingress_controller_liveness_probe = {"failureThreshold":2,"httpGet":{"path":"/healthz","port":61779,"scheme":"HTTP"},"initialDelaySeconds":30,"timeoutSeconds":10}
+
+  # Set the controller log level (info, debug).
+  alb_ingress_controller_log_level = null
+
+  # The address the metric endpoint binds to.
+  alb_ingress_controller_metrics_bind_addr = ""
+
+  # Override the name of the chart.
+  alb_ingress_controller_name_override = ""
+
+  # Node selector for the controller Pod.
+  alb_ingress_controller_node_selector = {}
+
+  # Object selector for webhook.
+  alb_ingress_controller_object_selector = null
+
+  # Pod disruption budget configuration for the controller pods.
+  alb_ingress_controller_pod_disruption_budget = {}
+
   # Configure affinity rules for the ALB Ingress Controller Pod to control which
   # nodes to schedule on. Each item in the list should be a map with the keys
   # `key`, `values`, and `operator`, corresponding to the 3 properties of
@@ -830,10 +1150,74 @@ inputs = {
   # the node.
   alb_ingress_controller_pod_node_affinity = []
 
+  # Number of replicas of the ingress controller Pod to deploy.
+  alb_ingress_controller_pod_replica_count = 1
+
+  # Security context for the controller Pod.
+  alb_ingress_controller_pod_security_context = {"fsGroup":65534}
+
   # Configure tolerations rules to allow the ALB Ingress Controller Pod to
   # schedule on nodes that have been tainted. Each item in the list specifies a
   # toleration rule.
   alb_ingress_controller_pod_tolerations = []
+
+  # PriorityClass to indicate the importance of controller pods.
+  alb_ingress_controller_priority_class_name = "system-cluster-critical"
+
+  # CPU and memory resource requests and limits for the controller Pod.
+  alb_ingress_controller_resources = {}
+
+  # Security context for the controller container.
+  alb_ingress_controller_security_context = {"allowPrivilegeEscalation":false,"readOnlyRootFilesystem":true,"runAsNonRoot":true}
+
+  # Automount API credentials for the service account.
+  alb_ingress_controller_service_account_automount_token = true
+
+  # List of image pull secrets to add to the service account.
+  alb_ingress_controller_service_account_image_pull_secrets = []
+
+  # Annotations to add to the webhook service resource.
+  alb_ingress_controller_service_annotations = {}
+
+  # Maximum number of concurrently running reconcile loops for service.
+  alb_ingress_controller_service_max_concurrent_reconciles = null
+
+  # ServiceMonitor configuration for Prometheus.
+  alb_ingress_controller_service_monitor = null
+
+  # Period at which the controller forces the repopulation of its local object
+  # stores.
+  alb_ingress_controller_sync_period = null
+
+  # Maximum number of concurrently running reconcile loops for
+  # targetGroupBinding.
+  alb_ingress_controller_targetgroup_binding_max_concurrent_reconciles = null
+
+  # Maximum duration of exponential backoff for targetGroupBinding reconcile
+  # failures.
+  alb_ingress_controller_targetgroup_binding_max_exponential_backoff_delay = null
+
+  # Time period for the controller pod to do a graceful shutdown.
+  alb_ingress_controller_termination_grace_period_seconds = 10
+
+  # Topology spread constraints for the controller Pod.
+  alb_ingress_controller_topology_spread_constraints = {}
+
+  # Update strategy for the controller deployment.
+  alb_ingress_controller_update_strategy = {}
+
+  # Namespace the controller watches for updates to Kubernetes objects. If
+  # empty, all namespaces are watched.
+  alb_ingress_controller_watch_namespace = null
+
+  # The TCP port the Webhook server binds to.
+  alb_ingress_controller_webhook_bind_port = null
+
+  # Array of namespace selectors for the webhook.
+  alb_ingress_controller_webhook_namespace_selectors = null
+
+  # TLS cert/key for the webhook.
+  alb_ingress_controller_webhook_tls = null
 
   # Minimum time to wait after a scale up event before any node is considered
   # for scale down.
@@ -1434,10 +1818,55 @@ The subnet IDs to use for EKS worker nodes. Used when provisioning Pods on to Fa
 
 ### Optional
 
+<HclListItem name="alb_ingress_controller_additional_labels" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Labels to add to each object of the chart.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="alb_ingress_controller_alb_iam_role_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
 ARN of IAM Role to assume to create and control ALB's. This is useful if your VPC is shared from another account and needs to be created somewhere else.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_aws_api_endpoints" requirement="optional" type="string">
+<HclListItemDescription>
+
+Custom AWS API endpoints (serviceID1=URL1,serviceID2=URL2).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_aws_api_throttle" requirement="optional" type="string">
+<HclListItemDescription>
+
+Custom AWS API throttle settings (serviceID1:operationRegex1=rate:burst).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_aws_max_retries" requirement="optional" type="number">
+<HclListItemDescription>
+
+Maximum retries for AWS APIs.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_backend_security_group" requirement="optional" type="string">
+<HclListItemDescription>
+
+Backend security group ID. If empty, controller will auto-create one.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1452,6 +1881,73 @@ The version of the aws-load-balancer-controller helmchart to use.
 <HclListItemDefaultValue defaultValue="&quot;1.4.1&quot;"/>
 </HclListItem>
 
+<HclListItem name="alb_ingress_controller_cluster" requirement="optional" type="any">
+<HclListItemDescription>
+
+Configurations specific to the kubernetes cluster.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  dnsDomain = "cluster.local"
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_cluster_secrets_permissions" requirement="optional" type="any">
+<HclListItemDescription>
+
+RBAC permissions configuration for secret resources.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_configure_default_affinity" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to configure default anti-affinity to prevent co-location on the same node. Ignored if custom affinity is set.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_create_ingress_class_resource" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to create the IngressClass resource.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_default_ssl_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+Default SSL policy to use for TLS/HTTPS listeners.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="alb_ingress_controller_default_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -1459,6 +1955,42 @@ Tags to apply to all AWS resources managed by this controller
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_deployment_annotations" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Annotations for the controller deployment.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_disable_ingress_class_annotation" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Disables the usage of kubernetes.io/ingress.class annotation.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_disable_ingress_group_name_annotation" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Disables the usage of alb.ingress.kubernetes.io/group.name annotation.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_dns_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The dnsPolicy for pods in the deployment.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="alb_ingress_controller_docker_image_repo" requirement="optional" type="string">
@@ -1497,13 +2029,160 @@ A map of custom tags to apply to the Controller Fargate Profile if enabled. The 
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
-<HclListItem name="alb_ingress_controller_extra_args" requirement="optional" type="map(string)">
+<HclListItem name="alb_ingress_controller_enable_backend_security_group" requirement="optional" type="bool">
 <HclListItemDescription>
 
-Additional container arguments for the AWS Load Balancer Controller. For example, use this to pass feature gates like --feature-gates=NLBGatewayAPI=true,ALBGatewayAPI=true.
+Enable shared security group for backend traffic.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_enable_cert_manager" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable cert-manager for webhook TLS certificates.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_enable_endpoint_slices" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable k8s EndpointSlices for IP targets instead of Endpoints.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_enable_pod_readiness_gate_inject" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether targetHealth readiness gate will get injected to the pod spec for matching endpoint pods.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_enable_restricted_sg_rules" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enables restricted Security Group rules for the load balancers managed by the controller.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_enable_shield" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable Shield addon for ALB.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_enable_waf" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable WAF addon for ALB.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_enable_wafv2" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable WAF V2 addon for ALB.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_env" requirement="optional" type="any">
+<HclListItemDescription>
+
+Environment variables to set for the controller pod.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_external_managed_tags" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+List of tag keys on AWS resources that will be managed externally.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_extra_volume_mounts" requirement="optional" type="any">
+<HclListItemDescription>
+
+Additional volume mounts for the controller container.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_extra_volumes" requirement="optional" type="any">
+<HclListItemDescription>
+
+Additional volumes for the controller pod.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_feature_gates" requirement="optional" type="map(bool)">
+<HclListItemDescription>
+
+Feature gates to enable or disable on the AWS Load Balancer Controller. Each key is a feature gate name and the value is a boolean.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_full_name_override" requirement="optional" type="string">
+<HclListItemDescription>
+
+Override the full name of the chart.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_host_network" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether the controller should be started in hostNetwork mode.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="alb_ingress_controller_iam_policy_tags" requirement="optional" type="map(string)">
@@ -1521,6 +2200,199 @@ A map of custom tags to apply to the Controller IAM Policies if enabled. The key
 A map of custom tags to apply to the Controller IAM Role if enabled. The key is the tag name and the value is the tag value.
 
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_image_pull_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The image pull policy for the controller Docker image.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;IfNotPresent&quot;"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_image_pull_secrets" requirement="optional" type="list(any)">
+<HclListItemDescription>
+
+List of image pull secret names for the controller Pod.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_ingress_class" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ingress class this controller will satisfy.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;alb&quot;"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_ingress_class_config" requirement="optional" type="any">
+<HclListItemDescription>
+
+Configurations specific to the ingress class.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_ingress_class_params" requirement="optional" type="any">
+<HclListItemDescription>
+
+IngressClassParams that enforce settings for a set of Ingresses.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  create = true,
+  name = null,
+  spec = {}
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_ingress_max_concurrent_reconciles" requirement="optional" type="number">
+<HclListItemDescription>
+
+Maximum number of concurrently running reconcile loops for ingress.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_keep_tls_secret" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to reuse existing TLS secret for chart upgrade.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_liveness_probe" requirement="optional" type="any">
+<HclListItemDescription>
+
+Liveness probe configuration for the controller.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  failureThreshold = 2,
+  httpGet = {
+    path = "/healthz",
+    port = 61779,
+    scheme = "HTTP"
+  },
+  initialDelaySeconds = 30,
+  timeoutSeconds = 10
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_log_level" requirement="optional" type="string">
+<HclListItemDescription>
+
+Set the controller log level (info, debug).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_metrics_bind_addr" requirement="optional" type="string">
+<HclListItemDescription>
+
+The address the metric endpoint binds to.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_name_override" requirement="optional" type="string">
+<HclListItemDescription>
+
+Override the name of the chart.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;&quot;"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_node_selector" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Node selector for the controller Pod.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_object_selector" requirement="optional" type="any">
+<HclListItemDescription>
+
+Object selector for webhook.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_pod_disruption_budget" requirement="optional" type="any">
+<HclListItemDescription>
+
+Pod disruption budget configuration for the controller pods.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
@@ -1580,6 +2452,39 @@ list(object({
 </HclGeneralListItem>
 </HclListItem>
 
+<HclListItem name="alb_ingress_controller_pod_replica_count" requirement="optional" type="number">
+<HclListItemDescription>
+
+Number of replicas of the ingress controller Pod to deploy.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="1"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_pod_security_context" requirement="optional" type="any">
+<HclListItemDescription>
+
+Security context for the controller Pod.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  fsGroup = 65534
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
 <HclListItem name="alb_ingress_controller_pod_tolerations" requirement="optional" type="list(map(…))">
 <HclListItemDescription>
 
@@ -1618,6 +2523,234 @@ list(map(any))
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_priority_class_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+PriorityClass to indicate the importance of controller pods.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;system-cluster-critical&quot;"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_resources" requirement="optional" type="any">
+<HclListItemDescription>
+
+CPU and memory resource requests and limits for the controller Pod.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_security_context" requirement="optional" type="any">
+<HclListItemDescription>
+
+Security context for the controller container.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  allowPrivilegeEscalation = false,
+  readOnlyRootFilesystem = true,
+  runAsNonRoot = true
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_service_account_automount_token" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Automount API credentials for the service account.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_service_account_image_pull_secrets" requirement="optional" type="list(any)">
+<HclListItemDescription>
+
+List of image pull secrets to add to the service account.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_service_annotations" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Annotations to add to the webhook service resource.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_service_max_concurrent_reconciles" requirement="optional" type="number">
+<HclListItemDescription>
+
+Maximum number of concurrently running reconcile loops for service.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_service_monitor" requirement="optional" type="any">
+<HclListItemDescription>
+
+ServiceMonitor configuration for Prometheus.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_sync_period" requirement="optional" type="string">
+<HclListItemDescription>
+
+Period at which the controller forces the repopulation of its local object stores.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_targetgroup_binding_max_concurrent_reconciles" requirement="optional" type="number">
+<HclListItemDescription>
+
+Maximum number of concurrently running reconcile loops for targetGroupBinding.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_targetgroup_binding_max_exponential_backoff_delay" requirement="optional" type="string">
+<HclListItemDescription>
+
+Maximum duration of exponential backoff for targetGroupBinding reconcile failures.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_termination_grace_period_seconds" requirement="optional" type="number">
+<HclListItemDescription>
+
+Time period for the controller pod to do a graceful shutdown.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="10"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_topology_spread_constraints" requirement="optional" type="any">
+<HclListItemDescription>
+
+Topology spread constraints for the controller Pod.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_update_strategy" requirement="optional" type="any">
+<HclListItemDescription>
+
+Update strategy for the controller deployment.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_watch_namespace" requirement="optional" type="string">
+<HclListItemDescription>
+
+Namespace the controller watches for updates to Kubernetes objects. If empty, all namespaces are watched.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_webhook_bind_port" requirement="optional" type="number">
+<HclListItemDescription>
+
+The TCP port the Webhook server binds to.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_webhook_namespace_selectors" requirement="optional" type="any">
+<HclListItemDescription>
+
+Array of namespace selectors for the webhook.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="alb_ingress_controller_webhook_tls" requirement="optional" type="any">
+<HclListItemDescription>
+
+TLS cert/key for the webhook.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="autoscaler_down_delay_after_add" requirement="optional" type="string">
@@ -5490,11 +6623,11 @@ A list of names of Kubernetes PriorityClass objects created by this module.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/services/eks-core-services/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/services/eks-core-services/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.2.0/modules/services/eks-core-services/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/modules/services/eks-core-services/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/modules/services/eks-core-services/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.3.0/modules/services/eks-core-services/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "69184e101f982fa2915f90294caf6918"
+  "hash": "39d6d6f363cb104499220554abd818f7"
 }
 ##DOCS-SOURCER-END -->
