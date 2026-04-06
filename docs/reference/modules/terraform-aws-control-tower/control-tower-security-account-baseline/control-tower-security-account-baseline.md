@@ -160,6 +160,9 @@ module "control_tower_security_account_baseline" {
   # name.
   cleanup_expired_certs_schedule_namespace = "cleanup-expired-iam-certs-scheduled"
 
+  # The name of the IAM managed policy that denies CloudShell access.
+  cloudshell_deny_policy_name = "deny-cloudshell-full-access"
+
   # The ID of the your management (root) AWS account where Control Tower is
   # enabled. Only used if create_control_tower_execution_role is set to true.
   control_tower_management_account_id = null
@@ -203,6 +206,12 @@ module "control_tower_security_account_baseline" {
   # var.ebs_kms_key_name will be set as the default for EBS encryption. When
   # false (default), the AWS-managed aws/ebs key will be used.
   ebs_use_existing_kms_keys = false
+
+  # When true, create a managed IAM policy that denies all CloudShell actions.
+  # This is a preventive control for CIS 1.22 (IAM.27). The policy is not
+  # attached to anything by default; the operator should attach it to relevant
+  # IAM entities.
+  enable_cloudshell_deny = true
 
   # When true, enable the Encrypted Volumes check in AWS Config. This check
   # identifies EBS volumes that are not encrypted. This check is useful for
@@ -664,6 +673,10 @@ module "control_tower_security_account_baseline" {
   # these are running at a time.
   reserved_concurrent_executions = 1
 
+  # Manages S3 account-level Public Access Block configuration. All four
+  # settings should be true for CIS v3.0.0 S3.1 compliance.
+  s3_account_public_access_block = {"block_public_acls":true,"block_public_policy":true,"ignore_public_acls":true,"restrict_public_buckets":true}
+
   # The AWS region (e.g., us-east-1) where all the findings will be aggregated.
   # If null, no region will be designated as an aggregate region and findings
   # will only be visible to the region where it was reported. NOTE: this can
@@ -671,14 +684,24 @@ module "control_tower_security_account_baseline" {
   security_hub_aggregate_region = null
 
   # When true, enable the CIS benchmark v1.4 ruleset for automatic checks in
-  # SecurityHub. Set this to false if you are using Steampipe instead.
-  security_hub_enable_cis_1_4_check = true
+  # SecurityHub. Set this to false if you are using Steampipe instead or if you
+  # wish to disable the CIS v1.4 checks.
+  security_hub_enable_cis_1_4_check = false
+
+  # When true, enable the CIS benchmark v3.0 ruleset for automatic checks in
+  # SecurityHub. Set this to false if you are using Steampipe instead or if you
+  # wish to disable the CIS v3.0 checks. Enabled by default.
+  security_hub_enable_cis_3_0_check = true
+
+  # When true, enable the CIS benchmark v5.0 ruleset for automatic checks in
+  # SecurityHub. Set this to false if you are using Steampipe instead or if you
+  # wish to disable the CIS v5.0 checks.
+  security_hub_enable_cis_5_0_check = false
 
   # When true, enable the CIS benchmark v1.2 ruleset for automatic checks in
-  # SecurityHub. If you also want to disable the CIS benchmark v1.4 check, then
-  # var.security_hub_enable_cis_1_4_check should also be set to false. Set this
-  # to false if you are using Steampipe instead.
-  security_hub_enable_cis_check = true
+  # SecurityHub. Set this to false if you are using Steampipe instead or if you
+  # wish to disable the CIS v1.2 checks.
+  security_hub_enable_cis_check = false
 
   # List of AWS Accounts (ID and Email) to add as members to this account's
   # SecurityHub configuration.
@@ -903,6 +926,9 @@ inputs = {
   # name.
   cleanup_expired_certs_schedule_namespace = "cleanup-expired-iam-certs-scheduled"
 
+  # The name of the IAM managed policy that denies CloudShell access.
+  cloudshell_deny_policy_name = "deny-cloudshell-full-access"
+
   # The ID of the your management (root) AWS account where Control Tower is
   # enabled. Only used if create_control_tower_execution_role is set to true.
   control_tower_management_account_id = null
@@ -946,6 +972,12 @@ inputs = {
   # var.ebs_kms_key_name will be set as the default for EBS encryption. When
   # false (default), the AWS-managed aws/ebs key will be used.
   ebs_use_existing_kms_keys = false
+
+  # When true, create a managed IAM policy that denies all CloudShell actions.
+  # This is a preventive control for CIS 1.22 (IAM.27). The policy is not
+  # attached to anything by default; the operator should attach it to relevant
+  # IAM entities.
+  enable_cloudshell_deny = true
 
   # When true, enable the Encrypted Volumes check in AWS Config. This check
   # identifies EBS volumes that are not encrypted. This check is useful for
@@ -1407,6 +1439,10 @@ inputs = {
   # these are running at a time.
   reserved_concurrent_executions = 1
 
+  # Manages S3 account-level Public Access Block configuration. All four
+  # settings should be true for CIS v3.0.0 S3.1 compliance.
+  s3_account_public_access_block = {"block_public_acls":true,"block_public_policy":true,"ignore_public_acls":true,"restrict_public_buckets":true}
+
   # The AWS region (e.g., us-east-1) where all the findings will be aggregated.
   # If null, no region will be designated as an aggregate region and findings
   # will only be visible to the region where it was reported. NOTE: this can
@@ -1414,14 +1450,24 @@ inputs = {
   security_hub_aggregate_region = null
 
   # When true, enable the CIS benchmark v1.4 ruleset for automatic checks in
-  # SecurityHub. Set this to false if you are using Steampipe instead.
-  security_hub_enable_cis_1_4_check = true
+  # SecurityHub. Set this to false if you are using Steampipe instead or if you
+  # wish to disable the CIS v1.4 checks.
+  security_hub_enable_cis_1_4_check = false
+
+  # When true, enable the CIS benchmark v3.0 ruleset for automatic checks in
+  # SecurityHub. Set this to false if you are using Steampipe instead or if you
+  # wish to disable the CIS v3.0 checks. Enabled by default.
+  security_hub_enable_cis_3_0_check = true
+
+  # When true, enable the CIS benchmark v5.0 ruleset for automatic checks in
+  # SecurityHub. Set this to false if you are using Steampipe instead or if you
+  # wish to disable the CIS v5.0 checks.
+  security_hub_enable_cis_5_0_check = false
 
   # When true, enable the CIS benchmark v1.2 ruleset for automatic checks in
-  # SecurityHub. If you also want to disable the CIS benchmark v1.4 check, then
-  # var.security_hub_enable_cis_1_4_check should also be set to false. Set this
-  # to false if you are using Steampipe instead.
-  security_hub_enable_cis_check = true
+  # SecurityHub. Set this to false if you are using Steampipe instead or if you
+  # wish to disable the CIS v1.2 checks.
+  security_hub_enable_cis_check = false
 
   # List of AWS Accounts (ID and Email) to add as members to this account's
   # SecurityHub configuration.
@@ -1817,6 +1863,15 @@ Namespace all Lambda scheduling resources created by this module with this name.
 <HclListItemDefaultValue defaultValue="&quot;cleanup-expired-iam-certs-scheduled&quot;"/>
 </HclListItem>
 
+<HclListItem name="cloudshell_deny_policy_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+The name of the IAM managed policy that denies CloudShell access.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;deny-cloudshell-full-access&quot;"/>
+</HclListItem>
+
 <HclListItem name="control_tower_management_account_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1887,6 +1942,15 @@ If set to true, the KMS Customer Managed Keys (CMK) with the name in <a href="#e
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_cloudshell_deny" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, create a managed IAM policy that denies all CloudShell actions. This is a preventive control for CIS 1.22 (IAM.27). The policy is not attached to anything by default; the operator should attach it to relevant IAM entities.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="enable_encrypted_volumes" requirement="optional" type="bool">
@@ -3096,6 +3160,38 @@ The amount of reserved concurrent executions for this lambda function or -1 if u
 <HclListItemDefaultValue defaultValue="1"/>
 </HclListItem>
 
+<HclListItem name="s3_account_public_access_block" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Manages S3 account-level Public Access Block configuration. All four settings should be true for CIS v3.0.0 S3.1 compliance.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    block_public_acls       = optional(bool)
+    ignore_public_acls      = optional(bool)
+    block_public_policy     = optional(bool)
+    restrict_public_buckets = optional(bool)
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue>
+
+```hcl
+{
+  block_public_acls = true,
+  block_public_policy = true,
+  ignore_public_acls = true,
+  restrict_public_buckets = true
+}
+```
+
+</HclListItemDefaultValue>
+</HclListItem>
+
 <HclListItem name="security_hub_aggregate_region" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -3108,19 +3204,37 @@ The AWS region (e.g., us-east-1) where all the findings will be aggregated. If n
 <HclListItem name="security_hub_enable_cis_1_4_check" requirement="optional" type="bool">
 <HclListItemDescription>
 
-When true, enable the CIS benchmark v1.4 ruleset for automatic checks in SecurityHub. Set this to false if you are using Steampipe instead.
+When true, enable the CIS benchmark v1.4 ruleset for automatic checks in SecurityHub. Set this to false if you are using Steampipe instead or if you wish to disable the CIS v1.4 checks.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="security_hub_enable_cis_3_0_check" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, enable the CIS benchmark v3.0 ruleset for automatic checks in SecurityHub. Set this to false if you are using Steampipe instead or if you wish to disable the CIS v3.0 checks. Enabled by default.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="security_hub_enable_cis_5_0_check" requirement="optional" type="bool">
+<HclListItemDescription>
+
+When true, enable the CIS benchmark v5.0 ruleset for automatic checks in SecurityHub. Set this to false if you are using Steampipe instead or if you wish to disable the CIS v5.0 checks.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="security_hub_enable_cis_check" requirement="optional" type="bool">
 <HclListItemDescription>
 
-When true, enable the CIS benchmark v1.2 ruleset for automatic checks in SecurityHub. If you also want to disable the CIS benchmark v1.4 check, then <a href="#security_hub_enable_cis_1_4_check"><code>security_hub_enable_cis_1_4_check</code></a> should also be set to false. Set this to false if you are using Steampipe instead.
+When true, enable the CIS benchmark v1.2 ruleset for automatic checks in SecurityHub. Set this to false if you are using Steampipe instead or if you wish to disable the CIS v1.2 checks.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="security_hub_external_member_accounts" requirement="optional" type="map(object(…))">
@@ -3325,6 +3439,14 @@ Any types represent complex values of variable type. For details, please consult
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
+<HclListItem name="cloudshell_deny_policy_arn">
+<HclListItemDescription>
+
+The ARN of the IAM managed policy that denies CloudShell access. Only set if enable_cloudshell_deny is true.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="control_tower_execution_role_arn">
 <HclListItemDescription>
 
@@ -3478,6 +3600,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v1.4.1/modules/control-tower-security-account-baseline/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e3a0ef7eff37c75e93d4f7e438308965"
+  "hash": "20e84c93f7b40a8559ee7f3e40157148"
 }
 ##DOCS-SOURCER-END -->
