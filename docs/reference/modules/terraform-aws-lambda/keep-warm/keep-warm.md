@@ -47,6 +47,11 @@ kept around, but as of May, 2018, it seems that Lambda functions that are inacti
 Therefore, you should probably run the `keep-warm` function every 5-10 minutes, with the appropriate [concurrency
 level](#concurrency) for your functions.
 
+## Background info
+
+For more information on AWS Lambda, how it works, and how to configure your functions, check out the [lambda module
+documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/lambda).
+
 ## Sample Usage
 
 <Tabs>
@@ -344,6 +349,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/keep-warm/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "67d18b09566fe51e74e1f8b7a221ed65"
+  "hash": "aae2a26dd3c610a0516d4d24dd474313"
 }
 ##DOCS-SOURCER-END -->
