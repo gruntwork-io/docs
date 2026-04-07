@@ -36,7 +36,7 @@ to get more information:
 ## Serverless
 
 Amazon Redshift Serverless makes it convenient for you to run and scale analytics without having to provision and manage
-data warehouses. Use the `var.enable_serverless` to enable serverless and the `var.serverless_base_capacity` to set teh
+data warehouses. Use the `var.enable_serverless` to enable serverless and the `var.serverless_base_capacity` to set the
 base Redshift Processing Units (RPU) for serving queries.
 
 Refer to the [Amazon Redshift Serverless](https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-serverless.html)
@@ -1160,6 +1160,6 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e72a2825d08f0a6020888bfcae75a551"
+  "hash": "eb06bac2d1ad412de2101a3c4a0b1355"
 }
 ##DOCS-SOURCER-END -->

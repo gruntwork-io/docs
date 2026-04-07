@@ -50,7 +50,7 @@ module "backup_plan" {
   plans = {
     "tag-based-backup-plan" = {
         rule = {
-          target_vault_name = element(module.backup_vault.vault_names, 0),
+          target_vault_name = values(module.backup_vault.vault_names)[0],
           schedule = "cron(47 0/1 * * ? *)"
         }
         selection = {
@@ -77,7 +77,7 @@ module "backup_plan" {
   plans = {
     "tag-based-backup-plan" = {
         rule = {
-          target_vault_name = element(module.backup_vault.vault_names, 0),
+          target_vault_name = values(module.backup_vault.vault_names)[0],
           schedule = "cron(47 0/1 * * ? *)"
         }
         resources = [
@@ -249,6 +249,6 @@ The ARN of the IAM service role used by Backup plans
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/backup-plan/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "317a849be7b1cae8888d4a32fcf0be98"
+  "hash": "1a09833e44fbb924fdff9295959fe750"
 }
 ##DOCS-SOURCER-END -->

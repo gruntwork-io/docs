@@ -1012,21 +1012,51 @@ Timeout for DB updating
 <TabItem value="outputs" label="Outputs">
 
 <HclListItem name="read_replica_addresses">
+<HclListItemDescription>
+
+A list of hostnames of the read replica instances.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="read_replica_arns">
+<HclListItemDescription>
+
+A list of ARNs of the read replica instances.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="read_replica_endpoints">
+<HclListItemDescription>
+
+A list of connection endpoints for the read replica instances in address:port format.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="read_replica_ids">
+<HclListItemDescription>
+
+A list of identifiers of the read replica instances.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="read_replica_names">
+<HclListItemDescription>
+
+A list of identifiers (names) of the read replica instances.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="read_replica_port">
+<HclListItemDescription>
+
+The port number on which the read replicas accept connections.
+
+</HclListItemDescription>
 </HclListItem>
 
 </TabItem>
@@ -1040,6 +1070,6 @@ Timeout for DB updating
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "764e17936ff1eae956d8ccb0a0503426"
+  "hash": "e404f569086d33ce1e291d1a4647c8c2"
 }
 ##DOCS-SOURCER-END -->
