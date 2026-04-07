@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="4.3.0" lastModifiedVersion="4.3.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="4.5.0" lastModifiedVersion="4.4.0"/>
 
 # ALB Ingress Controller Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.3.0/modules/eks-alb-ingress-controller" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.5.0/modules/eks-alb-ingress-controller" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v4.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v4.4.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module installs and configures the [AWS ALB Ingress
 Controller](https://github.com/kubernetes-sigs/aws-alb-ingress-controller) on an EKS cluster, so that you can configure
@@ -110,7 +110,7 @@ correctly.
 
 You can use the `alb.ingress.kubernetes.io/subnets` annotation on `Ingress` resources to specify which subnets the controller should configure the ALB for.
 
-You can also omit the `alb.ingress.kubernetes.io/subnets` annotation, and the controller will [automatically discover subnets](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/controller/config/#subnet-auto-discovery) based on their tags. This method should work "out of the box", so long as you are using the [`eks-vpc-tags`](https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.3.0/modules/eks-vpc-tags) module to tag your VPC subnets.
+You can also omit the `alb.ingress.kubernetes.io/subnets` annotation, and the controller will [automatically discover subnets](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/controller/config/#subnet-auto-discovery) based on their tags. This method should work "out of the box", so long as you are using the [`eks-vpc-tags`](https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.5.0/modules/eks-vpc-tags) module to tag your VPC subnets.
 
 ### Security Groups
 
@@ -125,7 +125,7 @@ nodes.
 ### IAM permissions
 
 The container deployed in this module requires IAM permissions to manage ALB resources. See [the
-eks-alb-ingress-controller-iam-policy module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.3.0/modules/eks-alb-ingress-controller-iam-policy) for more information.
+eks-alb-ingress-controller-iam-policy module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.5.0/modules/eks-alb-ingress-controller-iam-policy) for more information.
 
 ## Using the Ingress Controller
 
@@ -200,7 +200,7 @@ nature of the controller in provisioning the ALBs.
 The AWS ALB Ingress Controller has first class support for
 [external-dns](https://github.com/kubernetes-incubator/external-dns), a third party tool that configures external DNS
 providers with domains to route to `Services` and `Ingresses` in Kubernetes. See our [eks-k8s-external-dns
-module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.3.0/modules/eks-k8s-external-dns) for more information on how to setup the tool.
+module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.5.0/modules/eks-k8s-external-dns) for more information on how to setup the tool.
 
 ## How do I deploy the Pods to Fargate?
 
@@ -234,7 +234,7 @@ instances under the hood, and thus the ALB can not be configured to route by ins
 
 module "eks_alb_ingress_controller" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v4.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v4.5.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -268,16 +268,41 @@ module "eks_alb_ingress_controller" {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Labels to add to each object of the chart.
+  additional_labels = {}
+
   # ARN of IAM Role to assume to create and control ALB's. This is useful if
   # your VPC is shared from another account and needs to be created somewhere
   # else.
   alb_iam_role_arn = null
 
+  # Custom AWS API endpoints (serviceID1=URL1,serviceID2=URL2).
+  aws_api_endpoints = null
+
+  # Custom AWS API throttle settings (serviceID1:operationRegex1=rate:burst).
+  aws_api_throttle = null
+
+  # Maximum retries for AWS APIs.
+  aws_max_retries = null
+
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
 
+  # Backend security group ID. If empty, controller will auto-create one.
+  backend_security_group = null
+
   # The version of the aws-load-balancer-controller helmchart to use.
   chart_version = "1.4.6"
+
+  # Configurations specific to the kubernetes cluster.
+  cluster = {"dnsDomain":"cluster.local"}
+
+  # RBAC permissions configuration for secret resources.
+  cluster_secrets_permissions = null
+
+  # Whether to configure default anti-affinity to prevent co-location on the
+  # same node. Ignored if custom affinity is set.
+  configure_default_affinity = true
 
   # A map of custom tags to apply to the Controller IAM Policies if enabled. The
   # key is the tag name and the value is the tag value.
@@ -297,6 +322,12 @@ module "eks_alb_ingress_controller" {
   # Namespace, you do not need another one.
   create_fargate_profile = false
 
+  # Whether to create the IngressClass resource.
+  create_ingress_class_resource = true
+
+  # Default SSL policy to use for TLS/HTTPS listeners.
+  default_ssl_policy = null
+
   # Tags to apply to all AWS resources managed by this module.
   default_tags = {}
 
@@ -308,6 +339,9 @@ module "eks_alb_ingress_controller" {
   # destroyed before the resources in the list.
   dependencies = []
 
+  # Annotations for the controller deployment.
+  deployment_annotations = {}
+
   # Command to run before uninstalling the AWS ALB Ingress Controller during
   # `terraform destroy`. Since the ingress controller manages AWS resources, you
   # may want to remove Ingress objects from the cluster and give the application
@@ -317,6 +351,15 @@ module "eks_alb_ingress_controller" {
   # Environment variables that will be available when
   # var.destroy_lifecycle_command runs
   destroy_lifecycle_environment = {}
+
+  # Disables the usage of kubernetes.io/ingress.class annotation.
+  disable_ingress_class_annotation = null
+
+  # Disables the usage of alb.ingress.kubernetes.io/group.name annotation.
+  disable_ingress_group_name_annotation = null
+
+  # The dnsPolicy for pods in the deployment.
+  dns_policy = null
 
   # The repository of the docker image that should be deployed.
   docker_image_repo = "602401143452.dkr.ecr.us-west-2.amazonaws.com/amazon/aws-load-balancer-controller"
@@ -333,21 +376,102 @@ module "eks_alb_ingress_controller" {
   # The key is the tag name and the value is the tag value.
   eks_fargate_profile_tags = {}
 
+  # Enable shared security group for backend traffic.
+  enable_backend_security_group = null
+
+  # Enable cert-manager for webhook TLS certificates.
+  enable_cert_manager = false
+
+  # Enable k8s EndpointSlices for IP targets instead of Endpoints.
+  enable_endpoint_slices = null
+
+  # Whether targetHealth readiness gate will get injected to the pod spec for
+  # matching endpoint pods.
+  enable_pod_readiness_gate_inject = null
+
   # Enables restricted Security Group rules for the load balancers managed by
   # the controller. When this is true, the load balancer will restrict the
   # target group security group rules to only use the ports that it needs.
   enable_restricted_sg_rules = false
 
-  # Additional container arguments for the AWS Load Balancer Controller. For
-  # example, use this to pass feature gates like
-  # --feature-gates=NLBGatewayAPI=true,ALBGatewayAPI=true.
-  extra_args = {}
+  # Enable Shield addon for ALB.
+  enable_shield = null
+
+  # Enable WAF addon for ALB.
+  enable_waf = null
+
+  # Enable WAF V2 addon for ALB.
+  enable_wafv2 = null
+
+  # Environment variables to set for the controller pod.
+  env = {}
+
+  # List of tag keys on AWS resources that will be managed externally.
+  external_managed_tags = []
+
+  # Additional volume mounts for the controller container.
+  extra_volume_mounts = []
+
+  # Additional volumes for the controller pod.
+  extra_volumes = []
+
+  # Feature gates to enable or disable on the AWS Load Balancer Controller. Each
+  # key is a feature gate name and the value is a boolean.
+  feature_gates = {}
+
+  # Override the full name of the chart.
+  full_name_override = ""
+
+  # Whether the controller should be started in hostNetwork mode.
+  host_network = false
+
+  # The image pull policy for the controller Docker image.
+  image_pull_policy = "IfNotPresent"
+
+  # List of image pull secret names for the controller Pod.
+  image_pull_secrets = []
+
+  # The ingress class this controller will satisfy.
+  ingress_class = "alb"
+
+  # Configurations specific to the ingress class.
+  ingress_class_config = null
+
+  # IngressClassParams that enforce settings for a set of Ingresses.
+  ingress_class_params = {"create":true,"name":null,"spec":{}}
+
+  # Maximum number of concurrently running reconcile loops for ingress.
+  ingress_max_concurrent_reconciles = null
+
+  # Whether to reuse existing TLS secret for chart upgrade.
+  keep_tls_secret = true
+
+  # Liveness probe configuration for the controller.
+  liveness_probe = {"failureThreshold":2,"httpGet":{"path":"/healthz","port":61779,"scheme":"HTTP"},"initialDelaySeconds":30,"timeoutSeconds":10}
+
+  # Set the controller log level (info, debug).
+  log_level = null
+
+  # The address the metric endpoint binds to.
+  metrics_bind_addr = ""
+
+  # Override the name of the chart.
+  name_override = ""
 
   # Which Kubernetes Namespace to deploy the chart into.
   namespace = "kube-system"
 
+  # Node selector for the controller Pod.
+  node_selector = {}
+
+  # Object selector for webhook.
+  object_selector = null
+
   # Annotations to apply to the Pod that is deployed, as key value pairs.
   pod_annotations = {}
+
+  # Pod disruption budget configuration for the controller pods.
+  pod_disruption_budget = {}
 
   # ARN of IAM Role to use as the Pod execution role for Fargate. Set to null
   # (default) to create a new one. Only used when var.create_fargate_profile is
@@ -366,15 +490,76 @@ module "eks_alb_ingress_controller" {
   # Number of replicas of the ingress controller Pod to deploy.
   pod_replica_count = 1
 
+  # Security context for the controller Pod.
+  pod_security_context = {"fsGroup":65534}
+
   # Configure tolerations rules to allow the Pod to schedule on nodes that have
   # been tainted. Each item in the list specifies a toleration rule.
   pod_tolerations = []
+
+  # PriorityClass to indicate the importance of controller pods.
+  priority_class_name = "system-cluster-critical"
+
+  # CPU and memory resource requests and limits for the controller Pod.
+  resources = {}
+
+  # Security context for the controller container.
+  security_context = {"allowPrivilegeEscalation":false,"readOnlyRootFilesystem":true,"runAsNonRoot":true}
+
+  # Automount API credentials for the service account.
+  service_account_automount_service_account_token = true
+
+  # List of image pull secrets to add to the service account.
+  service_account_image_pull_secrets = []
+
+  # Annotations to add to the webhook service resource.
+  service_annotations = {}
+
+  # Maximum number of concurrently running reconcile loops for service.
+  service_max_concurrent_reconciles = null
+
+  # ServiceMonitor configuration for Prometheus.
+  service_monitor = null
+
+  # Period at which the controller forces the repopulation of its local object
+  # stores.
+  sync_period = null
+
+  # Maximum number of concurrently running reconcile loops for
+  # targetGroupBinding.
+  targetgroup_binding_max_concurrent_reconciles = null
+
+  # Maximum duration of exponential backoff for targetGroupBinding reconcile
+  # failures.
+  targetgroup_binding_max_exponential_backoff_delay = null
+
+  # Time period for the controller pod to do a graceful shutdown.
+  termination_grace_period_seconds = 10
+
+  # Topology spread constraints for the controller Pod.
+  topology_spread_constraints = {}
+
+  # Update strategy for the controller deployment.
+  update_strategy = {}
 
   # A list of the subnets into which the EKS Cluster's administrative pods will
   # be launched. These should usually be all private subnets and include one in
   # each AWS Availability Zone. Required when var.create_fargate_profile is
   # true.
   vpc_worker_subnet_ids = []
+
+  # Namespace the controller watches for updates to Kubernetes objects. If
+  # empty, all namespaces are watched.
+  watch_namespace = null
+
+  # The TCP port the Webhook server binds to.
+  webhook_bind_port = null
+
+  # Array of namespace selectors for the webhook.
+  webhook_namespace_selectors = null
+
+  # TLS cert/key for the webhook.
+  webhook_tls = null
 
 }
 
@@ -391,7 +576,7 @@ module "eks_alb_ingress_controller" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v4.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-alb-ingress-controller?ref=v4.5.0"
 }
 
 inputs = {
@@ -428,16 +613,41 @@ inputs = {
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
+  # Labels to add to each object of the chart.
+  additional_labels = {}
+
   # ARN of IAM Role to assume to create and control ALB's. This is useful if
   # your VPC is shared from another account and needs to be created somewhere
   # else.
   alb_iam_role_arn = null
 
+  # Custom AWS API endpoints (serviceID1=URL1,serviceID2=URL2).
+  aws_api_endpoints = null
+
+  # Custom AWS API throttle settings (serviceID1:operationRegex1=rate:burst).
+  aws_api_throttle = null
+
+  # Maximum retries for AWS APIs.
+  aws_max_retries = null
+
   # The AWS partition used for default AWS Resources.
   aws_partition = "aws"
 
+  # Backend security group ID. If empty, controller will auto-create one.
+  backend_security_group = null
+
   # The version of the aws-load-balancer-controller helmchart to use.
   chart_version = "1.4.6"
+
+  # Configurations specific to the kubernetes cluster.
+  cluster = {"dnsDomain":"cluster.local"}
+
+  # RBAC permissions configuration for secret resources.
+  cluster_secrets_permissions = null
+
+  # Whether to configure default anti-affinity to prevent co-location on the
+  # same node. Ignored if custom affinity is set.
+  configure_default_affinity = true
 
   # A map of custom tags to apply to the Controller IAM Policies if enabled. The
   # key is the tag name and the value is the tag value.
@@ -457,6 +667,12 @@ inputs = {
   # Namespace, you do not need another one.
   create_fargate_profile = false
 
+  # Whether to create the IngressClass resource.
+  create_ingress_class_resource = true
+
+  # Default SSL policy to use for TLS/HTTPS listeners.
+  default_ssl_policy = null
+
   # Tags to apply to all AWS resources managed by this module.
   default_tags = {}
 
@@ -468,6 +684,9 @@ inputs = {
   # destroyed before the resources in the list.
   dependencies = []
 
+  # Annotations for the controller deployment.
+  deployment_annotations = {}
+
   # Command to run before uninstalling the AWS ALB Ingress Controller during
   # `terraform destroy`. Since the ingress controller manages AWS resources, you
   # may want to remove Ingress objects from the cluster and give the application
@@ -477,6 +696,15 @@ inputs = {
   # Environment variables that will be available when
   # var.destroy_lifecycle_command runs
   destroy_lifecycle_environment = {}
+
+  # Disables the usage of kubernetes.io/ingress.class annotation.
+  disable_ingress_class_annotation = null
+
+  # Disables the usage of alb.ingress.kubernetes.io/group.name annotation.
+  disable_ingress_group_name_annotation = null
+
+  # The dnsPolicy for pods in the deployment.
+  dns_policy = null
 
   # The repository of the docker image that should be deployed.
   docker_image_repo = "602401143452.dkr.ecr.us-west-2.amazonaws.com/amazon/aws-load-balancer-controller"
@@ -493,21 +721,102 @@ inputs = {
   # The key is the tag name and the value is the tag value.
   eks_fargate_profile_tags = {}
 
+  # Enable shared security group for backend traffic.
+  enable_backend_security_group = null
+
+  # Enable cert-manager for webhook TLS certificates.
+  enable_cert_manager = false
+
+  # Enable k8s EndpointSlices for IP targets instead of Endpoints.
+  enable_endpoint_slices = null
+
+  # Whether targetHealth readiness gate will get injected to the pod spec for
+  # matching endpoint pods.
+  enable_pod_readiness_gate_inject = null
+
   # Enables restricted Security Group rules for the load balancers managed by
   # the controller. When this is true, the load balancer will restrict the
   # target group security group rules to only use the ports that it needs.
   enable_restricted_sg_rules = false
 
-  # Additional container arguments for the AWS Load Balancer Controller. For
-  # example, use this to pass feature gates like
-  # --feature-gates=NLBGatewayAPI=true,ALBGatewayAPI=true.
-  extra_args = {}
+  # Enable Shield addon for ALB.
+  enable_shield = null
+
+  # Enable WAF addon for ALB.
+  enable_waf = null
+
+  # Enable WAF V2 addon for ALB.
+  enable_wafv2 = null
+
+  # Environment variables to set for the controller pod.
+  env = {}
+
+  # List of tag keys on AWS resources that will be managed externally.
+  external_managed_tags = []
+
+  # Additional volume mounts for the controller container.
+  extra_volume_mounts = []
+
+  # Additional volumes for the controller pod.
+  extra_volumes = []
+
+  # Feature gates to enable or disable on the AWS Load Balancer Controller. Each
+  # key is a feature gate name and the value is a boolean.
+  feature_gates = {}
+
+  # Override the full name of the chart.
+  full_name_override = ""
+
+  # Whether the controller should be started in hostNetwork mode.
+  host_network = false
+
+  # The image pull policy for the controller Docker image.
+  image_pull_policy = "IfNotPresent"
+
+  # List of image pull secret names for the controller Pod.
+  image_pull_secrets = []
+
+  # The ingress class this controller will satisfy.
+  ingress_class = "alb"
+
+  # Configurations specific to the ingress class.
+  ingress_class_config = null
+
+  # IngressClassParams that enforce settings for a set of Ingresses.
+  ingress_class_params = {"create":true,"name":null,"spec":{}}
+
+  # Maximum number of concurrently running reconcile loops for ingress.
+  ingress_max_concurrent_reconciles = null
+
+  # Whether to reuse existing TLS secret for chart upgrade.
+  keep_tls_secret = true
+
+  # Liveness probe configuration for the controller.
+  liveness_probe = {"failureThreshold":2,"httpGet":{"path":"/healthz","port":61779,"scheme":"HTTP"},"initialDelaySeconds":30,"timeoutSeconds":10}
+
+  # Set the controller log level (info, debug).
+  log_level = null
+
+  # The address the metric endpoint binds to.
+  metrics_bind_addr = ""
+
+  # Override the name of the chart.
+  name_override = ""
 
   # Which Kubernetes Namespace to deploy the chart into.
   namespace = "kube-system"
 
+  # Node selector for the controller Pod.
+  node_selector = {}
+
+  # Object selector for webhook.
+  object_selector = null
+
   # Annotations to apply to the Pod that is deployed, as key value pairs.
   pod_annotations = {}
+
+  # Pod disruption budget configuration for the controller pods.
+  pod_disruption_budget = {}
 
   # ARN of IAM Role to use as the Pod execution role for Fargate. Set to null
   # (default) to create a new one. Only used when var.create_fargate_profile is
@@ -526,15 +835,76 @@ inputs = {
   # Number of replicas of the ingress controller Pod to deploy.
   pod_replica_count = 1
 
+  # Security context for the controller Pod.
+  pod_security_context = {"fsGroup":65534}
+
   # Configure tolerations rules to allow the Pod to schedule on nodes that have
   # been tainted. Each item in the list specifies a toleration rule.
   pod_tolerations = []
+
+  # PriorityClass to indicate the importance of controller pods.
+  priority_class_name = "system-cluster-critical"
+
+  # CPU and memory resource requests and limits for the controller Pod.
+  resources = {}
+
+  # Security context for the controller container.
+  security_context = {"allowPrivilegeEscalation":false,"readOnlyRootFilesystem":true,"runAsNonRoot":true}
+
+  # Automount API credentials for the service account.
+  service_account_automount_service_account_token = true
+
+  # List of image pull secrets to add to the service account.
+  service_account_image_pull_secrets = []
+
+  # Annotations to add to the webhook service resource.
+  service_annotations = {}
+
+  # Maximum number of concurrently running reconcile loops for service.
+  service_max_concurrent_reconciles = null
+
+  # ServiceMonitor configuration for Prometheus.
+  service_monitor = null
+
+  # Period at which the controller forces the repopulation of its local object
+  # stores.
+  sync_period = null
+
+  # Maximum number of concurrently running reconcile loops for
+  # targetGroupBinding.
+  targetgroup_binding_max_concurrent_reconciles = null
+
+  # Maximum duration of exponential backoff for targetGroupBinding reconcile
+  # failures.
+  targetgroup_binding_max_exponential_backoff_delay = null
+
+  # Time period for the controller pod to do a graceful shutdown.
+  termination_grace_period_seconds = 10
+
+  # Topology spread constraints for the controller Pod.
+  topology_spread_constraints = {}
+
+  # Update strategy for the controller deployment.
+  update_strategy = {}
 
   # A list of the subnets into which the EKS Cluster's administrative pods will
   # be launched. These should usually be all private subnets and include one in
   # each AWS Availability Zone. Required when var.create_fargate_profile is
   # true.
   vpc_worker_subnet_ids = []
+
+  # Namespace the controller watches for updates to Kubernetes objects. If
+  # empty, all namespaces are watched.
+  watch_namespace = null
+
+  # The TCP port the Webhook server binds to.
+  webhook_bind_port = null
+
+  # Array of namespace selectors for the webhook.
+  webhook_namespace_selectors = null
+
+  # TLS cert/key for the webhook.
+  webhook_tls = null
 
 }
 
@@ -547,11 +917,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.3.0/modules/eks-alb-ingress-controller/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.3.0/modules/eks-alb-ingress-controller/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.3.0/modules/eks-alb-ingress-controller/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.5.0/modules/eks-alb-ingress-controller/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.5.0/modules/eks-alb-ingress-controller/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.5.0/modules/eks-alb-ingress-controller/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "56fccb7fd59a4797aaed457e1a5cafdc"
+  "hash": "196b1faf0408198d4b9b2299fd8a123a"
 }
 ##DOCS-SOURCER-END -->
