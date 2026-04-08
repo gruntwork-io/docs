@@ -39,7 +39,8 @@ Add the Gruntwork MCP server to your Claude Code configuration. Run the followin
 ```bash
 claude mcp add gruntwork \
   --transport sse \
-  https://mcp.gruntwork.io/sse?key=YOUR_API_KEY
+  --header "Authorization: Bearer YOUR_API_KEY" \
+  https://mcp.gruntwork.io/api/mcp
 ```
 
 Replace `YOUR_API_KEY` with the key you copied in Step 1.
@@ -61,7 +62,10 @@ You should see `gruntwork` listed with a status of `connected`.
 {
   "mcpServers": {
     "gruntwork": {
-      "url": "https://mcp.gruntwork.io/sse?key=YOUR_API_KEY"
+      "url": "https://mcp.gruntwork.io/api/mcp",
+      "headers": {
+        "Authorization": "Bearer YOUR_API_KEY"
+      }
     }
   }
 }
@@ -80,7 +84,10 @@ You should see `gruntwork` listed with a status of `connected`.
 {
   "mcpServers": {
     "gruntwork": {
-      "url": "https://mcp.gruntwork.io/sse?key=YOUR_API_KEY"
+      "url": "https://mcp.gruntwork.io/api/mcp",
+      "headers": {
+        "Authorization": "Bearer YOUR_API_KEY"
+      }
     }
   }
 }
@@ -150,7 +157,7 @@ access.
 ### MCP server not connecting
 
 - Ensure your tool is configured with the correct server URL.
-- Check that your network allows outbound HTTPS connections to `mcp.gruntwork.io`.
+- Check that your network allows outbound HTTPS connections to `mcp.gruntwork.io/api/mcp`.
 - Restart your AI tool after making configuration changes.
 - Run `claude mcp list` (Claude Code) to verify server status.
 
