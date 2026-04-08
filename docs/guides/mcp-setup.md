@@ -105,7 +105,7 @@ Your AI assistant will automatically use these capabilities when relevant to you
 
 ### Viewing Keys
 
-Go to **Settings** > **MCP API Keys** in the Developer Portal. You can see all active keys for your account, including
+Go to [settings](https://app.gruntwork.io/settings/profile#mcp-api-keys) in the Developer Portal. You can see all active keys for your account, including
 when they were last used.
 
 ### Revoking a Key
