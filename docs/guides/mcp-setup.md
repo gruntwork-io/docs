@@ -43,6 +43,7 @@ Add the Gruntwork MCP server to your Claude Code configuration. Run the followin
 
 ```bash
 claude mcp add gruntwork \
+  --transport http
   --header "Authorization: Bearer YOUR_API_KEY" \
   https://mcp.gruntwork.io/api/mcp
 ```
