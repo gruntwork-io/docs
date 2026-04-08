@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.4.0" lastModifiedVersion="1.4.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.5.0" lastModifiedVersion="1.4.0"/>
 
 # Account Alternate Contact
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/account-alternate-contact" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/account-alternate-contact" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.4.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -41,11 +41,11 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -53,7 +53,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this module out, check out the following resources:
 
-*   [examples/account-alternate-contact](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/examples/account-alternate-contact): A sample configuration optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/account-alternate-contact](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/examples/account-alternate-contact): A sample configuration optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -74,7 +74,7 @@ If you want to deploy this module in production, check out the following resourc
 
 module "account_alternate_contact" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/account-alternate-contact?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/account-alternate-contact?ref=v1.5.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -121,7 +121,7 @@ module "account_alternate_contact" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/account-alternate-contact?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/account-alternate-contact?ref=v1.5.0"
 }
 
 inputs = {
@@ -243,11 +243,11 @@ The type of the alternate contact.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/account-alternate-contact/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/account-alternate-contact/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.4.0/modules/account-alternate-contact/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/account-alternate-contact/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/account-alternate-contact/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/account-alternate-contact/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1711fb6d7767f22ef1dd7f8d5664ef3b"
+  "hash": "c67cb7e1e8dc1b18e79dbc2993e4c241"
 }
 ##DOCS-SOURCER-END -->
