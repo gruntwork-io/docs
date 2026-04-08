@@ -172,6 +172,26 @@ request access.
 The MCP server allows up to **60 requests per minute** per API key. If you hit this limit, wait briefly before
 continuing. For most interactive workflows this limit will not be reached.
 
+## Example: Confirming It's Working
+
+Once you've completed setup, try the following prompt in your AI assistant to confirm the MCP server is connected and
+returning results:
+
+> "Using the Gruntwork MCP server, look up the `terraform-aws-vpc` module and tell me what variables it requires."
+
+If everything is working correctly, you should see a response that:
+
+1. **References the Gruntwork IaC Library** — The assistant should mention specific Gruntwork modules rather than
+   generating generic Terraform code from its training data.
+2. **Lists actual module variables** — You should see real variable names, types, and descriptions pulled from the
+   module's source code (e.g., `vpc_name`, `cidr_block`, `num_nat_gateways`).
+3. **Includes usage context** — The response may include example `terragrunt.hcl` or `module` blocks showing how to
+   call the module with the required variables populated.
+
+If instead the assistant responds with generic Terraform VPC code that doesn't reference Gruntwork modules, the MCP
+server is likely not connected. Go back to [Step 2](#step-2-configure-your-ai-tool) and verify your configuration, then
+check the [Troubleshooting](#troubleshooting) section.
+
 
 <!-- ##DOCS-SOURCER-START
 {
