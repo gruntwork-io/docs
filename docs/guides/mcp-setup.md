@@ -1,8 +1,12 @@
 # Setting Up the Gruntwork MCP Server
 
-The Gruntwork MCP (Model Context Protocol) server lets you connect AI coding assistants — such as Claude Code,
-Claude Desktop, and Cursor — directly to the Gruntwork IaC Library. With it, your AI assistant can search for modules,
-read documentation, and help you write infrastructure code using Gruntwork's battle-tested library.
+AI coding assistants are powerful, but without the right context they often generate infrastructure code that is
+brittle, insecure, or misses operational best practices. The Gruntwork MCP server solves this by connecting your
+AI assistant — Claude Code, Claude Desktop, Cursor, and others — directly to the Gruntwork IaC Library.
+
+With this connection, your AI assistant generates higher quality infrastructure-as-code grounded in battle-tested,
+production-hardened modules and patterns rather than guessing from its training data. The result is IaC that follows
+proven conventions, handles edge cases, and is ready for real-world deployment from the start.
 
 ## Prerequisites
 
