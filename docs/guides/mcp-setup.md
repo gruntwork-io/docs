@@ -13,7 +13,6 @@ proven conventions, handles edge cases, and is ready for real-world deployment f
 - A Gruntwork account with MCP API access enabled
 - One of the following MCP-compatible AI tools installed:
   - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI)
-  - [Claude Desktop](https://claude.ai/download)
   - [Cursor](https://www.cursor.com/)
 
 :::tip
@@ -57,27 +56,6 @@ claude mcp list
 ```
 
 You should see `gruntwork` listed with a status of `connected`.
-
-### Claude Desktop
-
-1. Open Claude Desktop and go to **Settings** > **Developer** > **Edit Config**.
-2. Add the following to your `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "gruntwork": {
-      "url": "https://mcp.gruntwork.io/api/mcp",
-      "headers": {
-        "Authorization": "Bearer YOUR_API_KEY"
-      }
-    }
-  }
-}
-```
-
-3. Replace `YOUR_API_KEY` with the key you copied in Step 1.
-4. Restart Claude Desktop.
 
 ### Cursor
 
