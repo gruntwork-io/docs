@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.28.11" lastModifiedVersion="0.28.9"/>
+<VersionBadge repoTitle="VPC Modules" version="0.28.12" lastModifiedVersion="0.28.12"/>
 
 # vpc-peering-cross-accounts-requester
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-peering-cross-accounts-requester" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.12/modules/vpc-peering-cross-accounts-requester" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.12" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module manages the requester's side of the VPC Peering Connection between two differents accounts that you control.
 
@@ -73,7 +73,7 @@ No modules.
 
 module "vpc_peering_cross_accounts_requester" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-requester?ref=v0.28.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-requester?ref=v0.28.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -84,9 +84,6 @@ module "vpc_peering_cross_accounts_requester" {
 
   # The region of the accepter VPC.
   accepter_region = <string>
-
-  # The VPC CIDR of the accepter VPC.
-  accepter_vpc_cidr = <string>
 
   # The ID of the accepter VPC.
   accepter_vpc_id = <string>
@@ -100,6 +97,15 @@ module "vpc_peering_cross_accounts_requester" {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # DEPRECATED: Use accepter_vpc_cidrs instead. The VPC CIDR of the accepter
+  # VPC.
+  accepter_vpc_cidr = null
+
+  # A list of CIDR blocks of the accepter VPC. When the accepter VPC has
+  # multiple CIDR blocks, all of them should be listed here so that routes are
+  # created for each. If not set, falls back to accepter_vpc_cidr.
+  accepter_vpc_cidrs = []
 
   # Allow a local VPC to resolve public DNS hostnames to private IP addresses
   # when queried from instances in the peer VPC.
@@ -131,7 +137,7 @@ module "vpc_peering_cross_accounts_requester" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-requester?ref=v0.28.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-cross-accounts-requester?ref=v0.28.12"
 }
 
 inputs = {
@@ -146,9 +152,6 @@ inputs = {
   # The region of the accepter VPC.
   accepter_region = <string>
 
-  # The VPC CIDR of the accepter VPC.
-  accepter_vpc_cidr = <string>
-
   # The ID of the accepter VPC.
   accepter_vpc_id = <string>
 
@@ -161,6 +164,15 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # DEPRECATED: Use accepter_vpc_cidrs instead. The VPC CIDR of the accepter
+  # VPC.
+  accepter_vpc_cidr = null
+
+  # A list of CIDR blocks of the accepter VPC. When the accepter VPC has
+  # multiple CIDR blocks, all of them should be listed here so that routes are
+  # created for each. If not set, falls back to accepter_vpc_cidr.
+  accepter_vpc_cidrs = []
 
   # Allow a local VPC to resolve public DNS hostnames to private IP addresses
   # when queried from instances in the peer VPC.
@@ -211,14 +223,6 @@ The region of the accepter VPC.
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="accepter_vpc_cidr" requirement="required" type="string">
-<HclListItemDescription>
-
-The VPC CIDR of the accepter VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="accepter_vpc_id" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -244,6 +248,24 @@ The VPC ID.
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="accepter_vpc_cidr" requirement="optional" type="string">
+<HclListItemDescription>
+
+DEPRECATED: Use accepter_vpc_cidrs instead. The VPC CIDR of the accepter VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="accepter_vpc_cidrs" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of CIDR blocks of the accepter VPC. When the accepter VPC has multiple CIDR blocks, all of them should be listed here so that routes are created for each. If not set, falls back to accepter_vpc_cidr.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
 
 <HclListItem name="allow_remote_vpc_dns_resolution" requirement="optional" type="bool">
 <HclListItemDescription>
@@ -298,11 +320,11 @@ Peering connection ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-peering-cross-accounts-requester/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-peering-cross-accounts-requester/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-peering-cross-accounts-requester/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.12/modules/vpc-peering-cross-accounts-requester/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.12/modules/vpc-peering-cross-accounts-requester/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.12/modules/vpc-peering-cross-accounts-requester/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5d7184210e4a0a7f44ec48d49ccf1fda"
+  "hash": "7d2cc351f96c1a142c69eed30f624638"
 }
 ##DOCS-SOURCER-END -->

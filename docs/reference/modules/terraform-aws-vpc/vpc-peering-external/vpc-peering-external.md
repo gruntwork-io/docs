@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.28.11" lastModifiedVersion="0.28.9"/>
+<VersionBadge repoTitle="VPC Modules" version="0.28.12" lastModifiedVersion="0.28.12"/>
 
 # VPC Peering For External VPCs Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-peering-external" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.12/modules/vpc-peering-external" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.12" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates route table entries for a [VPC Peering
 Connection](http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/Welcome.html) between one of your internal VPCs (e.g.
@@ -87,7 +87,7 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 module "vpc_peering_external" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-external?ref=v0.28.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-external?ref=v0.28.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -109,9 +109,6 @@ module "vpc_peering_external" {
   # don't add rules to those ACLs with numbers that conflict with existing
   # rules.
   egress_starting_rule_number = <number>
-
-  # The IP address range of the external VPC in CIDR notation (e.g. 10.0.2.0/16)
-  external_vpc_cidr_block = <string>
 
   # The starting rule number for adding the global DENY ingress rules to the
   # Network ACLs in var.all_network_acl_ids. This should be a high number
@@ -135,23 +132,6 @@ module "vpc_peering_external" {
   # ACLs for you, as each subnet can only be associated with one Network ACL and
   # there is no way to know in Terraform if yours already has one.
   network_acl_ids_with_external_vpc_access = <list(string)>
-
-  # The number of IDs in var.all_network_acl_ids. We should be able to compute
-  # this automatically, but due to a Terraform limitation, we can't:
-  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_all_network_acl_ids = <number>
-
-  # The number of route table IDs in var.internal_vpc_route_table_ids. We should
-  # be able to compute this automatically, but due to a Terraform limitation, we
-  # can't:
-  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_internal_vpc_route_tables = <INPUT REQUIRED>
-
-  # The number of IDs in var.network_acl_ids_with_external_vpc_access. We should
-  # be able to compute this automatically, but due to a Terraform limitation, we
-  # can't:
-  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_network_acl_ids_with_external_vpc_access = <number>
 
   # Allow communication between the internal and external VPC on ports between
   # var.outbound_from_port and var.outbound_to_port.
@@ -187,6 +167,27 @@ module "vpc_peering_external" {
   # and var.ephemeral_to_port, inclusive, from var.external_vpc_cidr_block
   ephemeral_to_port = 65535
 
+  # DEPRECATED: Use external_vpc_cidr_blocks instead. The IP address range of
+  # the external VPC in CIDR notation.
+  external_vpc_cidr_block = null
+
+  # A list of IP address ranges of the external VPC in CIDR notation. When the
+  # external VPC has multiple CIDR blocks, all of them should be listed here. If
+  # not set, falls back to external_vpc_cidr_block.
+  external_vpc_cidr_blocks = []
+
+  # DEPRECATED: No longer needed as the count is computed automatically. Kept
+  # for backwards compatibility.
+  num_all_network_acl_ids = null
+
+  # DEPRECATED: No longer needed as the count is computed automatically. Kept
+  # for backwards compatibility.
+  num_internal_vpc_route_tables = null
+
+  # DEPRECATED: No longer needed as the count is computed automatically. Kept
+  # for backwards compatibility.
+  num_network_acl_ids_with_external_vpc_access = null
+
 }
 
 
@@ -202,7 +203,7 @@ module "vpc_peering_external" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-external?ref=v0.28.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering-external?ref=v0.28.12"
 }
 
 inputs = {
@@ -228,9 +229,6 @@ inputs = {
   # rules.
   egress_starting_rule_number = <number>
 
-  # The IP address range of the external VPC in CIDR notation (e.g. 10.0.2.0/16)
-  external_vpc_cidr_block = <string>
-
   # The starting rule number for adding the global DENY ingress rules to the
   # Network ACLs in var.all_network_acl_ids. This should be a high number
   # (always higher than var.ingress_starting_rule_number) to ensure rules that
@@ -253,23 +251,6 @@ inputs = {
   # ACLs for you, as each subnet can only be associated with one Network ACL and
   # there is no way to know in Terraform if yours already has one.
   network_acl_ids_with_external_vpc_access = <list(string)>
-
-  # The number of IDs in var.all_network_acl_ids. We should be able to compute
-  # this automatically, but due to a Terraform limitation, we can't:
-  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_all_network_acl_ids = <number>
-
-  # The number of route table IDs in var.internal_vpc_route_table_ids. We should
-  # be able to compute this automatically, but due to a Terraform limitation, we
-  # can't:
-  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_internal_vpc_route_tables = <INPUT REQUIRED>
-
-  # The number of IDs in var.network_acl_ids_with_external_vpc_access. We should
-  # be able to compute this automatically, but due to a Terraform limitation, we
-  # can't:
-  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_network_acl_ids_with_external_vpc_access = <number>
 
   # Allow communication between the internal and external VPC on ports between
   # var.outbound_from_port and var.outbound_to_port.
@@ -305,6 +286,27 @@ inputs = {
   # and var.ephemeral_to_port, inclusive, from var.external_vpc_cidr_block
   ephemeral_to_port = 65535
 
+  # DEPRECATED: Use external_vpc_cidr_blocks instead. The IP address range of
+  # the external VPC in CIDR notation.
+  external_vpc_cidr_block = null
+
+  # A list of IP address ranges of the external VPC in CIDR notation. When the
+  # external VPC has multiple CIDR blocks, all of them should be listed here. If
+  # not set, falls back to external_vpc_cidr_block.
+  external_vpc_cidr_blocks = []
+
+  # DEPRECATED: No longer needed as the count is computed automatically. Kept
+  # for backwards compatibility.
+  num_all_network_acl_ids = null
+
+  # DEPRECATED: No longer needed as the count is computed automatically. Kept
+  # for backwards compatibility.
+  num_internal_vpc_route_tables = null
+
+  # DEPRECATED: No longer needed as the count is computed automatically. Kept
+  # for backwards compatibility.
+  num_network_acl_ids_with_external_vpc_access = null
+
 }
 
 
@@ -316,11 +318,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-peering-external/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-peering-external/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-peering-external/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.12/modules/vpc-peering-external/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.12/modules/vpc-peering-external/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.12/modules/vpc-peering-external/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6a7fe1febe2b90b3db83887b4e9bd6b9"
+  "hash": "964744052cab32df2076d1132927c489"
 }
 ##DOCS-SOURCER-END -->

@@ -9,19 +9,19 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.28.11" lastModifiedVersion="0.28.9"/>
+<VersionBadge repoTitle="VPC Modules" version="0.28.12" lastModifiedVersion="0.28.12"/>
 
 # VPC-Peering Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-peering" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.12/modules/vpc-peering" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.12" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates [VPC Peering
 Connections](http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide/Welcome.html) between VPCs. Normally, VPCs are
 completely isolated from each other, but sometimes, you want to allow traffic to flow between them, such as allowing
-DevOps tools running in a Mgmt VPC (see [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-mgmt)) to talk to apps running in a Stage or Prod VPC (see
-[vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-app)). This module can create peering connections and route table entries that make this sort of
+DevOps tools running in a Mgmt VPC (see [vpc-mgmt](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.12/modules/vpc-mgmt)) to talk to apps running in a Stage or Prod VPC (see
+[vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.12/modules/vpc-app)). This module can create peering connections and route table entries that make this sort of
 cross-VPC communication possible.
 
 ## What's a VPC?
@@ -57,7 +57,7 @@ and production, someone in staging *cannot* access production.
 
 module "vpc_peering" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.28.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.28.12"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -65,9 +65,6 @@ module "vpc_peering" {
 
   # The ID of the AWS account that should own the peering connection.
   aws_account_id = <string>
-
-  # The CIDR block (e.g. 10.0.200.0/24) associated with the destination VPC.
-  destination_vpc_cidr_block = <string>
 
   # The ID of the VPC which is the destination of the VPC peering connection.
   destination_vpc_id = <string>
@@ -78,20 +75,6 @@ module "vpc_peering" {
   # A list of IDs of route tables in the destination VPC that should have routes
   # added pointing to origin VPC.
   destination_vpc_route_table_ids = <list(string)>
-
-  # The number of route table ids in var.destination_vpc_route_table_ids. This
-  # should be computable, but due to a but due to a Terraform limitation, we
-  # can't:
-  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_destination_vpc_route_tables = <number>
-
-  # The number of route table ids in var.origin_vpc_route_table_ids. This should
-  # be computable, but due to a but due to a Terraform limitation, we can't:
-  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_origin_vpc_route_tables = <number>
-
-  # The CIDR block (e.g. 10.0.100.0/24) associated with the origin VPC.
-  origin_vpc_cidr_block = <string>
 
   # The ID of the VPC which is the origin of the VPC peering connection.
   origin_vpc_id = <string>
@@ -125,6 +108,32 @@ module "vpc_peering" {
   # automatically added by this module but may be optionally overwritten by this
   # variable.
   custom_tags = {}
+
+  # DEPRECATED: Use destination_vpc_cidr_blocks instead. The CIDR block
+  # associated with the destination VPC.
+  destination_vpc_cidr_block = null
+
+  # A list of CIDR blocks associated with the destination VPC. When a VPC has
+  # multiple CIDR blocks, all of them should be listed here so that routes are
+  # created for each. If not set, falls back to destination_vpc_cidr_block.
+  destination_vpc_cidr_blocks = []
+
+  # DEPRECATED: No longer needed as the count is computed automatically. Kept
+  # for backwards compatibility.
+  num_destination_vpc_route_tables = null
+
+  # DEPRECATED: No longer needed as the count is computed automatically. Kept
+  # for backwards compatibility.
+  num_origin_vpc_route_tables = null
+
+  # DEPRECATED: Use origin_vpc_cidr_blocks instead. The CIDR block associated
+  # with the origin VPC.
+  origin_vpc_cidr_block = null
+
+  # A list of CIDR blocks associated with the origin VPC. When a VPC has
+  # multiple CIDR blocks, all of them should be listed here so that routes are
+  # created for each. If not set, falls back to origin_vpc_cidr_block.
+  origin_vpc_cidr_blocks = []
 
 }
 
@@ -141,7 +150,7 @@ module "vpc_peering" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.28.11"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-peering?ref=v0.28.12"
 }
 
 inputs = {
@@ -153,9 +162,6 @@ inputs = {
   # The ID of the AWS account that should own the peering connection.
   aws_account_id = <string>
 
-  # The CIDR block (e.g. 10.0.200.0/24) associated with the destination VPC.
-  destination_vpc_cidr_block = <string>
-
   # The ID of the VPC which is the destination of the VPC peering connection.
   destination_vpc_id = <string>
 
@@ -165,20 +171,6 @@ inputs = {
   # A list of IDs of route tables in the destination VPC that should have routes
   # added pointing to origin VPC.
   destination_vpc_route_table_ids = <list(string)>
-
-  # The number of route table ids in var.destination_vpc_route_table_ids. This
-  # should be computable, but due to a but due to a Terraform limitation, we
-  # can't:
-  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_destination_vpc_route_tables = <number>
-
-  # The number of route table ids in var.origin_vpc_route_table_ids. This should
-  # be computable, but due to a but due to a Terraform limitation, we can't:
-  # https://github.com/hashicorp/terraform/issues/14677#issuecomment-302772685
-  num_origin_vpc_route_tables = <number>
-
-  # The CIDR block (e.g. 10.0.100.0/24) associated with the origin VPC.
-  origin_vpc_cidr_block = <string>
 
   # The ID of the VPC which is the origin of the VPC peering connection.
   origin_vpc_id = <string>
@@ -213,6 +205,32 @@ inputs = {
   # variable.
   custom_tags = {}
 
+  # DEPRECATED: Use destination_vpc_cidr_blocks instead. The CIDR block
+  # associated with the destination VPC.
+  destination_vpc_cidr_block = null
+
+  # A list of CIDR blocks associated with the destination VPC. When a VPC has
+  # multiple CIDR blocks, all of them should be listed here so that routes are
+  # created for each. If not set, falls back to destination_vpc_cidr_block.
+  destination_vpc_cidr_blocks = []
+
+  # DEPRECATED: No longer needed as the count is computed automatically. Kept
+  # for backwards compatibility.
+  num_destination_vpc_route_tables = null
+
+  # DEPRECATED: No longer needed as the count is computed automatically. Kept
+  # for backwards compatibility.
+  num_origin_vpc_route_tables = null
+
+  # DEPRECATED: Use origin_vpc_cidr_blocks instead. The CIDR block associated
+  # with the origin VPC.
+  origin_vpc_cidr_block = null
+
+  # A list of CIDR blocks associated with the origin VPC. When a VPC has
+  # multiple CIDR blocks, all of them should be listed here so that routes are
+  # created for each. If not set, falls back to origin_vpc_cidr_block.
+  origin_vpc_cidr_blocks = []
+
 }
 
 
@@ -221,14 +239,186 @@ inputs = {
 </TabItem>
 </Tabs>
 
+
+
+
+## Reference
+
+<Tabs>
+<TabItem value="inputs" label="Inputs" default>
+
+### Required
+
+<HclListItem name="aws_account_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the AWS account that should own the peering connection.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="destination_vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the VPC which is the destination of the VPC peering connection.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="destination_vpc_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the VPC which is the destination of the VPC peering connection.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="destination_vpc_route_table_ids" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+A list of IDs of route tables in the destination VPC that should have routes added pointing to origin VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="origin_vpc_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The ID of the VPC which is the origin of the VPC peering connection.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="origin_vpc_name" requirement="required" type="string">
+<HclListItemDescription>
+
+The name of the VPC which is the origin of the VPC peering connection.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="origin_vpc_route_table_ids" requirement="required" type="list(string)">
+<HclListItemDescription>
+
+A list of IDs of route tables in the origin VPC that should have routes added pointing to destination VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
+### Optional
+
+<HclListItem name="allow_remote_vpc_dns_resolution" requirement="optional" type="bool">
+<HclListItemDescription>
+
+A boolean parameter to enable or disable DNS resolution on both accepter and requester side of the connection peering. 
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="auto_accept" requirement="optional" type="bool">
+<HclListItemDescription>
+
+A boolean parameter to auto-accept the VPC peering connection.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="create_resources" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to have this module create no resources. This weird parameter exists solely because Terraform does not support conditional modules. Therefore, this is a hack to allow you to conditionally decide if the VPC Peering function and other resources should be created or not.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="custom_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the VPC Peering Connection. The key is the tag name and the value is the tag value. Note that the tag 'Name' is automatically added by this module but may be optionally overwritten by this variable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="destination_vpc_cidr_block" requirement="optional" type="string">
+<HclListItemDescription>
+
+DEPRECATED: Use destination_vpc_cidr_blocks instead. The CIDR block associated with the destination VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="destination_vpc_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of CIDR blocks associated with the destination VPC. When a VPC has multiple CIDR blocks, all of them should be listed here so that routes are created for each. If not set, falls back to destination_vpc_cidr_block.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="num_destination_vpc_route_tables" requirement="optional" type="number">
+<HclListItemDescription>
+
+DEPRECATED: No longer needed as the count is computed automatically. Kept for backwards compatibility.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="num_origin_vpc_route_tables" requirement="optional" type="number">
+<HclListItemDescription>
+
+DEPRECATED: No longer needed as the count is computed automatically. Kept for backwards compatibility.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="origin_vpc_cidr_block" requirement="optional" type="string">
+<HclListItemDescription>
+
+DEPRECATED: Use origin_vpc_cidr_blocks instead. The CIDR block associated with the origin VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="origin_vpc_cidr_blocks" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of CIDR blocks associated with the origin VPC. When a VPC has multiple CIDR blocks, all of them should be listed here so that routes are created for each. If not set, falls back to origin_vpc_cidr_block.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+</TabItem>
+<TabItem value="outputs" label="Outputs">
+
+<HclListItem name="peering_connection">
+<HclListItemDescription>
+
+VPC Peering connection object
+
+</HclListItemDescription>
+</HclListItem>
+
+</TabItem>
+</Tabs>
+
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-peering/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-peering/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.11/modules/vpc-peering/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.12/modules/vpc-peering/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.12/modules/vpc-peering/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.12/modules/vpc-peering/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "312a60f24f8b3f78304f70f1b86d8191"
+  "hash": "69f07ce57540e900ef8ec449f11ba89d"
 }
 ##DOCS-SOURCER-END -->
