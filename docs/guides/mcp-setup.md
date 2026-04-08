@@ -23,7 +23,7 @@ The MCP API must be enabled for your account. If it is not, contact us at
 ## Step 1: Create an API Key
 
 1. Log in to the [Gruntwork Developer Portal](https://app.gruntwork.io).
-2. Navigate to **Settings** > **MCP API Keys**.
+2. Navigate to **[Settings](https://app.gruntwork.io/settings/profile#mcp-api-keys)** > **MCP API Keys**.
 3. Click **Create MCP API Key**.
 4. Enter a descriptive name for the key (e.g., "Work Laptop" or "CI Server"). We recommend one key per device.
 5. **Copy the key immediately.** It starts with `gw_mk_` and is only shown once — you will not be able to retrieve it
@@ -41,7 +41,6 @@ revoke it immediately from the MCP API Keys settings page.
 Add the Gruntwork MCP server to your Claude Code configuration. Run the following command:
 
 ```bash
-claude mcp add gruntwork \
 claude mcp add --transport http gruntwork \                                                                             
     https://mcp.gruntwork.io/api/mcp \                                                                                    
     --header "Authorization: Bearer YOUR_API_KEY" 
