@@ -43,7 +43,6 @@ Add the Gruntwork MCP server to your Claude Code configuration. Run the followin
 
 ```bash
 claude mcp add gruntwork \
-  --transport sse \
   --header "Authorization: Bearer YOUR_API_KEY" \
   https://mcp.gruntwork.io/api/mcp
 ```
@@ -113,10 +112,13 @@ in Gruntwork's modules and documentation.
 
 The Gruntwork MCP server gives your AI assistant access to:
 
-- **Module search** — Find Gruntwork modules by name, description, or use case across all repos your organization is
-  entitled to.
+- **Semantic search** — Search across Gruntwork's entire codebase and documentation to find the most relevant modules,
+  patterns, and best practices for your use case.
+- **Best-practice code generation** — Generate infrastructure code grounded in Gruntwork's production-tested modules
+  and conventions, not just generic examples from training data.
 - **Module documentation** — Read detailed READMEs, variable definitions, and example usage for any module.
-- **Code examples** — Retrieve real Terragrunt/Terraform configuration examples from the library.
+- **IaC guidance** — Get best-practice answers to infrastructure questions informed by Gruntwork's library of
+  battle-tested patterns and real-world deployment experience.
 
 Your AI assistant will automatically use these capabilities when relevant to your questions.
 
@@ -126,8 +128,6 @@ Your AI assistant will automatically use these capabilities when relevant to you
 
 Go to **Settings** > **MCP API Keys** in the Developer Portal. You can see all active keys for your account, including
 when they were last used.
-
-Organization admins can see keys across all users in the organization.
 
 ### Revoking a Key
 
@@ -170,13 +170,6 @@ request access.
 
 The MCP server allows up to **60 requests per minute** per API key. If you hit this limit, wait briefly before
 continuing. For most interactive workflows this limit will not be reached.
-
-## Security
-
-- API keys are hashed before storage — Gruntwork cannot retrieve your key after creation.
-- All communication with the MCP server uses HTTPS.
-- Keys can be revoked instantly from the Developer Portal.
-- Usage is logged for audit purposes, including which tools were called and when.
 
 
 <!-- ##DOCS-SOURCER-START
