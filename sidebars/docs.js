@@ -112,6 +112,11 @@ const sidebar = [
     id: "2.0/docs/overview/getting-started/link-github-id",
   },
   {
+    label: "Setting Up the MCP Server",
+    type: "doc",
+    id: "guides/mcp-setup",
+  },
+  {
     type: "html",
     value: "Gruntwork Pipelines",
     className: "sidebar-header emoji-rocket",
