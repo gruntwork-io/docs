@@ -169,11 +169,3 @@ If everything is working correctly, you should see a response that:
 If instead the assistant responds with generic Terraform VPC code that doesn't reference Gruntwork modules, the MCP
 server is likely not connected. Go back to [Step 2](#step-2-configure-your-ai-tool) and verify your configuration, then
 check the [Troubleshooting](#troubleshooting) section.
-
-
-<!-- ##DOCS-SOURCER-START
-{
-  "sourcePlugin": "local-copier",
-  "hash": "mcp-setup-guide-v1"
-}
-##DOCS-SOURCER-END -->
