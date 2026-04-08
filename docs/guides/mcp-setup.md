@@ -10,14 +10,15 @@ proven conventions, handles edge cases, and is ready for real-world deployment f
 
 ## Prerequisites
 
-- A Gruntwork account with the **MCP API Keys** feature enabled for your organization
+- A Gruntwork account with MCP API access enabled
 - One of the following MCP-compatible AI tools installed:
   - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI)
   - [Claude Desktop](https://claude.ai/download)
   - [Cursor](https://www.cursor.com/)
 
 :::tip
-If MCP API Keys are not enabled for your organization, contact your Gruntwork account team or organization admin.
+The MCP API must be enabled for your account. If it is not, contact us at
+[support@gruntwork.io](mailto:support@gruntwork.io) to request access.
 :::
 
 ## Step 1: Create an API Key
@@ -148,8 +149,8 @@ Revoked keys stop working immediately. You will need to create a new key and upd
 
 ### "MCP API keys are not enabled for your organization"
 
-This feature must be enabled by a Gruntwork admin. Contact your organization admin or Gruntwork account team to request
-access.
+The MCP API must be enabled for your account. Contact us at [support@gruntwork.io](mailto:support@gruntwork.io) to
+request access.
 
 ### Key rejected or unauthorized
 
