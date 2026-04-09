@@ -294,16 +294,28 @@ Whether or not Pipelines will consolidate deleted resources when running Terragr
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-<HclListItem name="consolidate_comments" requirement="optional" type="boolean">
+#### `status_update` block
+
+The `status_update` block controls how Pipelines posts status comments on pull/merge requests. It is nested inside the `repository` block.
+
+```hcl
+repository {
+  status_update {
+    new_comment_per_push = false
+  }
+}
+```
+
+<HclListItem name="new_comment_per_push" requirement="optional" type="boolean">
 <HclListItemDescription>
 
-Controls whether Pipelines updates a single PR/MR comment in-place on each push instead of creating a new comment.
+Controls whether each push to a PR/MR branch creates a new status comment or updates the existing one in-place.
 
-- **`true`** — A single comment is updated on every push. On GitHub, the comment edit history preserves previous plan outputs. On GitLab, previous outputs are silently overwritten since GitLab does not have comment edit history.
-- **`false`** (default) — A new comment is created for each push.
+- **`true`** (default) — A new comment is created for each push, preserving the full history of plan outputs.
+- **`false`** — A single comment is updated on every push. On GitHub, the comment edit history preserves previous plan outputs. On GitLab, previous outputs are silently overwritten since GitLab does not have comment edit history.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="tf_binary" requirement="optional" type="string">
