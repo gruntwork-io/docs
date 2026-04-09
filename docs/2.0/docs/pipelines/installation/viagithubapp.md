@@ -134,7 +134,7 @@ The following features of the Gruntwork.io GitHub App will be unavailable during
 
 In order to ensure that the availability of the Gruntwork.io GitHub App is not something that can impair the ability of users to drive infrastructure updates, users can also authenticate with GitHub using [Machine users](/2.0/docs/pipelines/installation/viamachineusers).
 
-Configuring the `PIPELINES_READ_TOKEN`, `INFRA_ROOT_WRITE_TOKEN` and `ORG_REPO_ADMIN_TOKEN` where necessary (following the documentation linked above) will result in Pipelines using the machine users mechanism to authenticate with GitHub, rather than the Gruntwork.io GitHub App.
+Configuring the `PIPELINES_READ_TOKEN` (or the more granular `PIPELINES_GRUNTWORK_READ_TOKEN` and `PIPELINES_CUSTOMER_ORG_READ_TOKEN`), `INFRA_ROOT_WRITE_TOKEN` and `ORG_REPO_ADMIN_TOKEN` where necessary (following the documentation linked above) will result in Pipelines using the machine users mechanism to authenticate with GitHub, rather than the Gruntwork.io GitHub App.
 
 Using these fallback tokens will ensure that Pipelines can continue to perform operations like:
 
