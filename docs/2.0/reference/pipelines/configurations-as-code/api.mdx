@@ -294,11 +294,15 @@ Whether or not Pipelines will consolidate deleted resources when running Terragr
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
-#### `status_update` block
+<HclListItem name="status_update" requirement="optional" type="block">
+<HclListItemDescription>
 
 *Added in Pipelines v4.12.0*
 
-The `status_update` block controls how Pipelines posts status comments on pull/merge requests. It is nested inside the `repository` block.
+Controls how Pipelines posts status comments on pull/merge requests. Nested inside the `repository` block.
+
+</HclListItemDescription>
+<HclListItemExample>
 
 ```hcl
 repository {
@@ -307,6 +311,8 @@ repository {
   }
 }
 ```
+</HclListItemExample>
+</HclListItem>
 
 <HclListItem name="new_comment_per_push" requirement="optional" type="boolean">
 <HclListItemDescription>
