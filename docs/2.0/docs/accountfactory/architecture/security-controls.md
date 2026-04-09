@@ -76,6 +76,8 @@ No long-lived tokens are stored when using the Gruntwork.io GitHub App. Instead,
 Requires the following tokens be created:
 
 - `PIPELINES_READ_TOKEN`: Classic PAT with read access to required repositories
+- `PIPELINES_GRUNTWORK_READ_TOKEN` (optional): Fine-grained PAT with read access to `gruntwork-io` repositories (falls back to `PIPELINES_READ_TOKEN`)
+- `PIPELINES_CUSTOMER_ORG_READ_TOKEN` (optional): Fine-grained PAT with read access to customer organization repositories (falls back to `PIPELINES_READ_TOKEN`)
 - `INFRA_ROOT_WRITE_TOKEN`: Fine-grained PAT with read/write access to infrastructure repositories
 - `ORG_REPO_ADMIN_TOKEN`: Fine-grained PAT with admin access for repository management
 
