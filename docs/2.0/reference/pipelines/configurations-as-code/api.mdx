@@ -433,6 +433,15 @@ The duration in seconds that the AWS session will be valid for.
 <HclListItemDefaultValue defaultValue="3600"/>
 </HclListItem>
 
+<HclListItem name="aws_partition" requirement="optional" type="string">
+<HclListItemDescription>
+
+The AWS partition to use when constructing IAM role ARNs. Must be one of `aws`, `aws-cn`, or `aws-us-gov`. Required when using a role name override (e.g. via the `AWSRoleName` workflow parameter) in non-commercial AWS partitions such as GovCloud or China.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="aws"/>
+</HclListItem>
+
 ### `azure_oidc` block attributes
 
 <HclListItem name="tenant_id" requirement="required" type="string">
