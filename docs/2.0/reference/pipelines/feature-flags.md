@@ -124,6 +124,21 @@ Enables Terragrunt features to reduce the potential changes during a run-all. Te
 </li>
 </ul>
 
+#### `PIPELINES_FEATURE_EXPERIMENT_AUTO_UNLOCK_STATE_LOCK`
+<ul>
+<li>
+Enables Pipelines to automatically force-unlock a stale Terraform/OpenTofu state lock when an AWS session timeout causes the lock-release step to fail mid-apply. When detected (both `Error releasing the state lock` and `ExpiredTokenException` appear in the apply output), Pipelines runs `terragrunt plan -- -lock-timeout=0s` with fresh credentials to identify the stale lock ID, then calls `terragrunt force-unlock` to release it. The original apply error is still returned — the unlock only clears the lock so the next run can proceed.
+
+Only applies to single-unit commands. Use of this feature with `run --all` is not yet supported.
+</li>
+<li>
+**Default Value**: Disabled
+</li>
+<li>
+**How to Enable**: Set to `"true"`
+</li>
+</ul>
+
 #### `PIPELINES_FEATURE_EXPERIMENT_USE_MISE_EXEC_TG_WRAPPER`
 <ul>
 <li>
