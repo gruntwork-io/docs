@@ -791,7 +791,7 @@ Each release will include detailed notes indicating whether changes are breaking
 - **OpenSearch**: Added `opensearch` module supporting VPC/public endpoints, fine-grained access control, SAML/Cognito auth, auto-tune, GP3 storage, warm/cold storage tiers, multi-AZ standby, and off-peak maintenance windows (#570)
 
 
-The following Lambda-based snapshot modules are now **deprecated** in favor of AWS Backup&apos;s native capabilities. Use [backup-plan](/modules/backup-plan) and [backup-vault](/modules/backup-vault) instead. See the [backup-rds-cross-account example](/examples/backup-rds-cross-account) for a full end-to-end replacement.
+The following Lambda-based snapshot modules are now **deprecated** in favor of AWS Backup&apos;s native capabilities. Use [backup-plan](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-plan) and [backup-vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-vault) instead. See the [backup-rds-cross-account example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/examples/backup-rds-cross-account) for a full end-to-end replacement.
 
 - `lambda-create-snapshot` → Backup plan with cron schedule
 - `lambda-share-snapshot` → `copy_action` in backup plan rule
@@ -819,6 +819,7 @@ The following Lambda-based snapshot modules are now **deprecated** in favor of A
 - https://github.com/gruntwork-io/terraform-aws-data-storage/pull/565
 - https://github.com/gruntwork-io/terraform-aws-data-storage/pull/564
 - https://github.com/gruntwork-io/terraform-aws-data-storage/pull/572
+
 
 </div>
 
@@ -1167,6 +1168,6 @@ Each release will include detailed notes indicating whether changes are breaking
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "da337893f2bdf84e5a02df9878392921"
+  "hash": "923e96bc32d5c27e7eddef9dff386f65"
 }
 ##DOCS-SOURCER-END -->
