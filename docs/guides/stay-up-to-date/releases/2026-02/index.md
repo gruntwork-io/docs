@@ -766,6 +766,64 @@ Each release will include detailed notes indicating whether changes are breaking
 ## terraform-aws-data-storage
 
 
+### [v0.47.0](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.47.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 2/28/2026 | Modules affected: opensearch, - redshift, - aurora, - rds | <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.47.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+- `opensearch` **(NEW)**
+- `redshift`
+- `aurora`
+- `rds`
+- `rds-proxy`
+- `rds-replicas`
+- `lambda-create-snapshot` **(DEPRECATED)**
+- `lambda-share-snapshot` **(DEPRECATED)**
+- `lambda-copy-shared-snapshot` **(DEPRECATED)**
+- `lambda-cleanup-snapshots` **(DEPRECATED)**
+
+
+
+- **OpenSearch**: Added `opensearch` module supporting VPC/public endpoints, fine-grained access control, SAML/Cognito auth, auto-tune, GP3 storage, warm/cold storage tiers, multi-AZ standby, and off-peak maintenance windows (#570)
+
+
+The following Lambda-based snapshot modules are now **deprecated** in favor of AWS Backup&apos;s native capabilities. Use [backup-plan](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-plan) and [backup-vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/modules/backup-vault) instead. See the [backup-rds-cross-account example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/main/examples/backup-rds-cross-account) for a full end-to-end replacement.
+
+- `lambda-create-snapshot` → Backup plan with cron schedule
+- `lambda-share-snapshot` → `copy_action` in backup plan rule
+- `lambda-copy-shared-snapshot` → `copy_action` with automatic KMS re-encryption
+- `lambda-cleanup-snapshots` → `lifecycle &#x7B; delete_after &#x7D;` on source and destination
+
+
+- **Redshift**: Add option to manage master password with AWS Secrets Manager (`manage_master_password`), fix snapshot schedule variable, mark `master_password` as sensitive, fix `apply_immediately` type (#565)
+- **RDS**: Add `dedicated_log_volume`, `engine_lifecycle_support` for Extended Support control, update storage/instance type guidance (gp3, Graviton4) (#571)
+- **Aurora**: Add `engine_lifecycle_support`, `network_type` (dual-stack IPv4/IPv6), `enable_global_write_forwarding`, `enable_local_write_forwarding`, update Serverless v2 scaling limits (min 0 / max 256 ACUs) (#571)
+- **RDS Proxy**: Add `debug_logging`, `custom_tags`, `allow_connections_from_security_groups`, add SQLSERVER to `engine_family` (#571)
+- **RDS Replicas**: Update storage type and Performance Insights deprecation guidance (#571)
+- Add cross-account RDS backup example with end-to-end test (#569)
+
+
+- Update deprecated `dms.t2.micro` to `dms.t3.micro` in DMS examples (#568)
+- Fix CI: use `gh api` instead of `gh release list` for fetching latest tag (#572)
+- Expand upgrade test coverage to all modules (#564)
+
+
+- https://github.com/gruntwork-io/terraform-aws-data-storage/pull/571
+- https://github.com/gruntwork-io/terraform-aws-data-storage/pull/570
+- https://github.com/gruntwork-io/terraform-aws-data-storage/pull/569
+- https://github.com/gruntwork-io/terraform-aws-data-storage/pull/568
+- https://github.com/gruntwork-io/terraform-aws-data-storage/pull/565
+- https://github.com/gruntwork-io/terraform-aws-data-storage/pull/564
+- https://github.com/gruntwork-io/terraform-aws-data-storage/pull/572
+
+
+</div>
+
+
 ### [v0.46.1](https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.46.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -1110,6 +1168,6 @@ Each release will include detailed notes indicating whether changes are breaking
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "48dec11089c04e0d34382bb4ac060ecb"
+  "hash": "923e96bc32d5c27e7eddef9dff386f65"
 }
 ##DOCS-SOURCER-END -->
