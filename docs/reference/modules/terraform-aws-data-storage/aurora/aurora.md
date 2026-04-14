@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="0.47.0" lastModifiedVersion="0.47.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="1.0.0" lastModifiedVersion="1.0.0"/>
 
 # Aurora Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v0.47.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Aurora, a MySQL and PostgreSQL compatible relational database built for the cloud.
 
@@ -59,7 +59,7 @@ Cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Managing.h
 ## How do you configure this module?
 
 This module allows you to configure a number of parameters, such as backup windows, maintenance window, port number,
-and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/aurora/variables.tf).
+and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/aurora/variables.tf).
 
 ## How do you create a cross-region read replica cluster?
 
@@ -68,7 +68,7 @@ the primary cluster:
 
 ```hcl-terraform
 module "replica" {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v1.0.8"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v1.0.0"
 
   # ... other parameters omitted ...
 
@@ -77,7 +77,7 @@ module "replica" {
 }
 ```
 
-See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/examples/aurora-with-cross-region-replica) for more details.
+See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/examples/aurora-with-cross-region-replica) for more details.
 
 ## How do you destroy a cross-region read replica?
 
@@ -137,7 +137,7 @@ see [Limitations of Aurora Serverless](https://docs.aws.amazon.com/AmazonRDS/lat
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.47.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v1.0.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -619,7 +619,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v0.47.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v1.0.0"
 }
 
 inputs = {
@@ -1900,45 +1900,115 @@ Timeout for DB updating
 <TabItem value="outputs" label="Outputs">
 
 <HclListItem name="cluster_arn">
+<HclListItemDescription>
+
+The ARN of the Aurora cluster.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="cluster_endpoint">
+<HclListItemDescription>
+
+The connection endpoint for the primary (writer) instance of the Aurora cluster.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="cluster_id">
+<HclListItemDescription>
+
+The DB cluster identifier (name), e.g. 'my-aurora-cluster'.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="cluster_instances_maintenance_window">
+<HclListItemDescription>
+
+The maintenance window for each Aurora cluster instance.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="cluster_master_password_secret_arn">
+<HclListItemDescription>
+
+The ARN of the Secrets Manager secret containing the master user password, when manage_master_user_password is enabled.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="cluster_resource_id">
+<HclListItemDescription>
+
+The unique resource ID assigned to the cluster (e.g. 'cluster-POBCBQUFQC56EBAAWXGFJ77GRU'). Useful for IAM database authentication.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="db_name">
+<HclListItemDescription>
+
+The name of the database created in the Aurora cluster.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="instance_endpoints">
+<HclListItemDescription>
+
+A list of endpoints for each Aurora cluster instance.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="instance_ids">
+<HclListItemDescription>
+
+A list of identifiers for all Aurora cluster instances.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="port">
+<HclListItemDescription>
+
+The port number on which the Aurora cluster accepts connections.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="read_replica_instance_ids">
+<HclListItemDescription>
+
+A list of identifiers for Aurora cluster instances that are read replicas (non-writer).
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="reader_endpoint">
+<HclListItemDescription>
+
+A read-only endpoint that load-balances connections across the Aurora read replicas.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="security_group_id">
+<HclListItemDescription>
+
+The ID of the security group created for the Aurora cluster.
+
+</HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="write_replica_instance_ids">
+<HclListItemDescription>
+
+A list of identifiers for Aurora cluster instances that are writers.
+
+</HclListItemDescription>
 </HclListItem>
 
 </TabItem>
@@ -1947,11 +2017,11 @@ Timeout for DB updating
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/aurora/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/aurora/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d9ddfe7a13ffe98884fc909b1a245159"
+  "hash": "0a1fd90ddc3e7bebad669bd05f995478"
 }
 ##DOCS-SOURCER-END -->
