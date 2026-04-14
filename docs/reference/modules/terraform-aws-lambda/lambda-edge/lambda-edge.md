@@ -81,6 +81,11 @@ triggers:
 2.  Manually from the AWS Console as described in the
     [Lambda@Edge documentation](https://docs.aws.amazon.com/lambda/latest/dg/lambda-edge.html#lambda-edge-add-triggers)
 
+## Background info
+
+For more information on AWS Lambda, how it works, and how to configure your functions, check out the [lambda module
+documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/lambda).
+
 ## Sample Usage
 
 <Tabs>
@@ -873,6 +878,6 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/lambda-edge/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "31f1682cff72ee9095464c3f9e836739"
+  "hash": "77de4b3478f466870714493db98a7d6d"
 }
 ##DOCS-SOURCER-END -->

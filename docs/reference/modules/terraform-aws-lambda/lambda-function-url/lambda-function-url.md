@@ -17,15 +17,102 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-This module used to create a [AWS Lambda function URLs](https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html) for existing Lambda function. A function URL is a dedicated HTTP(S) endpoint for a Lambda function.
+This module is used to create an [AWS Lambda Function URL](https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html) for an existing Lambda function, along with a [CloudFront Origin Access Control (OAC)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-lambda.html) for securing access to the function URL via CloudFront.
 
-When you create a function URL, Lambda automatically generates a unique URL endpoint for you. Once you create a function URL, its URL endpoint never changes. Function URLs are dual stack-enabled, supporting IPv4 and IPv6. After you configure a function URL for your function, you can invoke your function through its HTTP(S) endpoint via a web browser, curl, Postman, or any HTTP client.
+A function URL is a dedicated HTTP(S) endpoint for a Lambda function. When you create a function URL, Lambda automatically generates a unique URL endpoint for you. Once you create a function URL, its URL endpoint never changes. Function URLs are dual stack-enabled, supporting IPv4 and IPv6. After you configure a function URL for your function, you can invoke your function through its HTTP(S) endpoint via a web browser, curl, Postman, or any HTTP client.
 
 Function URL endpoints have the following format:
 
 ```
 https://<url-id>.lambda-url.<region>.on.aws
 ```
+
+## What authorization types are available?
+
+The `authorization_type` variable controls how the function URL authenticates callers. There are two options:
+
+*   **`AWS_IAM`**: Only authenticated IAM principals can invoke the function URL. Use this when you want to restrict access to specific IAM users or roles, or when fronting the function URL with CloudFront using OAC.
+*   **`NONE`**: The function URL is publicly accessible. Anyone with the URL can invoke the function. If you use this, you may want to add a `aws_lambda_permission` resource to explicitly allow public access:
+
+```hcl
+resource "aws_lambda_permission" "allow_public_access" {
+  statement_id           = "AllowPublicAccess"
+  action                 = "lambda:InvokeFunctionUrl"
+  function_name          = module.my_lambda_function.function_name
+  qualifier              = aws_lambda_alias.my_alias.name
+  principal              = "*"
+  function_url_auth_type = "NONE"
+}
+```
+
+## How do you configure CORS?
+
+By default, no CORS configuration is applied to the function URL. To enable CORS, pass a `cors_config` object:
+
+```hcl
+module "lambda_function_url" {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-function-url?ref=v1.0.0"
+
+  lambda_function_name = module.my_lambda_function.function_name
+  alias                = aws_lambda_alias.my_alias.name
+  authorization_type   = "NONE"
+
+  cors_config = {
+    allow_origins     = ["https://example.com"]
+    allow_methods     = ["GET", "POST"]
+    allow_headers     = ["Content-Type", "Authorization"]
+    expose_headers    = ["X-Custom-Header"]
+    allow_credentials = true
+    max_age           = 86400
+  }
+
+  # ... other required variables
+}
+```
+
+Set `cors_config` to `null` (the default) to disable CORS entirely. All fields within `cors_config` are optional.
+
+## How do you use this with CloudFront?
+
+This module creates a CloudFront Origin Access Control (OAC) alongside the function URL. The OAC allows you to front the Lambda function URL with a CloudFront distribution, giving you:
+
+*   A custom domain name for your Lambda function
+*   CloudFront caching and edge locations
+*   AWS WAF integration for additional security
+*   Signed requests from CloudFront to your Lambda function
+
+To use the OAC, create a CloudFront distribution that uses the function URL as an origin and references the OAC:
+
+```hcl
+module "lambda_function_url" {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-function-url?ref=v1.0.0"
+
+  lambda_function_name = module.my_lambda_function.function_name
+  alias                = aws_lambda_alias.my_alias.name
+  authorization_type   = "AWS_IAM"
+  cloudfront_oac_name  = "my-lambda-oac"
+
+  # ... other required variables
+}
+
+resource "aws_cloudfront_distribution" "lambda_distribution" {
+  origin {
+    domain_name              = replace(module.lambda_function_url.function_url, "/(^https://|/$)/", "")
+    origin_id                = "lambda"
+    origin_access_control_id = module.lambda_function_url.oac_id
+    custom_origin_config {
+      http_port              = 80
+      https_port             = 443
+      origin_protocol_policy = "https-only"
+      origin_ssl_protocols   = ["TLSv1.2"]
+    }
+  }
+
+  # ... other CloudFront configuration
+}
+```
+
+When using CloudFront with OAC, set `authorization_type` to `"AWS_IAM"` so that only CloudFront (via signed requests) can invoke the function URL directly.
 
 ## Background info
 
@@ -63,16 +150,6 @@ module "lambda_function_url" {
   # Name of the CloudFront Origin Access Control
   cloudfront_oac_name = <string>
 
-  # CORS configuration for the Lambda function URL
-  cors_config = <object(
-    allow_credentials = bool
-    allow_origins     = list(string)
-    allow_methods     = list(string)
-    allow_headers     = list(string)
-    expose_headers    = list(string)
-    max_age           = number
-  )>
-
   # The name of the iam role to be created
   iam_role_name = <string>
 
@@ -90,6 +167,10 @@ module "lambda_function_url" {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # CORS configuration for the Lambda function URL. When null, no CORS
+  # configuration will be applied.
+  cors_config = null
 
   # The type of origin that this Origin Access Control is for. Valid values are
   # lambda, mediapackagev2, mediastore, and s3
@@ -131,16 +212,6 @@ inputs = {
   # Name of the CloudFront Origin Access Control
   cloudfront_oac_name = <string>
 
-  # CORS configuration for the Lambda function URL
-  cors_config = <object(
-    allow_credentials = bool
-    allow_origins     = list(string)
-    allow_methods     = list(string)
-    allow_headers     = list(string)
-    expose_headers    = list(string)
-    max_age           = number
-  )>
-
   # The name of the iam role to be created
   iam_role_name = <string>
 
@@ -158,6 +229,10 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # CORS configuration for the Lambda function URL. When null, no CORS
+  # configuration will be applied.
+  cors_config = null
 
   # The type of origin that this Origin Access Control is for. Valid values are
   # lambda, mediapackagev2, mediastore, and s3
@@ -213,28 +288,6 @@ Name of the CloudFront Origin Access Control
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="cors_config" requirement="required" type="object(…)">
-<HclListItemDescription>
-
-CORS configuration for the Lambda function URL
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-object({
-    allow_credentials = bool
-    allow_origins     = list(string)
-    allow_methods     = list(string)
-    allow_headers     = list(string)
-    expose_headers    = list(string)
-    max_age           = number
-  })
-```
-
-</HclListItemTypeDetails>
-</HclListItem>
-
 <HclListItem name="iam_role_name" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -268,6 +321,29 @@ Determines how CloudFront signs (authenticates) requests. The only valid value i
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="cors_config" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+CORS configuration for the Lambda function URL. When null, no CORS configuration will be applied.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    allow_credentials = optional(bool)
+    allow_origins     = optional(list(string))
+    allow_methods     = optional(list(string))
+    allow_headers     = optional(list(string))
+    expose_headers    = optional(list(string))
+    max_age           = optional(number)
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
 
 <HclListItem name="oac_origin_type" requirement="optional" type="string">
 <HclListItemDescription>
@@ -324,6 +400,6 @@ A generated ID for the endpoint.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/lambda-function-url/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a6ba795659cabfb0ffe1c1f28fe2bf7b"
+  "hash": "a0eb1d3874d965b4bcc9102b27b7aa2e"
 }
 ##DOCS-SOURCER-END -->
