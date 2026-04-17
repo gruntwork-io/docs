@@ -318,6 +318,16 @@ account_factory {
   </HclListItemDescription>
 </HclListItem>
 
+### pr_create_token_name
+
+<HclListItem name="pr_create_token_name" requirement="optional" type="string">
+  <HclListItemDescription>
+
+    (GitHub only) The name of your PR create token if different from the default of `PR_CREATE_TOKEN`.
+
+  </HclListItemDescription>
+</HclListItem>
+
 ### security_account_name
 
 <HclListItem name="security_account_name" requirement="optional" type="string">
