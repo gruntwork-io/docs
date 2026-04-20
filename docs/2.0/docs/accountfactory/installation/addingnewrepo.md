@@ -255,8 +255,9 @@ DefaultRegion: $$DEFAULT_REGION$$
 # The URL of the custom SCM provider instance. Set this if you are using a custom instance of GitLab.
 # CustomSCMProviderInstanceURL: https://gitlab.example.io
 
-# The relative path from the host server to the custom pipelines workflow repository. Set this if you are using a custom/forked instance of the pipelines workflow.
-# CustomWorkflowHostRelativePath: pipelines-workflows
+# The location prefix of the pipelines workflows. Set this if you are using a custom/forked instance of the pipelines workflows repository.
+# For self-hosted GitLab, include the $CI_SERVER_FQDN prefix: "$CI_SERVER_FQDN/<group>/pipelines-workflows/"
+# PipelinesWorkflowLocation: $CI_SERVER_FQDN/my-group/pipelines-workflows/
 ```
 
 <h4> Generate the repository contents </h4>
