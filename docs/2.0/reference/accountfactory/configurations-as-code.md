@@ -313,7 +313,33 @@ account_factory {
 <HclListItem name="pipelines_workflow_location" requirement="optional" type="string">
   <HclListItemDescription>
 
-    (GitHub only) The location of your pipelines workflow if different from the default of `gruntwork-io/pipelines-workflows/.github/workflows/pipelines.yml@X`.
+    The location prefix of the pipelines workflows, used in delegated repositories when your organization uses a fork of `gruntwork-io/pipelines-workflows`.
+
+    Examples:
+    - GitHub default: `gruntwork-io/pipelines-workflows/.github/workflows`
+    - GitHub fork: `acme-org/pipelines-workflows/.github/workflows`
+    - GitLab default: `gitlab.com/gruntwork-io/pipelines-workflows`
+    - GitLab self-hosted: `$CI_SERVER_FQDN/acme-org/pipelines-workflows` (GitLab resolves `$CI_SERVER_FQDN` at CI runtime)
+
+  </HclListItemDescription>
+</HclListItem>
+
+### pipelines_workflow_ref
+
+<HclListItem name="pipelines_workflow_ref" requirement="optional" type="string">
+  <HclListItemDescription>
+
+    The git ref of the pipelines workflows used in delegated repositories. Defaults to `v4` on GitHub and `v2` on GitLab. Set to a different tag, branch, or SHA if you pin to a specific version or use a fork.
+
+  </HclListItemDescription>
+</HclListItem>
+
+### pr_create_token_name
+
+<HclListItem name="pr_create_token_name" requirement="optional" type="string">
+  <HclListItemDescription>
+
+    (GitHub only) The name of your PR create token if different from the default of `PR_CREATE_TOKEN`.
 
   </HclListItemDescription>
 </HclListItem>
