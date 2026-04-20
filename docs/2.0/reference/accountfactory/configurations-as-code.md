@@ -313,13 +313,13 @@ account_factory {
 <HclListItem name="pipelines_workflow_location" requirement="optional" type="string">
   <HclListItemDescription>
 
-    The location prefix of the pipelines workflows, used in delegated repositories when your organization uses a fork of `gruntwork-io/pipelines-workflows`. The workflow filename (GitHub) or component name (GitLab) plus `@<ref>` are appended per file, so this value must end with a trailing slash.
+    The location prefix of the pipelines workflows, used in delegated repositories when your organization uses a fork of `gruntwork-io/pipelines-workflows`.
 
     Examples:
-    - GitHub default: `gruntwork-io/pipelines-workflows/.github/workflows/`
-    - GitHub fork: `acme-org/pipelines-workflows/.github/workflows/`
-    - GitLab default: `gitlab.com/gruntwork-io/pipelines-workflows/`
-    - GitLab self-hosted: `$CI_SERVER_FQDN/acme-org/pipelines-workflows/` (GitLab resolves `$CI_SERVER_FQDN` at CI runtime)
+    - GitHub default: `gruntwork-io/pipelines-workflows/.github/workflows`
+    - GitHub fork: `acme-org/pipelines-workflows/.github/workflows`
+    - GitLab default: `gitlab.com/gruntwork-io/pipelines-workflows`
+    - GitLab self-hosted: `$CI_SERVER_FQDN/acme-org/pipelines-workflows` (GitLab resolves `$CI_SERVER_FQDN` at CI runtime)
 
   </HclListItemDescription>
 </HclListItem>
