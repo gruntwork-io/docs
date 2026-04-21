@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="2.0.0" lastModifiedVersion="0.7.6"/>
+<VersionBadge repoTitle="Control Tower" version="2.0.1" lastModifiedVersion="0.7.6"/>
 
 # Control Tower Controls
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.0/modules/landingzone/control-tower-controls" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.1/modules/landingzone/control-tower-controls" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.7.6" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -36,7 +36,7 @@ For a full list of preventive, detective and proactive controls, see the [AWS Co
 
 module "control_tower_controls" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-controls?ref=v2.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-controls?ref=v2.0.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -72,7 +72,7 @@ module "control_tower_controls" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-controls?ref=v2.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-controls?ref=v2.0.1"
 }
 
 inputs = {
@@ -107,11 +107,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.0/modules/control-tower-controls/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.0/modules/control-tower-controls/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.0/modules/control-tower-controls/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.1/modules/control-tower-controls/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.1/modules/control-tower-controls/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.1/modules/control-tower-controls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "da1aaa740e0c6f1a9008824cd539edc8"
+  "hash": "98bf6eb947d86916101e026aa74af5c4"
 }
 ##DOCS-SOURCER-END -->
