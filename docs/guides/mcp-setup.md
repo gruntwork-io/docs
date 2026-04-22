@@ -23,7 +23,7 @@ The MCP API must be enabled for your account. If it is not, contact us at
 ## Step 1: Create an Access Token
 
 1. Log in to the [Gruntwork Developer Portal](https://app.gruntwork.io).
-2. Navigate to **[Settings](https://app.gruntwork.io/settings/profile#mcp-api-keys)** > **MCP Access Tokens**.
+2. Navigate to **[Settings](https://app.gruntwork.io/settings/profile#mcp-access-tokens)** > **MCP Access Tokens**.
 3. Click **Create MCP Access Token**.
 4. Enter a descriptive name for the token (e.g., "Work Laptop" or "CI Server"). We recommend one token per device.
 5. **Copy the token immediately.** It starts with `gw_mk_` and is only shown once — you will not be able to retrieve
@@ -135,7 +135,7 @@ Your AI assistant will automatically use these capabilities when relevant to you
 
 ### Viewing Tokens
 
-Go to [settings](https://app.gruntwork.io/settings/profile#mcp-api-keys) in the Developer Portal. You can see all
+Go to [settings](https://app.gruntwork.io/settings/profile#mcp-access-tokens) in the Developer Portal. You can see all
 active tokens for your account, including when they were last used.
 
 ### Revoking a Token
