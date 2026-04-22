@@ -20,18 +20,18 @@ The MCP API must be enabled for your account. If it is not, contact us at
 [support@gruntwork.io](mailto:support@gruntwork.io) to request access.
 :::
 
-## Step 1: Create an API Key
+## Step 1: Create an Access Token
 
 1. Log in to the [Gruntwork Developer Portal](https://app.gruntwork.io).
-2. Navigate to **[Settings](https://app.gruntwork.io/settings/profile#mcp-api-keys)** > **MCP API Keys**.
-3. Click **Create MCP API Key**.
-4. Enter a descriptive name for the key (e.g., "Work Laptop" or "CI Server"). We recommend one key per device.
-5. **Copy the key immediately.** It starts with `gw_mk_` and is only shown once — you will not be able to retrieve it
-   later. Store it somewhere safe.
+2. Navigate to **[Settings](https://app.gruntwork.io/settings/profile#mcp-access-tokens)** > **MCP Access Tokens**.
+3. Click **Create MCP Access Token**.
+4. Enter a descriptive name for the token (e.g., "Work Laptop" or "CI Server"). We recommend one token per device.
+5. **Copy the token immediately.** It starts with `gw_mk_` and is only shown once — you will not be able to retrieve
+   it later. Store it somewhere safe.
 
 :::caution
-Treat your API key like a password. Do not commit it to version control or share it in chat. If a key is compromised,
-revoke it immediately from the MCP API Keys settings page.
+Treat your access token like a password. Do not commit it to version control or share it in chat. If a token is
+compromised, revoke it immediately from the MCP Access Tokens settings page.
 :::
 
 ## Step 2: Configure Your AI Tool
@@ -41,12 +41,12 @@ revoke it immediately from the MCP API Keys settings page.
 Add the Gruntwork MCP server to your Claude Code configuration. Run the following command:
 
 ```bash
-claude mcp add --transport http gruntwork \                                                                             
-    https://mcp.gruntwork.io/api/mcp \                                                                                    
-    --header "Authorization: Bearer YOUR_API_KEY" 
+claude mcp add --transport http gruntwork \
+    https://mcp.gruntwork.io/api/mcp \
+    --header "Authorization: Bearer YOUR_ACCESS_TOKEN"
 ```
 
-Replace `YOUR_API_KEY` with the key you copied in Step 1.
+Replace `YOUR_ACCESS_TOKEN` with the access token you copied in Step 1.
 
 To verify the server is connected:
 
@@ -55,6 +55,37 @@ claude mcp list
 ```
 
 You should see `gruntwork` listed with a status of `connected`.
+
+#### Recommended: Install the Gruntwork Skills for Claude Code
+
+The MCP server gives Claude Code raw access to the Gruntwork IaC Library. For the best experience, also install
+the Gruntwork skills — a set of pre-built `/gruntwork-*` workflows that tell Claude Code exactly which MCP tools
+to use for common tasks, producing more consistent results than unguided queries.
+
+The skills cover:
+
+- `/gruntwork-find` — discover the right Gruntwork module for an infrastructure requirement
+- `/gruntwork-deploy` — scaffold Terragrunt configs for a specific module
+- `/gruntwork-debug` — troubleshoot Terragrunt, OpenTofu/Terraform errors
+- `/gruntwork-patcher` — audit module versions and apply patches or upgrades
+- `/gruntwork-terragrunt` — explain Terragrunt concepts, blocks, functions, repo structure, and migrations
+
+From the root of your `infrastructure-live` repo:
+
+```bash
+npx @gruntwork-ai/skills-setup --repo . --key YOUR_ACCESS_TOKEN
+```
+
+This will:
+
+- Install the `/gruntwork-*` skill files into `.claude/skills/`
+- Write a project-scoped `.claude/settings.json` that registers the Gruntwork MCP server for this repo (if you
+  already ran `claude mcp add` above, both registrations work side-by-side — no need to undo it)
+- Scan the repo for Gruntwork module versions, AWS accounts, and AWS regions, and generate a `CLAUDE.md` so
+  Claude Code has ambient stack context in every session
+
+All scanning is local — nothing leaves your machine. Pass `--no-scan` to skip the filesystem scan; `CLAUDE.md` is still written with placeholders you can fill in by hand.
+
 
 ### Cursor
 
@@ -68,14 +99,14 @@ You should see `gruntwork` listed with a status of `connected`.
     "gruntwork": {
       "url": "https://mcp.gruntwork.io/api/mcp",
       "headers": {
-        "Authorization": "Bearer YOUR_API_KEY"
+        "Authorization": "Bearer YOUR_ACCESS_TOKEN"
       }
     }
   }
 }
 ```
 
-3. Replace `YOUR_API_KEY` with the key you copied in Step 1.
+3. Replace `YOUR_ACCESS_TOKEN` with the access token you copied in Step 1.
 
 ## Step 3: Verify the Connection
 
@@ -100,28 +131,28 @@ The Gruntwork MCP server gives your AI assistant access to:
 
 Your AI assistant will automatically use these capabilities when relevant to your questions.
 
-## Managing API Keys
+## Managing Access Tokens
 
-### Viewing Keys
+### Viewing Tokens
 
-Go to [settings](https://app.gruntwork.io/settings/profile#mcp-api-keys) in the Developer Portal. You can see all active keys for your account, including
-when they were last used.
+Go to [settings](https://app.gruntwork.io/settings/profile#mcp-access-tokens) in the Developer Portal. You can see all
+active tokens for your account, including when they were last used.
 
-### Revoking a Key
+### Revoking a Token
 
-If a key is lost or compromised, revoke it immediately:
+If a token is lost or compromised, revoke it immediately:
 
-1. Go to **Settings** > **MCP API Keys**.
-2. Click **Revoke** next to the key you want to disable.
+1. Go to **Settings** > **MCP Access Tokens**.
+2. Click **Revoke** next to the token you want to disable.
 3. Confirm the revocation.
 
-Revoked keys stop working immediately. You will need to create a new key and update your tool configuration.
+Revoked tokens stop working immediately. You will need to create a new token and update your tool configuration.
 
-### Key Limits
+### Token Limits
 
-- Each user can have up to **5 active keys** at a time.
-- Keys expire after **1 year** by default.
-- Revoked keys do not count toward the limit.
+- Each user can have up to **5 active tokens** at a time.
+- Tokens expire after **1 year** by default.
+- Revoked tokens do not count toward the limit.
 
 ## Troubleshooting
 
@@ -130,12 +161,12 @@ Revoked keys stop working immediately. You will need to create a new key and upd
 The MCP API must be enabled for your account. Contact us at [support@gruntwork.io](mailto:support@gruntwork.io) to
 request access.
 
-### Key rejected or unauthorized
+### Token rejected or unauthorized
 
-- Verify the key was copied correctly (it should start with `gw_mk_`).
-- Check that the key has not been revoked in the Developer Portal.
-- Ensure the key has not expired (keys expire after 1 year).
-- Create a new key if needed.
+- Verify the access token was copied correctly (it should start with `gw_mk_`).
+- Check that the token has not been revoked in the Developer Portal.
+- Ensure the token has not expired (tokens expire after 1 year).
+- Create a new token if needed.
 
 ### MCP server not connecting
 
@@ -146,7 +177,7 @@ request access.
 
 ### Rate limiting
 
-The MCP server allows up to **60 requests per minute** per API key. If you hit this limit, wait briefly before
+The MCP server allows up to **60 requests per minute** per access token. If you hit this limit, wait briefly before
 continuing. For most interactive workflows this limit will not be reached.
 
 ## Example: Confirming It's Working
