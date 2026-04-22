@@ -56,6 +56,40 @@ claude mcp list
 
 You should see `gruntwork` listed with a status of `connected`.
 
+#### Recommended: Install the Gruntwork Skills for Claude Code
+
+The MCP server gives Claude Code raw access to the Gruntwork IaC Library. For the best experience, also install
+the Gruntwork skills — a set of pre-built `/gruntwork-*` workflows that tell Claude Code exactly which MCP tools
+to use for common tasks, producing more consistent results than unguided queries.
+
+The skills cover:
+
+- `/gruntwork-find` — discover the right Gruntwork module for an infrastructure requirement
+- `/gruntwork-deploy` — scaffold Terragrunt configs for a specific module
+- `/gruntwork-debug` — troubleshoot Terragrunt, OpenTofu/Terraform errors
+- `/gruntwork-patcher` — audit module versions and apply patches or upgrades
+- `/gruntwork-terragrunt` — explain Terragrunt concepts, blocks, functions, repo structure, and migrations
+
+From the root of your `infrastructure-live` repo:
+
+```bash
+npx @gruntwork-ai/skills-setup --repo . --key YOUR_API_KEY
+```
+
+This will:
+
+- Install the `/gruntwork-*` skill files into `.claude/skills/`
+- Write a project-scoped `.claude/settings.json` that registers the Gruntwork MCP server for this repo (if you
+  already ran `claude mcp add` above, both registrations work side-by-side — no need to undo it)
+- Scan the repo for Gruntwork module versions, AWS accounts, and AWS regions, and generate a `CLAUDE.md` so
+  Claude Code has ambient stack context in every session
+
+All scanning is local — nothing leaves your machine. Pass `--no-scan` to skip the filesystem scan (useful in CI
+or for non-standard repo layouts); `CLAUDE.md` is still written with placeholders you can fill in by hand.
+
+Source and issue tracker:
+[github.com/gruntwork-io/ai-skill-setup](https://github.com/gruntwork-io/ai-skill-setup).
+
 ### Cursor
 
 1. Open the Cursor settings with `Cmd+Shift+P` (macOS) or `Ctrl+Shift+P` (Windows/Linux) and search for
