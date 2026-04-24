@@ -18,6 +18,7 @@ When Pipelines is used to manage infrastructure resources in cloud environments,
 
 - [AWS](/2.0/docs/pipelines/concepts/cloud-auth/aws)
 - [Azure](/2.0/docs/pipelines/concepts/cloud-auth/azure)
+- [GCP](/2.0/docs/pipelines/concepts/cloud-auth/gcp)
 - [Custom](/2.0/docs/pipelines/concepts/cloud-auth/custom) (build your own support for your cloud provider)
 
 The way in which Pipelines authenticates to these cloud providers (with the exception of Custom authentication) is via OpenID Connect (OIDC).
@@ -86,7 +87,7 @@ graph TB
 
     subgraph "Cloud Provider"
         OIDC[OpenID Connect]
-        Cloud[Cloud Resources<br/>AWS/Azure/Custom]
+        Cloud[Cloud Resources<br/>AWS/Azure/GCP/Custom]
     end
 
     %% Main flow
@@ -135,7 +136,7 @@ graph TB
 
     subgraph "Cloud Provider"
         OIDC[OpenID Connect]
-        Cloud[Cloud Resources<br/>AWS/Azure/Custom]
+        Cloud[Cloud Resources<br/>AWS/Azure/GCP/Custom]
     end
 
     %% Main flow
@@ -185,7 +186,7 @@ graph TB
 
     subgraph "Cloud Provider"
         OIDC[OpenID Connect]
-        Cloud[Cloud Resources<br/>AWS/Azure/Custom]
+        Cloud[Cloud Resources<br/>AWS/Azure/GCP/Custom]
     end
 
     %% Main flow

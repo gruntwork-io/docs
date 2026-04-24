@@ -19,6 +19,7 @@ Currently, Pipelines supports authentication to the following cloud providers:
 
 - [AWS](/2.0/docs/pipelines/concepts/cloud-auth/aws) - AWS authentication using OIDC
 - [Azure](/2.0/docs/pipelines/concepts/cloud-auth/azure) - Azure authentication using OIDC
+- [GCP](/2.0/docs/pipelines/concepts/cloud-auth/gcp) - GCP authentication using Workload Identity Federation
 - [Custom](/2.0/docs/pipelines/concepts/cloud-auth/custom) - Custom authentication you can implement yourself
 
 ## Security Best Practices
