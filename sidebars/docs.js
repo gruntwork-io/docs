@@ -151,6 +151,11 @@ const sidebar = [
             id: "2.0/docs/pipelines/concepts/cloud-auth/azure",
           },
           {
+            label: "GCP",
+            type: "doc",
+            id: "2.0/docs/pipelines/concepts/cloud-auth/gcp",
+          },
+          {
             label: "Custom",
             type: "doc",
             id: "2.0/docs/pipelines/concepts/cloud-auth/custom",
