@@ -124,7 +124,9 @@
     "mysa",
     "deinterlaced",
     "rolename",
-    "ACCOUNTNAME"
+    "ACCOUNTNAME",
+    "CMEK",
+    "aiplatform"
   ],
   "ignoreWords": [],
   "ignorePaths": [
