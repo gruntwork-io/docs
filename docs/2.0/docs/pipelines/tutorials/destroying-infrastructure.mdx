@@ -10,14 +10,14 @@ This tutorial will help you learn how to destroy infrastructure using Gruntwork 
 
 By the end, you'll have:
 
-- Destroyed cloud resources (AWS or Azure) using Gruntwork Pipelines
+- Destroyed cloud resources (AWS, Azure, or GCP) using Gruntwork Pipelines
 
 ## Prerequisites
 
 Before starting, make sure you have:
 
 - Pipelines installed in a GitHub/GitLab repository. Refer to [Setup & Installation](/2.0/docs/pipelines/installation/overview) for details.
-- Access to a sandbox or development cloud environment (AWS account or Azure subscription) configured during the Pipelines installation process.
+- Access to a sandbox or development cloud environment (AWS account, Azure subscription, or GCP project) configured during the Pipelines installation process.
 - Permissions to create a pull/merge request in the GitHub/GitLab repository where Pipelines is installed.
 - An existing cloud resource created using Infrastructure as Code (IaC) and Pipelines that you want to destroy. If no resource exists, follow the steps in the [Deploying your first infrastructure change](/2.0/docs/pipelines/tutorials/deploying-your-first-infrastructure-change) tutorial to create one, which will then be destroyed in this tutorial.
 
@@ -72,6 +72,27 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
 2. Create a new branch, commit the changes, and push the branch to your repository.
 
 </TabItem>
+<TabItem value="gcp" label="GCP">
+
+:::caution Permissions Required
+
+By default, Pipelines is configured with the permissions needed to complete this tutorial. However, depending on your specific setup, you may need to adjust the IAM roles used by Pipelines to ensure they have the necessary permissions to destroy resources.
+
+:::tip
+The default `bootstrap` Terragrunt stack provided in the installation guide includes `PlanRoles` and `ApplyRoles` values that can be configured to adjust the permissions granted to Pipelines.
+:::
+
+:::
+
+1. Remove the folder containing the infrastructure code for the resource you want to destroy. For the GCS bucket example, delete the folder containing the GCS bucket code. Replace <CustomizableValue id="PROJECT_NAME" /> and <CustomizableValue id="REGION" /> with the appropriate values.
+
+   ```bash
+   rm -rf $$PROJECT_NAME$$/$$REGION$$/data-storage/gcs
+   ```
+
+2. Create a new branch, commit the changes, and push the branch to your repository.
+
+</TabItem>
 </Tabs>
 
 ### Planning the destruction
@@ -116,6 +137,11 @@ To verify the S3 bucket has been destroyed, check the AWS Management Console and
 <TabItem value="azure" label="Azure">
 
 To verify the Resource Group and Storage Account have been destroyed, visit the Azure Portal and confirm the Resource Group no longer exists.
+
+</TabItem>
+<TabItem value="gcp" label="GCP">
+
+To verify the GCS bucket has been destroyed, visit the Google Cloud Console and confirm the bucket no longer exists in Cloud Storage.
 
 </TabItem>
 </Tabs>

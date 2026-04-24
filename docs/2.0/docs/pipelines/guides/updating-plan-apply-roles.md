@@ -68,6 +68,24 @@ The permissions granted to each role are controlled by custom Azure RBAC role de
 You can override these by passing custom action lists via the `plan_custom_role_actions` and `apply_custom_role_actions` stack values.
 
 </TabItem>
+<TabItem value="gcp" label="GCP">
+
+Your plan and apply service accounts are managed by the bootstrap stack in your repository. Replace <CustomizableValue id="PROJECT_NAME" /> with the name of the GCP project you are working with. This stack is initially created at:
+
+```
+$$PROJECT_NAME$$/bootstrap/terragrunt.stack.hcl
+```
+
+This stack sources the pipelines-bootstrap stack from the Terragrunt Scale Catalog (<span class="external-link"><a href="https://github.com/gruntwork-io/terragrunt-scale-catalog/tree/main/stacks/gcp/github/pipelines-bootstrap">GitHub</a></span> | <span class="external-link"><a href="https://github.com/gruntwork-io/terragrunt-scale-catalog/tree/main/stacks/gcp/gitlab/pipelines-bootstrap">GitLab</a></span>).
+
+The service account names are determined by the `OIDCResourcePrefix` stack value, which defaults to `pipelines`. This creates two GCP service accounts in your project:
+
+- `<OIDCResourcePrefix>-plan` (e.g., `pipelines-plan`)
+- `<OIDCResourcePrefix>-apply` (e.g., `pipelines-apply`)
+
+The IAM roles granted to each service account are controlled by the `PlanRoles` and `ApplyRoles` stack values. By default, the plan service account receives `roles/viewer` and `roles/storage.objectViewer`, while the apply service account receives a broader set of admin roles. You can override these by passing custom role lists directly via the `PlanRoles` and `ApplyRoles` stack values.
+
+</TabItem>
 </Tabs>
 
 ## Customizing roles
@@ -248,6 +266,67 @@ When you set `plan_custom_role_actions` or `apply_custom_role_actions`, you repl
 4. Merge the pull/merge request. Pipelines will apply the updated custom role definitions.
 
 </TabItem>
+<TabItem value="gcp" label="GCP">
+
+In this example, we'll add Vertex AI permissions, but the same approach works for any GCP service.
+
+GCP permissions are defined as lists of IAM role strings directly in the stack values — no separate policy files are needed.
+
+### 1. Update the bootstrap stack with your new roles
+
+Update your `terragrunt.stack.hcl` to set `PlanRoles` and `ApplyRoles` in the `values` block. Start with the default roles from the catalog, then add your new permissions:
+
+```hcl title="$$PROJECT_NAME$$/bootstrap/terragrunt.stack.hcl"
+stack {
+  # ... your existing stack configuration ...
+
+  values = {
+    # ... your existing values ...
+
+    PlanRoles = [
+      # Default roles
+      "roles/viewer",
+      "roles/storage.objectViewer",
+      # Add Vertex AI read access
+      "roles/aiplatform.viewer",
+    ]
+
+    ApplyRoles = [
+      # Default roles
+      "roles/compute.admin",
+      "roles/container.admin",
+      "roles/cloudsql.admin",
+      "roles/iam.roleAdmin",
+      "roles/resourcemanager.projectIamAdmin",
+      "roles/storage.admin",
+      "roles/compute.networkAdmin",
+      "roles/run.admin",
+      "roles/pubsub.admin",
+      "roles/dns.admin",
+      "roles/secretmanager.admin",
+      "roles/bigquery.admin",
+      "roles/iam.serviceAccountAdmin",
+      "roles/iam.serviceAccountUser",
+      "roles/serviceusage.serviceUsageAdmin",
+      # Add Vertex AI full access
+      "roles/aiplatform.admin",
+    ]
+  }
+}
+```
+
+:::note
+When you set `PlanRoles` or `ApplyRoles`, you replace the entire default list from the catalog. Make sure to include all the default roles alongside your additions.
+:::
+
+### 2. Deploy the changes via Pipelines
+
+1. Create a new branch with your changes.
+2. Open a pull/merge request targeting your Deploy Branch. Pipelines will run a plan showing the IAM binding updates.
+3. Review the plan output to confirm the role changes match what you expect.
+4. Merge the pull/merge request. Pipelines will apply the updated IAM bindings to your plan and apply service accounts.
+
+</TabItem>
 </Tabs>
 
 ## Inspecting roles in the console
@@ -283,6 +362,20 @@ To verify your Entra ID applications and custom roles in the Azure Portal:
    - <CustomizableValue id="OIDC_RESOURCE_PREFIX" />-plan-custom-role
    - <CustomizableValue id="OIDC_RESOURCE_PREFIX" />-apply-custom-role
 4. Click on either role, select **View**, then the **Permissions** tab to review the action list. After deploying your changes, you should see the new actions (e.g., `Microsoft.MachineLearningServices/*`) reflected here.
+
+</TabItem>
+<TabItem value="gcp" label="GCP">
+
+Replace <CustomizableValue id="OIDC_RESOURCE_PREFIX" /> with your `OIDCResourcePrefix` value from the bootstrap stack (e.g., `pipelines`) and <CustomizableValue id="GCP_PROJECT_ID" /> with your GCP project ID.
+
+To verify your service accounts and IAM bindings in the Google Cloud Console:
+
+1. Navigate to **IAM & Admin** > **Service Accounts** in the Google Cloud Console.
+2. Search for your prefix. You should see two service accounts:
+   - <CustomizableValue id="OIDC_RESOURCE_PREFIX" />-plan@<CustomizableValue id="GCP_PROJECT_ID" />.iam.gserviceaccount.com
+   - <CustomizableValue id="OIDC_RESOURCE_PREFIX" />-apply@<CustomizableValue id="GCP_PROJECT_ID" />.iam.gserviceaccount.com
+3. To verify the IAM roles granted to each service account, navigate to **IAM & Admin** > **IAM**, then filter by the service account email. After deploying your changes, you should see the new roles (e.g., `roles/aiplatform.admin`) reflected here.
+4. To inspect the Workload Identity bindings, click on a service account, select the **Permissions** tab, and review the principals granted `Workload Identity User` access.
 
 </TabItem>
 </Tabs>

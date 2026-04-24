@@ -137,7 +137,7 @@ To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to sca
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.11.0' \
   --output-folder .
 ```
 
@@ -151,7 +151,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.11.0' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitHubOrgName=acme' \
@@ -175,7 +175,7 @@ StateBucketName: my-state-bucket
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.11.0' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -283,7 +283,7 @@ Just like before, you'll use Boilerplate to scaffold out the necessary content f
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.11.0' \
   --output-folder .
 ```
 
@@ -297,7 +297,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/account?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/account?ref=v1.11.0' \
   --output-folder . \
   --var 'AccountName=prod' \
   --var 'AWSAccountID=987654321012' \
@@ -321,7 +321,7 @@ GitHubRepoName: infrastructure-live
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/account?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/account?ref=v1.11.0' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -409,7 +409,7 @@ To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to sca
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/infrastructure-live?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/infrastructure-live?ref=v1.11.0' \
   --output-folder .
 ```
 
@@ -423,7 +423,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/infrastructure-live?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/infrastructure-live?ref=v1.11.0' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitHubOrgName=acme' \
@@ -454,7 +454,7 @@ StateStorageContainerName: tfstate
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/infrastructure-live?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/infrastructure-live?ref=v1.11.0' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -761,7 +761,7 @@ Just like before, you'll use Boilerplate to scaffold out the necessary content f
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.11.0' \
   --output-folder .
 ```
 
@@ -777,7 +777,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.11.0' \
   --output-folder . \
   --var 'AccountName=prod' \
   --var 'GitHubOrgName=acme' \
@@ -809,7 +809,7 @@ StateStorageContainerName: tfstate
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.11.0' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -880,7 +880,7 @@ Just like before, you can use Terragrunt to provision the resources in each of t
 For each subscription you want to bootstrap, you'll need to run the following commands:
 
 ```bash
-cd <subscription-name>/_global/bootstrap
+cd <subscription-name>/bootstrap
 terragrunt run --all --non-interactive --provider-cache plan
 terragrunt run --all --non-interactive --provider-cache --no-stack-generate apply
 ```
@@ -1026,6 +1026,275 @@ You can use those values to set the values for `plan_client_id` and `apply_clien
 <PersistentCheckbox
   id="fill-in-apply-client-id"
   label="Fill in `apply_client_id` after bootstrapping."
+/>
+
+:::
+
+</TabItem>
+<TabItem value="gcp" label="GCP">
+
+The resources that you need provisioned in GCP to start managing resources with Pipelines are:
+
+1. A Workload Identity Pool with an OIDC provider
+2. A service account for Pipelines to impersonate when running Terragrunt plan commands
+3. A service account for Pipelines to impersonate when running Terragrunt apply commands
+
+For every GCP project you want Pipelines to manage infrastructure in.
+
+:::tip Don't Panic!
+
+This may seem like a lot to set up, but the content you need to add to your `infrastructure-live` repository is minimal. The majority of the work will be pulled from a reusable catalog that you'll reference in your `infrastructure-live` repository.
+
+If you want to peruse the catalog that's used in the bootstrap process, you can take a look at the [terragrunt-scale-catalog](https://github.com/gruntwork-io/terragrunt-scale-catalog) repository.
+
+:::
+
+The process that we'll follow to get these resources ready for Pipelines is:
+
+1. Set up the Terragrunt configurations in your `infrastructure-live` repository for bootstrapping Pipelines in a single GCP project
+2. Use Terragrunt to provision these resources in your GCP project
+3. (Optionally) Bootstrap additional GCP projects until all your GCP projects are ready for Pipelines
+
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+
+<h3>Bootstrap your `infrastructure-live` repository</h3>
+
+To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to scaffold it with the necessary content for Pipelines to function.
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/infrastructure-live?ref=v1.11.0' \
+  --output-folder .
+```
+
+:::tip
+
+You can just reply `y` to all the prompts to include dependencies, and accept defaults unless you want to customize something.
+
+Alternatively, you could run Boilerplate non-interactively by passing the `--non-interactive` flag. You'll need to supply the relevant values for required variables in that case.
+
+e.g.
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/infrastructure-live?ref=v1.11.0' \
+  --output-folder . \
+  --var 'ProjectName=dev' \
+  --var 'GCPProjectID=my-project-123' \
+  --var 'GCPProjectNumber=123456789012' \
+  --var 'GCPRegion=us-central1' \
+  --var 'GitHubOrgName=acme' \
+  --var 'GitHubRepoName=infrastructure-live' \
+  --var 'StateBucketName=my-state-bucket' \
+  --non-interactive
+```
+
+You can also choose to store these values in a YAML file and pass it to Boilerplate using the `--var-file` flag.
+
+```yaml title="vars.yml"
+ProjectName: dev
+GCPProjectID: my-project-123
+GCPProjectNumber: "123456789012"
+GCPRegion: us-central1
+GitHubOrgName: acme
+GitHubRepoName: infrastructure-live
+StateBucketName: my-state-bucket
+```
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/infrastructure-live?ref=v1.11.0' \
+  --output-folder . \
+  --var-file vars.yml \
+  --non-interactive
+```
+
+:::
+
+:::note Progress Checklist
+
+<PersistentCheckbox
+  id="scaffold-repository"
+  label="Use Boilerplate to scaffold out your repository with the necessary scaffolding for Pipelines."
+/>
+
+:::
+
+Next, install Terragrunt and OpenTofu locally (the `.mise.toml` file in the root of the repository after scaffolding should already be set to the versions you want for Terragrunt and OpenTofu):
+
+```bash
+mise install
+```
+
+:::note Progress Checklist
+
+<PersistentCheckbox
+  id="install-terragrunt-and-opentofu"
+  label="Install Terragrunt and OpenTofu locally."
+/>
+:::
+
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+
+<h3>Provisioning the resources</h3>
+
+Once you've set up the Terragrunt configurations, you can use Terragrunt to provision the resources in your GCP project.
+
+:::tip
+
+Make sure that you're authenticated with GCP locally before proceeding.
+
+```bash
+gcloud auth application-default login
+```
+
+:::
+
+First, make sure that everything is set up correctly by running a plan in the `bootstrap` directory in `project-name` where `project-name` is the name of the first GCP project you want to bootstrap.
+
+```bash title="project-name/bootstrap"
+terragrunt run --all --non-interactive --provider-cache --backend-bootstrap plan
+```
+
+:::tip
+
+We're using the `--provider-cache` flag here to ensure that we don't re-download the Google provider on every run by leveraging the [Terragrunt Provider Cache Server](https://terragrunt.gruntwork.io/docs/features/provider-cache-server/).
+
+We're using the `--backend-bootstrap` flag here to tell Terragrunt to bootstrap the GCS backend automatically for the project.
+
+:::
+
+:::note Progress Checklist
+
+<PersistentCheckbox
+  id="run-gcp-plan"
+  label="Run a plan in the bootstrap directory to make sure that everything is set up correctly."
+/>
+
+:::
+
+Next, apply the changes to your project.
+
+```bash title="project-name/bootstrap"
+terragrunt run --all --non-interactive --provider-cache apply
+```
+
+:::note Progress Checklist
+
+<PersistentCheckbox
+  id="run-gcp-apply"
+  label="Run an apply in the bootstrap directory to provision the resources in your GCP project."
+/>
+
+:::
+
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+
+<h3>Optional: Bootstrapping additional GCP projects</h3>
+
+If you have multiple GCP projects, and you want to bootstrap them as well, you can do so by following a similar, but slightly condensed process.
+
+For each additional project you want to bootstrap, you'll use Boilerplate in the root of your `infrastructure-live` repository to scaffold out the necessary content for just that project.
+
+:::tip
+
+If you are going to bootstrap more GCP projects, you'll probably want to commit your existing changes before proceeding.
+
+```bash
+git add .
+git commit -m "Add core Pipelines scaffolding [skip ci]"
+```
+
+The `[skip ci]` in the commit message is just in-case you push your changes up to your repository at this state, as you don't want to trigger Pipelines yet.
+
+:::
+
+Just like before, you'll use Boilerplate to scaffold out the necessary content for just that project.
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/project?ref=v1.11.0' \
+  --output-folder .
+```
+
+:::tip
+
+Again, you can just reply `y` to all the prompts to include dependencies, and accept defaults unless you want to customize something.
+
+Alternatively, you could run Boilerplate non-interactively by passing the `--non-interactive` flag. You'll need to supply the relevant values for required variables in that case.
+
+e.g.
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/project?ref=v1.11.0' \
+  --output-folder . \
+  --var 'ProjectName=prod' \
+  --var 'GCPProjectID=my-prod-project-456' \
+  --var 'GCPProjectNumber=456789012345' \
+  --var 'GCPRegion=us-central1' \
+  --var 'GitHubOrgName=acme' \
+  --var 'GitHubRepoName=infrastructure-live' \
+  --var 'StateBucketName=my-prod-state-bucket' \
+  --non-interactive
+```
+
+If you prefer to store the values in a YAML file and pass it to Boilerplate using the `--var-file` flag, you can do so like this:
+
+```yaml title="vars.yml"
+ProjectName: prod
+GCPProjectID: my-prod-project-456
+GCPProjectNumber: "456789012345"
+GCPRegion: us-central1
+GitHubOrgName: acme
+GitHubRepoName: infrastructure-live
+StateBucketName: my-prod-state-bucket
+```
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/project?ref=v1.11.0' \
+  --output-folder . \
+  --var-file vars.yml \
+  --non-interactive
+```
+
+:::
+
+:::note Progress Checklist
+
+<PersistentCheckbox
+  id="scaffold-additional-project"
+  label="Use Boilerplate to scaffold out additional GCP projects."
+/>
+
+:::
+
+Once you've scaffolded out the additional projects you want to bootstrap, you can use Terragrunt to provision the resources in each of these projects.
+
+:::tip
+
+Make sure that you authenticate to GCP with an account that has permissions in each GCP project you are bootstrapping before you attempt to provision resources in it.
+
+:::
+
+For each project you want to bootstrap, you'll need to run the following commands:
+
+```bash
+cd <project-name>/bootstrap
+terragrunt run --all --non-interactive --provider-cache --backend-bootstrap plan
+terragrunt run --all --non-interactive --provider-cache apply
+```
+
+:::note Progress Checklist
+
+<PersistentCheckbox
+  id="run-additional-gcp-plan"
+  label="Run a plan in the bootstrap directory of the additional project to make sure that everything is set up correctly."
+/>
+<PersistentCheckbox
+  id="run-additional-gcp-apply"
+  label="Run an apply in the bootstrap directory of the additional project to provision the resources in the additional project."
 />
 
 :::

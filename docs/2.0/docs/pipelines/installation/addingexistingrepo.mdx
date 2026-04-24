@@ -70,11 +70,21 @@ For each AWS Account / Azure Subscription you want to manage, you might already 
 - Storage Account and Container for Terragrunt state storage (if not already existing)
 
 </TabItem>
+<TabItem value="gcp" label="GCP">
+
+**Required GCP Resources:**
+
+- A Workload Identity Pool with an OIDC provider
+- A service account for Pipelines to impersonate when running Terragrunt plan commands
+- A service account for Pipelines to impersonate when running Terragrunt apply commands
+- IAM bindings granting each service account the appropriate project-level roles
+
+</TabItem>
 </Tabs>
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="list-required-oidc-roles" label="Create a list of all OIDC roles and resources needed for each AWS Account / Azure Subscription." />
+<PersistentCheckbox id="list-required-oidc-roles" label="Create a list of all OIDC roles and resources needed for each AWS Account / Azure Subscription / GCP Project." />
 <PersistentCheckbox id="identify-existing-resources" label="Identify which resources already exist and which need to be created." />
 
 :::
@@ -245,7 +255,7 @@ For each AWS account that needs bootstrapping, we'll use Boilerplate to scaffold
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/account?ref=v1.10.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/account?ref=v1.11.0' \
   --output-folder .
 ```
 
@@ -265,7 +275,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/account?ref=v1.10.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/account?ref=v1.11.0' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitHubOrgName=acme' \
@@ -289,7 +299,7 @@ StateBucketName: my-state-bucket
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/account?ref=v1.10.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/account?ref=v1.11.0' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -386,7 +396,7 @@ For each Azure subscription that needs bootstrapping, we'll use Boilerplate to s
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.11.0' \
   --output-folder .
 ```
 
@@ -406,7 +416,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.11.0' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitHubOrgName=acme' \
@@ -438,7 +448,7 @@ StateStorageContainerName: tfstate
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.3.2' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.11.0' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -634,6 +644,136 @@ We're adding the `-force-copy` flag here to avoid any issues with OpenTofu waiti
 :::
 
 </TabItem>
+<TabItem value="gcp" label="GCP">
+
+The resources you need provisioned in GCP to start managing resources with Pipelines are:
+
+1. A Workload Identity Pool with an OIDC provider
+2. A service account for Pipelines to impersonate when running Terragrunt plan commands
+3. A service account for Pipelines to impersonate when running Terragrunt apply commands
+
+For every GCP project that needs bootstrapping.
+
+:::tip Don't Panic!
+
+This may seem like a lot to set up, but the content you need to add to your repository is minimal. The majority of the work will be pulled from a reusable catalog that you'll reference in your repository.
+
+If you want to peruse the catalog that's used in the bootstrap process, you can take a look at the [terragrunt-scale-catalog](https://github.com/gruntwork-io/terragrunt-scale-catalog) repository.
+
+:::
+
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+<h3>Bootstrap Your Repository for GCP</h3>
+
+For each GCP project that needs bootstrapping, we'll use Boilerplate to scaffold the necessary content. Run this command from the root of your repository for each project:
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/project?ref=v1.11.0' \
+  --output-folder .
+```
+
+:::tip
+
+You'll need to run this boilerplate command once for each GCP project you want to manage with Pipelines. Boilerplate will prompt you for project-specific values each time.
+
+:::
+
+:::tip
+
+You can reply `y` to all the prompts to include dependencies, and accept defaults unless you want to customize something.
+
+Alternatively, you could run Boilerplate non-interactively by passing the `--non-interactive` flag. You'll need to supply the relevant values for required variables in that case.
+
+e.g.
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/project?ref=v1.11.0' \
+  --output-folder . \
+  --var 'ProjectName=dev' \
+  --var 'GCPProjectID=my-project-123' \
+  --var 'GCPProjectNumber=123456789012' \
+  --var 'GCPRegion=us-central1' \
+  --var 'GitHubOrgName=acme' \
+  --var 'GitHubRepoName=infrastructure-live' \
+  --var 'StateBucketName=my-state-bucket' \
+  --non-interactive
+```
+
+You can also choose to store these values in a YAML file and pass it to Boilerplate using the `--var-file` flag.
+
+```yaml title="vars.yml"
+ProjectName: dev
+GCPProjectID: my-project-123
+GCPProjectNumber: "123456789012"
+GCPRegion: us-central1
+GitHubOrgName: acme
+GitHubRepoName: infrastructure-live
+StateBucketName: my-state-bucket
+```
+
+```bash
+boilerplate \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/project?ref=v1.11.0' \
+  --output-folder . \
+  --var-file vars.yml \
+  --non-interactive
+```
+
+:::
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="scaffold-gcp-project" label="Use Boilerplate to scaffold out your repository with the necessary bootstrap configurations for each GCP project." />
+
+:::
+
+{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
+<h3>Provision GCP Bootstrap Resources</h3>
+
+Once you've scaffolded out the projects you want to bootstrap, you can use Terragrunt to provision the resources in each of them.
+
+:::tip
+
+Make sure that you're authenticated with GCP locally before proceeding.
+
+```bash
+gcloud auth application-default login
+```
+
+:::
+
+For each project you want to bootstrap, you'll need to run the following commands:
+
+First, make sure that everything is set up correctly by running a plan in the `bootstrap` directory in `project-name` where `project-name` is the name of the GCP project you want to bootstrap.
+
+```bash title="project-name/bootstrap"
+terragrunt run --all --non-interactive --provider-cache --backend-bootstrap plan
+```
+
+:::tip
+
+We're using the `--provider-cache` flag here to ensure that we don't re-download the Google provider on every run by leveraging the [Terragrunt Provider Cache Server](https://terragrunt.gruntwork.io/docs/features/provider-cache-server/).
+
+We're using the `--backend-bootstrap` flag here to tell Terragrunt to bootstrap the GCS backend automatically for the project.
+
+:::
+
+Next, apply the changes to your project.
+
+```bash title="project-name/bootstrap"
+terragrunt run --all --non-interactive --provider-cache apply
+```
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="run-gcp-plan" label="Run a plan in the bootstrap directory to make sure that everything is set up correctly." />
+<PersistentCheckbox id="run-gcp-apply" label="Run an apply in the bootstrap directory to provision the resources in your GCP project." />
+
+:::
+
+</TabItem>
 </Tabs>
 
 ## Creating `.gruntwork` HCL Configurations
@@ -739,6 +879,47 @@ Learn more about how Pipelines authenticates to Azure in the [Authenticating to 
 <PersistentCheckbox id="edit-azure-tenant-ids" label="Edit the `tenant_id` values to match your Azure tenant IDs." />
 <PersistentCheckbox id="edit-azure-subscription-ids" label="Edit the `subscription_id` values to match your Azure subscription IDs." />
 <PersistentCheckbox id="edit-azure-client-ids" label="Edit the client IDs to match the applications created during bootstrapping." />
+
+:::
+
+</TabItem>
+<TabItem value="gcp" label="GCP">
+
+```hcl title=".gruntwork/environment-production.hcl"
+environment "production" {
+  filter {
+    paths = ["prod/*"]
+  }
+
+  authentication {
+    gcp_oidc {
+      workload_identity_provider_id = "projects/123456789012/locations/global/workloadIdentityPools/pipelines-pool/providers/pipelines-provider"
+      plan_service_account_email    = "pipelines-plan@my-project-123.iam.gserviceaccount.com"
+      apply_service_account_email   = "pipelines-apply@my-project-123.iam.gserviceaccount.com"
+    }
+  }
+}
+```
+
+:::tip
+
+If you used the Boilerplate template to bootstrap your GCP project, the `.gruntwork/environment-<project-name>.hcl` file will already be populated with the correct values for your project — no manual fill-in is required.
+
+:::
+
+:::tip
+
+Learn more about how Pipelines authenticates to GCP in the [Authenticating to GCP](/2.0/docs/pipelines/concepts/cloud-auth/gcp) page.
+
+:::
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="create-gcp-environment-hcl" label="Create environment HCL files for each GCP project you want to manage with Pipelines." />
+<PersistentCheckbox id="edit-gcp-environment-labels" label="Edit the labels of the `environment` blocks to match your environment names." />
+<PersistentCheckbox id="edit-gcp-filter-paths" label="Edit the `paths` values in the `filter` blocks to match your repository structure." />
+<PersistentCheckbox id="edit-gcp-workload-identity-provider-id" label="Edit the `workload_identity_provider_id` to match the Workload Identity Pool Provider created during bootstrapping." />
+<PersistentCheckbox id="edit-gcp-service-account-emails" label="Edit the service account emails to match the service accounts created during bootstrapping." />
 
 :::
 
@@ -863,8 +1044,10 @@ If your bootstrap resource provisioning fails:
 <PersistentCheckbox id="troubleshoot-check-credentials" label="Confirm that you have the correct cloud provider credentials and permissions to create resources in your AWS Accounts / Azure Subscriptions." />
 <PersistentCheckbox id="troubleshoot-check-aws-unique-names" label="For AWS: Confirm that your S3 bucket names are globally unique and follow relevant naming restrictions from AWS." />
 <PersistentCheckbox id="troubleshoot-check-azure-unique-names" label="For Azure: Confirm that your storage account names are globally unique and follow relevant naming restrictions from Azure." />
+<PersistentCheckbox id="troubleshoot-check-gcp-unique-names" label="For GCP: Confirm that your GCS bucket names are globally unique and follow relevant naming restrictions from GCP." />
 <PersistentCheckbox id="troubleshoot-check-github-org-repo" label="Ensure your GitHub organization and repository names in the bootstrap configurations match your actual GitHub organization and repository." />
 <PersistentCheckbox id="troubleshoot-check-environment-variables" label="For Azure: Confirm that you have exported the ARM_TENANT_ID and ARM_SUBSCRIPTION_ID environment variables." />
+<PersistentCheckbox id="troubleshoot-check-gcp-auth" label="For GCP: Confirm that you have run `gcloud auth application-default login` and that your account has the necessary permissions in the GCP project." />
 
 ### HCL Configuration Issues
 
@@ -873,6 +1056,7 @@ If your HCL configurations aren't working as expected:
 <PersistentCheckbox id="troubleshoot-check-paths" label="Verify that the paths in your filter blocks correctly match your repository structure." />
 <PersistentCheckbox id="troubleshoot-check-account-ids" label="For AWS: Confirm that all Account IDs and role names are correct." />
 <PersistentCheckbox id="troubleshoot-check-azure-values" label="For Azure: Confirm that all Tenant IDs, Subscription IDs and Client IDs are correct." />
+<PersistentCheckbox id="troubleshoot-check-gcp-values" label="For GCP: Confirm that the Workload Identity Provider ID and service account emails are correct." />
 
 ### GitHub Actions Workflow Issues
 

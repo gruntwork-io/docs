@@ -13,6 +13,7 @@ By the end of this tutorial, you will have:
 - Cloud storage deployed automatically using Gruntwork Pipelines:
   - **AWS**: An S3 bucket
   - **Azure**: A Resource Group and Storage Account
+  - **GCP**: A GCS bucket
 
 ## Prerequisites
 
@@ -63,7 +64,7 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
 
    ```hcl title="$$ACCOUNT_NAME$$/$$REGION$$/data-storage/s3/terragrunt.hcl"
    terraform {
-    source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/aws/s3-bucket?ref=v1.3.2"
+    source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/aws/s3-bucket?ref=v1.11.0"
    }
 
    include "root" {
@@ -114,7 +115,7 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
    }
 
    terraform {
-     source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/azure/resource-group?ref=v1.3.2"
+     source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/azure/resource-group?ref=v1.11.0"
    }
 
    inputs = {
@@ -131,7 +132,7 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
    }
 
    terraform {
-     source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/azure/storage-account?ref=v1.3.2"
+     source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/azure/storage-account?ref=v1.11.0"
    }
 
    dependency "resource_group" {
@@ -147,6 +148,51 @@ The default `bootstrap` Terragrunt stack provided in the installation guide incl
      location = "$$LOCATION$$"
 
      resource_group_name = dependency.resource_group.outputs.name
+   }
+   ```
+
+</TabItem>
+<TabItem value="gcp" label="GCP" groupId="platform">
+
+:::caution Permissions Required
+
+By default, Pipelines is configured with the permissions needed to complete this tutorial. However, depending on your specific setup, you may need to adjust the IAM roles used by Pipelines to ensure they have the necessary permissions.
+
+The default apply service account has permissions to create GCS buckets. If you need to use a different set of permissions, you can update the `ApplyRoles` variable when bootstrapping.
+
+:::tip
+The default `bootstrap` Terragrunt stack provided in the installation guide includes `PlanRoles` and `ApplyRoles` values that can be configured to adjust the permissions granted to Pipelines.
+:::
+
+:::
+
+1. Create the folder structure for the new GCS bucket in your environment. Replace <CustomizableValue id="PROJECT_NAME" /> with the project name you are deploying to and <CustomizableValue id="REGION" /> with the GCP region where the bucket will be deployed.
+
+   ```bash
+   mkdir -p '$$PROJECT_NAME$$/$$REGION$$/data-storage/gcs'
+   touch '$$PROJECT_NAME$$/$$REGION$$/data-storage/gcs/terragrunt.hcl'
+   ```
+
+2. Add the Terragrunt code below to the newly created `terragrunt.hcl` file to define the GCS bucket. Replace <CustomizableValue id='GCS_BUCKET_NAME'/> with your desired bucket name. Ensure the bucket name is globally unique.
+
+   ```hcl title="$$PROJECT_NAME$$/$$REGION$$/data-storage/gcs/terragrunt.hcl"
+   locals {
+     project_hcl    = read_terragrunt_config(find_in_parent_folders("project.hcl"))
+     gcp_project_id = local.project_hcl.locals.gcp_project_id
+   }
+
+   terraform {
+     source = "github.com/gruntwork-io/terragrunt-scale-catalog//modules/gcp/storage-bucket?ref=v1.11.0"
+   }
+
+   include "root" {
+     path = find_in_parent_folders("root.hcl")
+   }
+
+   inputs = {
+     project_id = local.gcp_project_id
+     name       = "$$GCS_BUCKET_NAME$$"
+     location   = "$$REGION$$"
    }
    ```
 
@@ -233,6 +279,11 @@ To verify the S3 bucket creation, visit the AWS Management Console and check the
 <TabItem value="azure" label="Azure" groupId="platform">
 
 To verify the Resource Group and Storage Account creation, visit the Azure Portal and navigate to Resource Groups to confirm both resources were created.
+
+</TabItem>
+<TabItem value="gcp" label="GCP" groupId="platform">
+
+To verify the GCS bucket creation, visit the Google Cloud Console and navigate to Cloud Storage to confirm the bucket was created.
 
 </TabItem>
 </Tabs>
