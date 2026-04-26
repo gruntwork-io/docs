@@ -68,6 +68,11 @@ More information:
 *   https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-cloudwatch-metrics-logging.html
 *   https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-edge-permissions.html
 
+## Background info
+
+For more information on AWS Lambda, how it works, and how to configure your functions, check out the [lambda module
+documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/lambda).
+
 ## Sample Usage
 
 <Tabs>
@@ -339,6 +344,6 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/lambda-edge-log-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9a56a6a510f045a982c2f7a66c56d242"
+  "hash": "3ac0954b8120ffdfa7f397d3b6f78f7d"
 }
 ##DOCS-SOURCER-END -->
