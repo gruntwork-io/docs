@@ -30,7 +30,7 @@ built-with: terraform
 
 ## Overview
 
-This module contains [Terraform](https://www.terraform.io) code to deploy [a HTTP (V2) API
+This module contains [OpenTofu](https://opentofu.org)/[Terraform](https://www.terraform.io) code to deploy [a HTTP (V2) API
 Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api.html) to front Lambda functions so that
 they can be invoked on HTTP calls.
 
@@ -733,6 +733,6 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/lambda-http-api-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e3734cc470ccf96253534b910ee4fee6"
+  "hash": "b52156dcf022d8caa428c3fbb5eef448"
 }
 ##DOCS-SOURCER-END -->

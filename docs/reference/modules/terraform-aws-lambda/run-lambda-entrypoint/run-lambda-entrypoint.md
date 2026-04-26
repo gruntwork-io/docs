@@ -66,7 +66,7 @@ application can be configured with environment variables).
 This repo is a part of the [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/),
 a collection of reusable, battle-tested, production ready infrastructure code.
 If you’ve never used the Gruntwork Modules before, make sure to read
-[Using Gruntwork Terraform Modules](https://docs.gruntwork.io/guides/working-with-code/using-modules)!
+[Using Gruntwork OpenTofu/Terraform Modules](https://docs.gruntwork.io/guides/working-with-code/using-modules)!
 
 :::
 
@@ -188,6 +188,6 @@ will assume it is the name of a Secrets Manager entry in the same region as the 
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/run-lambda-entrypoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "50b340724c1acfde9ce7717ab4442a7c"
+  "hash": "f13b24157dced4a400208d0846cd32e3"
 }
 ##DOCS-SOURCER-END -->
