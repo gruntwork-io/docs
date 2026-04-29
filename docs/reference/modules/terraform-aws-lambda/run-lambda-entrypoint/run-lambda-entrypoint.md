@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="1.3.0" lastModifiedVersion="0.20.3"/>
+<VersionBadge repoTitle="AWS Lambda" version="1.3.1" lastModifiedVersion="1.3.1"/>
 
 <!-- Frontmatter
 type: service
@@ -22,9 +22,9 @@ license: gruntwork
 built-with: go
 -->
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/run-lambda-entrypoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/run-lambda-entrypoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v0.20.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v1.3.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 # Lambda Container Entrypoint Command
 
@@ -34,7 +34,7 @@ to the lambda runtime. This entrypoint will pull the provided secrets manager en
 secrets manager entry to environment variables that are injected into the lambda runtime.
 
 This module only includes an entrypoint CLI. If you are looking for a module to deploy container based Lambda functions,
-refer to the [lambda](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/lambda) module.
+refer to the [lambda](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/lambda) module.
 
 ## Motivation
 
@@ -66,7 +66,7 @@ application can be configured with environment variables).
 This repo is a part of the [the Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/),
 a collection of reusable, battle-tested, production ready infrastructure code.
 If you’ve never used the Gruntwork Modules before, make sure to read
-[Using Gruntwork Terraform Modules](https://docs.gruntwork.io/guides/working-with-code/using-modules)!
+[Using Gruntwork OpenTofu/Terraform Modules](https://docs.gruntwork.io/guides/working-with-code/using-modules)!
 
 :::
 
@@ -78,7 +78,7 @@ If you’ve never used the Gruntwork Modules before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/lambda-docker](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/examples/lambda-docker): This example contains a sample `Dockerfile` that uses this
+*   [examples/lambda-docker](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/examples/lambda-docker): This example contains a sample `Dockerfile` that uses this
     entrypoint to expose secrets to a python based Lambda function.
 
 ## Manage
@@ -133,7 +133,7 @@ To support this use case, the `run-lambda-entrypoint` CLI includes the ability t
 is not running in a Lambda environment. When `run-lambda-entrypoint` is invoked with the arg `--rie-path`, it will wrap
 the provided entrypoint script with the RIE when running in local mode.
 
-Refer to the [secret-reflector-go](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/examples/lambda-docker/secret-reflector-go) example for an example of how to set
+Refer to the [secret-reflector-go](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/examples/lambda-docker/secret-reflector-go) example for an example of how to set
 this up with a Go based Lambda function.
 
 ### How do I pass in Secrets Manager ARNs for environment variable lookup?
@@ -183,11 +183,11 @@ will assume it is the name of a Secrets Manager entry in the same region as the 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/run-lambda-entrypoint/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/run-lambda-entrypoint/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/run-lambda-entrypoint/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/run-lambda-entrypoint/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/run-lambda-entrypoint/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/run-lambda-entrypoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "50b340724c1acfde9ce7717ab4442a7c"
+  "hash": "b57435ff9c82400651132a9b388177db"
 }
 ##DOCS-SOURCER-END -->
