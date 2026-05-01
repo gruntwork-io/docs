@@ -19,6 +19,7 @@ Here are the repos that were updated:
 - [terraform-aws-load-balancer](#terraform-aws-load-balancer)
 - [terraform-aws-security](#terraform-aws-security)
 - [terraform-aws-service-catalog](#terraform-aws-service-catalog)
+- [terraform-aws-vpc](#terraform-aws-vpc)
 
 
 ## boilerplate
@@ -187,6 +188,23 @@ The validation package is now exported directly, so consumers of Boilerplate as 
 ## pipelines-credentials
 
 
+### [v1.3.1](https://github.com/gruntwork-io/pipelines-credentials/releases/tag/v1.3.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 3/31/2026 | <a href="https://github.com/gruntwork-io/pipelines-credentials/releases/tag/v1.3.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Update error text when pipelines are paused due to usage limit by @oredavids in https://github.com/gruntwork-io/pipelines-credentials/pull/24
+
+* @oredavids made their first contribution in https://github.com/gruntwork-io/pipelines-credentials/pull/24
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-credentials/compare/v1.3.0...v1.3.1
+
+</div>
+
+
 ### [v1.3.0](https://github.com/gruntwork-io/pipelines-credentials/releases/tag/v1.3.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -222,6 +240,22 @@ The validation package is now exported directly, so consumers of Boilerplate as 
 
 
 ## pipelines-workflows
+
+
+### [v4.10.2](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v4.10.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 3/31/2026 | <a href="https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v4.10.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * Bump pipelines credentials actions ref to v1.3.1 by @oredavids in https://github.com/gruntwork-io/pipelines-workflows/pull/199
+
+
+**Full Changelog**: https://github.com/gruntwork-io/pipelines-workflows/compare/v4...v4.10.2
+
+</div>
 
 
 ### [v4.10.1](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v4.10.1)
@@ -372,6 +406,26 @@ The validation package is now exported directly, so consumers of Boilerplate as 
 ## terraform-aws-security
 
 
+### [v1.4.1](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.4.1)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 3/31/2026 | Modules affected: custom-iam-entity | <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.4.1">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- `custom-iam-entity`: add tags to IAM role
+- test fixes: improved tagging and cleanup (no functional change from this)
+
+
+
+
+
+</div>
+
+
 ### [v1.4.0](https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.4.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -499,9 +553,30 @@ The validation package is now exported directly, so consumers of Boilerplate as 
 
 </div>
 
+
+
+## terraform-aws-vpc
+
+
+### [v0.28.12](https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.12)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 3/31/2026 | Modules affected: vpc-peering-cross-accounts-accepter, vpc-peering-cross-accounts-requester, vpc-peering-external, vpc-peering | <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.12">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- Added VPC Peering Support for multiple CIDR blocks
+
+
+
+</div>
+
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "161fe8d4812d1c2fc86f31bdbfa6ccf8"
+  "hash": "f559903fc664ca6d1f86da6116385875"
 }
 ##DOCS-SOURCER-END -->
