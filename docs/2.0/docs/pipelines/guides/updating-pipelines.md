@@ -23,23 +23,25 @@ Due to our integration with [Dependabot](https://docs.github.com/en/code-securit
 Gruntwork recommends leaving your workflow reference at a major-tag shorthand, such as `v3` to automatically get the latest minor-tag updates.
 :::
 
-### Pipelines Release Notifications
+### Pipelines release notifications (GitHub)
 
-To stay informed about new releases of Gruntwork Pipelines, subscribe to the GitHub Atom feed for the [`gruntwork-io/pipelines-workflows`](https://github.com/gruntwork-io/pipelines-workflows) repository:
+To stay informed about new releases of Gruntwork Pipelines, you have two main options:
 
-```
-https://github.com/gruntwork-io/pipelines-workflows/releases.atom
-```
+- **GitHub notifications**: Open the [`pipelines-workflows`](https://github.com/gruntwork-io/pipelines-workflows) repository, click **Watch**, choose **Custom**, and enable **Releases**. GitHub will email you when a new release is published. This is the lowest-friction option and does not require a feed reader.
+- **RSS feed**: Subscribe to the Atom feed for the repository:
 
-There are several ways to consume this feed:
+  ```text
+  https://github.com/gruntwork-io/pipelines-workflows/releases.atom
+  ```
 
-- **GitHub's built-in watch**: Open the [`pipelines-workflows`](https://github.com/gruntwork-io/pipelines-workflows) repository, click **Watch**, choose **Custom**, and enable **Releases**. GitHub will email you when a new release is published. This is the lowest-friction option and does not require a feed reader.
-- **A standalone RSS reader**: Add the feed URL above to a reader such as Feedly, NetNewsWire, or Inoreader.
-- **Slack or Microsoft Teams**: Both platforms can post RSS items to a channel (Slack via its `/feed` slash command, Teams via an RSS connector). This lets release announcements land directly in a shared channel.
+  This feed can be consumed by:
+
+  - A standalone RSS reader such as Feedly, NetNewsWire, or Inoreader.
+  - Slack or Microsoft Teams, which can both post RSS items to a channel (Slack via its `/feed` slash command, Teams via an RSS connector). This lets release announcements land directly in a shared channel.
 
 :::note
 
-Dependabot (mentioned above) also surfaces new releases by opening pull requests against your repository. The Atom feed is a lower-latency complement: it notifies you as soon as a release is published, before a bot opens the upgrade PR.
+If you've configured Dependabot for your repository, it will also surface new releases by opening pull requests. The Atom feed is a lower-latency complement: it notifies you as soon as a release is published, before a bot opens the upgrade PR.
 :::
 
 ### Updating customized workflows
@@ -65,25 +67,27 @@ We recommend using GitLab's [Renovate integration](https://docs.gitlab.com/ee/us
 Gruntwork recommends leaving your workflow reference at a major-tag shorthand, such as `v1` to automatically get the latest minor-tag updates.
 :::
 
-### Pipelines Release Notifications
+### Pipelines release notifications (GitLab)
 
-To stay informed about new releases of Gruntwork Pipelines, subscribe to the Atom feed for the [`gruntwork-io/pipelines-workflows`](https://gitlab.com/gruntwork-io/pipelines-workflows) project on GitLab:
+To stay informed about new releases of Gruntwork Pipelines, you have two main options:
 
-```
-https://gitlab.com/gruntwork-io/pipelines-workflows/-/releases.atom
-```
+- **GitLab notifications**: On the [`pipelines-workflows`](https://gitlab.com/gruntwork-io/pipelines-workflows) project page, set your notification level to **Custom** and enable **New release**. GitLab will email you when a new release is published. This option does not require a feed reader.
+- **RSS feed**: Subscribe to the Atom feed for the project:
 
-There are several ways to consume this feed:
+  ```text
+  https://gitlab.com/gruntwork-io/pipelines-workflows/-/releases.atom
+  ```
 
-- **A standalone RSS reader**: Add the feed URL above to a reader such as Feedly, NetNewsWire, or Inoreader.
-- **GitLab notification settings**: On the [`pipelines-workflows`](https://gitlab.com/gruntwork-io/pipelines-workflows) project page, set your notification level to **Custom** and enable **New release**. GitLab will email you when a new release is published. This option does not require a feed reader.
-- **Slack or Microsoft Teams**: Both platforms can post RSS items to a channel (Slack via its `/feed` slash command, Teams via an RSS connector). This lets release announcements land directly in a shared channel.
+  This feed can be consumed by:
+
+  - A standalone RSS reader such as Feedly, NetNewsWire, or Inoreader.
+  - Slack or Microsoft Teams, which can both post RSS items to a channel (Slack via its `/feed` slash command, Teams via an RSS connector). This lets release announcements land directly in a shared channel.
 
 For GitLab users, applying a release maps to bumping the CI component version in your `.gitlab-ci.yml` (rather than updating a workflow file reference). The underlying concept is the same: a version bump on a Gruntwork dependency.
 
 :::note
 
-Renovate (mentioned above) also surfaces new releases by opening merge requests against your project. The Atom feed is a lower-latency complement: it notifies you as soon as a release is published, before a bot opens the upgrade MR.
+If you've configured Renovate for your project, it will also surface new releases by opening merge requests. The Atom feed is a lower-latency complement: it notifies you as soon as a release is published, before a bot opens the upgrade MR.
 :::
 
 </TabItem>
