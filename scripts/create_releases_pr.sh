@@ -10,13 +10,15 @@ export GH_TOKEN=${GITHUB_OAUTH_TOKEN} # required to use 'gh'
 function set_release_date() {
   unameOut="$(uname -s)"
 
-  # Handling running this on linux or mac
+  # Handling running this on linux or mac. UTC-anchored to match
+  # docs-sourcer's UTC date parsing and avoid timezone drift near month
+  # boundaries when the script is run outside UTC.
   if [ ${unameOut} = "Linux" ]; then
     # Equivalent of a return statement
-    echo $(date -d "$(date +"%Y-%m-01") - 1 day" +"%F")
+    echo $(date -u -d "$(date -u +"%Y-%m-01") - 1 day" +"%F")
   elif [ ${unameOut} = "Darwin" ]; then
     # Equivalent of a return statement
-    echo $(date -v1d -v-1d +%Y-%m-%d)
+    echo $(TZ=UTC date -v1d -v-1d +%Y-%m-%d)
   else
     echo "Unknown uname ${unameOut}, exiting"
     exit 1
@@ -32,9 +34,9 @@ function set_cutoff_date() {
   unameOut="$(uname -s)"
 
   if [ ${unameOut} = "Linux" ]; then
-    echo $(date +"%Y-%m-01")
+    echo $(date -u +"%Y-%m-01")
   elif [ ${unameOut} = "Darwin" ]; then
-    echo $(date -v1d +%Y-%m-%d)
+    echo $(TZ=UTC date -v1d +%Y-%m-%d)
   else
     echo "Unknown uname ${unameOut}, exiting"
     exit 1
