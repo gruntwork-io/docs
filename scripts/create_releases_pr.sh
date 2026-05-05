@@ -23,6 +23,24 @@ function set_release_date() {
   fi
 }
 
+# First day of the current month, used as the exclusive upper bound for the
+# releases plugin filter. docs-sourcer parses date-only strings as midnight
+# UTC, so passing "last day of previous month" misses releases published
+# after 00:00 UTC on that day. Passing "first day of current month" instead
+# captures everything from the previous month regardless of UTC time.
+function set_cutoff_date() {
+  unameOut="$(uname -s)"
+
+  if [ ${unameOut} = "Linux" ]; then
+    echo $(date +"%Y-%m-01")
+  elif [ ${unameOut} = "Darwin" ]; then
+    echo $(date -v1d +%Y-%m-%d)
+  else
+    echo "Unknown uname ${unameOut}, exiting"
+    exit 1
+  fi
+}
+
 function configure_git {
   local -r git_username="$1"
   local -r git_email="$2"
@@ -47,10 +65,10 @@ function assert_envvar_not_empty() {
 }
 
 function generate_release_data() {
-  local -r release_date=$1
+  local -r cutoff_date=$1
 
   # The 'releases' plugin requires this env var to be set to limit releases to before this date
-  RELEASES_PLUGIN_BEFORE_DATE="$release_date" yarn regenerate --plugins releases
+  RELEASES_PLUGIN_BEFORE_DATE="$cutoff_date" yarn regenerate --plugins releases
 }
 
 function create_branch() {
@@ -91,15 +109,15 @@ function main() {
 
   assert_envvar_not_empty "GITHUB_OAUTH_TOKEN"
 
-  # no -r for RELEASES_PLUGIN_BEFORE_DATE so we can pass it into generate_release_data and set it for the process
-  local RELEASES_PLUGIN_BEFORE_DATE=$(set_release_date)
-  local -r BRANCH_NAME=$(set_branch_name $RELEASES_PLUGIN_BEFORE_DATE)
+  local -r RELEASE_DATE=$(set_release_date)
+  local -r CUTOFF_DATE=$(set_cutoff_date)
+  local -r BRANCH_NAME=$(set_branch_name $RELEASE_DATE)
 
   create_branch $BRANCH_NAME
-  generate_release_data $RELEASES_PLUGIN_BEFORE_DATE
-  add_and_commit_changes $RELEASES_PLUGIN_BEFORE_DATE
+  generate_release_data $CUTOFF_DATE
+  add_and_commit_changes $RELEASE_DATE
   push_branch $BRANCH_NAME
-  create_pull_request $RELEASES_PLUGIN_BEFORE_DATE
+  create_pull_request $RELEASE_DATE
 }
 
 main
