@@ -9,7 +9,7 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="1.3.0" lastModifiedVersion="1.3.0"/>
+<VersionBadge repoTitle="AWS Lambda" version="1.3.1" lastModifiedVersion="1.3.1"/>
 
 <!-- Frontmatter
 type: service
@@ -22,15 +22,15 @@ license: gruntwork
 built-with: terraform
 -->
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/lambda-http-api-gateway" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/lambda-http-api-gateway" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v1.3.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 # Lambda Function HTTP API Gateway
 
 ## Overview
 
-This module contains [Terraform](https://www.terraform.io) code to deploy [a HTTP (V2) API
+This module contains [OpenTofu](https://opentofu.org)/[Terraform](https://www.terraform.io) code to deploy [a HTTP (V2) API
 Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api.html) to front Lambda functions so that
 they can be invoked on HTTP calls.
 
@@ -39,7 +39,7 @@ they can be invoked on HTTP calls.
 :::note
 
 If you are looking for a simple proxy to route all requests to a Lambda function, refer to the
-[api-gateway-proxy](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/api-gateway-proxy) module.
+[api-gateway-proxy](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/api-gateway-proxy) module.
 
 :::
 
@@ -70,7 +70,7 @@ If you’ve never used the Gruntwork Modules before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/lambda-http-api-gateway](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/examples/lambda-http-api-gateway): This example contains sample code that uses
+*   [examples/lambda-http-api-gateway](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/examples/lambda-http-api-gateway): This example contains sample code that uses
     this module to route two different requests to two different Lambda functions.
 
 ## Manage
@@ -94,7 +94,7 @@ information on route syntax that API Gateway expects.
 
 module "lambda_http_api_gateway" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v1.3.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -215,7 +215,7 @@ module "lambda_http_api_gateway" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-http-api-gateway?ref=v1.3.1"
 }
 
 inputs = {
@@ -728,11 +728,11 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/lambda-http-api-gateway/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/lambda-http-api-gateway/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.0/modules/lambda-http-api-gateway/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/lambda-http-api-gateway/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/lambda-http-api-gateway/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/lambda-http-api-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e3734cc470ccf96253534b910ee4fee6"
+  "hash": "fe12e7313234415feed04e72d6c7f459"
 }
 ##DOCS-SOURCER-END -->
