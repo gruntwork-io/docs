@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="2.0.0" lastModifiedVersion="1.2.0"/>
+<VersionBadge repoTitle="Control Tower" version="2.0.2" lastModifiedVersion="1.2.0"/>
 
 # Account Baseline Security with Control Tower Integration
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.0/modules/landingzone/control-tower-security-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/landingzone/control-tower-security-account-baseline" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v1.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -34,7 +34,7 @@ by Control Tower, including setting up Amazon Guard Duty, Macie, IAM users, IAM 
 
 module "control_tower_security_account_baseline" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v2.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v2.0.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -162,6 +162,13 @@ module "control_tower_security_account_baseline" {
 
   # The name of the IAM managed policy that denies CloudShell access.
   cloudshell_deny_policy_name = "deny-cloudshell-full-access"
+
+  # The description to set on the Control Tower Execution IAM role. When
+  # importing an existing role that already has a description, set this to match
+  # the existing value. If Control Tower has been enabled, an SCP may prevent
+  # modifying this role, so a mismatch here will cause apply to fail. Only used
+  # if create_control_tower_execution_role is set to true.
+  control_tower_execution_role_description = null
 
   # The ID of the your management (root) AWS account where Control Tower is
   # enabled. Only used if create_control_tower_execution_role is set to true.
@@ -797,7 +804,7 @@ module "control_tower_security_account_baseline" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v2.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-security-account-baseline?ref=v2.0.2"
 }
 
 inputs = {
@@ -928,6 +935,13 @@ inputs = {
 
   # The name of the IAM managed policy that denies CloudShell access.
   cloudshell_deny_policy_name = "deny-cloudshell-full-access"
+
+  # The description to set on the Control Tower Execution IAM role. When
+  # importing an existing role that already has a description, set this to match
+  # the existing value. If Control Tower has been enabled, an SCP may prevent
+  # modifying this role, so a mismatch here will cause apply to fail. Only used
+  # if create_control_tower_execution_role is set to true.
+  control_tower_execution_role_description = null
 
   # The ID of the your management (root) AWS account where Control Tower is
   # enabled. Only used if create_control_tower_execution_role is set to true.
@@ -1870,6 +1884,15 @@ The name of the IAM managed policy that denies CloudShell access.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;deny-cloudshell-full-access&quot;"/>
+</HclListItem>
+
+<HclListItem name="control_tower_execution_role_description" requirement="optional" type="string">
+<HclListItemDescription>
+
+The description to set on the Control Tower Execution IAM role. When importing an existing role that already has a description, set this to match the existing value. If Control Tower has been enabled, an SCP may prevent modifying this role, so a mismatch here will cause apply to fail. Only used if create_control_tower_execution_role is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="control_tower_management_account_id" requirement="optional" type="string">
@@ -3595,11 +3618,11 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.0/modules/control-tower-security-account-baseline/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.0/modules/control-tower-security-account-baseline/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.0/modules/control-tower-security-account-baseline/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-security-account-baseline/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-security-account-baseline/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-security-account-baseline/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e222ce27d35aaa94791edf673c981a4b"
+  "hash": "820b32f31a6abab7f494160ca6f94547"
 }
 ##DOCS-SOURCER-END -->
