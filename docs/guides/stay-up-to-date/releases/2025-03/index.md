@@ -3,10 +3,8 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2025-03</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2025-03. For instructions
-on how to use these updates in your code, check out the [updating
-documentation](/library/stay-up-to-date/updating).
+This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2025-03.
+For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -891,6 +889,6 @@ If `pipelines-execute` exits with non-zero return code we now forward stderr to 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "cb6188b60e4153c8ebc88bce6f85065a"
+  "hash": "b4b986fa6757a882fde66b8670abfd8a"
 }
 ##DOCS-SOURCER-END -->

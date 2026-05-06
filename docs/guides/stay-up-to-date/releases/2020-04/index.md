@@ -3,10 +3,8 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2020-04</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2020-04. For instructions
-on how to use these updates in your code, check out the [updating
-documentation](/library/stay-up-to-date/updating).
+This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2020-04.
+For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -631,6 +629,6 @@ This new module allows to create a VPC Interface Endpoint to connect services wi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "ed0237e7cd99b2c688611fa033c661f2"
+  "hash": "5bf143740977b7d548be7507b01db128"
 }
 ##DOCS-SOURCER-END -->

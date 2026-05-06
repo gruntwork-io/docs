@@ -3,10 +3,8 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2018-05</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2018-05. For instructions
-on how to use these updates in your code, check out the [updating
-documentation](/library/stay-up-to-date/updating).
+This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2018-05.
+For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -350,6 +348,6 @@ BACKWARDS INCOMPATIBLE CHANGES
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "0cac4ef8efefab7906ebda4b9f348d1f"
+  "hash": "cdec6d32f9c1aaeed4561283f7c6edae"
 }
 ##DOCS-SOURCER-END -->

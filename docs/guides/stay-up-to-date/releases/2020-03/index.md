@@ -3,10 +3,8 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2020-03</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2020-03. For instructions
-on how to use these updates in your code, check out the [updating
-documentation](/library/stay-up-to-date/updating).
+This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2020-03.
+For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -889,6 +887,6 @@ Thanks to @mmiranda for his contribution, and to @marinalimeira for her suggesti
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "ab4929597fd101f5d27c597f097f1326"
+  "hash": "753feceebe3c818c07f692c431415ee5"
 }
 ##DOCS-SOURCER-END -->

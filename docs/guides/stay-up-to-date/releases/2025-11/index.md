@@ -3,10 +3,8 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2025-11</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2025-11. For instructions
-on how to use these updates in your code, check out the [updating
-documentation](/library/stay-up-to-date/updating).
+This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2025-11.
+For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -485,6 +483,6 @@ This is an interim fix, with more nuanced flag ordering planned for the future.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "dcca12190eaf0e4e9fa134da2ae660a7"
+  "hash": "61acf884dc4bf2a98998fb68ae452eab"
 }
 ##DOCS-SOURCER-END -->
