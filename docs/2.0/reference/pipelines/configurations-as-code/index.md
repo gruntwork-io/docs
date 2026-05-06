@@ -2,7 +2,7 @@
 
 Pipelines uses configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to enable dynamic behavior. These configurations direct Pipelines in managing interactions with cloud environments, using Infrastructure as Code (IaC) stored in a repository.
 
-To process configurations, Pipelines parses all `.hcl` files within a `.gruntwork` directory or a single file named `gruntwork.hcl`. Typically, global configurations relevant to the entire repository are placed in the `.gruntwork` directory at the root, while configurations specific to a particular `terragrunt.hcl` file (referred to as a "unit") reside in the same directory as the corresponding `terragrunt.hcl` file.
+Pipelines reads its configuration from a `.gruntwork` directory at the root of the repository. Pipelines parses every `.hcl` file in that directory as global configuration that applies to the whole repository. To override the configuration for an individual unit, place a single file named `gruntwork.hcl` alongside the unit's `terragrunt.hcl`.
 
 :::info
 
@@ -11,40 +11,9 @@ We recommend reviewing our [concepts page](/2.0/docs/pipelines/concepts/hcl-conf
 
 ## Basic configuration
 
-The minimum configuration required for Pipelines to function depends on the specific context. In most scenarios, Pipelines must determine how to authenticate with a cloud provider to execute Terragrunt commands. Unless running Pipelines on a host machine that is already authenticated with a cloud provider (e.g. a self-hosted runner), it is generally required to configure some form of authentication within the `authentication` block.
+The minimum configuration required for Pipelines to function is a `.gruntwork` directory at the root of the repository containing at least one `environment` block. The `environment` block tells Pipelines which units belong to that environment and how to authenticate with a cloud provider when executing Terragrunt commands against them.
 
-Below is an example of a minimal configuration for a single Terragrunt unit, demonstrating how to enable Pipelines to authenticate with AWS using OIDC:
-
-```hcl
-# gruntwork.hcl
-unit {
-  authentication {
-    aws_oidc {
-      account_id         = "an-aws-account-id"
-      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role/role-to-assume-for-plans"
-      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role/role-to-assume-for-applies"
-    }
-  }
-}
-```
-
-Placing this configuration in a `gruntwork.hcl` file within the same directory as a `terragrunt.hcl` file directs Pipelines to assume the `role-to-assume-for-plans` role in the AWS account with the ID `an-aws-account-id` when executing Terragrunt plan commands. The authentication process leverages [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) to securely connect to AWS and assume the specified role.
-
-:::tip
-
-If you are running Pipelines on a host machine that is already authenticated with a cloud provider, you can explicitly leave the `authentication` block empty to signal that Pipelines should not attempt to perform any authentication itself.
-
-```hcl
-unit {
-  authentication {}
-}
-```
-
-:::
-
-It is common for multiple Terragrunt units within a repository to assume the same AWS role. For instance, all units within a specific directory may provision resources for the same AWS account. Configuring AWS authentication at the environment level is more efficient in these cases. You can do this by defining an `environment` block within one of the `.hcl` files in the `.gruntwork` directory at the repository root and specifying the AWS authentication configuration.
-
-e.g.
+For example, the following defines a single environment that authenticates to AWS using OIDC:
 
 ```hcl
 # .gruntwork/environments.hcl
@@ -63,7 +32,15 @@ environment "an_environment" {
 }
 ```
 
-In this example, all units located within the `an-environment` directory, which is a sibling to the `.gruntwork` directory, will assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when Pipelines runs Terragrunt plan commands.
+All units located within the `an-environment` directory (a sibling of the `.gruntwork` directory) will assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when Pipelines runs Terragrunt plan commands. The authentication process leverages [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) to securely connect to AWS and assume the specified role.
+
+:::tip
+
+If you are running Pipelines on a host machine that is already authenticated with a cloud provider (e.g. a self-hosted runner), you can leave the `authentication` block empty (`authentication {}`) to signal that Pipelines should not attempt to perform any authentication itself.
+
+:::
+
+Other top-level blocks are optional. In particular, the [`repository`](#repository-blocks) block configures repository-wide settings such as `deploy_branch_name`; if it is not defined, Pipelines uses default values for those settings.
 
 A common strategy for creating Pipelines configurations is to start with minimal setups that address the most frequent use cases. As the repository evolves, these configurations can be refactored and generalized to reduce repetition and improve maintainability. To get started with Pipelines configurations as code, check out the guide on [adding existing repositories](/2.0/docs/pipelines/installation/addingexistingrepo).
 
@@ -93,11 +70,50 @@ These configurations are the most specific and take precedence over repository a
 
 ## Global configurations
 
-Configurations within a `.gruntwork` directory, in the current working directory or a parent directory, are referred to as global configurations. These configurations typically have broader applicability within the repository and serve as the primary mechanism for setting up Pipelines.
+Configurations within the `.gruntwork` directory at the root of the repository are referred to as global configurations. They apply across the entire repository and are the primary mechanism for setting up Pipelines.
 
-When searching for configurations, Pipelines will identify a single `.gruntwork` directory and will not search further up the directory structure once it locates one.
+Pipelines parses every `.hcl` file in `.gruntwork/` as a global configuration. Filenames within `.gruntwork/` commonly mirror the block names they define (e.g. `environments.hcl`, `aws.hcl`), but this convention is not mandatory.
 
-It is common to see configuration filenames within the `.gruntwork` directory that correspond to the block names they define. However, this naming convention is not mandatory. Pipelines will parse any `.hcl` file within the `.gruntwork` directory as a global configuration.
+### Repository Blocks
+
+[Full Reference for Repository Blocks](/2.0/reference/pipelines/configurations-as-code/api#repository-block)
+
+Repository blocks serve to define configurations that apply universally across the entire repository.
+
+e.g.
+
+```hcl
+repository {
+  deploy_branch_name = "main"
+}
+```
+
+In this example, the `deploy_branch_name` attribute is configured as `main`, meaning Pipelines will deploy infrastructure changes whenever updates occur on the `main` branch.
+
+  :::info
+
+Job consolidation is a process by which Pipelines merges multiple related jobs (e.g., `ModuleAdded`, `ModuleChanged`) into a single job (e.g., `ModulesAddedOrChanged`) when executing Terragrunt commands.
+
+This optimization significantly reduces CI/CD costs by consolidating Terragrunt execution into fewer jobs, spreading the operational expenses more efficiently. Additionally, it enhances accuracy by allowing Terragrunt to leverage a Directed Acyclic Graph (DAG) for proper sequencing of updates.
+
+For example:
+
+- Instead of running the following independent jobs:
+  A. `ModuleAdded`
+  B. `ModuleChanged` (which depends on `ModuleAdded`)
+
+- Pipelines consolidates them into a single job:
+  C. `ModulesAddedOrChanged`
+
+Since `ModulesAddedOrChanged` uses the `run-all` Terragrunt command, it respects the DAG to ensure that the `ModuleAdded` operation is completed before the `ModuleChanged` operation.
+
+  :::
+
+  :::tip
+
+In rare cases, you might disable job consolidation to allocate maximum resources to each CI/CD job. While this is not a general recommendation, it can be a helpful workaround if your runner is depleting its available resources during execution.
+
+  :::
 
 ### Environment blocks
 
@@ -107,30 +123,7 @@ Environment blocks define configurations that apply to a specific environment wi
 
 The label assigned to an environment block serves as the name of the environment. This label is user-defined and must be globally unique across the repository.
 
-e.g.
-
-```hcl
-# .gruntwork/environments.hcl
-environment "an_environment" {
-  filter {
-    paths = ["an-environment/*"]
-  }
-
-  authentication {
-    aws_oidc {
-      account_id         = "an-aws-account-id"
-      plan_iam_role_arn  = "arn:aws:iam::an-aws-account-id:role/role-to-assume-for-plans"
-      apply_iam_role_arn = "arn:aws:iam::an-aws-account-id:role/role-to-assume-for-applies"
-    }
-  }
-}
-```
-
-In this example, the `an_environment` environment is configured to match all units located within the `an-environment` directory adjacent to the `.gruntwork` directory. Units matching this filter will assume the `role-to-assume-for-plans` role in the AWS account with ID `an-aws-account-id` when Pipelines executes Terragrunt plan commands.
-
-To maintain clarity and reduce redundancy, environment blocks should reference other configuration blocks rather than redefining configurations repeatedly.
-
-For this reason, environment blocks often resemble the following:
+To maintain clarity and reduce redundancy, environment blocks should reference other configuration blocks (such as [`aws` blocks](#aws-blocks)) rather than redefining configurations repeatedly. For this reason, environment blocks often resemble the following:
 
 ```hcl
 # .gruntwork/environments.hcl
@@ -207,55 +200,9 @@ It is possible to define multiple AWS accounts blocks, each pointing to distinct
 Using YAML files instead of HCL files for defining AWS account configurations was a deliberate decision to enhance the portability of these configurations for use beyond Pipelines. Tools such as [Terragrunt](https://github.com/gruntwork-io/terragrunt/) and [yq](https://github.com/mikefarah/yq) can leverage these files effectively due to their portability compared to HCL files.
 :::
 
-### Repository Blocks
-
-[Full Reference for Repository Blocks](/2.0/reference/pipelines/configurations-as-code/api#repository-block)
-
-Repository blocks serve to define configurations that apply universally across the entire repository.
-
-e.g.
-
-```hcl
-repository {
-  deploy_branch_name = "main"
-}
-```
-
-In this example, the `deploy_branch_name` attribute is configured as `main`, meaning Pipelines will deploy infrastructure changes whenever updates occur on the `main` branch.
-
-  :::info
-
-Job consolidation is a process by which Pipelines merges multiple related jobs (e.g., `ModuleAdded`, `ModuleChanged`) into a single job (e.g., `ModulesAddedOrChanged`) when executing Terragrunt commands.
-
-This optimization significantly reduces CI/CD costs by consolidating Terragrunt execution into fewer jobs, spreading the operational expenses more efficiently. Additionally, it enhances accuracy by allowing Terragrunt to leverage a Directed Acyclic Graph (DAG) for proper sequencing of updates.
-
-For example:
-
-- Instead of running the following independent jobs:
-  A. `ModuleAdded`
-  B. `ModuleChanged` (which depends on `ModuleAdded`)
-
-- Pipelines consolidates them into a single job:
-  C. `ModulesAddedOrChanged`
-
-Since `ModulesAddedOrChanged` uses the `run-all` Terragrunt command, it respects the DAG to ensure that the `ModuleAdded` operation is completed before the `ModuleChanged` operation.
-
-  :::
-
-  :::tip
-
-In rare cases, you might disable job consolidation to allocate maximum resources to each CI/CD job. While this is not a general recommendation, it can be a helpful workaround if your runner is depleting its available resources during execution.
-
-  :::
-
 ## Local configurations
 
-Configurations must be specified within a single file named gruntwork.hcl, located in the same directory as the terragrunt.hcl file. These configurations are referred to as local configurations and are generally used to define settings specific to a single unit of Infrastructure as Code (IaC) within a repository. .
-
-These configurations can serve two purposes:
-
-1. Define all the settings necessary for Pipelines to operate within the scope of a single unit.
-2. Override global configurations defined in the `.gruntwork` directory, tailoring them to the unit's specific needs.
+A `gruntwork.hcl` file located in the same directory as a `terragrunt.hcl` file is referred to as a local configuration. Local configurations override the global configuration in `.gruntwork/` for that single unit of Infrastructure as Code (IaC), letting you tailor settings to the unit's specific needs.
 
 ### Unit blocks
 
