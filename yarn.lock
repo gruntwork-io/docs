@@ -8034,9 +8034,9 @@ dns-packet@^5.2.2:
   dependencies:
     "@leichtgewicht/ip-codec" "^2.0.1"
 
-"docs-sourcer@git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.36":
+"docs-sourcer@git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#v0.36.2":
   version "0.0.1"
-  resolved "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#ab2f7e13f2d2ce770d6a76ea99fa36b2a04edd4e"
+  resolved "git+ssh://git@github.com/gruntwork-io/docs-sourcer.git#5c43cc0161f20d5ed3c949005d51b001d86a2260"
   dependencies:
     "@octokit/auth-app" "^3.6.1"
     "@octokit/plugin-retry" "^3.0.9"

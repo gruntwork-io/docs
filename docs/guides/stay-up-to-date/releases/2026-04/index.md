@@ -3,10 +3,8 @@
 
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2026-04</small></p>
 
-This page is lists all the updates to the [Gruntwork Infrastructure as Code
-Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2026-04. For instructions
-on how to use these updates in your code, check out the [updating
-documentation](/library/stay-up-to-date/updating).
+This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2026-04.
+For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -853,7 +851,7 @@ plumb through enable_default_standards in security hub
 - `lambda-copy-shared-snapshot` → Use `copy_action` with automatic KMS re-encryption
 - `lambda-cleanup-snapshots` → Use `lifecycle &#x7B; delete_after &#x7D;` on source and destination
 
-See the [backup-rds-cross-account example](/examples/backup-rds-cross-account) for a full end-to-end replacement.
+See the [backup-rds-cross-account example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/examples/backup-rds-cross-account) for a full end-to-end replacement.
 
 
 - **RDS**: Add `multi_az` support for read replicas (#575)
@@ -1155,6 +1153,6 @@ Default EKS version is 1.34 with this release! Please see the links below for fu
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "29cca8027aa77017de59b0da0c22bb95"
+  "hash": "3833637559095eb7fd1d21cbd8c29498"
 }
 ##DOCS-SOURCER-END -->
