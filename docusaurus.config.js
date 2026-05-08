@@ -86,38 +86,7 @@ async function createConfig() {
         ? algoliaConfig.libraryIndexName
         : undefined,
     },
-    headTags: [
-      {
-        tagName: "link",
-        attributes: {
-          rel: "preload",
-          href: "/fonts/geist-mono-400.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossorigin: "anonymous",
-        },
-      },
-      {
-        tagName: "link",
-        attributes: {
-          rel: "preload",
-          href: "/fonts/general-sans-variable.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossorigin: "anonymous",
-        },
-      },
-      {
-        tagName: "link",
-        attributes: {
-          rel: "preload",
-          href: "/fonts/inter-latin.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossorigin: "anonymous",
-        },
-      },
-    ],
+    headTags: [],
     presets: [
       [
         "@docusaurus/preset-classic",
