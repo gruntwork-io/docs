@@ -1070,6 +1070,14 @@ The ID of the public subnet route table of the mgmt VPC.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="vpc_arn">
+<HclListItemDescription>
+
+The ARN of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="vpc_cidr_block">
 <HclListItemDescription>
 
@@ -1113,6 +1121,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/networking/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f1bc8d35ac2ea7851afc3a23920db696"
+  "hash": "1ad8c360002b349ee6ff15c69e939ebc"
 }
 ##DOCS-SOURCER-END -->

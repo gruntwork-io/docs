@@ -178,8 +178,8 @@ module "vpc" {
 
   # Allows to filter list of Availability Zones based on their current state.
   # Can be either "available", "information", "impaired" or "unavailable". By
-  # default the list includes a complete set of Availability Zones to which the
-  # underlying AWS account has access, regardless of their state.
+  # default only available AZs are used, which prevents subnet creation failures
+  # in AZs that are impaired or offline.
   availability_zone_state = null
 
   # DEPRECATED. The AWS Region where this VPC will exist. This variable is no
@@ -943,8 +943,8 @@ inputs = {
 
   # Allows to filter list of Availability Zones based on their current state.
   # Can be either "available", "information", "impaired" or "unavailable". By
-  # default the list includes a complete set of Availability Zones to which the
-  # underlying AWS account has access, regardless of their state.
+  # default only available AZs are used, which prevents subnet creation failures
+  # in AZs that are impaired or offline.
   availability_zone_state = null
 
   # DEPRECATED. The AWS Region where this VPC will exist. This variable is no
@@ -1763,7 +1763,7 @@ List of specific Availability Zone IDs to use. If null (default), all availabili
 <HclListItem name="availability_zone_state" requirement="optional" type="string">
 <HclListItemDescription>
 
-Allows to filter list of Availability Zones based on their current state. Can be either 'available', 'information', 'impaired' or 'unavailable'. By default the list includes a complete set of Availability Zones to which the underlying AWS account has access, regardless of their state.
+Allows to filter list of Availability Zones based on their current state. Can be either 'available', 'information', 'impaired' or 'unavailable'. By default only available AZs are used, which prevents subnet creation failures in AZs that are impaired or offline.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -3595,6 +3595,14 @@ The ID of the transit subnet's ACL
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="vpc_arn">
+<HclListItemDescription>
+
+The ARN of the VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="vpc_cidr_block">
 <HclListItemDescription>
 
@@ -3638,6 +3646,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "686bb9023bb67a94bccdcb7eb9e9356a"
+  "hash": "fb39623c15f4c034bbaa664b6adaea06"
 }
 ##DOCS-SOURCER-END -->
