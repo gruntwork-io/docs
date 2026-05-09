@@ -260,7 +260,7 @@ async function createConfig() {
                 },
                 {
                   label: "Terragrunt",
-                  href: "https://terragrunt.gruntwork.io",
+                  href: "https://terragrunt.com/",
                 },
                 {
                   label: "Terratest",
