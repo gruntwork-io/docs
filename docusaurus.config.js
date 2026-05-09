@@ -20,8 +20,8 @@ const enableGoogleAnalytics =
 
 const siteUrl = cfg.has("siteUrl")
   ? cfg.get("siteUrl")
-  : process.env["NETLIFY"]
-  ? process.env["DEPLOY_URL"]
+  : process.env["VERCEL"]
+  ? `https://${process.env["VERCEL_URL"]}`
   : "http://localhost:3000"
 
 const buildVersion = cfg.has("app.buildVersion")
