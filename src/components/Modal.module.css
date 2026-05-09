@@ -44,3 +44,18 @@ html[data-theme="dark"] .overlay {
 input[type="checkbox"] {
   margin-right: 0.5rem;
 }
+
+.cancelButton {
+  background: none;
+  border: none;
+  color: var(--ifm-link-color);
+  font-weight: 600;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cancelButton:hover {
+  color: var(--ifm-link-hover-color);
+  text-decoration: underline;
+}
