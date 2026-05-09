@@ -86,7 +86,36 @@ async function createConfig() {
         ? algoliaConfig.libraryIndexName
         : undefined,
     },
-    headTags: [],
+    headTags: [
+      {
+        tagName: "meta",
+        attributes: {
+          property: "og:type",
+          content: "website",
+        },
+      },
+      {
+        tagName: "meta",
+        attributes: {
+          property: "og:image",
+          content: "https://docs.gruntwork.io/img/og-image.jpg",
+        },
+      },
+      {
+        tagName: "meta",
+        attributes: {
+          property: "og:image:width",
+          content: "1200",
+        },
+      },
+      {
+        tagName: "meta",
+        attributes: {
+          property: "og:image:height",
+          content: "630",
+        },
+      },
+    ],
     presets: [
       [
         "@docusaurus/preset-classic",
@@ -127,6 +156,10 @@ async function createConfig() {
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
+        metadata: [
+          { name: "twitter:card", content: "summary_large_image" },
+          { name: "twitter:image", content: "https://docs.gruntwork.io/img/og-image.jpg" },
+        ],
         navbar: {
           title: "",
           logo: {
