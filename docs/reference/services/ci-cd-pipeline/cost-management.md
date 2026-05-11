@@ -54,6 +54,13 @@ subscriber and don't have access to those repos, email [support@gruntwork.io](ma
 endpoint. This module requires an aliased provider named `aws.us_east_1` configured for `us-east-1`. If your default
 provider is already `us-east-1`, you can still alias it. See the example for the canonical configuration.
 
+#### Only one `DIMENSIONAL` anomaly monitor per dimension per account
+
+AWS allows at most one `DIMENSIONAL` `aws_ce_anomaly_monitor` per dimension (e.g., `SERVICE`) per account. If your account
+already has one (created by another tool, a prior deployment, or the AWS console), this module's apply will fail with
+`ValidationException: Limit exceeded on dimensional spend monitor creation`. Set `enable_anomaly_detection = false` and
+attach an `aws_ce_anomaly_subscription` to the pre-existing monitor out-of-band, or destroy the existing monitor first.
+
 #### cloud-nuke is destructive
 
 When `enable_scheduled_cloud_nuke = true`:
@@ -781,6 +788,6 @@ ARN of the SNS topic that fans out Budgets and Cost Anomaly Detection notificati
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/mgmt/cost-management/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "28e66e741a168a2dbc3e1ea89d237085"
+  "hash": "028cea3e7205a8f25bdec464f8b11bf1"
 }
 ##DOCS-SOURCER-END -->
