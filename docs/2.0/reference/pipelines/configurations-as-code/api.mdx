@@ -253,6 +253,8 @@ An AWS OIDC authentication block that determines how Pipelines will authenticate
 
 The branch that Pipelines will deploy infrastructure changes from.
 
+To run plans without applies, see [Running in plan-only mode](/2.0/docs/pipelines/guides/running-plan-apply#running-in-plan-only-mode). There is no dedicated config field for this; it is controlled via the workflow trigger or a per-unit Terragrunt `exclude` block.
+
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="main"/>
 </HclListItem>
