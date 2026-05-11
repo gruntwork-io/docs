@@ -153,10 +153,6 @@ All three fields are required for this to behave as plan-only:
 - **`actions = ["apply"]`** -- restricts the exclusion to the `apply` action only, so `plan` still runs normally on this unit.
 - **`no_run = true`** -- causes Terragrunt to skip execution of the matched action.
 
-:::warning
-`no_run = true` is the field that actually prevents Apply from executing. Without it, the `exclude` block records the match but Terragrunt still runs the action, so the unit will still be applied. If plan-only behavior is the goal, do not omit `no_run`.
-:::
-
 #### Dependency considerations
 
 When excluding Apply for a unit, be aware of how Terragrunt handles its dependency graph:
