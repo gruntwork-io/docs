@@ -30,6 +30,112 @@ To initiate an **Apply**, merge your changes into the Deploy Branch. Any commits
 
 Pipelines will add a comment to the merged merge request/pull request containing the apply output.
 
+If you would rather have Pipelines run only plans on pull/merge requests and have Apply handled elsewhere, see [Running in plan-only mode](#running-in-plan-only-mode).
+
+## Running in plan-only mode
+
+Some teams want Pipelines to comment plans on pull/merge requests but **not** run Apply when those PRs/MRs merge. Common reasons:
+
+- You are migrating onto Pipelines from an existing Apply workflow and want to adopt plan first, switching Apply over later.
+- You want to review infrastructure changes through the Pipelines comment UX before you are ready to provision real cloud resources.
+
+Plan-only mode can be configured at two granularities: across the entire repository, or on individual Terragrunt units.
+
+### Disabling apply for the entire repository
+
+<Tabs groupId="platform">
+<TabItem value="github" label="GitHub" default>
+
+To disable Apply repository-wide, remove the `push:` trigger block from `.github/workflows/pipelines.yml`. Plans continue to run on pull requests because the `pull_request:` trigger is unaffected; merges to the Deploy Branch no longer start a workflow, so no Apply runs.
+
+Before:
+
+```yaml title=".github/workflows/pipelines.yml"
+name: Pipelines
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+```
+
+After (the `push:` block is removed):
+
+```yaml title=".github/workflows/pipelines.yml"
+name: Pipelines
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+```
+
+
+</TabItem>
+<TabItem value="gitlab" label="GitLab">
+
+To disable Apply repository-wide, remove the `$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH` rule from the `workflow.rules` block in `.gitlab-ci.yml`. Plans continue to run on merge requests because the `$CI_PIPELINE_SOURCE == "merge_request_event"` rule is unaffected; commits on the default branch no longer match any rule, so no pipeline (and no Apply) runs.
+
+Before:
+
+```yaml title=".gitlab-ci.yml"
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: always
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: always
+```
+
+After (the default-branch rule is removed):
+
+```yaml title=".gitlab-ci.yml"
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: always
+```
+
+</TabItem>
+</Tabs>
+
+### Disabling apply for individual units
+
+To run Plan for a unit but skip Apply for that same unit, add a Terragrunt [`exclude` block](https://terragrunt.gruntwork.io/docs/reference/config-blocks-and-attributes/#exclude) to the unit's `terragrunt.hcl`:
+
+```hcl title="terragrunt.hcl"
+exclude {
+  if      = true
+  no_run  = true
+  actions = ["apply"]
+}
+```
+
+All three fields are required for this to behave as plan-only:
+
+- **`if = true`** -- the exclude condition is unconditionally true. You can substitute a dynamic expression here if you want the exclusion to depend on the environment, branch, or any other Terragrunt-visible input.
+- **`actions = ["apply"]`** -- restricts the exclusion to the `apply` action only, so `plan` still runs normally on this unit.
+- **`no_run = true`** -- Required to ensure that this exclude is effective for both consolidated (`--all`) and non-consolidated runs.
+
+#### Dependency considerations
+
+When excluding Apply for a unit, be aware of how Terragrunt handles its dependency graph:
+
+1. If unit B depends on unit A and Apply is excluded for unit A, an Apply of unit B will use unit A's last-known outputs rather than re-applying it. Make sure those outputs reflect the state you expect.
+2. Use `terragrunt dag graph` to visualize your dependency tree before excluding units.
+
+### Re-enabling apply
+
+To turn Apply back on:
+
+- **Repository-wide:** restore the `push:` block in `.github/workflows/pipelines.yml` (GitHub) or the `$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH` rule in `.gitlab-ci.yml` (GitLab).
+- **Per unit:** delete the `exclude` block from the unit's `terragrunt.hcl`.
+
 ## Skipping Pipelines plan/apply
 
 <Tabs groupId="platform">
