@@ -71,13 +71,13 @@ export const SubscribersOnlyModal: React.FC<SubscribersOnlyModalProps> = ({
         subscribers; everyone else will see a 404.
       </p>
       <div>
-        <input type="checkbox" onClick={setDontWarnMe} />
-        <label>Don't warn me again</label>
+        <input type="checkbox" id="dont-warn-me" onClick={setDontWarnMe} />
+        <label htmlFor="dont-warn-me">Don't warn me again</label>
       </div>
       <div className={styles.buttonsContainer}>
-        <a onClick={onRequestClose} href="#">
+        <button onClick={onRequestClose} className={styles.cancelButton}>
           Cancel
-        </a>
+        </button>
         <a
           href={externalLink}
           target="_blank"
