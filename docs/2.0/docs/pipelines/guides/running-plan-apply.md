@@ -56,24 +56,11 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - ".github/**"
   pull_request:
     types:
       - opened
       - synchronize
       - reopened
-    paths-ignore:
-      - ".github/**"
-
-permissions:
-  id-token: write
-  contents: write
-  pull-requests: write
-
-jobs:
-  GruntworkPipelines:
-    uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines.yml@<ref>
 ```
 
 After (the `push:` block is removed):
@@ -86,17 +73,6 @@ on:
       - opened
       - synchronize
       - reopened
-    paths-ignore:
-      - ".github/**"
-
-permissions:
-  id-token: write
-  contents: write
-  pull-requests: write
-
-jobs:
-  GruntworkPipelines:
-    uses: gruntwork-io/pipelines-workflows/.github/workflows/pipelines.yml@<ref>
 ```
 
 :::note
