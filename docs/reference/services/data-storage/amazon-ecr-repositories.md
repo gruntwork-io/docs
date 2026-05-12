@@ -129,6 +129,11 @@ module "ecr_repos" {
   # repositories map.
   default_external_account_ids_with_write_access = []
 
+  # If true, will delete the repository even if it contains images. Defaults to
+  # false. Can be overridden on a per repo basis by the force_delete property in
+  # the repositories map.
+  default_force_delete = false
+
   # The tag mutability setting for all the repos. Must be one of: MUTABLE or
   # IMMUTABLE. Can be overridden on a per repo basis by the image_tag_mutability
   # property in the repositories map.
@@ -223,6 +228,11 @@ inputs = {
   # repo basis by the external_account_ids_with_write_access property in the
   # repositories map.
   default_external_account_ids_with_write_access = []
+
+  # If true, will delete the repository even if it contains images. Defaults to
+  # false. Can be overridden on a per repo basis by the force_delete property in
+  # the repositories map.
+  default_force_delete = false
 
   # The tag mutability setting for all the repos. Must be one of: MUTABLE or
   # IMMUTABLE. Can be overridden on a per repo basis by the image_tag_mutability
@@ -324,6 +334,9 @@ Any types represent complex values of variable type. For details, please consult
                                                                         below for the type schema.
    - image_tag_mutability                    string                   : The tag mutability setting for the repo. If
                                                                         omitted use var.default_image_tag_mutability.
+   - force_delete                            bool                     : If true, will delete the repository even if it
+                                                                        contains images. If omitted, use
+                                                                        var.default_force_delete.
    - tags                                    map(string)              : Map of tags (where the key and value correspond
                                                                         to tag keys and values) that should be assigned
                                                                         to the ECR repository. Merged with
@@ -423,6 +436,15 @@ The default list of AWS account IDs for external AWS accounts that should be abl
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="default_force_delete" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, will delete the repository even if it contains images. Defaults to false. Can be overridden on a per repo basis by the force_delete property in the repositories map.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="default_image_tag_mutability" requirement="optional" type="string">
@@ -567,6 +589,6 @@ A list of IAM policy actions necessary for ECR write access.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/data-stores/ecr-repos/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1aa006d8ea314d89787c70791153a9bd"
+  "hash": "abeeaf6c31ac58f850666960c2b3f703"
 }
 ##DOCS-SOURCER-END -->
