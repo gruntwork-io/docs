@@ -29,7 +29,7 @@ export const Course: React.FunctionComponent<CourseProps> = ({
     <Card title={title} icon={icon} href={href}>
       <p>{description}</p>
       <p className={styles.author}>
-        {authorImg ? (<img src={authorImg} className="no-zoom" />) : ''}
+        {authorImg ? (<img src={authorImg} className="no-zoom" alt={`A picture of ${author}`} />) : ''}
         <span>{author}</span>
       </p>
       <p>
