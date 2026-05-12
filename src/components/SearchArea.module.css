@@ -76,7 +76,7 @@
   margin-left: 1px;
   margin-top: 0px;
   font-size: 15px;
-  font-family: "Source Sans Pro";
+  font-family: "Inter", sans-serif;
 }
 
 .SearchInput:focus-visible {
