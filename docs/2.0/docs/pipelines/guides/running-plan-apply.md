@@ -75,9 +75,6 @@ on:
       - reopened
 ```
 
-:::note
-When you are ready to let Pipelines run Apply, restore the `push:` block (using the same `branches` and `paths-ignore` values you had before).
-:::
 
 </TabItem>
 <TabItem value="gitlab" label="GitLab">
@@ -103,10 +100,6 @@ workflow:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: always
 ```
-
-:::note
-When you are ready to let Pipelines run Apply, restore the `$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH` rule.
-:::
 
 </TabItem>
 </Tabs>
