@@ -127,7 +127,7 @@ All three fields are required for this to behave as plan-only:
 
 - **`if = true`** -- the exclude condition is unconditionally true. You can substitute a dynamic expression here if you want the exclusion to depend on the environment, branch, or any other Terragrunt-visible input.
 - **`actions = ["apply"]`** -- restricts the exclusion to the `apply` action only, so `plan` still runs normally on this unit.
-- **`no_run = true`** -- causes Terragrunt to skip execution of the matched action.
+- **`no_run = true`** -- Required to ensure that this exclude is effective for both consolidated (`--all`) and non-consolidated runs.
 
 #### Dependency considerations
 
