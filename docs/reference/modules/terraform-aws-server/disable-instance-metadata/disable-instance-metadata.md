@@ -71,7 +71,7 @@ Disabling instance metadata access...
 
 This will result in subsequent calls to the Instance Metadata service to fail.
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/disable-instance-metadata/readme.md",
@@ -81,4 +81,4 @@ This will result in subsequent calls to the Instance Metadata service to fail.
   "sourcePlugin": "module-catalog-api",
   "hash": "584a50b78f5e62eeb886b8d7bd1a0c7d"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

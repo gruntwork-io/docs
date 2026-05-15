@@ -376,7 +376,7 @@ The secondary IP address of the DNS resolver in the origin VPC. This is the IP t
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-dns-forwarder/readme.md",
@@ -386,4 +386,4 @@ The secondary IP address of the DNS resolver in the origin VPC. This is the IP t
   "sourcePlugin": "module-catalog-api",
   "hash": "066d4ea9e1a379b8c8c3d88688fa0ae0"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

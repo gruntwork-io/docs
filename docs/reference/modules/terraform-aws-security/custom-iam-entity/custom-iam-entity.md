@@ -514,7 +514,7 @@ The name of the IAM role.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/custom-iam-entity/readme.md",
@@ -524,4 +524,4 @@ The name of the IAM role.
   "sourcePlugin": "module-catalog-api",
   "hash": "f6a895ce676f78ef8f939c0d871ffe9d"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

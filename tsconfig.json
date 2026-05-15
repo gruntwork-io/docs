@@ -3,6 +3,7 @@
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
     "baseUrl": ".",
-    "types": ["jest", "node"]
+    "ignoreDeprecations": "6.0",
+    "types": ["jest", "node", "config"]
   }
 }

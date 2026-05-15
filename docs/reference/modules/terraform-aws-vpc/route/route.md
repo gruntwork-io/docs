@@ -38,7 +38,7 @@ A route is a path to a specific destination. A route table contains a set of rul
 
 Routes can be either dynamic or static. Dynamic routes are learned by the route table from a routing protocol. Static routes are manually added to a route table. The route table then uses the most specific route that matches the traffic to determine how to route the traffic. Where possible, it's best to utilize dynamic routes. However, static routes are often used to route traffic between different types of environments.
 
-<!-- BEGIN_TF_DOCS -->
+{/* BEGIN_TF_DOCS */}
 
 ## Requirements
 
@@ -89,7 +89,7 @@ No modules.
 | <a name="output_ids"></a> [ids](#output_ids) | A map of IDs of the route resources. |
 | <a name="output_states"></a> [states](#output_states) | A map of states of the route resources. |
 
-<!-- END_TF_DOCS -->
+{/* END_TF_DOCS */}
 
 ## Sample Usage
 
@@ -444,7 +444,7 @@ A map of states of the route resources.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/route/readme.md",
@@ -454,4 +454,4 @@ A map of states of the route resources.
   "sourcePlugin": "module-catalog-api",
   "hash": "bd0ae2c9de2a07edd1ab39210f8f8429"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

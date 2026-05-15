@@ -71,9 +71,9 @@ You'll want to make it as simple as possible for new apps to be integrated into 
 
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "8fe39d263edd56aa3da7b053063169eb"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

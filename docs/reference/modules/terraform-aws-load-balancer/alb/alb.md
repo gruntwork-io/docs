@@ -1414,7 +1414,7 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.1/modules/alb/readme.md",
@@ -1424,4 +1424,4 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
   "sourcePlugin": "module-catalog-api",
   "hash": "8e053498a413870182ceb6b5918d0d08"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

@@ -40,9 +40,9 @@ The following lists our Terraform packages and their compatibility with Terrafor
 | [terraform-kubernetes-helm](https://github.com/gruntwork-io/terraform-kubernetes-helm)     | &lt;=v0.4.0         | &gt;=v0.5.0         |
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "6b93e0155be9f76ba6549b83baad9fe8"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

@@ -259,7 +259,7 @@ Whether Amazon S3 should restrict public bucket policies for buckets in this acc
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/s3-account-public-access-block/readme.adoc",
@@ -269,4 +269,4 @@ Whether Amazon S3 should restrict public bucket policies for buckets in this acc
   "sourcePlugin": "module-catalog-api",
   "hash": "5656928216b4960d7b1707f05f73e279"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

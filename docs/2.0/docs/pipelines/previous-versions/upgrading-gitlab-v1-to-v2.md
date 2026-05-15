@@ -58,7 +58,7 @@ terragrunt = "0.86.3"
 See the [Terragrunt Release Notes](https://github.com/gruntwork-io/terragrunt/releases)
 for detailed information on the changes to Terragrunt.
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] Terragrunt Version Updated
 

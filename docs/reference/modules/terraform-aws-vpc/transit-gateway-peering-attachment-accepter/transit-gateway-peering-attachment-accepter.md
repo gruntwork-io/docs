@@ -27,7 +27,7 @@ A transit gateway peering attachment accepter is a way to connect two transit ga
 
 For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/examples/transit-gateway-peering-attachment).
 
-<!-- BEGIN_TF_DOCS -->
+{/* BEGIN_TF_DOCS */}
 
 ## Requirements
 
@@ -71,7 +71,7 @@ No modules.
 | <a name="output_peer_transit_gateway_ids"></a> [peer_transit_gateway_ids](#output_peer_transit_gateway_ids) | The identifier of the peer transit gateway. |
 | <a name="output_transit_gateway_ids"></a> [transit_gateway_ids](#output_transit_gateway_ids) | The identifer of the transit gateway for the accepter resources. |
 
-<!-- END_TF_DOCS -->
+{/* END_TF_DOCS */}
 
 ## Sample Usage
 
@@ -255,7 +255,7 @@ The identifer of the transit gateway for the accepter resources.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/transit-gateway-peering-attachment-accepter/readme.md",
@@ -265,4 +265,4 @@ The identifer of the transit gateway for the accepter resources.
   "sourcePlugin": "module-catalog-api",
   "hash": "55938e3593b74973a7f1ca2ccd08b9ba"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

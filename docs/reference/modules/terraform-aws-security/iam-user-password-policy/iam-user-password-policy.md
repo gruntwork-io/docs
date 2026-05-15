@@ -332,7 +332,7 @@ Whether to require uppercase characters for user passwords.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/iam-user-password-policy/readme.md",
@@ -342,4 +342,4 @@ Whether to require uppercase characters for user passwords.
   "sourcePlugin": "module-catalog-api",
   "hash": "1161fdec5cdfd4ba63f94724e281a852"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

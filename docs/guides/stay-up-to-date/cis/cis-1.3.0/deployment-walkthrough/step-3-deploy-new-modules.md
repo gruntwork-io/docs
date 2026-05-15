@@ -87,9 +87,9 @@ are 22 (SSH) and 3389 (Remote Desktop)), you can add up to 10 CIDRs. Check out
 docs](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/v0.10.0/modules/vpc-app-network-acls#calculating-nacl-rules-limits) to see how to calculate the maximum number of CIDRs that you can add.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "6270eb0777685afb4bf98586be2e994f"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

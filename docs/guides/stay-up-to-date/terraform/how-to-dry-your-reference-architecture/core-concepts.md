@@ -43,9 +43,9 @@ walkthrough, refer to [the official Terragrunt
 documentation](https://terragrunt.gruntwork.io/docs/features/keep-your-terragrunt-architecture-dry/).
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "29aa2eab851b8a4a259acf265a6c2315"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

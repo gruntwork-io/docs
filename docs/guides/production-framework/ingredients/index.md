@@ -7,9 +7,9 @@ cloud effectively.
 
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "dd43f8507970ba12e96d6951c5c123d3"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

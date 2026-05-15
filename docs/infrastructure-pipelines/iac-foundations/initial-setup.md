@@ -1,6 +1,6 @@
 # Initial setup
 
-:::info Newer Version Available
+:::info[Newer Version Available]
 This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](/2.0/docs/pipelines/concepts/overview) to view documentation for the most recent version.
 :::
 
@@ -29,9 +29,9 @@ _[https://github.com/gruntwork-io/infrastructure-pipelines-template](https://git
 This template is only necessary if you plan on implementing [Gruntwork Pipelines](../overview/index.md).
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "4a382866f3c80d23319a902b0b1a872b"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

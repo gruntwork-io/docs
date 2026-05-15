@@ -1536,7 +1536,7 @@ The security group ID of the OpenVPN server.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/mgmt/openvpn-server/README.md",
@@ -1546,4 +1546,4 @@ The security group ID of the OpenVPN server.
   "sourcePlugin": "service-catalog-api",
   "hash": "d374b00aabec516a7d6675b27ed1fbde"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

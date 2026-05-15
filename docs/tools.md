@@ -57,9 +57,9 @@ Repo Copier is a CLI tool that enables customers to replicate repository data, i
 </CenterLayout>
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "9163aa4a6f27ddea984ff8f78e22e44b"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

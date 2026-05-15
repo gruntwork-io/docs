@@ -22,9 +22,9 @@ CIS AWS Foundations Benchmark.
 - [How to update to CIS AWS Foundations Benchmark v1.3.0](/guides/stay-up-to-date/cis/cis-1.3.0)
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "8c0f9be6013feef70b809f0778c9116f"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

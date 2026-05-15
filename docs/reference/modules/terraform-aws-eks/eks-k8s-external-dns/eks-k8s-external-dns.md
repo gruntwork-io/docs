@@ -514,7 +514,7 @@ inputs = {
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-k8s-external-dns/readme.md",
@@ -524,4 +524,4 @@ inputs = {
   "sourcePlugin": "module-catalog-api",
   "hash": "4f01397e56ca1e4f6dca48c05ee529b2"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

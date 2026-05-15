@@ -1437,7 +1437,7 @@ Optimization status of Lambda SnapStart. Possible values: 'On' (SnapStart is act
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/lambda/readme.md",
@@ -1447,4 +1447,4 @@ Optimization status of Lambda SnapStart. Possible values: 'On' (SnapStart is act
   "sourcePlugin": "module-catalog-api",
   "hash": "0b88a768d1fd2c8091896cf78397f6ce"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

@@ -662,7 +662,7 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sqs/readme.md",
@@ -672,4 +672,4 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
   "sourcePlugin": "module-catalog-api",
   "hash": "ab6521c597327d209ab588da0d2758f1"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

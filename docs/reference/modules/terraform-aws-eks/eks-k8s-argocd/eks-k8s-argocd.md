@@ -465,7 +465,7 @@ The status of the Argo CD Helm chart.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-k8s-argocd/readme.md",
@@ -475,4 +475,4 @@ The status of the Argo CD Helm chart.
   "sourcePlugin": "module-catalog-api",
   "hash": "df9ebf9d7abff8c2b336229c72594126"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

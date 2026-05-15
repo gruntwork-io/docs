@@ -4,7 +4,7 @@
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2026-04</small></p>
 
 This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2026-04.
-For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
+For instructions on how to use these updates in your code, check out the [updating documentation](/2.0/docs/library/guides/updating-modules/).
 
 Here are the repos that were updated:
 
@@ -1150,9 +1150,9 @@ Default EKS version is 1.34 with this release! Please see the links below for fu
 
 </div>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "3833637559095eb7fd1d21cbd8c29498"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

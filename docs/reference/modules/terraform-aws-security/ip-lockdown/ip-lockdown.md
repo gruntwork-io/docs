@@ -58,7 +58,7 @@ gruntwork-install --module-name ip-lockdown --tag <MODULE_SECURITY_VERSION> --re
 |IP|IP address that will be locked down (outgoing access will be disabled) for all *but* the users specified in subequent `[<USER> ... ]]` arguments|Required|169.254.169.254|
 |USER|Space separated whitelist of users who will be allowed outgoing access to specified ip address|Optional|root (or any other OS user name)|
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/ip-lockdown/readme.md",
@@ -68,4 +68,4 @@ gruntwork-install --module-name ip-lockdown --tag <MODULE_SECURITY_VERSION> --re
   "sourcePlugin": "module-catalog-api",
   "hash": "6b2778da981b92263d8ba758e9532d98"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

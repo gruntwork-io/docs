@@ -22,9 +22,9 @@ tag is compatible with CIS AWS v1.3.0, as well as the manuals step you need to p
 </div>
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "c2c87981bea218be1a10832343a9863b"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

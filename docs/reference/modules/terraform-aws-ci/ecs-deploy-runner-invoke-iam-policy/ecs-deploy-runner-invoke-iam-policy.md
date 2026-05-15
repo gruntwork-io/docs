@@ -207,7 +207,7 @@ The name of the IAM policy created with the permissions for invoking the ECS Dep
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/ecs-deploy-runner-invoke-iam-policy/readme.md",
@@ -217,4 +217,4 @@ The name of the IAM policy created with the permissions for invoking the ECS Dep
   "sourcePlugin": "module-catalog-api",
   "hash": "2c74caa9cb29eb0d4ce2fb11423217b6"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

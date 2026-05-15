@@ -77,7 +77,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 *   [How do I invoke the ECS deploy runner?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/infrastructure-deployer/core-concepts.md#how-do-i-invoke-the-ecs-deploy-runner)
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/infrastructure-deployer/readme.adoc",
@@ -87,4 +87,4 @@ If you just want to try this repo out for experimenting and learning, check out 
   "sourcePlugin": "module-catalog-api",
   "hash": "b04d9f5f09ee678cb7420fb51f9b7adf"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

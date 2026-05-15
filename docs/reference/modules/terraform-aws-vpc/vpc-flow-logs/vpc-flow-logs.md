@@ -797,7 +797,7 @@ The name of the S3 bucket where flow logs are published.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-flow-logs/readme.md",
@@ -807,4 +807,4 @@ The name of the S3 bucket where flow logs are published.
   "sourcePlugin": "module-catalog-api",
   "hash": "62d8552afc81bc08f3bc610f31e6a687"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

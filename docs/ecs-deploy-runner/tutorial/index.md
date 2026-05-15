@@ -355,9 +355,9 @@ terraform apply terraform.plan
 ```
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "e1aa8061a22ec7daa77011d0a183c554"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

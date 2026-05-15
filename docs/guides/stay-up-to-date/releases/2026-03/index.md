@@ -4,7 +4,7 @@
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2026-03</small></p>
 
 This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2026-03.
-For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
+For instructions on how to use these updates in your code, check out the [updating documentation](/2.0/docs/library/guides/updating-modules/).
 
 Here are the repos that were updated:
 
@@ -572,9 +572,9 @@ The validation package is now exported directly, so consumers of Boilerplate as 
 
 </div>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "0d79396086ec71461ae2a3b3e2b038eb"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

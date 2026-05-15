@@ -243,7 +243,7 @@ The path to use to run the executable. Will either be the path of the executable
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.8/modules/executable-dependency/readme.md",
@@ -253,4 +253,4 @@ The path to use to run the executable. Will either be the path of the executable
   "sourcePlugin": "module-catalog-api",
   "hash": "043ef80545780a28e2fa4816f23fb7ec"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

@@ -319,7 +319,7 @@ A map of tags assigned to the vault resources, including those inherited from th
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/backup-vault/readme.md",
@@ -329,4 +329,4 @@ A map of tags assigned to the vault resources, including those inherited from th
   "sourcePlugin": "module-catalog-api",
   "hash": "839a2be4b98746b0280bde3633e054b4"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

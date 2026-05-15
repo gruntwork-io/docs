@@ -41,9 +41,9 @@ Ready to try Gruntwork out? [Sign up on our website now](https://gruntwork.io/pr
 questions, please [contact sales](https://gruntwork.io/contact/).
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "b3f3a1e1c886a1f0fab367a481f23522"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

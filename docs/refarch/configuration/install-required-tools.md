@@ -30,9 +30,9 @@ If you prefer to install your tools manually, see the following sections on inst
 
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "9eb3edd24a18952be44c183211f64055"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

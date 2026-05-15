@@ -26,9 +26,9 @@ Not all of the default roles referenced in the `cross-account-iam-roles` module 
 :::
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "743be3f1e3b248b7e16f1105af99d792"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

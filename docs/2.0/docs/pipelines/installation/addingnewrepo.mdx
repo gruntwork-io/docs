@@ -25,7 +25,7 @@ There are two ways to configure SCM access for Pipelines:
 1. Using the [Gruntwork.io GitHub App](/2.0/docs/pipelines/installation/viagithubapp#configuration) (recommended for most GitHub users).
 2. Using a [machine user](/2.0/docs/pipelines/installation/viamachineusers) (recommended for GitHub users who cannot use the GitHub App).
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="configure-scm-access"
@@ -59,7 +59,7 @@ git clone git@github.com:acme/infrastructure-live.git
 cd infrastructure-live
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="clone-repository"
@@ -96,7 +96,7 @@ mise ls-remote boilerplate
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="install-boilerplate" label="Install Boilerplate." />
 
@@ -115,7 +115,7 @@ The resources that you need provisioned in AWS to start managing resources with 
 
 For every account you want Pipelines to manage infrastructure in.
 
-:::tip Don't Panic!
+:::tip[Don't Panic!]
 
 This may seem like a lot to set up, but the content you need to add to your `infrastructure-live` repository is minimal. The majority of the work will be pulled from a reusable catalog that you'll reference in your `infrastructure-live` repository.
 
@@ -183,7 +183,7 @@ boilerplate \
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="scaffold-repository"
@@ -198,7 +198,7 @@ Next, install Terragrunt and OpenTofu locally (the `.mise.toml` file in the root
 mise install
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="install-terragrunt-and-opentofu"
@@ -234,7 +234,7 @@ We're using the `--backend-bootstrap` flag here to tell Terragrunt to bootstrap 
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="run-aws-plan"
@@ -249,7 +249,7 @@ Next, apply the changes to your account.
 terragrunt run --all --non-interactive --provider-cache apply
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="run-aws-apply"
@@ -329,7 +329,7 @@ boilerplate \
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="scaffold-additional-account"
@@ -354,7 +354,7 @@ terragrunt run --all --non-interactive --provider-cache --backend-bootstrap plan
 terragrunt run --all --non-interactive --provider-cache apply
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="run-additional-aws-plan"
@@ -385,7 +385,7 @@ The resources that you need provisioned in Azure to start managing resources wit
    2. A Service Principal for the application to be used in role assignments
       1. A role assignment for the service principal to access the Azure subscription
 
-:::tip Don't Panic!
+:::tip[Don't Panic!]
 
 This may seem like a lot to set up, but the content you need to add to your `infrastructure-live` repository is minimal. The majority of the work will be pulled from a reusable catalog that you'll reference in your `infrastructure-live` repository.
 
@@ -462,7 +462,7 @@ boilerplate \
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="scaffold-repository"
@@ -488,7 +488,7 @@ If you haven't already, you'll want to authenticate to Azure using the `az` CLI.
 az login
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="authenticate-with-azure"
@@ -509,7 +509,7 @@ export ARM_TENANT_ID="00000000-0000-0000-0000-000000000000"
 export ARM_SUBSCRIPTION_ID="11111111-1111-1111-1111-111111111111"
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="export-arm-tenant-id"
@@ -533,7 +533,7 @@ We're using the `--provider-cache` flag here to ensure that we don't re-download
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="run-apply"
@@ -554,7 +554,7 @@ We're adding the `--no-stack-generate` flag here, as Terragrunt will already hav
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="run-apply"
@@ -650,7 +650,7 @@ EOF
 }
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="uncomment-remote-state-backend"
@@ -700,7 +700,7 @@ bootstrap = {
 
 You can use those values to set the values for `plan_client_id` and `apply_client_id` in the `.gruntwork/environment-<name-of-subscription>.hcl` file.
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="fill-in-plan-client-id"
@@ -729,7 +729,7 @@ We're adding the `-force-copy` flag here to avoid any issues with OpenTofu waiti
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="run-init-migrate-state-force-copy"
@@ -815,7 +815,7 @@ boilerplate \
   --non-interactive
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="scaffold-additional-subscription"
@@ -866,7 +866,7 @@ EOF
 }
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="comment-out-remote-state-backend"
@@ -891,7 +891,7 @@ We're adding the `--no-stack-generate` flag here, as Terragrunt will already hav
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="run-additional-azure-plan"
@@ -946,7 +946,7 @@ EOF
 }
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="uncomment-remote-state-backend"
@@ -967,7 +967,7 @@ We're adding the `-force-copy` flag here to avoid any issues with OpenTofu waiti
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="run-init-migrate-state-force-copy"
@@ -1017,7 +1017,7 @@ bootstrap = {
 
 You can use those values to set the values for `plan_client_id` and `apply_client_id` in the `.gruntwork/environment-<name-of-subscription>.hcl` file.
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="fill-in-plan-client-id"
@@ -1041,7 +1041,7 @@ The resources that you need provisioned in GCP to start managing resources with 
 
 For every GCP project you want Pipelines to manage infrastructure in.
 
-:::tip Don't Panic!
+:::tip[Don't Panic!]
 
 This may seem like a lot to set up, but the content you need to add to your `infrastructure-live` repository is minimal. The majority of the work will be pulled from a reusable catalog that you'll reference in your `infrastructure-live` repository.
 
@@ -1111,7 +1111,7 @@ boilerplate \
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="scaffold-repository"
@@ -1126,7 +1126,7 @@ Next, install Terragrunt and OpenTofu locally (the `.mise.toml` file in the root
 mise install
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="install-terragrunt-and-opentofu"
@@ -1164,7 +1164,7 @@ We're using the `--backend-bootstrap` flag here to tell Terragrunt to bootstrap 
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="run-gcp-plan"
@@ -1179,7 +1179,7 @@ Next, apply the changes to your project.
 terragrunt run --all --non-interactive --provider-cache apply
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="run-gcp-apply"
@@ -1261,7 +1261,7 @@ boilerplate \
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="scaffold-additional-project"
@@ -1286,7 +1286,7 @@ terragrunt run --all --non-interactive --provider-cache --backend-bootstrap plan
 terragrunt run --all --non-interactive --provider-cache apply
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="run-additional-gcp-plan"
@@ -1318,7 +1318,7 @@ git commit -m "Add Pipelines GitHub Actions workflow [skip ci]"
 git push
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox
   id="commit-and-push-changes"

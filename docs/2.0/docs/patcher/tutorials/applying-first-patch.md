@@ -72,9 +72,9 @@ Press `enter` to apply the update with Patcher:
 
 ![Patcher Update completion notice](/img/patcher/tutorials/patcher_update_complete.png)
 
-<!-- spell-checker: disable -->
+{/* spell-checker: disable */}
 You can now inspect the file system to verify the results of the patch. In this case, the update changed the version of `patcher-test` from `v0.10.3` to `v0.10.5` and added the required argument `sampleinput` to the unit. Commit and push these changes to your repository.  
-<!-- spell-checker: enable -->
+{/* spell-checker: enable */}
 
 ![Patcher Update completion notice](/img/patcher/tutorials/patcher_update_results.png)
 

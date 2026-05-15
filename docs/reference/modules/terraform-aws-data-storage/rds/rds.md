@@ -2057,7 +2057,7 @@ The ID of the security group created for the RDS instance.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/rds/readme.md",
@@ -2067,4 +2067,4 @@ The ID of the security group created for the RDS instance.
   "sourcePlugin": "module-catalog-api",
   "hash": "5ab010c106e65c052d9d54f921a569cd"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

@@ -292,7 +292,7 @@ The name of the IAM role
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/landingzone/gruntwork-access/README.md",
@@ -302,4 +302,4 @@ The name of the IAM role
   "sourcePlugin": "service-catalog-api",
   "hash": "27b1059d6d70eb646d117e64bf2d4816"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

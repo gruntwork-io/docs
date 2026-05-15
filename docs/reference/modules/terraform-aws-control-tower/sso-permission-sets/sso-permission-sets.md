@@ -332,7 +332,7 @@ The name of the permission set that was created.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/sso-permission-sets/readme.md",
@@ -342,4 +342,4 @@ The name of the permission set that was created.
   "sourcePlugin": "module-catalog-api",
   "hash": "89206cbc27b63e800c85706255d506d4"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

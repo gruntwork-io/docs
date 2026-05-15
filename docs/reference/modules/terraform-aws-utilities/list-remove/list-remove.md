@@ -157,7 +157,7 @@ Any types represent complex values of variable type. For details, please consult
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.8/modules/list-remove/readme.md",
@@ -167,4 +167,4 @@ Any types represent complex values of variable type. For details, please consult
   "sourcePlugin": "module-catalog-api",
   "hash": "03493a9f9e9e75b8b448f806603eb5f5"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

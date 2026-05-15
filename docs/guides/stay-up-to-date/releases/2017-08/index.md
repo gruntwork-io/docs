@@ -4,7 +4,7 @@
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2017-08</small></p>
 
 This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2017-08.
-For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
+For instructions on how to use these updates in your code, check out the [updating documentation](/2.0/docs/library/guides/updating-modules/).
 
 Here are the repos that were updated:
 
@@ -398,9 +398,9 @@ https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_ava
 
 </div>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "e87d448600d9843b6c18176a7fbb57c6"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

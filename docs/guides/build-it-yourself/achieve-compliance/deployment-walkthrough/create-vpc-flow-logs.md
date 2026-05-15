@@ -154,9 +154,9 @@ Finally, run the [`cloud-nuke defaults-aws`](https://github.com/gruntwork-io/clo
 default security groups from all VPCs in all regions.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "8312868084cd9973395eb4fd0af2d900"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

@@ -920,7 +920,7 @@ The name of the S3 bucket where cloudtrail logs are delivered.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/cloudtrail-bucket/readme.md",
@@ -930,4 +930,4 @@ The name of the S3 bucket where cloudtrail logs are delivered.
   "sourcePlugin": "module-catalog-api",
   "hash": "a47808aacca925c1823510215285f946"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

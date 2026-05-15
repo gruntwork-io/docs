@@ -935,7 +935,7 @@ The name of the Karpenter Node IAM Role.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-k8s-karpenter/readme.md",
@@ -945,4 +945,4 @@ The name of the Karpenter Node IAM Role.
   "sourcePlugin": "module-catalog-api",
   "hash": "4b8ba744bdf9305cffd4214d639af172"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

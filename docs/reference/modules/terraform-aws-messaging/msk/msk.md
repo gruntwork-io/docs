@@ -1242,7 +1242,7 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/msk/readme.md",
@@ -1252,4 +1252,4 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
   "sourcePlugin": "module-catalog-api",
   "hash": "6638bb3b448949c0f5682284c3b40ddf"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

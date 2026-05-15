@@ -12,9 +12,9 @@ Now it’s time to confirm that your configurations are correct and you didn’t
 
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "da234b67eaac211be828271e9d5a4a40"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

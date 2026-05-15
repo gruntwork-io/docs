@@ -25,7 +25,7 @@ For this tutorial, we will use the `patcher-test` module from the `gruntwork-io/
 Suppose you need to add a new required variable to the `patcher-test` module. 
 This change qualifies as a breaking change because consumers of your module must update their configurations to include the new variable. Without this update, OpenTofu will fail when planning or applying the infrastructure. 
 
-<!-- spell-checker: disable -->
+{/* spell-checker: disable */}
 Add the new `sampleinput` variable to `variables.tf`:
 
 ```hcl title="$$DIRECTORY$$/variables.tf"
@@ -35,7 +35,7 @@ variable "sampleinput" {
     default = "unset-value"
 }
 ```
-<!-- spell-checker: enable -->
+{/* spell-checker: enable */}
 
 ## Running `patcher generate` to template the patch
 
@@ -76,17 +76,17 @@ As the module maintainer, fill in the `<REPLACE_ME>` fields as needed:
 
 Because this breaking change is straightforward, we can use [`terrapatch`](https://github.com/gruntwork-io/terrapatch) to perform the required step: 
 
-<!-- spell-checker: disable -->
+{/* spell-checker: disable */}
 ```bash
 $ terrapatch add-module-argument $PATCHER_MODULE_ADDRESS sampleinput "\"samplevalue\""
 ```
-<!-- spell-checker: enable -->
+{/* spell-checker: enable */}
 
 `$PATCHER_MODULE_ADDRESS` gets populated when Patcher is run; it doesn't need to be set independently anywhere. 
 
 Once you have filled out the fields in the patch, it should look like this: 
 
-<!-- spell-checker: disable -->
+{/* spell-checker: disable */}
 ```yaml
 name: "Sample Breaking Change"
 description: A sample breaking change that adds a new argument
@@ -104,7 +104,7 @@ steps:
   - name:
     run: terrapatch add-module-argument $PATCHER_MODULE_ADDRESS sampleinput "\"samplevalue\""
 ```
-<!-- spell-checker: enable -->
+{/* spell-checker: enable */}
 
 ## Modifying `config.yaml`
 

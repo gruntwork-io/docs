@@ -655,7 +655,7 @@ The name of the namespace that is used. If create_namespace is true, this output
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-aws-auth-merger/readme.adoc",
@@ -665,4 +665,4 @@ The name of the namespace that is used. If create_namespace is true, this output
   "sourcePlugin": "module-catalog-api",
   "hash": "62b17adab947fe431c7ef7851d2471b9"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

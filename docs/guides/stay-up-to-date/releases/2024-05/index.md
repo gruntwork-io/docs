@@ -4,7 +4,7 @@
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2024-05</small></p>
 
 This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2024-05.
-For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
+For instructions on how to use these updates in your code, check out the [updating documentation](/2.0/docs/library/guides/updating-modules/).
 
 Here are the repos that were updated:
 
@@ -1342,9 +1342,9 @@ This release includes updates to breaking changes in multiple actions. Given tha
 
 </div>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "7eb7252fd5d766b38b57e11687991ff7"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

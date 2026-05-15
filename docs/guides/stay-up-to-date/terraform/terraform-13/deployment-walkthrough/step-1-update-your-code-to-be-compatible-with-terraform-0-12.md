@@ -15,9 +15,9 @@ If you haven’t already, you need to:
     as possible.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "4dd0c2fb042ce6d83b7a5f20404f6b75"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

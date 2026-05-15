@@ -4,7 +4,7 @@
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2021-06</small></p>
 
 This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2021-06.
-For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
+For instructions on how to use these updates in your code, check out the [updating documentation](/2.0/docs/library/guides/updating-modules/).
 
 Here are the repos that were updated:
 
@@ -1164,9 +1164,9 @@ Adds support for tags to the redis module.
 
 </div>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "3f23082b944ec51d3441a5116f5eca14"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

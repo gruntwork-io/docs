@@ -1125,7 +1125,7 @@ The name of an IAM role that can be used to configure replication from various s
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/private-s3-bucket/readme.md",
@@ -1135,4 +1135,4 @@ The name of an IAM role that can be used to configure replication from various s
   "sourcePlugin": "module-catalog-api",
   "hash": "cf3594a98d832c300d04e889d9f8810d"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

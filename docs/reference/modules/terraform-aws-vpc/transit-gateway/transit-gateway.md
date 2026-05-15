@@ -69,7 +69,7 @@ What follows are the steps required to configure Transit Gateway resources withi
 *   Attach your VPCs to your Transit Gateway
 *   Add routes between the Transit Gateways and your VPCs
 
-<!-- BEGIN_TF_DOCS -->
+{/* BEGIN_TF_DOCS */}
 
 ## Requirements
 
@@ -117,7 +117,7 @@ No modules.
 | <a name="output_default_route_table_id"></a> [default_route_table_id](#output_default_route_table_id) | Transit Gateway default route table identifier. |
 | <a name="output_id"></a> [id](#output_id) | Transit Gateway identifier. |
 
-<!-- END_TF_DOCS -->
+{/* END_TF_DOCS */}
 
 ## Sample Usage
 
@@ -439,7 +439,7 @@ Identifier of the Transit Gateway's default propagation route table.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/transit-gateway/readme.md",
@@ -449,4 +449,4 @@ Identifier of the Transit Gateway's default propagation route table.
   "sourcePlugin": "module-catalog-api",
   "hash": "a39774afe5acc34c6a525fb47941cd05"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

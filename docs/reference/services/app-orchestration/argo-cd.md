@@ -435,7 +435,7 @@ A list of the subnets into which the Argo CD pods will be launched. These should
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/eks-argocd/README.md",
@@ -445,4 +445,4 @@ A list of the subnets into which the Argo CD pods will be launched. These should
   "sourcePlugin": "service-catalog-api",
   "hash": "de5353c41aff353b01bd10e73c44694e"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

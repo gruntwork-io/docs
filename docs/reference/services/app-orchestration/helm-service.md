@@ -494,7 +494,7 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/helm-service/README.md",
@@ -504,4 +504,4 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
   "sourcePlugin": "service-catalog-api",
   "hash": "bbf508ee7910321866e478236305d0e5"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

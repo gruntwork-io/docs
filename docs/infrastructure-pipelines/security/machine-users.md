@@ -3,8 +3,8 @@ import TabItem from '@theme/TabItem';
 
 # Machine users
 
-:::info Newer Version Available
-This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
+:::info[Newer Version Available]
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](/pipelines/overview/) to view documentation for the most recent version.
 :::
 
 Gruntwork recommends using CI users in Gruntwork Pipelines, separate from human users in your organization. Using a CI user ensures that a workflow won't break due to an employee leaving your company. Further, using CI users allow you to apply granular permissions that may normally be too restrictive for a normal employee to do their daily work.
@@ -230,9 +230,9 @@ For additional information on creating and using Github Actions Repository secre
 </Tabs>
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "30aa8a6d8861a0fd157384a04ba91701"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

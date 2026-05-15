@@ -1641,7 +1641,7 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/mgmt/jenkins/README.md",
@@ -1651,4 +1651,4 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
   "sourcePlugin": "service-catalog-api",
   "hash": "c052eb6fee62c2d6a4656af42d569f4a"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

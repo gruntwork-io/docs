@@ -236,7 +236,7 @@ The name of the Lambda alias
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/lambda-alias/readme.md",
@@ -246,4 +246,4 @@ The name of the Lambda alias
   "sourcePlugin": "module-catalog-api",
   "hash": "7f43bcb85beb92357d71abc6a84401f0"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

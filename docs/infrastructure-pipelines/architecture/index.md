@@ -1,6 +1,6 @@
 # Architecture
 
-:::info Newer Version Available
+:::info[Newer Version Available]
 This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
 :::
 
@@ -34,14 +34,14 @@ Workflows running in the `infrastructure-live` repository trigger workflows to r
 
 ![Gruntwork Pipelines Architecture](/img/pipelines/how-it-works/pipelines_architecture.png)
 
-:::info Previous Version Available
+:::info[Previous Version Available]
 You are reading documentation for Gruntwork Pipelines. The previous version of Gruntwork Pipelines is known as [ECS Deploy Runner](../../ecs-deploy-runner/overview/).
 :::
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "3093f55a1ec5041354f01a27829e18e6"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

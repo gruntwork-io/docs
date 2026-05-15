@@ -1049,7 +1049,7 @@ A null_resource that indicates that the VPC is ready, including all of its resou
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-mgmt/readme.md",
@@ -1059,4 +1059,4 @@ A null_resource that indicates that the VPC is ready, including all of its resou
   "sourcePlugin": "module-catalog-api",
   "hash": "3a322676c5e526a731570d115243b024"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

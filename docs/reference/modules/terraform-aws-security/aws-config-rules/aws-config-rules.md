@@ -674,7 +674,7 @@ Map of config rule ARNs. Key is rule ID, value is rule ARN
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/aws-config-rules/readme.adoc",
@@ -684,4 +684,4 @@ Map of config rule ARNs. Key is rule ID, value is rule ARN
   "sourcePlugin": "module-catalog-api",
   "hash": "7c1c03897139cace90df6fe2f01bd300"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

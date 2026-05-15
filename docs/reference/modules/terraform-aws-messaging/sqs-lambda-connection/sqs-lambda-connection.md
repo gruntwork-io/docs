@@ -180,7 +180,7 @@ Limits the number of concurrent instances that the Amazon SQS event source can i
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sqs-lambda-connection/readme.md",
@@ -190,4 +190,4 @@ Limits the number of concurrent instances that the Amazon SQS event source can i
   "sourcePlugin": "module-catalog-api",
   "hash": "df1f8a40ff1c657006114f7b7c0a1078"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

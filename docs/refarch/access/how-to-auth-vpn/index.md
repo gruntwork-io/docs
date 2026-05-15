@@ -43,9 +43,9 @@ To connect to an OpenVPN server, you need an OpenVPN configuration file, which i
 To connect to an OpenVPN server in one of your app accounts (Dev, Stage, Prod), click the "Connect" button next to your configuration file in the OpenVPN client. After a few seconds, you should be connected. You will now be able to access all the resources within the AWS network (e.g., SSH to EC2 instances in private subnets) as if you were "in" the VPC itself.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "91ff031d4942093c0a2f574e1644bdd7"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

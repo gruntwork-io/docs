@@ -115,9 +115,9 @@ inputs {
 All the other child accounts (logs, stage, prod, etc) need the same configuration change as the security account above. Ensure you make that change in all the child accounts.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "cb0578642a724e3749d66a16916e7194"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

@@ -25,9 +25,9 @@ For a concrete example of a Landing Zone for AWS, see [Configure Your AWS Accoun
 Zone](https://docs.gruntwork.io/docs/guides/build-it-yourself/landing-zone/).
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "48f58cc321f48e30db0584fad30d84ed"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

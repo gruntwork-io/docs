@@ -1442,7 +1442,7 @@ Other modules can depend on this variable to ensure those modules only deploy af
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.1.0/modules/server-group/readme.md",
@@ -1452,4 +1452,4 @@ Other modules can depend on this variable to ensure those modules only deploy af
   "sourcePlugin": "module-catalog-api",
   "hash": "fbbaf399888ba478696b4360888f6250"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

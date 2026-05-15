@@ -3025,7 +3025,7 @@ The names of the ECS service's load balancer's target groups
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/ecs-service/README.md",
@@ -3035,4 +3035,4 @@ The names of the ECS service's load balancer's target groups
   "sourcePlugin": "service-catalog-api",
   "hash": "6b4f719b30ebd690efe70b4e7541f7de"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

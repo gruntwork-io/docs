@@ -1,7 +1,7 @@
 # Branch Protection
 
-:::info Newer Version Available
-This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
+:::info[Newer Version Available]
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](/pipelines/overview/) to view documentation for the most recent version.
 :::
 
 Gruntwork Pipelines is designed to be used with a PR based workflow.
@@ -49,9 +49,9 @@ The following is an example of the recommended settings for branch protection:
    - On Failure, a new GitHub issue is created describing the failure. A new PR must be created to resolve any failures.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "79327c7c5cfee06581006fc3bbb85805"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

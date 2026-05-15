@@ -166,7 +166,7 @@ A map of the executables to the resolved path where they reside.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.8/modules/require-executable/readme.md",
@@ -176,4 +176,4 @@ A map of the executables to the resolved path where they reside.
   "sourcePlugin": "module-catalog-api",
   "hash": "aa285e967bc9e3f91f85ebb44704bf25"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

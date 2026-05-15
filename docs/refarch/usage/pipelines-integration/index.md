@@ -98,9 +98,9 @@ a CircleCI environment variable.
    | SLACK_DEFAULT_CHANNEL | If no channel ID is specified, the app will attempt to post here. |
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "03e72865afe5801c953794c910d09957"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

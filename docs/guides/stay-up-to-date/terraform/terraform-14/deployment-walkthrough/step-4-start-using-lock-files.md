@@ -16,9 +16,9 @@ automatically copy the `.terraform.lock.hcl` file right next to your `terragrunt
 to version control.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "a8737cd633b12986e72317de6dde4a3c"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

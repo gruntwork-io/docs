@@ -76,7 +76,7 @@ configure-ecs-instance --ecs-cluster-name my-ecs-cluster --docker-auth-type dock
 
 Run `configure-ecs-instance --help` to see all available options.
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-scripts/readme.md",
@@ -86,4 +86,4 @@ Run `configure-ecs-instance --help` to see all available options.
   "sourcePlugin": "module-catalog-api",
   "hash": "9f7b626ee5bed8a4b36db35ef4883a82"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

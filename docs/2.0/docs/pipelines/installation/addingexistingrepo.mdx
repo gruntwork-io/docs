@@ -37,7 +37,7 @@ Review your existing repository structure and identify:
 3. **Directory paths** in your repository that contain Terragrunt units for each environment
 4. **Existing OIDC resources** that may already be provisioned in your accounts
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="inventory-environments" label="Create an inventory of all environments you want to manage with Pipelines." />
 <PersistentCheckbox id="map-cloud-accounts" label="Map each environment to its corresponding AWS Account / Azure Subscription." />
@@ -82,7 +82,7 @@ For each AWS Account / Azure Subscription you want to manage, you might already 
 </TabItem>
 </Tabs>
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="list-required-oidc-roles" label="Create a list of all OIDC roles and resources needed for each AWS Account / Azure Subscription / GCP Project." />
 <PersistentCheckbox id="identify-existing-resources" label="Identify which resources already exist and which need to be created." />
@@ -98,7 +98,7 @@ There are two ways to configure SCM access for Pipelines:
 1. Using the [Gruntwork.io GitHub App](/2.0/docs/pipelines/installation/viagithubapp#configuration) (recommended for most GitHub users).
 2. Using a [machine user](/2.0/docs/pipelines/installation/viamachineusers) (recommended for GitHub users who cannot use the GitHub App).
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="configure-scm-access" label="Configure SCM access for Pipelines using the documentation above." />
 
@@ -133,7 +133,7 @@ git clone git@github.com:acme/infrastructure-live.git
 cd infrastructure-live
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="clone-repository" label="Clone your repository locally (if not already done)." />
 <PersistentCheckbox id="cd-into-repository" label="Navigate into your repository." />
@@ -164,7 +164,7 @@ mise ls-remote boilerplate
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="install-boilerplate" label="Install Boilerplate." />
 
@@ -176,7 +176,7 @@ If you don't already have Terragrunt and OpenTofu installed locally, you can ins
 mise use -g terragrunt@latest opentofu@latest
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="install-terragrunt-and-opentofu" label="Install Terragrunt and OpenTofu locally (if not already installed)." />
 
@@ -195,7 +195,7 @@ The resources you need provisioned in AWS to start managing resources with Pipel
 
 For every account you want Pipelines to manage infrastructure in.
 
-:::tip Don't Panic!
+:::tip[Don't Panic!]
 
 This may seem like a lot to set up, but the content you need to add to your repository is minimal. The majority of the work will be pulled from a reusable catalog that you'll reference in your repository.
 
@@ -307,7 +307,7 @@ boilerplate \
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="scaffold-aws-account" label="Use Boilerplate to scaffold out your repository with the necessary bootstrap configurations for each AWS account." />
 
@@ -348,7 +348,7 @@ Next, apply the changes to your account.
 terragrunt run --all --non-interactive --provider-cache apply
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="run-aws-plan" label="Run a plan in the bootstrap directory to make sure that everything is set up correctly." />
 <PersistentCheckbox id="run-aws-apply" label="Run an apply in the bootstrap directory to provision the resources in your AWS account." />
@@ -373,7 +373,7 @@ The resources you need provisioned in Azure to start managing resources with Pip
    2. A Service Principal for the application to be used in role assignments
       1. A role assignment for the service principal to access the Azure subscription
 
-:::tip Don't Panic!
+:::tip[Don't Panic!]
 
 This may seem like a lot to set up, but the content you need to add to your repository is minimal. The majority of the work will be pulled from a reusable catalog that you'll reference in your repository.
 
@@ -456,7 +456,7 @@ boilerplate \
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="scaffold-azure-subscription" label="Use Boilerplate to scaffold out your repository with the necessary bootstrap configurations for each Azure subscription." />
 
@@ -473,7 +473,7 @@ If you haven't already, you'll want to authenticate to Azure using the `az` CLI.
 az login
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="authenticate-with-azure" label="Authenticate with Azure using the `az` CLI." />
 
@@ -492,7 +492,7 @@ export ARM_TENANT_ID="00000000-0000-0000-0000-000000000000"
 export ARM_SUBSCRIPTION_ID="11111111-1111-1111-1111-111111111111"
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="export-arm-tenant-id" label="Export the ARM_TENANT_ID environment variable with the tenant ID of the Azure subscription you want to provision resources in." />
 <PersistentCheckbox id="export-arm-subscription-id" label="Export the ARM_SUBSCRIPTION_ID environment variable with the subscription ID of the Azure subscription you want to provision resources in." />
@@ -510,7 +510,7 @@ We're using the `--provider-cache` flag here to ensure that we don't re-download
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="run-azure-plan" label="Run a plan in the subscription directory to make sure that everything is set up correctly." />
 
@@ -528,7 +528,7 @@ We're adding the `--no-stack-generate` flag here, as Terragrunt will already hav
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="run-azure-apply" label="Run an apply in the subscription directory to provision the resources in your Azure subscription." />
 :::
@@ -580,7 +580,7 @@ EOF
 }
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="add-remote-state-backend" label="Add or uncomment the section that defines the remote state backend in the `root.hcl` file." />
 
@@ -615,7 +615,7 @@ You can use those values to set the values for `plan_client_id` and `apply_clien
 
    :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="fill-in-plan-client-id" label="Fill in `plan_client_id` after bootstrapping." />
 <PersistentCheckbox id="fill-in-apply-client-id" label="Fill in `apply_client_id` after bootstrapping." />
@@ -637,7 +637,7 @@ We're adding the `-force-copy` flag here to avoid any issues with OpenTofu waiti
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="run-init-migrate-state-force-copy" label="Pull the resources into state using Terragrunt." />
 
@@ -654,7 +654,7 @@ The resources you need provisioned in GCP to start managing resources with Pipel
 
 For every GCP project that needs bootstrapping.
 
-:::tip Don't Panic!
+:::tip[Don't Panic!]
 
 This may seem like a lot to set up, but the content you need to add to your repository is minimal. The majority of the work will be pulled from a reusable catalog that you'll reference in your repository.
 
@@ -723,7 +723,7 @@ boilerplate \
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="scaffold-gcp-project" label="Use Boilerplate to scaffold out your repository with the necessary bootstrap configurations for each GCP project." />
 
@@ -766,7 +766,7 @@ Next, apply the changes to your project.
 terragrunt run --all --non-interactive --provider-cache apply
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="run-gcp-plan" label="Run a plan in the bootstrap directory to make sure that everything is set up correctly." />
 <PersistentCheckbox id="run-gcp-apply" label="Run an apply in the bootstrap directory to provision the resources in your GCP project." />
@@ -790,7 +790,7 @@ repository {
 }
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="create-repository-hcl" label="Create a new `.gruntwork/repository.hcl` file in the root of your repository with the contents above." />
 <PersistentCheckbox id="edit-repository-deploy-branch-name" label="Edit the value of `deploy_branch_name` in `.gruntwork/repository.hcl` if necessary." />
@@ -834,7 +834,7 @@ Check out the [aws block](/2.0/reference/pipelines/configurations-as-code/#aws-b
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="create-aws-environment-hcl" label="Create environment HCL files for each AWS account you want to manage with Pipelines." />
 <PersistentCheckbox id="edit-aws-environment-labels" label="Edit the labels of the `environment` blocks to match your environment names." />
@@ -871,7 +871,7 @@ Learn more about how Pipelines authenticates to Azure in the [Authenticating to 
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="create-azure-environment-hcl" label="Create environment HCL files for each Azure subscription you want to manage with Pipelines." />
 <PersistentCheckbox id="edit-azure-environment-labels" label="Edit the labels of the `environment` blocks to match your environment names." />
@@ -913,7 +913,7 @@ Learn more about how Pipelines authenticates to GCP in the [Authenticating to GC
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="create-gcp-environment-hcl" label="Create environment HCL files for each GCP project you want to manage with Pipelines." />
 <PersistentCheckbox id="edit-gcp-environment-labels" label="Edit the labels of the `environment` blocks to match your environment names." />
@@ -946,7 +946,7 @@ Learn more about how Pipelines can authenticate with custom authentication in th
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="create-custom-environment-hcl" label="Create environment HCL files for each environment using custom authentication." />
 <PersistentCheckbox id="edit-custom-environment-labels" label="Edit the labels of the `environment` blocks to match your environment names." />
@@ -997,7 +997,7 @@ You can read the [Pipelines GitHub Actions Workflow](https://github.com/gruntwor
 
 :::
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="create-pipelines-yml" label="Create a new `.github/workflows/pipelines.yml` file in the root of your repository with the contents above." />
 <PersistentCheckbox id="edit-pipelines-yml-branch-name" label="Edit the value of `branches` in `.github/workflows/pipelines.yml` to match the `deploy_branch_name` in `.gruntwork/repository.hcl` if necessary." />
@@ -1020,7 +1020,7 @@ git commit -m "Add Pipelines configurations and GitHub Actions workflow [skip ci
 git push
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 <PersistentCheckbox id="commit-and-push-changes" label="Commit the changes to your repository (using `[skip ci]` in the commit message)." />
 <PersistentCheckbox id="push-changes-to-repository" label="Push the changes to your repository." />

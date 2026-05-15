@@ -465,7 +465,7 @@ The ARN of the SNS topic.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/networking/sns-topics/README.md",
@@ -475,4 +475,4 @@ The ARN of the SNS topic.
   "sourcePlugin": "service-catalog-api",
   "hash": "daf96b4742125112c1ad31a042456824"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

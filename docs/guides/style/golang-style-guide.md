@@ -292,9 +292,9 @@ suffix `E` return an error as the last return value; methods without `E` mark th
 (e.g., via calling `t.Fail()`) instead of returning an error.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "e93b40d9d95beb59343da5673e66b29c"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

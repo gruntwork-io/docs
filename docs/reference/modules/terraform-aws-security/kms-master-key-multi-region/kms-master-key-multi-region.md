@@ -518,7 +518,7 @@ A map from region to IDs of the replica KMS CMKs that were created. The value wi
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/kms-master-key-multi-region/readme.adoc",
@@ -528,4 +528,4 @@ A map from region to IDs of the replica KMS CMKs that were created. The value wi
   "sourcePlugin": "module-catalog-api",
   "hash": "81dea3a6a14b9fca7b63970aab0c9994"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

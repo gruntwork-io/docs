@@ -83,7 +83,7 @@ In short, deployment frequency is a strong indicator of many best practices. For
 
 The clock starts ticking on lead time the moment you commit code to source control, but what about everything required to enable you to commit code in the first place? For example, security reviews, new cloud pattern development, or approval times could all be an issue.
 
-<!-- **TODO:** Update this URL to link to the relevant content -->
+{/* **TODO:** Update this URL to link to the relevant content */}
 
 Because there's a wide range of possibilities here, we fall back to something more fundamental: customer satisfaction. When you [treat the developer platform as a product](/2.0/way/principles/core-philosophy/your-developer-platform-is-a-product), you need to know how happy your users are. You can ask qualitatively by just chatting with them, but to get the hard metrics, it's better to do user surveys.
 

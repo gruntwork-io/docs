@@ -116,9 +116,9 @@ Error: Error creating AWSConfig rule: Failed to create AWSConfig rule: InvalidPa
 You may be using a region that doesn’t properly support AWS Config (e.g: `ap-northeast-3` Osaka). Please ensure this region is disabled or remove it from your opt-in regions.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "339270287018e92e149b0be448340c4d"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

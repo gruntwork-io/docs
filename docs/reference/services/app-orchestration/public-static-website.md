@@ -1087,7 +1087,7 @@ The ARN of the created S3 bucket associated with the website.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/public-static-website/README.md",
@@ -1097,4 +1097,4 @@ The ARN of the created S3 bucket associated with the website.
   "sourcePlugin": "service-catalog-api",
   "hash": "53e833ded11885e1eeb2dc0710e7852c"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

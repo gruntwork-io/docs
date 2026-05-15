@@ -26,9 +26,9 @@ these new versions and make other changes to your code, as described in the
 following section.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "11dd054fc7d70bce30badb6f78ce6f46"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

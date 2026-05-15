@@ -615,7 +615,7 @@ The name configured for VPC.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-app-lookup/readme.md",
@@ -625,4 +625,4 @@ The name configured for VPC.
   "sourcePlugin": "module-catalog-api",
   "hash": "e21612a2fd053df634dee80b62b8cc78"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

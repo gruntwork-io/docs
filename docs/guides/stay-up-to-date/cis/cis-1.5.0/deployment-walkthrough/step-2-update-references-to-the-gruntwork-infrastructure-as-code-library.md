@@ -258,9 +258,9 @@ If you have successfully completed steps 2A.1 through 2A.3 then you should now m
 
 ## 2B Updating Manually
 
-Refer to our ["Updating to new versions"](/library/stay-up-to-date/updating) guide for instructions on how to update the versions in your code.
+Refer to our ["Updating to new versions"](/2.0/docs/library/guides/updating-modules/) guide for instructions on how to update the versions in your code.
 
-Gruntwork follows [semantic versioning](/library/stay-up-to-date/versioning). For any pre-1.0 modules, this means that version updates to the minor version are considered backward incompatible releases for any version updates before the 1.0.0 release. Make sure to read the release notes for the relevant modules any time you are updating minor versions! Note that you will want to read the release notes for each minor version that is updated (e.g., if you are going from v0.5.x to v0.9.x, you will want to read the notes for v0.6.0, v0.7.0, v0.8.0, and v0.9.0 to get the full list of backward incompatible updates).
+Gruntwork follows [semantic versioning](/2.0/docs/library/guides/versioning/). For any pre-1.0 modules, this means that version updates to the minor version are considered backward incompatible releases for any version updates before the 1.0.0 release. Make sure to read the release notes for the relevant modules any time you are updating minor versions! Note that you will want to read the release notes for each minor version that is updated (e.g., if you are going from v0.5.x to v0.9.x, you will want to read the notes for v0.6.0, v0.7.0, v0.8.0, and v0.9.0 to get the full list of backward incompatible updates).
 
 ### Module change logs
 
@@ -310,9 +310,9 @@ If you have successfully completed manually updating the modules to the minimum 
 
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "90db2ba2a03fce70b435066a5f80b9df"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

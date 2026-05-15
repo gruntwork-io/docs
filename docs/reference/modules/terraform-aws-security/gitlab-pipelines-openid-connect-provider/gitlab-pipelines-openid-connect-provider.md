@@ -194,7 +194,7 @@ Url used for the OIDC provider
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/gitlab-pipelines-openid-connect-provider/readme.md",
@@ -204,4 +204,4 @@ Url used for the OIDC provider
   "sourcePlugin": "module-catalog-api",
   "hash": "962d771a7ec45f231bb470a2cc9112e0"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

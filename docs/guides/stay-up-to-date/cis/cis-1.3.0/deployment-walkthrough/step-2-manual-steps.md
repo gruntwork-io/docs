@@ -10,9 +10,9 @@ and 7 for 4.15). As it’s impossible to automate this subscriber’s creation, 
 on the AWS website for detailed instructions.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "8f30fea3c56323b9c5c0ce3cd5fa1841"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

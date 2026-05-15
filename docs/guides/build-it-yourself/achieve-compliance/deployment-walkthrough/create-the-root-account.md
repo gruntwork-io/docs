@@ -8,9 +8,9 @@ The first step is to create your root account. This account will be the parent o
 - You will be asked to enter an email address and password to use as the credentials for the root user of this root account.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "0d2bcff9cb814ba44ac558d23ef56f59"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

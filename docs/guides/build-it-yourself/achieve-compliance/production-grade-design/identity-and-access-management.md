@@ -335,9 +335,9 @@ is no API or automation available for this functionality. In the AWS console, vi
 For further detail, follow the manual steps outlined in the CIS Benchmark document.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "0cbf46af308ab524cdd1f839d41ad6fb"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

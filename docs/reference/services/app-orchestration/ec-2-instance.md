@@ -1651,7 +1651,7 @@ The input parameters for the EBS volumes.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/ec2-instance/README.md",
@@ -1661,4 +1661,4 @@ The input parameters for the EBS volumes.
   "sourcePlugin": "service-catalog-api",
   "hash": "e132c6db67c6a83481b1db45c42ee25a"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

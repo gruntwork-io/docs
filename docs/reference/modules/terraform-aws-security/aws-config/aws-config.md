@@ -1234,7 +1234,7 @@ The ARN of the SNS topic to which Config delivers notifications.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/aws-config/readme.adoc",
@@ -1244,4 +1244,4 @@ The ARN of the SNS topic to which Config delivers notifications.
   "sourcePlugin": "module-catalog-api",
   "hash": "7c3aa204cef5d9508103351d864a40b5"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

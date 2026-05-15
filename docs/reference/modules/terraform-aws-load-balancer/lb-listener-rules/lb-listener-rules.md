@@ -846,7 +846,7 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.1/modules/lb-listener-rules/readme.md",
@@ -856,4 +856,4 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
   "sourcePlugin": "module-catalog-api",
   "hash": "09fcd2e21a6eb9b5a6bcba678568cb39"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

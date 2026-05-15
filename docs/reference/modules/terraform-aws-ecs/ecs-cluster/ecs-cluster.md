@@ -1697,7 +1697,7 @@ Set this variable to true to enable the use of Instance Metadata Service Version
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-cluster/readme.md",
@@ -1707,4 +1707,4 @@ Set this variable to true to enable the use of Instance Metadata Service Version
   "sourcePlugin": "module-catalog-api",
   "hash": "e880df57f53704f86a36187061ab4da6"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

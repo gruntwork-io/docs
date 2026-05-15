@@ -21,9 +21,9 @@ As part of the account provisioning process, the Account Vending Machine should 
 
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "bb70e6c37087cc1b297644eb6bccdf6e"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

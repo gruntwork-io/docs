@@ -238,7 +238,7 @@ The name of the IAM policy created with the permissions for the ALB ingress cont
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-alb-ingress-controller-iam-policy/readme.md",
@@ -248,4 +248,4 @@ The name of the IAM policy created with the permissions for the ALB ingress cont
   "sourcePlugin": "module-catalog-api",
   "hash": "f01691c4595fa56595242a2ac9c98bc8"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

@@ -1684,7 +1684,7 @@ A list of IDs of the RDS DB instance's read replicas.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/data-stores/rds-replica/README.md",
@@ -1694,4 +1694,4 @@ A list of IDs of the RDS DB instance's read replicas.
   "sourcePlugin": "service-catalog-api",
   "hash": "eab50e00bc8da5116cabd5ed83ea2af0"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

@@ -629,7 +629,7 @@ The ID of the security group associated with the RDS proxy. This security group 
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/rds-proxy/readme.md",
@@ -639,4 +639,4 @@ The ID of the security group associated with the RDS proxy. This security group 
   "sourcePlugin": "module-catalog-api",
   "hash": "ff34326c7d9d752a7e69fdffbc7eac17"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

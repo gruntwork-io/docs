@@ -155,9 +155,9 @@ ready to move to [step 2](step-2-update-references-to-the-gruntwork-infrastructu
 references to the Gruntwork Infrastructure as Code Library.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "8d957e23951c0e864a1b71b7a122a0db"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

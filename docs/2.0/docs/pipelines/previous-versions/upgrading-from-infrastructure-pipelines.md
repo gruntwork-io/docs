@@ -264,9 +264,9 @@ Create a new pull request that makes a small change to your infrastructure code 
 If you encounter any issues or have suggestions for improving this guide, please contact Gruntwork support or contribute to the community guide.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "536162a4ee40d5213f60efc28690c741"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

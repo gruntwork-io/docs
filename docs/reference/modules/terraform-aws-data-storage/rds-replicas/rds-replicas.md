@@ -1062,7 +1062,7 @@ The port number on which the read replicas accept connections.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/rds-replicas/readme.md",
@@ -1072,4 +1072,4 @@ The port number on which the read replicas accept connections.
   "sourcePlugin": "module-catalog-api",
   "hash": "86bff1316a1cc58eae5957d5e064651c"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

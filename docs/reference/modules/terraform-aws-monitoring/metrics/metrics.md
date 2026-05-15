@@ -27,7 +27,7 @@ This folder contains modules for working with CloudWatch metrics:
 
 Click on each module above to see its documentation. Head over to the [examples folder](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v1.3.1/examples) for examples.
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v1.3.1/modules/metrics/readme.md",
@@ -37,4 +37,4 @@ Click on each module above to see its documentation. Head over to the [examples 
   "sourcePlugin": "module-catalog-api",
   "hash": "5546b6b63a3c373437b97d9d8b015874"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

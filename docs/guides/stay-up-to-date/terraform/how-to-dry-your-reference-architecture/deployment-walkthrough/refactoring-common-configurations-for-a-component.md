@@ -271,9 +271,9 @@ At this point, your child Terragrunt configuration should be significantly small
 moved to the common component configuration.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "9df724247b43d94d4d9a0241e8513b6b"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

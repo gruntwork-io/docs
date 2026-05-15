@@ -447,7 +447,7 @@ A map of CMK name to CMK ID.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/kms-master-key/readme.md",
@@ -457,4 +457,4 @@ A map of CMK name to CMK ID.
   "sourcePlugin": "module-catalog-api",
   "hash": "8fa7c6075893e6075c8dc2c821fc260c"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

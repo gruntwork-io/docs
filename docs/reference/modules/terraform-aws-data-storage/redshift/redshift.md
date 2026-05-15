@@ -1152,7 +1152,7 @@ The ID of the Security Group that controls access to the cluster
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/redshift/readme.md",
@@ -1162,4 +1162,4 @@ The ID of the Security Group that controls access to the cluster
   "sourcePlugin": "module-catalog-api",
   "hash": "5f3b5775824ee5b83775f2c4e9d3d0c2"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

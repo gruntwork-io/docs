@@ -2991,7 +2991,7 @@ The list of names of the ASGs that were deployed to act as EKS workers.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/eks-workers/README.md",
@@ -3001,4 +3001,4 @@ The list of names of the ASGs that were deployed to act as EKS workers.
   "sourcePlugin": "service-catalog-api",
   "hash": "4a39347469ccb3d8c4baf5ecb5622a1e"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

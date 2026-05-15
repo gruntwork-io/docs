@@ -754,7 +754,7 @@ Use this variable to ensure the Network ACL does not get created until the VPC i
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-app-network-acls/readme.md",
@@ -764,4 +764,4 @@ Use this variable to ensure the Network ACL does not get created until the VPC i
   "sourcePlugin": "module-catalog-api",
   "hash": "25b0a27bdb6fc3d768a05eaf0038b860"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

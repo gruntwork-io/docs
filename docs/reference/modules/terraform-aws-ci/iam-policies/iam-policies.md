@@ -63,7 +63,7 @@ Policy every time we add a new ECS Service.
 
 Some modules are configurable to support whatever level of
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/iam-policies/readme.md",
@@ -73,4 +73,4 @@ Some modules are configurable to support whatever level of
   "sourcePlugin": "module-catalog-api",
   "hash": "4103c2375555ae3811def6381c03e3c0"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

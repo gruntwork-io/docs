@@ -20,7 +20,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 **NOTE**: The `ecs-fargate` module has been merged with `ecs-service` as of `v0.16.0`. Refer to the migration
 guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.16.0) for more info.
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-fargate/readme.md",
@@ -30,4 +30,4 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
   "sourcePlugin": "module-catalog-api",
   "hash": "f66bac1c247f9df543463caac49555fc"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

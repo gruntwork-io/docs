@@ -411,7 +411,7 @@ VPC Peering connection object
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-peering/readme.md",
@@ -421,4 +421,4 @@ VPC Peering connection object
   "sourcePlugin": "module-catalog-api",
   "hash": "ab47eb1167d5db1a6c1f47c350d99f4b"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

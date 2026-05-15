@@ -27,9 +27,9 @@ Updating to the Service Catalog from a DRY Reference Architecture version is not
 fully supported by Gruntwork.
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "0375aad45a4e44290040bdf324035ce2"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

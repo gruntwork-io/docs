@@ -731,7 +731,7 @@ ID of the backup policies
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/org-backup-policy/readme.md",
@@ -741,4 +741,4 @@ ID of the backup policies
   "sourcePlugin": "module-catalog-api",
   "hash": "ee92990cc268126439e9c013906ac4e5"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

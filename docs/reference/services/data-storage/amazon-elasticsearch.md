@@ -1590,7 +1590,7 @@ Domain-specific endpoint for Kibana without https scheme.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/data-stores/elasticsearch/README.md",
@@ -1600,4 +1600,4 @@ Domain-specific endpoint for Kibana without https scheme.
   "sourcePlugin": "service-catalog-api",
   "hash": "1589496d2bac0cde061f898843988919"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

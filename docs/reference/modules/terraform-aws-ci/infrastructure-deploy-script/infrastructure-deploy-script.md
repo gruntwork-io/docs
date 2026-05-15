@@ -57,7 +57,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 *   [What are the system requirements for the deploy script?](https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/infrastructure-deploy-script/core-concepts.md#system-requirements)
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/infrastructure-deploy-script/readme.adoc",
@@ -67,4 +67,4 @@ If you just want to try this repo out for experimenting and learning, check out 
   "sourcePlugin": "module-catalog-api",
   "hash": "f1a7a39df653cbb1bd0acb48ec76f5fc"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

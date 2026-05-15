@@ -56,7 +56,7 @@ terragrunt = "0.86.3"
 See the [Terragrunt Release Notes](https://github.com/gruntwork-io/terragrunt/releases)
 for detailed information on the changes to Terragrunt.
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] Terragrunt Version Updated
 
@@ -94,7 +94,7 @@ include "root" {
 Refer to the [Terragrunt Documentation](https://terragrunt.gruntwork.io/docs/migrate/migrating-from-root-terragrunt-hcl/)
 for more details.
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] Root `terragrunt.hcl` file renamed to `root.hcl`
 - [ ] `find_in_parent_folders()` updated to `find_in_parent_folders("root.hcl")`
@@ -127,7 +127,7 @@ repository {
 
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] `.gruntwork/repository.hcl` created 
 
@@ -147,7 +147,7 @@ aws {
 }
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] `.gruntwork/accounts.hcl` created 
 
@@ -188,7 +188,7 @@ Confirm the values by looking at your Infrastructure as Code (typically under `_
 
 **Repeat this for each environment that needs to be authenticated.**
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] `.gruntwork/environment-ACCOUNTNAME.hcl` created for **each** AWS Account in your `accounts.yml` file
 
@@ -215,7 +215,7 @@ a full reference of values or contact [Gruntwork Support](mailto:support@gruntwo
 For Enterprise customers using Account Factory: see the [Account Vending Configuration](/2.0/reference/accountfactory/configurations-as-code#account_vending-block) for converting the account vending configuration to HCL.
 
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] `.gruntwork/account-factory.hcl` created 
 
@@ -226,7 +226,7 @@ For Enterprise customers using Account Factory: see the [Account Vending Configu
 If your organization maintains an [allowlist of GitHub actions](https://docs.github.com/en/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization#allowing-select-actions-and-reusable-workflows-to-run), update the allowlist
 with the full list of actions in [pipelines-actions v4.0.0](https://github.com/gruntwork-io/pipelines-actions/tree/v4.0.0/.github/actions)
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] (Only if your organization requires) Each pipelines action from `pipelines-actions/.github/actions` has been added to the organization's GitHub Actions allowlist
 
@@ -240,7 +240,7 @@ In each infrastructure-live repository (including any `-access-control` or `-del
 
 Update the Pipelines Workflow in the repository to add `actions: read`; required by the latest Pull Request comment functionality.
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] Updated Pipelines Workflow `pipelines.yml` to add `actions: read` permission
 
@@ -251,7 +251,7 @@ Update the Pipelines Workflow in the repository to add `actions: read`; required
 
 Update the `uses:` field of the GruntworkPipelines job to reference `@v4`
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] Updated Pipelines Workflow `pipelines.yml` to reference `@v4`
 
@@ -263,7 +263,7 @@ The pipelines workflow now runs a `GruntworkPipelines / Pipelines Status Check`
 job which can be used for Required Status Checks. As a result the `PipelinesPassed` job is no longer required.
 Remove the PipelinesPassed job and update any Required Status Checks to use `GruntworkPipelines / Pipelines Status Check`.
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] Removed `PipelinesPassed` job from `pipelines.yml`
 
@@ -284,7 +284,7 @@ The inputs to custom actions have been changed, the `gruntwork_context` input ha
 Any custom actions logic relying on `gruntwork_context` should be modified to no longer use this input. If this
 is not possible for your organization, contact us at [support@gruntwork.io](mailto:support@gruntwork.io).
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] Updated forked `pipelines-actions` to v4.1.0 or higher
 
@@ -322,7 +322,7 @@ Update the GruntworkPipelines job to use the new inputs:
 
 Note that the syntax for the filter input in Drift Detection has changed. Refer to the [Filter Reference](/2.0/docs/pipelines/guides/running-drift-detection#drift-detection-filter) for a full description of the new and expanded capabilities.
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] Updated inputs and reference to inputs in `pipelines-drift-detection.yml`
 
@@ -332,7 +332,7 @@ Note that the syntax for the filter input in Drift Detection has changed. Refer 
 
 Update the `uses:` field of the GruntworkPipelines job to reference `@v4`
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] Updated `uses` reference in `pipelines-drift-detection.yml`
 
@@ -377,7 +377,7 @@ Update the GruntworkPipelines job to use the updated inputs:
       unlock_all: ${{ inputs.unlock_all }}
 ```
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] Updated inputs and reference to inputs in `pipelines-unlock.yml`
 
@@ -387,7 +387,7 @@ Update the GruntworkPipelines job to use the updated inputs:
 
 Update the `uses:` field of the GruntworkPipelines job to reference `@v4`
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] Updated `uses` reference in `pipelines-unlock.yml`
 
@@ -404,7 +404,7 @@ to include `Actions: Read & write access`. This allows Pipelines to create enric
 
 Customers using the [Gruntwork.io GitHub App](/2.0/docs/pipelines/installation/viagithubapp#gruntworkio-github-app) should also update the above permissions so that the tokens already have the necessary permissions when used as a fallback mechanism.
 
-:::note Progress Checklist
+:::note[Progress Checklist]
 
 - [ ] Updated CI User Token Permissions
 

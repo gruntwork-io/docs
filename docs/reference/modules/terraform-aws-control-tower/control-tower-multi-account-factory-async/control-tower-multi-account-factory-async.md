@@ -781,7 +781,7 @@ The data from all the AWS accounts created.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-multi-account-factory-async/readme.md",
@@ -791,4 +791,4 @@ The data from all the AWS accounts created.
   "sourcePlugin": "module-catalog-api",
   "hash": "43b69fffac937d30bfd726c275e1ce56"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

@@ -3,8 +3,8 @@ import TabItem from '@theme/TabItem';
 
 # Extending your ECS Deploy Runner
 
-:::info Newer Version Available
-This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
+:::info[Newer Version Available]
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](/pipelines/overview/) to view documentation for the most recent version.
 :::
 
 Pipelines can be extended in several ways:
@@ -126,7 +126,7 @@ aws-vault exec <your-prod> -- terragrunt apply --terragrunt-source-update -auto-
 
 If you’ve deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, you will need to locate the file in which you’ve defined a module block sourcing the `ecs-deploy-runner` service.
 
-Modify the AWS IAM policy document being passed into the `iam_policy` variable for the [`terraform_applier_config`](/reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_applier_config) and the [`terraform_planner_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_planner_config) variables. Refer to the [variable reference](/reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for the full set of configuration details for this service.
+Modify the AWS IAM policy document being passed into the `iam_policy` variable for the [`terraform_applier_config`](/reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_applier_config) and the [`terraform_planner_config`](/reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_planner_config) variables. Refer to the [variable reference](/reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for the full set of configuration details for this service.
 
 After you are done updating the IAM policy documents, run `terraform plan` then review the changes that will be made. Finally, run `terraform apply` to apply the changes.
 </TabItem>
@@ -141,9 +141,9 @@ By default, the `deploy-runner` ships with three scripts — one to build HashiC
 If you need to run a custom script in the `deploy-runner`, you must fork the image code, add an additional line to copy your script into directory designated by the `trigger_directory` argument. Then, you will need to rebuild the Docker image, push to ECR, then update your Pipelines deployment following the steps in [Updating your Pipeline](/ecs-deploy-runner/maintain/updating.md).
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "68f6551330b76b6bb8ef7b8a735a9d29"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

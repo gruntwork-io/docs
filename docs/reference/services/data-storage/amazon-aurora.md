@@ -2498,7 +2498,7 @@ ID of security group created by aurora module.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/data-stores/aurora/README.md",
@@ -2508,4 +2508,4 @@ ID of security group created by aurora module.
   "sourcePlugin": "service-catalog-api",
   "hash": "d47e11d79ffb9724cfd94945873bda3d"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

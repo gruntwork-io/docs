@@ -213,7 +213,7 @@ A name for the exported snapshot copy. ElastiCache does not permit overwriting a
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/redis_copy_snapshot/readme.md",
@@ -223,4 +223,4 @@ A name for the exported snapshot copy. ElastiCache does not permit overwriting a
   "sourcePlugin": "module-catalog-api",
   "hash": "db34a7088ea94d0be48dbc135ffa65fa"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

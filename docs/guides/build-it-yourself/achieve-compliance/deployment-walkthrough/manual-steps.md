@@ -154,9 +154,9 @@ Example:
  ```
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "9a88e68b5de9028ba6e5ac8d4c2a65dc"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

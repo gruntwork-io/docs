@@ -249,7 +249,7 @@ Data source result of executing the PEX binary.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.8/modules/run-pex-as-data-source/readme.md",
@@ -259,4 +259,4 @@ Data source result of executing the PEX binary.
   "sourcePlugin": "module-catalog-api",
   "hash": "15926e70fcc677f0cb54dc9b465ac9ce"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

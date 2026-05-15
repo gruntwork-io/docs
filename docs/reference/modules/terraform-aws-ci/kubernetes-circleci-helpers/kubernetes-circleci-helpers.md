@@ -95,7 +95,7 @@ job:
         command: setup-minikube
 ```
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/kubernetes-circleci-helpers/readme.md",
@@ -105,4 +105,4 @@ job:
   "sourcePlugin": "module-catalog-api",
   "hash": "c1025b9d5c5c24ad59d207fa0b5b8887"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

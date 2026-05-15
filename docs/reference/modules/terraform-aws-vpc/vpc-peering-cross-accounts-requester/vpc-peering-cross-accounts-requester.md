@@ -317,7 +317,7 @@ Peering connection ID.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-peering-cross-accounts-requester/readme.md",
@@ -327,4 +327,4 @@ Peering connection ID.
   "sourcePlugin": "module-catalog-api",
   "hash": "318d5d04230cd88792552c7d0f796daa"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

@@ -525,7 +525,7 @@ A set of tags to set for the ElastiCache Cluster.
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/elastic-cache/readme.md",
@@ -535,4 +535,4 @@ A set of tags to set for the ElastiCache Cluster.
   "sourcePlugin": "module-catalog-api",
   "hash": "6a3168a161d5585b026f017524d1191c"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

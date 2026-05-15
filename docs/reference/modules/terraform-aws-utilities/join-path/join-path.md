@@ -146,7 +146,7 @@ A list of folder and file names to combine into a path, using the proper path se
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.8/modules/join-path/readme.md",
@@ -156,4 +156,4 @@ A list of folder and file names to combine into a path, using the proper path se
   "sourcePlugin": "module-catalog-api",
   "hash": "aeb9bb54c6bb6852d6fec74590364172"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

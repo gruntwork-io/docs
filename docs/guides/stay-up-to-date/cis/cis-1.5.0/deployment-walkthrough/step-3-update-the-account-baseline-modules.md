@@ -45,15 +45,15 @@ For Terraform, follow the migration guide in [the migration guide of the release
 
 ## Next step
 
-If you have successfully completed step 3.1 then you should now move to [step 4](step-4-verify-the-code-changes)
+If you have successfully completed step 3.1 then you should now move to [step 4](../step-4-verify-the-code-changes/)
 in order to verify the changes that have been made. We strongly recommend that you verify the changes that have been
 made _before_ executing `terraform/terragrunt apply`.
 
 
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "1df1b78e9d68f5ff116c2faab5b27126"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}

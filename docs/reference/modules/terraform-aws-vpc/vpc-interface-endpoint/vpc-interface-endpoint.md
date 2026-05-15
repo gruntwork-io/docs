@@ -8901,7 +8901,7 @@ If you have private dns enabled, then your streaming calls would automatically g
 </TabItem>
 </Tabs>
 
-<!-- ##DOCS-SOURCER-START
+{/* ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-interface-endpoint/readme.md",
@@ -8911,4 +8911,4 @@ If you have private dns enabled, then your streaming calls would automatically g
   "sourcePlugin": "module-catalog-api",
   "hash": "dc807a4ea932ea6672084889ea0c5a69"
 }
-##DOCS-SOURCER-END -->
+##DOCS-SOURCER-END */}
