@@ -48,6 +48,32 @@ the deploy commit. `scripts/vercelbuild.sh` therefore prepends
 If you later enable `showLastUpdateTime` / `showLastUpdateAuthor` in the docs
 plugin, no further action is needed — they read from the same git source.
 
+### TypeScript `baseUrl` is deprecated and will hard-error in TS 7
+
+`tsconfig.json` sets `ignoreDeprecations: "6.0"` to silence one warning:
+`baseUrl` is deprecated in TS 5+ and removed in TS 7. We can't drop it
+locally because:
+
+- `@docusaurus/tsconfig` (the base we extend) also sets `baseUrl: "."`, which
+  TypeScript resolves relative to the *extended* file's location
+  (`node_modules/@docusaurus/tsconfig/`), not ours.
+- Removing only the local `baseUrl` makes the inherited one apply, which
+  resolves `@site/*` paths into the vendored Docusaurus directory and breaks
+  any swizzle that imports from `@site/...` (verified — two of our CodeBlock
+  swizzles fail to resolve).
+
+Two viable fixes when TS 7 lands:
+
+1. **Upstream fix:** drop `baseUrl` from `@docusaurus/tsconfig` and rely on
+   TS 5+ behavior where `paths` resolve relative to the tsconfig file. Then
+   drop our local `baseUrl` too.
+2. **Stop extending `@docusaurus/tsconfig`:** inline its options minus
+   `baseUrl`. Trades dependency on an upstream fix for a small amount of
+   config duplication.
+
+The pre-existing `npx tsc` errors (35 as of this writing) are unrelated and
+not enforced in CI; only `yarn build` and `yarn test` gate merges.
+
 ## Installing dependencies
 
 ```sh
