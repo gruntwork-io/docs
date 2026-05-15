@@ -5,6 +5,5 @@
 // This shim also guards production against ad-blockers/CSP that prevent the
 // Segment loader from initializing the queue.
 if (typeof window !== 'undefined' && !window.analytics) {
-  const noop = () => {};
-  window.analytics = {page: noop, track: noop, identify: noop};
+  window.analytics = new Proxy({}, {get: () => () => {}});
 }
