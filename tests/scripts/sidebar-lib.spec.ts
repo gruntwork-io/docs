@@ -8,19 +8,19 @@ const {
   toOutputDocId,
 } = require("../../scripts/sidebar-lib")
 
-function sampleDataPath(filepath) {
+function sampleDataPath(filepath: string) {
   return path.resolve(
     path.join("tests/sample-data/scripts/sidebar-data", filepath)
   )
 }
 
-function docId(filepath) {
+function docId(filepath: string) {
   return path.join("tests/sample-data/scripts/sidebar-data", filepath)
 }
 
-function findSidebarSectionByName(sidebar, name) {
+function findSidebarSectionByName(sidebar: any[], name: string) {
   const sectionObj = sidebar.find(
-    (item) => typeof item === "object" && item[name] !== undefined
+    (item: any) => typeof item === "object" && item[name] !== undefined
   )
   return sectionObj[name]
 }
@@ -121,7 +121,7 @@ describe("Script:generate-sidebar", () => {
       const sidebars = await generateMultiSidebar(dirs, {
         backButton: "Back",
       })
-      Object.values(sidebars).forEach((sidebar) => {
+      Object.values(sidebars).forEach((sidebar: any) => {
         const backButton = sidebar[0]
         expect(backButton.type).toBe("link")
         expect(backButton.label).toBe("Back")
