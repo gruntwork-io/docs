@@ -225,7 +225,7 @@ detaching the device.
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/persistent-ebs-volume/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "506fd96f048c46ff972d8d81345ed126"
+  "hash": "764a64f3413ac501c56be2f0e27844c7"
 }
 ##DOCS-SOURCER-END -->
 */}

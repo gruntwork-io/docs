@@ -672,7 +672,7 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-fargate-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "00d5269596cb16e70db6c008f42f7288"
+  "hash": "ac1ce6b55bdfa327a8ce8290610e2a5a"
 }
 ##DOCS-SOURCER-END -->
 */}

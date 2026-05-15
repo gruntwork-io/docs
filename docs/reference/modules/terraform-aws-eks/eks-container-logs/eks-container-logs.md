@@ -638,7 +638,7 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-container-logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "133c7e1579456ad5d5f6dcec9a6834d3"
+  "hash": "cc6bf7d9477473cbacbda12ed4f7134a"
 }
 ##DOCS-SOURCER-END -->
 */}

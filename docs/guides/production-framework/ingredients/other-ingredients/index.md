@@ -25,7 +25,7 @@ Performance optimization, cost optimization, and capacity optimization ("rightsi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "cd9b72d0289fcb3677281df788691d87"
+  "hash": "2a57e01ed2f39af8545e81653920afed"
 }
 ##DOCS-SOURCER-END -->
 */}

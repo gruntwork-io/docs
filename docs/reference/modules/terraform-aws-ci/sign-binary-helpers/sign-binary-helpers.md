@@ -155,7 +155,7 @@ References:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/sign-binary-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "90d6747ff0f1a623a41b95cf07ee15cd"
+  "hash": "534735f432c39ed940cab9f7dc74d48a"
 }
 ##DOCS-SOURCER-END -->
 */}

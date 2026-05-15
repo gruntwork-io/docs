@@ -1457,7 +1457,7 @@ This is a minor update that fixes a perpetual diff in the `vpc-flow-logs` module
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "301382e350d64f7d765c3391b022806f"
+  "hash": "39caf262c1307ec1825a568a70f50b32"
 }
 ##DOCS-SOURCER-END -->
 */}

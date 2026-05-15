@@ -89,7 +89,7 @@ $ sudo semodule -i ssh-grunt.pp
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/ssh-grunt-selinux-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9772940026d583f677a0c533063648a7"
+  "hash": "595ab5dfe6690c73c6468771a01a67d5"
 }
 ##DOCS-SOURCER-END -->
 */}

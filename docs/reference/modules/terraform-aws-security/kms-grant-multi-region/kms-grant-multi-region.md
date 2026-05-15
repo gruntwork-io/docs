@@ -185,7 +185,7 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/kms-grant-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "817c6e0dadd9801a5fe4bd0de81b313c"
+  "hash": "d005402f9bc8f77fbbd22ef7173cd575"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -278,7 +278,7 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-provisioned-product-artifact-updater/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "64ed1822619410be6c701a386206b610"
+  "hash": "1ca4eb9978b78f9391d62018dbba8bc8"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -177,7 +177,7 @@ We&apos;ve updated the `ecs-service-with-alb` module and example code accordingl
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "cab747e04c17206206a97a37cbd28962"
+  "hash": "763cf8f82b4995c20732acd8b4fa50ae"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -568,7 +568,7 @@ A list of IAM policy actions necessary for ECR write access.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/data-stores/ecr-repos/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1aa006d8ea314d89787c70791153a9bd"
+  "hash": "c4d7cdccc20de9ead38232d8b797c6e5"
 }
 ##DOCS-SOURCER-END -->
 */}

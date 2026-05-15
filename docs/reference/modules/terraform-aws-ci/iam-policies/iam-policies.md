@@ -72,7 +72,7 @@ Some modules are configurable to support whatever level of
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4103c2375555ae3811def6381c03e3c0"
+  "hash": "18795ab0854265e4f4d9f20556a4d928"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -104,7 +104,7 @@ Once you have updated any references to the container image tags, you will need 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6a2b0a06b22a1f9f52909f68250435fb"
+  "hash": "b2f5b354c70b71e5e4f819b795547000"
 }
 ##DOCS-SOURCER-END -->
 */}

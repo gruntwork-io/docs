@@ -339,7 +339,7 @@ For further detail, follow the manual steps outlined in the CIS Benchmark docume
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0cbf46af308ab524cdd1f839d41ad6fb"
+  "hash": "5021053a7e92ca44be87915fa8b02360"
 }
 ##DOCS-SOURCER-END -->
 */}

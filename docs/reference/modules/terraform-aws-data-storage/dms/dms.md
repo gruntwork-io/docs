@@ -1183,7 +1183,7 @@ A map of maps containing the replication tasks created and their full output of 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/dms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2ab1fb20ef0c42119a3cf1a99c73fd8a"
+  "hash": "f20ea92c8025c13e2dc6befb699f5fc7"
 }
 ##DOCS-SOURCER-END -->
 */}

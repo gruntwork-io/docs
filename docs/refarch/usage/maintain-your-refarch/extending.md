@@ -27,7 +27,7 @@ If Gruntwork doesn't have existing modules for the AWS services that you are try
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b86acd94bd882dbca93ee7075b12c596"
+  "hash": "e7babb77fbdd43a71003510ee1a8fa15"
 }
 ##DOCS-SOURCER-END -->
 */}

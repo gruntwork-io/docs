@@ -389,7 +389,7 @@ The latest available version of the EBS CSI AddOn.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-ebs-csi-driver/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "29773666f46c7fa9a12870f449aa317a"
+  "hash": "ed71f9717dcd353ad749400a6c29cb0b"
 }
 ##DOCS-SOURCER-END -->
 */}

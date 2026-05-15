@@ -67,7 +67,7 @@ As part of the Reference Architecture deployment, Gruntwork will create EC2 Key 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6dd716749e279fd1709bc1957390d47b"
+  "hash": "3347e1edfb27b788fbc0be9cd4747a4e"
 }
 ##DOCS-SOURCER-END -->
 */}

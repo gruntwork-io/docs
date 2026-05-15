@@ -273,7 +273,7 @@ The `saml-iam-roles` module now sets a default max expiration of 12 hours for IA
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "410d8aa1393e739f2706bb7feb57b5de"
+  "hash": "f12b5d6954dd8375eaf4ec68c11f6a29"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -166,7 +166,7 @@ The recommended instance type to use in this AWS region. This will be the first 
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.8/modules/instance-type/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2fa43adc542286c8e3617e233c9002f9"
+  "hash": "1ff52857d22024dddb648af3ec183c41"
 }
 ##DOCS-SOURCER-END -->
 */}

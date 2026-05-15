@@ -211,7 +211,7 @@ The amount of time, in seconds, between retries.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/lambda-share-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1cac53c420f955fa82581ff9999c5727"
+  "hash": "18890b9cb007bafa1d8a351fdde04741"
 }
 ##DOCS-SOURCER-END -->
 */}

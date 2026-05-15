@@ -104,7 +104,7 @@ job:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/kubernetes-circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c1025b9d5c5c24ad59d207fa0b5b8887"
+  "hash": "cc43cb025ca08fe40fb02e92d9455010"
 }
 ##DOCS-SOURCER-END -->
 */}

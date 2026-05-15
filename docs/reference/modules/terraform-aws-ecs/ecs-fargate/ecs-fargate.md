@@ -29,7 +29,7 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-fargate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f66bac1c247f9df543463caac49555fc"
+  "hash": "ee933672421c42e81290b9d98d757786"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -3034,7 +3034,7 @@ The names of the ECS service's load balancer's target groups
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/ecs-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "6b4f719b30ebd690efe70b4e7541f7de"
+  "hash": "607546e089b5879056f327f1d58f26e8"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -51,7 +51,7 @@ For a concrete example of a Service Catalog for AWS, see the [Gruntwork Service 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d2c8c16c221d43b0989eeec08a273e3a"
+  "hash": "85afaabdbf46e6ab9a88694e89fe0a1b"
 }
 ##DOCS-SOURCER-END -->
 */}

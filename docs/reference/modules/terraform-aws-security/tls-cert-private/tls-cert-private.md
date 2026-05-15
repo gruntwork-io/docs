@@ -182,7 +182,7 @@ TLS certificates for any public services.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/tls-cert-private/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b0ff29c72f68a9fea8ceb29c377863ad"
+  "hash": "b903c53df938d346f5a58d8c14d9e03f"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -929,7 +929,7 @@ The name of the S3 bucket where cloudtrail logs are delivered.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/cloudtrail-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a47808aacca925c1823510215285f946"
+  "hash": "c7c8d7d0fd199ddc3d8b05f2a44c15f0"
 }
 ##DOCS-SOURCER-END -->
 */}

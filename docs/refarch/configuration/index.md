@@ -51,7 +51,7 @@ Now that you understand the configuration and delivery process at a high level, 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f90abf52becae4dead73f4d4d70b7114"
+  "hash": "57f1ac9c43767ad8d68ee7f22c0895c4"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -40,7 +40,7 @@ Originally, Amazon recommended installing `ntpd` to prevent clock drift. Today, 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/ntp/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "115136d487390d121266e48b0dbafd8e"
+  "hash": "2319af1547b9242ae66cb4a9e512c394"
 }
 ##DOCS-SOURCER-END -->
 */}

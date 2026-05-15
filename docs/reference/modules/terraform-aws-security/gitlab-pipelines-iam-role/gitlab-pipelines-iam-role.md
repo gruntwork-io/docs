@@ -500,7 +500,7 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/gitlab-pipelines-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "95286217df16309cbfc0e98bf263da2e"
+  "hash": "6d32e06617da349a6ada296c75fed29a"
 }
 ##DOCS-SOURCER-END -->
 */}

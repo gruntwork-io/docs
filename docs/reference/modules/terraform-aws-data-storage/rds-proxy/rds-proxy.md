@@ -638,7 +638,7 @@ The ID of the security group associated with the RDS proxy. This security group 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/rds-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ff34326c7d9d752a7e69fdffbc7eac17"
+  "hash": "42961dc7b4f8fe6e9f3d5744e174a326"
 }
 ##DOCS-SOURCER-END -->
 */}

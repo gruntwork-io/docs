@@ -58,7 +58,7 @@ path_separator        = "${module.os.path_separator}"
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.8/modules/operating-system/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7773496712920d511eae16647b9a058d"
+  "hash": "76405758d3c6c1b3ae74d17a935bf55f"
 }
 ##DOCS-SOURCER-END -->
 */}

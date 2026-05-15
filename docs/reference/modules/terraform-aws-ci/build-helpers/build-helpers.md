@@ -192,7 +192,7 @@ Note that the following conditions must be true in order to use this feature:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/build-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dd3ea06df38bd6822a36e37f41535d39"
+  "hash": "aa5d882407a834e406df9ab1efed5f93"
 }
 ##DOCS-SOURCER-END -->
 */}

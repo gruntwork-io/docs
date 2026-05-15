@@ -3073,7 +3073,7 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-app-account-baseline/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8a3ee338e7d831b8f5e2caa3f1c0cffa"
+  "hash": "5c133d343f0f8a8e16df99c481351afb"
 }
 ##DOCS-SOURCER-END -->
 */}

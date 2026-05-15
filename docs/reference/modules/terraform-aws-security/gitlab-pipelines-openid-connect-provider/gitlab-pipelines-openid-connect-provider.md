@@ -203,7 +203,7 @@ Url used for the OIDC provider
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/gitlab-pipelines-openid-connect-provider/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "962d771a7ec45f231bb470a2cc9112e0"
+  "hash": "53ac9d598772d1db895b7ee1681cf2fe"
 }
 ##DOCS-SOURCER-END -->
 */}

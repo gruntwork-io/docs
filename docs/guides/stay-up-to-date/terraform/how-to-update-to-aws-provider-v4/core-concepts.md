@@ -17,7 +17,7 @@ modules and the Gruntwork Reference Architecture to be compatible with AWS provi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3f08159b93c4188b5accd6a4c66f4345"
+  "hash": "5221dfbfe9e3860c765d48660f9af5d4"
 }
 ##DOCS-SOURCER-END -->
 */}

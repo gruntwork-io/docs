@@ -120,7 +120,7 @@ and confirm that your infrastructure is now CIS AWS Foundations Benchmark v1.5.0
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e3b698dabedbe106b7af11907dcd0951"
+  "hash": "bbe1566b8feaa75e4efb90677df03761"
 }
 ##DOCS-SOURCER-END -->
 */}

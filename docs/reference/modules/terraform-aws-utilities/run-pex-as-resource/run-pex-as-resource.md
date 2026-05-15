@@ -313,7 +313,7 @@ This output is populated when the pex script successfully runs to completion. As
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.8/modules/run-pex-as-resource/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8dfdf901eef6bb4309bf6198d967034f"
+  "hash": "89d5dcafe786daa633d9880205adc0f6"
 }
 ##DOCS-SOURCER-END -->
 */}

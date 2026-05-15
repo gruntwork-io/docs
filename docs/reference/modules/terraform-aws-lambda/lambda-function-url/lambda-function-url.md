@@ -401,7 +401,7 @@ A generated ID for the endpoint.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/lambda-function-url/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bc781b0cd50a1e2f367c61d25c23dcef"
+  "hash": "b0be4440943b7a18f0e135685305636c"
 }
 ##DOCS-SOURCER-END -->
 */}

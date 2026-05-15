@@ -224,7 +224,7 @@ A map from region to the ARN of the KMS key used for default EBS encryption for 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/ebs-encryption-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "66da72fad5931b730f37cb6f9028a876"
+  "hash": "310bd4951a17f8024ae9c4c35760a305"
 }
 ##DOCS-SOURCER-END -->
 */}

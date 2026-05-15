@@ -29,7 +29,7 @@ certificate revocation requests on the OpenVPN server
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v1.0.0/modules/start-openvpn-admin/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0f52f85a6a76cdf1f914d173681e11ec"
+  "hash": "5a2c842a1f98e44348cb8ec9ab958676"
 }
 ##DOCS-SOURCER-END -->
 */}

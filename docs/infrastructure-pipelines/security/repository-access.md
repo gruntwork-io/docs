@@ -17,7 +17,7 @@ The diagram below visually illustrates the above teams:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7ba6851031c12f4cd3112cc577895d88"
+  "hash": "e0bf68c16ae399440390ad42b03ad1ee"
 }
 ##DOCS-SOURCER-END -->
 */}

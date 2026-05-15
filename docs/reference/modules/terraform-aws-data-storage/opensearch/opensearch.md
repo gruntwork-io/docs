@@ -1229,7 +1229,7 @@ The ID of the security group created for the OpenSearch domain. Null if not in V
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/opensearch/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "05ff40a3344d0bf09ca0c86fe80ecb06"
+  "hash": "e58cbe97f9da4d71b766f275f54369f0"
 }
 ##DOCS-SOURCER-END -->
 */}

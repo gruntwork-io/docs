@@ -268,7 +268,7 @@ Whether Amazon S3 should restrict public bucket policies for buckets in this acc
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/s3-account-public-access-block/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5656928216b4960d7b1707f05f73e279"
+  "hash": "52d8c0a62d84c55fbb9be1a85a43ab6b"
 }
 ##DOCS-SOURCER-END -->
 */}

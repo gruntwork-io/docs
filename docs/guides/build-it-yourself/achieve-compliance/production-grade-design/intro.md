@@ -21,7 +21,7 @@ edition of Terraform Up & Running](https://medium.com/gruntwork/terraform-up-run
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "18a8232d7ae48ad3c403db27db200815"
+  "hash": "2349c8bf836eeacc35a5c9ffb968476e"
 }
 ##DOCS-SOURCER-END -->
 */}

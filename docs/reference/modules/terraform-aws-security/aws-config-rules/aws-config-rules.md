@@ -683,7 +683,7 @@ Map of config rule ARNs. Key is rule ID, value is rule ARN
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/aws-config-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7c1c03897139cace90df6fe2f01bd300"
+  "hash": "fa8563a720d784cd243df98699a4f765"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -740,7 +740,7 @@ ID of the backup policies
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/org-backup-policy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ee92990cc268126439e9c013906ac4e5"
+  "hash": "09582d14bdadfd15d70b124f72bbdf1e"
 }
 ##DOCS-SOURCER-END -->
 */}

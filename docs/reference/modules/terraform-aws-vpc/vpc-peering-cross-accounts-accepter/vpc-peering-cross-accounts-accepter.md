@@ -324,7 +324,7 @@ Peering connection ID.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-peering-cross-accounts-accepter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3b57b923594c4a1b83dab4f5918d2394"
+  "hash": "fc1346b291b290c74b7034848ee2ded4"
 }
 ##DOCS-SOURCER-END -->
 */}

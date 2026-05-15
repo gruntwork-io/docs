@@ -1451,7 +1451,7 @@ Other modules can depend on this variable to ensure those modules only deploy af
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.1.0/modules/server-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fbbaf399888ba478696b4360888f6250"
+  "hash": "e16725e868655075f2a00fdf429861c6"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -944,7 +944,7 @@ The name of the Karpenter Node IAM Role.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-k8s-karpenter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4b8ba744bdf9305cffd4214d639af172"
+  "hash": "c2bd45a0f912a9c070279e17ea5c4d21"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -835,7 +835,7 @@ Any types represent complex values of variable type. For details, please consult
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-task-definition/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "eaa131685d9674399611b8b437e07556"
+  "hash": "05957d731c129bb2702e9972d072ee8c"
 }
 ##DOCS-SOURCER-END -->
 */}

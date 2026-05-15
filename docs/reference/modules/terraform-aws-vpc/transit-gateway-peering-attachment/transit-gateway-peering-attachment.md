@@ -266,7 +266,7 @@ Transit Gateway Peering Attachment identifier
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/transit-gateway-peering-attachment/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "98f7b4c84a9af013ba4720dd96a574c0"
+  "hash": "8161b391be801ecc1f0f523ebce037d3"
 }
 ##DOCS-SOURCER-END -->
 */}

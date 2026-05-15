@@ -523,7 +523,7 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/custom-iam-entity/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f6a895ce676f78ef8f939c0d871ffe9d"
+  "hash": "a1ab545626d049dd925f372856a4b9fb"
 }
 ##DOCS-SOURCER-END -->
 */}

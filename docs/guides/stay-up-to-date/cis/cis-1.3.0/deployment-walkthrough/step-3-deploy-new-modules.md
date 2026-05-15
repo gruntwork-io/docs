@@ -91,7 +91,7 @@ docs](https://github.com/gruntwork-io/terraform-aws-cis-service-catalog/tree/v0.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6270eb0777685afb4bf98586be2e994f"
+  "hash": "cc4034d363cdcf8a97f3f9714fdf5673"
 }
 ##DOCS-SOURCER-END -->
 */}

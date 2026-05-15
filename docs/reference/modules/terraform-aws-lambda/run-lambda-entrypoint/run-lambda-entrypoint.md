@@ -189,7 +189,7 @@ will assume it is the name of a Secrets Manager entry in the same region as the 
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/run-lambda-entrypoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b57435ff9c82400651132a9b388177db"
+  "hash": "e880daf963f10d8b9ca675bb12e7b8b0"
 }
 ##DOCS-SOURCER-END -->
 */}

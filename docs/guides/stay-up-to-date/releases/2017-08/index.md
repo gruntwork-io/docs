@@ -402,7 +402,7 @@ https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_ava
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e87d448600d9843b6c18176a7fbb57c6"
+  "hash": "3cd346dfd15ae899589864a606e42ddd"
 }
 ##DOCS-SOURCER-END -->
 */}

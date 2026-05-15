@@ -1463,7 +1463,7 @@ Latest published version of your Lambda Function
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/lambda/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "8a59c2f45c2a93ab495d74843d7f51ea"
+  "hash": "769a0330901b4840eb764a807a67d786"
 }
 ##DOCS-SOURCER-END -->
 */}

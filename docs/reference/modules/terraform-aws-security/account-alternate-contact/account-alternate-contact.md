@@ -249,7 +249,7 @@ The type of the alternate contact.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/account-alternate-contact/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c67cb7e1e8dc1b18e79dbc2993e4c241"
+  "hash": "ad2fcb6a55a3bc9c95fb97bf2f188c60"
 }
 ##DOCS-SOURCER-END -->
 */}

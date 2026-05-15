@@ -324,7 +324,7 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-peering-external/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4205747c8541a2d659d39f5f890dbb75"
+  "hash": "cb832d4e507bf36e504ef1b99be4e834"
 }
 ##DOCS-SOURCER-END -->
 */}

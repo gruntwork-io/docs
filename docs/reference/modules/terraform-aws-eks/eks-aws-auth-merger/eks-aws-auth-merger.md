@@ -664,7 +664,7 @@ The name of the namespace that is used. If create_namespace is true, this output
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-aws-auth-merger/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "62b17adab947fe431c7ef7851d2471b9"
+  "hash": "c068d04deee4e1cf726a557e71e0e4d2"
 }
 ##DOCS-SOURCER-END -->
 */}

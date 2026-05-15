@@ -9,7 +9,7 @@ to create KMS keys with key rotation enabled by default.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "61d36e4a905478a070114a1cb7e9cd4e"
+  "hash": "f97f58c24fc6886f9801b07dcff6674c"
 }
 ##DOCS-SOURCER-END -->
 */}

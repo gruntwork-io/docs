@@ -626,7 +626,7 @@ The URL of the AWS SSO login page for this account
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9a2087435e91f7ad0530880e3f7796c2"
+  "hash": "788efe7a832ed397071077d46aeb49c4"
 }
 ##DOCS-SOURCER-END -->
 */}

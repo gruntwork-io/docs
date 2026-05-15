@@ -29,7 +29,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/ssh-iam/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3974e7f9430306da7df99680f89d796a"
+  "hash": "1baaefb7a469a0e840d00bf66540a83f"
 }
 ##DOCS-SOURCER-END -->
 */}

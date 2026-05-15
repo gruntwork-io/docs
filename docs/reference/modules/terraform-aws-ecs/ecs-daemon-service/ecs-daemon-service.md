@@ -641,7 +641,7 @@ If true, Terraform will wait for the service to reach a steady state—as in, th
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-daemon-service/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ee5b879f73944a903f495e6fcf4fb673"
+  "hash": "e5723a647a729c8513cf43780d0ec33a"
 }
 ##DOCS-SOURCER-END -->
 */}

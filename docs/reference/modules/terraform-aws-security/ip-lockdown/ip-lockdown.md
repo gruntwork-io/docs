@@ -67,7 +67,7 @@ gruntwork-install --module-name ip-lockdown --tag <MODULE_SECURITY_VERSION> --re
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/ip-lockdown/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6b2778da981b92263d8ba758e9532d98"
+  "hash": "ab520ffc5c1c2c82a52e29ee8c8eb5b3"
 }
 ##DOCS-SOURCER-END -->
 */}

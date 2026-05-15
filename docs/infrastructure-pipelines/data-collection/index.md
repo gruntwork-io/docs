@@ -11,7 +11,7 @@ Gruntwork Pipelines captures usage data to better understand how our customers u
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "76f17f116748de5917749b66738ccc73"
+  "hash": "0f5a000edafd677c4f627bc9d4023fd7"
 }
 ##DOCS-SOURCER-END -->
 */}

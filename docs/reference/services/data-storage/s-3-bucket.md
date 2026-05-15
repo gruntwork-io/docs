@@ -1265,7 +1265,7 @@ The name of the replica S3 bucket.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/data-stores/s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1b27f9f0871c20ede63243714bd5e2e6"
+  "hash": "0371f5b8c80e7c93ba900b62408d89f8"
 }
 ##DOCS-SOURCER-END -->
 */}

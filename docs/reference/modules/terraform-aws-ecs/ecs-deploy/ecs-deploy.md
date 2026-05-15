@@ -101,7 +101,7 @@ container instead of the command configured in the Task Definition.
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d07626b0fa849b91e33fc88b5a108e7f"
+  "hash": "857e6caadc7660293637fef60a0eedd3"
 }
 ##DOCS-SOURCER-END -->
 */}

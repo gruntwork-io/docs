@@ -275,7 +275,7 @@ moved to the common component configuration.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9df724247b43d94d4d9a0241e8513b6b"
+  "hash": "0a6efea3aaad739fbb9f2f335d70ed20"
 }
 ##DOCS-SOURCER-END -->
 */}

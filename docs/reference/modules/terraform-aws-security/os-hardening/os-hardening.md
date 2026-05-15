@@ -275,7 +275,7 @@ needed additional space to build a new AMI was not unreasonable.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/os-hardening/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "017a5d7245ad3c4a37f54cf3a8e8da0c"
+  "hash": "808222c82c9c3959f8156b79fc97be6b"
 }
 ##DOCS-SOURCER-END -->
 */}

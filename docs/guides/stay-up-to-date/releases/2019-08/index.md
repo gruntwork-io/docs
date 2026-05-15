@@ -283,7 +283,7 @@ The module has support for the following features:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b50acffa406f4c9328c60f523102bd60"
+  "hash": "7f9b811c7679a14a2109f86841a58311"
 }
 ##DOCS-SOURCER-END -->
 */}

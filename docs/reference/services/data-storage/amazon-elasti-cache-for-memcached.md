@@ -496,7 +496,7 @@ The configuration endpoint to allow host discovery.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/data-stores/memcached/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "716638bef8200f8a932f6c1c9079ce82"
+  "hash": "e4ec250eda50422482e5fc61865fe655"
 }
 ##DOCS-SOURCER-END -->
 */}

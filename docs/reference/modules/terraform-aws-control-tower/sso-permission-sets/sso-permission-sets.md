@@ -341,7 +341,7 @@ The name of the permission set that was created.
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/sso-permission-sets/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "89206cbc27b63e800c85706255d506d4"
+  "hash": "fc1689ae2e9c5249afdbfb07e2601404"
 }
 ##DOCS-SOURCER-END -->
 */}

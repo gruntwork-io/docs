@@ -890,7 +890,7 @@ Modules calling `s3-static-website` and `s3-cloudfront` have to bump the provide
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "b5c8a03a6836c3d7be122d2db8ba153b"
+  "hash": "2624947370e4bdcfb9d8b43147fef530"
 }
 ##DOCS-SOURCER-END -->
 */}

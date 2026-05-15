@@ -26,7 +26,7 @@ tag is compatible with CIS AWS v1.3.0, as well as the manuals step you need to p
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c2c87981bea218be1a10832343a9863b"
+  "hash": "5a4c323ca1cbef1a7cf271bcca852958"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -959,7 +959,7 @@ Should we create the IAM Group for user self-management? Allows users to manage 
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/iam-groups/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "17ffb263c5bf7dc9b67efcc158d6f766"
+  "hash": "d66ff59fc332168535010ffd907adcf9"
 }
 ##DOCS-SOURCER-END -->
 */}

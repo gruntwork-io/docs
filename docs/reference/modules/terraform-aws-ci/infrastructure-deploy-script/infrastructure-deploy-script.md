@@ -66,7 +66,7 @@ If you just want to try this repo out for experimenting and learning, check out 
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/infrastructure-deploy-script/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f1a7a39df653cbb1bd0acb48ec76f5fc"
+  "hash": "2b5d4c2e3cd7ce0739ba1c4c745de62d"
 }
 ##DOCS-SOURCER-END -->
 */}

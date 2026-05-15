@@ -448,7 +448,7 @@ Identifier of the Transit Gateway's default propagation route table.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/transit-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a39774afe5acc34c6a525fb47941cd05"
+  "hash": "969f799d1c624a5b22e715639ae68e69"
 }
 ##DOCS-SOURCER-END -->
 */}

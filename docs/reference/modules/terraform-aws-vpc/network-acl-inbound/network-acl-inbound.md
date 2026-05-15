@@ -226,7 +226,7 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/network-acl-inbound/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c8e2608461fb57dc8628aa8346155a8e"
+  "hash": "b11c25050867b7f0ec53431f4fea2988"
 }
 ##DOCS-SOURCER-END -->
 */}

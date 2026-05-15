@@ -183,7 +183,7 @@ Map of port ranges to the ranges to allow. This is provided as a convenience out
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/port-range-calculator/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "71af506aba3ed3870a32b2f998c81590"
+  "hash": "f1df6e33cc9efe119f0a820560aae446"
 }
 ##DOCS-SOURCER-END -->
 */}

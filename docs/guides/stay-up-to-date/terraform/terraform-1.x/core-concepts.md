@@ -24,7 +24,7 @@ notes](https://github.com/hashicorp/terraform/releases/tag/v1.0.0):
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ee2c203478dfbf3301d71f56df87cb65"
+  "hash": "93c8226e15b668498eef47b39e31ced6"
 }
 ##DOCS-SOURCER-END -->
 */}

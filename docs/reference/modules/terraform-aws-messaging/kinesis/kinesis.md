@@ -464,7 +464,7 @@ A map of key value pairs to apply as tags to the Kinesis stream.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/kinesis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1fb71b42d108b2810e4c70690a1c593a"
+  "hash": "17dc845272f04b5465903ea50e7aa802"
 }
 ##DOCS-SOURCER-END -->
 */}

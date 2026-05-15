@@ -633,7 +633,7 @@ The name of the S3 bucket where GuardDuty findings are delivered.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/guardduty-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "df2a27352f43d510c5ef85e501c421c2"
+  "hash": "95e022f4184b7b07b584f616cad733d4"
 }
 ##DOCS-SOURCER-END -->
 */}

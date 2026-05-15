@@ -30,7 +30,7 @@ package.
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v1.0.0/modules/install-openvpn/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1945631627176f8d293ee9430f2e5828"
+  "hash": "998d63ee2c918749148950bde355360c"
 }
 ##DOCS-SOURCER-END -->
 */}

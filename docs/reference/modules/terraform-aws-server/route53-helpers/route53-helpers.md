@@ -80,7 +80,7 @@ Check out the [route53-helpers example](https://github.com/gruntwork-io/terrafor
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/route53-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "eb61fd1f5adcfed17d0d97599dc5c948"
+  "hash": "4ab0b9d33cdb3c52a88ea0a79c9485fd"
 }
 ##DOCS-SOURCER-END -->
 */}

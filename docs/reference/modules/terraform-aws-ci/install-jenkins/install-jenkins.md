@@ -79,7 +79,7 @@ Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/install-jenkins/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ab2c4b910f5c0ccd4ca4c3805fbe2ac5"
+  "hash": "e9bcf8d448f54357dc5b0191ca4e67d6"
 }
 ##DOCS-SOURCER-END -->
 */}

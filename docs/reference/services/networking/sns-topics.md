@@ -474,7 +474,7 @@ The ARN of the SNS topic.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/networking/sns-topics/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "daf96b4742125112c1ad31a042456824"
+  "hash": "2c1cebc80cb09d9fe846f6b4cb357b89"
 }
 ##DOCS-SOURCER-END -->
 */}

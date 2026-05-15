@@ -982,7 +982,7 @@ The ID of the Network Firewall.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/network-firewall/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9c9967ba1b666652f8471c36bef70a92"
+  "hash": "79bf398c647fa093e7cf3de04d8722c9"
 }
 ##DOCS-SOURCER-END -->
 */}

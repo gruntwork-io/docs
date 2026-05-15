@@ -98,7 +98,7 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/ssm-healthchecks-iam-permissions/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "abbe74ddc78eb2fda3be802c75215569"
+  "hash": "63da2f4eec016fcd2c300df810b3b5f4"
 }
 ##DOCS-SOURCER-END -->
 */}

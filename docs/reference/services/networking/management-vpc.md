@@ -1114,7 +1114,7 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/networking/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f1bc8d35ac2ea7851afc3a23920db696"
+  "hash": "5f2835f8219bb37f04dde9029be7a035"
 }
 ##DOCS-SOURCER-END -->
 */}

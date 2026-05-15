@@ -328,7 +328,7 @@ A map of tags assigned to the vault resources, including those inherited from th
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/backup-vault/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "839a2be4b98746b0280bde3633e054b4"
+  "hash": "9fc773422a1b5945fbcc8a48b5ea66fb"
 }
 ##DOCS-SOURCER-END -->
 */}

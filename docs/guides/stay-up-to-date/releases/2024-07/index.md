@@ -1462,7 +1462,7 @@ For Pipelines users that allowlist specific actions, version 2.0 includes the fo
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "c3d45b2538061cd5d4982399ee62fcbd"
+  "hash": "100a8cc6d0052036c64333de2a0b6fa5"
 }
 ##DOCS-SOURCER-END -->
 */}

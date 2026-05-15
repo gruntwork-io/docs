@@ -159,7 +159,7 @@ references to the Gruntwork Infrastructure as Code Library.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8d957e23951c0e864a1b71b7a122a0db"
+  "hash": "3f708a4bbea7cf51fffa9b6f2be8da94"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -116,7 +116,7 @@ href="/guides/stay-up-to-date/cis/cis-1.5.0"
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "33e6822cb1670c28ac85e52b71021568"
+  "hash": "9605d6bea2158b2e87a4d3aaa312a990"
 }
 ##DOCS-SOURCER-END -->
 */}

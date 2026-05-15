@@ -50,7 +50,7 @@ In general, when you build new infrastructure, you first need your AWS accounts 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f83da101ff1b9cbbef4064fd59c6007c"
+  "hash": "0d3306b323a286136ae4042a804a30e1"
 }
 ##DOCS-SOURCER-END -->
 */}

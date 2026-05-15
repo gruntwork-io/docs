@@ -1161,7 +1161,7 @@ The ID of the Security Group that controls access to the cluster
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/redshift/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5f3b5775824ee5b83775f2c4e9d3d0c2"
+  "hash": "e2141857beffa19596cc291ff9987f9d"
 }
 ##DOCS-SOURCER-END -->
 */}

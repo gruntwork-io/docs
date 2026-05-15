@@ -64,7 +64,7 @@ Tags associated with a metric alarm are not propagated with the alarm payload wh
     "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v1.3.1/modules/alarms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ed6156254e4bc2fc6638322b536315a7"
+  "hash": "92a423594d95ad30fd0bdc0ba75c9640"
 }
 ##DOCS-SOURCER-END -->
 */}

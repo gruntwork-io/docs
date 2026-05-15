@@ -12,7 +12,7 @@ The standalone modules will follow the pattern of referencing the module and pro
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a9dde76d161304ab0b3185f97436ca20"
+  "hash": "376a6d3aa8ea65f8859cf05cf1e49163"
 }
 ##DOCS-SOURCER-END -->
 */}

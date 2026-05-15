@@ -398,7 +398,7 @@ func TestECS(t *testing.T) {
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ebf33215ca11bf62867a076882927304"
+  "hash": "ee1bfe5b56d6bb33300761b81266d235"
 }
 ##DOCS-SOURCER-END -->
 */}

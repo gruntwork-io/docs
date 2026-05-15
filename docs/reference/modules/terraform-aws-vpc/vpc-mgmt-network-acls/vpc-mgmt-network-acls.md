@@ -350,7 +350,7 @@ The number to use for the first rule that is created by this module. All rules i
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-mgmt-network-acls/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "97ba6ce7fe9d5f81420dcc628903a9c0"
+  "hash": "37d440e82e599c44ead44b7c99aef79a"
 }
 ##DOCS-SOURCER-END -->
 */}

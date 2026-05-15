@@ -34,7 +34,7 @@ For information on why the module was removed, refer to the discussion in [PR
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.1/modules/nlb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "241a4c5a3f05893b6a1e1e5019b4cbf3"
+  "hash": "b2abdf6a2643e26694f4b23eb195bf71"
 }
 ##DOCS-SOURCER-END -->
 */}

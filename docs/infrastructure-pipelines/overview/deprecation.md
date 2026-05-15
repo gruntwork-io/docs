@@ -146,7 +146,7 @@ Gruntwork is excited to bring you this new architecture for Pipelines, and we ho
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ecb848f92776d655af21dd8ebaa993f0"
+  "hash": "beeccfb987bb4801f6a58c55850bf941"
 }
 ##DOCS-SOURCER-END -->
 */}

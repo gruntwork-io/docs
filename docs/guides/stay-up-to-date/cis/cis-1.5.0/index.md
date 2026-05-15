@@ -28,7 +28,7 @@ To make updating to CIS AWS Foundations Benchmark v1.5.0 more straighforward we 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "4c7487ff5ca1fec742f2f2b9ec62af04"
+  "hash": "78c6b69ee98d76b7f72a0d8314437768"
 }
 ##DOCS-SOURCER-END -->
 */}

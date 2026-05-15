@@ -155,7 +155,7 @@ A list of folder and file names to combine into a path, using the proper path se
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.8/modules/join-path/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "aeb9bb54c6bb6852d6fec74590364172"
+  "hash": "e4e452958f75c43c0ef13cbce5b081fb"
 }
 ##DOCS-SOURCER-END -->
 */}

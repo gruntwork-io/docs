@@ -1243,7 +1243,7 @@ The ARN of the SNS topic to which Config delivers notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/aws-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7c3aa204cef5d9508103351d864a40b5"
+  "hash": "9034376877570934434c7beb489adbb5"
 }
 ##DOCS-SOURCER-END -->
 */}

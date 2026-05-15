@@ -36,7 +36,7 @@ Click on each module above to see its documentation. Head over to the [examples 
     "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v1.3.1/modules/logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "88bf29ffc423885b64341be293f5ce83"
+  "hash": "3de7c4b033c2bf28596cbac20da123ae"
 }
 ##DOCS-SOURCER-END -->
 */}

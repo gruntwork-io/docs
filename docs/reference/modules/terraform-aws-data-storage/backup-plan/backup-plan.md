@@ -250,7 +250,7 @@ The ARN of the IAM service role used by Backup plans
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/backup-plan/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "54cef305ff9e0cbecd9a1f05c699346d"
+  "hash": "ccff2aac6e994007c1a925c1d85db960"
 }
 ##DOCS-SOURCER-END -->
 */}

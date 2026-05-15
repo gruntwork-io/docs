@@ -1255,7 +1255,7 @@ This is a list of user IDs  that should be added to the group defined in the 'us
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/redis/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1935ba2e524d35f9651e98222843dcd9"
+  "hash": "18ba8ba5a8a0e01929b3c9fcf216272e"
 }
 ##DOCS-SOURCER-END -->
 */}

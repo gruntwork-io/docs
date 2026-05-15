@@ -420,7 +420,7 @@ VPC Peering connection object
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-peering/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ab47eb1167d5db1a6c1f47c350d99f4b"
+  "hash": "6ba59fc9b45afa8725b209b9c31204b5"
 }
 ##DOCS-SOURCER-END -->
 */}

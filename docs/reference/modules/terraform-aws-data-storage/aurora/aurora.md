@@ -2023,7 +2023,7 @@ A list of identifiers for Aurora cluster instances that are writers.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0a1fd90ddc3e7bebad669bd05f995478"
+  "hash": "b11534cbb99fbf7ee4a388b8fdf5d502"
 }
 ##DOCS-SOURCER-END -->
 */}

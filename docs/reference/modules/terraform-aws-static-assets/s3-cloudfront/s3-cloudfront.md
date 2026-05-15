@@ -1538,7 +1538,7 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.2.0/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "094b123e3942cf09222457f8e0ab94c4"
+  "hash": "8722dd3546da102daaca170d7c81f9a2"
 }
 ##DOCS-SOURCER-END -->
 */}

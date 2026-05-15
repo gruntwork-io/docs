@@ -1061,7 +1061,7 @@ The AWS-managed DNS name assigned to the ALB.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/networking/alb/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b4cfad50c2652dc1c6a1bd88bbf6286d"
+  "hash": "e83c8e761a4cb1c143a0693943540e6f"
 }
 ##DOCS-SOURCER-END -->
 */}

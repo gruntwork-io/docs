@@ -3639,7 +3639,7 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "686bb9023bb67a94bccdcb7eb9e9356a"
+  "hash": "ea3a76e7712563bd0385099e2ebb97f2"
 }
 ##DOCS-SOURCER-END -->
 */}

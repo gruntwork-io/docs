@@ -33,7 +33,7 @@ Instance.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/fail2ban/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f693af242c0b8794647ec3ef1773e556"
+  "hash": "a17a9fbd4c891d9a50c02b9c5dad334b"
 }
 ##DOCS-SOURCER-END -->
 */}

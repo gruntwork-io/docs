@@ -582,7 +582,7 @@ The scheduling expression to use (rate or cron - see README for usage examples).
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-task-scheduler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b71f17a2043a5175679eb64fba219821"
+  "hash": "ec487eeeb93dfc78fa2d68d3d6dee505"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -197,7 +197,7 @@ variables](https://circleci.com/docs/environment-variables/).
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/gruntwork-module-circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "489a4d1192ac79b74601aca335a8caa2"
+  "hash": "e00a19c2ef91f1028e2a869a0597bf1b"
 }
 ##DOCS-SOURCER-END -->
 */}

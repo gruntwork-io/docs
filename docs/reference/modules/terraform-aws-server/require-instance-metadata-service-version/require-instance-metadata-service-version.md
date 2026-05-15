@@ -103,7 +103,7 @@ Setting Instance Metadata Service version 2 state to optional
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/require-instance-metadata-service-version/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c9d34636696854dbc25553ec8f8f4351"
+  "hash": "6016e464b72f1d9f5cca3d2a8a5dd454"
 }
 ##DOCS-SOURCER-END -->
 */}

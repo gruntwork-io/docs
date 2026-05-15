@@ -2862,7 +2862,7 @@ Unique identifier that specifies the AWS WAF web ACL, if any, to associate with 
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.2.0/modules/cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "092b90a2f0e4f06ec0e987cb281d081a"
+  "hash": "e2f7a959d79ad22425208126573b6d78"
 }
 ##DOCS-SOURCER-END -->
 */}

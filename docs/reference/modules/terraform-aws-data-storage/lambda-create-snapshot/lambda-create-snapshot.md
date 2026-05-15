@@ -476,7 +476,7 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/lambda-create-snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7e60f1844c2c3b90453f08b5bc204184"
+  "hash": "9397d928dd602c93f0b28b19f94c3592"
 }
 ##DOCS-SOURCER-END -->
 */}

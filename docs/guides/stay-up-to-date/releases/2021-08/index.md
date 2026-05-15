@@ -1482,7 +1482,7 @@ Updated the `s3-cloudfront` module to create the S3 bucket for access logs using
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "9d5667142d96e01771f02f5eb6722627"
+  "hash": "67dea823a96b1a7534894dba56dcfa72"
 }
 ##DOCS-SOURCER-END -->
 */}

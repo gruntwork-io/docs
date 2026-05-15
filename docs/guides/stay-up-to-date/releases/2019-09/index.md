@@ -565,7 +565,7 @@ The `run-pex-as-resource` module now exposes the `null_resource` triggers and th
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "a186719fb3df6892a38ee2ec03884b06"
+  "hash": "f67f157903454b6f4fc1304fd73ded8b"
 }
 ##DOCS-SOURCER-END -->
 */}

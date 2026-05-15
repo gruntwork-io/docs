@@ -43,7 +43,7 @@ Create and manage AWS accounts with best-practice baselines, security configurat
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3bbe852b160e129b54c8e1a7bd67b2a7"
+  "hash": "c677ddcafd7450ede166bcd39745bb20"
 }
 ##DOCS-SOURCER-END -->
 */}

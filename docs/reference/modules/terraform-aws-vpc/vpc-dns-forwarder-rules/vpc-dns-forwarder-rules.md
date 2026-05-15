@@ -185,7 +185,7 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-dns-forwarder-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "db41a9ea2036fbb13dbe4e80ccec6086"
+  "hash": "e807b1911af2eb79e0ff58ecac8945f1"
 }
 ##DOCS-SOURCER-END -->
 */}

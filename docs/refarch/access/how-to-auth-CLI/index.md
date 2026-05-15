@@ -59,7 +59,7 @@ you should expect to see the following output:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "4f4a0e2a45367a1ceb5311cc6341c87b"
+  "hash": "382e276304bbfca6d6a2fac2c0d09391"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -444,7 +444,7 @@ A list of the subnets into which the Argo CD pods will be launched. These should
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/eks-argocd/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "de5353c41aff353b01bd10e73c44694e"
+  "hash": "b029bdc06efd8047689a06c28ad4d26e"
 }
 ##DOCS-SOURCER-END -->
 */}

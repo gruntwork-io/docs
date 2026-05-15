@@ -207,7 +207,7 @@ Whether to enable raw message delivery (the original message is directly passed,
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sns-sqs-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "47e8f2f9f2c4daf507226973473f0e96"
+  "hash": "570341f43e399929bac0da4185cf2bbf"
 }
 ##DOCS-SOURCER-END -->
 */}

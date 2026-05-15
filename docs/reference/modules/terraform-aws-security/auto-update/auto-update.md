@@ -78,7 +78,7 @@ If you want to deploy this repo in production, check out the following resources
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/auto-update/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d4c6e180909c5955ec0104b6993bd77a"
+  "hash": "e65daf85bd245bd14724736d82c12f99"
 }
 ##DOCS-SOURCER-END -->
 */}

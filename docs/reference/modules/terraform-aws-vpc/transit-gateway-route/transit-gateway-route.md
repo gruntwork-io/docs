@@ -232,7 +232,7 @@ Map of ids of the transit gateway routes.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/transit-gateway-route/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8b5053d6d4aaab0ce4da744d74dd76d6"
+  "hash": "3e2882c2b2aaec20f4a29adb06300b62"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -222,7 +222,7 @@ A name for the exported snapshot copy. ElastiCache does not permit overwriting a
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/redis_copy_snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "db34a7088ea94d0be48dbc135ffa65fa"
+  "hash": "6f3c351c91077017b611040aad826961"
 }
 ##DOCS-SOURCER-END -->
 */}

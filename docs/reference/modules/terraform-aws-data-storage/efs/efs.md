@@ -647,7 +647,7 @@ The IDs of the security groups created for the file system.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/efs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d1c83633bc4fb93abdf672f7126e7e38"
+  "hash": "8a77e93219402c2e6bbc030fb8833046"
 }
 ##DOCS-SOURCER-END -->
 */}

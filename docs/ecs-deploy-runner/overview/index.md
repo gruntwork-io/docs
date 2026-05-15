@@ -21,7 +21,7 @@ high value AWS secrets.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "bc5145c93f72617664cc0a3cc1a575e2"
+  "hash": "b68342c15dbf09838d92f8860c333e53"
 }
 ##DOCS-SOURCER-END -->
 */}

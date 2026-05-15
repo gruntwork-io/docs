@@ -2507,7 +2507,7 @@ ID of security group created by aurora module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d47e11d79ffb9724cfd94945873bda3d"
+  "hash": "0433dbb653cce561e53b78c973a115c2"
 }
 ##DOCS-SOURCER-END -->
 */}

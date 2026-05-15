@@ -8910,7 +8910,7 @@ If you have private dns enabled, then your streaming calls would automatically g
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-interface-endpoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dc807a4ea932ea6672084889ea0c5a69"
+  "hash": "5ea26584e2a3d83672308a9c6d232092"
 }
 ##DOCS-SOURCER-END -->
 */}

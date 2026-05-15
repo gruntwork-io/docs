@@ -16,7 +16,7 @@ Now it’s time to confirm that your configurations are correct and you didn’t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "da234b67eaac211be828271e9d5a4a40"
+  "hash": "676726cc3a05b8c48327fe29bdcdb43d"
 }
 ##DOCS-SOURCER-END -->
 */}

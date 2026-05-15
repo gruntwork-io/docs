@@ -1225,7 +1225,7 @@ Version number of valkey to use (e.g. 7.2).
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/valkey/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fc88a9e6a772eb13aa3f48f0acf850f0"
+  "hash": "39ca03e42535263b113e211e4c3d8b66"
 }
 ##DOCS-SOURCER-END -->
 */}

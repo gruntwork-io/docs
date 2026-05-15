@@ -241,7 +241,7 @@ If you are not going to continue using Pipelines after this tutorial, clean up t
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ccca5db263ce74234ac7bd87b1493e6f"
+  "hash": "612374ce14ff840259a2bc892c3d7d82"
 }
 ##DOCS-SOURCER-END -->
 */}

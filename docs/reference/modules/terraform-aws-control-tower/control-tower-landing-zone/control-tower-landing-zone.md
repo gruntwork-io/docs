@@ -550,7 +550,7 @@ The amount of time allowed for the update operation to take before being conside
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-landing-zone/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "861b26b410bcbfa6db65e42dbc58dbff"
+  "hash": "ba4946408ced67f1ab05fd9ae743b878"
 }
 ##DOCS-SOURCER-END -->
 */}

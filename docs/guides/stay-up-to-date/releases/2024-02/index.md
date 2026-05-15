@@ -879,7 +879,7 @@ Update the outputs of the Transit Gateway module.
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "6f8d118422067c042fd17fb7efd4e35c"
+  "hash": "996fda00cfde01f160c82fea33b6eb6e"
 }
 ##DOCS-SOURCER-END -->
 */}

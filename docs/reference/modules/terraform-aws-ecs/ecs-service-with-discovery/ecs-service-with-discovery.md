@@ -29,7 +29,7 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-service-with-discovery/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ee97a906ace168720b0b9fd27260a31b"
+  "hash": "f26dae2a1011c9e632c89c0d830db792"
 }
 ##DOCS-SOURCER-END -->
 */}

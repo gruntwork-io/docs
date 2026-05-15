@@ -1058,7 +1058,7 @@ A null_resource that indicates that the VPC is ready, including all of its resou
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3a322676c5e526a731570d115243b024"
+  "hash": "821ac92c02d8560dcff6772f52bc0cd4"
 }
 ##DOCS-SOURCER-END -->
 */}

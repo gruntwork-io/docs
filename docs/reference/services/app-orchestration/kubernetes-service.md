@@ -2068,7 +2068,7 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/k8s-service/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "1e56f5bde9642834eadc837dc004452f"
+  "hash": "1d31953e9d4a364aa597b6143406297d"
 }
 ##DOCS-SOURCER-END -->
 */}

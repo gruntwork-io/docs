@@ -33,7 +33,7 @@ This template is only necessary if you plan on implementing [Gruntwork Pipelines
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "4a382866f3c80d23319a902b0b1a872b"
+  "hash": "dbefd9828abb00d772a1c26969a064f2"
 }
 ##DOCS-SOURCER-END -->
 */}

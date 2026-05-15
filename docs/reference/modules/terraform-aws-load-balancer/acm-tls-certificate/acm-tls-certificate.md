@@ -559,7 +559,7 @@ Global tags to apply to all ACM certificates issued via this module. These globa
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.1/modules/acm-tls-certificate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "76ff1a8cbbe72c8d4f5d05309ea5494d"
+  "hash": "5d4428a59314bea72a337ebaf6e3f3f5"
 }
 ##DOCS-SOURCER-END -->
 */}

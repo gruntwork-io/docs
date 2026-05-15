@@ -576,7 +576,7 @@ The validation package is now exported directly, so consumers of Boilerplate as 
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "0d79396086ec71461ae2a3b3e2b038eb"
+  "hash": "81256efb28e50c9d518ce147e14f8106"
 }
 ##DOCS-SOURCER-END -->
 */}

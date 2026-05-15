@@ -624,7 +624,7 @@ The name configured for VPC.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-app-lookup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e21612a2fd053df634dee80b62b8cc78"
+  "hash": "522f67654cf4514de657e80c4a8cbf6c"
 }
 ##DOCS-SOURCER-END -->
 */}

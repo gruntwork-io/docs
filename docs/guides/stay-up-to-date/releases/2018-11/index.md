@@ -356,7 +356,7 @@ You can now specify custom tags for all S3 buckets created by these modules usin
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "e8ec90473d8797393f518d88c19cb83a"
+  "hash": "4bc8f96092acc5ff3f95f54eb36f1dca"
 }
 ##DOCS-SOURCER-END -->
 */}

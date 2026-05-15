@@ -633,7 +633,7 @@ A map of domains to resource arns and hosted zones of the created Service Discov
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/networking/route53/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "272e18cf98c9efb3cafcae9fd7717917"
+  "hash": "896cd3e7a5dd4ed8c1c8d8d3fb2a72c6"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -33,7 +33,7 @@ Our [sample application](https://github.com/gruntwork-io/aws-sample-app) is buil
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "be6add7032b21738ccfdf7fff3d6dece"
+  "hash": "3c13d69298a0b94d2988b3645acaed71"
 }
 ##DOCS-SOURCER-END -->
 */}

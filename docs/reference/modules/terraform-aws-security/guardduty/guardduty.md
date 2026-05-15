@@ -594,7 +594,7 @@ The ID of the GuardDuty detector.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/guardduty/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1cb37a1eea1b47c2a6fee00829d29f75"
+  "hash": "e9d9738063c99b3d9096ccf38c20ee0e"
 }
 ##DOCS-SOURCER-END -->
 */}

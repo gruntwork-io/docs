@@ -264,7 +264,7 @@ The identifer of the transit gateway for the accepter resources.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/transit-gateway-peering-attachment-accepter/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "55938e3593b74973a7f1ca2ccd08b9ba"
+  "hash": "cdf04e1e73c4bd9f19ea8a5f7169bb98"
 }
 ##DOCS-SOURCER-END -->
 */}

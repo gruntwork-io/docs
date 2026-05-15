@@ -2066,7 +2066,7 @@ The ID of the security group created for the RDS instance.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5ab010c106e65c052d9d54f921a569cd"
+  "hash": "67d700ae8a633ee6bb88eebe7630e2d3"
 }
 ##DOCS-SOURCER-END -->
 */}

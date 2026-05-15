@@ -30,7 +30,7 @@ If you haven’t already, you need to:
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "79d751e6f54ffaa62190769a98e3b402"
+  "hash": "f72d962c2d69270f808d00005239b077"
 }
 ##DOCS-SOURCER-END -->
 */}

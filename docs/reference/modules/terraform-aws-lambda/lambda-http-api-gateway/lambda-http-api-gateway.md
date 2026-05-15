@@ -734,7 +734,7 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/lambda-http-api-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fe12e7313234415feed04e72d6c7f459"
+  "hash": "2becc7c14d3554408d38cc384bc0dacc"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -433,7 +433,7 @@ The name of the rbac role that grants read only permissions on the namespace.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/k8s-namespace/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5d1577af5f45083d6eaa64667871cbbd"
+  "hash": "cb6648ffe6a72a867136085b3f3fddb1"
 }
 ##DOCS-SOURCER-END -->
 */}

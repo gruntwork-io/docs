@@ -105,7 +105,7 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/secrets-manager-resource-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9456d447cc816c10d293121b5f12e899"
+  "hash": "cb2ebe7fb189e50f92858d3ccc212955"
 }
 ##DOCS-SOURCER-END -->
 */}

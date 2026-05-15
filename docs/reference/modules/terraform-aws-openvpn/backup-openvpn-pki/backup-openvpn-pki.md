@@ -33,7 +33,7 @@ up, we would have to reissue client certificates if the OpenVPN server ever need
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v1.0.0/modules/backup-openvpn-pki/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "28de514a927e7063a7cc82cf504b9bc3"
+  "hash": "a0924a39532ca5b847b79e3832721931"
 }
 ##DOCS-SOURCER-END -->
 */}

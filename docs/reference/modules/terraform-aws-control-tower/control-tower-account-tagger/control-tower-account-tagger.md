@@ -149,7 +149,7 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-account-tagger/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bae7c3ff2d38ca70a4278cc527336bce"
+  "hash": "830f115016dc7d3223369e624fa1c15a"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -113,7 +113,7 @@ tests.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-scripts/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "454e039e4aa2dadf9616fc51f0d4c9c1"
+  "hash": "02ca019aee903d61a72bd2e5b2031db0"
 }
 ##DOCS-SOURCER-END -->
 */}

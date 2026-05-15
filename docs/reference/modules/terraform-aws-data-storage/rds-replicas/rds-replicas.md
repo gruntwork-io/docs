@@ -1071,7 +1071,7 @@ The port number on which the read replicas accept connections.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "86bff1316a1cc58eae5957d5e064651c"
+  "hash": "c074bc5f8b0ec4b21fc18af1a6e961d1"
 }
 ##DOCS-SOURCER-END -->
 */}

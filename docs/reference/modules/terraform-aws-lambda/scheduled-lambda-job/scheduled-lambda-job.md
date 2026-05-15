@@ -240,7 +240,7 @@ Cloudwatch Event Rule schedule expression
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/scheduled-lambda-job/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a7a0398391f116cd115268a86f4bb53a"
+  "hash": "1333f31f35f522f06e79e320c41c5160"
 }
 ##DOCS-SOURCER-END -->
 */}

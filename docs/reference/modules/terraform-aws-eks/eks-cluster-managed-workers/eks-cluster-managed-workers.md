@@ -1026,7 +1026,7 @@ Map of Node Group names to ARNs of the created EKS Node Groups
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-cluster-managed-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "faf4a8111e44ac459f8c16c50d149e81"
+  "hash": "e2ef38929058ba3d03e0b2900bf34b9f"
 }
 ##DOCS-SOURCER-END -->
 */}

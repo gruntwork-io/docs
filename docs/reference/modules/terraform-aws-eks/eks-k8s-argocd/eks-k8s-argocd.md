@@ -474,7 +474,7 @@ The status of the Argo CD Helm chart.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-k8s-argocd/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "df9ebf9d7abff8c2b336229c72594126"
+  "hash": "7b72ef2b257acad353aba3dea9aad321"
 }
 ##DOCS-SOURCER-END -->
 */}

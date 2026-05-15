@@ -630,7 +630,7 @@ This new module allows to create a VPC Interface Endpoint to connect services wi
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "5bf143740977b7d548be7507b01db128"
+  "hash": "4ba3ca626f454a9bad9d0d1fa6b9ff7e"
 }
 ##DOCS-SOURCER-END -->
 */}

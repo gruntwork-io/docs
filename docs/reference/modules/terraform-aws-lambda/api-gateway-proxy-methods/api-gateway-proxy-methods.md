@@ -298,7 +298,7 @@ ID of the API Gateway method for the root proxy (only created if path_prefix is 
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/api-gateway-proxy-methods/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ff74172eb73eb632dc4e3d6b6ed8c92f"
+  "hash": "1763656bebdbb40b2a1b7f2a37312065"
 }
 ##DOCS-SOURCER-END -->
 */}

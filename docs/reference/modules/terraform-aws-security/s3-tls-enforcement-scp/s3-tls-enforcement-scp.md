@@ -206,7 +206,7 @@ The ID of the S3 TLS enforcement SCP.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/s3-tls-enforcement-scp/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "486c2582cb093130004e20770ee70267"
+  "hash": "176d7d6ab391ca554ba8de5f853a62f4"
 }
 ##DOCS-SOURCER-END -->
 */}

@@ -1507,7 +1507,7 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/ecs-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "245c3cc0fa3e2a8273290cc34f56c7f9"
+  "hash": "1204dd9bc46af2fd4ff5f34acf933a1f"
 }
 ##DOCS-SOURCER-END -->
 */}
