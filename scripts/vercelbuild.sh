@@ -1,6 +1,12 @@
 #!/bin/bash
 
 
+# Vercel clones with --depth 1 by default. Docusaurus needs full git history to
+# derive each page's lastmod date for the sitemap (future.faster.gitEagerVcs is
+# on, sitemap.lastmod is "date"). Without this fetch, dates collapse to the
+# deploy commit. The `|| true` keeps already-deep clones from failing the build.
+git fetch --unshallow --filter=blob:none || true
+
 # Read the entire contents of package.json into a variable
 package_json=$(cat package.json)
 

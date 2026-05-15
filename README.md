@@ -33,6 +33,21 @@ to run it locally you will need access to various secrets.  These secrets live i
 > file format works directly. After that, the `<!-- -->` wrappers can be removed
 > from these files.
 
+### Sitemap `lastmod` requires a deep git clone on Vercel
+
+`docusaurus.config.js` enables `future.faster.gitEagerVcs: true` and
+`sitemap.lastmod: "date"`, so each `<url>` in `build/sitemap.xml` carries a
+`<lastmod>` derived from `git log` at build time.
+
+Vercel clones with `--depth 1` by default, which leaves git unable to
+determine when most files were last modified — every date would collapse to
+the deploy commit. `scripts/vercelbuild.sh` therefore prepends
+`git fetch --unshallow --filter=blob:none || true` before `yarn install`. The
+`|| true` keeps already-deep clones from failing the build.
+
+If you later enable `showLastUpdateTime` / `showLastUpdateAuthor` in the docs
+plugin, no further action is needed — they read from the same git source.
+
 ## Installing dependencies
 
 ```sh

@@ -136,6 +136,37 @@ async function createConfig() {
             beforeDefaultRemarkPlugins: [captionsPlugin],
           },
           blog: false,
+          sitemap: {
+            lastmod: "date",
+            changefreq: null,
+            priority: null,
+            // Workaround for Docusaurus 3.10: the sitemap plugin queries
+            // future.experimental_vcs.getFileLastUpdateInfo() with a relative
+            // sourceFilePath (e.g. "docs/foo.md"), but vcsGitEager indexes by
+            // absolute path, so every <lastmod> resolves to null. Resolve each
+            // route's sourceFilePath against the site root before letting the
+            // default builder run.
+            // TODO: remove once Docusaurus fixes the path-format mismatch.
+            createSitemapItems: async ({
+              routes,
+              siteConfig,
+              defaultCreateSitemapItems,
+            }) => {
+              const path = require("path")
+              const fixRoute = (route) => {
+                const rel = route.metadata && route.metadata.sourceFilePath
+                if (rel && !path.isAbsolute(rel)) {
+                  route.metadata = {
+                    ...route.metadata,
+                    sourceFilePath: path.resolve(__dirname, rel),
+                  }
+                }
+                if (route.routes) route.routes.forEach(fixRoute)
+              }
+              routes.forEach(fixRoute)
+              return defaultCreateSitemapItems({routes, siteConfig})
+            },
+          },
           theme: {
             customCss: require.resolve("./src/css/custom.css"),
           },
