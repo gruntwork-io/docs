@@ -1073,7 +1073,8 @@ The fully qualified name of the bastion host.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/mgmt/bastion-host/README.md",
@@ -1083,4 +1084,5 @@ The fully qualified name of the bastion host.
   "sourcePlugin": "service-catalog-api",
   "hash": "f492ab35d6a9e6943fb3260e5390f5a6"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

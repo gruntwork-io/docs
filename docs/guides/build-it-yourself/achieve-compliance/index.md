@@ -69,9 +69,11 @@ walkthrough.
 </CardList>
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "399c7297ff4c7b8722233da4e871c2da"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

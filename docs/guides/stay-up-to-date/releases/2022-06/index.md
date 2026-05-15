@@ -1287,9 +1287,11 @@ Updated dependency `terraform-aws-security` to `v0.65.2`.
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "4afa125a1c3bbe59c17d9132b71a5a24"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

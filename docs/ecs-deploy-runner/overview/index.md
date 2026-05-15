@@ -17,9 +17,11 @@ infrastructure related permissions reside safely within your own AWS account. Th
 high value AWS secrets.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "bc5145c93f72617664cc0a3cc1a575e2"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

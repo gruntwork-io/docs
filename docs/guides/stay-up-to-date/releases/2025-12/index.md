@@ -612,9 +612,11 @@ This release updates the module&apos;s AWS provider version constraint to suppor
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "45fa36d4b2d428f95bce0e68a0cde06e"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

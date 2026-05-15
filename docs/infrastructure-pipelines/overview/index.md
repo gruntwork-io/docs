@@ -33,9 +33,11 @@ When a user proposes to make an infra-change by opening a pull request, we want 
 Gruntwork is responsible for adding support for a growing library of Pipelines Actions and we will continue to add more over time.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "4b5c12521dee38291af17272a4c7c2ed"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

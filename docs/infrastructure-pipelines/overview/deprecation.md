@@ -142,9 +142,11 @@ Customers can also expect a much easier time reasoning about their infrastructur
 Gruntwork is excited to bring you this new architecture for Pipelines, and we hope that it will make your experience with managing infrastructure changes more enjoyable and productive. We're always looking for feedback on how we can improve our products, so please don't hesitate to reach out to us at [feedback@gruntwork.io](mailto:feedback@gruntwork.io).
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "ecb848f92776d655af21dd8ebaa993f0"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

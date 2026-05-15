@@ -140,9 +140,11 @@ To update your Reference Architecture:
 If you have any questions, we'd love to hear them. Please reach out to <a href="mailto:support@gruntwork.io">Gruntwork Support</a>.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "0f681c581a4bff11d9dcdf60239d9dad"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

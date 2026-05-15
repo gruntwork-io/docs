@@ -2014,7 +2014,8 @@ A list of identifiers for Aurora cluster instances that are writers.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/aurora/readme.md",
@@ -2024,4 +2025,5 @@ A list of identifiers for Aurora cluster instances that are writers.
   "sourcePlugin": "module-catalog-api",
   "hash": "0a1fd90ddc3e7bebad669bd05f995478"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

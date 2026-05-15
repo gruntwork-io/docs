@@ -923,9 +923,11 @@ This release introduces two changes:
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "8eac3608eb09c997b260d0a8de8977ca"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

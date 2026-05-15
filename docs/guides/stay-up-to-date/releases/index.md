@@ -132,9 +132,11 @@ updates in your code, check out the [updating documentation](/2.0/docs/library/g
 <Card title="Gruntwork Release 2016-06" href="/guides/stay-up-to-date/releases/2016-06" />
 </CardGroup>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "05d646a7121363a30dbd4cb78668a0b2"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

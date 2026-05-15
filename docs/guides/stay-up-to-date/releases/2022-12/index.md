@@ -325,9 +325,11 @@ Special thanks to the following user for their contribution!
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "b3f0289c1add7d9347841d7e934301f6"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -123,9 +123,11 @@ To deploy this new code and create the new IAM Users, you will need to:
    :::
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "7e8a7edee39caec4a8f74b13cf742beb"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

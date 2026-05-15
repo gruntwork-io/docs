@@ -40,9 +40,11 @@ include "envcommon" {
 ```
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "05542d29c57c912a1c745fa10f80a326"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -848,9 +848,11 @@ This release updates the default names set for the VPC DNS resolvers. The names 
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "e32cce356b516c5ac288ee1752d3b949"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

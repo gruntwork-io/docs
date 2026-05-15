@@ -50,9 +50,11 @@ reach the bar set by the CIS Controls. Refer to the Benchmark document directly 
 controls.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "306ddcbed0920339735b69c9f1a73219"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

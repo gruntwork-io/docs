@@ -1150,9 +1150,11 @@ Add support for exposing client access directly in the nacls for the private app
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "071a457ea955e16272e6916d84d18b8a"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

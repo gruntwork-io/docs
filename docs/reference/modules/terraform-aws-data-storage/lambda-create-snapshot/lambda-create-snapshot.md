@@ -467,7 +467,8 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v0.47.0/modules/lambda-create-snapshot/readme.md",
@@ -477,4 +478,5 @@ Namespace all snapshots created by this module's jobs with this suffix. If not s
   "sourcePlugin": "module-catalog-api",
   "hash": "7e60f1844c2c3b90453f08b5bc204184"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

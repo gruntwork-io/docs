@@ -1174,7 +1174,8 @@ A map of maps containing the replication tasks created and their full output of 
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/dms/readme.md",
@@ -1184,4 +1185,5 @@ A map of maps containing the replication tasks created and their full output of 
   "sourcePlugin": "module-catalog-api",
   "hash": "2ab1fb20ef0c42119a3cf1a99c73fd8a"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

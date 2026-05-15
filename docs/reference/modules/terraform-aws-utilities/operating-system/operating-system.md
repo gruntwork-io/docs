@@ -49,7 +49,8 @@ operating_system_name = "${module.os.name}"
 path_separator        = "${module.os.path_separator}"
 ```
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.8/modules/operating-system/readme.md",
@@ -59,4 +60,5 @@ path_separator        = "${module.os.path_separator}"
   "sourcePlugin": "module-catalog-api",
   "hash": "7773496712920d511eae16647b9a058d"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

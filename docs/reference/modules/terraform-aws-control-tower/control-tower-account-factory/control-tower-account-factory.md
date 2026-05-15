@@ -617,7 +617,8 @@ The URL of the AWS SSO login page for this account
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-account-factory/readme.md",
@@ -627,4 +628,5 @@ The URL of the AWS SSO login page for this account
   "sourcePlugin": "module-catalog-api",
   "hash": "9a2087435e91f7ad0530880e3f7796c2"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

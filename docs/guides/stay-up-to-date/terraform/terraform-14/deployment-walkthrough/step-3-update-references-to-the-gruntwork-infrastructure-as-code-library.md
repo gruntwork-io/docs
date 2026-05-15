@@ -169,9 +169,11 @@ compatible with Terraform 0.14:
 </table>
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "67189e5711133b31156e73a927df1451"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

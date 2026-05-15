@@ -19,9 +19,11 @@ To commence the wizard, first authenticate to AWS on the command line, then run 
 If you need to stop the running the wizard at any time, or if there is an error, the next time you run the wizard it will restart at the last step it stopped on.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "1938848af7e91882608e76336fbe83b5"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

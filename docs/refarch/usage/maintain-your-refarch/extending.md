@@ -23,9 +23,11 @@ If Gruntwork doesn't already have the service you are looking you may be able to
 If Gruntwork doesn't have existing modules for the AWS services that you are trying to deploy, you can always [create and deploy your own modules](../../../2.0/docs/library/tutorials/deploying-your-first-gruntwork-module.md), compose them into your on bespoke services and add them to your Reference Architecture.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "b86acd94bd882dbca93ee7075b12c596"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

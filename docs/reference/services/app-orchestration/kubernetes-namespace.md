@@ -424,7 +424,8 @@ The name of the rbac role that grants read only permissions on the namespace.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/k8s-namespace/README.md",
@@ -434,4 +435,5 @@ The name of the rbac role that grants read only permissions on the namespace.
   "sourcePlugin": "service-catalog-api",
   "hash": "5d1577af5f45083d6eaa64667871cbbd"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

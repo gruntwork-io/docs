@@ -2343,7 +2343,8 @@ The ID of the Security Group that belongs to the ASG.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/asg-service/README.md",
@@ -2353,4 +2354,5 @@ The ID of the Security Group that belongs to the ASG.
   "sourcePlugin": "service-catalog-api",
   "hash": "78a0ec1647c50d3c06e1fa836f3cdb73"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -73,7 +73,8 @@ If you just want to try this module out for experimenting and learning, check ou
 
 *   [Adding a new file that has no tests to a repo with validate-monorepo-test-mappings](https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/monorepo-helpers/core-concepts.md#adding-a-new-file-that-has-no-tests-to-a-repo-with-validate-monorepo-test-mappings)
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/monorepo-helpers/readme.adoc",
@@ -83,4 +84,5 @@ If you just want to try this module out for experimenting and learning, check ou
   "sourcePlugin": "module-catalog-api",
   "hash": "a098a4dbad144b4583ceac57a14a6292"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

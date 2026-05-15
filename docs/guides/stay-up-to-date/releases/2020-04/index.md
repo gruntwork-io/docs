@@ -626,9 +626,11 @@ This new module allows to create a VPC Interface Endpoint to connect services wi
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "5bf143740977b7d548be7507b01db128"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

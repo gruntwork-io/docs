@@ -398,9 +398,11 @@ https://github.com/gruntwork-io/module-vpc/pull/26: Fix a bug where the `num_ava
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "e87d448600d9843b6c18176a7fbb57c6"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

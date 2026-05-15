@@ -750,9 +750,11 @@ This is a backwards incompatible change. Specifically, the modules no longer nee
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "303d5b8f0533ab5470afe4205323b6d7"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

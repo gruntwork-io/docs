@@ -17,6 +17,22 @@ Docs Sourcer is generally run in CI or via webhooks and doesn't have to be run l
 to run it locally you will need access to various secrets.  These secrets live in 1password under a secure note called
 "docs sourcer .env file".
 
+> **TODO — docs-sourcer / MDX 3 compatibility (Docusaurus 3 migration):**
+> The `##DOCS-SOURCER-*` metadata blocks are wrapped in `{/* ... */}` so MDX 3
+> accepts them, with the literal `<!-- ... -->` HTML markers preserved inside
+> for the docs-sourcer validator's `indexOf` check. This is a temporary bridge.
+>
+> **Do not run `yarn run-docs-sourcer` (or `yarn regenerate`) until docs-sourcer
+> is updated** — its `writeMetadata` strips from `<!--` and re-appends a plain
+> HTML-comment block, leaving an orphaned `{/*` and `*/}` that breaks the MDX
+> build.
+>
+> Durable fix: change `METADATA_START_TOKEN` / `METADATA_END_TOKEN` in
+> `docs-sourcer`'s `src/services/content-service.ts` to `{/* ##DOCS-SOURCER-START`
+> and `##DOCS-SOURCER-END */}`, release a new version, then this repo's existing
+> file format works directly. After that, the `<!-- -->` wrappers can be removed
+> from these files.
+
 ## Installing dependencies
 
 ```sh

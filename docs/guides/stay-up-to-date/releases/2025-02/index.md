@@ -1168,9 +1168,11 @@ Fixes a bug was introduced in pipelines [v0.32.0](https://github.com/gruntwork-i
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "3c35abb05dfd94beb02bc32a563212b1"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

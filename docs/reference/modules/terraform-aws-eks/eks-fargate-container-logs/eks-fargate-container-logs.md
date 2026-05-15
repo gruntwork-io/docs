@@ -663,7 +663,8 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-fargate-container-logs/readme.md",
@@ -673,4 +674,5 @@ The ID of the Kubernetes ConfigMap containing the logging configuration. This ca
   "sourcePlugin": "module-catalog-api",
   "hash": "00d5269596cb16e70db6c008f42f7288"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

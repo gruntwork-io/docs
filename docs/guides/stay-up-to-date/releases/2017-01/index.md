@@ -356,9 +356,11 @@ Note that we are seeing intermittent test failures with the ALB that indicate a 
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "5958ffab8e89b35944fc0712639209fa"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

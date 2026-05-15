@@ -380,7 +380,8 @@ The latest available version of the EBS CSI AddOn.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-ebs-csi-driver/readme.md",
@@ -390,4 +391,5 @@ The latest available version of the EBS CSI AddOn.
   "sourcePlugin": "module-catalog-api",
   "hash": "29773666f46c7fa9a12870f449aa317a"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

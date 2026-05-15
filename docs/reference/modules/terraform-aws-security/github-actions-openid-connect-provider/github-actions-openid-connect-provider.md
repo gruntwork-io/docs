@@ -179,7 +179,8 @@ Url used for the OIDC provider
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/github-actions-openid-connect-provider/readme.md",
@@ -189,4 +190,5 @@ Url used for the OIDC provider
   "sourcePlugin": "module-catalog-api",
   "hash": "47f6455ef1cf5d6062bb60877c5dd942"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -120,7 +120,8 @@ If set to true, this module will look for the specified organizational unit (OU)
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/organizational-units/readme.md",
@@ -130,4 +131,5 @@ If set to true, this module will look for the specified organizational unit (OU)
   "sourcePlugin": "module-catalog-api",
   "hash": "f1eb270718b8d75f999f2aa1542b6c7e"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

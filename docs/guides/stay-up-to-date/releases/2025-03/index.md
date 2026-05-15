@@ -886,9 +886,11 @@ If `pipelines-execute` exits with non-zero return code we now forward stderr to 
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "b4b986fa6757a882fde66b8670abfd8a"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

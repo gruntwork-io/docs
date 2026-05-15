@@ -80,7 +80,8 @@ this module. These files can be installed by running:
 $ sudo semodule -i ssh-grunt.pp
 ```
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/ssh-grunt-selinux-policy/readme.md",
@@ -90,4 +91,5 @@ $ sudo semodule -i ssh-grunt.pp
   "sourcePlugin": "module-catalog-api",
   "hash": "9772940026d583f677a0c533063648a7"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

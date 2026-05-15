@@ -248,7 +248,8 @@ The name of the ECS cluster.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/ecs-fargate-cluster/README.md",
@@ -258,4 +259,5 @@ The name of the ECS cluster.
   "sourcePlugin": "service-catalog-api",
   "hash": "e7888c823090bee9489a05e5203f367d"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

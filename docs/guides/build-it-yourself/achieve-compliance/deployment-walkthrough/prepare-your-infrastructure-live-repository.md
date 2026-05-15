@@ -177,9 +177,11 @@ locals {
 ```
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "dd0d0202eab6dc1196f9f21fed82cb93"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

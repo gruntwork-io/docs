@@ -871,9 +871,11 @@ This release updates our multi-region code generators to use [Boilerplate](https
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "270a5a79ca9c92624381b257cda277df"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

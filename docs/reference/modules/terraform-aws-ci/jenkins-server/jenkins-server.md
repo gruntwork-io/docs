@@ -1249,7 +1249,8 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/jenkins-server/readme.md",
@@ -1259,4 +1260,5 @@ A maximum duration to wait for each server to be healthy before timing out (e.g.
   "sourcePlugin": "module-catalog-api",
   "hash": "a5a06b39295b0bf5069659af8408a621"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

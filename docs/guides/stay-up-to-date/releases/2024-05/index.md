@@ -1342,9 +1342,11 @@ This release includes updates to breaking changes in multiple actions. Given tha
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "7eb7252fd5d766b38b57e11687991ff7"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

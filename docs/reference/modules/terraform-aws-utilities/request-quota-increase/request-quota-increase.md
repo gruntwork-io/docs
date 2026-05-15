@@ -125,7 +125,8 @@ When you run `terraform destroy` on this module, it does not affect your current
 existing quota requests. In other words, you don't have to worry about quotas being reset to old
 values; once they have been increased, they stay that way!
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.8/modules/request-quota-increase/readme.md",
@@ -135,4 +136,5 @@ values; once they have been increased, they stay that way!
   "sourcePlugin": "module-catalog-api",
   "hash": "f971a84f9c7f5e23ba17abfaa83c342f"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

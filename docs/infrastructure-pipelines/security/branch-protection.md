@@ -49,9 +49,11 @@ The following is an example of the recommended settings for branch protection:
    - On Failure, a new GitHub issue is created describing the failure. A new PR must be created to resolve any failures.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "79327c7c5cfee06581006fc3bbb85805"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

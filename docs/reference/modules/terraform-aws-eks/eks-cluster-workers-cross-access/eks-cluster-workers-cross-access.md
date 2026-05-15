@@ -135,7 +135,8 @@ inputs = {
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-cluster-workers-cross-access/readme.md",
@@ -145,4 +146,5 @@ inputs = {
   "sourcePlugin": "module-catalog-api",
   "hash": "a68f02794219938f4f810d324304f72b"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

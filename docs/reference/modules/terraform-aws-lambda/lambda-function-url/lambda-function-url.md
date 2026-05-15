@@ -392,7 +392,8 @@ A generated ID for the endpoint.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/lambda-function-url/readme.md",
@@ -402,4 +403,5 @@ A generated ID for the endpoint.
   "sourcePlugin": "module-catalog-api",
   "hash": "bc781b0cd50a1e2f367c61d25c23dcef"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

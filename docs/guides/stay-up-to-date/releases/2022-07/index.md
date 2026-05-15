@@ -861,9 +861,11 @@ https://github.com/gruntwork-io/terraform-aws-ci-steampipe/pull/28
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "03ee0cb80045345f701ebf836dc1ff13"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

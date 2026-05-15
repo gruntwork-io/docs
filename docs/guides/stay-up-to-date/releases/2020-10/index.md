@@ -841,9 +841,11 @@ This release updates the following modules to the latest releases of their respe
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "9440147151cbe1bb1ab45bd21b491f51"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

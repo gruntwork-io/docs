@@ -844,9 +844,11 @@ Note that as part of this, we switched to using `null` to indicate unset values 
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "c1a99392c1d10ac6a819306195323169"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

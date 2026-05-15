@@ -282,9 +282,11 @@ This change is fully backwards-compatible in terms of the vars and outputs, but 
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "ebef7fa7483aaabafdf4df5616ce3245"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -385,7 +385,8 @@ The IDs of the Transit Gateway Route Tables.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/transit-gateway-attachment/readme.md",
@@ -395,4 +396,5 @@ The IDs of the Transit Gateway Route Tables.
   "sourcePlugin": "module-catalog-api",
   "hash": "2ec9703fcf83958679deec1fe706347b"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

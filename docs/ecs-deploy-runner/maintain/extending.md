@@ -141,9 +141,11 @@ By default, the `deploy-runner` ships with three scripts — one to build HashiC
 If you need to run a custom script in the `deploy-runner`, you must fork the image code, add an additional line to copy your script into directory designated by the `trigger_directory` argument. Then, you will need to rebuild the Docker image, push to ECR, then update your Pipelines deployment following the steps in [Updating your Pipeline](/ecs-deploy-runner/maintain/updating.md).
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "68f6551330b76b6bb8ef7b8a735a9d29"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

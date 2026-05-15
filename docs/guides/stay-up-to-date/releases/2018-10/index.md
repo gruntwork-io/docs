@@ -319,9 +319,11 @@ A special thanks to @jeckhart for contributing all of these PRs!
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "faa5d7e7d7d0cf9c4509fd41f9c0fdf8"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

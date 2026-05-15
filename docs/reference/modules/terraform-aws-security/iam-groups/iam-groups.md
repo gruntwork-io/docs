@@ -950,7 +950,8 @@ Should we create the IAM Group for user self-management? Allows users to manage 
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/iam-groups/readme.md",
@@ -960,4 +961,5 @@ Should we create the IAM Group for user self-management? Allows users to manage 
   "sourcePlugin": "module-catalog-api",
   "hash": "17ffb263c5bf7dc9b67efcc158d6f766"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -259,9 +259,11 @@ This change is backwards compatible from a code perspective, but it changes the 
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "3c047715bef291bc9802eb98400a51e9"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

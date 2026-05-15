@@ -292,9 +292,11 @@ terraform state mv &quot;$MODULE_ADDRESS.aws_alb.alb_without_logs[0]&quot; &quot
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "9d31b29b545de02c1978b874af390b6d"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

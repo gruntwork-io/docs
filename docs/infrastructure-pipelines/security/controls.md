@@ -76,9 +76,11 @@ Access to AWS is only available to workflows running on `main` in the `infrastru
 As highlighted in [dual-repository approach](#dual-repository-approach), because the workflows in `infrastructure-pipelines` can get temporary access to access resources in AWS, write access to this repository should be limited to a trusted set of administrators who likely already have administrative privileges in AWS.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "f045c38f8535afa5b206bb00af264d11"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -899,9 +899,11 @@ Each release will include detailed notes indicating whether changes are breaking
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "d9ea358ceafcd84e33b4d4b258efc009"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

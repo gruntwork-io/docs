@@ -826,7 +826,8 @@ Any types represent complex values of variable type. For details, please consult
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-task-definition/readme.md",
@@ -836,4 +837,5 @@ Any types represent complex values of variable type. For details, please consult
   "sourcePlugin": "module-catalog-api",
   "hash": "eaa131685d9674399611b8b437e07556"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

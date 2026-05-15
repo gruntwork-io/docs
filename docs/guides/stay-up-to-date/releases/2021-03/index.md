@@ -1456,9 +1456,11 @@ Support for optional resource creation via the `create_resources` parameter was 
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "b02cdb96238314f28da925ee0f8a54a8"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

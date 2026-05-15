@@ -174,7 +174,8 @@ Map of port ranges to the ranges to allow. This is provided as a convenience out
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/port-range-calculator/readme.md",
@@ -184,4 +185,5 @@ Map of port ranges to the ranges to allow. This is provided as a convenience out
   "sourcePlugin": "module-catalog-api",
   "hash": "71af506aba3ed3870a32b2f998c81590"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

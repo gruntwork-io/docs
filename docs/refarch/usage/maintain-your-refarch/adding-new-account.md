@@ -291,9 +291,11 @@ At this point, the ECS Deploy Runner is provisioned in the new account, and you 
 to provision new infrastructure in the account.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "5a1c64660af54bebbbaafa760abab734"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

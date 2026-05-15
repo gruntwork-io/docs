@@ -230,9 +230,11 @@ For additional information on creating and using Github Actions Repository secre
 </Tabs>
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "30aa8a6d8861a0fd157384a04ba91701"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

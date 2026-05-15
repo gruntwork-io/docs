@@ -68,7 +68,8 @@ The main options to pass to `git-add-commit-push` are:
 *   `--path`: The path to add, commit, and push to Git. Required. May be specified more than once.
 *   `--message`: The commit message. Required.
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/git-helpers/readme.md",
@@ -78,4 +79,5 @@ The main options to pass to `git-add-commit-push` are:
   "sourcePlugin": "module-catalog-api",
   "hash": "560b1039a22e01d0e963f54a8dfe31a6"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

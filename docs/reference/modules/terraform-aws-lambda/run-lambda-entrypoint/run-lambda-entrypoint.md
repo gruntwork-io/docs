@@ -180,7 +180,8 @@ SECRETS_MANAGER_ARN => LAMBDA_ENV_SECRETS_MANAGER_ARN_P0_RDS => LAMBDA_ENV_SECRE
 Note that the passed in ARN can also reference a Secrets Manager name. If the value is not an ARN, the entrypoint CLI
 will assume it is the name of a Secrets Manager entry in the same region as the Lambda function.
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/run-lambda-entrypoint/readme.md",
@@ -190,4 +191,5 @@ will assume it is the name of a Secrets Manager entry in the same region as the 
   "sourcePlugin": "module-catalog-api",
   "hash": "b57435ff9c82400651132a9b388177db"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

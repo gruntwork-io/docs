@@ -39,9 +39,11 @@ You are reading documentation for Gruntwork Pipelines. The previous version of G
 :::
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "3093f55a1ec5041354f01a27829e18e6"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

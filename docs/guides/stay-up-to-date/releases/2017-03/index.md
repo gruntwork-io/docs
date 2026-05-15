@@ -430,9 +430,11 @@ To use this, you need to configure the new `iam_groups_for_cross_account_access`
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "6aec4e930661000d80be55b909b25f03"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

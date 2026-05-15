@@ -1133,7 +1133,8 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/landingzone/iam-users-and-groups/README.md",
@@ -1143,4 +1144,5 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
   "sourcePlugin": "service-catalog-api",
   "hash": "b9cbadb71843d7fca013442c4d5ae731"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -759,9 +759,11 @@ NOTE: We have since discovered that this release should have been classified as 
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "fb3c142d2a4d9fc8021469d1815ed552"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

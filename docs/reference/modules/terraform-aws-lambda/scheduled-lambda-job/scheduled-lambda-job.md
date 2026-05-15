@@ -231,7 +231,8 @@ Cloudwatch Event Rule schedule expression
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/scheduled-lambda-job/readme.md",
@@ -241,4 +242,5 @@ Cloudwatch Event Rule schedule expression
   "sourcePlugin": "module-catalog-api",
   "hash": "a7a0398391f116cd115268a86f4bb53a"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

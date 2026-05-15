@@ -584,9 +584,11 @@ for each of those child accounts—including enabling MFA and deleting the root 
 those root users again.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "85c7d13e3ed847c86ba58be0abf99398"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

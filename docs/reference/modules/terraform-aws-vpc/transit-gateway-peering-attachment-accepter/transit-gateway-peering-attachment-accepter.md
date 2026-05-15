@@ -255,7 +255,8 @@ The identifer of the transit gateway for the accepter resources.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/transit-gateway-peering-attachment-accepter/readme.md",
@@ -265,4 +266,5 @@ The identifer of the transit gateway for the accepter resources.
   "sourcePlugin": "module-catalog-api",
   "hash": "55938e3593b74973a7f1ca2ccd08b9ba"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

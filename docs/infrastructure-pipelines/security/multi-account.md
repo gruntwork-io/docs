@@ -58,9 +58,11 @@ The `INFRA_LIVE_ACCESS_TOKEN` available to the `infrastructure-pipelines` reposi
 :::
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "d492c3f3f068ced6c6c9af871eb11719"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

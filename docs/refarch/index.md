@@ -21,9 +21,11 @@ Our [sample application](https://github.com/gruntwork-io/aws-sample-app) is buil
 [Gruntwork Pipelines](/2.0/docs/pipelines/concepts/overview) makes the process of deploying infrastructure similar to how developers often deploy code. It is a code framework and approach that enables the customer to use your preferred CI tool to set up an end-to-end pipeline for infrastructure code.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "3e89f0794c8838a8942e8594862da4f1"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

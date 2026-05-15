@@ -51,9 +51,11 @@ made _before_ executing `terraform/terragrunt apply`.
 
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "1df1b78e9d68f5ff116c2faab5b27126"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

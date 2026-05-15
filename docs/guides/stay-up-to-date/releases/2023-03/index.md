@@ -770,9 +770,11 @@ ingress from 443 is created.
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "030fd21d0e87c93aaefd0e150aa67cd5"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

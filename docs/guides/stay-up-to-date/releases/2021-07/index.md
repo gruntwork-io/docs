@@ -1777,9 +1777,11 @@ Fixed bug with configuring default NACLs, where default NACLs were applied and c
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "d5177b39604d695d55e2f50abca17892"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

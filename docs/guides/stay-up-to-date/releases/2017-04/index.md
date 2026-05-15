@@ -305,9 +305,11 @@ terraform state mv module.database.aws_db_instance.replicas module.database.aws_
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "1d006a9f0ed5be0c7888c3ac315e99a6"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

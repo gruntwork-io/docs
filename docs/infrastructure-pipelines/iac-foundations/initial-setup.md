@@ -29,9 +29,11 @@ _[https://github.com/gruntwork-io/infrastructure-pipelines-template](https://git
 This template is only necessary if you plan on implementing [Gruntwork Pipelines](../overview/index.md).
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "4a382866f3c80d23319a902b0b1a872b"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

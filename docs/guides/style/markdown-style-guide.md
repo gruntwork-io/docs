@@ -814,9 +814,11 @@ This Markdown style guide is adapted from [one provided by Google](https://googl
 </CCLicense>
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "f92fbc2823cf0caf9e42a0cfb9f922de"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

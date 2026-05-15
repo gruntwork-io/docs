@@ -19,9 +19,11 @@ When a pull request is merged, Pipelines will automatically execute either `terr
 If you'd like to request a new Pipelines action, please email us at feedback@gruntwork.io.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "09e939bef0fbf7ff0b45ad4ab3125a63"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

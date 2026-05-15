@@ -26,9 +26,11 @@ If you haven’t already, you need to:
     as possible.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "79d751e6f54ffaa62190769a98e3b402"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

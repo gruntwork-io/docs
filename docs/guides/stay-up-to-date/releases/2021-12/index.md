@@ -644,9 +644,11 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "5ed12d8965b7a42667b9067dd01968cb"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

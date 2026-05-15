@@ -405,9 +405,11 @@ Other changes:
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "bd301122ee764e7ccb4eb1ca84814ac4"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

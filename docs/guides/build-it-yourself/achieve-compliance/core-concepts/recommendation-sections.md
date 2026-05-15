@@ -57,9 +57,11 @@ distributed system. The recommendations merely limit traffic from the zero netwo
 suggest limiting routing for VPC peering connections based on [the principle of least-privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "9c5ed024400994bf3693d1340382dfbf"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

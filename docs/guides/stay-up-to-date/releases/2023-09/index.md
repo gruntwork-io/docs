@@ -486,9 +486,11 @@ Updated for aws provider v5 compatibility. See Migration Guide for breaking chan
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "892ec29d488ad8807679c01f8b637975"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

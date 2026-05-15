@@ -13,9 +13,11 @@ The diagram below visually illustrates the above teams:
 ![Gruntwork Pipelines Permissions](/img/pipelines/security/github_teams.png)
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "7ba6851031c12f4cd3112cc577895d88"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -326,9 +326,11 @@ add new tests for num_nat_gateways=0
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "b4ce10b72c2f875ef44d70d2a7e43965"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

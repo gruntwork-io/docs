@@ -243,7 +243,8 @@ inputs = {
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-cloudwatch-agent/readme.md",
@@ -253,4 +254,5 @@ inputs = {
   "sourcePlugin": "module-catalog-api",
   "hash": "4b7ab7e17242e7456897bd10c0fd58eb"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

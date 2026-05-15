@@ -70,7 +70,8 @@ typically do two things in [User Data](https://docs.aws.amazon.com/AWSEC2/latest
 
 Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/examples/jenkins) for an example of such a User Data script.
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/install-jenkins/readme.md",
@@ -80,4 +81,5 @@ Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci
   "sourcePlugin": "module-catalog-api",
   "hash": "ab2c4b910f5c0ccd4ca4c3805fbe2ac5"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

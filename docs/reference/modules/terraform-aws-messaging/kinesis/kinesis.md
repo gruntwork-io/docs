@@ -455,7 +455,8 @@ A map of key value pairs to apply as tags to the Kinesis stream.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/kinesis/readme.md",
@@ -465,4 +466,5 @@ A map of key value pairs to apply as tags to the Kinesis stream.
   "sourcePlugin": "module-catalog-api",
   "hash": "1fb71b42d108b2810e4c70690a1c593a"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

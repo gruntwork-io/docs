@@ -240,7 +240,8 @@ The type of the alternate contact.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/account-alternate-contact/readme.adoc",
@@ -250,4 +251,5 @@ The type of the alternate contact.
   "sourcePlugin": "module-catalog-api",
   "hash": "c67cb7e1e8dc1b18e79dbc2993e4c241"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

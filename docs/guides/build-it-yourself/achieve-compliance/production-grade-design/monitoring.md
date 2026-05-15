@@ -11,9 +11,11 @@ and [`aws_cloudwatch_metric_alarm`](https://www.terraform.io/docs/providers/aws/
 Terraform resources.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "6f13f1638eebe902e46fb2759688903f"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

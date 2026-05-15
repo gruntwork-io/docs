@@ -708,9 +708,11 @@ Now it&apos;s possible to fully deactivate the `vpc-flow-logs` module passing th
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "49e0cfdba2031255e256c7636dfd1be5"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

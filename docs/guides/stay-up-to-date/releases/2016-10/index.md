@@ -99,9 +99,11 @@ Here are the repos that were updated:
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "c8aafda54869f8b3a5e40c5cff598027"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

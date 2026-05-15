@@ -884,9 +884,11 @@ Thanks to @mmiranda for his contribution, and to @marinalimeira for her suggesti
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "753feceebe3c818c07f692c431415ee5"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

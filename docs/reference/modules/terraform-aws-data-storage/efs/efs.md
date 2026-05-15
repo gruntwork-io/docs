@@ -638,7 +638,8 @@ The IDs of the security groups created for the file system.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/efs/readme.md",
@@ -648,4 +649,5 @@ The IDs of the security groups created for the file system.
   "sourcePlugin": "module-catalog-api",
   "hash": "d1c83633bc4fb93abdf672f7126e7e38"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

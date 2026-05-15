@@ -137,9 +137,11 @@ To set up Macie to analyze the desired S3 buckets, you’ll need to create a **M
 explicit list of buckets per region, namely in the variable `buckets_to_analyze`. For more details, see the production _Deployment Walkthrough_ guide section below.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "a42545420e9759182b9a7727a91aab4a"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

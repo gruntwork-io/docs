@@ -224,9 +224,11 @@ The `kinesis` module now supports server-side encryption.
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "7def48f5532a1b19c335091641d8164f"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

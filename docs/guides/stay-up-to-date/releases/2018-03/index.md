@@ -422,9 +422,11 @@ The primary use case is so we can format paths properly on Windows vs Linux.
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "51477fd50d030b96dc69c843bdb43cf0"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

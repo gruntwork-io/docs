@@ -648,9 +648,11 @@ Remove deprecated eks version 1.22
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "bee2100516266816cf34cec3123eaa26"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -181,9 +181,11 @@ However, in this way, you can bind references in the parent configuration that a
 the `inputs` attribute even if it references `dependency` blocks.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "9c88b007237c084a93910cc7da9b2bad"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -112,9 +112,11 @@ href="/guides/stay-up-to-date/cis/cis-1.5.0"
 
 </Grid>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "33e6822cb1670c28ac85e52b71021568"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

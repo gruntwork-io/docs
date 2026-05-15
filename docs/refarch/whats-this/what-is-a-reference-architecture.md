@@ -29,9 +29,11 @@ The Reference Architecture has three main components — Gruntwork AWS Account F
 Our [sample application](https://github.com/gruntwork-io/aws-sample-app) is built with JavaScript, Node.js, and Express.js, following [Twelve-Factor App](https://12factor.net/) practices. It consists of a load balancer, a front end, a backend, a cache, and a database.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "be6add7032b21738ccfdf7fff3d6dece"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -55,9 +55,11 @@ you should expect to see the following output:
 ```
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "4f4a0e2a45367a1ceb5311cc6341c87b"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

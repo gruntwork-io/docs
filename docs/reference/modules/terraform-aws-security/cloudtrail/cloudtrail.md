@@ -1410,7 +1410,8 @@ The name of the cloudtrail trail.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/cloudtrail/readme.adoc",
@@ -1420,4 +1421,5 @@ The name of the cloudtrail trail.
   "sourcePlugin": "module-catalog-api",
   "hash": "a9edcc7f7cea6e0c82ffa2c68a768738"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

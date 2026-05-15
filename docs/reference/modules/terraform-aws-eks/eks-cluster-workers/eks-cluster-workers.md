@@ -1659,7 +1659,8 @@ AWS ID of the security group created for the EKS worker nodes.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-cluster-workers/readme.md",
@@ -1669,4 +1670,5 @@ AWS ID of the security group created for the EKS worker nodes.
   "sourcePlugin": "module-catalog-api",
   "hash": "3d0f2e81854479174f4ddb8bfbed5e5b"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

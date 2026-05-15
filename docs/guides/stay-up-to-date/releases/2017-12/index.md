@@ -242,9 +242,11 @@ We also suggest explicitly providing values for the `--request-url` parameter to
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "559ee1d53fcb1a535234ac18f46c6c7b"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

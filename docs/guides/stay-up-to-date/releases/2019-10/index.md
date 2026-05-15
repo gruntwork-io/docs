@@ -676,9 +676,11 @@ Listening on localhost is now optional. To disable localhost listening, set the 
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "56ee4e549edb7c84cd86968d8f900533"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

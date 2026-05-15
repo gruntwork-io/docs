@@ -301,7 +301,8 @@ The name of the IAM role associated with the data lifecycle manager
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/ec2-backup/readme.md",
@@ -311,4 +312,5 @@ The name of the IAM role associated with the data lifecycle manager
   "sourcePlugin": "module-catalog-api",
   "hash": "4f6f6011601e8665053cf4ea02e2a959"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

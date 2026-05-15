@@ -199,9 +199,11 @@ Note, this release contains BACKWARDS INCOMPATIBLE CHANGES to the `single-server
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "7fe66f840a7532e57337a0de50a4e0f8"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

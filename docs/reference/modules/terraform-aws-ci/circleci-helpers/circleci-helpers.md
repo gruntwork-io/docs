@@ -63,7 +63,8 @@ dependencies:
     - place-repo-in-gopath
 ```
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/circleci-helpers/readme.md",
@@ -73,4 +74,5 @@ dependencies:
   "sourcePlugin": "module-catalog-api",
   "hash": "3bd228c2353f0852c0a2b733a96542fb"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

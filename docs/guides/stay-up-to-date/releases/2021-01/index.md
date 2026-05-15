@@ -847,9 +847,11 @@ In this release, we have updated the behavior to not explicitly apply the defaul
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "4b1e8b54096de10c7a72d41b8aad21be"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

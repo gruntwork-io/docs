@@ -874,9 +874,11 @@ With this release, we are improving the documentation around how to best use thi
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "1f6de64242a891e899f50684c33b2d4c"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

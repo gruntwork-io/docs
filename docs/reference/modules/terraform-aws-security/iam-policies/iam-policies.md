@@ -677,7 +677,8 @@ If set to true, all the Policies created by this module that are used as Trust P
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/iam-policies/readme.md",
@@ -687,4 +688,5 @@ If set to true, all the Policies created by this module that are used as Trust P
   "sourcePlugin": "module-catalog-api",
   "hash": "f71ba6191f185672b183243af88e1366"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -1072,9 +1072,11 @@ This release includes the following improvements:
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "e1832598f0b3f71258ac6742168559df"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

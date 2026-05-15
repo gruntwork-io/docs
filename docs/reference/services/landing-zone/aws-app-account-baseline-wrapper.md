@@ -4115,7 +4115,8 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/landingzone/account-baseline-app/README.md",
@@ -4125,4 +4126,5 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
   "sourcePlugin": "service-catalog-api",
   "hash": "50aedda0292d62e17158e8ca0914e767"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -2718,7 +2718,8 @@ The ID of the Security Group that controls access to the RDS DB instance.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/data-stores/rds/README.md",
@@ -2728,4 +2729,5 @@ The ID of the Security Group that controls access to the RDS DB instance.
   "sourcePlugin": "service-catalog-api",
   "hash": "ace0451a7ac89f6376f296d8c70ae60a"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

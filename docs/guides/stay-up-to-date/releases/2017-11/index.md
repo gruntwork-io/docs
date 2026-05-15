@@ -419,9 +419,11 @@ https_listener_ports_and_acm_ssl_certs = [
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "fdf219bf6fdfad33ea159178fedfc7e2"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

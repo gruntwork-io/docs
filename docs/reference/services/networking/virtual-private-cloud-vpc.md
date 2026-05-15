@@ -3630,7 +3630,8 @@ Indicates whether or not the VPC has finished creating
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/networking/vpc/README.md",
@@ -3640,4 +3641,5 @@ Indicates whether or not the VPC has finished creating
   "sourcePlugin": "service-catalog-api",
   "hash": "686bb9023bb67a94bccdcb7eb9e9356a"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

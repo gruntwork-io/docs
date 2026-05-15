@@ -17,9 +17,11 @@ steampipe check aws_compliance.benchmark.cis_v150
 If some checks are failing you should check the [Manual steps](/guides/build-it-yourself/achieve-compliance/deployment-walkthrough/manual-steps) section, that contains extra steps to achieve CIS compliance.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "d62e9674d771c64cc090a4ac4adb62e8"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

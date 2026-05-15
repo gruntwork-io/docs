@@ -1388,9 +1388,11 @@ Initial release of devops-foundations templates
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "66f9386ebbc86d3aefdccf5315df1dd6"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -186,9 +186,11 @@ compatible with CIS AWS v1.3.0:
 </table>
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "df4c2eb967c8e044940b34b0b95dc64e"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

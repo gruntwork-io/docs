@@ -671,9 +671,11 @@ To upgrade to this version, simply bump the value of the `ref` parameter on your
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "720483c251cdd13b0bf6ca4179aed7d2"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

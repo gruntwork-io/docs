@@ -17,9 +17,11 @@ up the [3rd
 edition of Terraform Up & Running](https://medium.com/gruntwork/terraform-up-running-3rd-edition-is-now-published-4b99804d922a).
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "18a8232d7ae48ad3c403db27db200815"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

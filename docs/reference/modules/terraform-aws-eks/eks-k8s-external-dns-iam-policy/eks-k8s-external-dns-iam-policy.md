@@ -238,7 +238,8 @@ The name of the IAM policy created with the permissions for the external-dns Kub
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-k8s-external-dns-iam-policy/readme.md",
@@ -248,4 +249,5 @@ The name of the IAM policy created with the permissions for the external-dns Kub
   "sourcePlugin": "module-catalog-api",
   "hash": "2d11d86d163500f18e9a937437e9fcd8"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

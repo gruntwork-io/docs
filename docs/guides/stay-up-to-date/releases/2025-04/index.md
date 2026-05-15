@@ -717,9 +717,11 @@ Default EKS version is 1.31 with this release! Please see the links below for fu
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "05d58373d2b1df0a02817d1d8d88dab9"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

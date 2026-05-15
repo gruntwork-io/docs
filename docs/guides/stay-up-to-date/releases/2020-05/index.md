@@ -768,9 +768,11 @@ Special thanks to @jdhornsby for the fix!
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "0278eb392ec7e3f47da9422a9ffc2901"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

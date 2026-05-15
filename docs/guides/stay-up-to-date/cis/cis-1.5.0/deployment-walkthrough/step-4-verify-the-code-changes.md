@@ -116,9 +116,11 @@ After the changes have been applied we recommend you complete [step 5](../step-5
 and confirm that your infrastructure is now CIS AWS Foundations Benchmark v1.5.0 compliant.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "e3b698dabedbe106b7af11907dcd0951"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

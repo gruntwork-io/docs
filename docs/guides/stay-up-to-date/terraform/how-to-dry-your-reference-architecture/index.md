@@ -23,9 +23,11 @@ An overview of the multi-include feature and how it helps to DRY up the Gruntwor
 The steps you need to take to update your code to use multi-include to avoid duplicating common configuration.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "e6b78a8b5feffb8c40a83d5aeab2ae0b"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -695,9 +695,11 @@ This release introduces the ability to tag just the VPC, but not any of the othe
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "fc1ae9535d830499f82020ae10003cea"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

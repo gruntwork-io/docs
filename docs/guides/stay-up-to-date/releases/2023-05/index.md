@@ -833,9 +833,11 @@ Fixed the user certificate request with pattern name similar to the already adde
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "15ad764b53a0332d87c1d8f53db6e604"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -9,9 +9,11 @@ Please bear in mind that there are many ways to combine these ingredients, so wh
 how all these pieces can work together.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "cc18e09055167ce9e85d6ce57d2a82b7"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

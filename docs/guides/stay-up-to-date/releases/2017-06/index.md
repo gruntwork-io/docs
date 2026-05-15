@@ -303,9 +303,11 @@ Please note that this is a backwards incompatible release:
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "c68d3ab4fab2f65bb7635405afdd5a8d"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

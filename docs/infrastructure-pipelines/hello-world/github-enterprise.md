@@ -43,9 +43,11 @@ Currently GitHub Actions does not support selecting specific repos outside of yo
 
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "3aabe632e15cbdf89976e5fc6fd4a30a"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

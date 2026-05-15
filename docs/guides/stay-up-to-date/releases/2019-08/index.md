@@ -279,9 +279,11 @@ The module has support for the following features:
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "b50acffa406f4c9328c60f523102bd60"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -25,7 +25,8 @@ For information on why the module was removed, refer to the discussion in [PR
 \#62](https://github.com/gruntwork-io/terraform-aws-load-balancer/pull/62) and [PR
 \#65](https://github.com/gruntwork-io/terraform-aws-load-balancer/pull/65).
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.1/modules/nlb/readme.md",
@@ -35,4 +36,5 @@ For information on why the module was removed, refer to the discussion in [PR
   "sourcePlugin": "module-catalog-api",
   "hash": "241a4c5a3f05893b6a1e1e5019b4cbf3"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

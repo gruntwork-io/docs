@@ -237,9 +237,11 @@ You can extend the Pipelines model so that a single `infrastructure-pipelines` r
 If you are not going to continue using Pipelines after this tutorial, clean up the resources you created by running `terragrunt run-all destroy` from your account based folder. You may also delete the two repositories created in [Setting up the repositories](#setting-up-the-repositories).
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "ccca5db263ce74234ac7bd87b1493e6f"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

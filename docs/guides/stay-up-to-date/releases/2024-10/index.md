@@ -1189,9 +1189,11 @@ This PR does NOT introduce any changes that are not backwards compatible or requ
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "92d773ebf7e83a3fedd9e2bab71fa1d9"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

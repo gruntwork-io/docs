@@ -1256,7 +1256,8 @@ The name of the replica S3 bucket.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/data-stores/s3-bucket/README.md",
@@ -1266,4 +1267,5 @@ The name of the replica S3 bucket.
   "sourcePlugin": "service-catalog-api",
   "hash": "1b27f9f0871c20ede63243714bd5e2e6"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

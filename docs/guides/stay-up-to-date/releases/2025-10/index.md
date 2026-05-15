@@ -881,9 +881,11 @@ The following attributes and variables have were added:
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "6772c28e6861e0c86e11348785679002"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

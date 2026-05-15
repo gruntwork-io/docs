@@ -541,7 +541,8 @@ The amount of time allowed for the update operation to take before being conside
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-landing-zone/readme.md",
@@ -551,4 +552,5 @@ The amount of time allowed for the update operation to take before being conside
   "sourcePlugin": "module-catalog-api",
   "hash": "861b26b410bcbfa6db65e42dbc58dbff"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

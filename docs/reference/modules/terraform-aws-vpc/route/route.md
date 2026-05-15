@@ -444,7 +444,8 @@ A map of states of the route resources.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/route/readme.md",
@@ -454,4 +455,5 @@ A map of states of the route resources.
   "sourcePlugin": "module-catalog-api",
   "hash": "bd0ae2c9de2a07edd1ab39210f8f8429"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

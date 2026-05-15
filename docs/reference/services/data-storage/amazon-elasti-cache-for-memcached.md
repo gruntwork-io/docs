@@ -487,7 +487,8 @@ The configuration endpoint to allow host discovery.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/data-stores/memcached/README.md",
@@ -497,4 +498,5 @@ The configuration endpoint to allow host discovery.
   "sourcePlugin": "service-catalog-api",
   "hash": "716638bef8200f8a932f6c1c9079ce82"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

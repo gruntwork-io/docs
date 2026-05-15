@@ -629,7 +629,8 @@ inputs = {
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-container-logs/readme.md",
@@ -639,4 +640,5 @@ inputs = {
   "sourcePlugin": "module-catalog-api",
   "hash": "133c7e1579456ad5d5f6dcec9a6834d3"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

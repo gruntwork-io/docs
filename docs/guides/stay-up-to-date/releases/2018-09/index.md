@@ -209,9 +209,11 @@ This release is **BACKWARD INCOMPATIBLE** with previous releases only if you wer
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "e43f0b3ac76beba174261c098c128d5e"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

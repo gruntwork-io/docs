@@ -345,9 +345,11 @@ BACKWARDS INCOMPATIBLE CHANGES
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "cdec6d32f9c1aaeed4561283f7c6edae"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

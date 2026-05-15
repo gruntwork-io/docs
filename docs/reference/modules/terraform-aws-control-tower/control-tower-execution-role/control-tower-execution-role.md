@@ -149,7 +149,8 @@ The ARN of the Control Tower Execution Role
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-execution-role/readme.md",
@@ -159,4 +160,5 @@ The ARN of the Control Tower Execution Role
   "sourcePlugin": "module-catalog-api",
   "hash": "ba898e5758820dc058f248504c7828b3"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

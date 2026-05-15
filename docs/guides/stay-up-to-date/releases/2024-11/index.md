@@ -491,9 +491,11 @@ Here are the repos that were updated:
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "5b0cbba38ca718c0365f1bc38ab3c258"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

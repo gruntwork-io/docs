@@ -862,9 +862,11 @@ Added option to use service-linked role. (`account-baseline-app` module)
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "e554a109fa1a114fee4c012dadbf2a8d"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

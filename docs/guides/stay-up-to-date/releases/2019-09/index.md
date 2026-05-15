@@ -561,9 +561,11 @@ The `run-pex-as-resource` module now exposes the `null_resource` triggers and th
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "a186719fb3df6892a38ee2ec03884b06"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

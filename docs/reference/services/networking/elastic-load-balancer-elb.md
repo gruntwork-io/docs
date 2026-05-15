@@ -1052,7 +1052,8 @@ The AWS-managed DNS name assigned to the ALB.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/networking/alb/README.md",
@@ -1062,4 +1063,5 @@ The AWS-managed DNS name assigned to the ALB.
   "sourcePlugin": "service-catalog-api",
   "hash": "b4cfad50c2652dc1c6a1bd88bbf6286d"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

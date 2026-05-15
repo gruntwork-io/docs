@@ -655,9 +655,11 @@ This release introduces two new modules that can be used to setup Route 53 Resol
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "86e9d6b4dba5f51c70efb9972e42b11e"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

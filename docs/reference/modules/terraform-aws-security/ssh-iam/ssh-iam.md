@@ -20,7 +20,8 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 `ssh-iam` has been renamed to [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/ssh-grunt). Please update all links to point to
 [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/ssh-grunt)!
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/ssh-iam/readme.md",
@@ -30,4 +31,5 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
   "sourcePlugin": "module-catalog-api",
   "hash": "3974e7f9430306da7df99680f89d796a"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

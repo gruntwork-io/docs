@@ -560,9 +560,11 @@ This release also updates versions of underlying dependencies:
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "bd1b7d0c098f6a4b59385a85aa7e53cb"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

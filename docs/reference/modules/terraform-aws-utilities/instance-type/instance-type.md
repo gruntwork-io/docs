@@ -157,7 +157,8 @@ The recommended instance type to use in this AWS region. This will be the first 
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.8/modules/instance-type/readme.md",
@@ -167,4 +168,5 @@ The recommended instance type to use in this AWS region. This will be the first 
   "sourcePlugin": "module-catalog-api",
   "hash": "2fa43adc542286c8e3617e233c9002f9"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -102,7 +102,8 @@ If you’ve never used the Service Catalog before, make sure to read
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/tls-scripts/README.md",
@@ -112,4 +113,5 @@ If you’ve never used the Service Catalog before, make sure to read
   "sourcePlugin": "service-catalog-api",
   "hash": "982f5b394f208c0a55e0f80fa231f2d1"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

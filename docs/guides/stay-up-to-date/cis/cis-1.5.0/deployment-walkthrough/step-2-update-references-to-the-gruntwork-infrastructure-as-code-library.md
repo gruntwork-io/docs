@@ -310,9 +310,11 @@ If you have successfully completed manually updating the modules to the minimum 
 
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "90db2ba2a03fce70b435066a5f80b9df"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

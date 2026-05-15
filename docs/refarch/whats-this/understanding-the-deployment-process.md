@@ -34,9 +34,11 @@ The adoption phase is primarily your responsibility.
 - From this point forward, we expect you to self-serve, with assistance from Gruntwork Support, as needed
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "cf6753f76e4c398473341c8de87bebbd"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

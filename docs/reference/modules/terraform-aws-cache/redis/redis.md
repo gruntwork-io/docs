@@ -1246,7 +1246,8 @@ This is a list of user IDs  that should be added to the group defined in the 'us
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/redis/readme.md",
@@ -1256,4 +1257,5 @@ This is a list of user IDs  that should be added to the group defined in the 'us
   "sourcePlugin": "module-catalog-api",
   "hash": "1935ba2e524d35f9651e98222843dcd9"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

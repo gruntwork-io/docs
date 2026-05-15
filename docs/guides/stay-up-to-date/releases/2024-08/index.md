@@ -856,9 +856,11 @@ This is a no-op release to include a patcher config change, no module code was c
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "4db89a020d475ba77c1b778f825b58e7"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

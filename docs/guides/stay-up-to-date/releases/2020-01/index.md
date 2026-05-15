@@ -920,9 +920,11 @@ Now `vpc-app` and `vpc-mgmt` will create a single VPC endpoint for all tiers. Pr
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "7c31c7e04cf6b173dbb1e9825be2287f"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

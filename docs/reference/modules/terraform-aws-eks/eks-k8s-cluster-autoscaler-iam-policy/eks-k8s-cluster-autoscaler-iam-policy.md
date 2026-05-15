@@ -263,7 +263,8 @@ The name of the IAM policy created with the permissions for the Kubernetes clust
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-k8s-cluster-autoscaler-iam-policy/readme.md",
@@ -273,4 +274,5 @@ The name of the IAM policy created with the permissions for the Kubernetes clust
   "sourcePlugin": "module-catalog-api",
   "hash": "e061ec9c0af79602ddd89e2fbd9383bb"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

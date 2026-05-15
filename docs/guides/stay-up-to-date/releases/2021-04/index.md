@@ -1672,9 +1672,11 @@ adds a number of conditional variables to the App Account Baseline in order to o
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "82d8db53b5f0b0ed28aca45a840d5464"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

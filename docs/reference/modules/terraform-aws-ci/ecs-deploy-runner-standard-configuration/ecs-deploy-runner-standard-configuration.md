@@ -950,7 +950,8 @@ Configuration map for the ecs-deploy-runner module that can be passed straight i
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/ecs-deploy-runner-standard-configuration/readme.md",
@@ -960,4 +961,5 @@ Configuration map for the ecs-deploy-runner module that can be passed straight i
   "sourcePlugin": "module-catalog-api",
   "hash": "b108bf51af04c12cc3499b67927ecfa3"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

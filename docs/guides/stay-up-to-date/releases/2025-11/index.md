@@ -480,9 +480,11 @@ This is an interim fix, with more nuanced flag ordering planned for the future.
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "61acf884dc4bf2a98998fb68ae452eab"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -382,9 +382,11 @@ If you wish to maintain backward compatibility with your existing setup of the E
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "9fef1f8eda948a63f4bcf8282a2c0d2c"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

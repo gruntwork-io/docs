@@ -2538,7 +2538,8 @@ Security Group ID of the ECS task
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/mgmt/ecs-deploy-runner/README.md",
@@ -2548,4 +2549,5 @@ Security Group ID of the ECS task
   "sourcePlugin": "service-catalog-api",
   "hash": "7257e41cf4bd63b2644eea92680c196e"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -100,9 +100,11 @@ Once you have updated any references to the container image tags, you will need 
 </Tabs>
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "6a2b0a06b22a1f9f52909f68250435fb"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

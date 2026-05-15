@@ -439,7 +439,8 @@ Identifier of the Transit Gateway's default propagation route table.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/transit-gateway/readme.md",
@@ -449,4 +450,5 @@ Identifier of the Transit Gateway's default propagation route table.
   "sourcePlugin": "module-catalog-api",
   "hash": "a39774afe5acc34c6a525fb47941cd05"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

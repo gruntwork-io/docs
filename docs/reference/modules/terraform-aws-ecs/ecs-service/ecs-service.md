@@ -2073,7 +2073,8 @@ If true, Terraform will wait for the service to reach a steady state — as in, 
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-service/readme.adoc",
@@ -2083,4 +2084,5 @@ If true, Terraform will wait for the service to reach a steady state — as in, 
   "sourcePlugin": "module-catalog-api",
   "hash": "978845c71d5452854d8a30f613c68515"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

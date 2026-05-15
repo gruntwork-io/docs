@@ -743,9 +743,11 @@ Updated the following modules to use terraform-aws-security v1.0.1 and terraform
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "e8d7879bc658d029ce0b7f024dfa7342"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

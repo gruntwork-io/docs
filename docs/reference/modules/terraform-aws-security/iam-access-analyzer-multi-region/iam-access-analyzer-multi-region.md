@@ -154,7 +154,8 @@ inputs = {
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/iam-access-analyzer-multi-region/readme.adoc",
@@ -164,4 +165,5 @@ inputs = {
   "sourcePlugin": "module-catalog-api",
   "hash": "08aa7aa35783e8ca8776c0459c42a3db"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

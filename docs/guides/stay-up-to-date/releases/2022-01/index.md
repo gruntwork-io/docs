@@ -987,9 +987,11 @@ route_table_deletion_timeout
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "352c78eab7197f39a07a96d4afa26f05"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

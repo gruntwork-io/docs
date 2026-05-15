@@ -728,9 +728,11 @@ New Terraform module implements a CloudFront Distribution that supports custom o
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "8469b71375492c025a78f740e186bea8"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

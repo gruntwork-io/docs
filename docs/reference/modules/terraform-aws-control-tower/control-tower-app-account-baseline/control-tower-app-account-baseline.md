@@ -3064,7 +3064,8 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-app-account-baseline/readme.md",
@@ -3074,4 +3075,5 @@ A map of ARNs of the service linked roles created from <a href="#service_linked_
   "sourcePlugin": "module-catalog-api",
   "hash": "8a3ee338e7d831b8f5e2caa3f1c0cffa"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

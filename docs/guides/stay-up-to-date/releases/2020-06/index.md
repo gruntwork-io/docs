@@ -730,9 +730,11 @@ This release adds the ability to create `tags` with the modules mentioned above.
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "ac94caba4aa9dea7a8e3bd3c90f61633"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

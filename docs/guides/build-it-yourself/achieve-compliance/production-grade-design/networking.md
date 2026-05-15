@@ -20,9 +20,11 @@ create routes for subnets that don’t need them. In other words, only create ro
 on the services running on those subnets. This can help to avoid exposing services between networks unnecessarily.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "eea45ba729cc31d9d27d7266188b3a58"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

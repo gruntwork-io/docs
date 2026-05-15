@@ -147,9 +147,11 @@ the default VPCs which exist in all regions of the account. You can use the
 (and default security groups) from all regions of an account, making it easier to achieve this recommendation.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "fa7e59351da6b6e1fadfd62d09cf2c27"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

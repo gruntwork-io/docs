@@ -973,7 +973,8 @@ The ID of the Network Firewall.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/network-firewall/readme.md",
@@ -983,4 +984,5 @@ The ID of the Network Firewall.
   "sourcePlugin": "module-catalog-api",
   "hash": "9c9967ba1b666652f8471c36bef70a92"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

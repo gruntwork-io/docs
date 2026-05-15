@@ -183,7 +183,8 @@ Note that the following conditions must be true in order to use this feature:
 *   Build is for an AMI (builder type `amazon-ebs`).
 *   Builder is configured to tag the AMIs (`tags` is set).
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/build-helpers/readme.md",
@@ -193,4 +194,5 @@ Note that the following conditions must be true in order to use this feature:
   "sourcePlugin": "module-catalog-api",
   "hash": "dd3ea06df38bd6822a36e37f41535d39"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -6620,7 +6620,8 @@ A list of names of Kubernetes PriorityClass objects created by this module.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/eks-core-services/README.md",
@@ -6630,4 +6631,5 @@ A list of names of Kubernetes PriorityClass objects created by this module.
   "sourcePlugin": "service-catalog-api",
   "hash": "822138a89733888e79febf90497314ab"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

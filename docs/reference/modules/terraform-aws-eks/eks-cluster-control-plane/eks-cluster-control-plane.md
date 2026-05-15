@@ -2135,7 +2135,8 @@ The IPv4 CIDR block that Kubernetes pod and service IP addresses are assigned fr
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-cluster-control-plane/readme.md",
@@ -2145,4 +2146,5 @@ The IPv4 CIDR block that Kubernetes pod and service IP addresses are assigned fr
   "sourcePlugin": "module-catalog-api",
   "hash": "b890bdcc29282e6ed9d518c5efd39da4"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

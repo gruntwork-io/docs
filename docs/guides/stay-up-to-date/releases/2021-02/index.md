@@ -890,9 +890,11 @@ Fixes a bug in the `ecs-cluster` module to allow SSH from CIDR blocks to work co
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "811bfa09d9908a1fa2dc911cc88d4232"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

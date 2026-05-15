@@ -803,9 +803,11 @@ Update to latest `terraform-aws-service-catalog` and `terraform-aws-vpc` modules
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "03884458999b7f2bd06a0441ba310068"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

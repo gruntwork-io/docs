@@ -439,9 +439,11 @@ This release sets the default version of Karpenter to `1.6.2` and also updates t
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "8f8769901a4050c40f5755a8d77cc678"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

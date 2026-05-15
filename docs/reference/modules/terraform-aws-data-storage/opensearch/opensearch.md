@@ -1220,7 +1220,8 @@ The ID of the security group created for the OpenSearch domain. Null if not in V
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.0.0/modules/opensearch/readme.md",
@@ -1230,4 +1231,5 @@ The ID of the security group created for the OpenSearch domain. Null if not in V
   "sourcePlugin": "module-catalog-api",
   "hash": "05ff40a3344d0bf09ca0c86fe80ecb06"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

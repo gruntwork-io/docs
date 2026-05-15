@@ -203,9 +203,11 @@ ENHANCEMENT: `vpc-app` and `vpc-mgmt` now allow for specifying the exact CIDR bl
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "6b9035b823417abbcc21b8e44dddd41e"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

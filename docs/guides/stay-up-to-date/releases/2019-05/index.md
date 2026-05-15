@@ -437,9 +437,11 @@ The other modules have backwards compatible minor changes in the way dependencie
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "754c8459e8578c3966a09da4573a783f"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

@@ -1091,7 +1091,8 @@ ID of the primary security group attached to the Tailscale relay server.
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/mgmt/tailscale-subnet-router/README.md",
@@ -1101,4 +1102,5 @@ ID of the primary security group attached to the Tailscale relay server.
   "sourcePlugin": "service-catalog-api",
   "hash": "233bf5e131503fbac9d647fe7062062a"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

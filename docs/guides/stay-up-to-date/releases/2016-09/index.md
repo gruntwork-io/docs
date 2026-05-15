@@ -641,9 +641,11 @@ In `modules/ecs-cluster`:
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "740785ec6e45c972f4a54c90e86d6522"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

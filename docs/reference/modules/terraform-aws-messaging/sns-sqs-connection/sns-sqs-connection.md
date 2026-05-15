@@ -198,7 +198,8 @@ Whether to enable raw message delivery (the original message is directly passed,
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sns-sqs-connection/readme.md",
@@ -208,4 +209,5 @@ Whether to enable raw message delivery (the original message is directly passed,
   "sourcePlugin": "module-catalog-api",
   "hash": "47e8f2f9f2c4daf507226973473f0e96"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

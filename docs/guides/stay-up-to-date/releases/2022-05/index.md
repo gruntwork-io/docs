@@ -723,9 +723,11 @@ Support for python2 has been dropped. All modules that depend on python now requ
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "8faf4110932ba7e9e9eea79af69757b3"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

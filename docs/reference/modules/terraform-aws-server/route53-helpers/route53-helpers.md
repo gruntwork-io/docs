@@ -71,7 +71,8 @@ Here is an example of an IAM policy your EC2 instance needs attached to its IAM 
 
 Check out the [route53-helpers example](https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/examples/route53-helpers) to see what this looks like in action.
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/route53-helpers/readme.md",
@@ -81,4 +82,5 @@ Check out the [route53-helpers example](https://github.com/gruntwork-io/terrafor
   "sourcePlugin": "module-catalog-api",
   "hash": "eb61fd1f5adcfed17d0d97599dc5c948"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

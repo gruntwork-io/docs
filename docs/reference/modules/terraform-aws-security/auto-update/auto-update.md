@@ -69,7 +69,8 @@ If you want to deploy this repo in production, check out the following resources
 
 *   [Packer template in the Acme example Reference Architecture](https://github.com/gruntwork-io/infrastructure-modules-multi-account-acme/blob/main/services/eks-cluster/packer/eks-node.json): Production-ready sample code from the Acme Reference Architecture examples.
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/auto-update/readme.adoc",
@@ -79,4 +80,5 @@ If you want to deploy this repo in production, check out the following resources
   "sourcePlugin": "module-catalog-api",
   "hash": "d4c6e180909c5955ec0104b6993bd77a"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

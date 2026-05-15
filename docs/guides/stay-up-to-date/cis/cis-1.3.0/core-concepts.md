@@ -51,9 +51,11 @@ the existing modules get updated to their CIS AWS v1.3.0 compliant versions and 
 configure the newly created modules.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "43e5a48a98d74f7993a9e6a02c7570df"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

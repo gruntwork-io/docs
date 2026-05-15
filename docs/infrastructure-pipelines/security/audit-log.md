@@ -72,9 +72,11 @@ Gruntwork Pipelines leverages AWS CloudTrail to log all actions taken by Pipelin
 Accessing CloudTrail and querying data is dependent on your organization's policies and settings. If you are a Gruntwork Account Factory customer, see the documentation on [logging](../../2.0/docs/accountfactory/architecture/logging.md) for information on how to access and query your CloudTrail data.
 
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
   "hash": "bb173125e95db1902d906dccdc0d2314"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

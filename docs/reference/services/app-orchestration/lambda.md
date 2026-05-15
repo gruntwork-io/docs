@@ -1454,7 +1454,8 @@ Latest published version of your Lambda Function
 </TabItem>
 </Tabs>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/lambda/README.md",
@@ -1464,4 +1465,5 @@ Latest published version of your Lambda Function
   "sourcePlugin": "service-catalog-api",
   "hash": "8a59c2f45c2a93ab495d74843d7f51ea"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}

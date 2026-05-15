@@ -1940,9 +1940,11 @@ Exposed `icmp_type` and `icmp_code` in `var.private_app_allow_inbound_ports_from
 
 </div>
 
-{/* ##DOCS-SOURCER-START
+{/*
+<!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
   "hash": "17dafb97a30e6fe82eec327da0951b80"
 }
-##DOCS-SOURCER-END */}
+##DOCS-SOURCER-END -->
+*/}
