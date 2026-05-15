@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.5.0" lastModifiedVersion="2.5.0"/>
+<VersionBadge version="2.6.0" lastModifiedVersion="2.5.0"/>
 
 # Amazon EKS Workers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/eks-workers" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.6.0/modules/services/eks-workers" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-workers" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.6.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.6.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.6.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.6.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.6.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -96,17 +96,11 @@ If you want to deploy this repo in production, check out the following resources
 
 ## Manage
 
-### Migrating from AL2 to AL2023
-
-**IMPORTANT**: Starting with EKS 1.33, this module defaults to Amazon Linux 2023 (AL2023) instead of Amazon Linux 2 (AL2). If you have existing clusters using AL2, see the [AL2 to AL2023 Migration Guide](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/eks-workers/AL2-TO-AL2023-MIGRATION.md) for detailed migration instructions.
-
-### Worker Management
-
 For information on registering the worker IAM role to the EKS control plane, refer to the
-[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
+[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.6.0/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
 
 For information on how to perform a blue-green deployment of the worker pools, refer to the
-[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
+[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.6.0/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
 section of the documentation.
 
 For information on how to manage your EKS cluster, including how to deploy Pods on Fargate, how to associate IAM roles
@@ -127,7 +121,7 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 module "eks_workers" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v2.5.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v2.6.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -200,7 +194,7 @@ module "eks_workers" {
   # Default value for asg_ami_type field of autoscaling_group_configurations.
   # See the AWS documentation for valid values. Docs:
   # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
-  asg_default_ami_type = "AL2023_x86_64_STANDARD"
+  asg_default_ami_type = "AL2_x86_64"
 
   # Default value for enable_detailed_monitoring field of
   # autoscaling_group_configurations.
@@ -495,12 +489,6 @@ module "eks_workers" {
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   high_worker_memory_utilization_treat_missing_data = "missing"
 
-  # Whether to attach the default IAM policies (AmazonEKSWorkerNodePolicy,
-  # AmazonEKS_CNI_Policy, AmazonEC2ContainerRegistryReadOnly) to the Managed
-  # Node Group IAM role. Set to false if your existing IAM role already has
-  # these policies attached.
-  managed_node_group_attach_default_iam_policies = true
-
   # Whether or not to create an AWS Security Group for the Managed Node Groups.
   # By default this is created.
   managed_node_group_create_security_group = true
@@ -526,7 +514,7 @@ module "eks_workers" {
   # Default value for ami_type field of managed_node_group_configurations. See
   # the AWS documentation for valid values. Docs:
   # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
-  node_group_default_ami_type = "AL2023_x86_64_STANDARD"
+  node_group_default_ami_type = "AL2_x86_64"
 
   # Default value for capacity_type field of managed_node_group_configurations.
   node_group_default_capacity_type = "ON_DEMAND"
@@ -653,8 +641,8 @@ module "eks_workers" {
   # use short-lived authentication tokens that can expire in the middle of an
   # 'apply' or 'destroy', and since the native Kubernetes provider in Terraform
   # doesn't have a way to fetch up-to-date tokens, we recommend using an
-  # exec-based provider as a workaround. The aws CLI is used to fetch tokens,
-  # and must be installed and on your PATH.
+  # exec-based provider as a workaround. Use the use_kubergrunt_to_fetch_token
+  # input variable to control whether kubergrunt or aws is used to fetch tokens.
   use_exec_plugin_for_auth = true
 
   # Set this variable to true to enable the use of Instance Metadata Service
@@ -663,6 +651,16 @@ module "eks_workers" {
   # support the use case of AMIs built outside of these modules that depend on
   # IMDSv1.
   use_imdsv1 = false
+
+  # EKS clusters use short-lived authentication tokens that can expire in the
+  # middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based
+  # plugin to fetch an up-to-date token. If this variable is set to true, we'll
+  # use kubergrunt to fetch the token (in which case, kubergrunt must be
+  # installed and on PATH); if this variable is set to false, we'll use the aws
+  # CLI to fetch the token (in which case, aws must be installed and on PATH).
+  # Note this functionality is only enabled if use_exec_plugin_for_auth is set
+  # to true.
+  use_kubergrunt_to_fetch_token = true
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -702,7 +700,7 @@ module "eks_workers" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v2.5.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v2.6.0"
 }
 
 inputs = {
@@ -778,7 +776,7 @@ inputs = {
   # Default value for asg_ami_type field of autoscaling_group_configurations.
   # See the AWS documentation for valid values. Docs:
   # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
-  asg_default_ami_type = "AL2023_x86_64_STANDARD"
+  asg_default_ami_type = "AL2_x86_64"
 
   # Default value for enable_detailed_monitoring field of
   # autoscaling_group_configurations.
@@ -1073,12 +1071,6 @@ inputs = {
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   high_worker_memory_utilization_treat_missing_data = "missing"
 
-  # Whether to attach the default IAM policies (AmazonEKSWorkerNodePolicy,
-  # AmazonEKS_CNI_Policy, AmazonEC2ContainerRegistryReadOnly) to the Managed
-  # Node Group IAM role. Set to false if your existing IAM role already has
-  # these policies attached.
-  managed_node_group_attach_default_iam_policies = true
-
   # Whether or not to create an AWS Security Group for the Managed Node Groups.
   # By default this is created.
   managed_node_group_create_security_group = true
@@ -1104,7 +1096,7 @@ inputs = {
   # Default value for ami_type field of managed_node_group_configurations. See
   # the AWS documentation for valid values. Docs:
   # https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
-  node_group_default_ami_type = "AL2023_x86_64_STANDARD"
+  node_group_default_ami_type = "AL2_x86_64"
 
   # Default value for capacity_type field of managed_node_group_configurations.
   node_group_default_capacity_type = "ON_DEMAND"
@@ -1231,8 +1223,8 @@ inputs = {
   # use short-lived authentication tokens that can expire in the middle of an
   # 'apply' or 'destroy', and since the native Kubernetes provider in Terraform
   # doesn't have a way to fetch up-to-date tokens, we recommend using an
-  # exec-based provider as a workaround. The aws CLI is used to fetch tokens,
-  # and must be installed and on your PATH.
+  # exec-based provider as a workaround. Use the use_kubergrunt_to_fetch_token
+  # input variable to control whether kubergrunt or aws is used to fetch tokens.
   use_exec_plugin_for_auth = true
 
   # Set this variable to true to enable the use of Instance Metadata Service
@@ -1241,6 +1233,16 @@ inputs = {
   # support the use case of AMIs built outside of these modules that depend on
   # IMDSv1.
   use_imdsv1 = false
+
+  # EKS clusters use short-lived authentication tokens that can expire in the
+  # middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based
+  # plugin to fetch an up-to-date token. If this variable is set to true, we'll
+  # use kubergrunt to fetch the token (in which case, kubergrunt must be
+  # installed and on PATH); if this variable is set to false, we'll use the aws
+  # CLI to fetch the token (in which case, aws must be installed and on PATH).
+  # Note this functionality is only enabled if use_exec_plugin_for_auth is set
+  # to true.
+  use_kubergrunt_to_fetch_token = true
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -1663,7 +1665,7 @@ Custom name for the IAM role for the Self-managed workers. When null, a default 
 Default value for asg_ami_type field of autoscaling_group_configurations. See the AWS documentation for valid values. Docs: https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;AL2023_x86_64_STANDARD&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;AL2_x86_64&quot;"/>
 </HclListItem>
 
 <HclListItem name="asg_default_enable_detailed_monitoring" requirement="optional" type="bool">
@@ -2507,15 +2509,6 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
-<HclListItem name="managed_node_group_attach_default_iam_policies" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Whether to attach the default IAM policies (AmazonEKSWorkerNodePolicy, AmazonEKS_CNI_Policy, AmazonEC2ContainerRegistryReadOnly) to the Managed Node Group IAM role. Set to false if your existing IAM role already has these policies attached.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="true"/>
-</HclListItem>
-
 <HclListItem name="managed_node_group_create_security_group" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2558,7 +2551,7 @@ ARN of the IAM role to use if iam_role_already_exists = true. When null, uses ma
 Default value for ami_type field of managed_node_group_configurations. See the AWS documentation for valid values. Docs: https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;AL2023_x86_64_STANDARD&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;AL2_x86_64&quot;"/>
 </HclListItem>
 
 <HclListItem name="node_group_default_capacity_type" requirement="optional" type="string">
@@ -2814,7 +2807,7 @@ The tenancy of the servers in the self-managed worker ASG. Must be one of: defau
 <HclListItem name="use_exec_plugin_for_auth" requirement="optional" type="bool">
 <HclListItemDescription>
 
-If this variable is set to true, then use an exec-based plugin to authenticate and fetch tokens for EKS. This is useful because EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy', and since the native Kubernetes provider in Terraform doesn't have a way to fetch up-to-date tokens, we recommend using an exec-based provider as a workaround. The aws CLI is used to fetch tokens, and must be installed and on your PATH.
+If this variable is set to true, then use an exec-based plugin to authenticate and fetch tokens for EKS. This is useful because EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy', and since the native Kubernetes provider in Terraform doesn't have a way to fetch up-to-date tokens, we recommend using an exec-based provider as a workaround. Use the use_kubergrunt_to_fetch_token input variable to control whether kubergrunt or aws is used to fetch tokens.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -2827,6 +2820,15 @@ Set this variable to true to enable the use of Instance Metadata Service Version
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="use_kubergrunt_to_fetch_token" requirement="optional" type="bool">
+<HclListItemDescription>
+
+EKS clusters use short-lived authentication tokens that can expire in the middle of an 'apply' or 'destroy'. To avoid this issue, we use an exec-based plugin to fetch an up-to-date token. If this variable is set to true, we'll use kubergrunt to fetch the token (in which case, kubergrunt must be installed and on PATH); if this variable is set to false, we'll use the aws CLI to fetch the token (in which case, aws must be installed and on PATH). Note this functionality is only enabled if use_exec_plugin_for_auth is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
@@ -2994,11 +2996,11 @@ The list of names of the ASGs that were deployed to act as EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/eks-workers/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/eks-workers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.5.0/modules/services/eks-workers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.6.0/modules/services/eks-workers/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.6.0/modules/services/eks-workers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.6.0/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4a39347469ccb3d8c4baf5ecb5622a1e"
+  "hash": "15fcfb6b07801bd7524080db72696024"
 }
 ##DOCS-SOURCER-END -->
