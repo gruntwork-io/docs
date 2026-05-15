@@ -74,6 +74,28 @@ Two viable fixes when TS 7 lands:
 The pre-existing `npx tsc` errors (35 as of this writing) are unrelated and
 not enforced in CI; only `yarn build` and `yarn test` gate merges.
 
+### `onBrokenAnchors` is set to Docusaurus's default of `'warn'`
+
+The Docusaurus 3 migration tightened the broken-link checker to `'throw'`
+(default), which catches dead `<Link to>` targets and blocks builds. **Broken
+anchors** (e.g. `[text](/page/#missing-section)`) are still only warned about
+because ~22 pre-existing anchor breakages in `docs/reference/...` would
+otherwise block every build until they're fixed.
+
+Risk: a future PR can introduce a typo'd anchor and CI won't catch it.
+
+To escalate, in two steps:
+
+1. Fix the 22 existing broken anchors (`yarn build` lists them under
+   `[WARNING] Docusaurus static site generation process emitted warnings for
+   N paths`).
+2. Add `onBrokenAnchors: 'throw'` to `docusaurus.config.js`.
+
+The same applies — at lower priority — to the HTML-minifier nesting
+diagnostics that surface as warnings during build (`End tag "p" implied`,
+nested `<a>` tags, etc.). Those are content bugs in pre-existing pages, not
+a checker config problem.
+
 ## Installing dependencies
 
 ```sh
