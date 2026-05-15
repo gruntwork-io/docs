@@ -19,7 +19,6 @@ export const parseCustomizableValuesToString = (content: string): string => {
     const storedValue = storage?.getItem(value);
     content = content.replace(`\$\$${value}\$\$`, storedValue || `<${value}>`);
   }
-  console.log({content})
   return content;
 }
 
