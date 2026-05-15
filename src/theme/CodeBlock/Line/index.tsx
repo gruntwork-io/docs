@@ -26,6 +26,16 @@ function fixLineBreak(line: Token[]) {
  * token boundaries) and replaces them with <CustomizableValue id={id} />.
  * Surrounding token elements are cloned so their styling/classes are preserved
  * when split.
+ *
+ * Caveat: cloneElement preserves all original props on each split chunk,
+ * including the upstream `line` and `token` props that LineToken receives.
+ * That means siblings produced from a single split share the same `token`
+ * reference (which still describes the unsplit content). Today's upstream
+ * LineToken (Docusaurus 3.x) only forwards rest-props onto a <span>, so this
+ * is invisible. If a future Docusaurus uses `token` for ARIA/data attributes
+ * or content-aware behavior, we'd need to synthesize a fresh `token` per
+ * chunk (e.g. {...token, content: captured}) to avoid duplicate or mismatched
+ * metadata across the split spans.
  */
 function replaceCustomizeableValues(tokens: ReactElement[]): ReactNode[] {
   const newTokens: ReactNode[] = [];
