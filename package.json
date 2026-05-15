@@ -40,7 +40,7 @@
     "config": "^3.3.6",
     "env-cmd": "^10.1.0",
     "path": "^0.12.7",
-    "plugin-image-zoom": "ataft/plugin-image-zoom",
+    "plugin-image-zoom": "https://github.com/ataft/plugin-image-zoom.git#8e1b866c79ed6d42cefc4c52f851f1dfd1d0c7de",
     "prism-react-renderer": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.1",
