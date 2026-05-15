@@ -247,9 +247,9 @@ module "aurora" {
 
   # Configure a custom parameter group for the RDS DB cluster. This will create
   # a new parameter group with the given parameters. When null, the database
-  # will be launched with the default parameter group. To use a pre-existing
-  # parameter group instead of creating one, set
-  # var.db_cluster_custom_parameter_group_name.
+  # will be launched with the default parameter group. Mutually exclusive with
+  # var.db_cluster_custom_parameter_group_name, which attaches a pre-existing
+  # parameter group instead.
   db_cluster_custom_parameter_group = null
 
   # Name of a pre-existing DB cluster parameter group to associate with the RDS
@@ -271,9 +271,9 @@ module "aurora" {
 
   # Configure a custom parameter group for the RDS DB Instance. This will create
   # a new parameter group with the given parameters. When null, the database
-  # will be launched with the default parameter group. To use a pre-existing
-  # parameter group instead of creating one, set
-  # var.db_instance_custom_parameter_group_name.
+  # will be launched with the default parameter group. Mutually exclusive with
+  # var.db_instance_custom_parameter_group_name, which attaches a pre-existing
+  # parameter group instead.
   db_instance_custom_parameter_group = null
 
   # Name of a pre-existing DB parameter group to associate with the RDS DB
@@ -731,9 +731,9 @@ inputs = {
 
   # Configure a custom parameter group for the RDS DB cluster. This will create
   # a new parameter group with the given parameters. When null, the database
-  # will be launched with the default parameter group. To use a pre-existing
-  # parameter group instead of creating one, set
-  # var.db_cluster_custom_parameter_group_name.
+  # will be launched with the default parameter group. Mutually exclusive with
+  # var.db_cluster_custom_parameter_group_name, which attaches a pre-existing
+  # parameter group instead.
   db_cluster_custom_parameter_group = null
 
   # Name of a pre-existing DB cluster parameter group to associate with the RDS
@@ -755,9 +755,9 @@ inputs = {
 
   # Configure a custom parameter group for the RDS DB Instance. This will create
   # a new parameter group with the given parameters. When null, the database
-  # will be launched with the default parameter group. To use a pre-existing
-  # parameter group instead of creating one, set
-  # var.db_instance_custom_parameter_group_name.
+  # will be launched with the default parameter group. Mutually exclusive with
+  # var.db_instance_custom_parameter_group_name, which attaches a pre-existing
+  # parameter group instead.
   db_instance_custom_parameter_group = null
 
   # Name of a pre-existing DB parameter group to associate with the RDS DB
@@ -1559,7 +1559,7 @@ The mode of Database Insights to enable for the DB cluster. Valid options are 's
 <HclListItem name="db_cluster_custom_parameter_group" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Configure a custom parameter group for the RDS DB cluster. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group. To use a pre-existing parameter group instead of creating one, set <a href="#db_cluster_custom_parameter_group_name"><code>db_cluster_custom_parameter_group_name</code></a>.
+Configure a custom parameter group for the RDS DB cluster. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group. Mutually exclusive with <a href="#db_cluster_custom_parameter_group_name"><code>db_cluster_custom_parameter_group_name</code></a>, which attaches a pre-existing parameter group instead.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1653,7 +1653,7 @@ The friendly name or ARN of an AWS Secrets Manager secret that contains database
 <HclListItem name="db_instance_custom_parameter_group" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Configure a custom parameter group for the RDS DB Instance. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group. To use a pre-existing parameter group instead of creating one, set <a href="#db_instance_custom_parameter_group_name"><code>db_instance_custom_parameter_group_name</code></a>.
+Configure a custom parameter group for the RDS DB Instance. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group. Mutually exclusive with <a href="#db_instance_custom_parameter_group_name"><code>db_instance_custom_parameter_group_name</code></a>, which attaches a pre-existing parameter group instead.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -2489,6 +2489,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.6.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b33cb4905bbe9a1572ecc32d7a8608b0"
+  "hash": "9e67999be4fa2a463b752ed95a982f88"
 }
 ##DOCS-SOURCER-END -->
