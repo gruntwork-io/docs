@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.28.13" lastModifiedVersion="0.28.13"/>
+<VersionBadge repoTitle="VPC Modules" version="0.28.14" lastModifiedVersion="0.28.14"/>
 
 # \[DEPRECATED] VPC-Mgmt Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-mgmt" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules/vpc-mgmt" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.13" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.14" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 **The `vpc-mgmt` module is now deprecated**. The main difference between `vpc-mgmt` and `vpc-app` was that `vpc-app`
 had three tiers of subnets (public, private-app, private-persistence) and `vpc-mgmt` had two (public, private). As of
@@ -27,7 +27,7 @@ aware that, in a future release, once we feel the new functionality in `vpc-app`
 `vpc-mgmt` entirely.
 
 This Terraform Module launches a single VPC meant to house DevOps and other management services. By contrast, the apps
-that power your business should run in an "app" VPC. (See the [vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-app) module.)
+that power your business should run in an "app" VPC. (See the [vpc-app](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules/vpc-app) module.)
 
 ## What's a VPC?
 
@@ -65,7 +65,7 @@ To summarize:
 
 ## VPC Peering
 
-Learn more about VPC Peering in the [vpc-peering](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-peering) module.
+Learn more about VPC Peering in the [vpc-peering](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules/vpc-peering) module.
 
 ## SSH Access via the Bastion Host
 
@@ -79,7 +79,7 @@ examples](https://github.com/gruntwork-io/terraform-aws-server/tree/main/example
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules//_docs/vpc-core-concepts.md) like subnets, NAT Gateways, and VPC Endpoints.
 
 ## Sample Usage
 
@@ -94,7 +94,7 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 module "vpc_mgmt" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt?ref=v0.28.13"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt?ref=v0.28.14"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -313,7 +313,7 @@ module "vpc_mgmt" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt?ref=v0.28.13"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-mgmt?ref=v0.28.14"
 }
 
 inputs = {
@@ -1014,6 +1014,14 @@ The ID of the VPC's public subnet route table.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="vpc_arn">
+<HclListItemDescription>
+
+The ARN of the mgmt VPC.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="vpc_cidr_block">
 <HclListItemDescription>
 
@@ -1053,12 +1061,12 @@ A null_resource that indicates that the VPC is ready, including all of its resou
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-mgmt/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-mgmt/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.13/modules/vpc-mgmt/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules/vpc-mgmt/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules/vpc-mgmt/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules/vpc-mgmt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "821ac92c02d8560dcff6772f52bc0cd4"
+  "hash": "f1fb97009a43b66e2cf3ff1b182da434"
 }
 ##DOCS-SOURCER-END -->
 */}
