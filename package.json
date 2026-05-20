@@ -8,7 +8,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "NODE_OPTIONS=--max-old-space-size=10248 docusaurus start --port 3000",
-    "build": "docusaurus build",
+    "build": "docusaurus build && node scripts/indexnow-ping.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
