@@ -61,6 +61,21 @@ Cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Managing.h
 This module allows you to configure a number of parameters, such as backup windows, maintenance window, port number,
 and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.1.0/modules/aurora/variables.tf).
 
+## Blue/Green Deployment for Low-Downtime Updates
+
+By default, Aurora updates the cluster and its instances in-place, which can cause service interruptions. To minimize
+downtime when making changes such as engine version upgrades or parameter group changes, set
+`enable_blue_green_update = true`. This instructs RDS to perform the update via an Aurora Blue/Green Deployment, where
+a new (green) cluster mirrors the existing (blue) cluster and replication keeps them in sync; AWS then switches over
+to the green cluster with only a short pause in writes.
+
+Aurora Blue/Green Deployments are supported for Aurora MySQL and Aurora PostgreSQL clusters with backups enabled, and
+require AWS provider `>= 6.10.0`. See the
+[AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments-overview.html)
+for the full list of supported changes and limitations. As with the RDS Blue/Green flow, the deployment is not complete
+until the green cluster has been promoted and the blue cluster has been deleted, so this approach is intended for
+Terraform-managed updates only and cannot be used to manually test the green cluster or revert to the blue cluster.
+
 ## How do you create a cross-region read replica cluster?
 
 After creating a primary cluster, create another cluster in the secondary region and pass the cluster ARN and region of
@@ -331,6 +346,12 @@ module "aurora" {
   # If the DB instance should have deletion protection enabled. The database
   # can't be deleted when this value is set to true.
   deletion_protection = false
+
+  # Enable blue/green deployment to minimize downtime due to changes made to the
+  # Aurora cluster. Requires AWS provider >= 6.10.0. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments-overview.html
+  # for more details.
+  enable_blue_green_update = false
 
   # Whether to enable global write forwarding on this Aurora cluster. When
   # enabled on a secondary cluster in a global database, write SQL statements
@@ -816,6 +837,12 @@ inputs = {
   # If the DB instance should have deletion protection enabled. The database
   # can't be deleted when this value is set to true.
   deletion_protection = false
+
+  # Enable blue/green deployment to minimize downtime due to changes made to the
+  # Aurora cluster. Requires AWS provider >= 6.10.0. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments-overview.html
+  # for more details.
+  enable_blue_green_update = false
 
   # Whether to enable global write forwarding on this Aurora cluster. When
   # enabled on a secondary cluster in a global database, write SQL statements
@@ -1446,6 +1473,15 @@ If the DB instance should have deletion protection enabled. The database can't b
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_blue_green_update" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable blue/green deployment to minimize downtime due to changes made to the Aurora cluster. Requires AWS provider >= 6.10.0. See https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments-overview.html for more details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="enable_global_write_forwarding" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2022,6 +2058,6 @@ A list of identifiers for Aurora cluster instances that are writers.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.1.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "24ce685ddcb1e3a974f036736ef9777b"
+  "hash": "ada5dc9357f45597551b963a73bea9d7"
 }
 ##DOCS-SOURCER-END -->
