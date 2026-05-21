@@ -274,14 +274,6 @@ module "aurora" {
   # value in db_config_secrets_manager_id.
   db_name = null
 
-  # Enable Aurora Blue/Green deployments to minimize downtime when changes are
-  # applied to the cluster (e.g. engine version upgrades or parameter group
-  # changes). Only supported for Aurora MySQL and Aurora PostgreSQL with backups
-  # enabled. Requires AWS provider >= 6.10.0. See
-  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments-overview.html
-  # for more details.
-  enable_blue_green_update = false
-
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
   # topics to send notifications to using var.alarms_sns_topic_arn.
@@ -751,14 +743,6 @@ inputs = {
   # description of db_config_secrets_manager_id. A value here overrides the
   # value in db_config_secrets_manager_id.
   db_name = null
-
-  # Enable Aurora Blue/Green deployments to minimize downtime when changes are
-  # applied to the cluster (e.g. engine version upgrades or parameter group
-  # changes). Only supported for Aurora MySQL and Aurora PostgreSQL with backups
-  # enabled. Requires AWS provider >= 6.10.0. See
-  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments-overview.html
-  # for more details.
-  enable_blue_green_update = false
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -1714,15 +1698,6 @@ The name for your database of up to 8 alpha-numeric characters. If you do not pr
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
-<HclListItem name="enable_blue_green_update" requirement="optional" type="bool">
-<HclListItemDescription>
-
-Enable Aurora Blue/Green deployments to minimize downtime when changes are applied to the cluster (e.g. engine version upgrades or parameter group changes). Only supported for Aurora MySQL and Aurora PostgreSQL with backups enabled. Requires AWS provider >= 6.10.0. See https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/blue-green-deployments-overview.html for more details.
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2468,6 +2443,6 @@ The ARN of the AWS Lambda Function used for sharing manual snapshots with second
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2fa4aa718ac0d45356c3c1e9d97dc871"
+  "hash": "9c3ed5bc314fea0e36004fb879b79416"
 }
 ##DOCS-SOURCER-END -->
