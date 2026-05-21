@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.8.0" lastModifiedVersion="2.3.0"/>
+<VersionBadge version="2.9.0" lastModifiedVersion="2.9.0"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.0/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.9.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -269,8 +269,15 @@ module "aurora" {
 
   # Configure a custom parameter group for the RDS DB cluster. This will create
   # a new parameter group with the given parameters. When null, the database
-  # will be launched with the default parameter group.
+  # will be launched with the default parameter group. Mutually exclusive with
+  # var.db_cluster_custom_parameter_group_name, which attaches a pre-existing
+  # parameter group instead.
   db_cluster_custom_parameter_group = null
+
+  # Name of a pre-existing DB cluster parameter group to associate with the RDS
+  # cluster. Use this when you want to manage the parameter group outside of
+  # this module. Mutually exclusive with var.db_cluster_custom_parameter_group.
+  db_cluster_custom_parameter_group_name = null
 
   # The friendly name or ARN of an AWS Secrets Manager secret that contains
   # database configuration information in the format outlined by this document:
@@ -286,8 +293,15 @@ module "aurora" {
 
   # Configure a custom parameter group for the RDS DB Instance. This will create
   # a new parameter group with the given parameters. When null, the database
-  # will be launched with the default parameter group.
+  # will be launched with the default parameter group. Mutually exclusive with
+  # var.db_instance_custom_parameter_group_name, which attaches a pre-existing
+  # parameter group instead.
   db_instance_custom_parameter_group = null
+
+  # Name of a pre-existing DB parameter group to associate with the RDS DB
+  # instances. Use this when you want to manage the parameter group outside of
+  # this module. Mutually exclusive with var.db_instance_custom_parameter_group.
+  db_instance_custom_parameter_group_name = null
 
   # The name for your database of up to 8 alpha-numeric characters. If you do
   # not provide a name, Amazon RDS will not create a database in the DB cluster
@@ -585,7 +599,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.9.0"
 }
 
 inputs = {
@@ -755,8 +769,15 @@ inputs = {
 
   # Configure a custom parameter group for the RDS DB cluster. This will create
   # a new parameter group with the given parameters. When null, the database
-  # will be launched with the default parameter group.
+  # will be launched with the default parameter group. Mutually exclusive with
+  # var.db_cluster_custom_parameter_group_name, which attaches a pre-existing
+  # parameter group instead.
   db_cluster_custom_parameter_group = null
+
+  # Name of a pre-existing DB cluster parameter group to associate with the RDS
+  # cluster. Use this when you want to manage the parameter group outside of
+  # this module. Mutually exclusive with var.db_cluster_custom_parameter_group.
+  db_cluster_custom_parameter_group_name = null
 
   # The friendly name or ARN of an AWS Secrets Manager secret that contains
   # database configuration information in the format outlined by this document:
@@ -772,8 +793,15 @@ inputs = {
 
   # Configure a custom parameter group for the RDS DB Instance. This will create
   # a new parameter group with the given parameters. When null, the database
-  # will be launched with the default parameter group.
+  # will be launched with the default parameter group. Mutually exclusive with
+  # var.db_instance_custom_parameter_group_name, which attaches a pre-existing
+  # parameter group instead.
   db_instance_custom_parameter_group = null
+
+  # Name of a pre-existing DB parameter group to associate with the RDS DB
+  # instances. Use this when you want to manage the parameter group outside of
+  # this module. Mutually exclusive with var.db_instance_custom_parameter_group.
+  db_instance_custom_parameter_group_name = null
 
   # The name for your database of up to 8 alpha-numeric characters. If you do
   # not provide a name, Amazon RDS will not create a database in the DB cluster
@@ -1612,7 +1640,7 @@ The mode of Database Insights to enable for the DB cluster. Valid options are 's
 <HclListItem name="db_cluster_custom_parameter_group" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Configure a custom parameter group for the RDS DB cluster. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group.
+Configure a custom parameter group for the RDS DB cluster. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group. Mutually exclusive with <a href="#db_cluster_custom_parameter_group_name"><code>db_cluster_custom_parameter_group_name</code></a>, which attaches a pre-existing parameter group instead.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1683,6 +1711,15 @@ object({
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="db_cluster_custom_parameter_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of a pre-existing DB cluster parameter group to associate with the RDS cluster. Use this when you want to manage the parameter group outside of this module. Mutually exclusive with <a href="#db_cluster_custom_parameter_group"><code>db_cluster_custom_parameter_group</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="db_config_secrets_manager_id" requirement="optional" type="string">
@@ -1697,7 +1734,7 @@ The friendly name or ARN of an AWS Secrets Manager secret that contains database
 <HclListItem name="db_instance_custom_parameter_group" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Configure a custom parameter group for the RDS DB Instance. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group.
+Configure a custom parameter group for the RDS DB Instance. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group. Mutually exclusive with <a href="#db_instance_custom_parameter_group_name"><code>db_instance_custom_parameter_group_name</code></a>, which attaches a pre-existing parameter group instead.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1768,6 +1805,15 @@ object({
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="db_instance_custom_parameter_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of a pre-existing DB parameter group to associate with the RDS DB instances. Use this when you want to manage the parameter group outside of this module. Mutually exclusive with <a href="#db_instance_custom_parameter_group"><code>db_instance_custom_parameter_group</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="db_name" requirement="optional" type="string">
@@ -2501,11 +2547,11 @@ ID of security group created by aurora module.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.0/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.0/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "af6140748177942f7a41f84144571890"
+  "hash": "cdd8d5c4bd465c2ae0f803a40edecda0"
 }
 ##DOCS-SOURCER-END -->
