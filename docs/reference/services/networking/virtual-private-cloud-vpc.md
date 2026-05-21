@@ -178,8 +178,8 @@ module "vpc" {
 
   # Allows to filter list of Availability Zones based on their current state.
   # Can be either "available", "information", "impaired" or "unavailable". By
-  # default only available AZs are used, which prevents subnet creation failures
-  # in AZs that are impaired or offline.
+  # default the list includes a complete set of Availability Zones to which the
+  # underlying AWS account has access, regardless of their state.
   availability_zone_state = null
 
   # DEPRECATED. The AWS Region where this VPC will exist. This variable is no
@@ -383,12 +383,6 @@ module "vpc" {
   # are deployed into transit subnets and require setting
   # 'var.create_transit_subnets = true'. Defaults false.
   enable_private_nat = false
-
-  # The list of ports to exclude from the inbound allow all rules in Network
-  # ACLs. This is useful for adhering to certain compliance standards like CIS
-  # or SOC2 that explicitly deny any allow rule for administrative ports (22,
-  # 3389).
-  exclude_ports_from_inbound_all = []
 
   # Additional IAM policies to apply to the S3 bucket to store flow logs. You
   # can use this to grant read/write access beyond what is provided to the VPC.
@@ -943,8 +937,8 @@ inputs = {
 
   # Allows to filter list of Availability Zones based on their current state.
   # Can be either "available", "information", "impaired" or "unavailable". By
-  # default only available AZs are used, which prevents subnet creation failures
-  # in AZs that are impaired or offline.
+  # default the list includes a complete set of Availability Zones to which the
+  # underlying AWS account has access, regardless of their state.
   availability_zone_state = null
 
   # DEPRECATED. The AWS Region where this VPC will exist. This variable is no
@@ -1148,12 +1142,6 @@ inputs = {
   # are deployed into transit subnets and require setting
   # 'var.create_transit_subnets = true'. Defaults false.
   enable_private_nat = false
-
-  # The list of ports to exclude from the inbound allow all rules in Network
-  # ACLs. This is useful for adhering to certain compliance standards like CIS
-  # or SOC2 that explicitly deny any allow rule for administrative ports (22,
-  # 3389).
-  exclude_ports_from_inbound_all = []
 
   # Additional IAM policies to apply to the S3 bucket to store flow logs. You
   # can use this to grant read/write access beyond what is provided to the VPC.
@@ -1763,7 +1751,7 @@ List of specific Availability Zone IDs to use. If null (default), all availabili
 <HclListItem name="availability_zone_state" requirement="optional" type="string">
 <HclListItemDescription>
 
-Allows to filter list of Availability Zones based on their current state. Can be either 'available', 'information', 'impaired' or 'unavailable'. By default only available AZs are used, which prevents subnet creation failures in AZs that are impaired or offline.
+Allows to filter list of Availability Zones based on their current state. Can be either 'available', 'information', 'impaired' or 'unavailable'. By default the list includes a complete set of Availability Zones to which the underlying AWS account has access, regardless of their state.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -2226,15 +2214,6 @@ If set to false, the default security groups will NOT be created.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
-</HclListItem>
-
-<HclListItem name="exclude_ports_from_inbound_all" requirement="optional" type="list(number)">
-<HclListItemDescription>
-
-The list of ports to exclude from the inbound allow all rules in Network ACLs. This is useful for adhering to certain compliance standards like CIS or SOC2 that explicitly deny any allow rule for administrative ports (22, 3389).
-
-</HclListItemDescription>
-<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="flow_log_additional_s3_bucket_policy_statements" requirement="optional" type="any">
@@ -3595,14 +3574,6 @@ The ID of the transit subnet's ACL
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_arn">
-<HclListItemDescription>
-
-The ARN of the VPC.
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="vpc_cidr_block">
 <HclListItemDescription>
 
@@ -3646,6 +3617,6 @@ Indicates whether or not the VPC has finished creating
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/networking/vpc/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "17781fc7fd261adb55f64c7488d0dc20"
+  "hash": "38f74745a6980e115cae969b850bd2c9"
 }
 ##DOCS-SOURCER-END -->
