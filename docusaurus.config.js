@@ -175,6 +175,18 @@ async function createConfig() {
                 containerId: googleAnalyticsConfig.trackingID,
               }
             : undefined,
+          sitemap: {
+            lastmod: "date",
+            changefreq: null,
+            priority: null,
+            filename: "sitemap.xml",
+            ignorePatterns: [
+              "/tags/**",
+              "/search",
+              "/home",
+              "/test-customizable-value",
+            ],
+          },
         }),
       ],
     ],
