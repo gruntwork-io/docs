@@ -39,7 +39,7 @@ Some teams want Pipelines to comment plans on pull/merge requests but **not** ru
 - You are migrating onto Pipelines from an existing Apply workflow and want to adopt plan first, switching Apply over later.
 - You want to review infrastructure changes through the Pipelines comment UX before you are ready to provision real cloud resources.
 
-Plan-only mode can be configured at two granularities: across the entire repository, or on individual Terragrunt units.
+Plan-only mode can be configured at two levels: across the entire repository, or on individual Terragrunt units.
 
 ### Disabling apply for the entire repository
 

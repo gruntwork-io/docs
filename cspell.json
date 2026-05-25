@@ -126,7 +126,9 @@
     "rolename",
     "ACCOUNTNAME",
     "CMEK",
-    "aiplatform"
+    "aiplatform",
+    "Feedly",
+    "Inoreader"
   ],
   "ignoreWords": [],
   "ignorePaths": [
