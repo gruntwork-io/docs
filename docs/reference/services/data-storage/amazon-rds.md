@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.8.0" lastModifiedVersion="2.3.0"/>
+<VersionBadge version="2.9.1" lastModifiedVersion="2.9.1"/>
 
 # Amazon Relational Database Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -69,7 +69,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,12 +77,12 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
-*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
+*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
 
 
 ## Sample Usage
@@ -103,7 +103,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v2.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v2.9.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -334,6 +334,14 @@ module "rds" {
   # the RDS DB. Supports optional cross-account copy via
   # var.backup_destination_vault_arn.
   enable_backup = false
+
+  # Enable RDS Blue/Green deployments to minimize downtime when changes are
+  # applied to the DB instance (e.g. engine version upgrades or parameter group
+  # changes). Only supported for MySQL, MariaDB, and PostgreSQL, and requires
+  # backups to be enabled. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-overview.html
+  # for more details.
+  enable_blue_green_update = false
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -637,7 +645,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v2.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v2.9.1"
 }
 
 inputs = {
@@ -871,6 +879,14 @@ inputs = {
   # the RDS DB. Supports optional cross-account copy via
   # var.backup_destination_vault_arn.
   enable_backup = false
+
+  # Enable RDS Blue/Green deployments to minimize downtime when changes are
+  # applied to the DB instance (e.g. engine version upgrades or parameter group
+  # changes). Only supported for MySQL, MariaDB, and PostgreSQL, and requires
+  # backups to be enabled. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-overview.html
+  # for more details.
+  enable_blue_green_update = false
 
   # Set to true to enable several basic CloudWatch alarms around CPU usage,
   # memory usage, and disk space usage. If set to true, make sure to specify SNS
@@ -1942,6 +1958,15 @@ If set to true, create an AWS Backup vault and plan to periodically back up the 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="enable_blue_green_update" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Enable RDS Blue/Green deployments to minimize downtime when changes are applied to the DB instance (e.g. engine version upgrades or parameter group changes). Only supported for MySQL, MariaDB, and PostgreSQL, and requires backups to be enabled. See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments-overview.html for more details.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="enable_cloudwatch_alarms" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2721,11 +2746,11 @@ The ID of the Security Group that controls access to the RDS DB instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/rds/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/rds/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "a061f390c8f389f9f7fa5f5abe2d4dbe"
+  "hash": "f40690a34ecf3a051092eca9b5908a96"
 }
 ##DOCS-SOURCER-END -->
