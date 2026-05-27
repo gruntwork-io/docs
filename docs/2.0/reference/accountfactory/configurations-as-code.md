@@ -298,6 +298,20 @@ account_factory {
   </HclListItemDescription>
 </HclListItem>
 
+### new_account_parent_path
+
+<HclListItem name="new_account_parent_path" requirement="optional" type="string">
+  <HclListItemDescription>
+
+    Repo-relative subdirectory under which newly vended accounts are placed. Setting it to `aws` vends new accounts at `{repo_root}/aws/{account_name}/` instead of `{repo_root}/{account_name}/`. Defaults to an empty string (vend at the repo root).
+
+    Applies to newly vended accounts only. Core accounts and previously vended accounts stay at the repo root. Leading and trailing slashes are stripped, and `..` segments are rejected at config load.
+
+    To set this on a new repo, edit `.gruntwork/account-factory.hcl` after scaffolding, or pass the dependency-namespaced variable `pipelines-account-factory-config.NewAccountParentPath` to `boilerplate`.
+
+  </HclListItemDescription>
+</HclListItem>
+
 ### pipelines_read_token_name
 
 <HclListItem name="pipelines_read_token_name" requirement="optional" type="string">
