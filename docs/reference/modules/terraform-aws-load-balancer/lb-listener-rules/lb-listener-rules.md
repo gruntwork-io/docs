@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="1.2.1" lastModifiedVersion="1.1.0"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="1.3.1" lastModifiedVersion="1.3.0"/>
 
 # Load Balancer Listener Rules
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.1/modules/lb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.1/modules/lb-listener-rules" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v1.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module provides a simpler, more declarative interface for creating
 [Load Balancer Listener Rules](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html)
@@ -28,10 +28,7 @@ This module currently supports:
 
 *   Most major rule types: forward rules, redirect rules, fixed-response
 *   Most condition types: host header, HTTP header, request method, path pattern, query string, source IP.
-
-This module does NOT currently support:
-
-*   `authenticate_cognito` and `authenticate_oidc` rules
+*   Pre-routing action types: `authenticate_cognito`, `authenticate_oidc`, and `jwt_validation`
 
 This feature may be added later, but if you need them now, you should use the
 [`lb_listener_rule`](https://www.terraform.io/docs/providers/aws/r/lb_listener_rule.html) resource directly.
@@ -95,7 +92,7 @@ Note that in most cases, your path definitions should be mutually exclusive and 
 
 module "lb_listener_rules" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v1.2.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v1.3.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -154,7 +151,7 @@ module "lb_listener_rules" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v1.2.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/lb-listener-rules?ref=v1.3.1"
 }
 
 inputs = {
@@ -366,6 +363,8 @@ Any types represent complex values of variable type. For details, please consult
   
    - authenticate_cognito map(object)  : Cognito authentication configuration. Only applies, if not null.
   
+   - jwt_validation       map(object)  : JWT validation configuration. Only applies, if not null.
+  
 
 ```
 </details>
@@ -442,6 +441,23 @@ Any types represent complex values of variable type. For details, please consult
 ```
 </details>
 
+<details>
+
+
+```hcl
+
+   JWT Validation Blocks:
+   jwt_validation:
+   - issuer                              string            : (Required) The issuer of the JWT tokens. Must be a valid URL (e.g., https://token.example.com).
+   - jwks_endpoint                       string            : (Required) The URL of the JSON Web Key Set (JWKS) endpoint used to validate token signatures.
+   - additional_claims                   list(map(object)) : (Optional) Additional JWT claims to validate beyond issuer.
+     - format                            string            : (Required) The format of the claim value. Supported values are: iss, sub, aud, jti, nbf, exp, iat, string, string_list.
+     - name                              string            : (Required) The name of the JWT claim to validate.
+     - values                            list(string)      : (Required) The list of allowed values for the claim.
+
+```
+</details>
+
 </HclGeneralListItem>
 </HclListItem>
 
@@ -459,12 +475,139 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
-<HclGeneralListItem title="Examples">
+<HclGeneralListItem title="More Details">
 <details>
-  <summary>Example</summary>
 
 
 ```hcl
+
+   Each entry in the map supports the following attributes:
+  
+   OPTIONAL (defaults to value of corresponding module input):
+   - priority             number                    : A value between 1 and 50000. Leaving it unset will automatically set
+                                                       the rule with the next available priority after currently existing highest
+                                                        rule. This value must be unique for each listener.
+   - listener_ports       list(string)              : A list of ports to use to lookup the LB listener from
+                                                      var.default_listener_arns. Conflicts with listener_arns attribute.
+                                                      Defaults to var.default_listener_ports if omitted.
+   - listener_arns        list(string)              : A list of listener ARNs to use for applying the rule. Conflicts with
+                                                      listener_ports attribute.
+   - stickiness           map(object[Stickiness)    : Target group stickiness for the rule. Only applies if more than one
+                                                    target_group_arn is defined.
+   - authenticate_oidc    map(object)               : OIDC authentication configuration. Only applies, if not null.
+  
+   - authenticate_cognito map(object)               : Cognito authentication configuration. Only applies, if not null.
+  
+   - jwt_validation       map(object)  : JWT validation configuration. Only applies, if not null.
+  
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Wildcard characters:
+   * - matches 0 or more characters
+   ? - matches exactly 1 character
+   To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Conditions (need to specify at least one):
+   - path_patterns        list(string)     : A list of paths to match (note that "/foo" is different than "/foo/").
+                                              Comparison is case sensitive. Wildcard characters supported: * and ?.
+                                              It is compared to the path of the URL, not it's query string. To compare
+                                              against query string, use the `query_strings` condition.
+   - host_headers         list(string)     : A list of host header patterns to match. Comparison is case insensitive.
+                                              Wildcard characters supported: * and ?.
+   - source_ips           list(string)     : A list of IP CIDR notations to match. You can use both IPv4 and IPv6
+                                              addresses. Wildcards are not supported. Condition is not satisfied by the
+                                              addresses in the `X-Forwarded-For` header, use `http_headers` condition instead.
+   - query_strings        list(map(string)): Query string pairs or values to match. Comparison is case insensitive.
+                                              Wildcard characters supported: * and ?. Only one pair needs to match for
+                                              the condition to be satisfied.
+   - http_request_methods list(string)     : A list of HTTP request methods or verbs to match. Only allowed characters are
+                                              A-Z, hyphen (-) and underscore (_). Comparison is case sensitive. Wildcards
+                                              are not supported. AWS recommends that GET and HEAD requests are routed in the
+                                              same way because the response to a HEAD request may be cached.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Authenticate OIDC Blocks:
+   authenticate_oidc:
+   - authorization_endpoint              string     : (Required) The authorization endpoint of the IdP.
+   - client_id                           string     : (Required) The OAuth 2.0 client identifier.
+   - client_secret                       string     : (Required) The OAuth 2.0 client secret.
+   - issuer                              string     : (Required) The OIDC issuer identifier of the IdP.
+   - token_endpoint                      string     : (Required) The token endpoint of the IdP.
+   - user_info_endpoint                  string     : (Required) The user info endpoint of the IdP.
+   - authentication_request_extra_params map(string): (Optional) The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
+   - on_unauthenticated_request          string     : (Optional) The behavior if the user is not authenticated. Valid values: deny, allow and authenticate
+   - scope                               string     : (Optional) The set of user claims to be requested from the IdP.
+   - session_cookie_name                 string     : (Optional) The name of the cookie used to maintain session information.
+   - session_timeout                     int        : (Optional) The maximum duration of the authentication session, in seconds.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   Authenticate Cognito Blocks:
+   authenticate_cognito:
+   - user_pool_arn                       string      : (Required) The ARN of the Cognito user pool
+   - user_pool_client_id                 string      : (Required) The ID of the Cognito user pool client.
+   - user_pool_domain                    string      : (Required) The domain prefix or fully-qualified domain name of the Cognito user pool.
+   - authentication_request_extra_params map(string) : (Optional) The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
+   - on_unauthenticated_request          string      : (Optional) The behavior if the user is not authenticated. Valid values: deny, allow and authenticate
+   - scope                               string      : (Optional) The set of user claims to be requested from the IdP.
+   - session_cookie_name                 string      : (Optional) The name of the cookie used to maintain session information.
+   - session_timeout                     int         : (Optional) The maximum duration of the authentication session, in seconds.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+   JWT Validation Blocks:
+   jwt_validation:
+   - issuer                              string            : (Required) The issuer of the JWT tokens. Must be a valid URL (e.g., https://token.example.com).
+   - jwks_endpoint                       string            : (Required) The URL of the JSON Web Key Set (JWKS) endpoint used to validate token signatures.
+   - additional_claims                   list(map(object)) : (Optional) Additional JWT claims to validate beyond issuer.
+     - format                            string            : (Required) The format of the claim value. Supported values are: iss, sub, aud, jti, nbf, exp, iat, string, string_list.
+     - name                              string            : (Required) The name of the JWT claim to validate.
+     - values                            list(string)      : (Required) The list of allowed values for the claim.
+
+```
+</details>
+
+<details>
+
+
+```hcl
+
+
+   Example:
     {
       "foo" = {
         priority = 120
@@ -499,8 +642,8 @@ Any types represent complex values of variable type. For details, please consult
        priority       = 128
        listener_ports = ["443"]
   
-       host_headers      = ["intern.example.com]
-       path_patterns     = ["/admin", "/admin/*]
+       host_headers      = ["intern.example.com"]
+       path_patterns     = ["/admin", "/admin/*"]
        authenticate_oidc = {
          authorization_endpoint = "https://myaccount.oktapreview.com/oauth2/v1/authorize"
          client_id              = "0123456789aBcDeFgHiJ"
@@ -510,115 +653,25 @@ Any types represent complex values of variable type. For details, please consult
          user_info_endpoint     = "https://myaccount.oktapreview.com/oauth2/v1/userinfo"
        }
      }
+     "jwt-auth" = {
+       priority       = 129
+       listener_ports = ["443"]
+  
+       host_headers   = ["api.example.com"]
+       path_patterns  = ["/api/*"]
+       jwt_validation = {
+         issuer        = "https://myaccount.oktapreview.com"
+         jwks_endpoint = "https://myaccount.oktapreview.com/oauth2/v1/keys"
+         additional_claims = [
+           {
+             format = "string"
+             name   = "aud"
+             values = ["my-api"]
+           }
+         ]
+       }
+     }
    }
-
-```
-</details>
-
-</HclGeneralListItem>
-<HclGeneralListItem title="More Details">
-<details>
-
-
-```hcl
-
-   Each entry in the map supports the following attributes:
-  
-   OPTIONAL (defaults to value of corresponding module input):
-   - priority             number                    : A value between 1 and 50000. Leaving it unset will automatically set
-                                                       the rule with the next available priority after currently existing highest
-                                                        rule. This value must be unique for each listener.
-   - listener_ports       list(string)              : A list of ports to use to lookup the LB listener from
-                                                      var.default_listener_arns. Conflicts with listener_arns attribute.
-                                                      Defaults to var.default_listener_ports if omitted.
-   - listener_arns        list(string)              : A list of listener ARNs to use for applying the rule. Conflicts with
-                                                      listener_ports attribute.
-   - stickiness           map(object[Stickiness)    : Target group stickiness for the rule. Only applies if more than one
-                                                    target_group_arn is defined.
-   - authenticate_oidc    map(object)               : OIDC authentication configuration. Only applies, if not null.
-  
-   - authenticate_cognito map(object)               : Cognito authentication configuration. Only applies, if not null.
-  
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-   Wildcard characters:
-   * - matches 0 or more characters
-   ? - matches exactly 1 character
-   To search for a literal '*' or '?' character in a query string, escape the character with a backslash (\).
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-   Conditions (need to specify at least one):
-   - path_patterns        list(string)     : A list of paths to match (note that "/foo" is different than "/foo/").
-                                              Comparison is case sensitive. Wildcard characters supported: * and ?.
-                                              It is compared to the path of the URL, not it's query string. To compare
-                                              against query string, use the `query_strings` condition.
-   - host_headers         list(string)     : A list of host header patterns to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?.
-   - source_ips           list(string)     : A list of IP CIDR notations to match. You can use both IPv4 and IPv6
-                                              addresses. Wildcards are not supported. Condition is not satisfied by the
-                                              addresses in the `X-Forwarded-For` header, use `http_headers` condition instead.
-   - query_strings        list(map(string)): Query string pairs or values to match. Comparison is case insensitive.
-                                              Wildcard characters supported: * and ?. Only one pair needs to match for
-                                              the condition to be satisfied.
-   - http_request_methods list(string)     : A list of HTTP request methods or verbs to match. Only allowed characters are
-                                              A-Z, hyphen (-) and underscore (_). Comparison is case sensitive. Wildcards
-                                              are not supported. AWS recommends that GET and HEAD requests are routed in the
-                                              same way because the response to a HEAD request may be cached.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-   Authenticate OIDC Blocks:
-   authenticate_oidc:
-   - authorization_endpoint              string     : (Required) The authorization endpoint of the IdP.
-   - client_id                           string     : (Required) The OAuth 2.0 client identifier.
-   - client_secret                       string     : (Required) The OAuth 2.0 client secret.
-   - issuer                              string     : (Required) The OIDC issuer identifier of the IdP.
-   - token_endpoint                      string     : (Required) The token endpoint of the IdP.
-   - user_info_endpoint                  string     : (Required) The user info endpoint of the IdP.
-   - authentication_request_extra_params map(string): (Optional) The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
-   - on_unauthenticated_request          string     : (Optional) The behavior if the user is not authenticated. Valid values: deny, allow and authenticate
-   - scope                               string     : (Optional) The set of user claims to be requested from the IdP.
-   - session_cookie_name                 string     : (Optional) The name of the cookie used to maintain session information.
-   - session_timeout                     int        : (Optional) The maximum duration of the authentication session, in seconds.
-
-```
-</details>
-
-<details>
-
-
-```hcl
-
-   Authenticate Cognito Blocks:
-   authenticate_cognito:
-   - user_pool_arn                       string      : (Required) The ARN of the Cognito user pool
-   - user_pool_client_id                 string      : (Required) The ID of the Cognito user pool client.
-   - user_pool_domain                    string      : (Required) The domain prefix or fully-qualified domain name of the Cognito user pool.
-   - authentication_request_extra_params map(string) : (Optional) The query parameters to include in the redirect request to the authorization endpoint. Max: 10.
-   - on_unauthenticated_request          string      : (Optional) The behavior if the user is not authenticated. Valid values: deny, allow and authenticate
-   - scope                               string      : (Optional) The set of user claims to be requested from the IdP.
-   - session_cookie_name                 string      : (Optional) The name of the cookie used to maintain session information.
-   - session_timeout                     int         : (Optional) The maximum duration of the authentication session, in seconds.
 
 ```
 </details>
@@ -719,6 +772,8 @@ Any types represent complex values of variable type. For details, please consult
   
    - authenticate_cognito map(object)    : Cognito authentication configuration. Only applies, if not null.
   
+   - jwt_validation       map(object)  : JWT validation configuration. Only applies, if not null.
+  
 
 ```
 </details>
@@ -805,6 +860,23 @@ Any types represent complex values of variable type. For details, please consult
 ```
 </details>
 
+<details>
+
+
+```hcl
+
+   JWT Validation Blocks:
+   jwt_validation:
+   - issuer                              string            : (Required) The issuer of the JWT tokens. Must be a valid URL (e.g., https://token.example.com).
+   - jwks_endpoint                       string            : (Required) The URL of the JSON Web Key Set (JWKS) endpoint used to validate token signatures.
+   - additional_claims                   list(map(object)) : (Optional) Additional JWT claims to validate beyond issuer.
+     - format                            string            : (Required) The format of the claim value. Supported values are: iss, sub, aud, jti, nbf, exp, iat, string, string_list.
+     - name                              string            : (Required) The name of the JWT claim to validate.
+     - values                            list(string)      : (Required) The list of allowed values for the claim.
+
+```
+</details>
+
 </HclGeneralListItem>
 </HclListItem>
 
@@ -849,11 +921,11 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.1/modules/lb-listener-rules/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.1/modules/lb-listener-rules/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.2.1/modules/lb-listener-rules/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.1/modules/lb-listener-rules/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.1/modules/lb-listener-rules/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.1/modules/lb-listener-rules/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "09fcd2e21a6eb9b5a6bcba678568cb39"
+  "hash": "3910b4a52fd74c546222230c11a93dde"
 }
 ##DOCS-SOURCER-END -->
