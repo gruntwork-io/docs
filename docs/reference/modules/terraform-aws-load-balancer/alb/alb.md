@@ -414,6 +414,12 @@ module "alb" {
   # includeSubDomains; preload'.
   routing_http_response_strict_transport_security_header_value = null
 
+  # A map of tags to apply to the ALB's Security Group, on top of
+  # var.custom_tags. The key is the tag name and the value is the tag value.
+  # Tags defined here take precedence over those in var.custom_tags on key
+  # collisions.
+  security_group_tags = {}
+
   # DEPRECATED. The VPC ID in which this ALB will be placed.
   vpc_id = ""
 
@@ -663,6 +669,12 @@ inputs = {
   # automatically be converted to HTTPS. Example: 'max-age=31536000;
   # includeSubDomains; preload'.
   routing_http_response_strict_transport_security_header_value = null
+
+  # A map of tags to apply to the ALB's Security Group, on top of
+  # var.custom_tags. The key is the tag name and the value is the tag value.
+  # Tags defined here take precedence over those in var.custom_tags on key
+  # collisions.
+  security_group_tags = {}
 
   # DEPRECATED. The VPC ID in which this ALB will be placed.
   vpc_id = ""
@@ -1310,6 +1322,15 @@ The type of IP addresses used by the subnets for your load balancer. The possibl
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="security_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the ALB's Security Group, on top of <a href="#custom_tags"><code>custom_tags</code></a>. The key is the tag name and the value is the tag value. Tags defined here take precedence over those in <a href="#custom_tags"><code>custom_tags</code></a> on key collisions.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="vpc_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1422,6 +1443,6 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
     "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.1/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "804002a5ec7bafaddcd7e4c086e6ac57"
+  "hash": "387d7bb61dc4c32c51f6f422a4335d20"
 }
 ##DOCS-SOURCER-END -->
