@@ -26,6 +26,7 @@ This module creates an [Amazon OpenSearch Service](https://aws.amazon.com/opense
 *   Encryption at rest and node-to-node encryption
 *   Fine-grained access control (FGAC) with internal user database, IAM, or SAML
 *   Cognito authentication for OpenSearch Dashboards
+*   IAM Identity Center integration
 *   Dedicated master nodes, UltraWarm storage, and cold storage
 *   Multi-AZ with standby
 *   Auto-Tune with maintenance schedules
@@ -231,6 +232,14 @@ module "opensearch" {
 
   # Whether to require HTTPS for all traffic to the domain.
   enforce_https = true
+
+  # IAM Identity Center options for the OpenSearch domain. Set to null to
+  # disable. Requires fine-grained access control
+  # (advanced_security_options_enabled must be true).
+  # identity_center_instance_arn is required when enabled_api_access is true.
+  # Valid values for subject_key are 'UserName', 'UserId' (default), and
+  # 'Email'; valid values for roles_key are 'GroupName' and 'GroupId' (default).
+  identity_center_options = null
 
   # Whether to enable the internal user database for fine-grained access
   # control.
@@ -477,6 +486,14 @@ inputs = {
 
   # Whether to require HTTPS for all traffic to the domain.
   enforce_https = true
+
+  # IAM Identity Center options for the OpenSearch domain. Set to null to
+  # disable. Requires fine-grained access control
+  # (advanced_security_options_enabled must be true).
+  # identity_center_instance_arn is required when enabled_api_access is true.
+  # Valid values for subject_key are 'UserName', 'UserId' (default), and
+  # 'Email'; valid values for roles_key are 'GroupName' and 'GroupId' (default).
+  identity_center_options = null
 
   # Whether to enable the internal user database for fine-grained access
   # control.
@@ -914,6 +931,27 @@ Whether to require HTTPS for all traffic to the domain.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="identity_center_options" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+IAM Identity Center options for the OpenSearch domain. Set to null to disable. Requires fine-grained access control (advanced_security_options_enabled must be true). identity_center_instance_arn is required when enabled_api_access is true. Valid values for subject_key are 'UserName', 'UserId' (default), and 'Email'; valid values for roles_key are 'GroupName' and 'GroupId' (default).
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    enabled_api_access           = optional(bool, true)
+    identity_center_instance_arn = optional(string)
+    subject_key                  = optional(string)
+    roles_key                    = optional(string)
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="internal_user_database_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1228,6 +1266,6 @@ The ID of the security group created for the OpenSearch domain. Null if not in V
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.1.0/modules/opensearch/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7f6358449c536100f8cc644973c2a354"
+  "hash": "f95c3773cac0f1b9312d95e728aaf260"
 }
 ##DOCS-SOURCER-END -->
