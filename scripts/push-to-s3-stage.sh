@@ -11,4 +11,8 @@ export ALGOLIA_API_KEY="8487ee2b8a8d59dfd7597854d562a38b" # This is a search onl
 
 yarn && yarn build
 
-aws s3 sync build/ s3://docs.dogfood-stage.com --delete # Delete option ensures deleted files get removed from the bucket
+# Publish via the shared helper, which serializes the upload behind a bucket
+# lock and skips publishing if a newer commit has already superseded this build,
+# so concurrent deploys can't clobber each other or publish stale content.
+source "$(dirname "$0")/s3-deploy-lib.sh"
+deploy_to_s3 "docs.dogfood-stage.com"
