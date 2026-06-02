@@ -23,21 +23,25 @@ set -euo pipefail
 # SHA, build URL, and a timestamp (nothing sensitive).
 readonly LOCK_KEY="_deploy-locks/deploy.lock"
 readonly LOCK_TTL_SECONDS=900    # Treat a lock older than this as abandoned.
-readonly LOCK_WAIT_TIMEOUT=600   # Give up waiting and take over after this.
 readonly LOCK_POLL_SECONDS=5
 
 # acquire_lock <bucket>
-# Blocks until this build owns the lock, taking over a stale/abandoned lock.
+# Blocks until this build owns the lock. Takeover is governed solely by the TTL:
+# a lock is only ever evicted once it is older than LOCK_TTL_SECONDS (i.e. its
+# holder has crashed or stalled), so an active holder is never displaced.
 acquire_lock() {
   local bucket="$1"
-  local deadline=$(( $(date +%s) + LOCK_WAIT_TIMEOUT ))
   local body tmp lock_ts now age
-  body="$(printf '{"sha":"%s","build_url":"%s","ts":%s}' \
-    "${CIRCLE_SHA1:-unknown}" "${CIRCLE_BUILD_URL:-unknown}" "$(date +%s)")"
-  tmp="$(mktemp)"
-  printf '%s' "$body" > "$tmp"
 
   while true; do
+    # Stamp a fresh timestamp on every attempt: a build that waits before
+    # winning must write a current ts, otherwise the next waiter could
+    # immediately misjudge this brand-new lock as stale.
+    body="$(printf '{"sha":"%s","build_url":"%s","ts":%s}' \
+      "${CIRCLE_SHA1:-unknown}" "${CIRCLE_BUILD_URL:-unknown}" "$(date +%s)")"
+    tmp="$(mktemp)"
+    printf '%s' "$body" > "$tmp"
+
     # --if-none-match '*' makes the PUT succeed only if the object does not yet
     # exist, i.e. only one concurrent build can win this call.
     if aws s3api put-object --bucket "$bucket" --key "$LOCK_KEY" \
@@ -46,8 +50,10 @@ acquire_lock() {
       echo "Acquired deploy lock for ${bucket}"
       return 0
     fi
+    rm -f "$tmp"
 
-    # Someone else holds the lock. Take it over if it's stale, else wait.
+    # Someone else holds the lock. Take it over only if it's older than the TTL
+    # (holder crashed/stalled); otherwise keep waiting for an active holder.
     lock_ts="$(aws s3api get-object --bucket "$bucket" --key "$LOCK_KEY" /dev/stdout 2>/dev/null \
       | jq -r '.ts // 0' 2>/dev/null || echo 0)"
     now="$(date +%s)"
@@ -55,12 +61,6 @@ acquire_lock() {
 
     if (( lock_ts == 0 || age > LOCK_TTL_SECONDS )); then
       echo "Existing deploy lock looks stale (age ${age}s); taking it over"
-      aws s3api delete-object --bucket "$bucket" --key "$LOCK_KEY" >/dev/null 2>&1 || true
-      continue
-    fi
-
-    if (( now >= deadline )); then
-      echo "Timed out after ${LOCK_WAIT_TIMEOUT}s waiting for the deploy lock; taking it over"
       aws s3api delete-object --bucket "$bucket" --key "$LOCK_KEY" >/dev/null 2>&1 || true
       continue
     fi
