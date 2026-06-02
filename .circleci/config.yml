@@ -184,6 +184,10 @@ workflows:
             branches:
               only: main
       - deploy-to-prod:
+          # Serialize prod deploys so multiple PRs merged in quick succession can't race on the S3 sync (with --delete)
+          # or the Algolia reindex. Jobs sharing this serial-group run one at a time in trigger order instead of in parallel.
+          # https://circleci.com/docs/guides/orchestrate/controlling-serial-execution-across-your-organization/#how-serial-groups-work
+          serial-group: << pipeline.project.slug >>/deploy-to-prod
           context:
             - SLACK__WEBHOOK__team-platform
             - AWS__DOGFOOD_SECURITY__gruntwork-website-ci
