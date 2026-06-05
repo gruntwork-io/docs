@@ -1,0 +1,37 @@
+# Gruntwork Docs
+
+> Documentation for the Gruntwork Platform: an end-to-end DevOps platform for Infrastructure as Code. Covers onboarding, deploying infrastructure with Gruntwork Pipelines, provisioning AWS accounts with Account Factory, consuming the IaC Library of reusable modules, keeping code current with Patcher, and the architectural principles behind the platform ("the Gruntwork Way").
+
+Current docs use the `/2.0/` path. Older content lives under `/guides/`.
+
+## Getting Started
+
+- [Setting up the Gruntwork Platform](https://docs.gruntwork.io/2.0/docs/overview/getting-started/): Activate your account, set up a Landing Zone, configure Pipelines and Account Factory
+
+## Gruntwork Pipelines
+
+- [Pipelines overview](https://docs.gruntwork.io/2.0/docs/pipelines/overview): Secure, PR-driven deployments for infrastructure and application code
+- [Pipelines reference](https://docs.gruntwork.io/2.0/reference/pipelines/): Configuration reference
+
+## AWS Account Factory
+
+- [Account Factory architecture](https://docs.gruntwork.io/2.0/docs/accountfactory/architecture/): Provision AWS accounts with best-practice baselines and compliance
+- [Account Factory reference](https://docs.gruntwork.io/2.0/reference/accountfactory/): Configuration reference
+
+## AWS IaC Library
+
+- [IaC Library overview](https://docs.gruntwork.io/2.0/docs/library/concepts/overview): Reusable Infrastructure as Code modules for AWS
+
+## Gruntwork Patcher
+
+- [Patcher overview](https://docs.gruntwork.io/2.0/docs/patcher/): Automatically update infrastructure code and handle breaking changes
+
+## The Gruntwork Way
+
+- [Platform principles](https://docs.gruntwork.io/2.0/way/platform/overview): Architecture patterns and best practices behind the platform
+
+## Optional
+
+- [Reference documentation](https://docs.gruntwork.io/2.0/reference/): API, configuration, and module references
+- [Achieve compliance guide](https://docs.gruntwork.io/guides/build-it-yourself/achieve-compliance/): Build-it-yourself compliance guidance
+- [Legacy guides](https://docs.gruntwork.io/guides/stay-up-to-date/): Older release notes and migration guides
