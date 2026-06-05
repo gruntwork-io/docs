@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="1.1.0" lastModifiedVersion="1.0.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="1.2.0" lastModifiedVersion="1.2.0"/>
 
 # OpenSearch Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.1.0/modules/opensearch" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/modules/opensearch" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an [Amazon OpenSearch Service](https://aws.amazon.com/opensearch-service/) domain (the successor to Amazon Elasticsearch Service).
 
@@ -26,6 +26,7 @@ This module creates an [Amazon OpenSearch Service](https://aws.amazon.com/opense
 *   Encryption at rest and node-to-node encryption
 *   Fine-grained access control (FGAC) with internal user database, IAM, or SAML
 *   Cognito authentication for OpenSearch Dashboards
+*   IAM Identity Center integration
 *   Dedicated master nodes, UltraWarm storage, and cold storage
 *   Multi-AZ with standby
 *   Auto-Tune with maintenance schedules
@@ -102,7 +103,7 @@ module "opensearch" {
 
 module "opensearch" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/opensearch?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/opensearch?ref=v1.2.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -232,6 +233,14 @@ module "opensearch" {
   # Whether to require HTTPS for all traffic to the domain.
   enforce_https = true
 
+  # IAM Identity Center options for the OpenSearch domain. Set to null to
+  # disable. Requires fine-grained access control
+  # (advanced_security_options_enabled must be true).
+  # identity_center_instance_arn is required when enabled_api_access is true.
+  # Valid values for subject_key are 'UserName', 'UserId' (default), and
+  # 'Email'; valid values for roles_key are 'GroupName' and 'GroupId' (default).
+  identity_center_options = null
+
   # Whether to enable the internal user database for fine-grained access
   # control.
   internal_user_database_enabled = false
@@ -345,7 +354,7 @@ module "opensearch" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/opensearch?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/opensearch?ref=v1.2.0"
 }
 
 inputs = {
@@ -477,6 +486,14 @@ inputs = {
 
   # Whether to require HTTPS for all traffic to the domain.
   enforce_https = true
+
+  # IAM Identity Center options for the OpenSearch domain. Set to null to
+  # disable. Requires fine-grained access control
+  # (advanced_security_options_enabled must be true).
+  # identity_center_instance_arn is required when enabled_api_access is true.
+  # Valid values for subject_key are 'UserName', 'UserId' (default), and
+  # 'Email'; valid values for roles_key are 'GroupName' and 'GroupId' (default).
+  identity_center_options = null
 
   # Whether to enable the internal user database for fine-grained access
   # control.
@@ -914,6 +931,27 @@ Whether to require HTTPS for all traffic to the domain.
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="identity_center_options" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+IAM Identity Center options for the OpenSearch domain. Set to null to disable. Requires fine-grained access control (advanced_security_options_enabled must be true). identity_center_instance_arn is required when enabled_api_access is true. Valid values for subject_key are 'UserName', 'UserId' (default), and 'Email'; valid values for roles_key are 'GroupName' and 'GroupId' (default).
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    enabled_api_access           = optional(bool, true)
+    identity_center_instance_arn = optional(string)
+    subject_key                  = optional(string)
+    roles_key                    = optional(string)
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="internal_user_database_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1223,11 +1261,11 @@ The ID of the security group created for the OpenSearch domain. Null if not in V
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.1.0/modules/opensearch/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.1.0/modules/opensearch/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.1.0/modules/opensearch/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/modules/opensearch/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/modules/opensearch/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/modules/opensearch/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7f6358449c536100f8cc644973c2a354"
+  "hash": "32fa4cfc4c47110fd313cc36792485c5"
 }
 ##DOCS-SOURCER-END -->

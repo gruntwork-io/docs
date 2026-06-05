@@ -9,20 +9,20 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="1.1.0" lastModifiedVersion="1.0.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="1.2.0" lastModifiedVersion="1.2.0"/>
 
 # Backup Plan Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.1.0/modules/backup-plan" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/modules/backup-plan" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates the following AWS Backup resources:
 
 1.  Backup plans - specifying **how and when** to back things up
 2.  Resource selections - specifying **which resources** to back up
 
-You associate your plans with a [Backup vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.1.0/modules/backup-vault).
+You associate your plans with a [Backup vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/modules/backup-vault).
 
 ## What is a Backup Plan?
 
@@ -91,7 +91,7 @@ module "backup_plan" {
 
 ## How do you troubleshoot Backup jobs?
 
-See [Troubleshooting AWS Backup](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.1.0/core-concepts.md#troubleshooting-aws-backup) in the core-concepts guide.
+See [Troubleshooting AWS Backup](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/core-concepts.md#troubleshooting-aws-backup) in the core-concepts guide.
 
 ## Sample Usage
 
@@ -106,7 +106,7 @@ See [Troubleshooting AWS Backup](https://github.com/gruntwork-io/terraform-aws-d
 
 module "backup_plan" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-plan?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-plan?ref=v1.2.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -137,7 +137,7 @@ module "backup_plan" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-plan?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-plan?ref=v1.2.0"
 }
 
 inputs = {
@@ -244,11 +244,11 @@ The ARN of the IAM service role used by Backup plans
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.1.0/modules/backup-plan/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.1.0/modules/backup-plan/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.1.0/modules/backup-plan/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/modules/backup-plan/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/modules/backup-plan/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/modules/backup-plan/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2aac25742db546e34a45c39efb15a84e"
+  "hash": "4c329a8c512f96f2025d1a4ba791f3da"
 }
 ##DOCS-SOURCER-END -->
