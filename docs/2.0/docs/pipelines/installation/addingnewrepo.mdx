@@ -536,8 +536,8 @@ We're using the `--provider-cache` flag here to ensure that we don't re-download
 :::note[Progress Checklist]
 
 <PersistentCheckbox
-  id="run-apply"
-  label="Run an apply in the subscription directory to provision the resources in your Azure subscription."
+  id="run-azure-plan"
+  label="Run a plan in the subscription directory to preview changes."
 />
 
 :::
@@ -557,7 +557,7 @@ We're adding the `--no-stack-generate` flag here, as Terragrunt will already hav
 :::note[Progress Checklist]
 
 <PersistentCheckbox
-  id="run-apply"
+  id="run-azure-apply"
   label="Run an apply in the subscription directory to provision the resources in your Azure subscription."
 />
 :::
@@ -732,7 +732,7 @@ We're adding the `-force-copy` flag here to avoid any issues with OpenTofu waiti
 :::note[Progress Checklist]
 
 <PersistentCheckbox
-  id="run-init-migrate-state-force-copy"
+  id="run-azure-init-migrate-state-force-copy"
   label="Pull the resources into state using Terragrunt."
 />
 
@@ -970,7 +970,7 @@ We're adding the `-force-copy` flag here to avoid any issues with OpenTofu waiti
 :::note[Progress Checklist]
 
 <PersistentCheckbox
-  id="run-init-migrate-state-force-copy"
+  id="run-additional-azure-init-migrate-state-force-copy"
   label="Pull the resources into state using Terragrunt."
 />
 

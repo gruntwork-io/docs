@@ -159,6 +159,13 @@ async function createConfig() {
             lastmod: "date",
             changefreq: null,
             priority: null,
+            filename: "sitemap.xml",
+            ignorePatterns: [
+              "/tags/**",
+              "/search",
+              "/home",
+              "/test-customizable-value",
+            ],
             // Workaround for Docusaurus 3.10: the sitemap plugin queries
             // future.experimental_vcs.getFileLastUpdateInfo() with a relative
             // sourceFilePath (e.g. "docs/foo.md"), but vcsGitEager indexes by
@@ -194,18 +201,6 @@ async function createConfig() {
                 containerId: googleAnalyticsConfig.trackingID,
               }
             : undefined,
-          sitemap: {
-            lastmod: "date",
-            changefreq: null,
-            priority: null,
-            filename: "sitemap.xml",
-            ignorePatterns: [
-              "/tags/**",
-              "/search",
-              "/home",
-              "/test-customizable-value",
-            ],
-          },
         }),
       ],
     ],
