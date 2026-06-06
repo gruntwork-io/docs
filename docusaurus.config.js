@@ -51,6 +51,25 @@ const segmentPlugin = [
 // @ts-ignore - types don't understand the plugin config
 plugins.push(segmentPlugin)
 
+// Generates /llms-full.txt (full doc content concatenated) on `yarn build`.
+// generateLLMsTxt is false on purpose: the /llms.txt index is hand-curated at
+// static/llms.txt, so we let the plugin produce only the full-content file and
+// leave our curated index untouched.
+const llmsPlugin = [
+  "docusaurus-plugin-llms",
+  {
+    docsDir: "docs",
+    generateLLMsTxt: false,
+    generateLLMsFullTxt: true,
+    title: "Gruntwork Docs",
+    description:
+      "Full documentation for the Gruntwork Platform: an end-to-end DevOps platform for Infrastructure as Code, covering Gruntwork Pipelines, AWS Account Factory, the IaC Library, Patcher, and the Gruntwork Way.",
+  },
+]
+
+// @ts-ignore - types don't understand the plugin config
+plugins.push(llmsPlugin)
+
 /** @type {import('@docusaurus/types').FasterConfig} */
 const fasterConfig = {
   rspackBundler: true,

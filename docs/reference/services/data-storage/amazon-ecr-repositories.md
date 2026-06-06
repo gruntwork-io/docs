@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.8.0" lastModifiedVersion="0.144.0"/>
+<VersionBadge version="2.9.1" lastModifiedVersion="2.9.0"/>
 
 # Amazon ECR Repositories
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/ecr-repos" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/ecr-repos" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fecr-repos" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -60,7 +60,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -68,7 +68,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -87,7 +87,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "ecr_repos" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/ecr-repos?ref=v2.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/ecr-repos?ref=v2.9.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -128,6 +128,11 @@ module "ecr_repos" {
   # repo basis by the external_account_ids_with_write_access property in the
   # repositories map.
   default_external_account_ids_with_write_access = []
+
+  # If true, will delete the repository even if it contains images. Defaults to
+  # false. Can be overridden on a per repo basis by the force_delete property in
+  # the repositories map.
+  default_force_delete = false
 
   # The tag mutability setting for all the repos. Must be one of: MUTABLE or
   # IMMUTABLE. Can be overridden on a per repo basis by the image_tag_mutability
@@ -179,7 +184,7 @@ module "ecr_repos" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/ecr-repos?ref=v2.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/ecr-repos?ref=v2.9.1"
 }
 
 inputs = {
@@ -223,6 +228,11 @@ inputs = {
   # repo basis by the external_account_ids_with_write_access property in the
   # repositories map.
   default_external_account_ids_with_write_access = []
+
+  # If true, will delete the repository even if it contains images. Defaults to
+  # false. Can be overridden on a per repo basis by the force_delete property in
+  # the repositories map.
+  default_force_delete = false
 
   # The tag mutability setting for all the repos. Must be one of: MUTABLE or
   # IMMUTABLE. Can be overridden on a per repo basis by the image_tag_mutability
@@ -324,6 +334,9 @@ Any types represent complex values of variable type. For details, please consult
                                                                         below for the type schema.
    - image_tag_mutability                    string                   : The tag mutability setting for the repo. If
                                                                         omitted use var.default_image_tag_mutability.
+   - force_delete                            bool                     : If true, will delete the repository even if it
+                                                                        contains images. If omitted, use
+                                                                        var.default_force_delete.
    - tags                                    map(string)              : Map of tags (where the key and value correspond
                                                                         to tag keys and values) that should be assigned
                                                                         to the ECR repository. Merged with
@@ -423,6 +436,15 @@ The default list of AWS account IDs for external AWS accounts that should be abl
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="default_force_delete" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, will delete the repository even if it contains images. Defaults to false. Can be overridden on a per repo basis by the force_delete property in the repositories map.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
 <HclListItem name="default_image_tag_mutability" requirement="optional" type="string">
@@ -563,12 +585,12 @@ A list of IAM policy actions necessary for ECR write access.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/ecr-repos/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/ecr-repos/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/ecr-repos/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/ecr-repos/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/ecr-repos/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/ecr-repos/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "b54194166a7ff65d2cbf23776171dba6"
+  "hash": "cae2f78a7227a07c87622d3fb6ac0156"
 }
 ##DOCS-SOURCER-END -->
 */}

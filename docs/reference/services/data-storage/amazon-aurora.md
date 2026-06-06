@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.8.0" lastModifiedVersion="2.3.0"/>
+<VersionBadge version="2.9.1" lastModifiedVersion="2.9.1"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.9.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -211,6 +211,13 @@ module "aurora" {
   # IAM roles.
   cluster_iam_roles = []
 
+  # The interval, in seconds, between points when Enhanced Monitoring metrics
+  # are collected for the cluster instances. To disable collecting Enhanced
+  # Monitoring metrics, specify 0. Allowed values: 0, 1, 5, 15, 30, 60. Enhanced
+  # Monitoring metrics are useful when you want to see how different processes
+  # or threads on a DB instance use the CPU.
+  cluster_monitoring_interval = null
+
   # Specifies whether cluster level Performance Insights is enabled or not. On
   # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
   # instance classes.
@@ -269,8 +276,15 @@ module "aurora" {
 
   # Configure a custom parameter group for the RDS DB cluster. This will create
   # a new parameter group with the given parameters. When null, the database
-  # will be launched with the default parameter group.
+  # will be launched with the default parameter group. Mutually exclusive with
+  # var.db_cluster_custom_parameter_group_name, which attaches a pre-existing
+  # parameter group instead.
   db_cluster_custom_parameter_group = null
+
+  # Name of a pre-existing DB cluster parameter group to associate with the RDS
+  # cluster. Use this when you want to manage the parameter group outside of
+  # this module. Mutually exclusive with var.db_cluster_custom_parameter_group.
+  db_cluster_custom_parameter_group_name = null
 
   # The friendly name or ARN of an AWS Secrets Manager secret that contains
   # database configuration information in the format outlined by this document:
@@ -286,8 +300,15 @@ module "aurora" {
 
   # Configure a custom parameter group for the RDS DB Instance. This will create
   # a new parameter group with the given parameters. When null, the database
-  # will be launched with the default parameter group.
+  # will be launched with the default parameter group. Mutually exclusive with
+  # var.db_instance_custom_parameter_group_name, which attaches a pre-existing
+  # parameter group instead.
   db_instance_custom_parameter_group = null
+
+  # Name of a pre-existing DB parameter group to associate with the RDS DB
+  # instances. Use this when you want to manage the parameter group outside of
+  # this module. Mutually exclusive with var.db_instance_custom_parameter_group.
+  db_instance_custom_parameter_group_name = null
 
   # The name for your database of up to 8 alpha-numeric characters. If you do
   # not provide a name, Amazon RDS will not create a database in the DB cluster
@@ -314,6 +335,14 @@ module "aurora" {
   # Enable deletion protection on the database instance. If this is enabled, the
   # database cannot be deleted.
   enable_deletion_protection = false
+
+  # Whether to enable global write forwarding on this Aurora cluster. When
+  # enabled on a secondary cluster in a global database, write SQL statements
+  # are forwarded to the primary cluster. Only applies to secondary clusters;
+  # setting this on the primary cluster has no effect. Supported on Aurora MySQL
+  # version 2.08.1+. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-write-forwarding.html
+  enable_global_write_forwarding = null
 
   # If true, enables the HTTP endpoint used for Data API. Only valid when
   # engine_mode is set to serverless.
@@ -585,7 +614,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.9.1"
 }
 
 inputs = {
@@ -697,6 +726,13 @@ inputs = {
   # IAM roles.
   cluster_iam_roles = []
 
+  # The interval, in seconds, between points when Enhanced Monitoring metrics
+  # are collected for the cluster instances. To disable collecting Enhanced
+  # Monitoring metrics, specify 0. Allowed values: 0, 1, 5, 15, 30, 60. Enhanced
+  # Monitoring metrics are useful when you want to see how different processes
+  # or threads on a DB instance use the CPU.
+  cluster_monitoring_interval = null
+
   # Specifies whether cluster level Performance Insights is enabled or not. On
   # Aurora MySQL, Performance Insights is not supported on db.t2 or db.t3 DB
   # instance classes.
@@ -755,8 +791,15 @@ inputs = {
 
   # Configure a custom parameter group for the RDS DB cluster. This will create
   # a new parameter group with the given parameters. When null, the database
-  # will be launched with the default parameter group.
+  # will be launched with the default parameter group. Mutually exclusive with
+  # var.db_cluster_custom_parameter_group_name, which attaches a pre-existing
+  # parameter group instead.
   db_cluster_custom_parameter_group = null
+
+  # Name of a pre-existing DB cluster parameter group to associate with the RDS
+  # cluster. Use this when you want to manage the parameter group outside of
+  # this module. Mutually exclusive with var.db_cluster_custom_parameter_group.
+  db_cluster_custom_parameter_group_name = null
 
   # The friendly name or ARN of an AWS Secrets Manager secret that contains
   # database configuration information in the format outlined by this document:
@@ -772,8 +815,15 @@ inputs = {
 
   # Configure a custom parameter group for the RDS DB Instance. This will create
   # a new parameter group with the given parameters. When null, the database
-  # will be launched with the default parameter group.
+  # will be launched with the default parameter group. Mutually exclusive with
+  # var.db_instance_custom_parameter_group_name, which attaches a pre-existing
+  # parameter group instead.
   db_instance_custom_parameter_group = null
+
+  # Name of a pre-existing DB parameter group to associate with the RDS DB
+  # instances. Use this when you want to manage the parameter group outside of
+  # this module. Mutually exclusive with var.db_instance_custom_parameter_group.
+  db_instance_custom_parameter_group_name = null
 
   # The name for your database of up to 8 alpha-numeric characters. If you do
   # not provide a name, Amazon RDS will not create a database in the DB cluster
@@ -800,6 +850,14 @@ inputs = {
   # Enable deletion protection on the database instance. If this is enabled, the
   # database cannot be deleted.
   enable_deletion_protection = false
+
+  # Whether to enable global write forwarding on this Aurora cluster. When
+  # enabled on a secondary cluster in a global database, write SQL statements
+  # are forwarded to the primary cluster. Only applies to secondary clusters;
+  # setting this on the primary cluster has no effect. Supported on Aurora MySQL
+  # version 2.08.1+. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-write-forwarding.html
+  enable_global_write_forwarding = null
 
   # If true, enables the HTTP endpoint used for Data API. Only valid when
   # engine_mode is set to serverless.
@@ -1264,6 +1322,15 @@ List of IAM role ARNs to attach to the cluster. Be sure these roles exists. They
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="cluster_monitoring_interval" requirement="optional" type="number">
+<HclListItemDescription>
+
+The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the cluster instances. To disable collecting Enhanced Monitoring metrics, specify 0. Allowed values: 0, 1, 5, 15, 30, 60. Enhanced Monitoring metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="cluster_performance_insights_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1612,7 +1679,7 @@ The mode of Database Insights to enable for the DB cluster. Valid options are 's
 <HclListItem name="db_cluster_custom_parameter_group" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Configure a custom parameter group for the RDS DB cluster. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group.
+Configure a custom parameter group for the RDS DB cluster. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group. Mutually exclusive with <a href="#db_cluster_custom_parameter_group_name"><code>db_cluster_custom_parameter_group_name</code></a>, which attaches a pre-existing parameter group instead.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1683,6 +1750,15 @@ object({
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="db_cluster_custom_parameter_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of a pre-existing DB cluster parameter group to associate with the RDS cluster. Use this when you want to manage the parameter group outside of this module. Mutually exclusive with <a href="#db_cluster_custom_parameter_group"><code>db_cluster_custom_parameter_group</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="db_config_secrets_manager_id" requirement="optional" type="string">
@@ -1697,7 +1773,7 @@ The friendly name or ARN of an AWS Secrets Manager secret that contains database
 <HclListItem name="db_instance_custom_parameter_group" requirement="optional" type="object(…)">
 <HclListItemDescription>
 
-Configure a custom parameter group for the RDS DB Instance. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group.
+Configure a custom parameter group for the RDS DB Instance. This will create a new parameter group with the given parameters. When null, the database will be launched with the default parameter group. Mutually exclusive with <a href="#db_instance_custom_parameter_group_name"><code>db_instance_custom_parameter_group_name</code></a>, which attaches a pre-existing parameter group instead.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -1768,6 +1844,15 @@ object({
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="db_instance_custom_parameter_group_name" requirement="optional" type="string">
+<HclListItemDescription>
+
+Name of a pre-existing DB parameter group to associate with the RDS DB instances. Use this when you want to manage the parameter group outside of this module. Mutually exclusive with <a href="#db_instance_custom_parameter_group"><code>db_instance_custom_parameter_group</code></a>.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="db_name" requirement="optional" type="string">
@@ -1813,6 +1898,15 @@ Enable deletion protection on the database instance. If this is enabled, the dat
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_global_write_forwarding" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether to enable global write forwarding on this Aurora cluster. When enabled on a secondary cluster in a global database, write SQL statements are forwarded to the primary cluster. Only applies to secondary clusters; setting this on the primary cluster has no effect. Supported on Aurora MySQL version 2.08.1+. See https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-write-forwarding.html
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="enable_http_endpoint" requirement="optional" type="bool">
@@ -2502,12 +2596,12 @@ ID of security group created by aurora module.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.8.0/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "af6140748177942f7a41f84144571890"
+  "hash": "10bad269afea275239f37226e9a06273"
 }
 ##DOCS-SOURCER-END -->
 */}

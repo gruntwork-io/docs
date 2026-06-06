@@ -6,7 +6,7 @@ Account Factory uses Gruntwork's [AWS Control Tower Multi Account Factory](/refe
 
 In your `infrastructure-live-root` repository, the `_new-account-requests` directory acts as input for the Gruntwork Control Tower Module. The module, functioning within your management account, employs AWS Control Tower to efficiently provision new accounts and manage existing ones.
 
-Pipelines tracks each provisioned account as a new base directory containing Terragrunt units in your `infrastructure-live-root` repository.
+Pipelines tracks each provisioned account as a new base directory containing Terragrunt units in your `infrastructure-live-root` repository. Optionally, newly vended accounts can be placed under a subdirectory by setting [`new_account_parent_path`](/2.0/reference/accountfactory/configurations-as-code#new_account_parent_path) on the `account_factory` block.
 
 ![Architecture Overview Diagram](/img/accountfactory/architecture.png)
 
