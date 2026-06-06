@@ -6620,7 +6620,6 @@ A list of names of Kubernetes PriorityClass objects created by this module.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -6632,4 +6631,3 @@ A list of names of Kubernetes PriorityClass objects created by this module.
   "hash": "ce9367ceba3b5b930eac8829dc62b4b2"
 }
 ##DOCS-SOURCER-END -->
-*/}

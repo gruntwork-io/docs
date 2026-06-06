@@ -4,7 +4,7 @@
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2022-06</small></p>
 
 This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2022-06.
-For instructions on how to use these updates in your code, check out the [updating documentation](/2.0/docs/library/guides/updating-modules/).
+For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -1287,11 +1287,9 @@ Updated dependency `terraform-aws-security` to `v0.65.2`.
 
 </div>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "fa00afdeabff45d34d850c6061bd4160"
+  "hash": "4afa125a1c3bbe59c17d9132b71a5a24"
 }
 ##DOCS-SOURCER-END -->
-*/}

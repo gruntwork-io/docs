@@ -2592,7 +2592,6 @@ ID of security group created by aurora module.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -2604,4 +2603,3 @@ ID of security group created by aurora module.
   "hash": "10bad269afea275239f37226e9a06273"
 }
 ##DOCS-SOURCER-END -->
-*/}

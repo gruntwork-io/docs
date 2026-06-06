@@ -13,11 +13,9 @@ IAM user manually by
 - In a secrets manager, save the IAM sign-in URL, your IAM user’s username, the password, and your Access Keys.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "a45bc5ba999a0f2f247d9071a47c3e5f"
+  "hash": "4d6487d6c1c3be7d2da2e166f24c93e0"
 }
 ##DOCS-SOURCER-END -->
-*/}

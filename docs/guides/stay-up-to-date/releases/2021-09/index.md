@@ -4,7 +4,7 @@
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2021-09</small></p>
 
 This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2021-09.
-For instructions on how to use these updates in your code, check out the [updating documentation](/2.0/docs/library/guides/updating-modules/).
+For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -859,11 +859,9 @@ This release also adds a script to enable MFA Delete for the `private-s3-bucket`
 
 </div>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "85629d4facf2e0ae5eba76f218a66bcd"
+  "hash": "fe4e55b7a80e9b1356cf4340702f774e"
 }
 ##DOCS-SOURCER-END -->
-*/}

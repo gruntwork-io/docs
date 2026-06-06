@@ -319,7 +319,6 @@ A map of tags assigned to the vault resources, including those inherited from th
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -331,4 +330,3 @@ A map of tags assigned to the vault resources, including those inherited from th
   "hash": "1e9e271e28a14bc39490ea01418f7b64"
 }
 ##DOCS-SOURCER-END -->
-*/}

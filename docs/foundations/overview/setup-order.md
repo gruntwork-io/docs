@@ -46,11 +46,9 @@ Once the layer-1 components are in place, the following components can be added:
 In general, when you build new infrastructure, you first need your AWS accounts and their account baselines, a network topology, your IaC foundational patterns, and a Pipeline to deploy everything. Once those infrastructure foundations are in place, you are ready to add apps, data pipelines, and more.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "0d3306b323a286136ae4042a804a30e1"
+  "hash": "f83da101ff1b9cbbef4064fd59c6007c"
 }
 ##DOCS-SOURCER-END -->
-*/}

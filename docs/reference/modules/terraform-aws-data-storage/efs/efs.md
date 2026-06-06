@@ -638,7 +638,6 @@ The IDs of the security groups created for the file system.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -650,4 +649,3 @@ The IDs of the security groups created for the file system.
   "hash": "5adc5cf860688e4566ce3b64909e0799"
 }
 ##DOCS-SOURCER-END -->
-*/}

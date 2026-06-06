@@ -31,7 +31,7 @@ A transit gateway attachment is a way to connect a transit gateway (virtual rout
 
 For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/examples/transit-gateway-attachment/).
 
-{/* BEGIN_TF_DOCS */}
+<!-- BEGIN_TF_DOCS -->
 
 ## Requirements
 
@@ -75,7 +75,7 @@ No modules.
 |------|-------------|
 | <a name="output_id"></a> [id](#output_id) | EC2 Transit Gateway Attachment identifier. |
 
-{/* END_TF_DOCS */}
+<!-- END_TF_DOCS -->
 
 ## Sample Usage
 
@@ -385,7 +385,6 @@ The IDs of the Transit Gateway Route Tables.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -397,4 +396,3 @@ The IDs of the Transit Gateway Route Tables.
   "hash": "785f161076b49af7df88ebc6f24437c3"
 }
 ##DOCS-SOURCER-END -->
-*/}

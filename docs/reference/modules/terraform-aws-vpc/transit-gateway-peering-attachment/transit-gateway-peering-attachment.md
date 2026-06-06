@@ -29,7 +29,7 @@ A transit gateway peering attachment is a way to connect two transit gateways to
 
 For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/examples/transit-gateway-peering-attachment/).
 
-{/* BEGIN_TF_DOCS */}
+<!-- BEGIN_TF_DOCS -->
 
 ## Requirements
 
@@ -71,7 +71,7 @@ No modules.
 |------|-------------|
 | <a name="output_id"></a> [id](#output_id) | Transit Gateway Peering Attachment identifier |
 
-{/* END_TF_DOCS */}
+<!-- END_TF_DOCS -->
 
 ## Sample Usage
 
@@ -257,7 +257,6 @@ Transit Gateway Peering Attachment identifier
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -269,4 +268,3 @@ Transit Gateway Peering Attachment identifier
   "hash": "e6908330a652fd64aa25a40f1597fcd2"
 }
 ##DOCS-SOURCER-END -->
-*/}

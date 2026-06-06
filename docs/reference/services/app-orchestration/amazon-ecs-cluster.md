@@ -1498,7 +1498,6 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1510,4 +1509,3 @@ The CloudWatch Dashboard metric widget for the ECS cluster workers' Memory utili
   "hash": "c602065a6f75b76d3d17e10cee29f858"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -4217,7 +4217,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -4229,4 +4228,3 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
   "hash": "71f8d6f7e196d1024bc99423a4a92a72"
 }
 ##DOCS-SOURCER-END -->
-*/}

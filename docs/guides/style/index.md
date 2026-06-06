@@ -30,11 +30,9 @@ Gruntwork follows Google's shell style guide for Bash scripts.
 </CardGroup>
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "504cdbc821cdf115e5cca588cf12e4ba"
+  "hash": "a2e7a4dcf7d1eb2a24102927805a2a5d"
 }
 ##DOCS-SOURCER-END -->
-*/}

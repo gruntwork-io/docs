@@ -1113,7 +1113,6 @@ Indicates whether or not the VPC has finished creating
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1125,4 +1124,3 @@ Indicates whether or not the VPC has finished creating
   "hash": "db0666b6296c803da1a460107aae14ef"
 }
 ##DOCS-SOURCER-END -->
-*/}

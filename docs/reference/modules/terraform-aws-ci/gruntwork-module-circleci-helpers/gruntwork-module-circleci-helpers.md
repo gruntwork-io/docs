@@ -188,7 +188,6 @@ If you run `build-go-binaries` with no options, it will build the source code in
 `bin` folder and pick reasonable defaults for all the other values using [CircleCI environment
 variables](https://circleci.com/docs/environment-variables/).
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -197,7 +196,6 @@ variables](https://circleci.com/docs/environment-variables/).
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/gruntwork-module-circleci-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e00a19c2ef91f1028e2a869a0597bf1b"
+  "hash": "489a4d1192ac79b74601aca335a8caa2"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -1,7 +1,7 @@
 # Repository Access
 
-:::info[Newer Version Available]
-This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](/pipelines/overview/) to view documentation for the most recent version.
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
 :::
 
 Gruntwork Pipelines grants permissions by defining three [GitHub Teams](https://docs.github.com/en/organizations/organizing-members-into-teams/about-teams), which should map to three separate personas in your organization. Each team and its permissions are designed to apply the [_principle of least privilege_](https://en.wikipedia.org/wiki/Principle_of_least_privilege) to each individual (or machine user) in your organization for them to be able to perform changes to your infrastructure.
@@ -13,11 +13,9 @@ The diagram below visually illustrates the above teams:
 ![Gruntwork Pipelines Permissions](/img/pipelines/security/github_teams.png)
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e0bf68c16ae399440390ad42b03ad1ee"
+  "hash": "7ba6851031c12f4cd3112cc577895d88"
 }
 ##DOCS-SOURCER-END -->
-*/}

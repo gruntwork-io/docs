@@ -629,7 +629,6 @@ The ID of the security group associated with the RDS proxy. This security group 
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -641,4 +640,3 @@ The ID of the security group associated with the RDS proxy. This security group 
   "hash": "a65a2ea669123232b08b26473619b862"
 }
 ##DOCS-SOURCER-END -->
-*/}

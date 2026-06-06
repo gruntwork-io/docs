@@ -4,7 +4,7 @@
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2023-01</small></p>
 
 This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2023-01.
-For instructions on how to use these updates in your code, check out the [updating documentation](/2.0/docs/library/guides/updating-modules/).
+For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -382,11 +382,9 @@ If you wish to maintain backward compatibility with your existing setup of the E
 
 </div>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "8712368eb50951b6547ce6e4e737f37b"
+  "hash": "9fef1f8eda948a63f4bcf8282a2c0d2c"
 }
 ##DOCS-SOURCER-END -->
-*/}

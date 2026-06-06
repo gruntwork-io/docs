@@ -385,7 +385,6 @@ A map of key value pairs to apply as tags to the SNS topic.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -394,7 +393,6 @@ A map of key value pairs to apply as tags to the SNS topic.
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9bfdafc8be71f1ea34db271b8ec2ded7"
+  "hash": "3a9650a34f42aa52c488c490af3462a3"
 }
 ##DOCS-SOURCER-END -->
-*/}

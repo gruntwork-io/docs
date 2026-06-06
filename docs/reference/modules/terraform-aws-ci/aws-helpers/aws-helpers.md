@@ -41,7 +41,6 @@ dependencies:
     - gruntwork-install --module-name "aws-helpers" --repo "https://github.com/gruntwork-io/terraform-aws-ci" --tag "v0.0.1"
 ```
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -50,7 +49,6 @@ dependencies:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/aws-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7a1128fbeac6165391832520ceae7813"
+  "hash": "db97a3df43a613045bd9f02f34fd590f"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -24,11 +24,9 @@ To make updating to CIS AWS Foundations Benchmark v1.5.0 more straighforward we 
 - [How to update to CIS AWS Foundations Benchmark v1.4.0](/guides/stay-up-to-date/cis/cis-1.4.0)
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "78c6b69ee98d76b7f72a0d8314437768"
+  "hash": "4c7487ff5ca1fec742f2f2b9ec62af04"
 }
 ##DOCS-SOURCER-END -->
-*/}

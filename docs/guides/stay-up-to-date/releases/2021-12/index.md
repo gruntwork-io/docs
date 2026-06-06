@@ -4,7 +4,7 @@
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2021-12</small></p>
 
 This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2021-12.
-For instructions on how to use these updates in your code, check out the [updating documentation](/2.0/docs/library/guides/updating-modules/).
+For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -644,11 +644,9 @@ For terragrunt, add `ap-southeast-3` to the `all_aws_regions` local variable.
 
 </div>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "9ac5bf48b572a4618bf9a40a0fc5a503"
+  "hash": "5ed12d8965b7a42667b9067dd01968cb"
 }
 ##DOCS-SOURCER-END -->
-*/}

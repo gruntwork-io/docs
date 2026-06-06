@@ -1,14 +1,14 @@
 # Controls
 
-:::info[Newer Version Available]
-This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](/pipelines/overview/) to view documentation for the most recent version.
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
 :::
 
 Pipelines takes a defense in depth approach to securing workflows. This document provides an overview of the controls that Pipelines employs to ensure that only infrastructure that has been written in code and approved by a reviewer can be deployed in your AWS accounts.
 
 ## Dual-repository approach
 
-Pipelines dual-repository approach separates infrastructure definitions from infrastructure deployment mechanisms. Pipelines requires two repositories —`infrastructure-pipelines`, where deployment workflows are defined and `infrastructure-live`, where infrastructure is defined as code. Each repository should have branch protection rules to prevent un-reviewed code from being deployed. Refer to [Recommended Settings](../branch-protection/#recommended-settings) in [Branch Protection](../branch-protection/) to learn more.
+Pipelines dual-repository approach separates infrastructure definitions from infrastructure deployment mechanisms. Pipelines requires two repositories —`infrastructure-pipelines`, where deployment workflows are defined and `infrastructure-live`, where infrastructure is defined as code. Each repository should have branch protection rules to prevent un-reviewed code from being deployed. Refer to [Recommended Settings](branch-protection#recommended-settings) in [Branch Protection](branch-protection) to learn more.
 
 To control access to these repositories, we recommend creating GitHub teams. Write access to the `infrastructure-pipelines` repository should be limited to individuals that already have administrative access to your AWS accounts (see [accessing AWS resources](#accessing-aws-resources)). Read and write access to the `infrastructure-live` repository should be granted to any individual who needs to define infrastructure as code. See [repository access](repository-access.md) for more details.
 
@@ -76,11 +76,9 @@ Access to AWS is only available to workflows running on `main` in the `infrastru
 As highlighted in [dual-repository approach](#dual-repository-approach), because the workflows in `infrastructure-pipelines` can get temporary access to access resources in AWS, write access to this repository should be limited to a trusted set of administrators who likely already have administrative privileges in AWS.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f153fc7c624c0f58a08b7cdd2e02d0ae"
+  "hash": "f045c38f8535afa5b206bb00af264d11"
 }
 ##DOCS-SOURCER-END -->
-*/}

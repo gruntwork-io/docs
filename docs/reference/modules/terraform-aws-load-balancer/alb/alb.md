@@ -1414,7 +1414,6 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1426,4 +1425,3 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
   "hash": "804002a5ec7bafaddcd7e4c086e6ac57"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -184,7 +184,6 @@ The default KMS key used for EBS encryption.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -193,7 +192,6 @@ The default KMS key used for EBS encryption.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/ebs-encryption/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f8ec4508bff1f41556583343b15866d1"
+  "hash": "f6c1b731160566b4ea53d6e5de94df9d"
 }
 ##DOCS-SOURCER-END -->
-*/}

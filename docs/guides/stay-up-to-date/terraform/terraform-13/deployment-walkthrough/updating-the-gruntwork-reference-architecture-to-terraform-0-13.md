@@ -39,11 +39,9 @@ refer to PRs in the Standard Reference Architecture section above.
 </div>
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8202c6e44f7beeea53ebd8a27405624b"
+  "hash": "32d87de726919474b48d92e47af026b9"
 }
 ##DOCS-SOURCER-END -->
-*/}

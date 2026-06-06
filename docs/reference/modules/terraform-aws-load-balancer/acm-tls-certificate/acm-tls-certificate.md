@@ -550,7 +550,6 @@ Global tags to apply to all ACM certificates issued via this module. These globa
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -562,4 +561,3 @@ Global tags to apply to all ACM certificates issued via this module. These globa
   "hash": "68d226c5bb2dbd7f85a9bdc331d504dd"
 }
 ##DOCS-SOURCER-END -->
-*/}

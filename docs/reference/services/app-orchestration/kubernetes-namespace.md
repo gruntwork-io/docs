@@ -424,7 +424,6 @@ The name of the rbac role that grants read only permissions on the namespace.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -436,4 +435,3 @@ The name of the rbac role that grants read only permissions on the namespace.
   "hash": "35328324f8e802c8173ba6eee9c2332c"
 }
 ##DOCS-SOURCER-END -->
-*/}

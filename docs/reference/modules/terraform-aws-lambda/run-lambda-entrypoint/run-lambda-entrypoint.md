@@ -11,7 +11,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <VersionBadge repoTitle="AWS Lambda" version="1.3.1" lastModifiedVersion="1.3.1"/>
 
-{/* Frontmatter
+<!-- Frontmatter
 type: service
 name: Lambda Container Entrypoint Command
 description: Container entrypoint command for Lambda functions to securely manage secrets.
@@ -20,7 +20,7 @@ cloud: aws
 tags: ["lambda"]
 license: gruntwork
 built-with: go
-*/}
+-->
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/run-lambda-entrypoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -180,7 +180,6 @@ SECRETS_MANAGER_ARN => LAMBDA_ENV_SECRETS_MANAGER_ARN_P0_RDS => LAMBDA_ENV_SECRE
 Note that the passed in ARN can also reference a Secrets Manager name. If the value is not an ARN, the entrypoint CLI
 will assume it is the name of a Secrets Manager entry in the same region as the Lambda function.
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -189,7 +188,6 @@ will assume it is the name of a Secrets Manager entry in the same region as the 
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/run-lambda-entrypoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e880daf963f10d8b9ca675bb12e7b8b0"
+  "hash": "b57435ff9c82400651132a9b388177db"
 }
 ##DOCS-SOURCER-END -->
-*/}

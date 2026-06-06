@@ -918,7 +918,6 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -930,4 +929,3 @@ The ARNs of the rules of type redirect. The key is the same key of the rule from
   "hash": "3910b4a52fd74c546222230c11a93dde"
 }
 ##DOCS-SOURCER-END -->
-*/}

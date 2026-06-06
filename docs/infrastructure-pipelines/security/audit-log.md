@@ -1,7 +1,7 @@
 # Audit logs
 
-:::info[Newer Version Available]
-This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](/pipelines/overview/) to view documentation for the most recent version.
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
 :::
 
 Gruntwork Pipelines provides an audit log of which GitHub user performed _what_ operation in your AWS accounts as a result of a [Pipelines Action](../overview/actions.md).
@@ -72,11 +72,9 @@ Gruntwork Pipelines leverages AWS CloudTrail to log all actions taken by Pipelin
 Accessing CloudTrail and querying data is dependent on your organization's policies and settings. If you are a Gruntwork Account Factory customer, see the documentation on [logging](../../2.0/docs/accountfactory/architecture/logging.md) for information on how to access and query your CloudTrail data.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "2a95f7e4adc06201f2e2e74637ef943a"
+  "hash": "bb173125e95db1902d906dccdc0d2314"
 }
 ##DOCS-SOURCER-END -->
-*/}

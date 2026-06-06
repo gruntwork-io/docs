@@ -246,7 +246,6 @@ If you you need to run `aws-auth` with a cronjob, you may want to set the `$USER
 
 *   e.g. set the `$USER` variable like so: `  05 10 * * * env USER=$USERNAME /path/to-your-script/script `
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -255,7 +254,6 @@ If you you need to run `aws-auth` with a cronjob, you may want to set the `$USER
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/aws-auth/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "52190f2382003ad47fde4ff7216ad4c6"
+  "hash": "a77563a15fa17030144cf0c9cefceb84"
 }
 ##DOCS-SOURCER-END -->
-*/}

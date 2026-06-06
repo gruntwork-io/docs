@@ -4,7 +4,7 @@
 <p style={{marginTop: "-25px"}}><small><a href="/guides">Guides</a> / <a href="/guides/stay-up-to-date">Update Guides</a> / <a href="/guides/stay-up-to-date/releases">Releases</a> / 2022-03</small></p>
 
 This page lists all the updates to the [Gruntwork Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-library/) that were released in 2022-03.
-For instructions on how to use these updates in your code, check out the [updating documentation](/2.0/docs/library/guides/updating-modules/).
+For instructions on how to use these updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
 
 Here are the repos that were updated:
 
@@ -1178,11 +1178,9 @@ You can bump the provider by running `terraform init` with the `-upgrade` flag, 
 
 </div>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "dc4fc948443448ae8cd6712f9fa88c45"
+  "hash": "63693fba6d48f321b4225aad6db6190d"
 }
 ##DOCS-SOURCER-END -->
-*/}

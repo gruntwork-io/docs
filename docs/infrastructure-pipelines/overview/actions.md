@@ -1,10 +1,10 @@
 # Pipelines Actions
 
-:::info[Newer Version Available]
-This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](/pipelines/overview/) to view documentation for the most recent version.
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
 :::
 
-When a user opens a pull request, Pipelines runs a set of operations in response to the proposed [infrastructure changes](../#infrastructure-change). We call these operations _pipelines actions_. Gruntwork Pipelines supports the following pipelines actions:
+When a user opens a pull request, Pipelines runs a set of operations in response to the proposed [infrastructure changes](../overview/#infrastructure-change). We call these operations _pipelines actions_. Gruntwork Pipelines supports the following pipelines actions:
 
 ## Terragrunt plan
 
@@ -19,11 +19,9 @@ When a pull request is merged, Pipelines will automatically execute either `terr
 If you'd like to request a new Pipelines action, please email us at feedback@gruntwork.io.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "53ccfb620066de969b81e18697612167"
+  "hash": "09e939bef0fbf7ff0b45ad4ab3125a63"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -12,7 +12,7 @@ If you have any questions or need help, please reach out to us at [support@grunt
 
 While we do recommend migrating to the new version of Pipelines, we understand that this might not be trivial for all users. If you are unable to migrate to the new version of Pipelines, you can continue using the previous version of Pipelines that used the `infrastructure-pipelines` repository until you are ready to make the switch.
 
-:::tip[Don't be alarmed]
+:::tip Don't be alarmed
 We know it can feel overwhelming to be told that you should migrate to a new version of a tool you've been using. It's even more overwhelming when it's a tool that's critical to your infrastructure management. The good news is that the version of Pipelines that uses `infrastructure-pipelines` is a perfectly good tool for managing infrastructure changes.
 
 You should not feel like you have to migrate to the new version to mitigate a security or stability risk.
@@ -142,11 +142,9 @@ Customers can also expect a much easier time reasoning about their infrastructur
 Gruntwork is excited to bring you this new architecture for Pipelines, and we hope that it will make your experience with managing infrastructure changes more enjoyable and productive. We're always looking for feedback on how we can improve our products, so please don't hesitate to reach out to us at [feedback@gruntwork.io](mailto:feedback@gruntwork.io).
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "beeccfb987bb4801f6a58c55850bf941"
+  "hash": "ecb848f92776d655af21dd8ebaa993f0"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -411,7 +411,6 @@ VPC Peering connection object
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -423,4 +422,3 @@ VPC Peering connection object
   "hash": "770a68df4d3e735a7776d9dc0b9b7f2c"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -29,11 +29,9 @@ If you haven’t already, you need to:
     as possible.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "cb690cd189872cd791bd8d4e14901f3e"
+  "hash": "901f5f12726f3f8ebba1f5058c1e957a"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -465,7 +465,6 @@ The ARN of the SNS topic.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -477,4 +476,3 @@ The ARN of the SNS topic.
   "hash": "df3cbaf8ec6ef45a021f3b9ea70ab5d9"
 }
 ##DOCS-SOURCER-END -->
-*/}

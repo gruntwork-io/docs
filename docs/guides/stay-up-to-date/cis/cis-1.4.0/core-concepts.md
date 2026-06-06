@@ -37,11 +37,9 @@ the existing modules get updated to their CIS AWS v1.4.0 compliant versions and 
 necessary manual steps.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "4eafeef8287953f8032aea3f7ef1eb58"
+  "hash": "d2e11fe53ce1dd113f0a0d8ecc1e8f11"
 }
 ##DOCS-SOURCER-END -->
-*/}

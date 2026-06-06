@@ -13,11 +13,9 @@ on updating to AWS provider version 4. The rest of this guide will focus on upda
 modules and the Gruntwork Reference Architecture to be compatible with AWS provider version 4.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5221dfbfe9e3860c765d48660f9af5d4"
+  "hash": "3f08159b93c4188b5accd6a4c66f4345"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -2343,7 +2343,6 @@ The ID of the Security Group that belongs to the ASG.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -2355,4 +2354,3 @@ The ID of the Security Group that belongs to the ASG.
   "hash": "8fcb1fef9537aa9a653effe5f446e8e0"
 }
 ##DOCS-SOURCER-END -->
-*/}

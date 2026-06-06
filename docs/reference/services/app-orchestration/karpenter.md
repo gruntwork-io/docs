@@ -866,7 +866,6 @@ The name of the Karpenter Node IAM Role.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -878,4 +877,3 @@ The name of the Karpenter Node IAM Role.
   "hash": "3578838af3747c59ad165f22ccb3ba1c"
 }
 ##DOCS-SOURCER-END -->
-*/}

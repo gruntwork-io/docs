@@ -216,7 +216,6 @@ When you run this, it will produce output similar to below:
 Note how the script uses the device name `/dev/nvme1n1` when unmounting the device, but switches to `/dev/sdf` when
 detaching the device.
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -225,7 +224,6 @@ detaching the device.
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/persistent-ebs-volume/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "764a64f3413ac501c56be2f0e27844c7"
+  "hash": "506fd96f048c46ff972d8d81345ed126"
 }
 ##DOCS-SOURCER-END -->
-*/}

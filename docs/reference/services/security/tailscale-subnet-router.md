@@ -1091,7 +1091,6 @@ ID of the primary security group attached to the Tailscale relay server.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1103,4 +1102,3 @@ ID of the primary security group attached to the Tailscale relay server.
   "hash": "8052199cce87fddd429ee2c9033277d5"
 }
 ##DOCS-SOURCER-END -->
-*/}

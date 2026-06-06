@@ -292,7 +292,6 @@ The name of the IAM role
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -304,4 +303,3 @@ The name of the IAM role
   "hash": "ac78fd9167ea2d2c7ac87250e114e9e1"
 }
 ##DOCS-SOURCER-END -->
-*/}

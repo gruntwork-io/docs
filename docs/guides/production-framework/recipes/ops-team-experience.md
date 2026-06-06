@@ -28,11 +28,9 @@ On the Ops side, Carol and Daniel are responsible for maintaining your Service C
 5. At this point, the auto-update system rolls out the new version of the Service Catalog to all users, just as in the previous section.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "f4a473eda89c63b0f607f8c297884db4"
+  "hash": "33c46b2d11c76043adf77f0a05c3c622"
 }
 ##DOCS-SOURCER-END -->
-*/}

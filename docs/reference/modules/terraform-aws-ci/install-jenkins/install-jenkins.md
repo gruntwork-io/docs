@@ -70,7 +70,6 @@ typically do two things in [User Data](https://docs.aws.amazon.com/AWSEC2/latest
 
 Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/examples/jenkins) for an example of such a User Data script.
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -79,7 +78,6 @@ Check out the [jenkins example](https://github.com/gruntwork-io/terraform-aws-ci
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/install-jenkins/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e9bcf8d448f54357dc5b0191ca4e67d6"
+  "hash": "ab2c4b910f5c0ccd4ca4c3805fbe2ac5"
 }
 ##DOCS-SOURCER-END -->
-*/}

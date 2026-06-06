@@ -27,7 +27,6 @@ This folder contains modules that help with logging:
 
 Click on each module above to see its documentation. Head over to the [examples folder](https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v1.3.1/examples) for examples.
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -36,7 +35,6 @@ Click on each module above to see its documentation. Head over to the [examples 
     "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v1.3.1/modules/logs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3de7c4b033c2bf28596cbac20da123ae"
+  "hash": "88bf29ffc423885b64341be293f5ce83"
 }
 ##DOCS-SOURCER-END -->
-*/}

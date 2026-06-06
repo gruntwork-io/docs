@@ -21,11 +21,9 @@ updating references to Gruntwork modules and the Gruntwork Reference
 Architecture to be compatible with AWS provider version 3.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "bee067a938e2524f6d37ae3ae91e6bd6"
+  "hash": "56d01e92f2d0efef79e79bee9f272d89"
 }
 ##DOCS-SOURCER-END -->
-*/}

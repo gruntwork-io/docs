@@ -565,7 +565,6 @@ The name of the ConfigMap created to store the mapping. This exists so that down
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -574,7 +573,6 @@ The name of the ConfigMap created to store the mapping. This exists so that down
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-k8s-role-mapping/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "349320f1aacfbe270e8f066dbf430d27"
+  "hash": "093224d5a1effbd0c3012cda6dbc4d4f"
 }
 ##DOCS-SOURCER-END -->
-*/}

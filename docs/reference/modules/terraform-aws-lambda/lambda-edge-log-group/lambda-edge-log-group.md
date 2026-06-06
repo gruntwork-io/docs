@@ -336,7 +336,6 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -345,7 +344,6 @@ When true, precreate the CloudWatch Log Group to use for log aggregation from th
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/lambda-edge-log-group/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7681a35eb7e0dec010763324d20527b1"
+  "hash": "74c4fa0102cddd01f8e0094f95db0efd"
 }
 ##DOCS-SOURCER-END -->
-*/}

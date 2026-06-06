@@ -146,7 +146,6 @@ References:
 *   https://github.com/mitchellh/gon
 *   https://localazy.com/blog/how-to-automatically-sign-macos-apps-using-github-actions
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -155,7 +154,6 @@ References:
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/sign-binary-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "534735f432c39ed940cab9f7dc74d48a"
+  "hash": "90d6747ff0f1a623a41b95cf07ee15cd"
 }
 ##DOCS-SOURCER-END -->
-*/}

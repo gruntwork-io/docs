@@ -28,7 +28,6 @@ certificates and the OpenVPN server to process those requests.
 
 ![openvpn-revoke-flow-diagram](/img/reference/modules/terraform-aws-openvpn/openvpn-admin/openvpn-revoke-flow-diagram.png)
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -37,7 +36,6 @@ certificates and the OpenVPN server to process those requests.
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v1.0.0/modules/openvpn-admin/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3c8ed4698250aaa5ef29de0ae03ba887"
+  "hash": "e3331c33d85c0b68e71b1b314eb973db"
 }
 ##DOCS-SOURCER-END -->
-*/}

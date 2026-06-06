@@ -797,7 +797,6 @@ The name of the S3 bucket where flow logs are published.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -809,4 +808,3 @@ The name of the S3 bucket where flow logs are published.
   "hash": "55a373efae863dd5e50787f280e8082e"
 }
 ##DOCS-SOURCER-END -->
-*/}

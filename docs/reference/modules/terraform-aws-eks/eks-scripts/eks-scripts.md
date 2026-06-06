@@ -104,7 +104,6 @@ Due to limitations in how python imports scripts, this module includes a symlink
 `map_ec2_tags_to_node_labels.py` to the `map-ec2-tags-to-node-labels` script so that it can be imported in the unit
 tests.
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -113,7 +112,6 @@ tests.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-scripts/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "02ca019aee903d61a72bd2e5b2031db0"
+  "hash": "454e039e4aa2dadf9616fc51f0d4c9c1"
 }
 ##DOCS-SOURCER-END -->
-*/}

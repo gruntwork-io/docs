@@ -1641,7 +1641,6 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1653,4 +1652,3 @@ The ID of the Security Group attached to the Jenkins EC2 Instance
   "hash": "0acc8696ff8a36d33a7a52c4a1a1985b"
 }
 ##DOCS-SOURCER-END -->
-*/}

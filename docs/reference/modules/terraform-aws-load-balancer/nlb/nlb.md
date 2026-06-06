@@ -25,7 +25,6 @@ For information on why the module was removed, refer to the discussion in [PR
 \#62](https://github.com/gruntwork-io/terraform-aws-load-balancer/pull/62) and [PR
 \#65](https://github.com/gruntwork-io/terraform-aws-load-balancer/pull/65).
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -37,4 +36,3 @@ For information on why the module was removed, refer to the discussion in [PR
   "hash": "7bdf1cef99d0ee4f7abe7a629852b036"
 }
 ##DOCS-SOURCER-END -->
-*/}

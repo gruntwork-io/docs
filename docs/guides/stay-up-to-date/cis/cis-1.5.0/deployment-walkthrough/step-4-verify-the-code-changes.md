@@ -86,7 +86,7 @@ The output `plan` will contain messages similar to these:
 
 ### If you are using Patcher
 
-If you used Patcher to do the upgrade then start by checking that you completed [step 2A.3](../step-2-update-references-to-the-gruntwork-infrastructure-as-code-library/).
+If you used Patcher to do the upgrade then start by checking that you completed [step 2A.3](step-2-update-references-to-the-gruntwork-infrastructure-as-code-library).
 
 ### If you are updating the modules manually
 
@@ -112,15 +112,13 @@ aws-vault exec dev -- terragrunt run-all init
 aws-vault exec dev -- terragrunt run-all apply
 ```
 
-After the changes have been applied we recommend you complete [step 5](../step-5-check-your-live-infrastructure-is-cis-v1.5-compliant/)
+After the changes have been applied we recommend you complete [step 5](step-5-check-your-live-infrastructure-is-cis-v1.5-compliant)
 and confirm that your infrastructure is now CIS AWS Foundations Benchmark v1.5.0 compliant.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "bbe1566b8feaa75e4efb90677df03761"
+  "hash": "e3b698dabedbe106b7af11907dcd0951"
 }
 ##DOCS-SOURCER-END -->
-*/}

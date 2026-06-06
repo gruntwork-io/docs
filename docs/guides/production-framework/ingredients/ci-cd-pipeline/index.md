@@ -7,11 +7,9 @@ pipeline) to automate their build, test, and deployment processes.
 ![Gruntwork Pipelines](/img/guides/production-framework/gruntwork-pipelines.png)
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "75a60f38c57dc221345a46b44b5ea882"
+  "hash": "ba6270b591efb22fbe6b9b5adb930269"
 }
 ##DOCS-SOURCER-END -->
-*/}

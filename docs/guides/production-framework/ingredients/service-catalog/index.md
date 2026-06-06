@@ -22,11 +22,9 @@ Note that the term "Service Catalog" is a bit overloaded, so in the next section
 mean by "Service Catalog" in this guide, and what a modern Service Catalog looks like.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e59995c0192f45891da51ff0d1debdfb"
+  "hash": "9724455defe23434547b2c1433c89445"
 }
 ##DOCS-SOURCER-END -->
-*/}

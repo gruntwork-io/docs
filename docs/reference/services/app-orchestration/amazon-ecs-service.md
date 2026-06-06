@@ -3025,7 +3025,6 @@ The names of the ECS service's load balancer's target groups
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -3037,4 +3036,3 @@ The names of the ECS service's load balancer's target groups
   "hash": "ac27e0cb4a50ef086dddfebaa8daab44"
 }
 ##DOCS-SOURCER-END -->
-*/}

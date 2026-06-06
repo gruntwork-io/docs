@@ -731,7 +731,6 @@ ID of the backup policies
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -743,4 +742,3 @@ ID of the backup policies
   "hash": "52163aa8dda4a49735676103be6723a5"
 }
 ##DOCS-SOURCER-END -->
-*/}

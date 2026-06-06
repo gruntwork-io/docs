@@ -1256,7 +1256,6 @@ The name of the replica S3 bucket.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1268,4 +1267,3 @@ The name of the replica S3 bucket.
   "hash": "2c9e7b8252798b0124c04c01be6fd23d"
 }
 ##DOCS-SOURCER-END -->
-*/}

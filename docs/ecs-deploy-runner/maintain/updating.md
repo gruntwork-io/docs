@@ -3,11 +3,11 @@ import TabItem from '@theme/TabItem';
 
 # Updating Your ECS Deploy Runner
 
-:::info[Newer Version Available]
-This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](/pipelines/overview/) to view documentation for the most recent version.
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
 :::
 
-Pipelines is built using the [`terraform-aws-ci`](/reference/modules/terraform-aws-ci/ecs-deploy-runner/) module. We recommend updating your pipeline whenever there’s a new release of the module.
+Pipelines is built using the [`terraform-aws-ci`](../../reference/modules/terraform-aws-ci/ecs-deploy-runner/) module. We recommend updating your pipeline whenever there’s a new release of the module.
 
 By default, Pipelines cannot update it’s own infrastructure (ECS cluster, AWS Lambda function, etc), so you must run upgrades to Pipelines manually from your local machine. This safeguard is in place to prevent you from accidentally locking yourself out of the Pipeline when applying a change to permissions.
 
@@ -92,7 +92,7 @@ aws-vault exec your-prod -- terragrunt apply --terragrunt-source-update -auto-ap
 </TabItem>
 <TabItem value="Standalone" label="Standalone">
 
-If you’ve deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, refer to the [Variable Reference](/reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for configuration details. You will need to update the `docker_tag` value in the `container_image` object for the [`ami_builder_config`](/reference/services/ci-cd-pipeline/ecs-deploy-runner#ami_builder_config), [`docker_image_builder_config`](/reference/services/ci-cd-pipeline/ecs-deploy-runner#docker_image_builder_config), [`terraform_applier_config`](/reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_applier_config), and [`terraform_planner_config`](/reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_planner_config) variables.
+If you’ve deployed Pipelines as a standalone framework using the `ecs-deploy-runner` service in the Service Catalog, refer to the [Variable Reference](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#reference) section for the service in the Library Reference for configuration details. You will need to update the `docker_tag` value in the `container_image` object for the [`ami_builder_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#ami_builder_config), [`docker_image_builder_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#docker_image_builder_config), [`terraform_applier_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_applier_config), and [`terraform_planner_config`](../../reference/services/ci-cd-pipeline/ecs-deploy-runner#terraform_planner_config) variables.
 
 Once you have updated any references to the container image tags, you will need to run `terraform plan` and `terraform apply` in each account where pipelines is deployed.
 
@@ -100,11 +100,9 @@ Once you have updated any references to the container image tags, you will need 
 </Tabs>
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "b2f5b354c70b71e5e4f819b795547000"
+  "hash": "6a2b0a06b22a1f9f52909f68250435fb"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -2057,7 +2057,6 @@ The ID of the security group created for the RDS instance.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -2069,4 +2068,3 @@ The ID of the security group created for the RDS instance.
   "hash": "849139efd74d5894481864ea01efe2c4"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -1,6 +1,6 @@
 # Deploying Multi-Account Pipelines
 
-:::info[Newer Version Available]
+:::info Newer Version Available
 This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
 :::
 
@@ -17,11 +17,9 @@ It's important to keep all your accounts organized and working together smoothly
 But if you can manage your pack of dogs successfully, they can work together to accomplish great things - just like how an AWS multi-account setup can help you achieve your goals with ease and efficiency. So, if you're a dog lover like me, you'll find that AWS multi-account setups are just as fun and rewarding as having a pack of loyal furry friends by your side. Woof!
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8eee5ccd23fb87bcfd0ddf91b01193c6"
+  "hash": "85a5bf24fb70bd2ba6aa2143bc30d783"
 }
 ##DOCS-SOURCER-END -->
-*/}

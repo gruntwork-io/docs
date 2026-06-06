@@ -2059,7 +2059,6 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -2071,4 +2070,3 @@ Number of seconds to wait for Pods to become healthy before marking the deployme
   "hash": "c80c0e62c48d3fa940d6c759ef1d9811"
 }
 ##DOCS-SOURCER-END -->
-*/}

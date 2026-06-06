@@ -222,7 +222,6 @@ The python path that should be used for running PEX file. This should be set as 
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -231,7 +230,6 @@ The python path that should be used for running PEX file. This should be set as 
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.8/modules/prepare-pex-environment/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "a84258869c1ea28d23ed34e247c32ad9"
+  "hash": "d4860b9af4dfad16103a01f452363591"
 }
 ##DOCS-SOURCER-END -->
-*/}

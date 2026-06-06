@@ -77,7 +77,6 @@ version = 2.0.0
 Success! Got expected status code '200' and text '2.0.0' from URL http://www.my-company.com/version. 
 ```
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -86,7 +85,6 @@ Success! Got expected status code '200' and text '2.0.0' from URL http://www.my-
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/check-url/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "be2c68da30c56c439639a6bf3f1afbe0"
+  "hash": "675f2b2225099e162325d9ac5ad984c8"
 }
 ##DOCS-SOURCER-END -->
-*/}

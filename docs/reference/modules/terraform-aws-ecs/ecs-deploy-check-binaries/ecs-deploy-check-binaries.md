@@ -105,7 +105,6 @@ pyenv shell 3.8.0 3.9.0 3.10.0 3.11.0
 ```
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -114,7 +113,6 @@ pyenv shell 3.8.0 3.9.0 3.10.0 3.11.0
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v0.36.1/modules/ecs-deploy-check-binaries/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "496c720a54cba63d8b1a4a3a23a667ec"
+  "hash": "f6513939d3fc7819764532286171ae36"
 }
 ##DOCS-SOURCER-END -->
-*/}

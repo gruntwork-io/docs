@@ -768,7 +768,6 @@ The URL of the API Gateway that you can use to invoke it.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -777,7 +776,6 @@ The URL of the API Gateway that you can use to invoke it.
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/api-gateway-proxy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7c5b0202baa1162b9573694bed343fc8"
+  "hash": "16b2af446664af3fd45799866214532a"
 }
 ##DOCS-SOURCER-END -->
-*/}

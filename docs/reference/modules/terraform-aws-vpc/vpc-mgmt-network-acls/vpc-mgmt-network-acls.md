@@ -341,7 +341,6 @@ The number to use for the first rule that is created by this module. All rules i
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -353,4 +352,3 @@ The number to use for the first rule that is created by this module. All rules i
   "hash": "662e22d530e0cbe1a8b885e4495bf229"
 }
 ##DOCS-SOURCER-END -->
-*/}

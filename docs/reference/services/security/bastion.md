@@ -1073,7 +1073,6 @@ The fully qualified name of the bastion host.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1085,4 +1084,3 @@ The fully qualified name of the bastion host.
   "hash": "e767a690246ba4ebc4578b8acce8a22d"
 }
 ##DOCS-SOURCER-END -->
-*/}

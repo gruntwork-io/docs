@@ -8,11 +8,9 @@ The Landing Zone will be deployed in three steps - the `account-baseline-root` t
 The standalone modules will follow the pattern of referencing the module and providing the necessary input variables for it, then applying with `terragrunt`.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "376a6d3aa8ea65f8859cf05cf1e49163"
+  "hash": "a9dde76d161304ab0b3185f97436ca20"
 }
 ##DOCS-SOURCER-END -->
-*/}

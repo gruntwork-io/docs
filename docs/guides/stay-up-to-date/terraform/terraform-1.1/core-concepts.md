@@ -12,11 +12,9 @@ For more info, check out the for a complete introduction, check out the
 post](https://www.hashicorp.com/blog/terraform-1-1-improves-refactoring-and-the-cloud-cli-experience).
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c35748b1f79dbc415826cce7f4595160"
+  "hash": "49defa1819542396936b1f0481640f93"
 }
 ##DOCS-SOURCER-END -->
-*/}

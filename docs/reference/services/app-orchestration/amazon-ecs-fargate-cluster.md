@@ -248,7 +248,6 @@ The name of the ECS cluster.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -260,4 +259,3 @@ The name of the ECS cluster.
   "hash": "8245e357bc394a171a02cf8659bd9c74"
 }
 ##DOCS-SOURCER-END -->
-*/}

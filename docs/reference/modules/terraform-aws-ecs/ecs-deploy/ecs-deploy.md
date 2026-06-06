@@ -92,7 +92,6 @@ This will spin up a new ECS task using the `my-app` revision 3 ECS Task
 Definition, and run the `python manage.py migrate` command in the `django`
 container instead of the command configured in the Task Definition.
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -101,7 +100,6 @@ container instead of the command configured in the Task Definition.
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "857e6caadc7660293637fef60a0eedd3"
+  "hash": "d07626b0fa849b91e33fc88b5a108e7f"
 }
 ##DOCS-SOURCER-END -->
-*/}

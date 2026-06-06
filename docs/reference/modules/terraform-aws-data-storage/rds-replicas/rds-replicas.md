@@ -1062,7 +1062,6 @@ The port number on which the read replicas accept connections.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1074,4 +1073,3 @@ The port number on which the read replicas accept connections.
   "hash": "00c2bd7d3dbf097b2f8aa745fd5352f8"
 }
 ##DOCS-SOURCER-END -->
-*/}

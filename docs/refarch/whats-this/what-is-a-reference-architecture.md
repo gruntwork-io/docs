@@ -1,6 +1,6 @@
 # What is a Reference Architecture?
 
-:::note[Legacy Product]
+:::note Legacy Product
 
 The Gruntwork Reference Architecture has been superseded by the **AWS Platform Architecture** component of [Gruntwork AWS Accelerator](/2.0/docs/overview/concepts/gruntworkplatform). New customers should use Gruntwork AWS Accelerator for the latest best practices and features.
 
@@ -29,11 +29,9 @@ The Reference Architecture has three main components — Gruntwork AWS Account F
 Our [sample application](https://github.com/gruntwork-io/aws-sample-app) is built with JavaScript, Node.js, and Express.js, following [Twelve-Factor App](https://12factor.net/) practices. It consists of a load balancer, a front end, a backend, a cache, and a database.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3c13d69298a0b94d2988b3645acaed71"
+  "hash": "be6add7032b21738ccfdf7fff3d6dece"
 }
 ##DOCS-SOURCER-END -->
-*/}

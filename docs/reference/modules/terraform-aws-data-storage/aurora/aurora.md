@@ -2014,7 +2014,6 @@ A list of identifiers for Aurora cluster instances that are writers.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -2026,4 +2025,3 @@ A list of identifiers for Aurora cluster instances that are writers.
   "hash": "24ce685ddcb1e3a974f036736ef9777b"
 }
 ##DOCS-SOURCER-END -->
-*/}

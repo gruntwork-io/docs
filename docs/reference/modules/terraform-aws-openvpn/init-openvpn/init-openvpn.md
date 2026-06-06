@@ -20,7 +20,6 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 This module is used to initialize the OpenVPN server, its Public Key Infrastructure (PKI), Certificate Authority
 (CA) and configuration on a server that has been installed using the [install-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v1.0.0/modules/install-openvpn) module.
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -29,7 +28,6 @@ This module is used to initialize the OpenVPN server, its Public Key Infrastruct
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v1.0.0/modules/init-openvpn/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "97fc5a04f077e20c939e186430de809e"
+  "hash": "87e7ed30b3166e2ad1931e0b0c614ace"
 }
 ##DOCS-SOURCER-END -->
-*/}

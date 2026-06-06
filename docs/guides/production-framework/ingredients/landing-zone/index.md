@@ -12,11 +12,9 @@ hard to fix later: i.e., getting dozens or hundreds of manually-managed accounts
 harder than setting up the proper controls in the first place.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "4e99701307b61f04ac2ceb1607e9d324"
+  "hash": "638abda85660525852f391f9d2e1a759"
 }
 ##DOCS-SOURCER-END -->
-*/}

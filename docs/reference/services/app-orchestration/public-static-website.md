@@ -1087,7 +1087,6 @@ The ARN of the created S3 bucket associated with the website.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1099,4 +1098,3 @@ The ARN of the created S3 bucket associated with the website.
   "hash": "a4ff4289cff170814c1f6ca0e3766864"
 }
 ##DOCS-SOURCER-END -->
-*/}

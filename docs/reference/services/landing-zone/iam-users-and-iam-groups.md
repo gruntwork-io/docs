@@ -1133,7 +1133,6 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1145,4 +1144,3 @@ A map of usernames to that user's AWS Web Console password, encrypted with that 
   "hash": "0729fc042a093867e3b6151d209de71d"
 }
 ##DOCS-SOURCER-END -->
-*/}

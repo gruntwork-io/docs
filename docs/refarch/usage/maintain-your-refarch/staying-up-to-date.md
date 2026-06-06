@@ -29,11 +29,9 @@ The test pipeline's workhorse, the ECS Deploy Runner, includes a Terraform versi
    :::
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "30fd78bdd3a1be4248288d55ba7d51be"
+  "hash": "c4fbcba8e2d7fb60bde477269de7d9da"
 }
 ##DOCS-SOURCER-END -->
-*/}

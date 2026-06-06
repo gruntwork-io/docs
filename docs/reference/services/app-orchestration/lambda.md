@@ -1454,7 +1454,6 @@ Latest published version of your Lambda Function
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1466,4 +1465,3 @@ Latest published version of your Lambda Function
   "hash": "b25d2acc3f4e676270a06b19c92641d2"
 }
 ##DOCS-SOURCER-END -->
-*/}

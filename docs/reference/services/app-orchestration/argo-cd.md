@@ -435,7 +435,6 @@ A list of the subnets into which the Argo CD pods will be launched. These should
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -447,4 +446,3 @@ A list of the subnets into which the Argo CD pods will be launched. These should
   "hash": "dcd9e739047d3236fe59dd5b87927e11"
 }
 ##DOCS-SOURCER-END -->
-*/}

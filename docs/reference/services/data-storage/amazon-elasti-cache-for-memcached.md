@@ -487,7 +487,6 @@ The configuration endpoint to allow host discovery.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -499,4 +498,3 @@ The configuration endpoint to allow host discovery.
   "hash": "789ec20e66814099eaf51a1bcaf4fc1c"
 }
 ##DOCS-SOURCER-END -->
-*/}

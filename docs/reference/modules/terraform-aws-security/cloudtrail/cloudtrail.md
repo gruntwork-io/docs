@@ -1410,7 +1410,6 @@ The name of the cloudtrail trail.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1419,7 +1418,6 @@ The name of the cloudtrail trail.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/cloudtrail/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "49c2219fdbfaa81dd6c10ef2dcc92e0f"
+  "hash": "a9edcc7f7cea6e0c82ffa2c68a768738"
 }
 ##DOCS-SOURCER-END -->
-*/}

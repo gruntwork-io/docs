@@ -624,7 +624,6 @@ A map of domains to resource arns and hosted zones of the created Service Discov
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -636,4 +635,3 @@ A map of domains to resource arns and hosted zones of the created Service Discov
   "hash": "71c21f6758ca79eb3affcd67327c74dd"
 }
 ##DOCS-SOURCER-END -->
-*/}

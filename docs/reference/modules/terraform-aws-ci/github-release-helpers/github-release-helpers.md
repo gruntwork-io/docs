@@ -80,7 +80,6 @@ sign-files --source-dir bin --out-dir release --name terragrunt-iac-engine-opent
 create-release --repo-owner gruntwork-io --repo-name terragrunt-engine-opentofu --rc-version 1.0.0-rc1 --version 1.0.0 --release-dir release
 ```
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -89,7 +88,6 @@ create-release --repo-owner gruntwork-io --repo-name terragrunt-engine-opentofu 
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/github-release-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "70b016ae03cc11077ca5616ed32fd00b"
+  "hash": "d68be4b89a2093271f2a31e157af46e0"
 }
 ##DOCS-SOURCER-END -->
-*/}

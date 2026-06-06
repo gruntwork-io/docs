@@ -1,7 +1,7 @@
 # Multiple Infrastructure-Live Repos
 
-:::info[Newer Version Available]
-This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](/pipelines/overview/) to view documentation for the most recent version.
+:::info Newer Version Available
+This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
 :::
 
 We recommend using a single `infrastructure-live` git repository for managing your organization's infrastructure.
@@ -19,11 +19,11 @@ so think carefully about your specific use case before making the decision.
 ## Create Additional Repos
 
 New `infrastructure-live` repositories can be created using the same process described in the
-[Hello World](../../hello-world/#setting-up-the-repositories) documentation.
+[Hello World](../hello-world#setting-up-the-repositories) documentation.
 
 :::info
 Once the repository is created, you'll need to set up machine user access using either the existing machine user and `PIPELINES_DISPATCH` PAT token,
-or one created specifically for this purpose. See [Machine Users](../machine-users/) for more information.
+or one created specifically for this purpose. See [Machine Users](machine-users) for more information.
 :::
 
 No special configuration is required for the new `infrastructure-live` repository,
@@ -34,7 +34,7 @@ to the shared `infrastructure-pipelines` repository.
 
 :::warning
 Once a repository is enabled for pipelines, any code pushed to the `main` branch of that repository will be eligible to access your
-AWS account using OIDC. Ensure you have the [recommended settings](../branch-protection/) for branch protection configured before adding the new
+AWS account using OIDC. Ensure you have the [recommended settings](branch-protection) for branch protection configured before adding the new
 repository to the allowlist.
 :::
 
@@ -58,11 +58,9 @@ The `INFRA_LIVE_ACCESS_TOKEN` available to the `infrastructure-pipelines` reposi
 :::
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "64ae11b56e1aee85a7a551ce5d1ffcde"
+  "hash": "d492c3f3f068ced6c6c9af871eb11719"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -63,7 +63,6 @@ Policy every time we add a new ECS Service.
 
 Some modules are configurable to support whatever level of
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -72,7 +71,6 @@ Some modules are configurable to support whatever level of
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/iam-policies/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "18795ab0854265e4f4d9f20556a4d928"
+  "hash": "4103c2375555ae3811def6381c03e3c0"
 }
 ##DOCS-SOURCER-END -->
-*/}

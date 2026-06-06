@@ -33,11 +33,9 @@ To support this:
 This means that both the modules and the live config need to be updated in order to support TF12.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e4dfe090204bc362335a967984eef408"
+  "hash": "18301a838452f27f0c74540894001124"
 }
 ##DOCS-SOURCER-END -->
-*/}

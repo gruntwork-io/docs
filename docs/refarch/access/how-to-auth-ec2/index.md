@@ -63,11 +63,9 @@ When you launch an EC2 Instance in AWS, you can specify an EC2 Key Pair that can
 As part of the Reference Architecture deployment, Gruntwork will create EC2 Key Pairs and put the private keys into AWS Secrets Manager. These keys are there only for emergency / backup use: e.g., if there's a bug in `ssh-grunt` that prevents you from accessing your EC2 instances. We recommend only giving a handful of trusted admins access to these Key Pairs.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "3347e1edfb27b788fbc0be9cd4747a4e"
+  "hash": "6dd716749e279fd1709bc1957390d47b"
 }
 ##DOCS-SOURCER-END -->
-*/}

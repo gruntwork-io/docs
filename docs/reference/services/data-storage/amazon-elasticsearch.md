@@ -1590,7 +1590,6 @@ Domain-specific endpoint for Kibana without https scheme.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1602,4 +1601,3 @@ Domain-specific endpoint for Kibana without https scheme.
   "hash": "41a36abe3e2c3cbbb704f817d713f385"
 }
 ##DOCS-SOURCER-END -->
-*/}

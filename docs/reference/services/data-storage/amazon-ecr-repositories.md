@@ -581,7 +581,6 @@ A list of IAM policy actions necessary for ECR write access.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -593,4 +592,3 @@ A list of IAM policy actions necessary for ECR write access.
   "hash": "cae2f78a7227a07c87622d3fb6ac0156"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -2422,7 +2422,6 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -2434,4 +2433,3 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
   "hash": "3a2b9a35408a0bcb1c5e6e825d153c9f"
 }
 ##DOCS-SOURCER-END -->
-*/}

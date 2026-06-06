@@ -41,11 +41,9 @@ instructions in the [Deployment walkthrough](deployment-walkthrough/step-1-check
 expanded the steps in the guide to include checking v1.4.0 compliance before updating and checking v1.5.0 compliance after the update.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "5e8811adb13ee74966e109f36131515c"
+  "hash": "54d2f2090f65963d6cf89dfa8305300e"
 }
 ##DOCS-SOURCER-END -->
-*/}

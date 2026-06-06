@@ -20,7 +20,6 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 **NOTE**: The `ecs-service-with-discovery` module has been merged with `ecs-service` as of `v0.16.0`. Refer to the migration
 guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/releases/tag/v0.16.0) for more info.
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -29,7 +28,6 @@ guide in [the release notes](https://github.com/gruntwork-io/terraform-aws-ecs/r
     "https://github.com/gruntwork-io/terraform-aws-ecs/tree/v1.4.2/modules/ecs-service-with-discovery/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f26dae2a1011c9e632c89c0d830db792"
+  "hash": "ee97a906ace168720b0b9fd27260a31b"
 }
 ##DOCS-SOURCER-END -->
-*/}

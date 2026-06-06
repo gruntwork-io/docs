@@ -17,11 +17,9 @@ to monitor all your S3 buckets. Note that all the Gruntwork account baseline mod
 the hood.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "cb8ab096fd3cff97b05747cf08b14ea0"
+  "hash": "b2f8907a2b4273753794fb96e9f89ffe"
 }
 ##DOCS-SOURCER-END -->
-*/}

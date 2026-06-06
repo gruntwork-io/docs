@@ -187,7 +187,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -196,7 +195,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/api-gateway-account-settings/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b6b89b74262b66654b02eaf5dc1aad78"
+  "hash": "72630d64942ca1aaabf48bdb7492d012"
 }
 ##DOCS-SOURCER-END -->
-*/}

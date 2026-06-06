@@ -234,7 +234,6 @@ Name of the role for Kinesis Firehose
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -243,7 +242,6 @@ Name of the role for Kinesis Firehose
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/kinesis-firehose/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "919413b994517dc4fbb75545603c2a14"
+  "hash": "be90673f4a06c106ae6392ce58e39820"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -1651,7 +1651,6 @@ The input parameters for the EBS volumes.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1663,4 +1662,3 @@ The input parameters for the EBS volumes.
   "hash": "8e59ff40e8eaa1767546878cb06134ad"
 }
 ##DOCS-SOURCER-END -->
-*/}

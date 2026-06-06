@@ -892,7 +892,6 @@ A map of tags to apply to the IAM roles.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -901,7 +900,6 @@ A map of tags to apply to the IAM roles.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/saml-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "80a9ec5ded4c8e68f90da77cbda2a078"
+  "hash": "4053f0845c4b675c5aa69e9b2e70773e"
 }
 ##DOCS-SOURCER-END -->
-*/}

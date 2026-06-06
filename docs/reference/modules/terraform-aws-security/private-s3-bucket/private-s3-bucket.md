@@ -1125,7 +1125,6 @@ The name of an IAM role that can be used to configure replication from various s
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1134,7 +1133,6 @@ The name of an IAM role that can be used to configure replication from various s
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/private-s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "918a1d82bee74bf0c3332a8dbd6204e9"
+  "hash": "cf3594a98d832c300d04e889d9f8810d"
 }
 ##DOCS-SOURCER-END -->
-*/}

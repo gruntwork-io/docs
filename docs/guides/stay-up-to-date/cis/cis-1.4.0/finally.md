@@ -7,11 +7,9 @@ This guide is meant to help you get your AWS infrastructure from CIS 1.3.0 to CI
 If you’ve got any feedback or you think something’s missing from the guide, please get in touch via one of the [support options](/support).
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "602a2e468ae51e221974b30303dd0ffc"
+  "hash": "0467d5d25c74d981f3263fbe92df4204"
 }
 ##DOCS-SOURCER-END -->
-*/}

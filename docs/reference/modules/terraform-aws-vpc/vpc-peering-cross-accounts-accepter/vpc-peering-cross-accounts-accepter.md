@@ -315,7 +315,6 @@ Peering connection ID.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -327,4 +326,3 @@ Peering connection ID.
   "hash": "54fd841eae6bd1d658325cb4751b01f1"
 }
 ##DOCS-SOURCER-END -->
-*/}

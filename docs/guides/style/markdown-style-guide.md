@@ -7,7 +7,7 @@ import { CCLicense } from "/src/components/CCLicense"
 
 # Markdown style guide
 
-{/*
+<!--
 
 NOTE TO EDITORS: Some of the code-fenced examples in this document specify
 `plain` instead of `markdown` as the language. This is done purposefully to
@@ -17,7 +17,7 @@ Markdown syntax.
 (`plain` is not a supported language and has no effect other than to signify
 in context that it's an explicit choice rather than an error of omission.)
 
-*/}
+-->
 
 Much of what makes Markdown great is the ability to write plain text and get great formatted output as a result. We want to keep our source Markdown as simple and consistent as possible to make it easier for our many authors to contribute to Gruntwork documentation over time. It’s much easier to understand and make edits to a large collection of docs when they all share a consistent style.
 
@@ -511,7 +511,7 @@ Keep in mind that…
 You can also provide a custom title:
 
 ```markdown
-:::tip[Did you know…]
+:::tip Did you know…
 
 I'll bet you didn't!
 
@@ -814,11 +814,9 @@ This Markdown style guide is adapted from [one provided by Google](https://googl
 </CCLicense>
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c9eb6ad42e53816bc4793e2656217f84"
+  "hash": "f92fbc2823cf0caf9e42a0cfb9f922de"
 }
 ##DOCS-SOURCER-END -->
-*/}

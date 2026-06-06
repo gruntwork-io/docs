@@ -81,11 +81,9 @@ Configure CI / CD tools, including:
 We'll discuss CI / CD more in a dedicated section later on.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "64f4bd2a770e08e262e162e459630773"
+  "hash": "8453ef57b74100d6a6b9f64658b14dc3"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -95,7 +95,6 @@ If you want to deploy this module in production, check out the following resourc
 
 *   [IAM permissions required for ssh-grunt to work](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/ssh-grunt/core-concepts.md#set-up-iam-permissions)
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -104,7 +103,6 @@ If you want to deploy this module in production, check out the following resourc
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/ssh-grunt/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b945e2f81fc1c93e2c8ef842a5335291"
+  "hash": "3e80483d53d614a8b9a40f9e9cf10a15"
 }
 ##DOCS-SOURCER-END -->
-*/}

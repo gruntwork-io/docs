@@ -47,11 +47,9 @@ each server to see a log file, and worrying about losing those log files if the 
 your servers in near-real-time.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7224e31f90032240dbfc1e9ad455a86c"
+  "hash": "54476bdf3a748fb598f356843322546f"
 }
 ##DOCS-SOURCER-END -->
-*/}

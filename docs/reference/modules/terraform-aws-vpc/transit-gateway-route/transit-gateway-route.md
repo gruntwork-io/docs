@@ -32,7 +32,7 @@ A transit gateway route is a way to route traffic between VPCs, peers, VPNs, and
 
 For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/examples/transit-gateway-route/).
 
-{/* BEGIN_TF_DOCS */}
+<!-- BEGIN_TF_DOCS -->
 
 ## Requirements
 
@@ -72,7 +72,7 @@ No modules.
 |------|-------------|
 | <a name="output_id"></a> [id](#output_id) | Map of ids of the transit gateway routes. |
 
-{/* END_TF_DOCS */}
+<!-- END_TF_DOCS -->
 
 ## Sample Usage
 
@@ -223,7 +223,6 @@ Map of ids of the transit gateway routes.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -235,4 +234,3 @@ Map of ids of the transit gateway routes.
   "hash": "5515e10d255287c080f5bc51fc09cdde"
 }
 ##DOCS-SOURCER-END -->
-*/}

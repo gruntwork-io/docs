@@ -204,11 +204,9 @@ This usually happens when the module already had `destroy` called on it previous
 case, your best bet is to skip over that module with the `--terragrunt-exclude-dir` (more details: [here](https://terragrunt.gruntwork.io/docs/reference/cli-options/#terragrunt-exclude-dir)).
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8dfe92e235ce7a99778bc722b1337d7d"
+  "hash": "094bceed99a69d1fd150af218e2ff247"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -615,7 +615,6 @@ The name configured for VPC.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -627,4 +626,3 @@ The name configured for VPC.
   "hash": "71a0d7c38d01fca983673040a7b0cd9b"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -1684,7 +1684,6 @@ A list of IDs of the RDS DB instance's read replicas.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1696,4 +1695,3 @@ A list of IDs of the RDS DB instance's read replicas.
   "hash": "e292d22961346e647edf9030822524b5"
 }
 ##DOCS-SOURCER-END -->
-*/}

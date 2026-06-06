@@ -1,6 +1,6 @@
 # How it works
 
-:::info[Newer Version Available]
+:::info Newer Version Available
 This documentation pertains to an old version of Gruntwork Pipelines which used the `infrastructure-pipelines` repository. [Click here](../../pipelines/overview/) to view documentation for the most recent version.
 :::
 
@@ -84,11 +84,9 @@ plan and apply Terraform and Terragrunt code. These tasks run in the same [Docke
 as the AMI builder.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "9ba12dc3f2814658f66fa4ecf1e87ffd"
+  "hash": "54a11ef2c99ee2c379ea199e14e8a669"
 }
 ##DOCS-SOURCER-END -->
-*/}

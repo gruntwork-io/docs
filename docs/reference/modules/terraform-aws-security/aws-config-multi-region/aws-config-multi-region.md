@@ -1587,7 +1587,6 @@ The ARNs of the SNS Topic used by the config notifications.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1596,7 +1595,6 @@ The ARNs of the SNS Topic used by the config notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/aws-config-multi-region/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1d60cfaf462078b185e3e99e7f55bb41"
+  "hash": "290a36339f805753e7e0d560d0618421"
 }
 ##DOCS-SOURCER-END -->
-*/}

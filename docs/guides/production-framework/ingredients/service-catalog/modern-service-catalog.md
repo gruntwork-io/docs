@@ -47,11 +47,9 @@ Catalog should have tests built in *that systematically validate the code meets 
 For a concrete example of a Service Catalog for AWS, see the [Gruntwork Service Catalog](https://gruntwork.io/repos).
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "85afaabdbf46e6ab9a88694e89fe0a1b"
+  "hash": "d2c8c16c221d43b0989eeec08a273e3a"
 }
 ##DOCS-SOURCER-END -->
-*/}

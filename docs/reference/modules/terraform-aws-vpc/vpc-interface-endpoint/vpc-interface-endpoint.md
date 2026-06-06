@@ -8901,7 +8901,6 @@ If you have private dns enabled, then your streaming calls would automatically g
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -8913,4 +8912,3 @@ If you have private dns enabled, then your streaming calls would automatically g
   "hash": "f9a6533beeb44a87f9f16b95e4bc498a"
 }
 ##DOCS-SOURCER-END -->
-*/}

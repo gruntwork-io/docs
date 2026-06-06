@@ -1052,7 +1052,6 @@ The AWS-managed DNS name assigned to the ALB.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1064,4 +1063,3 @@ The AWS-managed DNS name assigned to the ALB.
   "hash": "67ff733ca0ec2d2744e4188df64bdfa2"
 }
 ##DOCS-SOURCER-END -->
-*/}

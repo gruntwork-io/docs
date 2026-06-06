@@ -19,7 +19,7 @@ Therefore, the only changes that you will need to do are version number bumps.
 :::caution
 
 Gruntwork follows [semantic
-versioning](/2.0/docs/library/guides/versioning/).
+versioning](/library/stay-up-to-date/versioning).
 For any pre-1.0 modules, this means that version updates to the minor version
 are considered backwards incompatible releases for any version updates prior to
 1.0.0 release. Make sure to read the release notes for the relevant modules any
@@ -138,11 +138,9 @@ and the respective versions that are compatible with Terraform 1.1:
 </table>
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "c3d906d39291a2931791e2da04252efc"
+  "hash": "217df2842415cae7425ba67ad9e8ddae"
 }
 ##DOCS-SOURCER-END -->
-*/}

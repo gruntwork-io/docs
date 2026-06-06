@@ -11,7 +11,7 @@ import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
 <VersionBadge repoTitle="AWS Lambda" version="1.3.1" lastModifiedVersion="1.3.1"/>
 
-{/* Frontmatter
+<!-- Frontmatter
 type: service
 name: Lambda Function HTTP API Gateway
 description: Deploy an HTTP API Gateway integrated with Lambda functions.
@@ -20,7 +20,7 @@ cloud: aws
 tags: ["lambda"]
 license: gruntwork
 built-with: terraform
-*/}
+-->
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/lambda-http-api-gateway" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
@@ -725,7 +725,6 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -734,7 +733,6 @@ A map from the route keys to the IDs of the corresponding API Gateway V2 Route r
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/lambda-http-api-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "2becc7c14d3554408d38cc384bc0dacc"
+  "hash": "fe12e7313234415feed04e72d6c7f459"
 }
 ##DOCS-SOURCER-END -->
-*/}

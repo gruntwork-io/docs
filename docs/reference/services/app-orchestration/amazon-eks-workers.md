@@ -2991,7 +2991,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -3003,4 +3002,3 @@ The list of names of the ASGs that were deployed to act as EKS workers.
   "hash": "8d727787b1e555ac779c31c1de41ede4"
 }
 ##DOCS-SOURCER-END -->
-*/}

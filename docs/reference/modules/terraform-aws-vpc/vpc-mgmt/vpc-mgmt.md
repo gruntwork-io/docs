@@ -1057,7 +1057,6 @@ A null_resource that indicates that the VPC is ready, including all of its resou
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1069,4 +1068,3 @@ A null_resource that indicates that the VPC is ready, including all of its resou
   "hash": "f1fb97009a43b66e2cf3ff1b182da434"
 }
 ##DOCS-SOURCER-END -->
-*/}

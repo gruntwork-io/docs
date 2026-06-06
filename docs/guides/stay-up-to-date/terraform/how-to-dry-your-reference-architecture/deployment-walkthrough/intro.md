@@ -1,6 +1,6 @@
 # Update Approach
 
-:::danger[Prerequisite: Update Terragrunt to a compatible version]
+:::danger Prerequisite: Update Terragrunt to a compatible version
 
 This guide assumes you are using Terragrunt version
 [v0.35.0](https://github.com/gruntwork-io/terragrunt/releases/tag/v0.35.0) or newer, so that all bug fixes for multiple
@@ -40,11 +40,9 @@ include "envcommon" {
 ```
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "ae1100b8e10b9831b92616877a8862dc"
+  "hash": "05542d29c57c912a1c745fa10f80a326"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -37,7 +37,7 @@ There is a bootstrap script in your `infrastructure-live` repository that will a
 
 The gruntwork CLI includes a [wizard](/refarch/configuration/run-the-wizard.md) that automates all of the steps to get the required data from you. We strongly recommended using the wizard for the majority of users.
 
-:::info[Manual Configuration]
+:::info Manual Configuration
 If you are required to manually provision AWS accounts, domain names, or otherwise, the Gruntwork CLI has utilities to [manually bootstrap](https://github.com/gruntwork-io/gruntwork#bootstrap-manually) the required resources. This approach is only recommended for advanced users after consulting with Gruntwork. After all data has been generated manually, you will need to fill out the `reference-architecture-form.yml` manually.
 :::
 
@@ -47,11 +47,9 @@ Now that you understand the configuration and delivery process at a high level, 
 
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "57f1ac9c43767ad8d68ee7f22c0895c4"
+  "hash": "f90abf52becae4dead73f4d4d70b7114"
 }
 ##DOCS-SOURCER-END -->
-*/}

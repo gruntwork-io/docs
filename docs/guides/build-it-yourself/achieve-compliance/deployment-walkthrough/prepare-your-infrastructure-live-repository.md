@@ -4,7 +4,7 @@ sidebar_label: Prepare your infrastructure-live repository
 
 # Prepare your infrastructure-live repository
 
-:::info[Terragrunt not required]
+:::info Terragrunt not required
 
 This guide uses [Terragrunt](https://github.com/gruntwork-io/terragrunt) and its associated file and folder
 structure to deploy Terraform modules. Please note that **Terragrunt is NOT required for using Terraform modules from
@@ -177,11 +177,9 @@ locals {
 ```
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "51967f34d602a9cc18efc45855d82e56"
+  "hash": "dd0d0202eab6dc1196f9f21fed82cb93"
 }
 ##DOCS-SOURCER-END -->
-*/}

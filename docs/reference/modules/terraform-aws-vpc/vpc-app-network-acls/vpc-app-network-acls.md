@@ -754,7 +754,6 @@ Use this variable to ensure the Network ACL does not get created until the VPC i
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -766,4 +765,3 @@ Use this variable to ensure the Network ACL does not get created until the VPC i
   "hash": "9e1b9b3c5697c97b2cba15d5efd5499f"
 }
 ##DOCS-SOURCER-END -->
-*/}

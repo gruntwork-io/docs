@@ -9,11 +9,9 @@ compatible with Terraform 0.13 by following HashiCorp’s [Terraform 0.13
 Upgrade Guide](https://www.terraform.io/upgrade-guides/0-13.html).
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "31e18590ce2ac39bef2ea936589186c8"
+  "hash": "b92f87fe0e1cbc75dedb55878f8e449e"
 }
 ##DOCS-SOURCER-END -->
-*/}

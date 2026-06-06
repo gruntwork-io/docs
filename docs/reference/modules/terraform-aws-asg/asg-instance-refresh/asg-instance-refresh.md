@@ -648,7 +648,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -657,7 +656,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.1.0/modules/asg-instance-refresh/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5ccd92132431e939886188e6d5e4944c"
+  "hash": "c470c6c336c06c1998d9a264869b172b"
 }
 ##DOCS-SOURCER-END -->
-*/}

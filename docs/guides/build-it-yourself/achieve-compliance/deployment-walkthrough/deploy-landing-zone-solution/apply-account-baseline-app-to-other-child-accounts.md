@@ -308,11 +308,9 @@ compliance; it is a failure of the AWS audit tool. Note also that the accounts a
 the benchmark, v1.3.0; the AWS Security Hub does not support this version at the current time.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "8d4bc8a1407957b6b3b5413ff6f975ae"
+  "hash": "33d01518a80c1b75e1bbe137ef4763ff"
 }
 ##DOCS-SOURCER-END -->
-*/}

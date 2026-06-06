@@ -241,7 +241,6 @@ The ARN of the IAM service role used by Backup plans
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -253,4 +252,3 @@ The ARN of the IAM service role used by Backup plans
   "hash": "2aac25742db546e34a45c39efb15a84e"
 }
 ##DOCS-SOURCER-END -->
-*/}

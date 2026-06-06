@@ -16,11 +16,9 @@ Deploy a new app: that is, a web service written in a general purpose programmin
 
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "e745b8e63f45a75df8c84da2ae081179"
+  "hash": "9c13d0c788f2295456c702e6c7da82be"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -174,7 +174,6 @@ Map of port ranges to the ranges to allow. This is provided as a convenience out
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -186,4 +185,3 @@ Map of port ranges to the ranges to allow. This is provided as a convenience out
   "hash": "f09f835abf17c21ed2a3307bb7983b07"
 }
 ##DOCS-SOURCER-END -->
-*/}

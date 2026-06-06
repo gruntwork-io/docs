@@ -69,7 +69,7 @@ What follows are the steps required to configure Transit Gateway resources withi
 *   Attach your VPCs to your Transit Gateway
 *   Add routes between the Transit Gateways and your VPCs
 
-{/* BEGIN_TF_DOCS */}
+<!-- BEGIN_TF_DOCS -->
 
 ## Requirements
 
@@ -117,7 +117,7 @@ No modules.
 | <a name="output_default_route_table_id"></a> [default_route_table_id](#output_default_route_table_id) | Transit Gateway default route table identifier. |
 | <a name="output_id"></a> [id](#output_id) | Transit Gateway identifier. |
 
-{/* END_TF_DOCS */}
+<!-- END_TF_DOCS -->
 
 ## Sample Usage
 
@@ -439,7 +439,6 @@ Identifier of the Transit Gateway's default propagation route table.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -451,4 +450,3 @@ Identifier of the Transit Gateway's default propagation route table.
   "hash": "051396e48803544c7bd8a27d0ad64279"
 }
 ##DOCS-SOURCER-END -->
-*/}

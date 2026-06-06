@@ -102,7 +102,6 @@ If you’ve never used the Service Catalog before, make sure to read
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -114,4 +113,3 @@ If you’ve never used the Service Catalog before, make sure to read
   "hash": "097be04e512a06f19107b1d8adadcd64"
 }
 ##DOCS-SOURCER-END -->
-*/}

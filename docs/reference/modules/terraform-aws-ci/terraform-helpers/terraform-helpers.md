@@ -337,7 +337,6 @@ In your infrastructure pipelines, you should use `--exclude-deleted` to filter o
 and `apply` actions so that Terraform/Terragrunt can run. If you wish to implement destroy workflows, you can use the
 `--include-deleted-only` parameter to setup a separate pipeline for handling `destroy` actions.
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -346,7 +345,6 @@ and `apply` actions so that Terraform/Terragrunt can run. If you wish to impleme
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/terraform-helpers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f28f9c7022f67c07c580f4dd43e77295"
+  "hash": "c6a86eb4796db06b202fc315b20b04d6"
 }
 ##DOCS-SOURCER-END -->
-*/}

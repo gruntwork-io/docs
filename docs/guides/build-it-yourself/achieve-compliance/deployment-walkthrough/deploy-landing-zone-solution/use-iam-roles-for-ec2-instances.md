@@ -22,11 +22,9 @@ Use these modules whenever possible. You should always use IAM roles in your own
 access to the AWS API. Using static API credentials should be avoided whenever possible.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6d41ca28e0f15a929fe801dcec89ea1c"
+  "hash": "af99b295cc0bfa675cbfdf671eb033a7"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -2538,7 +2538,6 @@ Security Group ID of the ECS task
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -2550,4 +2549,3 @@ Security Group ID of the ECS task
   "hash": "d99014dc58ca132677672932a7b1180a"
 }
 ##DOCS-SOURCER-END -->
-*/}

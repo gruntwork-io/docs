@@ -1152,7 +1152,6 @@ The ID of the Security Group that controls access to the cluster
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1164,4 +1163,3 @@ The ID of the Security Group that controls access to the cluster
   "hash": "ce5b331462c8130849c4efe241f6080e"
 }
 ##DOCS-SOURCER-END -->
-*/}

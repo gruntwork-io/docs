@@ -21,7 +21,6 @@ This module is used to install the OpenVPN package and related template files on
 the [init-openvpn](https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v1.0.0/modules/init-openvpn) module will be run on the server during boot to configure the OpenVPN server installed by this
 package.
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -30,7 +29,6 @@ package.
     "https://github.com/gruntwork-io/terraform-aws-openvpn/tree/v1.0.0/modules/install-openvpn/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "998d63ee2c918749148950bde355360c"
+  "hash": "1945631627176f8d293ee9430f2e5828"
 }
 ##DOCS-SOURCER-END -->
-*/}

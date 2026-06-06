@@ -376,7 +376,6 @@ The secondary IP address of the DNS resolver in the origin VPC. This is the IP t
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -388,4 +387,3 @@ The secondary IP address of the DNS resolver in the origin VPC. This is the IP t
   "hash": "f13efb356281ccd7227a29c6381d074d"
 }
 ##DOCS-SOURCER-END -->
-*/}

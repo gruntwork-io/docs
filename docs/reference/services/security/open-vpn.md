@@ -1536,7 +1536,6 @@ The security group ID of the OpenVPN server.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1548,4 +1547,3 @@ The security group ID of the OpenVPN server.
   "hash": "e9deaf5056f15e5427316bd95f8bf3a7"
 }
 ##DOCS-SOURCER-END -->
-*/}

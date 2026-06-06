@@ -914,7 +914,6 @@ inputs = {
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -923,7 +922,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-alb-ingress-controller/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "869031963b7e74245c653cb1223a0d7a"
+  "hash": "73d21ff790bc31b1693bd3e95ac4c7e1"
 }
 ##DOCS-SOURCER-END -->
-*/}

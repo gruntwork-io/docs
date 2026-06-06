@@ -1220,7 +1220,6 @@ The ID of the security group created for the OpenSearch domain. Null if not in V
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1232,4 +1231,3 @@ The ID of the security group created for the OpenSearch domain. Null if not in V
   "hash": "7f6358449c536100f8cc644973c2a354"
 }
 ##DOCS-SOURCER-END -->
-*/}

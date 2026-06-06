@@ -17,11 +17,9 @@ Infrastructure as Code Library](https://gruntwork.io/infrastructure-as-code-libr
 update to these new versions and make other changes to your code, as described in the following section.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "97f2b3d7f6e90a509ebfc950e0e7b625"
+  "hash": "38ed9039f3be3645c5202dc00a7aa30b"
 }
 ##DOCS-SOURCER-END -->
-*/}

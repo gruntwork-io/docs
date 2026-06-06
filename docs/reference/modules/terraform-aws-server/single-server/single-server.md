@@ -1315,7 +1315,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -1324,7 +1323,6 @@ When used in combination with user_data or user_data_base64, a user_data change 
     "https://github.com/gruntwork-io/terraform-aws-server/tree/v1.0.4/modules/single-server/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4afd47c1fcf368ddb166633217f52c3a"
+  "hash": "1f326a9a9320e372f533b639b1660d78"
 }
 ##DOCS-SOURCER-END -->
-*/}

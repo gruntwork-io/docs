@@ -3,11 +3,9 @@
 The logging section of the Benchmark includes configurations for CloudTrail, AWS Config, KMS keys, and VPC flow logs.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "d61f663c03d6303590ee5afd69c5c212"
+  "hash": "39456528af509fa05ddd582fa6983d8f"
 }
 ##DOCS-SOURCER-END -->
-*/}

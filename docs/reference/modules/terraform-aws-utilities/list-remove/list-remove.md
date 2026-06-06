@@ -157,7 +157,6 @@ Any types represent complex values of variable type. For details, please consult
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -166,7 +165,6 @@ Any types represent complex values of variable type. For details, please consult
     "https://github.com/gruntwork-io/terraform-aws-utilities/tree/v0.10.8/modules/list-remove/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5720852b31234695e6861d67434bcf59"
+  "hash": "03493a9f9e9e75b8b448f806603eb5f5"
 }
 ##DOCS-SOURCER-END -->
-*/}

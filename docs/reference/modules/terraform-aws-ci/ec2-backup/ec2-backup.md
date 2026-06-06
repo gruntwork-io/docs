@@ -342,7 +342,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -351,7 +350,6 @@ When true, all IAM policies will be managed as dedicated policies rather than in
     "https://github.com/gruntwork-io/terraform-aws-ci/tree/v1.3.0/modules/ec2-backup/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1661c79e8c5d0c7d38ae8a2e4ecbe3b7"
+  "hash": "c2d29d11be21ecbbadca9b883629f316"
 }
 ##DOCS-SOURCER-END -->
-*/}

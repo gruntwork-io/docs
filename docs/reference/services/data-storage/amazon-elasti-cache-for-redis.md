@@ -852,7 +852,6 @@ Security Group ID used for redis cluster.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -864,4 +863,3 @@ Security Group ID used for redis cluster.
   "hash": "693713644cf106aa99781a715148693f"
 }
 ##DOCS-SOURCER-END -->
-*/}

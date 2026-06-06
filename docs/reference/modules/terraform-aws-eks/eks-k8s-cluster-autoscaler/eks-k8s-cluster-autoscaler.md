@@ -422,7 +422,6 @@ inputs = {
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -431,7 +430,6 @@ inputs = {
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v4.6.0/modules/eks-k8s-cluster-autoscaler/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "19315b401e22d20409a9b9077ca892ad"
+  "hash": "4ccf0e658f6a6e91bc82e508da3981d2"
 }
 ##DOCS-SOURCER-END -->
-*/}

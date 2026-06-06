@@ -52,11 +52,9 @@ create PGP keys for themselves, and then you can provide their Keybase usernames
 automatically.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "6dba32549eac6fce5875a65431495525"
+  "hash": "cfc6e23713c964098ba9f49dbe2a448f"
 }
 ##DOCS-SOURCER-END -->
-*/}

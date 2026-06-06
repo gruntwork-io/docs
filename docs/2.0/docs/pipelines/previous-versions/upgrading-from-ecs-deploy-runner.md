@@ -141,11 +141,9 @@ Create a branch, commit your changes, and push the branch to the remote reposito
 
 Congratulations! By completing this guide, you should now be deploying infrastructure to at least one AWS account using Pipelines. If you have any feedback or suggestions, please reach out to `feedback@gruntwork.io`.
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "27431ce912d3a4ccbec94f08eef3d8c2"
+  "hash": "706b2e65e7b53da6cbe4129963b36070"
 }
 ##DOCS-SOURCER-END -->
-*/}

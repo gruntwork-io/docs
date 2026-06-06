@@ -2743,7 +2743,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
 </TabItem>
 </Tabs>
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -2755,4 +2754,3 @@ The ID of the Security Group that controls access to the RDS DB instance.
   "hash": "f40690a34ecf3a051092eca9b5908a96"
 }
 ##DOCS-SOURCER-END -->
-*/}

@@ -55,11 +55,9 @@ You can use this approach on each AWS account. In many cases, you’ll only need
 same methodology can be applied to pre-production accounts as well.
 
 
-{/*
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "local-copier",
-  "hash": "7033d27502225843a133ee0b0ab221d1"
+  "hash": "81acd02dda18bf32fb8caa79c4628c3c"
 }
 ##DOCS-SOURCER-END -->
-*/}
