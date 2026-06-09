@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.9.1" lastModifiedVersion="2.9.1"/>
+<VersionBadge version="2.10.0" lastModifiedVersion="2.10.0"/>
 
 # Amazon Relational Database Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.10.0/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -69,7 +69,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.10.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,12 +77,12 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.10.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
-*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
+*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.10.0/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
 
 
 ## Sample Usage
@@ -103,7 +103,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v2.9.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v2.10.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -408,6 +408,32 @@ module "rds" {
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   high_read_latency_treat_missing_data = "missing"
 
+  # The number of datapoints in CloudWatch Metric statistic, which triggers the
+  # alarm. Setting this as empty string (the default) will make it equal to the
+  # evaluation period.
+  high_replica_lag_datapoints_to_alarm = null
+
+  # The number of periods over which data is compared to the specified
+  # threshold.
+  high_replica_lag_evaluation_periods = 5
+
+  # The period, in seconds, over which to measure the replica lag metric.
+  high_replica_lag_period = 60
+
+  # The statistic to apply to the alarm's associated metric. [SampleCount,
+  # Average, Sum, Minimum, Maximum]
+  high_replica_lag_statistic = "Average"
+
+  # Trigger an alarm if the DB instance replica lag, in seconds, is above this
+  # threshold
+  high_replica_lag_threshold = 300
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_replica_lag_treat_missing_data = "notBreaching"
+
   # The period, in seconds, over which to measure the write latency.
   high_write_latency_period = 60
 
@@ -555,6 +581,13 @@ module "rds" {
   # mode.
   publicly_accessible = false
 
+  # Redefine replica instance type, if you want to define a different RDS
+  # instance type for replica.
+  read_replica_instance_type = null
+
+  # Redefine replica multi-AZ settings.
+  read_replica_multi_az = null
+
   # How many days to keep backup snapshots around before cleaning them up on the
   # read replicas. Must be 1 or greater to support read replicas. 0 means
   # disable automated backups.
@@ -563,6 +596,24 @@ module "rds" {
   # The domain name to create a route 53 record for the read replicas of the RDS
   # database.
   replica_domain_name = null
+
+  # The number of datapoints in CloudWatch Metric statistic, which triggers the
+  # alarm. Setting this as empty string (the default) will make it equal to the
+  # evaluation period.
+  replication_error_datapoints_to_alarm = null
+
+  # The number of periods over which data is compared to the specified
+  # threshold.
+  replication_error_evaluation_periods = 3
+
+  # The period, in seconds, over which to measure the replication error metric.
+  replication_error_period = 60
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  replication_error_treat_missing_data = "notBreaching"
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -645,7 +696,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v2.9.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v2.10.0"
 }
 
 inputs = {
@@ -953,6 +1004,32 @@ inputs = {
   # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
   high_read_latency_treat_missing_data = "missing"
 
+  # The number of datapoints in CloudWatch Metric statistic, which triggers the
+  # alarm. Setting this as empty string (the default) will make it equal to the
+  # evaluation period.
+  high_replica_lag_datapoints_to_alarm = null
+
+  # The number of periods over which data is compared to the specified
+  # threshold.
+  high_replica_lag_evaluation_periods = 5
+
+  # The period, in seconds, over which to measure the replica lag metric.
+  high_replica_lag_period = 60
+
+  # The statistic to apply to the alarm's associated metric. [SampleCount,
+  # Average, Sum, Minimum, Maximum]
+  high_replica_lag_statistic = "Average"
+
+  # Trigger an alarm if the DB instance replica lag, in seconds, is above this
+  # threshold
+  high_replica_lag_threshold = 300
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  high_replica_lag_treat_missing_data = "notBreaching"
+
   # The period, in seconds, over which to measure the write latency.
   high_write_latency_period = 60
 
@@ -1100,6 +1177,13 @@ inputs = {
   # mode.
   publicly_accessible = false
 
+  # Redefine replica instance type, if you want to define a different RDS
+  # instance type for replica.
+  read_replica_instance_type = null
+
+  # Redefine replica multi-AZ settings.
+  read_replica_multi_az = null
+
   # How many days to keep backup snapshots around before cleaning them up on the
   # read replicas. Must be 1 or greater to support read replicas. 0 means
   # disable automated backups.
@@ -1108,6 +1192,24 @@ inputs = {
   # The domain name to create a route 53 record for the read replicas of the RDS
   # database.
   replica_domain_name = null
+
+  # The number of datapoints in CloudWatch Metric statistic, which triggers the
+  # alarm. Setting this as empty string (the default) will make it equal to the
+  # evaluation period.
+  replication_error_datapoints_to_alarm = null
+
+  # The number of periods over which data is compared to the specified
+  # threshold.
+  replication_error_evaluation_periods = 3
+
+  # The period, in seconds, over which to measure the replication error metric.
+  replication_error_period = 60
+
+  # Sets how this alarm should handle entering the INSUFFICIENT_DATA state.
+  # Based on
+  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data.
+  # Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+  replication_error_treat_missing_data = "notBreaching"
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -2093,6 +2195,60 @@ Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on
 <HclListItemDefaultValue defaultValue="&quot;missing&quot;"/>
 </HclListItem>
 
+<HclListItem name="high_replica_lag_datapoints_to_alarm" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of datapoints in CloudWatch Metric statistic, which triggers the alarm. Setting this as empty string (the default) will make it equal to the evaluation period.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="high_replica_lag_evaluation_periods" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of periods over which data is compared to the specified threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="5"/>
+</HclListItem>
+
+<HclListItem name="high_replica_lag_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the replica lag metric.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="high_replica_lag_statistic" requirement="optional" type="string">
+<HclListItemDescription>
+
+The statistic to apply to the alarm's associated metric. [SampleCount, Average, Sum, Minimum, Maximum]
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;Average&quot;"/>
+</HclListItem>
+
+<HclListItem name="high_replica_lag_threshold" requirement="optional" type="number">
+<HclListItemDescription>
+
+Trigger an alarm if the DB instance replica lag, in seconds, is above this threshold
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="300"/>
+</HclListItem>
+
+<HclListItem name="high_replica_lag_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;notBreaching&quot;"/>
+</HclListItem>
+
 <HclListItem name="high_write_latency_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2405,6 +2561,24 @@ If you wish to make your database accessible from the public Internet, set this 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="read_replica_instance_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+Redefine replica instance type, if you want to define a different RDS instance type for replica.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="read_replica_multi_az" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Redefine replica multi-AZ settings.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="replica_backup_retention_period" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -2421,6 +2595,42 @@ The domain name to create a route 53 record for the read replicas of the RDS dat
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="replication_error_datapoints_to_alarm" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of datapoints in CloudWatch Metric statistic, which triggers the alarm. Setting this as empty string (the default) will make it equal to the evaluation period.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="replication_error_evaluation_periods" requirement="optional" type="number">
+<HclListItemDescription>
+
+The number of periods over which data is compared to the specified threshold.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="3"/>
+</HclListItem>
+
+<HclListItem name="replication_error_period" requirement="optional" type="number">
+<HclListItemDescription>
+
+The period, in seconds, over which to measure the replication error metric.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="60"/>
+</HclListItem>
+
+<HclListItem name="replication_error_treat_missing_data" requirement="optional" type="string">
+<HclListItemDescription>
+
+Sets how this alarm should handle entering the INSUFFICIENT_DATA state. Based on https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data. Must be one of: 'missing', 'ignore', 'breaching' or 'notBreaching'.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;notBreaching&quot;"/>
 </HclListItem>
 
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
@@ -2746,11 +2956,11 @@ The ID of the Security Group that controls access to the RDS DB instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/rds/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.9.1/modules/data-stores/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.10.0/modules/data-stores/rds/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.10.0/modules/data-stores/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.10.0/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "f40690a34ecf3a051092eca9b5908a96"
+  "hash": "770f355b4f3d37922ff3c5a38ad93233"
 }
 ##DOCS-SOURCER-END -->
