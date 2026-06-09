@@ -153,6 +153,26 @@ jobs:
       - *notify_slack_releases_pr_ready
 
 # ---------------------------------------------------------------------------------------------------------------------
+# Job groups bundle multiple jobs into a single atomic unit for queueing. We use this so the prod_deployment workflow
+# can apply `serial-group` to the entire validate -> deploy pipeline, instead of to deploy-to-prod alone. Per-job
+# `serial-group` orders by job-ready time, which means a later pipeline with a faster validate-build could overtake
+# an earlier pipeline and deploy older content on top of newer content via the S3 sync --delete. Putting serial-group
+# on the group invocation makes the whole pipeline queue as one unit in trigger order.
+# https://circleci.com/docs/guides/orchestrate/controlling-serial-execution-across-your-organization/#job-groups
+# ---------------------------------------------------------------------------------------------------------------------
+job-groups:
+  validate-and-deploy-to-prod:
+    jobs:
+      - validate-build
+      - deploy-to-prod:
+          context:
+            - SLACK__WEBHOOK__team-platform
+            - AWS__DOGFOOD_SECURITY__gruntwork-website-ci
+            - GITHUB__PAT__gruntwork-ci
+          requires:
+            - validate-build
+
+# ---------------------------------------------------------------------------------------------------------------------
 # Here we combine the jobs defined above into various workflows that can run in parallel or sequentially, define
 # dependencies on each other, and only run on certain branches/tags.
 # ---------------------------------------------------------------------------------------------------------------------
@@ -179,21 +199,10 @@ workflows:
           - equal: [scheduled_pipeline, << pipeline.trigger_source >>]
           - equal: [ api, << pipeline.trigger_source >> ]
     jobs:
-      - validate-build:
-          filters:
-            branches:
-              only: main
-      - deploy-to-prod:
-          # Serialize prod deploys so multiple PRs merged in quick succession can't race on the S3 sync (with --delete)
-          # or the Algolia reindex. Jobs sharing this serial-group run one at a time in trigger order instead of in parallel.
-          # https://circleci.com/docs/guides/orchestrate/controlling-serial-execution-across-your-organization/#how-serial-groups-work
-          serial-group: << pipeline.project.slug >>/deploy-to-prod
-          context:
-            - SLACK__WEBHOOK__team-platform
-            - AWS__DOGFOOD_SECURITY__gruntwork-website-ci
-            - GITHUB__PAT__gruntwork-ci
-          requires:
-            - validate-build
+      # Wrapped in validate-and-deploy-to-prod so the whole validate -> deploy pipeline serializes as one queue unit that
+      # can have serial-group applied to it.
+      - validate-and-deploy-to-prod:
+          serial-group: << pipeline.project.slug >>/validate-and-deploy-to-prod
           filters:
             branches:
               only: main
