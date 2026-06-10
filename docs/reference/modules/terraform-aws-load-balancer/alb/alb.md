@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="1.3.1" lastModifiedVersion="1.1.1"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="1.3.2" lastModifiedVersion="1.3.2"/>
 
 # Application Load Balancer (ALB) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.1/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.2/modules/alb" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v1.1.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v1.3.2" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an [Application Load Balancer](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
 that you can use as a load balancer for any [ALB Target Group](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html).
@@ -191,7 +191,7 @@ There are two ways for you to override this behavior:
 
 module "alb" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v1.3.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v1.3.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -414,6 +414,12 @@ module "alb" {
   # includeSubDomains; preload'.
   routing_http_response_strict_transport_security_header_value = null
 
+  # A map of tags to apply to the ALB's Security Group, on top of
+  # var.custom_tags. The key is the tag name and the value is the tag value.
+  # Tags defined here take precedence over those in var.custom_tags on key
+  # collisions.
+  security_group_tags = {}
+
   # DEPRECATED. The VPC ID in which this ALB will be placed.
   vpc_id = ""
 
@@ -438,7 +444,7 @@ module "alb" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v1.3.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/alb?ref=v1.3.2"
 }
 
 inputs = {
@@ -663,6 +669,12 @@ inputs = {
   # automatically be converted to HTTPS. Example: 'max-age=31536000;
   # includeSubDomains; preload'.
   routing_http_response_strict_transport_security_header_value = null
+
+  # A map of tags to apply to the ALB's Security Group, on top of
+  # var.custom_tags. The key is the tag name and the value is the tag value.
+  # Tags defined here take precedence over those in var.custom_tags on key
+  # collisions.
+  security_group_tags = {}
 
   # DEPRECATED. The VPC ID in which this ALB will be placed.
   vpc_id = ""
@@ -1310,6 +1322,15 @@ The type of IP addresses used by the subnets for your load balancer. The possibl
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="security_group_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the ALB's Security Group, on top of <a href="#custom_tags"><code>custom_tags</code></a>. The key is the tag name and the value is the tag value. Tags defined here take precedence over those in <a href="#custom_tags"><code>custom_tags</code></a> on key collisions.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="vpc_id" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1417,11 +1438,11 @@ A map from port to the AWS ARNs of the listeners for the ALB that has been deplo
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.1/modules/alb/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.1/modules/alb/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.1/modules/alb/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.2/modules/alb/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.2/modules/alb/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.2/modules/alb/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "804002a5ec7bafaddcd7e4c086e6ac57"
+  "hash": "90f0c32824adcbd6becd6f3b8f0c83da"
 }
 ##DOCS-SOURCER-END -->
