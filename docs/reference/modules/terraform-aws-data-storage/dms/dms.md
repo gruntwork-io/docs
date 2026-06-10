@@ -21,9 +21,10 @@ This module creates AWS Database Migration Service (DMS) resources for database 
 
 ## What This Module Creates
 
-*   DMS replication instance
+*   DMS replication instance for classic DMS tasks
+*   DMS serverless replication config when `task_compute_config` is set
 *   Source and target endpoints
-*   Replication tasks
+*   Replication tasks or replication configs
 *   Required IAM roles and policies
 *   CloudWatch log groups
 *   Security groups for network access
@@ -34,7 +35,10 @@ Currently supports:
 
 *   MySQL
 *   MariaDB
+*   PostgreSQL
 *   Aurora MySQL
+*   Aurora PostgreSQL
+*   Amazon S3
 
 (As source and target)
 
@@ -52,53 +56,66 @@ The module supports three migration types via `migration_type` variable:
 module "dms" {
   source = "../modules/dms"
 
-  name = "my-database-migration"
+  name       = "my-database-migration"
+  vpc_id     = "vpc-12345678"
+  subnet_ids = ["subnet-abc123", "subnet-def456"]
 
-  # Replication instance
-  replication_instance_class = "dms.t3.medium"
-  allocated_storage         = 100
+  # Classic DMS replication instance mode
+  instance_type               = "dms.t3.medium"
+  instance_allocated_storage  = 100
+  task_migration_type         = "full-load-and-cdc"
+  task_table_mappings         = file("${path.module}/table_mappings.json")
+  task_start_replication_task = false
 
-  # Source endpoint
-  source_endpoint_config = {
-    endpoint_id   = "source-mysql"
-    endpoint_type = "source"
-    engine_name   = "mysql"
-    server_name   = "source.example.com"
-    port          = 3306
-    username      = var.source_username
-    password      = var.source_password
-  }
+  source_endpoint_engine_name   = "mysql"
+  source_endpoint_server_name   = "source.example.com"
+  source_endpoint_port          = 3306
+  source_endpoint_username      = var.source_username
+  source_endpoint_password      = var.source_password
+  source_endpoint_database_name = "app"
 
-  # Target endpoint
-  target_endpoint_config = {
-    endpoint_id   = "target-aurora"
-    endpoint_type = "target"
-    engine_name   = "aurora"
-    server_name   = "target.cluster.amazonaws.com"
-    port          = 3306
-    username      = var.target_username
-    password      = var.target_password
-  }
-
-  migration_type = "full-load-and-cdc"
+  target_endpoint_engine_name   = "postgres"
+  target_endpoint_server_name   = "target.example.com"
+  target_endpoint_port          = 5432
+  target_endpoint_username      = var.target_username
+  target_endpoint_password      = var.target_password
+  target_endpoint_database_name = "app"
 }
 ```
+
+If the account-level DMS roles already exist, set `create_iam_roles = false` and let AWS DMS use the existing `dms-vpc-role`, `dms-cloudwatch-logs-role`, and `dms-access-for-endpoint` roles.
+
+## Migration Guide
+
+This module now manages the classic DMS resources with `count`, which changes their Terraform addresses from `aws_dms_replication_instance.this` and `aws_dms_replication_task.this` to indexed addresses ending in `[0]`.
+
+If you already manage these resources in state, move them before applying to avoid a destroy and recreate:
+
+```bash
+terraform state mv 'module.dms.aws_dms_replication_instance.this' 'module.dms.aws_dms_replication_instance.this[0]'
+terraform state mv 'module.dms.aws_dms_replication_task.this' 'module.dms.aws_dms_replication_task.this[0]'
+```
+
+If your module path is not `module.dms`, adjust the address prefix accordingly.
 
 ## Configuration
 
 *   See the [root README](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/README.md) for instructions on using Terraform modules.
 *   See the [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/modules/dms/variables.tf) for all the variables you can set on this module.
-*   See the [dms-mysql examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/examples/dms-mysql/) folder for instruction on how to setup the modules to migrate data from an AWS RDS MySQL Instance to another AWS RDS MySQL Instance.
-*   See the [dms-aurora examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/examples/dms-aurora/) folder for instructions on how to setup the modules to migrate data from an AWS RDS MySQL Instance to another AWS RDS MySQL Instance.
+*   See the [dms-mysql examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/examples/dms-mysql/) folder for instruction on how to setup the module to migrate data from one AWS RDS MySQL instance to another using a classic DMS replication instance.
+*   See the [dms-aurora examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/examples/dms-aurora/) folder for instructions on how to setup the module to migrate data between Aurora clusters using a classic DMS replication instance.
+*   See the [dms-serverless example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/examples/dms-serverless/) folder for instructions on how to run the module in DMS serverless mode.
 
 ## Key Variables
 
 *   `name` - Name prefix for all DMS resources
-*   `replication_instance_class` - Instance size (e.g., dms.t3.medium)
-*   `allocated_storage` - Storage in GB
+*   `instance_type` - Instance size for classic DMS mode (e.g., dms.t3.medium)
+*   `instance_allocated_storage` - Storage in GB
 *   `vpc_id` - VPC for deployment
-*   `subnet_ids` - Subnets for replication instance
-*   `migration_type` - full-load, cdc, or full-load-and-cdc
+*   `subnet_ids` - Subnets for the replication instance or serverless subnet group
+*   `task_migration_type` - full-load, cdc, or full-load-and-cdc
+*   `task_compute_config` - Serverless compute settings. When set, the module creates `aws_dms_replication_config` instead of `aws_dms_replication_task`. If `create_subnet_group = false`, include `replication_subnet_group_id`
+*   `create_iam_roles` - Whether this module should create the shared AWS-required DMS IAM roles
 
 ## Common Issues
 
@@ -106,13 +123,14 @@ module "dms" {
 *   **Storage**: Allocate enough for your data volume
 *   **Primary keys**: Required for CDC performance
 *   **LOB columns**: May need special handling
+*   **IAM roles**: AWS DMS expects the shared account-level roles `dms-vpc-role`, `dms-cloudwatch-logs-role`, and `dms-access-for-endpoint`. Set `create_iam_roles = false` if they already exist in the account
 
 ## Outputs
 
-*   `replication_instance_arn` - ARN of replication instance
-*   `source_endpoint_arn` - Source endpoint ARN
-*   `target_endpoint_arn` - Target endpoint ARN
-*   `replication_task_arn` - Task ARN
+*   `replication_instance_arn` - ARN of replication instance when classic mode is used
+*   `endpoints` - Source and target endpoints created by the module
+*   `replication_tasks` - Classic DMS replication tasks
+*   `replication_configs` - DMS serverless replication configs
 
 ## Sample Usage
 
@@ -133,20 +151,11 @@ module "dms" {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The compute and memory capacity of the replication instance as specified by
-  # the replication instance class
-  instance_type = <string>
-
   # The name used to namespace all resources created by these templates,
   # including the DB instance (e.g. drupaldb). Must be unique for this region.
   # May contain only lowercase alphanumeric characters, hyphens, underscores,
   # periods, and spaces.
   name = <string>
-
-  # A list of subnet ids where the Replication Instance should be deployed. In
-  # the standard Gruntwork VPC setup, these should be the private persistence
-  # subnet ids. This is ignored if create_subnet_group=false.
-  subnet_ids = <list(string)>
 
   # The migration type. Can be one of `full-load` | `cdc` | `full-load-and-cdc`.
   task_migration_type = <string>
@@ -156,12 +165,20 @@ module "dms" {
   # http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.html
   task_table_mappings = <string>
 
-  # The id of the VPC in which this Replication Instance should be deployed.
-  vpc_id = <string>
-
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # If true, create the account-level IAM roles required by AWS DMS
+  # (`dms-vpc-role`, `dms-cloudwatch-logs-role`, and `dms-access-for-endpoint`).
+  # Set to false when these shared roles already exist or are managed outside
+  # this module.
+  create_iam_roles = true
+
+  # If true, create an `aws_dms_replication_instance` for non-serverless
+  # replication task mode. This is automatically ignored when
+  # `task_compute_config` is set for serverless mode.
+  create_replication_instance = true
 
   # If false, the DMS instance will bind to `instance_subnet_group_id` variable.
   create_subnet_group = true
@@ -221,6 +238,11 @@ module "dms" {
 
   # A map of timeouts for replication instance create/update/delete operations
   instance_timeouts = {}
+
+  # The compute and memory capacity of the replication instance as specified by
+  # the replication instance class. Required only for non-serverless replication
+  # task mode.
+  instance_type = null
 
   # A list of VPC security group IDs to be used with the replication instance
   instance_vpc_security_group_ids = null
@@ -287,6 +309,11 @@ module "dms" {
   # not specified.
   subnet_group_name = null
 
+  # A list of subnet ids where the Replication Instance should be deployed. In
+  # the standard Gruntwork VPC setup, these should be the private persistence
+  # subnet ids. This is ignored if create_subnet_group=false.
+  subnet_ids = []
+
   # Name of the endpoint database
   target_endpoint_database_name = null
 
@@ -348,6 +375,11 @@ module "dms" {
   # start of the Change Data Capture (CDC) operation.
   task_cdc_start_time = null
 
+  # Optional compute configuration for serverless replication mode. When set,
+  # the module creates `aws_dms_replication_config` instead of
+  # `aws_dms_replication_task`.
+  task_compute_config = null
+
   # An escaped JSON string that contains the task settings. For a complete list
   # of task settings, see
   # http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html.
@@ -355,6 +387,9 @@ module "dms" {
 
   # Whether to run or stop the replication task.
   task_start_replication_task = false
+
+  # The id of the VPC in which this Replication Instance should be deployed.
+  vpc_id = null
 
 }
 
@@ -380,20 +415,11 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The compute and memory capacity of the replication instance as specified by
-  # the replication instance class
-  instance_type = <string>
-
   # The name used to namespace all resources created by these templates,
   # including the DB instance (e.g. drupaldb). Must be unique for this region.
   # May contain only lowercase alphanumeric characters, hyphens, underscores,
   # periods, and spaces.
   name = <string>
-
-  # A list of subnet ids where the Replication Instance should be deployed. In
-  # the standard Gruntwork VPC setup, these should be the private persistence
-  # subnet ids. This is ignored if create_subnet_group=false.
-  subnet_ids = <list(string)>
 
   # The migration type. Can be one of `full-load` | `cdc` | `full-load-and-cdc`.
   task_migration_type = <string>
@@ -403,12 +429,20 @@ inputs = {
   # http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.html
   task_table_mappings = <string>
 
-  # The id of the VPC in which this Replication Instance should be deployed.
-  vpc_id = <string>
-
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # If true, create the account-level IAM roles required by AWS DMS
+  # (`dms-vpc-role`, `dms-cloudwatch-logs-role`, and `dms-access-for-endpoint`).
+  # Set to false when these shared roles already exist or are managed outside
+  # this module.
+  create_iam_roles = true
+
+  # If true, create an `aws_dms_replication_instance` for non-serverless
+  # replication task mode. This is automatically ignored when
+  # `task_compute_config` is set for serverless mode.
+  create_replication_instance = true
 
   # If false, the DMS instance will bind to `instance_subnet_group_id` variable.
   create_subnet_group = true
@@ -468,6 +502,11 @@ inputs = {
 
   # A map of timeouts for replication instance create/update/delete operations
   instance_timeouts = {}
+
+  # The compute and memory capacity of the replication instance as specified by
+  # the replication instance class. Required only for non-serverless replication
+  # task mode.
+  instance_type = null
 
   # A list of VPC security group IDs to be used with the replication instance
   instance_vpc_security_group_ids = null
@@ -534,6 +573,11 @@ inputs = {
   # not specified.
   subnet_group_name = null
 
+  # A list of subnet ids where the Replication Instance should be deployed. In
+  # the standard Gruntwork VPC setup, these should be the private persistence
+  # subnet ids. This is ignored if create_subnet_group=false.
+  subnet_ids = []
+
   # Name of the endpoint database
   target_endpoint_database_name = null
 
@@ -595,6 +639,11 @@ inputs = {
   # start of the Change Data Capture (CDC) operation.
   task_cdc_start_time = null
 
+  # Optional compute configuration for serverless replication mode. When set,
+  # the module creates `aws_dms_replication_config` instead of
+  # `aws_dms_replication_task`.
+  task_compute_config = null
+
   # An escaped JSON string that contains the task settings. For a complete list
   # of task settings, see
   # http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html.
@@ -602,6 +651,9 @@ inputs = {
 
   # Whether to run or stop the replication task.
   task_start_replication_task = false
+
+  # The id of the VPC in which this Replication Instance should be deployed.
+  vpc_id = null
 
 }
 
@@ -621,26 +673,10 @@ inputs = {
 
 ### Required
 
-<HclListItem name="instance_type" requirement="required" type="string">
-<HclListItemDescription>
-
-The compute and memory capacity of the replication instance as specified by the replication instance class
-
-</HclListItemDescription>
-</HclListItem>
-
 <HclListItem name="name" requirement="required" type="string">
 <HclListItemDescription>
 
 The name used to namespace all resources created by these templates, including the DB instance (e.g. drupaldb). Must be unique for this region. May contain only lowercase alphanumeric characters, hyphens, underscores, periods, and spaces.
-
-</HclListItemDescription>
-</HclListItem>
-
-<HclListItem name="subnet_ids" requirement="required" type="list(string)">
-<HclListItemDescription>
-
-A list of subnet ids where the Replication Instance should be deployed. In the standard Gruntwork VPC setup, these should be the private persistence subnet ids. This is ignored if create_subnet_group=false.
 
 </HclListItemDescription>
 </HclListItem>
@@ -661,15 +697,25 @@ An escaped JSON string that contains the table mappings. For information on tabl
 </HclListItemDescription>
 </HclListItem>
 
-<HclListItem name="vpc_id" requirement="required" type="string">
+### Optional
+
+<HclListItem name="create_iam_roles" requirement="optional" type="bool">
 <HclListItemDescription>
 
-The id of the VPC in which this Replication Instance should be deployed.
+If true, create the account-level IAM roles required by AWS DMS (`dms-vpc-role`, `dms-cloudwatch-logs-role`, and `dms-access-for-endpoint`). Set to false when these shared roles already exist or are managed outside this module.
 
 </HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
-### Optional
+<HclListItem name="create_replication_instance" requirement="optional" type="bool">
+<HclListItemDescription>
+
+If true, create an `aws_dms_replication_instance` for non-serverless replication task mode. This is automatically ignored when `task_compute_config` is set for serverless mode.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
 
 <HclListItem name="create_subnet_group" requirement="optional" type="bool">
 <HclListItemDescription>
@@ -813,6 +859,15 @@ A map of timeouts for replication instance create/update/delete operations
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="instance_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The compute and memory capacity of the replication instance as specified by the replication instance class. Required only for non-serverless replication task mode.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="instance_vpc_security_group_ids" requirement="optional" type="list(string)">
@@ -959,6 +1014,15 @@ The name of the aws_dms_replication_subnet_group that is created, or an existing
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+A list of subnet ids where the Replication Instance should be deployed. In the standard Gruntwork VPC setup, these should be the private persistence subnet ids. This is ignored if create_subnet_group=false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
 <HclListItem name="target_endpoint_database_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1094,6 +1158,32 @@ ARN of the IAM role with permissions to the S3 Bucket. Default one will be creat
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="task_compute_config" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+Optional compute configuration for serverless replication mode. When set, the module creates `aws_dms_replication_config` instead of `aws_dms_replication_task`.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    availability_zone            = optional(string)
+    dns_name_servers             = optional(string)
+    kms_key_id                   = optional(string)
+    max_capacity_units           = optional(number)
+    min_capacity_units           = optional(number)
+    multi_az                     = optional(bool)
+    preferred_maintenance_window = optional(string)
+    replication_subnet_group_id  = optional(string)
+    vpc_security_group_ids       = optional(list(string))
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="task_settings" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1112,6 +1202,15 @@ Whether to run or stop the replication task.
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="vpc_id" requirement="optional" type="string">
+<HclListItemDescription>
+
+The id of the VPC in which this Replication Instance should be deployed.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -1119,6 +1218,14 @@ Whether to run or stop the replication task.
 <HclListItemDescription>
 
 A map of maps containing the endpoints created and their full output of attributes and values
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="replication_configs">
+<HclListItemDescription>
+
+A list containing the serverless replication config when task_compute_config is provided
 
 </HclListItemDescription>
 </HclListItem>
@@ -1182,6 +1289,6 @@ A map of maps containing the replication tasks created and their full output of 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.2.0/modules/dms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9d0c25f5b1f3736886652bf0c24f306f"
+  "hash": "3bd60192ffb6b37daa51e107faedee6f"
 }
 ##DOCS-SOURCER-END -->
