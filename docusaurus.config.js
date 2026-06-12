@@ -73,11 +73,14 @@ plugins.push(llmsPlugin)
 /** @type {import('@docusaurus/types').FasterConfig} */
 const fasterConfig = {
   rspackBundler: true,
+  rspackPersistentCache: true,
   swcHtmlMinimizer: true,
   lightningCssMinimizer: true,
   swcJsLoader: true,
   swcJsMinimizer: true,
   mdxCrossCompilerCache: true,
+  ssgWorkerThreads: true,
+  gitEagerVcs: true,
 }
 
 /** @type {() => Promise<import('@docusaurus/types').Config>} */
@@ -86,7 +89,8 @@ async function createConfig() {
 
   return {
     future: {
-      experimental_faster: fasterConfig,
+      v4: true,
+      faster: fasterConfig,
     },
     title: "Gruntwork Docs",
     tagline:
@@ -95,9 +99,10 @@ async function createConfig() {
     baseUrl: "/",
     favicon: "/favicon.ico",
     organizationName: "gruntwork-io", // Usually your GitHub org/user name.
-    projectName: "docs", // Usually your repo name.,
-
+    projectName: "docs", // Usually your repo name.
     stylesheets: [],
+    clientModules: [require.resolve("./src/clientModules/segmentShim.js")],
+    trailingSlash: true,
     customFields: {
       libraryIndexName: algoliaConfig
         ? algoliaConfig.libraryIndexName
@@ -150,14 +155,6 @@ async function createConfig() {
             beforeDefaultRemarkPlugins: [captionsPlugin],
           },
           blog: false,
-          theme: {
-            customCss: require.resolve("./src/css/custom.css"),
-          },
-          googleTagManager: enableGoogleAnalytics
-            ? {
-                containerId: googleAnalyticsConfig.trackingID,
-              }
-            : undefined,
           sitemap: {
             lastmod: "date",
             changefreq: null,
@@ -169,7 +166,41 @@ async function createConfig() {
               "/home",
               "/test-customizable-value",
             ],
+            // Workaround for Docusaurus 3.10: the sitemap plugin queries
+            // future.experimental_vcs.getFileLastUpdateInfo() with a relative
+            // sourceFilePath (e.g. "docs/foo.md"), but vcsGitEager indexes by
+            // absolute path, so every <lastmod> resolves to null. Resolve each
+            // route's sourceFilePath against the site root before letting the
+            // default builder run.
+            // TODO: remove once Docusaurus fixes the path-format mismatch.
+            createSitemapItems: async ({
+              routes,
+              siteConfig,
+              defaultCreateSitemapItems,
+            }) => {
+              const path = require("path")
+              const fixRoute = (route) => {
+                const rel = route.metadata && route.metadata.sourceFilePath
+                if (rel && !path.isAbsolute(rel)) {
+                  route.metadata = {
+                    ...route.metadata,
+                    sourceFilePath: path.resolve(__dirname, rel),
+                  }
+                }
+                if (route.routes) route.routes.forEach(fixRoute)
+              }
+              routes.forEach(fixRoute)
+              return defaultCreateSitemapItems({routes, siteConfig})
+            },
           },
+          theme: {
+            customCss: require.resolve("./src/css/custom.css"),
+          },
+          googleTagManager: enableGoogleAnalytics
+            ? {
+                containerId: googleAnalyticsConfig.trackingID,
+              }
+            : undefined,
         }),
       ],
     ],
@@ -185,9 +216,144 @@ async function createConfig() {
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
+        algolia: algoliaConfig
+          ? {
+              appId: algoliaConfig.appId,
+              // Public API key: safe to commit, but still sourced from config
+              apiKey: algoliaConfig.apiKey,
+              indexName: algoliaConfig.indexName,
+              libraryIndexName: algoliaConfig.libraryIndexName,
+              contextualSearch: true,
+            }
+          : undefined,
+        colorMode: {
+          defaultMode: "light",
+          disableSwitch: false,
+          respectPrefersColorScheme: false,
+        },
+        docs: {
+          sidebar: {
+            autoCollapseCategories: true,
+          },
+        },
+        footer: {
+          style: "dark",
+          links: [
+            {
+              title: "Company",
+              items: [
+                {
+                  label: "Gruntwork.io",
+                  href: "https://gruntwork.io/",
+                },
+                {
+                  label: "Blog",
+                  href: "https://blog.gruntwork.io/",
+                },
+                {
+                  label: "Newsletter",
+                  href: "https://gruntwork.io/newsletter/",
+                },
+                {
+                  label: "Store",
+                  href: "https://store.gruntwork.io/",
+                },
+              ],
+            },
+            {
+              title: "Community",
+              items: [
+                {
+                  label: "Knowledge Base",
+                  href: "https://github.com/gruntwork-io/knowledge-base/discussions",
+                },
+                {
+                  label: "Community Slack",
+                  href: "https://gruntwork-community.slack.com/archives/CHH9Y3Z62",
+                },
+                {
+                  label: "GitHub",
+                  href: "https://github.com/gruntwork-io",
+                },
+                {
+                  label: "Twitter",
+                  href: "https://twitter.com/gruntwork_io",
+                },
+              ],
+            },
+            {
+              title: "Resources",
+              items: [
+                {
+                  label: "Production Framework",
+                  href: "/guides/production-framework",
+                },
+                {
+                  label: "Developer Portal",
+                  href: "https://app.gruntwork.io",
+                },
+                {
+                  label: "AWS IaC Library on GitHub",
+                  href: "https://github.com/gruntwork-io",
+                },
+                {
+                  label: "DevOps Checklist",
+                  href: "https://gruntwork.io/devops-checklist/",
+                },
+                {
+                  label: "Terragrunt",
+                  href: "https://terragrunt.com/",
+                },
+                {
+                  label: "Terratest",
+                  href: "https://terratest.gruntwork.io",
+                },
+                {
+                  label: "Gruntwork Releases",
+                  to: "/guides/stay-up-to-date/",
+                },
+                {
+                  label: "Style Guides",
+                  to: "/guides/style/",
+                },
+                {
+                  label: "Support",
+                  href: "/support/",
+                },
+              ],
+            },
+            {
+              title: "Legal",
+              items: [
+                {
+                  label: "Privacy Policy",
+                  href: "https://gruntwork.io/legal/privacy-policy/",
+                },
+                {
+                  label: "Cookie Policy",
+                  href: "https://gruntwork.io/legal/cookie-policy/",
+                },
+                {
+                  label: "Website Terms",
+                  href: "https://gruntwork.io/website-terms/",
+                },
+              ],
+            },
+          ],
+          copyright: `© 2020 – ${new Date().getFullYear()} Gruntwork, Inc.`,
+        },
         metadata: [
           { name: "twitter:card", content: "summary_large_image" },
           { name: "twitter:image", content: "https://docs.gruntwork.io/img/og-image.jpg" },
+          // https://docusaurus.io/docs/2.x/seo#global-metadata
+          // This would become <meta name="keywords" content="..."/> in the generated HTML
+          {
+            name: "keywords",
+            content:
+              "gruntwork, gruntwork platform, aws accelerator, terragrunt scale, aws iac library, aws account factory, aws platform architecture, infrastructure as code, iac, gruntwork pipelines, drift detection, patcher, opentofu, tofu, terraform, terragrunt, terratest, aws",
+          },
+          { name: "buildVersion", content: buildVersion },
+          { name: "buildTime", content: new Date().toString() },
         ],
         navbar: {
           title: "",
@@ -256,122 +422,6 @@ async function createConfig() {
             },
           ],
         },
-        footer: {
-          style: "dark",
-          links: [
-            {
-              title: "Company",
-              items: [
-                {
-                  label: "Gruntwork.io",
-                  href: "https://gruntwork.io",
-                },
-                {
-                  label: "Blog",
-                  href: "https://blog.gruntwork.io/",
-                },
-                {
-                  label: "Newsletter",
-                  href: "https://gruntwork.io/newsletter/",
-                },
-                {
-                  label: "Store",
-                  href: "https://store.gruntwork.io/",
-                },
-              ],
-            },
-            {
-              title: "Community",
-              items: [
-                {
-                  label: "Knowledge Base",
-                  href: "https://github.com/gruntwork-io/knowledge-base/discussions",
-                },
-                {
-                  label: "Community Slack",
-                  href: "https://gruntwork-community.slack.com/archives/CHH9Y3Z62",
-                },
-                {
-                  label: "GitHub",
-                  href: "https://github.com/gruntwork-io",
-                },
-                {
-                  label: "Twitter",
-                  href: "https://twitter.com/gruntwork_io",
-                },
-              ],
-            },
-            {
-              title: "Resources",
-              items: [
-                {
-                  label: "Production Framework",
-                  href: "/guides/production-framework",
-                },
-                {
-                  label: "Developer Portal",
-                  href: "https://app.gruntwork.io",
-                },
-                {
-                  label: "AWS IaC Library on GitHub",
-                  href: "https://github.com/gruntwork-io",
-                },
-                {
-                  label: "DevOps Checklist",
-                  href: "https://gruntwork.io/devops-checklist/",
-                },
-                {
-                  label: "Terragrunt",
-                  href: "https://terragrunt.com/",
-                },
-                {
-                  label: "Terratest",
-                  href: "https://terratest.gruntwork.io",
-                },
-                {
-                  label: "Gruntwork Releases",
-                  to: "/guides/stay-up-to-date",
-                },
-                {
-                  label: "Style Guides",
-                  to: "/guides/style",
-                },
-                {
-                  label: "Support",
-                  href: "/support",
-                },
-              ],
-            },
-            {
-              title: "Legal",
-              items: [
-                {
-                  label: "Privacy Policy",
-                  href: "https://gruntwork.io/legal/privacy-policy/",
-                },
-                {
-                  label: "Cookie Policy",
-                  href: "https://gruntwork.io/legal/cookie-policy/",
-                },
-                {
-                  label: "Website Terms",
-                  href: "https://gruntwork.io/website-terms/",
-                },
-              ],
-            },
-          ],
-          copyright: `© 2020 – ${new Date().getFullYear()} Gruntwork, Inc.`,
-        },
-        docs: {
-          sidebar: {
-            autoCollapseCategories: true,
-          },
-        },
-        colorMode: {
-          defaultMode: "light",
-          disableSwitch: false,
-          respectPrefersColorScheme: false,
-        },
         prism: {
           theme: lightCodeTheme,
           darkTheme: darkCodeTheme,
@@ -385,28 +435,7 @@ async function createConfig() {
             "docker",
           ],
         },
-        algolia: algoliaConfig
-          ? {
-              appId: algoliaConfig.appId,
-              // Public API key: safe to commit, but still sourced from config
-              apiKey: algoliaConfig.apiKey,
-              indexName: algoliaConfig.indexName,
-              libraryIndexName: algoliaConfig.libraryIndexName,
-              contextualSearch: true,
-            }
-          : undefined,
         zoomSelector: ".markdown :not(em) > img:not(.no-zoom)",
-        metadata: [
-          // https://docusaurus.io/docs/2.x/seo#global-metadata
-          // This would become <meta name="keywords" content="..."/> in the generated HTML
-          {
-            name: "keywords",
-            content:
-              "gruntwork, gruntwork platform, aws accelerator, terragrunt scale, aws iac library, aws account factory, aws platform architecture, infrastructure as code, iac, gruntwork pipelines, drift detection, patcher, opentofu, tofu, terraform, terragrunt, terratest, aws",
-          },
-          { name: "buildVersion", content: buildVersion },
-          { name: "buildTime", content: new Date().toString() },
-        ],
       }),
   }
 }

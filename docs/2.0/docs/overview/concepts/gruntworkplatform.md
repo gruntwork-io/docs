@@ -37,8 +37,8 @@ Gruntwork offers two main product packages:
 
 * [Infrastructure-Live](/2.0/docs/overview/concepts/infrastructure-live.md): An opinionated structure for IaC repositories that incorporates best practices for organizing OpenTofu code to maintain DRY principles at an enterprise scale.
 
-<!-- * [Catalog]  -- see DEV-628 -->
-<!-- Placeholder for networking/transit gateway details -->
+{/* * [Catalog]  -- see DEV-628 */}
+{/* Placeholder for networking/transit gateway details */}
 
 All components are designed with a focus on Terragrunt, OpenTofu/Terraform, GitHub, and AWS. Support for additional technologies may be introduced in the future.
 

@@ -115,7 +115,7 @@ This step-by-step guide outlines best practices for implementing custom actions:
 </TabItem>
 <TabItem value="gitlab" label="GitLab">
 
-<!-- TODO: Add support for GitLab custom actions -->
+{/* TODO: Add support for GitLab custom actions */}
 Contact Gruntwork support for assistance setting up custom actions for Gruntwork Pipelines on GitLab.
 
 </TabItem>
@@ -183,7 +183,7 @@ For example:
 </TabItem>
 <TabItem value="gitlab" label="GitLab">
 
-<!-- TODO: Add support for GitLab custom actions -->
+{/* TODO: Add support for GitLab custom actions */}
 
 </TabItem>
 </Tabs>

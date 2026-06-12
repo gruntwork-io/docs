@@ -1,78 +1,90 @@
+import React, {cloneElement, type ReactElement, type ReactNode} from 'react';
 import clsx from 'clsx';
+import LineToken from '@theme/CodeBlock/Line/Token';
 import type {Props} from '@theme/CodeBlock/Line';
-import { cloneElement } from 'react';
 
 import styles from './styles.module.css';
 import CustomizableValue from '../../../components/CustomizableValue';
 
-/**
- * replaceCustomizeableValues takes a list of tokens and identifies customizable values
- * marked by a start and end token, '$$'.
- * It returns a new list of tokens with the customizable values replaced with a CustomizableValue component.
- * If a customizable value begins or ends in the middle of a token, the token is split into two tokens.
- */
-function replaceCustomizeableValues(tokens) {
-  // The list of tokens including the customizable value components
-  let newTokens = [];
-  // A string that is being built up to capture the content of the current token, used to create a new token
-  let captured = '';
-  // A boolean indicating that we are currently within a customizable value
-  let withinCustomizableValue = false;
+type Token = Props['line'][number];
 
-  // A boolean indicating that we should skip the first character of the next token
+function LineBreak() {
+  return <br />;
+}
+
+function fixLineBreak(line: Token[]) {
+  const singleLineBreakToken =
+    line.length === 1 && line[0]!.content === '\n' ? line[0] : undefined;
+  if (singleLineBreakToken) {
+    return [{...singleLineBreakToken, content: ''}];
+  }
+  return line;
+}
+
+/**
+ * Scans a list of rendered tokens for `$$id$$` markers (which may straddle
+ * token boundaries) and replaces them with <CustomizableValue id={id} />.
+ * Surrounding token elements are cloned so their styling/classes are preserved
+ * when split.
+ *
+ * Caveat: cloneElement preserves all original props on each split chunk,
+ * including the upstream `line` and `token` props that LineToken receives.
+ * That means siblings produced from a single split share the same `token`
+ * reference (which still describes the unsplit content). Today's upstream
+ * LineToken (Docusaurus 3.x) only forwards rest-props onto a <span>, so this
+ * is invisible. If a future Docusaurus uses `token` for ARIA/data attributes
+ * or content-aware behavior, we'd need to synthesize a fresh `token` per
+ * chunk (e.g. {...token, content: captured}) to avoid duplicate or mismatched
+ * metadata across the split spans.
+ */
+function replaceCustomizeableValues(tokens: ReactElement[]): ReactNode[] {
+  const newTokens: ReactNode[] = [];
+  let captured = '';
+  let withinCustomizableValue = false;
   let skipFirstChar = false;
 
-  // Loop over each token
   for (let i = 0; i < tokens.length; i++) {
-    let token = tokens[i];
-    let nextToken = i < tokens.length - 1 ? tokens[i + 1] : null;
+    const token = tokens[i]!;
+    const nextToken = i < tokens.length - 1 ? tokens[i + 1] : null;
 
-    let content = token.props.children;
+    const content: string = token.props.children ?? '';
 
-    // Loop over each character in the token
     let initialIndex = 0;
     if (skipFirstChar) {
-      // Start the loop at 1 to skip the first character
       initialIndex = 1;
       skipFirstChar = false;
     }
 
     for (let j = initialIndex; j < content.length; j++) {
-      // The current charcter and the next character
-      // The next character may be in the next token, so we need to look ahead
-      let currentChar = content[j];
+      const currentChar = content[j];
       let nextChar = j < content.length - 1 ? content[j + 1] : null;
-      // Track if we used the next token to get the next character
       let usedNextToken = false;
-      if (nextChar == null && nextToken != null && nextToken.props.children.length > 0) {
+      if (
+        nextChar == null &&
+        nextToken != null &&
+        (nextToken.props.children?.length ?? 0) > 0
+      ) {
         nextChar = nextToken.props.children[0];
         usedNextToken = true;
       }
 
-      // If the current and next characters are both '$', we have found the start or end of a customizable value
       if (currentChar === '$' && nextChar === '$') {
         if (withinCustomizableValue) {
-          // We have found the end of a customizable value, create a new token for the customizable value
           newTokens.push(
             <CustomizableValue
               key={captured + newTokens.length}
               id={captured}
-            />
+            />,
           );
         } else if (captured.length > 0) {
-          // We have found the start of a customizable value, if we have captured any content, create a new token
-          // to preserve the previous content
-          let newToken = cloneElement(token, {key: newTokens.length}, captured)
-          newTokens.push(newToken)
+          newTokens.push(
+            cloneElement(token, {key: newTokens.length}, captured),
+          );
         }
 
-        // Reset the captured content and toggle the withinCustomizableValue flag
         captured = '';
         withinCustomizableValue = !withinCustomizableValue;
-        // Skip the next two characters in this token, which will be the opening or closing $$
         j += 2;
-        // If the marker was split across two tokens, we need to skip the first character of the next token
-        // to remove it from the output
         skipFirstChar = usedNextToken;
         if (j >= content.length) {
           break;
@@ -81,8 +93,7 @@ function replaceCustomizeableValues(tokens) {
       captured += content[j];
     }
     if (captured.length > 0 && !withinCustomizableValue) {
-      let newToken = cloneElement(token, {key: newTokens.length}, captured)
-      newTokens.push(newToken)
+      newTokens.push(cloneElement(token, {key: newTokens.length}, captured));
       captured = '';
     }
   }
@@ -90,27 +101,29 @@ function replaceCustomizeableValues(tokens) {
 }
 
 export default function CodeBlockLine({
-  line,
+  line: lineProp,
   classNames,
   showLineNumbers,
   getLineProps,
   getTokenProps,
-}: Props): JSX.Element {
-  if (line.length === 1 && line[0]!.content === '\n') {
-    line[0]!.content = '';
-  }
-
+}: Props): ReactNode {
+  const line = fixLineBreak(lineProp);
   const lineProps = getLineProps({
     line,
     className: clsx(classNames, showLineNumbers && styles.codeLine),
   });
 
-  const lineTokens = line.map((token, key) => (
-    <span key={key} {...getTokenProps({token})} />
-  ));
+  const lineTokens = line.map((token, key) => {
+    const tokenProps = getTokenProps({token});
+    return (
+      <LineToken key={key} {...tokenProps} line={line} token={token}>
+        {tokenProps.children}
+      </LineToken>
+    );
+  });
 
   return (
-    <span {...lineProps}>
+    <div {...lineProps}>
       {showLineNumbers ? (
         <>
           <span className={styles.codeLineNumber} />
@@ -119,7 +132,7 @@ export default function CodeBlockLine({
       ) : (
         replaceCustomizeableValues(lineTokens)
       )}
-      <br />
-    </span>
+      <LineBreak />
+    </div>
   );
 }

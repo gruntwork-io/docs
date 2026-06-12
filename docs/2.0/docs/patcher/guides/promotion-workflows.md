@@ -82,7 +82,7 @@ This file, similar to an OpenTofu plan file, is intended to be a temporary artif
 We recommend that you delete and `.gitignore` any spec files in your codebase.
 :::
 
-<!-- spell-checker: disable -->
+{/* spell-checker: disable */}
 ```yml
 name: Update Dev Dependencies
 on:
@@ -168,7 +168,7 @@ jobs:
           pull_request_title: "[Patcher] [dev] Update ${{ matrix.dependency.ID }}"
           pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
 ```
-<!-- spell-checker: enable -->
+{/* spell-checker: enable */}
 ### Setting up the stage step
 
 The `update-stage.yml` workflow file is nearly identical to `update-dev.yml`.

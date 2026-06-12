@@ -212,14 +212,14 @@ Terraform requires an API token to communicate with Terraform Cloud (TFC) as a b
 
 Once TFC generates a token, add it to your local Terraform configuration file (`~/.terraformrc`) within a `credentials` block. Doing so will enable Terraform to authenticate with TFC when running remote operations.
 
-<!-- spell-checker: disable -->
+{/* spell-checker: disable */}
 ```hcl
  For TFE, substitute the custom hostname for your TFE host
 credentials "app.terraform.io" {
   token = "xxxxxxyyyyyyyyyzzzzzzzzzzzz"
 }
 ```
-<!-- spell-checker: enable -->
+{/* spell-checker: enable */}
 
 ### Generating the backend
 
@@ -348,7 +348,7 @@ Including all required inputs for the module in the generated `tfvars` file is e
 Once all configurations are in place, you can run `terragrunt init` to initialize the workspace (if it does not already exist) and then `terragrunt apply` to deploy the infrastructure. Terragrunt acts as a wrapper, invoking Terraform to perform the `plan` and `apply` stages on Terraform Cloud (TFC). During this process, the workflow will pause for confirmation between stages. However, if you run `terragrunt apply-all`, Terragrunt adds the `-auto-approve` flag, bypassing interactive approval and skipping the confirmation step.
 
 To begin, execute `terragrunt init`. This command generates the necessary backend configuration and `tfvars` file, establishing a connection to the remote backend. Below is an example output, with irrelevant details omitted for brevity.
-<!-- spell-checker: disable -->
+{/* spell-checker: disable */}
 ```bash
 $ terragrunt init
 [terragrunt] 2020/05/15 14:36:54 Reading Terragrunt config file at <redacted>/infrastructure-live/dev/us-east-1/sqs/terragrunt.hcl
@@ -428,7 +428,7 @@ queue_arn = arn:aws:sqs:us-east-1:0123456789012:example-name
 queue_name = example-name
 queue_url = https://sqs.us-east-1.amazonaws.com/0123456789012/example-name
 ```
-<!-- spell-checker: enable -->
+{/* spell-checker: enable */}
 TFC runs a plan first, waits for confirmation, and then runs apply. The confirmation can be entered either on the command line or in the UI. Once complete, the results are visible in the TFC UI:
 
 ![Viewing the Terragrunt command results in the TFC UI](/img/guides/working-with-code/tfc/tfc-terragrunt-results.png)
