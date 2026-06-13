@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Load Balancer Modules" version="1.3.1" lastModifiedVersion="1.2.1"/>
+<VersionBadge repoTitle="Load Balancer Modules" version="1.3.2" lastModifiedVersion="1.2.1"/>
 
 # ACM TLS Certificate
 
-<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.1/modules/acm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.2/modules/acm-tls-certificate" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-load-balancer/releases/tag/v1.2.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -232,7 +232,7 @@ In this example, the `acm-tls-certificates` module will "wait" until your `aws_r
 
 module "acm_tls_certificate" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v1.3.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v1.3.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -290,7 +290,7 @@ module "acm_tls_certificate" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v1.3.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-load-balancer.git//modules/acm-tls-certificate?ref=v1.3.2"
 }
 
 inputs = {
@@ -553,11 +553,11 @@ Global tags to apply to all ACM certificates issued via this module. These globa
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.1/modules/acm-tls-certificate/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.1/modules/acm-tls-certificate/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.1/modules/acm-tls-certificate/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.2/modules/acm-tls-certificate/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.2/modules/acm-tls-certificate/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-load-balancer/tree/v1.3.2/modules/acm-tls-certificate/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "68d226c5bb2dbd7f85a9bdc331d504dd"
+  "hash": "9e0030271ee9bcbf9cc40a8a1fea64fb"
 }
 ##DOCS-SOURCER-END -->
