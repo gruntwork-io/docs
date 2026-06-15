@@ -251,5 +251,5 @@ Now that Control Tower is configured, consider these next steps:
 
 - [Set up IAM Identity Center](https://docs.aws.amazon.com/singlesignon/latest/userguide/get-started-choose-identity-source.html) for access control.
 - [Apply required controls or SCPs](https://docs.aws.amazon.com/controltower/latest/userguide/controls.html).
-- [Install Gruntwork Pipelines](/2.0/docs/pipelines/installation/viagithubapp).
+- [Install Pipelines](/2.0/docs/pipelines/installation/viagithubapp).
 - [Set up Gruntwork Account Factory](/2.0/docs/accountfactory/installation).

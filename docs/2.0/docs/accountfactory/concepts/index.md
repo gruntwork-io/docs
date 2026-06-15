@@ -6,7 +6,7 @@ Enterprise customers can create dedicated Infrastructure as Code repositories fo
 
 This approach empowers developer teams to self-service deploy infrastructure within the confines of IAM roles managed in a centralized access control repository. This approach ensures least-privilege access to AWS resources while enabling flexible, self-service infrastructure deployment.
 
-Gruntwork AWS Account Factory is built on Gruntwork Pipelines, ensuring reliable and automated account provisioning. Account creation requests are tracked in Git as Infrastructure as Code (IaC), triggering Terragrunt plans and applies to set up and baseline the accounts. By following this approach, account provisioning follows the same review and collaboration steps as other infrastructure changes, using pull requests for validation
+Gruntwork AWS Account Factory is built on Pipelines, ensuring reliable and automated account provisioning. Account creation requests are tracked in Git as Infrastructure as Code (IaC), triggering Terragrunt plans and applies to set up and baseline the accounts. By following this approach, account provisioning follows the same review and collaboration steps as other infrastructure changes, using pull requests for validation
 
 ## Account baselines
 

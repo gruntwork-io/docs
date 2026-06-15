@@ -1,6 +1,6 @@
-# Gruntwork Pipelines CI/CD Platform Comparison
+# Pipelines CI/CD Platform Comparison
 
-Gruntwork Pipelines supports both GitHub Actions and GitLab CI/CD as CI/CD platforms. This page outlines the key differences and capabilities of each platform integration.
+Pipelines supports both GitHub Actions and GitLab CI/CD as CI/CD platforms. This page outlines the key differences and capabilities of each platform integration.
 
 ## Feature Comparison
 

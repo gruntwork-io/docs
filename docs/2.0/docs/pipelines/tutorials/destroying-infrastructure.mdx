@@ -4,13 +4,13 @@ import CustomizableValue from "/src/components/CustomizableValue"
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
-This tutorial will help you learn how to destroy infrastructure using Gruntwork Pipelines and GitOps workflows.
+This tutorial will help you learn how to destroy infrastructure using Pipelines and GitOps workflows.
 
 ## What you'll get
 
 By the end, you'll have:
 
-- Destroyed cloud resources (AWS, Azure, or GCP) using Gruntwork Pipelines
+- Destroyed cloud resources (AWS, Azure, or GCP) using Pipelines
 
 ## Prerequisites
 
@@ -104,7 +104,7 @@ Create a Pull Request (PR) for the branch you just pushed, targeting `main` (the
 
 ![Delete Infrastructure Code](/img/pipelines/tutorial/delete-infrastructure-code.png)
 
-Gruntwork Pipelines, via GitHub Actions, will detect the removal of the infrastructure unit's code and trigger a `plan` action in Pipelines. This action will display the destructive changes to be made to your cloud environment.
+Pipelines, via GitHub Actions, will detect the removal of the infrastructure unit's code and trigger a `plan` action in Pipelines. This action will display the destructive changes to be made to your cloud environment.
 
 ![Pipelines Destroy Plan Comment](/img/pipelines/tutorial/pipelines-destroy-plan-comment.png)
 
@@ -113,7 +113,7 @@ Gruntwork Pipelines, via GitHub Actions, will detect the removal of the infrastr
 
 Create a Merge Request (MR) for the branch you just pushed, targeting `main` (the default branch in your project).
 
-Gruntwork Pipelines, via GitLab CI/CD, will detect the removal of the infrastructure unit's code and trigger a `plan` action in Pipelines. This action will display the destructive changes to be made to your cloud environment.
+Pipelines, via GitLab CI/CD, will detect the removal of the infrastructure unit's code and trigger a `plan` action in Pipelines. This action will display the destructive changes to be made to your cloud environment.
 
 Click the _View Pipeline Logs_ link to see the complete output of the destroy plan.
 
@@ -126,7 +126,7 @@ If you are satisfied with the changes shown in the `plan` action, you can procee
 
 Approve and merge the pull/merge request to trigger the apply action, permanently deleting the resources from your cloud environment.
 
-Congratulations! You have successfully destroyed cloud resources using Gruntwork Pipelines and GitOps workflows.
+Congratulations! You have successfully destroyed cloud resources using Pipelines and GitOps workflows.
 
 <Tabs groupId="cloud" queryString="cloud">
 <TabItem value="aws" label="AWS" default>

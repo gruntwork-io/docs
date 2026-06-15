@@ -15,7 +15,7 @@ const sidebar = [
         collapsed: false,
         items: [
           {
-            label: "What is Gruntwork Pipelines?",
+            label: "What is Pipelines?",
             type: "doc",
             id: "infrastructure-pipelines/overview/index",
           },

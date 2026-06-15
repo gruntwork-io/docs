@@ -19,7 +19,7 @@ const sidebar = [
   ...libraryReference,
   {
     type: "html",
-    value: "Gruntwork Pipelines",
+    value: "Pipelines",
     className: "sidebar-header",
   },
   {
@@ -64,7 +64,7 @@ const sidebar = [
     id: "2.0/reference/pipelines/feature-flags",
   },
   {
-    value: "Gruntwork Patcher",
+    value: "Patcher",
     type: "html",
     className: "sidebar-header",
   },

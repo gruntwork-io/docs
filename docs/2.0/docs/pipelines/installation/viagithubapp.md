@@ -10,7 +10,7 @@ The [Gruntwork.io GitHub App](https://github.com/apps/gruntwork-io) is a [GitHub
 
 :::info
 
-At this time Gruntwork does not provide an app for GitLab, this page is only relevant for Gruntwork Pipelines users installing in GitHub.
+At this time Gruntwork does not provide an app for GitLab, this page is only relevant for Pipelines users installing in GitHub.
 
 :::
 
@@ -110,7 +110,7 @@ The GitHub App Service is used by two major clients:
 
    The GitHub App Service is used here for administration of access to relevant GitHub resources by the Gruntwork.io GitHub App. Customers can follow the installation flow in the [Gruntwork Developer Portal](https://app.gruntwork.io) to install the Gruntwork.io GitHub App in their GitHub organization, link the GitHub app installation to their Gruntwork organization profile and configure it.
 
-2. **Gruntwork Pipelines**
+2. **Pipelines**
 
    The main client for the Gruntwork.io App, and where most of the value is derived. Pipelines uses the GitHub App Service to acquire the relevant access for interacting with GitHub resources on behalf of the user. Access control rules are enforced here to ensure that only the level of access required (and explicitly specified in the Gruntwork Developer Portal) can be used by Pipelines to interact with GitHub resources on behalf of the user.
 
@@ -127,8 +127,8 @@ Any downtime of Gruntwork services will not impact the ability of your team to m
 The following features of the Gruntwork.io GitHub App will be unavailable during downtime:
 
 - **GitHub App Linking**: In order to link a Gruntwork.io GitHub App installation to the [Gruntwork Developer Portal](https://app.gruntwork.io), the service backing the GitHub app must be available and operating correctly.
-- **Gruntwork Pipelines Comments**: While Pipelines will allow for IaC updates in a degraded state without the availability of the GitHub App, comments are a feature that rely on the availability of the app for the best experience.
-- **Gruntwork Pipelines Drift Detection**: Drift detection requires the availability of the GitHub App to function correctly.
+- **Pipelines Comments**: While Pipelines will allow for IaC updates in a degraded state without the availability of the GitHub App, comments are a feature that rely on the availability of the app for the best experience.
+- **Pipelines Drift Detection**: Drift detection requires the availability of the GitHub App to function correctly.
 
 ### Fallback
 

@@ -13,14 +13,14 @@ We recommend a two-step process to close AWS accounts managed by Gruntwork AWS A
 1. [Cleanup Infrastructure Code](#1-cleanup-infrastructure-code) and modify OpenTofu/Terraform state for the Control Tower module.
 1. [Close Account with Clickops](#2-close-the-accounts-in-aws-organizations)
 
-We recommend using ClickOps to close accounts instead of Gruntwork Pipelines. Removing the account through Pipelines by deleting the account request file often fails due to the unreliable AWS Service Catalog used with Control Tower (see [issue](https://github.com/hashicorp/terraform-provider-aws/issues/31705)), which frequently requires multiple retries. This procedure addresses those reliability issues.
+We recommend using ClickOps to close accounts instead of Pipelines. Removing the account through Pipelines by deleting the account request file often fails due to the unreliable AWS Service Catalog used with Control Tower (see [issue](https://github.com/hashicorp/terraform-provider-aws/issues/31705)), which frequently requires multiple retries. This procedure addresses those reliability issues.
 
 
 From a state management perspective, the recommended process will only remove the account from the control-tower module and leave other resources to be terminated when the [account is closed](#2-close-the-accounts-in-aws-organizations). However, if you want to destroy resources prior to closing the account, in each of the repositories addressed below, follow the instructions to [destroy resources](#optional-destroy-resources-in-account-before-closing) prior to following the cleanup instructions.
 
 ### 1. Clean up infrastructure code
 
-After making all necessary code changes, commit them to Git with **[skip ci]** in the message to avoid triggering Gruntwork Pipelines CI workflows.
+After making all necessary code changes, commit them to Git with **[skip ci]** in the message to avoid triggering Pipelines CI workflows.
 
 
 #### Root/Central infrastructure repository
@@ -55,7 +55,7 @@ After making all necessary code changes, commit them to Git with **[skip ci]** i
 8. Delete the folders for the targeted accounts from the repository
 9. Commit the changes to your branch, including `[skip ci]` in the commit message
 10. Open a Pull Request and verify that `Pipelines Plan` is absent
-11. Approve and **squash-merge** the Pull Request (if multiple commits exist), again including [skip ci] in the commit message. This step will prevent Gruntwork Pipelines from initiating any destruction processes
+11. Approve and **squash-merge** the Pull Request (if multiple commits exist), again including [skip ci] in the commit message. This step will prevent Pipelines from initiating any destruction processes
 
 ##### Delegated infrastructure repository (Enterprise-only)
 
@@ -81,7 +81,7 @@ You may need to delete resources if you encounter issues with coordination betwe
 
 1. Create a new branch in the infrastructure repository
 2. Remove the folders containing the resources to be destroyed
-3. Commit changes and create a Pull Request, which will trigger Gruntwork Pipelines to destroy the resources upon merging
+3. Commit changes and create a Pull Request, which will trigger Pipelines to destroy the resources upon merging
 
 :::danger
 

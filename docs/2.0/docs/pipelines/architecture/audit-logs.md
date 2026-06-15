@@ -1,6 +1,6 @@
 # Audit Logs
 
-For certain cloud environments (for now, only AWS), Gruntwork Pipelines provides an audit log that records which user performed specific operations in your AWS accounts as a result of a [Pipelines Action](/2.0/docs/pipelines/architecture/actions.md). Pipelines does this via integration with native tooling for the cloud provider.
+For certain cloud environments (for now, only AWS), Pipelines provides an audit log that records which user performed specific operations in your AWS accounts as a result of a [Pipelines Action](/2.0/docs/pipelines/architecture/actions.md). Pipelines does this via integration with native tooling for the cloud provider.
 
 ## AWS
 
@@ -9,15 +9,15 @@ Accessing AWS environments from a CI/CD system often involves assuming temporary
 - [GitHub OIDC Configuration](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services)
 - [GitLab OIDC Configuration](https://docs.gitlab.com/ee/ci/cloud_services/aws/)
 
-Shared credentials can complicate tracking who performed specific actions in AWS accounts. Gruntwork Pipelines addresses this challenge by using [AWS CloudTrail](https://aws.amazon.com/cloudtrail/) with a naming convention that includes context from the triggering Pipelines Action. This approach associates every API operation performed by Pipelines with a username and a specific pull request or branch, enabling your security team to efficiently investigate access-related issues and analyze individual user actions.
+Shared credentials can complicate tracking who performed specific actions in AWS accounts. Pipelines addresses this challenge by using [AWS CloudTrail](https://aws.amazon.com/cloudtrail/) with a naming convention that includes context from the triggering Pipelines Action. This approach associates every API operation performed by Pipelines with a username and a specific pull request or branch, enabling your security team to efficiently investigate access-related issues and analyze individual user actions.
 
 ## How it works
 
-Gruntwork Pipelines creates an audit log that tracks which user performed what action in which AWS account. It does this by setting the [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) session name to include the initiating username, the Pipelines name, and the merge/pull request or branch that triggered the action. Logging is handled through [AWS CloudTrail](https://aws.amazon.com/cloudtrail/), where session names appear in the `User name` field, making it easy to identify which user performed an action. For information on locating logs, see [where you can find logs](#where-you-can-find-logs) and [querying data](#querying-data).
+Pipelines creates an audit log that tracks which user performed what action in which AWS account. It does this by setting the [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) session name to include the initiating username, the Pipelines name, and the merge/pull request or branch that triggered the action. Logging is handled through [AWS CloudTrail](https://aws.amazon.com/cloudtrail/), where session names appear in the `User name` field, making it easy to identify which user performed an action. For information on locating logs, see [where you can find logs](#where-you-can-find-logs) and [querying data](#querying-data).
 
 ### What gets logged
 
-Logs are generated for all operations performed by Gruntwork Pipelines in AWS across every AWS account. These logs leverage [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) session names to clearly label sessions with the username that requested the change and the associated merge/pull request or branch.
+Logs are generated for all operations performed by Pipelines in AWS across every AWS account. These logs leverage [AWS STS](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) session names to clearly label sessions with the username that requested the change and the associated merge/pull request or branch.
 
 Each CloudTrail event linked to API calls from Pipelines [Actions](/2.0/docs/pipelines/architecture/actions.md) includes the session name in the `userIdentity` field. For example, if the user `SomeUserInYourOrg` initiated the 123rd request in your repository, the `userIdentity` field in a corresponding CloudTrail event would provide details such as the following.
 
@@ -54,7 +54,7 @@ Each CloudTrail event linked to API calls from Pipelines [Actions](/2.0/docs/pip
 
 Due to the 64-character limit for STS session names, the originating repository is not included in the session name. To identify the originating repository, you can search through repositories for commits matching the user and request number combination or contact the user directly.
 
-By combining this data with a [query service](#querying-data), you can analyze the usage patterns of Gruntwork Pipelines in your AWS accounts using CloudTrail logs.
+By combining this data with a [query service](#querying-data), you can analyze the usage patterns of Pipelines in your AWS accounts using CloudTrail logs.
 
 ### Who gets logged
 
@@ -77,7 +77,7 @@ When Pipelines runs after a request is merged, the session name reflects the use
 
 ## Where you can find logs
 
-Gruntwork Pipelines uses AWS CloudTrail to log all actions performed in your AWS accounts. Thanks to the naming scheme, actions initiated by Gruntwork Pipelines are clearly identified in CloudTrail.
+Pipelines uses AWS CloudTrail to log all actions performed in your AWS accounts. Thanks to the naming scheme, actions initiated by Pipelines are clearly identified in CloudTrail.
 
 Accessing and querying CloudTrail data depends on your organization's specific policies and configurations. If you are a Gruntwork Account Factory customer, refer to the documentation on [logging](/2.0/docs/accountfactory/architecture/logging) for details on accessing and querying CloudTrail data.
 

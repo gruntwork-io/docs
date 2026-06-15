@@ -18,11 +18,11 @@ Self-service enables platform teams to operate efficiently at scale. By centrali
 
 ## Terragrunt catalog
 
-Terragrunt provides [native support](https://terragrunt.gruntwork.io/docs/features/catalog/) for an interface that allows developers to browse modules using a terminal-based UI and [scaffold](https://terragrunt.gruntwork.io/docs/features/scaffold/) new modules with [boilerplate](https://github.com/gruntwork-io/boilerplate). Repositories vended through Gruntwork AWS Accelerator include a `catalog` configuration in the root `terragrunt.hcl` file, pointing to a starter `infrastructure-catalog` repository with examples for expanding the catalog.
+Terragrunt provides [native support](https://terragrunt.gruntwork.io/docs/features/catalog/) for an interface that allows developers to browse modules using a terminal-based UI and [scaffold](https://terragrunt.gruntwork.io/docs/features/scaffold/) new modules with [boilerplate](https://github.com/gruntwork-io/boilerplate). Repositories vended through Gruntwork Platform include a `catalog` configuration in the root `terragrunt.hcl` file, pointing to a starter `infrastructure-catalog` repository with examples for expanding the catalog.
 
 ### Using catalog
 
-In a Gruntwork AWS Accelerator repository, create a new directory for the new Terragrunt unit, then navigate to this directory.
+In a Gruntwork Platform repository, create a new directory for the new Terragrunt unit, then navigate to this directory.
 
 Running `terragrunt catalog` opens an interactive terminal UI to browse available units in the `infrastructure-catalog`.
 
@@ -32,7 +32,7 @@ To scaffold a unit, select it and press **S**. The scaffold process automaticall
 - Determines the module URL and latest version (tag), populating the source URL.
 - Parses the module’s input variables and generates placeholders in the `inputs = { }` block for easy configuration.
 
-After replacing the placeholders, commit the new unit and push it to a new Pull Request for [Gruntwork Pipelines](/2.0/docs/pipelines/concepts/overview) to begin planning the changes.
+After replacing the placeholders, commit the new unit and push it to a new Pull Request for [Pipelines](/2.0/docs/pipelines/concepts/overview) to begin planning the changes.
 
 ## Self-service best practices
 
@@ -44,7 +44,7 @@ Adopt a consistent versioning strategy, such as [semantic versioning](https://se
 - **Enable rollbacks:** Revert to previous versions if issues arise.
 - **Ensure clarity:** Use semantic versioning (e.g., v1.2.3) to communicate the scope of changes (major, minor, patch).
 
-Leverage [Gruntwork Patcher](/2.0/docs/patcher/concepts/) to roll out breaking changes efficiently while minimizing disruptions.
+Leverage [Patcher](/2.0/docs/patcher/concepts/) to roll out breaking changes efficiently while minimizing disruptions.
 
 ### Infrastructure tagging and labeling
 

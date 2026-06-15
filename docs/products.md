@@ -14,14 +14,14 @@ import CenterLayout from "/src/components/CenterLayout"
 <CardGroup cols={2}>
 
 <Card
-  title="Gruntwork AWS Accelerator"
+  title="Gruntwork Platform"
   href="/2.0/docs/overview/concepts/gruntworkplatform">
 A comprehensive solution that combines the Gruntwork AWS IaC Library, Gruntwork AWS Account Factory, and AWS Platform Architecture with Terragrunt Scale to accelerate your cloud infrastructure.
 </Card>
 <Card
   title="Terragrunt Scale"
   href="/2.0/docs/pipelines/concepts/overview">
-Deploy infrastructure at scale with Gruntwork Pipelines, Gruntwork Drift Detection, and Gruntwork Patcher—tools that simplify CI/CD for infrastructure code.
+Deploy infrastructure at scale with Pipelines, Drift Detection, and Patcher, tools that simplify CI/CD for infrastructure code.
 </Card>
 <Card
   title="Gruntwork AWS IaC Library"

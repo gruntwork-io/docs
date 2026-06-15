@@ -1,6 +1,6 @@
 # Controls
 
-Gruntwork Pipelines employs a defense-in-depth approach to secure workflows across both GitHub and GitLab platforms. This document outlines the controls Pipelines uses to ensure that only infrastructure written in code and approved by a reviewer can be deployed to your cloud environments (e.g. AWS accounts).
+Pipelines employs a defense-in-depth approach to secure workflows across both GitHub and GitLab platforms. This document outlines the controls Pipelines uses to ensure that only infrastructure written in code and approved by a reviewer can be deployed to your cloud environments (e.g. AWS accounts).
 
 ## Least privilege principle
 

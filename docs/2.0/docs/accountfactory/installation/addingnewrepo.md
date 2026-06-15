@@ -19,7 +19,7 @@ Gruntwork provides a pre-configured git repository template that incorporates be
 
 [infrastructure-live-root-template](https://github.com/gruntwork-io/infrastructure-live-root-template)
 
-This template generates an `infrastructure-live-root` repository with a bootstrap workflow designed to scaffold a best-practices Terragrunt configuration. It includes patterns for module defaults, global variables, and account baselines. Additionally, it integrates Gruntwork Pipelines, which can be removed if not required.
+This template generates an `infrastructure-live-root` repository with a bootstrap workflow designed to scaffold a best-practices Terragrunt configuration. It includes patterns for module defaults, global variables, and account baselines. Additionally, it integrates Pipelines, which can be removed if not required.
 
 The workflow can optionally scaffold the `infrastructure-live-access-control` and `infrastructure-catalog` repositories.
 
@@ -63,7 +63,7 @@ The bootstrapping pull requests include pre-configured files, such as a `.mise.t
 This guide walks you through the process of setting up a new GitLab Project with the Gruntwork Platform. By the end, you'll have a fully configured GitLab CI/CD pipeline that can create new AWS accounts and deploy infrastructure changes automatically.
 
 :::info
-To use Gruntwork Pipelines in an **existing** GitLab repository, see this [guide](/2.0/docs/pipelines/installation/addinggitlabrepo).
+To use Pipelines in an **existing** GitLab repository, see this [guide](/2.0/docs/pipelines/installation/addinggitlabrepo).
 :::
 
 <h2> Prerequisites </h2>
@@ -82,7 +82,7 @@ Before you begin, make sure you have:
 <h3> Fork the Pipelines workflow project </h3>
 
 You must [fork](https://docs.gitlab.com/user/project/repository/forking_workflow/#create-a-fork) Gruntwork's public [Pipelines workflow project](https://gitlab.com/gruntwork-io/pipelines-workflows) into your own GitLab instance.
-This is necessary because Gruntwork Pipelines uses [GitLab CI/CD components](/2.0/docs/pipelines/architecture/ci-workflows), and GitLab requires components to reside within the [same GitLab instance as the project referencing them](https://docs.gitlab.com/ci/components/#use-a-component).
+This is necessary because Pipelines uses [GitLab CI/CD components](/2.0/docs/pipelines/architecture/ci-workflows), and GitLab requires components to reside within the [same GitLab instance as the project referencing them](https://docs.gitlab.com/ci/components/#use-a-component).
 
 When creating the fork, we recommend configuring it as a public mirror of the original Gruntwork project and ensuring that tags are included.
 
@@ -105,7 +105,7 @@ This step only applies if you are using a self-hosted GitLab instance that is no
 
 <h3> Authorize Your GitLab Group with Gruntwork </h3>
 
-To use Gruntwork Pipelines with GitLab, your group needs authorization from Gruntwork. Email your Gruntwork account manager or support@gruntwork.io with:
+To use Pipelines with GitLab, your group needs authorization from Gruntwork. Email your Gruntwork account manager or support@gruntwork.io with:
 
     ```
     GitLab group name(s): $$GITLAB_GROUP_NAME$$ (e.g. acme-io)
@@ -156,7 +156,7 @@ Continue with the rest of the guide while you await confirmation when your group
 
 <h3>Bootstrap the repository</h3>
 
-Gruntwork provides a boilerplate [template](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/tree/main/templates/devops-foundations-infrastructure-live-root) that incorporates best practices while allowing for customization. The template is designed to scaffold a best-practices Terragrunt configurations. It includes patterns for module defaults, global variables, and account baselines. Additionally, it integrates Gruntwork Pipelines.
+Gruntwork provides a boilerplate [template](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/tree/main/templates/devops-foundations-infrastructure-live-root) that incorporates best practices while allowing for customization. The template is designed to scaffold a best-practices Terragrunt configurations. It includes patterns for module defaults, global variables, and account baselines. Additionally, it integrates Pipelines.
 
 <h4> Configure the variables required to run the boilerplate template </h4>
 
@@ -284,7 +284,7 @@ DefaultRegion: $$DEFAULT_REGION$$
 1. Create a new merge request for the `bootstrap-repository` branch. Review the changes to understand what will be applied to your AWS accounts. The generated files fall under the following categories:
 
         - GitLab Pipelines workflow file
-        - Gruntwork Pipelines configuration files
+        - Pipelines configuration files
         - Module defaults files for infrastructure code
         - Account baselines and GitLab OIDC module scaffolding files for your core AWS accounts: management, security, logs and shared.
 
@@ -521,7 +521,7 @@ DefaultRegion: $$DEFAULT_REGION$$
     This command adds all code required to set up your `infrastructure-live-access-control` repository. The generated files fall under the following categories:
 
     - GitLab Pipelines workflow file
-    - Gruntwork Pipelines configuration files
+    - Pipelines configuration files
     - Module defaults files for GitLab OIDC roles and policies
 
 

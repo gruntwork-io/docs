@@ -118,7 +118,7 @@ const sidebar = [
   },
   {
     type: "html",
-    value: "Gruntwork Pipelines",
+    value: "Pipelines",
     className: "sidebar-header emoji-rocket",
   },
   {
@@ -163,7 +163,7 @@ const sidebar = [
         ],
       },
       {
-        label: "Gruntwork Drift Detection",
+        label: "Drift Detection",
         type: "doc",
         id: "2.0/docs/pipelines/concepts/drift-detection",
       },
@@ -318,7 +318,7 @@ const sidebar = [
             id: "2.0/docs/pipelines/configuration/settings",
           },
           {
-            label: "Setting up Gruntwork Drift Detection",
+            label: "Setting up Drift Detection",
             type: "doc",
             id: "2.0/docs/pipelines/configuration/driftdetection",
           },
@@ -379,12 +379,12 @@ const sidebar = [
         id: "2.0/docs/pipelines/guides/extending-pipelines",
       },
       {
-        label: "Installing Gruntwork Drift Detection",
+        label: "Installing Drift Detection",
         type: "doc",
         id: "2.0/docs/pipelines/guides/installing-drift-detection",
       },
       {
-        label: "Running Gruntwork Drift Detection",
+        label: "Running Drift Detection",
         type: "doc",
         id: "2.0/docs/pipelines/guides/running-drift-detection",
       },
@@ -588,7 +588,7 @@ const sidebar = [
     href: "/2.0/reference/accountfactory/configurations",
   },
   {
-    value: "Gruntwork Patcher",
+    value: "Patcher",
     type: "html",
     className: "sidebar-header emoji-rocket",
   },
@@ -666,22 +666,22 @@ const sidebar = [
         id: "2.0/docs/patcher/guides/promotion-workflows",
       },
       {
-        label: "Using Gruntwork Patcher Report",
+        label: "Using Patcher Report",
         type: "doc",
         id: "2.0/docs/patcher/guides/report",
       },
       {
-        label: "Using Gruntwork Patcher Update",
+        label: "Using Patcher Update",
         type: "doc",
         id: "2.0/docs/patcher/guides/update",
       },
       {
-        label: "Using Gruntwork Patcher Upgrade",
+        label: "Using Patcher Upgrade",
         type: "doc",
         id: "2.0/docs/patcher/guides/upgrade",
       },
       {
-        label: "Self-hosting Gruntwork Patcher",
+        label: "Self-hosting Patcher",
         type: "doc",
         id: "2.0/docs/patcher/guides/self-hosting",
       },

@@ -70,16 +70,16 @@ After the workflow is complete, a new Pull Request will be created in the `infra
 
 Review and merge the Pull Request to begin the account creation process.
 
-Once the account request PR merges into the main branch, Gruntwork Pipelines will initiate the account creation in AWS. This process typically takes 10 to 15 minutes but may extend to 45 minutes.
+Once the account request PR merges into the main branch, Pipelines will initiate the account creation in AWS. This process typically takes 10 to 15 minutes but may extend to 45 minutes.
 
 - The SSO user created for the new account will use your organization's [Access Portal URL](https://docs.aws.amazon.com/signin/latest/userguide/sign-in-urls-defined.html#access-portal-url) to log in. New users invited to AWS IAM Identity Center (formerly AWS SSO) will receive an email with login instructions. Existing users can access the Portal URL through the organization's administrator.
 
 - The root user of the new account will receive an email and can log in by following the "Forgot Password" process on the [AWS Console's Sign-in page](https://console.aws.amazon.com/).
 
-When the account is successfully created, Gruntwork Pipelines will open another Pull Request to baseline the account.
+When the account is successfully created, Pipelines will open another Pull Request to baseline the account.
 
 ## Review and merge the Account Baseline PR
 
 Review and merge the Account Baseline Pull Request. This PR contains essential infrastructure for enabling your delegated repository to plan and apply infrastructure changes in AWS. It also includes account baselines and configured account-specific infrastructure, such as a VPC.
 
-The new account's Infrastructure as Code (IaC) is tracked in `infrastructure-live-root` as a newly created directory. Once the Account Baseline PR merges into the main branch and Gruntwork Pipelines applies the changes, you can add infrastructure to the new account by creating Terragrunt units in the directory.
+The new account's Infrastructure as Code (IaC) is tracked in `infrastructure-live-root` as a newly created directory. Once the Account Baseline PR merges into the main branch and Pipelines applies the changes, you can add infrastructure to the new account by creating Terragrunt units in the directory.

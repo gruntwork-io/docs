@@ -1,10 +1,10 @@
 # Extending Your Pipeline
 
-Gruntwork Pipelines is designed to be extensible, enabling users to tailor CI/CD workflows and underlying custom actions to align with their organization's unique requirements. This guide explains how to extend your pipeline.
+Pipelines is designed to be extensible, enabling users to tailor CI/CD workflows and underlying custom actions to align with their organization's unique requirements. This guide explains how to extend your pipeline.
 
 ## Pipelines extension architecture
 
-Extending Gruntwork Pipelines requires managing code across three distinct repositories/projects. This architecture segregates customer-specific modifications from Gruntwork-maintained code, minimizing conflicts and simplifying updates.
+Extending Pipelines requires managing code across three distinct repositories/projects. This architecture segregates customer-specific modifications from Gruntwork-maintained code, minimizing conflicts and simplifying updates.
 
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
@@ -34,19 +34,19 @@ This structure ensures that customers rarely need to modify Gruntwork-managed co
 
 ## Extend the CI/CD workflow
 
-<img alt="Diagram of Gruntwork Pipelines Repositories" className="img_node_modules-@docusaurus-theme-classic-lib-theme-MDXComponents-Img-styles-module medium-zoom-image" src="/img/pipelines/pipelines_customization_code_locations.svg" />
+<img alt="Diagram of Pipelines Repositories" className="img_node_modules-@docusaurus-theme-classic-lib-theme-MDXComponents-Img-styles-module medium-zoom-image" src="/img/pipelines/pipelines_customization_code_locations.svg" />
 
 <Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
-Gruntwork Pipelines for GitHub is implemented as a [Reusable Workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows). This allows you to reference a specific pinned version in your `.github/workflows/pipelines.yml` file without hosting the workflow code yourself.
+Pipelines for GitHub is implemented as a [Reusable Workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows). This allows you to reference a specific pinned version in your `.github/workflows/pipelines.yml` file without hosting the workflow code yourself.
 
 To extend this workflow for custom organizational logic, you can either [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) or [mirror](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository) the repository.
 
 </TabItem>
 <TabItem value="gitlab" label="GitLab">
 
-Gruntwork Pipelines for GitLab is implemented as a [GitLab CI/CD pipeline](https://docs.gitlab.com/ee/ci/pipelines/) using [CI/CD Components](https://docs.gitlab.com/ci/components/) that can be included in your project's `.gitlab-ci.yml` file.
+Pipelines for GitLab is implemented as a [GitLab CI/CD pipeline](https://docs.gitlab.com/ee/ci/pipelines/) using [CI/CD Components](https://docs.gitlab.com/ci/components/) that can be included in your project's `.gitlab-ci.yml` file.
 
 To extend this workflow for custom organizational logic, you can either [fork](https://docs.gitlab.com/ee/user/project/repository/forking_workflow.html) or [duplicate](https://docs.gitlab.com/ee/user/project/settings/import_export.html) the project.
 
@@ -116,7 +116,7 @@ This step-by-step guide outlines best practices for implementing custom actions:
 <TabItem value="gitlab" label="GitLab">
 
 <!-- TODO: Add support for GitLab custom actions -->
-Contact Gruntwork support for assistance setting up custom actions for Gruntwork Pipelines on GitLab.
+Contact Gruntwork support for assistance setting up custom actions for Pipelines on GitLab.
 
 </TabItem>
 </Tabs>

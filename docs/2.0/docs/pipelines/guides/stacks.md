@@ -6,7 +6,7 @@ Terragrunt Stacks provide a powerful way to organize and manage your infrastruct
 
 Learn more about Terragrunt Stacks in the <span class="external-link"><a href="https://terragrunt.gruntwork.io/docs/features/stacks/">Terragrunt Stacks Documentation</a></span> and the <span class="external-link"><a href="https://blog.gruntwork.io/the-road-to-terragrunt-1-0-stacks-cd97f11ef565">The Road to 1.0: Terragrunt Stacks</a></span> blog post.
 
-Gruntwork Pipelines has full support for Terragrunt Stacks without need for any additional configuration. When you include `terragrunt.stack.hcl` files in your IaC repository, Gruntwork Pipelines will automatically detect any relevant changes, and automatically generate the resulting unit configurations. You don't need to (and should not) commit the generated units to source control; commit only the stack configuration files and leave the rest to Gruntwork Pipelines.
+Pipelines has full support for Terragrunt Stacks without need for any additional configuration. When you include `terragrunt.stack.hcl` files in your IaC repository, Pipelines will automatically detect any relevant changes, and automatically generate the resulting unit configurations. You don't need to (and should not) commit the generated units to source control; commit only the stack configuration files and leave the rest to Pipelines.
 
 ## Prerequisites
 
@@ -22,11 +22,11 @@ To get started, follow these steps:
 
 1. Create Terragrunt Stack definitions (`terragrunt.stack.hcl` files) in your live IaC repo for any units you wish to configure as stacks. When referencing units in your stack, use versioned sources (e.g. `git::git@github.com:my-org/my-catalog.git//units/foo?ref=v0.2.0`). This ensures that the stack can be updated to a specific version of the unit.
 
-2. If the stacks pertain to units which you’ve previously committed to your IaC repo, set the `no_dot_terragrunt_stack` flag to true so that generated stacks will appear at the same directory path as your current stacks (instead of a hidden one). You should then remove the unit directories encoded with stacks from source control — Gruntwork Pipelines will generate these automatically when you deploy new changes. See the <span class="external-link"><a href="https://terragrunt.gruntwork.io/docs/migrate/terragrunt-stacks/#step-4-re-define-existing-infrastructure-using-terragruntstackhcl-files">Migration Guide</a></span> for more details.
+2. If the stacks pertain to units which you’ve previously committed to your IaC repo, set the `no_dot_terragrunt_stack` flag to true so that generated stacks will appear at the same directory path as your current stacks (instead of a hidden one). You should then remove the unit directories encoded with stacks from source control — Pipelines will generate these automatically when you deploy new changes. See the <span class="external-link"><a href="https://terragrunt.gruntwork.io/docs/migrate/terragrunt-stacks/#step-4-re-define-existing-infrastructure-using-terragruntstackhcl-files">Migration Guide</a></span> for more details.
 
-3. You can run `terragrunt stack generate` locally to preview the units configured in your stacks. However, do not commit the generated files to source control. Gruntwork Pipelines will generate these automatically when you deploy new changes.
+3. You can run `terragrunt stack generate` locally to preview the units configured in your stacks. However, do not commit the generated files to source control. Pipelines will generate these automatically when you deploy new changes.
 
-4. Add, modify, or remove stacks as needed. Gruntwork Pipelines will detect relevant changes as described in more detail below.
+4. Add, modify, or remove stacks as needed. Pipelines will detect relevant changes as described in more detail below.
 
 
 ### Detecting Stack Changes

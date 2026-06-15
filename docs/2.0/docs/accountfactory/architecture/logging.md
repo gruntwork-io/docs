@@ -34,7 +34,7 @@ Access to CloudTrail is controlled by AWS IAM policies that are assigned to indi
 Gruntwork recommends that only those with administrative access to an AWS account have access to view CloudTrail logs, as they contain a record of every single API operation that was performed in the account, which may expose the name or configuration of resources an individual user may otherwise not have access to.
 :::
 
-Furthermore, you should define the configuration of CloudTrail trails as code, with all changes reviewed in a pull request before being applied automatically by [Gruntwork Pipelines](/2.0/docs/pipelines/concepts/overview).
+Furthermore, you should define the configuration of CloudTrail trails as code, with all changes reviewed in a pull request before being applied automatically by [Pipelines](/2.0/docs/pipelines/concepts/overview).
 
 See [Identity-based policy examples for AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/security_iam_id-based-policy-examples.html) to learn more about granting access to CloudTrail.
 
@@ -54,7 +54,7 @@ You can query CloudTrail data in two ways - in the originating account or from t
 
 ### Querying in CloudTrail
 
-CloudTrail supports simple queries based on pre-set lookup attributes, including the event source, event name, user name, and resource type. You can find a complete list of filters in [filtering CloudTrail events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events-console.html#filtering-cloudtrail-events). The filters in CloudTrail allow you to perform coarse-grained queries over a single attribute filter and time range and view details on individual events. Using the CloudTrail UI can be a quick way to retrieve a lot of information, such as all the users that have performed a specific API call (e.g., ListBuckets). However, it is ineffective when analyzing data to understand usage patterns across multiple attributes, such as the usage of Gruntwork Pipelines by all users in your GitHub organization.
+CloudTrail supports simple queries based on pre-set lookup attributes, including the event source, event name, user name, and resource type. You can find a complete list of filters in [filtering CloudTrail events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events-console.html#filtering-cloudtrail-events). The filters in CloudTrail allow you to perform coarse-grained queries over a single attribute filter and time range and view details on individual events. Using the CloudTrail UI can be a quick way to retrieve a lot of information, such as all the users that have performed a specific API call (e.g., ListBuckets). However, it is ineffective when analyzing data to understand usage patterns across multiple attributes, such as the usage of Pipelines by all users in your GitHub organization.
 
 You can also [download events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events-console.html#downloading-events) from CloudTrail in CSV or JSON format and perform more in-depth analysis of events in another system such as a query service or using a script on your local machine.
 

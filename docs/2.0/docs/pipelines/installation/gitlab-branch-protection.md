@@ -1,6 +1,6 @@
 # Adding Branch Protection to a GitLab Project
 
-Gruntwork Pipelines is designed to function within a merge request (MR) based workflow. Approving a merge request signals approval to deploy infrastructure, so it's important to configure repository settings and branch protection accurately.
+Pipelines is designed to function within a merge request (MR) based workflow. Approving a merge request signals approval to deploy infrastructure, so it's important to configure repository settings and branch protection accurately.
 
 ## GitLab Recommended Settings
 
@@ -28,10 +28,10 @@ You can improve your security posture by ensuring that:
 ## Merge Request Workflow
 
 1. Developers make infrastructure changes on a branch and create a merge request (MR) against the default branch.
-2. On merge request creation, Gruntwork Pipelines runs `plan` for any changes and posts the results as a comment.
-3. Gruntwork Pipelines re-runs `plan` on every push to the branch and posts the results as a comment. By default, each push creates a new comment. Set [`new_comment_per_push`](/2.0/reference/pipelines/configurations-as-code/api#new_comment_per_push) to `false` in the `status_update` block to update a single comment in-place instead (note: GitLab does not preserve comment edit history).
+2. On merge request creation, Pipelines runs `plan` for any changes and posts the results as a comment.
+3. Pipelines re-runs `plan` on every push to the branch and posts the results as a comment. By default, each push creates a new comment. Set [`new_comment_per_push`](/2.0/reference/pipelines/configurations-as-code/api#new_comment_per_push) to `false` in the `status_update` block to update a single comment in-place instead (note: GitLab does not preserve comment edit history).
 4. Gather approvals. If Code Owners is enabled, all relevant code owners must approve the changes.
 5. Once approved, merge the merge request into the default branch.
-6. Gruntwork Pipelines runs `apply` for the changes from the merge request.
+6. Pipelines runs `apply` for the changes from the merge request.
    - On success, the merge request is updated to indicate the successful `apply`.
    - On failure, the merge request is updated to indicate the failure of the `apply`. If the failure cannot be resolved by retrying, a new merge request must be created to address the issues.
