@@ -213,7 +213,7 @@ A read/write apply role for the `infrastructure-live-access-control` repository.
 
 #### `delegated-pipelines-plan`
 
-A read-only plan role for delegated repositories, used by Pipelines Enterprise customers.
+A read-only plan role for delegated repositories, used by Enterprise customers.
 
 - These roles are pre-configured to have minimal permissions, primarily for managing OpenTofu/Terraform state.
 - A pull request will be opened in `infrastructure-live-access-control` during provisioning include documentation for adding additional permissions if necessary.

@@ -2,7 +2,7 @@
 
 :::note 
 
-Gruntwork AWS Account Factory-created Delegated Repositories are only available to Gruntwork AWS Accelerator Enterprise customers.
+Gruntwork AWS Account Factory-created Delegated Repositories are only available to Gruntwork Platform Enterprise customers.
 
 :::
 
@@ -37,9 +37,9 @@ sequenceDiagram
   Gruntwork AWS Account Factory->>AWS: Create Account
   AWS->>Gruntwork AWS Account Factory: Created Account ID
   Gruntwork AWS Account Factory->>Infrastructure Live Root: Generate IaC code <br />to install account baselines
-  Infrastructure Live Root->>AWS: Deploy baseline IaC code into new account via Gruntwork Pipelines
+  Infrastructure Live Root->>AWS: Deploy baseline IaC code into new account via Pipelines
   Gruntwork AWS Account Factory->>Infrastructure Live Access Control: Generate IAC Code to setup permissions for new delegated repository
-  Infrastructure Live Access Control->>AWS: Deploy permissions IaC code into new account via Gruntwork Pipelines
+  Infrastructure Live Access Control->>AWS: Deploy permissions IaC code into new account via Pipelines
   Gruntwork AWS Account Factory->>New Delegated Repository: Create new repository
   Note over New Delegated Repository: New Team writes IaC for their application
   New Delegated Repository->>AWS: Deploy application using roles<br /> managed by Infrastructure Live Access Control

@@ -3,7 +3,7 @@
 import CustomizableValue from '/src/components/CustomizableValue';
 
 :::note
-Delegated Repositories are only available to Gruntwork AWS Accelerator Enterprise customers.
+Delegated Repositories are only available to Gruntwork Platform Enterprise customers.
 :::
 
 ## Introduction

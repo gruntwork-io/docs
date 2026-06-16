@@ -1,10 +1,10 @@
 # Adding Branch Protection to a GitHub Repository
 
-Gruntwork Pipelines is designed to function within a pull request (PR) based workflow. Approving a pull request signals approval to deploy infrastructure, so it's important to configure repository settings and branch protection accurately.
+Pipelines is designed to function within a pull request (PR) based workflow. Approving a pull request signals approval to deploy infrastructure, so it's important to configure repository settings and branch protection accurately.
 
 ## GitHub Recommended Settings
 
-By default, Gruntwork Pipelines runs a `plan` on every push to a PR and an `apply` on every push to `main`. To ensure that infrastructure changes are reviewed and approved before deployment, branch protection should be enabled on `main` to prevent unauthorized changes.
+By default, Pipelines runs a `plan` on every push to a PR and an `apply` on every push to `main`. To ensure that infrastructure changes are reviewed and approved before deployment, branch protection should be enabled on `main` to prevent unauthorized changes.
 
 - Enable **Require a pull request before merging** to ensure all changes go through a pull request.
 - Enable **Require approvals** to require at least one approval before merging. Optionally, configure more than one required approval.
@@ -47,10 +47,10 @@ You can improve your security posture by ensuring that:
 ## Pull Request Workflow
 
 1. Developers make infrastructure changes on a branch and create a pull request (PR) against the default branch.
-2. On pull request creation, Gruntwork Pipelines runs `plan` for any changes and posts the results as a comment.
-3. Gruntwork Pipelines re-runs `plan` on every push to the branch and posts the results as a comment. By default, each push creates a new comment. Set [`new_comment_per_push`](/2.0/reference/pipelines/configurations-as-code/api#new_comment_per_push) to `false` in the `status_update` block to update a single comment in-place instead (GitHub preserves an edit history for the overwritten comment).
+2. On pull request creation, Pipelines runs `plan` for any changes and posts the results as a comment.
+3. Pipelines re-runs `plan` on every push to the branch and posts the results as a comment. By default, each push creates a new comment. Set [`new_comment_per_push`](/2.0/reference/pipelines/configurations-as-code/api#new_comment_per_push) to `false` in the `status_update` block to update a single comment in-place instead (GitHub preserves an edit history for the overwritten comment).
 4. Gather approvals. If Code Owners is enabled, all relevant code owners must approve the changes.
 5. Once approved, merge the pull request into the default branch.
-6. Gruntwork Pipelines runs `apply` for the changes from the pull request.
+6. Pipelines runs `apply` for the changes from the pull request.
    - On success, the pull request is updated to indicate the successful `apply`.
    - On failure, the pull request is updated to indicate the failure of the `apply`. If the failure cannot be resolved by retrying, a new pull request must be created to address the issues.

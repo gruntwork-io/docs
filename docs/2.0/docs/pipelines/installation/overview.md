@@ -4,7 +4,7 @@ Pipelines integrates multiple technologies to deliver a comprehensive CI/CD solu
 
 ## Installation as part of Account Factory
 
-Customers using Account Factory benefit from a guided setup process that includes the complete installation of Gruntwork Pipelines. This process is facilitated by a Gruntwork solutions engineer and includes the following steps:
+Customers using Account Factory benefit from a guided setup process that includes the complete installation of Pipelines. This process is facilitated by a Gruntwork solutions engineer and includes the following steps:
 
 1. Creating a new `infrastructure-live-root` repository from the [`infrastructure-live-root-template`](https://github.com/gruntwork-io/infrastructure-live-root-template) template.
 2. (On GitHub) Installing the [Gruntwork.io GitHub App](https://github.com/apps/gruntwork-io) on the `infrastructure-live-root` repository or across the entire organization. For detailed instructions, refer to [this guide](/2.0/docs/pipelines/installation/viagithubapp).
@@ -14,13 +14,13 @@ Completing these steps results in a repository fully configured for automated in
 
 ## Standalone Installation
 
-For users not leveraging Account Factory or needing Gruntwork Pipelines for a standalone repository with existing Terragrunt configurations, Gruntwork Pipelines can be installed as an independent GitHub Actions Workflow or GitLab CI Pipeline.
+For users not leveraging Account Factory or needing Pipelines for a standalone repository with existing Terragrunt configurations, Pipelines can be installed as an independent GitHub Actions Workflow or GitLab CI Pipeline.
 
 To learn more about this process, consult the documentation for [Adding Pipelines to a New Repository](/2.0/docs/pipelines/installation/addingnewrepo) or [Adding Pipelines to an Existing Repository](/2.0/docs/pipelines/installation/addingexistingrepo).
 
 ## Platform differences
 
-Gruntwork Pipelines supports both GitHub Actions and GitLab CI/CD. The installation process differs depending on your platform choice:
+Pipelines supports both GitHub Actions and GitLab CI/CD. The installation process differs depending on your platform choice:
 
 ### GitHub Actions
 

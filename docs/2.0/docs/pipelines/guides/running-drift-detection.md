@@ -1,19 +1,19 @@
-# Running Gruntwork Drift Detection
+# Running Drift Detection
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Detecting Drift
 
-Gruntwork Drift Detection can be executed manually or on a scheduled basis.
+Drift Detection can be executed manually or on a scheduled basis.
 
 :::note
-It is recommended to start with manual runs, focusing on individual directories of your IaC. This approach allows you to resolve drift incrementally before enabling scheduled Gruntwork Drift Detection for the entire repository.
+It is recommended to start with manual runs, focusing on individual directories of your IaC. This approach allows you to resolve drift incrementally before enabling scheduled Drift Detection for the entire repository.
 :::
 
-### Gruntwork Drift Detection Filter
+### Drift Detection Filter {#gruntwork-drift-detection-filter}
 
-The Gruntwork Drift Detection Filter is used to limit the units that are checked for drift. It is a comma-separated list of paths that should be included when checking for drift. The filter can be combined with the Ignore List to further limit the units that are checked for drift. The filter uses the same syntax as the [Ignore List](/2.0/reference/pipelines/ignore-list).
+The Drift Detection Filter is used to limit the units that are checked for drift. It is a comma-separated list of paths that should be included when checking for drift. The filter can be combined with the Ignore List to further limit the units that are checked for drift. The filter uses the same syntax as the [Ignore List](/2.0/reference/pipelines/ignore-list).
 
 The Filter can contain multiple patterns separated by the `,` character.
 
@@ -26,7 +26,7 @@ The Filter can contain multiple patterns separated by the `,` character.
 <Tabs groupId="platform">
 <TabItem value="github" label="GitHub">
 
-You can manually initiate Gruntwork Drift Detection by navigating to the Actions tab in your GitHub repository, selecting "Pipelines Drift Detection" from the left-hand menu, and then clicking "Run Workflow."
+You can manually initiate Drift Detection by navigating to the Actions tab in your GitHub repository, selecting "Pipelines Drift Detection" from the left-hand menu, and then clicking "Run Workflow."
 
 By default, the workflow evaluates all units in your repository and generates a pull request on the `drift-detection` branch. To limit drift detection to specific units, specify a path filter. For instance, to target only the `management` directory, use the filter `management/**`.
 
@@ -35,7 +35,7 @@ By default, the workflow evaluates all units in your repository and generates a 
 </TabItem>
 <TabItem value="gitlab" label="GitLab">
 
-You can manually initiate Gruntwork Drift Detection by navigating to the Build > Pipelines section in your GitLab project and clicking "New pipeline".
+You can manually initiate Drift Detection by navigating to the Build > Pipelines section in your GitLab project and clicking "New pipeline".
 
 Under Inputs change the "pipelines_workflow" input to "drift-detection".
 
@@ -44,7 +44,7 @@ By default, the workflow evaluates all units in your repository and generates a 
 Click "New pipeline" to run the workflow.
 
 :::warning
-Running Gruntwork Drift Detection on a large repository can take a long time and use a significant amount of GitLab compute minutes. If the configured [GitLab job duration](https://docs.gitlab.com/ci/pipelines/settings/#set-a-limit-for-how-long-jobs-can-run) is exceeded, the job will be cancelled. We recommend using the Filter input to limit the units that are checked for drift.
+Running Drift Detection on a large repository can take a long time and use a significant amount of GitLab compute minutes. If the configured [GitLab job duration](https://docs.gitlab.com/ci/pipelines/settings/#set-a-limit-for-how-long-jobs-can-run) is exceeded, the job will be cancelled. We recommend using the Filter input to limit the units that are checked for drift.
 :::
 
 ![Manual Dispatch](/img/pipelines/maintain/drift-detection-manual-dispatch-gitlab.png)
@@ -61,10 +61,10 @@ To enable scheduled runs:
 
 1. Uncomment the `schedule` block in `.github/workflows/pipelines-drift-detection.yml` that contains `- cron: '15 12 * * 1'`.
 2. Adjust the cron schedule to reflect your preferred frequency. The default configuration runs at 12:15 UTC every Monday. Use [crontab syntax](https://crontab.guru/#15_12_*_*_1) to customize the timing.
-3. Each Gruntwork Drift Detection run creates a pull request in your repository. If an existing Gruntwork Drift Detection pull request remains unmerged, it will be updated or replaced.
+3. Each Drift Detection run creates a pull request in your repository. If an existing Drift Detection pull request remains unmerged, it will be updated or replaced.
 
 :::caution
-Running Gruntwork Drift Detection too frequently can consume a significant number of GitHub Action minutes. Begin with a lower frequency and adjust as needed based on your usage patterns.
+Running Drift Detection too frequently can consume a significant number of GitHub Action minutes. Begin with a lower frequency and adjust as needed based on your usage patterns.
 :::
 
 </TabItem>
@@ -81,7 +81,7 @@ To create a scheduled run:
 7. Click "Create pipeline schedule"
 
 :::caution
-Running Gruntwork Drift Detection too frequently can consume a significant number of GitLab CI/CD minutes. Begin with a lower frequency and adjust as needed based on your usage patterns.
+Running Drift Detection too frequently can consume a significant number of GitLab CI/CD minutes. Begin with a lower frequency and adjust as needed based on your usage patterns.
 :::
 
 </TabItem>

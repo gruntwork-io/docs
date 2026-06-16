@@ -2,7 +2,7 @@
 import PersistentCheckbox from '/src/components/PersistentCheckbox';
 
 :::note
-Vending Delegated Repositories by Gruntwork AWS Account Factory is only available to Gruntwork AWS Accelerator Enterprise customers.
+Vending Delegated Repositories by Gruntwork AWS Account Factory is only available to Gruntwork Platform Enterprise customers.
 :::
 
 ## Introduction
@@ -66,7 +66,7 @@ Click "Run Workflow," paste the JSON payload into the input field, and execute t
 
 The Gruntwork AWS Account Factory workflow will generate a new Pull Request, adding a YAML file to the `_new-account-requests` directory.
 
-Review the Pull Request to ensure everything looks correct, then merge it. Once merged into the main branch, Gruntwork Pipelines will automatically run a `terragrunt apply` to create the new account in AWS.
+Review the Pull Request to ensure everything looks correct, then merge it. Once merged into the main branch, Pipelines will automatically run a `terragrunt apply` to create the new account in AWS.
 
 Provisioning typically takes around 10 minutes, but it may vary. Once complete, a new Pull Request will be created in the `infrastructure-live-root` repository to baseline the account.
 

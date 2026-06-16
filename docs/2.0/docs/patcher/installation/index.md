@@ -1,14 +1,14 @@
-# Installing Gruntwork Patcher
+# Installing Patcher
 
 ## Installation
 
-To install Gruntwork Patcher, download the appropriate package for your system from the [releases](https://github.com/gruntwork-io/patcher-cli/releases) page.  
+To install Patcher, download the appropriate package for your system from the [releases](https://github.com/gruntwork-io/patcher-cli/releases) page.  
 
 ### For MacOS and Linux users  
 
-Gruntwork Patcher runs as a single binary called `patcher`. Verify that the patcher binary is in your system's `PATH` to allow command-line access from any directory.
+Patcher runs as a single binary called `patcher`. Verify that the patcher binary is in your system's `PATH` to allow command-line access from any directory.
 
-1. After downloading Gruntwork Patcher, move it to your desired destination directory.  
+1. After downloading Patcher, move it to your desired destination directory.  
 2. On macOS, unzip the downloaded package. For other operating systems, the downloaded artifact is the executable itself.  
 3. If needed, rename the binary to `patcher`. 
 ```bash
@@ -21,15 +21,15 @@ $ echo $PATH
 $ mv patcher /usr/local/bin
 ```
 
-## Self-hosting Gruntwork Patcher
+## Self-hosting Patcher {#self-hosting-gruntwork-patcher}
 
-If your organization requires hosting Gruntwork Patcher binaries internally rather than downloading them directly from GitHub, see our [self-hosting guide](/2.0/docs/patcher/guides/self-hosting) for detailed instructions on using repo-copier and other self-hosting approaches.
+If your organization requires hosting Patcher binaries internally rather than downloading them directly from GitHub, see our [self-hosting guide](/2.0/docs/patcher/guides/self-hosting) for detailed instructions on using repo-copier and other self-hosting approaches.
 
-## Before running Gruntwork Patcher
+## Before running Patcher {#before-running-gruntwork-patcher}
 
 ### GitHub Personal Access Token
 
-To fetch information from GitHub, Gruntwork Patcher requires a [GitHub Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token), with the `repo` scope. Set the
+To fetch information from GitHub, Patcher requires a [GitHub Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token), with the `repo` scope. Set the
 `GITHUB_OAUTH_TOKEN` environment variable to your GitHub Personal Access token:
 
 ```bash
@@ -38,28 +38,28 @@ export GITHUB_OAUTH_TOKEN="<YOUR_GITHUB_PAT>"
 
 ### Docker
 
-Starting in version `0.4.1`, the Gruntwork Patcher `update` command applies patches using a Docker sandbox by default and pulls the latest version of the [`gruntwork/patcher_bash_env`](https://hub.docker.com/r/gruntwork/patcher_bash_env) image.
+Starting in version `0.4.1`, the Patcher `update` command applies patches using a Docker sandbox by default and pulls the latest version of the [`gruntwork/patcher_bash_env`](https://hub.docker.com/r/gruntwork/patcher_bash_env) image.
 
-To run the Gruntwork Patcher `update` command locally without Docker or in a CI pipeline, use the `--skip-container-runtime` flag.
+To run the Patcher `update` command locally without Docker or in a CI pipeline, use the `--skip-container-runtime` flag.
 
-## Running Gruntwork Patcher
+## Running Patcher {#running-gruntwork-patcher}
 
-Run Gruntwork Patcher within a local Git repository that uses OpenTofu/Terraform or Terragrunt to analyze **all** modules in the current folder, including child folders. Gruntwork Patcher supports `source` values only from GitHub.
+Run Patcher within a local Git repository that uses OpenTofu/Terraform or Terragrunt to analyze **all** modules in the current folder, including child folders. Patcher supports `source` values only from GitHub.
 
-If you have purchased and deployed the [Reference Architecture](https://gruntwork.io/reference-architecture/) and your deployment is organized in an `infrastructure-live` repository, we recommend running Gruntwork Patcher within each environment folder, such as `infrastructure-live/dev`.
+If you have purchased and deployed the [Reference Architecture](https://gruntwork.io/reference-architecture/) and your deployment is organized in an `infrastructure-live` repository, we recommend running Patcher within each environment folder, such as `infrastructure-live/dev`.
 
 
-### Gruntwork Patcher report
+### Patcher report {#gruntwork-patcher-report}
 
 The `patcher report` command is a read-only operation that displays the changelog for each module and its usages. Learn more in the [report command guide](/2.0/docs/patcher/guides/report).
 
-### Gruntwork Patcher update
+### Patcher update {#gruntwork-patcher-update}
 
 The `patcher update` command updates some or all module dependencies in the current folder and any child folders. Learn more in the [update command guide](/2.0/docs/patcher/guides/update).
 
 ## Debugging
 
-Gruntwork Patcher logs are stored in the `~/.patcher/logs` directory. To include `debug` logs, run Gruntwork Patcher with the `--loglevel debug` flag.  
+Patcher logs are stored in the `~/.patcher/logs` directory. To include `debug` logs, run Patcher with the `--loglevel debug` flag.  
 
 ```
 patcher report --loglevel debug

@@ -1,16 +1,16 @@
 # Architecture
 
-Gruntwork Pipelines, at its core, is a single binary that customers can download using their Gruntwork subscription to "do the right thing" when it comes to managing Infrastructure as Code using Terragrunt using GitOps workflows. Pipelines runs in customer CI/CD pipelines (not Gruntwork servers or any other dedicated server you have to maintain) to handle all the complexity of performing IaC CI/CD.
+Pipelines, at its core, is a single binary that customers can download using their Gruntwork subscription to "do the right thing" when it comes to managing Infrastructure as Code using Terragrunt using GitOps workflows. Pipelines runs in customer CI/CD pipelines (not Gruntwork servers or any other dedicated server you have to maintain) to handle all the complexity of performing IaC CI/CD.
 
 Outside of the main binary, Pipelines has several other components that work together to make it all work. These components are all provided by Gruntwork, and we work with our customers to ensure that they are configured correctly to work together.
 
 ## CI/CD pipelines
 
-By design, customers run the binary as part of their CI/CD pipelines (e.g. GitHub Actions, GitLab CI, etc.). As such, Gruntwork provides out-of-the-box CI/CD configurations for supported platforms when customers sign up for Gruntwork Pipelines.
+By design, customers run the binary as part of their CI/CD pipelines (e.g. GitHub Actions, GitLab CI, etc.). As such, Gruntwork provides out-of-the-box CI/CD configurations for supported platforms when customers sign up for Pipelines.
 
 We likewise provide CI/CD configurations for [Gruntwork Account Factory](https://docs.gruntwork.io/account-factory/overview).
 
-When using Gruntwork Pipelines without Gruntwork Account Factory, customers are responsible for configuring their repositories to use the appropriate CI/CD configuration for that platform (see [Adding Pipelines to an Existing Repository](/2.0/docs/pipelines/installation/addingexistingrepo) for more information). This code is typically fairly minimal, and the majority of the work is done by reusable workflows made available by Gruntwork, and the binary itself.
+When using Pipelines without Gruntwork Account Factory, customers are responsible for configuring their repositories to use the appropriate CI/CD configuration for that platform (see [Adding Pipelines to an Existing Repository](/2.0/docs/pipelines/installation/addingexistingrepo) for more information). This code is typically fairly minimal, and the majority of the work is done by reusable workflows made available by Gruntwork, and the binary itself.
 
 ## Cloud resources
 
@@ -62,7 +62,7 @@ It is also used to manage the access that GitHub Machine Users have to relevant 
 
 ## Architecture Overview
 
-The Gruntwork Pipelines architecture varies depending on your Source Control Management (SCM) platform, authentication method, and cloud provider.
+The Pipelines architecture varies depending on your Source Control Management (SCM) platform, authentication method, and cloud provider.
 
 Below are simplified diagrams for each supported configuration, to provide a high-level overview of the architecture:
 
@@ -82,7 +82,7 @@ graph TB
     end
 
     subgraph "Pipelines Runtime"
-        Binary[Gruntwork Pipelines Binary]
+        Binary[Pipelines Binary]
     end
 
     subgraph "Cloud Provider"
@@ -131,7 +131,7 @@ graph TB
     end
 
     subgraph "Pipelines Runtime"
-        Binary[Gruntwork Pipelines Binary]
+        Binary[Pipelines Binary]
     end
 
     subgraph "Cloud Provider"
@@ -181,7 +181,7 @@ graph TB
     end
 
     subgraph "Pipelines Runtime"
-        Binary[Gruntwork Pipelines Binary]
+        Binary[Pipelines Binary]
     end
 
     subgraph "Cloud Provider"

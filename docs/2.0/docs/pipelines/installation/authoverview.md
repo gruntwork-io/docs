@@ -1,6 +1,6 @@
 # SCM Authentication Overview
 
-Gruntwork Pipelines requires authentication with Source Control Management (SCM) platforms (e.g. GitHub, GitLab) for various reasons, including:
+Pipelines requires authentication with Source Control Management (SCM) platforms (e.g. GitHub, GitLab) for various reasons, including:
 
 - Downloading Gruntwork software, such as the Pipelines binary and OpenTofu modules, from the `gruntwork-io` GitHub organization.
 - Interacting with your repositories, such as:

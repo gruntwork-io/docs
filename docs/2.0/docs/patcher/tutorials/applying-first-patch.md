@@ -160,7 +160,7 @@ At this point, the action will begin. After a few seconds, you should see a new 
 
 ![The content of the pull request, including version changes and code modifications as a result of applying patches](/img/patcher/tutorials/patcher_gh_update_action_pr_diff.png)
 
-At this point, if you are a [Gruntwork Pipelines](/2.0/docs/pipelines/concepts/overview) customer, Pipelines will automatically plan the change and post the results as a comment. If the results look good, you can merge the pull request to apply and finalize the change. 
+At this point, if you are a [Pipelines](/2.0/docs/pipelines/concepts/overview) customer, Pipelines will automatically plan the change and post the results as a comment. If the results look good, you can merge the pull request to apply and finalize the change. 
 
 
 

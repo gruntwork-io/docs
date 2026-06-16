@@ -63,7 +63,7 @@ const llmsPlugin = [
     generateLLMsFullTxt: true,
     title: "Gruntwork Docs",
     description:
-      "Full documentation for the Gruntwork Platform: an end-to-end DevOps platform for Infrastructure as Code, covering Gruntwork Pipelines, AWS Account Factory, the IaC Library, Patcher, and the Gruntwork Way.",
+      "Full documentation for the Gruntwork Platform: an end-to-end DevOps platform for Infrastructure as Code, covering Pipelines, AWS Account Factory, the IaC Library, Patcher, and the Gruntwork Way.",
   },
 ]
 
@@ -402,7 +402,7 @@ async function createConfig() {
           {
             name: "keywords",
             content:
-              "gruntwork, gruntwork platform, aws accelerator, terragrunt scale, aws iac library, aws account factory, aws platform architecture, infrastructure as code, iac, gruntwork pipelines, drift detection, patcher, opentofu, tofu, terraform, terragrunt, terratest, aws",
+              "gruntwork, gruntwork platform, aws accelerator, terragrunt scale, aws iac library, aws account factory, aws platform architecture, infrastructure as code, iac, pipelines, drift detection, patcher, opentofu, tofu, terraform, terragrunt, terratest, aws",
           },
           { name: "buildVersion", content: buildVersion },
           { name: "buildTime", content: new Date().toString() },

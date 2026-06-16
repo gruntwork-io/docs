@@ -11,7 +11,7 @@ import {
   HclGeneralListItem,
 } from "/src/components/HclListItem.tsx"
 
-Pipelines Account Factory uses configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to enable dynamic behavior. These configurations determine how Account Factory will provision and configure new AWS accounts using Gruntwork Pipelines.
+Pipelines Account Factory uses configurations written in [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl) to enable dynamic behavior. These configurations determine how Account Factory will provision and configure new AWS accounts using Pipelines.
 
 Account Factory configuration is global to the repository and lives in `.gruntwork/account-factory.hcl` at the root of the repository. Pipelines parses every `.hcl` file in the `.gruntwork` directory; the `account-factory.hcl` filename is conventional but not required.
 

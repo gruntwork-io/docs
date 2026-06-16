@@ -44,6 +44,6 @@ You can update specific attributes of an AWS account by modifying the correspond
 
 After completing your modifications:
 1. Push the branch with your changes and open a pull request.
-2. Gruntwork Pipelines automatically detects updates and executes a `plan` operation.
+2. Pipelines automatically detects updates and executes a `plan` operation.
 3. Review the `plan` output to confirm the changes are accurate and align with expectations.
 4. Once validated, merge the pull request to apply the updates.
