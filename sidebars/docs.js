@@ -379,6 +379,47 @@ const sidebar = [
         id: "2.0/docs/pipelines/guides/extending-pipelines",
       },
       {
+        label: "Hooks",
+        type: "category",
+        collapsed: true,
+        link: {
+          type: "doc",
+          id: "2.0/docs/pipelines/guides/hooks/overview",
+        },
+        items: [
+          {
+            label: "Overview",
+            type: "doc",
+            id: "2.0/docs/pipelines/guides/hooks/overview",
+          },
+          {
+            label: "Setup & Prerequisites",
+            type: "doc",
+            id: "2.0/docs/pipelines/guides/hooks/setup",
+          },
+          {
+            label: "Configuring Hooks",
+            type: "doc",
+            id: "2.0/docs/pipelines/guides/hooks/configuring",
+          },
+          {
+            label: "Writing a Hook",
+            type: "doc",
+            id: "2.0/docs/pipelines/guides/hooks/writing-a-hook",
+          },
+          {
+            label: "Authentication & Secrets",
+            type: "doc",
+            id: "2.0/docs/pipelines/guides/hooks/authentication",
+          },
+          {
+            label: "Example: Slack Deploy Notification",
+            type: "doc",
+            id: "2.0/docs/pipelines/guides/hooks/slack-deploy-notification",
+          },
+        ],
+      },
+      {
         label: "Installing Drift Detection",
         type: "doc",
         id: "2.0/docs/pipelines/guides/installing-drift-detection",
