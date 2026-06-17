@@ -101,7 +101,7 @@ curl --fail --silent --show-error \
   "$webhook_url"
 ```
 
-The hook writes nothing to its output files, so Pipelines reports it as a `pass`. See [Writing a Hook](/2.0/docs/pipelines/guides/hooks/writing-a-hook) if you also want it to leave a comment on the pull/merge request.
+This hook writes no output files, so Pipelines reports it as a `pass`. (Heads up: with `set -euo pipefail` and curl's `--fail`, a failed secret lookup or Slack post exits non-zero and fails the run; handle those cases in your script if you want it to pass regardless.) To also leave a comment on the pull/merge request, see [Writing a Hook](/2.0/docs/pipelines/guides/hooks/writing-a-hook).
 
 ## What you'll see
 

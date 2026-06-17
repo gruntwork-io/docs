@@ -91,7 +91,7 @@ The result written to `PIPELINES_HOOKS_OUT_RESULT_FILE` is one of:
 
 | Result | Meaning |
 |---|---|
-| `pass` | The hook succeeded. Produces no comment. |
+| `pass` | The default result. |
 | `warn` | Advisory warning. |
 | `deny` | Advisory rejection. |
 
