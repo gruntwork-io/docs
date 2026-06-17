@@ -93,7 +93,7 @@ repository {
 </TabItem>
 </Tabs>
 
-For setting up each provider and the full set of fields, see [Authenticating to the Cloud](/2.0/docs/pipelines/concepts/cloud-auth/index) and the [`authentication` block reference](/2.0/reference/pipelines/configurations-as-code/api#authentication-block).
+For setting up each provider and the full set of fields, see [Authenticating to the Cloud](/2.0/docs/pipelines/concepts/cloud-auth/index.md) and the [`authentication` block reference](/2.0/reference/pipelines/configurations-as-code/api#authentication-block).
 
 ## Secrets
 
@@ -107,4 +107,4 @@ For a worked example using AWS and SSM Parameter Store, see [Example: Slack Depl
 
 - [Writing a Hook](/2.0/docs/pipelines/guides/hooks/writing-a-hook)
 - [`authentication` block reference](/2.0/reference/pipelines/configurations-as-code/api#authentication-block)
-- [Authenticating to the Cloud](/2.0/docs/pipelines/concepts/cloud-auth/index)
+- [Authenticating to the Cloud](/2.0/docs/pipelines/concepts/cloud-auth/index.md)
