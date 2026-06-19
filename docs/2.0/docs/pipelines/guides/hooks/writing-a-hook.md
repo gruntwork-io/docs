@@ -17,17 +17,17 @@ Hooks run from the root of a copy of your repository, so this path resolves rela
 
 ## 2. Read the run context
 
-Pipelines passes information to the hook through environment variables. Context values about the run are in the `PIPELINES_HOOKS_CTX_*` namespace, and paths to input files are in the `PIPELINES_HOOKS_IN_*` namespace.
+Pipelines passes information to the hook through environment variables. Context values about the run are in the `PIPELINES_HOOK_CTX_*` namespace, and paths to input files are in the `PIPELINES_HOOK_IN_*` namespace.
 
 Read the actor and action from the context, and the path to the units file from the inputs:
 
 ```bash
-actor="$PIPELINES_HOOKS_CTX_ACTOR"
-action="$PIPELINES_HOOKS_CTX_ACTION"
-units_file="$PIPELINES_HOOKS_IN_UNITS_JSON_FILE"
+actor="$PIPELINES_HOOK_CTX_ACTOR"
+action="$PIPELINES_HOOK_CTX_ACTION"
+units_file="$PIPELINES_HOOK_IN_UNITS_JSON_FILE"
 ```
 
-`PIPELINES_HOOKS_IN_UNITS_JSON_FILE` points at a JSON array of the units in the run, each with its path and (when one exists) the path to its plan JSON. For example, list the affected unit paths with `jq`:
+`PIPELINES_HOOK_IN_UNITS_JSON_FILE` points at a JSON array of the units in the run, each with its path and (when one exists) the path to its plan JSON. For example, list the affected unit paths with `jq`:
 
 ```bash
 jq -r '.[].path' "$units_file"
@@ -37,17 +37,17 @@ For the complete list of context variables and input files, see the [Hooks API](
 
 ## 3. Write the comment
 
-A hook returns information by writing to the files named in the `PIPELINES_HOOKS_OUT_*` namespace. Build a comment listing the affected units and write it to the comment file:
+A hook returns information by writing to the files named in the `PIPELINES_HOOK_OUT_*` namespace. Build a comment listing the affected units and write it to the comment file:
 
 ```bash
 {
   echo "<code>$action</code> triggered by @$actor affected:"
   echo
   jq -r '.[] | "- <code>\(.path)</code>"' "$units_file"
-} > "$PIPELINES_HOOKS_OUT_COMMENT_FILE"
+} > "$PIPELINES_HOOK_OUT_COMMENT_FILE"
 ```
 
-Writing outputs is optional. This hook only posts a comment, so it does not write a result file: when a hook writes nothing to `PIPELINES_HOOKS_OUT_RESULT_FILE` and exits `0`, Pipelines defaults its result to `pass`. To flag a problem instead, write `warn` or `deny` to that file. The result is advisory and surfaces in the comment, but does not by itself fail the run. [How results and comments appear](#how-results-and-comments-appear) below covers how each one renders on the request.
+Writing outputs is optional. This hook only posts a comment, so it does not write a result file: when a hook writes nothing to `PIPELINES_HOOK_OUT_RESULT_FILE` and exits `0`, Pipelines defaults its result to `pass`. To flag a problem instead, write `warn` or `deny` to that file. The result is advisory and surfaces in the comment, but does not by itself fail the run. [How results and comments appear](#how-results-and-comments-appear) below covers how each one renders on the request.
 
 The complete script:
 
@@ -55,15 +55,15 @@ The complete script:
 #!/usr/bin/env bash
 set -euo pipefail
 
-actor="$PIPELINES_HOOKS_CTX_ACTOR"
-action="$PIPELINES_HOOKS_CTX_ACTION"
-units_file="$PIPELINES_HOOKS_IN_UNITS_JSON_FILE"
+actor="$PIPELINES_HOOK_CTX_ACTOR"
+action="$PIPELINES_HOOK_CTX_ACTION"
+units_file="$PIPELINES_HOOK_IN_UNITS_JSON_FILE"
 
 {
   echo "<code>$action</code> triggered by @$actor affected:"
   echo
   jq -r '.[] | "- <code>\(.path)</code>"' "$units_file"
-} > "$PIPELINES_HOOKS_OUT_COMMENT_FILE"
+} > "$PIPELINES_HOOK_OUT_COMMENT_FILE"
 ```
 
 ## 4. Make the script executable
@@ -122,8 +122,8 @@ The overall comment reflects the most severe hook outcome, so a `warn` or `deny`
 
 The two text outputs serve different purposes:
 
-- **Summary** (`PIPELINES_HOOKS_OUT_SUMMARY_FILE`) appears inline next to the title, after a colon, for example `⚠️ Affected Units: 3 units changed`. Use it for a short, at-a-glance headline.
-- **Comment** (`PIPELINES_HOOKS_OUT_COMMENT_FILE`) is the body of the collapsible section, rendered as HTML. Use it for detailed output such as a table, a list, or links.
+- **Summary** (`PIPELINES_HOOK_OUT_SUMMARY_FILE`) appears inline next to the title, after a colon, for example `⚠️ Affected Units: 3 units changed`. Use it for a short, at-a-glance headline.
+- **Comment** (`PIPELINES_HOOK_OUT_COMMENT_FILE`) is the body of the collapsible section, rendered as HTML. Use it for detailed output such as a table, a list, or links.
 
 If the hook writes no comment, Pipelines shows a fallback line in the body, such as `Hook exited with code 0`. The hook from this guide writes a `pass` result and a comment, so it appears with a ✅ icon and its unit list in the body.
 

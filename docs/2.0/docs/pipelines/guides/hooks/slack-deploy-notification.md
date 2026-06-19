@@ -82,9 +82,9 @@ webhook_url=$(aws ssm get-parameter \
   --output text)
 
 # Read run context provided by Pipelines.
-repository="$PIPELINES_HOOKS_CTX_REPOSITORY"
-actor="$PIPELINES_HOOKS_CTX_ACTOR"
-status="$PIPELINES_HOOKS_CTX_ACTION_STATUS"
+repository="$PIPELINES_HOOK_CTX_REPOSITORY"
+actor="$PIPELINES_HOOK_CTX_ACTOR"
+status="$PIPELINES_HOOK_CTX_ACTION_STATUS"
 
 if [ "$status" = "succeeded" ]; then
   text="✅ Deploy of $repository by $actor succeeded."

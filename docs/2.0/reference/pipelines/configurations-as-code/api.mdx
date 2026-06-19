@@ -411,7 +411,7 @@ The command Pipelines runs for the hook, written as a list where the first eleme
 Run an inline shell snippet (note the `bash -c` so the variable is expanded by the shell):
 
 ```hcl
-execute = ["bash", "-c", "echo \"Triggered by $PIPELINES_HOOKS_CTX_ACTOR\""]
+execute = ["bash", "-c", "echo \"Triggered by $PIPELINES_HOOK_CTX_ACTOR\""]
 ```
 
 Or invoke an executable script directly by its path:
