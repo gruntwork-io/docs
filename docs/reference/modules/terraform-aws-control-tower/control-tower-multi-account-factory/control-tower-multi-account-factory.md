@@ -9,16 +9,16 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="2.0.2" lastModifiedVersion="1.3.0"/>
+<VersionBadge repoTitle="Control Tower" version="2.1.0" lastModifiedVersion="1.3.0"/>
 
 # Control Tower Multi-Account Factory
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/landingzone/control-tower-multi-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.0/modules/landingzone/control-tower-multi-account-factory" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a Terraform module that will trigger the creation of multiple new AWS accounts by using Control Tower. Under
-the hood, this module uses the [control-tower-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-account-factory) module.
+the hood, this module uses the [control-tower-account-factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.0/modules/control-tower-account-factory) module.
 
 ## Sample Usage
 
@@ -33,7 +33,7 @@ the hood, this module uses the [control-tower-account-factory](https://github.co
 
 module "control_tower_multi_account_factory" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory?ref=v2.0.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory?ref=v2.1.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -65,6 +65,10 @@ module "control_tower_multi_account_factory" {
   # email (the root user email address for the account).
   accounts_yaml_path = null
 
+  # The accounts from the control tower landing zone module. Omit keys or pass
+  # {} when not wiring landing zone outputs (e.g. partial installs).
+  control_tower_landing_zone_accounts = {}
+
   # The amount of time allowed for the create operation to take before being
   # considered to have failed.
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
@@ -90,6 +94,14 @@ module "control_tower_multi_account_factory" {
   # provisioning_artifact_id manually—and update it every time it changes! Note
   # that this script requires the AWS CLI to be installed and on the PATH.
   find_provisioning_artifact_id_using_script = true
+
+  # Optional map of OUs (keyed by path) to match account requests against, in
+  # addition to the OUs discovered live in the AWS Organization. Wire this from
+  # the control-tower-organization-structure module's organizational_units
+  # output (via a Terragrunt dependency) so that, during a plan, accounts can
+  # target OUs this run will create but that do not exist in AWS yet. Injected
+  # entries override discovered ones with the same path.
+  organizational_units = {}
 
   # The ID of the AWS Control Tower Account Factory provisioning artifact in AWS
   # Service Catalog to use. If find_provisioning_artifact_id_using_script is set
@@ -131,7 +143,7 @@ module "control_tower_multi_account_factory" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory?ref=v2.0.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-multi-account-factory?ref=v2.1.0"
 }
 
 inputs = {
@@ -166,6 +178,10 @@ inputs = {
   # email (the root user email address for the account).
   accounts_yaml_path = null
 
+  # The accounts from the control tower landing zone module. Omit keys or pass
+  # {} when not wiring landing zone outputs (e.g. partial installs).
+  control_tower_landing_zone_accounts = {}
+
   # The amount of time allowed for the create operation to take before being
   # considered to have failed.
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/servicecatalog_provisioned_product#timeouts
@@ -191,6 +207,14 @@ inputs = {
   # provisioning_artifact_id manually—and update it every time it changes! Note
   # that this script requires the AWS CLI to be installed and on the PATH.
   find_provisioning_artifact_id_using_script = true
+
+  # Optional map of OUs (keyed by path) to match account requests against, in
+  # addition to the OUs discovered live in the AWS Organization. Wire this from
+  # the control-tower-organization-structure module's organizational_units
+  # output (via a Terragrunt dependency) so that, during a plan, accounts can
+  # target OUs this run will create but that do not exist in AWS yet. Injected
+  # entries override discovered ones with the same path.
+  organizational_units = {}
 
   # The ID of the AWS Control Tower Account Factory provisioning artifact in AWS
   # Service Catalog to use. If find_provisioning_artifact_id_using_script is set
@@ -254,6 +278,39 @@ If specified, this is assumed to be the absolute file path of a YAML file where 
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="control_tower_landing_zone_accounts" requirement="optional" type="object(…)">
+<HclListItemDescription>
+
+The accounts from the control tower landing zone module. Omit keys or pass &#123;&#125; when not wiring landing zone outputs (e.g. partial installs).
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+object({
+    management = optional(object({
+      id    = string
+      email = string
+    }))
+    logs = optional(object({
+      id    = string
+      email = string
+    }))
+    security = optional(object({
+      id    = string
+      email = string
+    }))
+    shared = optional(object({
+      id    = string
+      email = string
+    }))
+  })
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="create_operation_timeout" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -288,6 +345,27 @@ If set to true, this module will use a Bash script to try to find the Control To
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="organizational_units" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Optional map of OUs (keyed by path) to match account requests against, in addition to the OUs discovered live in the AWS Organization. Wire this from the control-tower-organization-structure module's organizational_units output (via a Terragrunt dependency) so that, during a plan, accounts can target OUs this run will create but that do not exist in AWS yet. Injected entries override discovered ones with the same path.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    id   = string
+    name = string
+    arn  = optional(string)
+    path = optional(string)
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="provisioning_artifact_id" requirement="optional" type="string">
@@ -328,17 +406,20 @@ The data from all the AWS accounts created.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="debug">
+</HclListItem>
+
 </TabItem>
 </Tabs>
 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-multi-account-factory/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-multi-account-factory/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.0.2/modules/control-tower-multi-account-factory/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.0/modules/control-tower-multi-account-factory/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.0/modules/control-tower-multi-account-factory/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.0/modules/control-tower-multi-account-factory/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ca6a860123dd2dd143c5ecbb5281aab1"
+  "hash": "d7cb2eea81c34e10c1db1678aed1af31"
 }
 ##DOCS-SOURCER-END -->
