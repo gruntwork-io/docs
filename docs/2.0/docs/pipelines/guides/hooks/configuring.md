@@ -64,7 +64,7 @@ A hook's exit code is how it tells Pipelines whether it succeeded:
 - **Exit `0`** means the hook succeeded. Pipelines reads back its output files (result, summary, and comment).
 - **Any non-zero exit** means the hook failed. **A failed hook fails the entire pipeline run**, exactly as a failed `plan` or `apply` does, and Pipelines ignores the hook's output files.
 
-Only the exit code decides success or failure. The result a hook writes (`pass`, `warn`, or `deny`) is advisory: it surfaces in the comment but never fails the run on its own, so a hook that exits `0` succeeds even when it reports `deny`. See [Hooks API](/2.0/reference/pipelines/hooks-api) for the result values.
+The exit code is not the only thing that can fail the run. When a hook exits `0`, Pipelines reads the result it wrote (`pass`, `warn`, or `deny`) and surfaces it in the comment. A `deny` result fails the pipeline run and blocks the pull/merge request from merging. `warn` is advisory and does not affect the run, and `pass` (or an empty or unrecognized value) has no effect. See [Hooks API](/2.0/reference/pipelines/hooks-api) for the result values.
 
 ### Skipping after a failure
 

@@ -93,8 +93,8 @@ The result written to `PIPELINES_HOOK_OUT_RESULT_FILE` is one of:
 |---|---|
 | `pass` | The default result. |
 | `warn` | Advisory warning. |
-| `deny` | Advisory rejection. |
+| `deny` | Rejection. Fails the pipeline run. |
 
-The result is an advisory severity surfaced in the pull/merge request comment; it does not by itself change whether the run succeeds. In particular, `deny` does not fail the run. An empty or unrecognized value is treated as `pass`.
+The result is a severity surfaced in the pull/merge request comment. `deny` fails the pipeline run and blocks the pull/merge request from merging; `warn` is advisory and does not affect the run; `pass` produces no failure. An empty or unrecognized value is treated as `pass`.
 
 For how the result, summary, and comment appear on the pull/merge request, see [How results and comments appear](/2.0/docs/pipelines/guides/hooks/writing-a-hook#how-results-and-comments-appear).

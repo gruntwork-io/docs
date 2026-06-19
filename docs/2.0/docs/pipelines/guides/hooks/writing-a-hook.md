@@ -1,6 +1,6 @@
 # Writing a Hook
 
-This guide builds a hook from scratch: a small bash script that reads context about the run, inspects the units that were planned, and posts a comment back on the pull/merge request. Along the way it covers the full loop a hook goes through, reading inputs from the environment and writing outputs to files.
+This guide builds a hook from scratch: a small bash script that reads context about the run, inspects the units that were planned, and adds a list of them to the Pipelines comment on the pull/merge request. Along the way it covers the full loop a hook goes through, reading inputs from the environment and writing outputs to files.
 
 Before you start, make sure hooks are set up for your repository. See [Setup & Prerequisites](/2.0/docs/pipelines/guides/hooks/setup).
 
@@ -37,7 +37,7 @@ For the complete list of context variables and input files, see the [Hooks API](
 
 ## 3. Write the comment
 
-A hook returns information by writing to the files named in the `PIPELINES_HOOK_OUT_*` namespace. Build a comment listing the affected units and write it to the comment file:
+A hook returns information by writing to the files named in the `PIPELINES_HOOK_OUT_*` namespace. The comment file holds HTML that Pipelines adds to the comment on the pull/merge request, in this hook's section. Build the list of affected units and write it to the comment file:
 
 ```bash
 {
@@ -47,7 +47,7 @@ A hook returns information by writing to the files named in the `PIPELINES_HOOK_
 } > "$PIPELINES_HOOK_OUT_COMMENT_FILE"
 ```
 
-Writing outputs is optional. This hook only posts a comment, so it does not write a result file: when a hook writes nothing to `PIPELINES_HOOK_OUT_RESULT_FILE` and exits `0`, Pipelines defaults its result to `pass`. To flag a problem instead, write `warn` or `deny` to that file. The result is advisory and surfaces in the comment, but does not by itself fail the run. [How results and comments appear](#how-results-and-comments-appear) below covers how each one renders on the request.
+Writing outputs is optional. This hook only writes comment content, so it does not write a result file: when a hook writes nothing to `PIPELINES_HOOK_OUT_RESULT_FILE` and exits `0`, Pipelines defaults its result to `pass`. To flag a problem instead, write `warn` or `deny` to that file. Both surface in the comment; `warn` is advisory, while `deny` fails the run. [How results and comments appear](#how-results-and-comments-appear) below covers how each one renders on the request.
 
 The complete script:
 
@@ -93,7 +93,7 @@ See [Configuring Hooks](/2.0/docs/pipelines/guides/hooks/configuring) for every 
 
 ## 6. Run the hook
 
-Commit the script and configuration, then open a pull/merge request that changes at least one unit. Pipelines runs the hook after the `plan`, and the comment your hook wrote appears on the request alongside the plan output.
+Commit the script and configuration, then open a pull/merge request that changes at least one unit. Pipelines runs the hook after the `plan`, and the content your hook wrote appears in the Pipelines comment on the request alongside the plan output.
 
 ![Hook comment on a pull request](/img/pipelines/guides/affected-units-comment.png)
 
@@ -111,7 +111,7 @@ The section is titled by the hook's `name`, or its block label when `name` is un
 |---|---|
 | `pass` result | ✅ |
 | `warn` result | ⚠️ |
-| `deny` result | ❌ |
+| `deny` result | ⛔️ |
 | Failed (non-zero exit) | ❌ |
 | Timed out | ❌ |
 | Skipped | ⏭️ |
@@ -127,9 +127,9 @@ The two text outputs serve different purposes:
 
 If the hook writes no comment, Pipelines shows a fallback line in the body, such as `Hook exited with code 0`. The hook from this guide writes a `pass` result and a comment, so it appears with a ✅ icon and its unit list in the body.
 
-### Results do not fail the run
+### How results affect the run
 
-A `deny` shows a ❌ and raises the severity shown in the comment, but it does not fail the run. Only a non-zero exit fails the run; see [Exit codes](/2.0/docs/pipelines/guides/hooks/configuring#exit-codes).
+A `deny` result fails the pipeline run and blocks the pull/merge request from merging, and shows a ⛔️ in the comment. A `warn` shows a ⚠️ and raises the severity in the comment but does not fail the run. Results are only read when the hook exits `0`; a non-zero exit is always a failure, see [Exit codes](/2.0/docs/pipelines/guides/hooks/configuring#exit-codes).
 
 ### Skipped hooks
 
