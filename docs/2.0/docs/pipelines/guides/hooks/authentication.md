@@ -101,7 +101,7 @@ Pipelines does not load secrets into a hook for you. It is up to the hook author
 
 The pattern is the same whatever your provider: store the secret in a secret store, grant the hook's identity permission to read it, and have the hook fetch it at runtime using the credentials the `authentication` block already provides. The secret never appears in your configuration or the hook script.
 
-For a worked example using AWS and SSM Parameter Store, see [Example: Slack Deploy Notification](/2.0/docs/pipelines/guides/hooks/slack-deploy-notification). For other ways to manage and supply secrets across Pipelines, see [Managing Secrets in your Pipelines](/2.0/docs/pipelines/guides/managing-secrets).
+For a working example using AWS and SSM Parameter Store, see [Example: Slack Deploy Notification](/2.0/docs/pipelines/guides/hooks/slack-deploy-notification). For other ways to manage and supply secrets across Pipelines, see [Managing Secrets in your Pipelines](/2.0/docs/pipelines/guides/managing-secrets).
 
 ## Related documentation
 

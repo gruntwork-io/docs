@@ -12,7 +12,7 @@ This unblocks the kinds of integrations teams reach for most when running infras
 
 Hooks are configured in your Pipelines HCL configuration. Each hook declares whether it runs after `plan` and/or `apply`, and the command to execute.
 
-Pipelines passes each hook context about the run through environment variables (for example the actor, repository, and action) and gives it the plan output to inspect. In turn, a hook can write outputs that Pipelines reflects back in the pull/merge request comment, so its results show up right alongside the plan or apply. See [Hooks API](/2.0/reference/pipelines/hooks-api) for the full contract.
+Pipelines passes each hook context about the run through environment variables (for example the actor, repository, and action). *After hooks* additionally receive the run's OpenTofu/Terraform plan. In turn, a hook can write outputs that Pipelines reflects back in the pull/merge request comment, so its results show up alongside the plan or apply summary. See [Hooks API](/2.0/reference/pipelines/hooks-api) for the full contract.
 
 :::note
 

@@ -17,7 +17,7 @@ repository {
 
 ### Required fields
 
-- **`commands`**: the commands this hook runs after. One or both of `plan` and `apply`.
+- **`commands`**: the Pipelines commands this hook runs after. One or both of `plan` and `apply`.
 - **`execute`**: the command to run, given as a list of the program followed by its arguments.
 
 The block label (`hello_world` in the example above) is also required and must be unique within the `repository` block.
@@ -64,8 +64,8 @@ Only the exit code decides success or failure. The result a hook writes (`pass`,
 
 By default, a hook is skipped if anything earlier in the run failed. This includes:
 
-- the `plan` or `apply` the hook runs after failing, or
-- an earlier hook in the list exiting non-zero.
+- the `plan` or `apply` the hook runs after, or
+- an earlier hook in the list that exited non-zero.
 
 A skipped hook does not run, and is reported as skipped on the pull/merge request.
 
@@ -77,7 +77,7 @@ Each hook has a `timeout_seconds` limit (default `300`). The limit covers the wh
 
 When a hook is cancelled, Pipelines signals the hook's process group to terminate, gives it a brief grace period to exit cleanly, and then forcibly kills it. Because the whole process group is signalled, any child processes the hook started are terminated too.
 
-A cancelled hook counts as a failure: it fails the run, and like any failure it causes later hooks without `run_on_error = true` to be skipped.
+A cancelled hook counts as a failure: it fails the run and, like any failure, causes later hooks without `run_on_error = true` to be skipped.
 
 ### Isolated working directory
 

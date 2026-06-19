@@ -6,7 +6,7 @@ Before you start, make sure hooks are set up for your repository (see [Setup & P
 
 ## 1. Decide where to store the secret
 
-Pipelines does not store secrets for you (see [Authentication & Secrets](/2.0/docs/pipelines/guides/hooks/authentication)). As the hook author, you decide where the webhook URL lives and how the hook retrieves it. This example keeps it in AWS SSM Parameter Store and gives the hook an IAM role that can read it. The same approach works with any secret store the hook's identity can reach, such as AWS Secrets Manager, Azure Key Vault, or GCP Secret Manager.
+Pipelines does not store secrets for you (see [Authentication & Secrets](/2.0/docs/pipelines/guides/hooks/authentication)). As the hook author, you decide where the webhook URL is stored and how the hook retrieves it. This example stores it in AWS SSM Parameter Store and gives the hook an IAM role that can read it. The same approach works with any secret store that the hook's identity can reach, such as AWS Secrets Manager, Azure Key Vault, or GCP Secret Manager.
 
 ## 2. Create a Slack incoming webhook
 

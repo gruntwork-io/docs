@@ -17,7 +17,7 @@ Hooks are an Enterprise-only feature.
 
 When any hooks are configured, the `PIPELINES_PLAN_ENCRYPTION_KEY` secret must be set.
 
-Pipelines adds the OpenTofu/Terraform plan output to the job's artifacts so that hooks can read it. Because plan output can contain sensitive information, Pipelines encrypts it before storing it as an artifact, and the `PIPELINES_PLAN_ENCRYPTION_KEY` secret is the key used to do so.
+Pipelines adds the OpenTofu/Terraform plan output to the job's artifacts so that after-hooks can read it. Because plan output can contain sensitive information, Pipelines encrypts it before storing it as an artifact, and the `PIPELINES_PLAN_ENCRYPTION_KEY` secret is the key used to do so.
 
 If a hook is declared and this secret is missing, Pipelines fails its preflight checks before running.
 
