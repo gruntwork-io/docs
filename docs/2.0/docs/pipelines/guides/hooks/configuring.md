@@ -51,6 +51,12 @@ A run executes a single command, either `plan` or `apply`, and only hooks whose 
 
 A destroy is treated as an `apply` for this purpose, so a hook configured with `commands = ["apply"]` also runs after a destroy.
 
+### Isolated working directory
+
+Each hook runs in its own temporary copy of the repository, with that copy as its working directory. This is why an `execute` path like `.gruntwork/hooks/affected-units.sh` resolves relative to the repository root.
+
+Any changes a hook makes to files are not persisted. The copy is discarded once the hook finishes, so edits are never committed, pushed, or seen by the rest of the run. Because each hook gets its own fresh copy, hooks also do not see file changes made by other hooks.
+
 ### Exit codes
 
 A hook's exit code is how it tells Pipelines whether it succeeded:
@@ -78,12 +84,6 @@ Each hook has a `timeout_seconds` limit (default `300`). The limit covers the wh
 When a hook is cancelled, Pipelines signals the hook's process group to terminate, gives it a brief grace period to exit cleanly, and then forcibly kills it. Because the whole process group is signalled, any child processes the hook started are terminated too.
 
 A cancelled hook counts as a failure: it fails the run and, like any failure, causes later hooks without `run_on_error = true` to be skipped.
-
-### Isolated working directory
-
-Each hook runs in its own temporary copy of the repository, with that copy as its working directory. This is why an `execute` path like `.gruntwork/hooks/affected-units.sh` resolves relative to the repository root.
-
-Any changes a hook makes to files are not persisted. The copy is discarded once the hook finishes, so edits are never committed, pushed, or seen by the rest of the run. Because each hook gets its own fresh copy, hooks also do not see file changes made by other hooks.
 
 ### Inputs and outputs
 
