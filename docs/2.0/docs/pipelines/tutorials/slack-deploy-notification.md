@@ -1,6 +1,6 @@
-# Example: Slack Deploy Notification
+# Slack Deploy Notification
 
-This example posts a message to Slack after a deploy (`apply`), so your team is notified when infrastructure changes are rolled out. It uses `run_on_error` so a notification is sent whether the apply succeeds or fails, and it fetches the Slack webhook URL from AWS SSM Parameter Store using the credentials from the hook's [`authentication`](/2.0/docs/pipelines/guides/hooks/authentication) block.
+This tutorial walks through building a hook that posts a message to Slack after a deploy (`apply`), so your team is notified when infrastructure changes are rolled out. It uses `run_on_error` so a notification is sent whether the apply succeeds or fails, and it fetches the Slack webhook URL from AWS SSM Parameter Store using the credentials from the hook's [`authentication`](/2.0/docs/pipelines/guides/hooks/authentication) block.
 
 Before you start, make sure hooks are set up for your repository (see [Setup & Prerequisites](/2.0/docs/pipelines/guides/hooks/setup)).
 

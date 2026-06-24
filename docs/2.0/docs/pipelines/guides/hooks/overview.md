@@ -27,7 +27,7 @@ Hooks are under active development, and new capabilities will continue to roll o
 - [Hooks API](/2.0/reference/pipelines/hooks-api) - the environment variables and files exchanged with a hook.
 - [Writing a Hook](/2.0/docs/pipelines/guides/hooks/writing-a-hook) - a step-by-step guide to authoring your own hook.
 - [Authentication & Secrets](/2.0/docs/pipelines/guides/hooks/authentication) - giving a hook cloud credentials and secrets when it runs.
-- [Example: Slack Deploy Notification](/2.0/docs/pipelines/guides/hooks/slack-deploy-notification) - a worked example.
+- [Slack Deploy Notification](/2.0/docs/pipelines/tutorials/slack-deploy-notification) - a worked example.
 
 ## Related documentation
 

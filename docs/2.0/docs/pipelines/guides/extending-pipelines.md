@@ -1,6 +1,12 @@
 # Extending Your Pipeline
 
-Pipelines is designed to be extensible, enabling users to tailor CI/CD workflows and underlying custom actions to align with their organization's unique requirements. This guide explains how to extend your pipeline.
+This guide covers advanced customization: modifying the Pipelines workflows and the underlying custom Actions themselves. It is most often needed for [Account Factory](/2.0/docs/accountfactory/concepts/index) customizations, such as running organization-specific logic when a new account is provisioned.
+
+:::tip
+
+This is the most involved way to extend Pipelines. For most needs, use [Hooks](/2.0/docs/pipelines/guides/hooks/overview) instead. Hooks let you run your own tooling at defined points in a run without forking or modifying any Gruntwork-maintained code.
+
+:::
 
 ## Pipelines extension architecture
 

@@ -346,6 +346,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/pipelines/tutorials/deploying-to-aws-gov-cloud",
       },
+      {
+        label: "Slack Deploy Notification",
+        type: "doc",
+        id: "2.0/docs/pipelines/tutorials/slack-deploy-notification",
+      },
     ],
   },
   {
@@ -411,11 +416,6 @@ const sidebar = [
             label: "Authentication & Secrets",
             type: "doc",
             id: "2.0/docs/pipelines/guides/hooks/authentication",
-          },
-          {
-            label: "Example: Slack Deploy Notification",
-            type: "doc",
-            id: "2.0/docs/pipelines/guides/hooks/slack-deploy-notification",
           },
         ],
       },
