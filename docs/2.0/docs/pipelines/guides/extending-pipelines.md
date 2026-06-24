@@ -1,6 +1,6 @@
 # Extending Your Pipeline
 
-This guide covers advanced customization: modifying the Pipelines workflows and the underlying custom Actions themselves. It is most often needed for [Account Factory](/2.0/docs/accountfactory/concepts/index) customizations, such as running organization-specific logic when a new account is provisioned.
+This guide covers advanced customization: modifying the Pipelines workflows and the underlying custom Actions themselves. It is most often needed for [Account Factory](/2.0/docs/accountfactory/concepts/) customizations, such as running organization-specific logic when a new account is provisioned.
 
 :::tip
 
