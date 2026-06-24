@@ -37,7 +37,7 @@ For the complete list of context variables and input files, see the [Hooks API](
 
 ## 3. Write the comment
 
-A hook returns information by writing to the files named in the `PIPELINES_HOOK_OUT_*` namespace. The comment file holds HTML that Pipelines adds to the comment on the pull/merge request, in this hook's section. Build the list of affected units and write it to the comment file:
+A hook returns information by writing to the files named in the `PIPELINES_HOOK_OUT_*` namespace. The comment file holds Markdown or HTML that Pipelines adds to the comment on the pull/merge request, in this hook's section. Build the list of affected units and write it to the comment file:
 
 ```bash
 {
@@ -123,7 +123,7 @@ The overall comment reflects the most severe hook outcome, so a `warn` or `deny`
 The two text outputs serve different purposes:
 
 - **Summary** (`PIPELINES_HOOK_OUT_SUMMARY_FILE`) appears inline next to the title, after a colon, for example `⚠️ Affected Units: 3 units changed`. Use it for a short, at-a-glance headline.
-- **Comment** (`PIPELINES_HOOK_OUT_COMMENT_FILE`) is the body of the collapsible section, rendered as HTML. Use it for detailed output such as a table, a list, or links.
+- **Comment** (`PIPELINES_HOOK_OUT_COMMENT_FILE`) is the body of the collapsible section, rendered as Markdown or HTML. Use it for detailed output such as a table, a list, or links.
 
 If the hook writes no comment, Pipelines shows a fallback line in the body, such as `Hook exited with code 0`. The hook from this guide writes a `pass` result and a comment, so it appears with a ✅ icon and its unit list in the body.
 
