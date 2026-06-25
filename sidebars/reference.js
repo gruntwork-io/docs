@@ -54,6 +54,11 @@ const sidebar = [
     ],
   },
   {
+    label: "Hooks API",
+    type: "doc",
+    id: "2.0/reference/pipelines/hooks-api",
+  },
+  {
     label: "Ignore List",
     type: "doc",
     id: "2.0/reference/pipelines/ignore-list",

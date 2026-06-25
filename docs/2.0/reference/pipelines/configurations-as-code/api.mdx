@@ -106,12 +106,50 @@ repository {
 </HclListItemExample>
 </HclListItem>
 
+### `after_hook` block
+
+<HclListItem name="after_hook" requirement="optional" type="labeled-block">
+<HclListItemDescription>
+
+After hook blocks are nested inside the [repository](#repository-block) block and define a command that Pipelines runs after a `plan` or `apply`.
+<br />
+The label applied to an after_hook block is a user-defined identifier for the hook and must be unique within the repository block.
+<br />
+See more [below](#after_hook-block-attributes).
+
+:::info
+
+Hooks are an Enterprise-only feature.
+
+:::
+
+:::caution
+
+When any `after_hook` block is configured, the `PIPELINES_PLAN_ENCRYPTION_KEY` secret must be set. Pipelines will fail preflight checks if hooks are declared and this secret is missing. See [Plan encryption key](/2.0/docs/pipelines/guides/hooks/setup#plan-encryption-key) for how to generate and configure it.
+
+:::
+
+</HclListItemDescription>
+<HclListItemExample>
+
+```hcl
+repository {
+  after_hook "affected_units" {
+    name     = "Affected Units"
+    commands = ["plan"]
+    execute  = ["bash", ".gruntwork/hooks/affected-units.sh"]
+  }
+}
+```
+</HclListItemExample>
+</HclListItem>
+
 ### `env` block
 
 <HclListItem name="env" requirement="optional" type="block">
 <HclListItemDescription>
 
-Env blocks are configuration components used by [repository](#repository-block) blocks to specify environment variables that will be set when executing Terragrunt commands. The block contains a map of environment variable names and their values.
+Env blocks are configuration components used by [repository](#repository-block) blocks to specify environment variables that will be set when executing Terragrunt commands. The block contains a map of environment variable names and their values. Env blocks are also valid inside [after_hook](#after_hook-block) blocks to set environment variables for the hook's `execute` command.
 
 </HclListItemDescription>
 <HclListItemExample>
@@ -348,6 +386,66 @@ The Infrastructure as Code(Iac) binary that Pipelines will instruct Terragrunt t
 
 A comma separate list of ignore filters to exclude from pipelines runs. See the full documentation [here](/2.0/reference/pipelines/ignore-list)
 
+</HclListItemDescription>
+</HclListItem>
+
+### `after_hook` block attributes
+
+<HclListItem name="name" requirement="optional" type="string">
+<HclListItemDescription>
+A human-readable display name for the hook, shown in Pipelines output and status comments.
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="commands" requirement="required" type="array[string]">
+<HclListItemDescription>
+The Terragrunt commands after which this hook runs. Valid values are `plan` and `apply`. Values must be unique.
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="execute" requirement="required" type="array[string]">
+<HclListItemDescription>
+
+The command Pipelines runs for the hook, written as a list where the first element is the program and the rest are its arguments. The program is executed directly rather than through a shell, so shell features such as variable expansion, pipes, and redirection are only available if you invoke a shell yourself (for example `bash -c`).
+
+Run an inline shell snippet (note the `bash -c` so the variable is expanded by the shell):
+
+```hcl
+execute = ["bash", "-c", "echo \"Triggered by $PIPELINES_HOOK_CTX_ACTOR\""]
+```
+
+Or invoke an executable script directly by its path:
+
+```hcl
+execute = [".gruntwork/hooks/affected-units.sh"]
+```
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="env" requirement="optional" type="block">
+<HclListItemDescription>
+An [env](#env-block) block of key/value environment variables made available to the `execute` command. Values may be strings, numbers, or booleans and are converted to strings.
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="run_on_error" requirement="optional" type="boolean">
+<HclListItemDescription>
+Whether the hook runs even when the preceding Pipelines `plan` or `apply` command fails, or when an earlier hook in the run failed. When `false`, the hook is skipped if anything before it failed.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="timeout_seconds" requirement="optional" type="number">
+<HclListItemDescription>
+The maximum number of seconds the hook is allowed to run before Pipelines terminates it. Must be greater than `0`.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="300"/>
+</HclListItem>
+
+<HclListItem name="authentication" requirement="optional" type="block">
+<HclListItemDescription>
+An [authentication](#authentication-block) block defining the credentials for this hook. When present, Pipelines authenticates with the given context and makes those credentials available to the hook before running its `execute` command. When omitted, the hook runs without any cloud credentials. See more [below](#authentication-block-attributes).
 </HclListItemDescription>
 </HclListItem>
 
