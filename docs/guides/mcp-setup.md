@@ -10,15 +10,15 @@ proven conventions, handles edge cases, and is ready for real-world deployment f
 
 ## Prerequisites
 
-- A Gruntwork account with MCP API access enabled
+:::info
+The MCP API is currently in private beta. Contact us at
+[support@gruntwork.io](mailto:support@gruntwork.io) to request access.
+:::
+
+- A paid Gruntwork account with MCP API access enabled
 - One of the following MCP-compatible AI tools installed:
   - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI)
   - [Cursor](https://www.cursor.com/)
-
-:::tip
-The MCP API must be enabled for your account. If it is not, contact us at
-[support@gruntwork.io](mailto:support@gruntwork.io) to request access.
-:::
 
 ## Step 1: Create an Access Token
 
