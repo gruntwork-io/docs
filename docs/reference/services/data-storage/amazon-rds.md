@@ -192,6 +192,12 @@ module "rds" {
   # if not specified.
   aws_db_security_group_name = null
 
+  # The amount of time in minutes before a backup job is canceled if it does not
+  # complete successfully. Maps to the backup plan rule's completion_window.
+  # Must be at least 60 minutes greater than var.backup_start_window. If null,
+  # AWS Backup uses its default.
+  backup_completion_window = null
+
   # The number of days to retain recovery points in the destination backup vault
   # before automatic deletion. Only used if var.backup_destination_vault_arn is
   # set.
@@ -200,6 +206,10 @@ module "rds" {
   # The ARN of a destination backup vault for cross-account or cross-region
   # copies. If null, no cross-account copy is configured.
   backup_destination_vault_arn = null
+
+  # A map of tags to assign to the recovery points (backups) created by the
+  # backup plan rule. If null, no recovery point tags are applied.
+  backup_recovery_point_tags = null
 
   # How many days to keep backup snapshots around before cleaning them up. Must
   # be 1 or greater to support read replicas.
@@ -217,6 +227,11 @@ module "rds" {
   # The number of days to retain recovery points in the source backup vault
   # before automatic deletion.
   backup_source_retention_days = 30
+
+  # The amount of time in minutes before a backup job is canceled if it does not
+  # start successfully. Maps to the backup plan rule's start_window. If null,
+  # AWS Backup uses its default.
+  backup_start_window = null
 
   # The ARN of a KMS key used to encrypt the backup vault. If null, the default
   # AWS Backup encryption will be used.
@@ -788,6 +803,12 @@ inputs = {
   # if not specified.
   aws_db_security_group_name = null
 
+  # The amount of time in minutes before a backup job is canceled if it does not
+  # complete successfully. Maps to the backup plan rule's completion_window.
+  # Must be at least 60 minutes greater than var.backup_start_window. If null,
+  # AWS Backup uses its default.
+  backup_completion_window = null
+
   # The number of days to retain recovery points in the destination backup vault
   # before automatic deletion. Only used if var.backup_destination_vault_arn is
   # set.
@@ -796,6 +817,10 @@ inputs = {
   # The ARN of a destination backup vault for cross-account or cross-region
   # copies. If null, no cross-account copy is configured.
   backup_destination_vault_arn = null
+
+  # A map of tags to assign to the recovery points (backups) created by the
+  # backup plan rule. If null, no recovery point tags are applied.
+  backup_recovery_point_tags = null
 
   # How many days to keep backup snapshots around before cleaning them up. Must
   # be 1 or greater to support read replicas.
@@ -813,6 +838,11 @@ inputs = {
   # The number of days to retain recovery points in the source backup vault
   # before automatic deletion.
   backup_source_retention_days = 30
+
+  # The amount of time in minutes before a backup job is canceled if it does not
+  # start successfully. Maps to the backup plan rule's start_window. If null,
+  # AWS Backup uses its default.
+  backup_start_window = null
 
   # The ARN of a KMS key used to encrypt the backup vault. If null, the default
   # AWS Backup encryption will be used.
@@ -1431,6 +1461,15 @@ The name of the aws_db_security_group that is created. Defaults to <a href="#nam
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="backup_completion_window" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of time in minutes before a backup job is canceled if it does not complete successfully. Maps to the backup plan rule's completion_window. Must be at least 60 minutes greater than <a href="#backup_start_window"><code>backup_start_window</code></a>. If null, AWS Backup uses its default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="backup_destination_retention_days" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1444,6 +1483,15 @@ The number of days to retain recovery points in the destination backup vault bef
 <HclListItemDescription>
 
 The ARN of a destination backup vault for cross-account or cross-region copies. If null, no cross-account copy is configured.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="backup_recovery_point_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to assign to the recovery points (backups) created by the backup plan rule. If null, no recovery point tags are applied.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1483,6 +1531,15 @@ The number of days to retain recovery points in the source backup vault before a
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="backup_start_window" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of time in minutes before a backup job is canceled if it does not start successfully. Maps to the backup plan rule's start_window. If null, AWS Backup uses its default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="backup_vault_kms_key_arn" requirement="optional" type="string">
@@ -2961,6 +3018,6 @@ The ID of the Security Group that controls access to the RDS DB instance.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.0/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "85d67190ae373ada4aa82ca72097bd67"
+  "hash": "55e90e8cc75d83b3572eb0a6b7eb2ea8"
 }
 ##DOCS-SOURCER-END -->
