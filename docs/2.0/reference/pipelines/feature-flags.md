@@ -108,6 +108,23 @@ When running plans and applies, units with no environment are excluded from the 
 </li>
 </ul>
 
+#### `PIPELINES_FEATURE_EXPERIMENT_LOGS_AS_ARTIFACT`
+<ul>
+<li>
+Uploads each unit's raw Terragrunt output as a downloadable CI artifact, and renders a "Download Logs" link in the per-unit row of the PR/MR comment. Useful when units produce more output than the GitLab job-log UI cap (4 MB) or the GitHub job-log UI cap, since the artifact is unaffected by those limits.
+
+Artifact upload is conditioned on a step output emitted by the `pipelines` CLI (`pipelines_logs_artifact_path`), which the CLI sets to the path of the combined output file when the feature is enabled. The feature flag itself is resolved from both the HCL `env { }` block and OS environment variables — either source works and no separate CI-level variable is needed in addition to an HCL setting.
+
+Requires Pipelines GitHub workflows and actions versions that support the upload step (companion changes in `pipelines-workflows` and `pipelines-actions`).
+</li>
+<li>
+**Default Value**: Disabled
+</li>
+<li>
+**How to Enable**: Set to `"true"` in your CI environment (e.g. GitHub Actions repository variable, or GitLab CI/CD variable) — or, equivalently, in the `env { }` block of your `gruntwork.hcl`.
+</li>
+</ul>
+
 #### `PIPELINES_FEATURE_EXPERIMENT_MINIMIZE_BLAST_RADIUS`
 <ul>
 <li>
