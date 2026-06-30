@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.11.0" lastModifiedVersion="2.9.1"/>
+<VersionBadge version="2.11.1" lastModifiedVersion="2.11.1"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.0/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.11.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.11.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -162,6 +162,12 @@ module "aurora" {
   # the engine is allowed. Default value is true.
   auto_minor_version_upgrade = true
 
+  # The amount of time in minutes before a backup job is canceled if it does not
+  # complete successfully. Maps to the backup plan rule's completion_window.
+  # Must be at least 60 minutes greater than var.backup_start_window. If null,
+  # AWS Backup uses its default.
+  backup_completion_window = null
+
   # The number of days to retain recovery points in the destination backup vault
   # before automatic deletion. Only used if var.backup_destination_vault_arn is
   # set.
@@ -170,6 +176,10 @@ module "aurora" {
   # The ARN of a destination backup vault for cross-account or cross-region
   # copies. If null, no cross-account copy is configured.
   backup_destination_vault_arn = null
+
+  # A map of tags to assign to the recovery points (backups) created by the
+  # backup plan rule. If null, no recovery point tags are applied.
+  backup_recovery_point_tags = null
 
   # How many days to keep backup snapshots around before cleaning them up. Max:
   # 35
@@ -187,6 +197,11 @@ module "aurora" {
   # The number of days to retain recovery points in the source backup vault
   # before automatic deletion.
   backup_source_retention_days = 30
+
+  # The amount of time in minutes before a backup job is canceled if it does not
+  # start successfully. Maps to the backup plan rule's start_window. If null,
+  # AWS Backup uses its default.
+  backup_start_window = null
 
   # The ARN of a KMS key used to encrypt the backup vault. If null, the default
   # AWS Backup encryption will be used.
@@ -614,7 +629,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.11.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.11.1"
 }
 
 inputs = {
@@ -677,6 +692,12 @@ inputs = {
   # the engine is allowed. Default value is true.
   auto_minor_version_upgrade = true
 
+  # The amount of time in minutes before a backup job is canceled if it does not
+  # complete successfully. Maps to the backup plan rule's completion_window.
+  # Must be at least 60 minutes greater than var.backup_start_window. If null,
+  # AWS Backup uses its default.
+  backup_completion_window = null
+
   # The number of days to retain recovery points in the destination backup vault
   # before automatic deletion. Only used if var.backup_destination_vault_arn is
   # set.
@@ -685,6 +706,10 @@ inputs = {
   # The ARN of a destination backup vault for cross-account or cross-region
   # copies. If null, no cross-account copy is configured.
   backup_destination_vault_arn = null
+
+  # A map of tags to assign to the recovery points (backups) created by the
+  # backup plan rule. If null, no recovery point tags are applied.
+  backup_recovery_point_tags = null
 
   # How many days to keep backup snapshots around before cleaning them up. Max:
   # 35
@@ -702,6 +727,11 @@ inputs = {
   # The number of days to retain recovery points in the source backup vault
   # before automatic deletion.
   backup_source_retention_days = 30
+
+  # The amount of time in minutes before a backup job is canceled if it does not
+  # start successfully. Maps to the backup plan rule's start_window. If null,
+  # AWS Backup uses its default.
+  backup_start_window = null
 
   # The ARN of a KMS key used to encrypt the backup vault. If null, the default
   # AWS Backup encryption will be used.
@@ -1216,6 +1246,15 @@ Configure the auto minor version upgrade behavior. This is applied to the cluste
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="backup_completion_window" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of time in minutes before a backup job is canceled if it does not complete successfully. Maps to the backup plan rule's completion_window. Must be at least 60 minutes greater than <a href="#backup_start_window"><code>backup_start_window</code></a>. If null, AWS Backup uses its default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="backup_destination_retention_days" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1229,6 +1268,15 @@ The number of days to retain recovery points in the destination backup vault bef
 <HclListItemDescription>
 
 The ARN of a destination backup vault for cross-account or cross-region copies. If null, no cross-account copy is configured.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="backup_recovery_point_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to assign to the recovery points (backups) created by the backup plan rule. If null, no recovery point tags are applied.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1268,6 +1316,15 @@ The number of days to retain recovery points in the source backup vault before a
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="backup_start_window" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of time in minutes before a backup job is canceled if it does not start successfully. Maps to the backup plan rule's start_window. If null, AWS Backup uses its default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="backup_vault_kms_key_arn" requirement="optional" type="string">
@@ -2595,11 +2652,11 @@ ID of security group created by aurora module.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.0/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.0/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.0/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9805e5c705ea16bd09f81ee3033f556c"
+  "hash": "bb05e4dd77ce86069efaf809ab5a3b64"
 }
 ##DOCS-SOURCER-END -->
