@@ -181,6 +181,10 @@ module "transit_gateway" {
   # gateway. Default is true.
   enable_vpn_ecmp_support = true
 
+  # Whether encryption support is enabled on the transit gateway. Valid values:
+  # disable, enable. Default value: disable.
+  encryption_support = "disable"
+
   # Whether Security Group Referencing Support is enabled. Valid values:
   # disable, enable. Default value: disable.
   security_group_referencing_support = "disable"
@@ -256,6 +260,10 @@ inputs = {
   # Whether VPN Equal Cost Multipath Protocol support is enabled on the transit
   # gateway. Default is true.
   enable_vpn_ecmp_support = true
+
+  # Whether encryption support is enabled on the transit gateway. Valid values:
+  # disable, enable. Default value: disable.
+  encryption_support = "disable"
 
   # Whether Security Group Referencing Support is enabled. Valid values:
   # disable, enable. Default value: disable.
@@ -375,6 +383,15 @@ Whether VPN Equal Cost Multipath Protocol support is enabled on the transit gate
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="encryption_support" requirement="optional" type="string">
+<HclListItemDescription>
+
+Whether encryption support is enabled on the transit gateway. Valid values: disable, enable. Default value: disable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;disable&quot;"/>
+</HclListItem>
+
 <HclListItem name="security_group_referencing_support" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -447,6 +464,6 @@ Identifier of the Transit Gateway's default propagation route table.
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules/transit-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "051396e48803544c7bd8a27d0ad64279"
+  "hash": "093b70a8f85460b18264bd21d9fd7068"
 }
 ##DOCS-SOURCER-END -->
