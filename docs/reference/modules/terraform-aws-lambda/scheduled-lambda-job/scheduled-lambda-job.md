@@ -519,7 +519,7 @@ Schedule expression of the EventBridge Scheduler schedule. Null unless schedule_
 <HclListItem name="iam_role_arn">
 <HclListItemDescription>
 
-ARN of the IAM role used by EventBridge Scheduler to invoke the Lambda function (the created role, or existing_role_arn if provided). Null on the default rule path.
+ARN of the IAM role used by EventBridge Scheduler to invoke the Lambda function (the created role, or existing_role_arn if provided). Null on the default rule path and when create_resources is false.
 
 </HclListItemDescription>
 </HclListItem>
@@ -527,7 +527,7 @@ ARN of the IAM role used by EventBridge Scheduler to invoke the Lambda function 
 <HclListItem name="iam_role_id">
 <HclListItemDescription>
 
-ID of the IAM role created for EventBridge Scheduler to invoke the Lambda function. Null on the default rule path (no IAM role is needed) or when existing_role_arn is set.
+ID of the IAM role created for EventBridge Scheduler to invoke the Lambda function. Null on the default rule path (no IAM role is needed) and when create_resources is false.
 
 </HclListItemDescription>
 </HclListItem>
@@ -543,6 +543,6 @@ ID of the IAM role created for EventBridge Scheduler to invoke the Lambda functi
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/scheduled-lambda-job/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "91155585df9c8588276ca92e0dbdf654"
+  "hash": "4f22b55eb5eaeb15a5647b93fb2d0f8a"
 }
 ##DOCS-SOURCER-END -->
