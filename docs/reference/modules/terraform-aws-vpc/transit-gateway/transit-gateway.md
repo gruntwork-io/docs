@@ -9,21 +9,21 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.28.14" lastModifiedVersion="0.28.13"/>
+<VersionBadge repoTitle="VPC Modules" version="0.28.16" lastModifiedVersion="0.28.13"/>
 
 # Transit Gateway Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules/transit-gateway" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/transit-gateway" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.13" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform module creates a transit gateway resource. A transit gateway is an effective method of connecting multiple VPCs, Direct Connects, VPNs, and other networks. Transit gateways are also a good way to connect VPCs to shared services, such as NAT gateways, firewalls, and other security appliances. By using a transit gateway, the number of connections to and from VPCs can be reduced, which reduces the number of routes that need to be managed.
 
-See [VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules//_docs/vpc-core-concepts.md) for more information on the core networking components and topologies.
+See [VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules//_docs/vpc-core-concepts.md) for more information on the core networking components and topologies.
 
 ## Usage
 
-For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/examples/transit-gateway/).
+For usage examples, check out the [examples folder](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/examples/transit-gateway/).
 
 ## What's a Transit Gateway?
 
@@ -65,7 +65,7 @@ What follows are the steps required to configure Transit Gateway resources withi
 *   Create the Transit Gateway in the first region/account
 *   Create the Transit Gateway in the second region/account
 *   Create a Transit Gateway Peering Connection between the two Transit Gateways
-    *   The peering option can be implemented using this module along with [transit-gateway-peering-attachment](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules/transit-gateway-peering-attachment/) & [transit-gateway-peering-attachment-accepter](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules/transit-gateway-peering-attachment-accepter/) modules. See [VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules//_docs/vpc-core-concepts.md) for more information on the core networking components and topologies.
+    *   The peering option can be implemented using this module along with [transit-gateway-peering-attachment](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/transit-gateway-peering-attachment/) & [transit-gateway-peering-attachment-accepter](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/transit-gateway-peering-attachment-accepter/) modules. See [VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules//_docs/vpc-core-concepts.md) for more information on the core networking components and topologies.
 *   Attach your VPCs to your Transit Gateway
 *   Add routes between the Transit Gateways and your VPCs
 
@@ -132,7 +132,7 @@ No modules.
 
 module "transit_gateway" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway?ref=v0.28.14"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway?ref=v0.28.16"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -181,6 +181,10 @@ module "transit_gateway" {
   # gateway. Default is true.
   enable_vpn_ecmp_support = true
 
+  # Whether encryption support is enabled on the transit gateway. Valid values:
+  # disable, enable. Default value: disable.
+  encryption_support = "disable"
+
   # Whether Security Group Referencing Support is enabled. Valid values:
   # disable, enable. Default value: disable.
   security_group_referencing_support = "disable"
@@ -205,7 +209,7 @@ module "transit_gateway" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway?ref=v0.28.14"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/transit-gateway?ref=v0.28.16"
 }
 
 inputs = {
@@ -256,6 +260,10 @@ inputs = {
   # Whether VPN Equal Cost Multipath Protocol support is enabled on the transit
   # gateway. Default is true.
   enable_vpn_ecmp_support = true
+
+  # Whether encryption support is enabled on the transit gateway. Valid values:
+  # disable, enable. Default value: disable.
+  encryption_support = "disable"
 
   # Whether Security Group Referencing Support is enabled. Valid values:
   # disable, enable. Default value: disable.
@@ -375,6 +383,15 @@ Whether VPN Equal Cost Multipath Protocol support is enabled on the transit gate
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="encryption_support" requirement="optional" type="string">
+<HclListItemDescription>
+
+Whether encryption support is enabled on the transit gateway. Valid values: disable, enable. Default value: disable.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;disable&quot;"/>
+</HclListItem>
+
 <HclListItem name="security_group_referencing_support" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -442,11 +459,11 @@ Identifier of the Transit Gateway's default propagation route table.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules/transit-gateway/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules/transit-gateway/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.14/modules/transit-gateway/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/transit-gateway/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/transit-gateway/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/transit-gateway/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "051396e48803544c7bd8a27d0ad64279"
+  "hash": "378a803e3dc75d43c3695d805c6c3543"
 }
 ##DOCS-SOURCER-END -->
