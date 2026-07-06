@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.11.0" lastModifiedVersion="2.10.0"/>
+<VersionBadge version="2.11.1" lastModifiedVersion="2.11.1"/>
 
 # Amazon Relational Database Service
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.0/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/rds" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Frds" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -69,7 +69,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -77,12 +77,12 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
-*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.0/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
+*   [How do I pass database configuration securely?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/rds/core-concepts.md#how-do-i-pass-database-configuration-securely)
 
 
 ## Sample Usage
@@ -103,7 +103,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v2.11.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v2.11.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -192,6 +192,12 @@ module "rds" {
   # if not specified.
   aws_db_security_group_name = null
 
+  # The amount of time in minutes before a backup job is canceled if it does not
+  # complete successfully. Maps to the backup plan rule's completion_window.
+  # Must be at least 60 minutes greater than var.backup_start_window. If null,
+  # AWS Backup uses its default.
+  backup_completion_window = null
+
   # The number of days to retain recovery points in the destination backup vault
   # before automatic deletion. Only used if var.backup_destination_vault_arn is
   # set.
@@ -200,6 +206,10 @@ module "rds" {
   # The ARN of a destination backup vault for cross-account or cross-region
   # copies. If null, no cross-account copy is configured.
   backup_destination_vault_arn = null
+
+  # A map of tags to assign to the recovery points (backups) created by the
+  # backup plan rule. If null, no recovery point tags are applied.
+  backup_recovery_point_tags = null
 
   # How many days to keep backup snapshots around before cleaning them up. Must
   # be 1 or greater to support read replicas.
@@ -217,6 +227,11 @@ module "rds" {
   # The number of days to retain recovery points in the source backup vault
   # before automatic deletion.
   backup_source_retention_days = 30
+
+  # The amount of time in minutes before a backup job is canceled if it does not
+  # start successfully. Maps to the backup plan rule's start_window. If null,
+  # AWS Backup uses its default.
+  backup_start_window = null
 
   # The ARN of a KMS key used to encrypt the backup vault. If null, the default
   # AWS Backup encryption will be used.
@@ -696,7 +711,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v2.11.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/rds?ref=v2.11.1"
 }
 
 inputs = {
@@ -788,6 +803,12 @@ inputs = {
   # if not specified.
   aws_db_security_group_name = null
 
+  # The amount of time in minutes before a backup job is canceled if it does not
+  # complete successfully. Maps to the backup plan rule's completion_window.
+  # Must be at least 60 minutes greater than var.backup_start_window. If null,
+  # AWS Backup uses its default.
+  backup_completion_window = null
+
   # The number of days to retain recovery points in the destination backup vault
   # before automatic deletion. Only used if var.backup_destination_vault_arn is
   # set.
@@ -796,6 +817,10 @@ inputs = {
   # The ARN of a destination backup vault for cross-account or cross-region
   # copies. If null, no cross-account copy is configured.
   backup_destination_vault_arn = null
+
+  # A map of tags to assign to the recovery points (backups) created by the
+  # backup plan rule. If null, no recovery point tags are applied.
+  backup_recovery_point_tags = null
 
   # How many days to keep backup snapshots around before cleaning them up. Must
   # be 1 or greater to support read replicas.
@@ -813,6 +838,11 @@ inputs = {
   # The number of days to retain recovery points in the source backup vault
   # before automatic deletion.
   backup_source_retention_days = 30
+
+  # The amount of time in minutes before a backup job is canceled if it does not
+  # start successfully. Maps to the backup plan rule's start_window. If null,
+  # AWS Backup uses its default.
+  backup_start_window = null
 
   # The ARN of a KMS key used to encrypt the backup vault. If null, the default
   # AWS Backup encryption will be used.
@@ -1431,6 +1461,15 @@ The name of the aws_db_security_group that is created. Defaults to <a href="#nam
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="backup_completion_window" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of time in minutes before a backup job is canceled if it does not complete successfully. Maps to the backup plan rule's completion_window. Must be at least 60 minutes greater than <a href="#backup_start_window"><code>backup_start_window</code></a>. If null, AWS Backup uses its default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="backup_destination_retention_days" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -1444,6 +1483,15 @@ The number of days to retain recovery points in the destination backup vault bef
 <HclListItemDescription>
 
 The ARN of a destination backup vault for cross-account or cross-region copies. If null, no cross-account copy is configured.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="backup_recovery_point_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to assign to the recovery points (backups) created by the backup plan rule. If null, no recovery point tags are applied.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1483,6 +1531,15 @@ The number of days to retain recovery points in the source backup vault before a
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="backup_start_window" requirement="optional" type="number">
+<HclListItemDescription>
+
+The amount of time in minutes before a backup job is canceled if it does not start successfully. Maps to the backup plan rule's start_window. If null, AWS Backup uses its default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="backup_vault_kms_key_arn" requirement="optional" type="string">
@@ -2956,11 +3013,11 @@ The ID of the Security Group that controls access to the RDS DB instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.0/modules/data-stores/rds/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.0/modules/data-stores/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.0/modules/data-stores/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/rds/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/rds/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "85d67190ae373ada4aa82ca72097bd67"
+  "hash": "b7543496931c5722369903d47bb713ae"
 }
 ##DOCS-SOURCER-END -->
