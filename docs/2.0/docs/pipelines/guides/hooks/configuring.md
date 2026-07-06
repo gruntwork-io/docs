@@ -75,7 +75,7 @@ repository {
 
 The repository is fetched into a directory whose path is exported to the hook in the `PIPELINES_HOOK_CTX_SOURCE_DIR` environment variable, and references to that variable in `execute` are expanded before the hook starts. The variable is set in the hook's environment like any other [context variable](/2.0/reference/pipelines/hooks-api), so the program `execute` runs can also read it directly (for example, a script committed to the repository can use it to invoke tools from the fetched source). The working directory does not change: the hook still runs from its isolated copy of the repository, with the fetched files available alongside it.
 
-The URL accepts the same syntax as [Terragrunt module sources](https://terragrunt.gruntwork.io/docs/reference/hcl/blocks/#terraform), handled by [go-getter](https://github.com/hashicorp/go-getter). Pin a `ref` so hook runs are reproducible. Private sources are fetched with the same git credentials the Pipelines job already uses to read your repositories.
+The URL accepts the same syntax as [Terragrunt module sources](https://terragrunt.gruntwork.io/docs/reference/hcl/blocks/#terraform), handled by [go-getter](https://github.com/hashicorp/go-getter). Pin a `ref` so hook runs are reproducible. A source resolves to a directory, from which you specify the script to run via the `execute` arguments. Private sources are fetched with the same git credentials the Pipelines job already uses to read your repositories.
 
 Fetching counts against the hook's `timeout_seconds` and is retried on transient failures. A fetch failure fails the hook like any other hook error. Preflight also fetches every declared source, so a broken URL or ref fails the pull/merge request before any plan or apply runs.
 
