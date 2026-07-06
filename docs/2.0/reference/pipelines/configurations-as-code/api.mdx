@@ -423,6 +423,21 @@ execute = [".gruntwork/hooks/affected-units.sh"]
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="source" requirement="optional" type="string">
+<HclListItemDescription>
+
+A git URL of a repository Pipelines fetches before running the hook. The fetched directory's path is exported to the hook in the `PIPELINES_HOOK_CTX_SOURCE_DIR` environment variable, which `execute` can reference to run a script defined outside the repository:
+
+```hcl
+source  = "git::https://github.com/acme/pipelines-hooks.git?ref=v1.2.0"
+execute = ["bash", "$PIPELINES_HOOK_CTX_SOURCE_DIR/scripts/scan.sh"]
+```
+
+See [Remote script sources](/2.0/docs/pipelines/guides/hooks/configuring#remote-script-sources).
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="env" requirement="optional" type="block">
 <HclListItemDescription>
 An [env](#env-block) block of key/value environment variables made available to the `execute` command. Values may be strings, numbers, or booleans and are converted to strings.

@@ -25,6 +25,7 @@ The block label (`hello_world` in the example above) is also required and must b
 ### Optional fields
 
 - **`name`**: a human-readable display name for the hook.
+- **`source`**: a git URL of a repository to fetch before the hook runs, so `execute` can run scripts that live outside the repository. See [Remote script sources](#remote-script-sources).
 - **`env`**: environment variables to set for the `execute` command.
 - **`run_on_error`**: whether the hook runs when a preceding command or hook failed. Defaults to `false`.
 - **`timeout_seconds`**: how long the hook may run before it is terminated. Defaults to `300`.
@@ -57,6 +58,27 @@ Each hook runs in its own temporary copy of the repository, with that copy as it
 
 Any changes a hook makes to files are not persisted. The copy is discarded once the hook finishes, so edits are never committed, pushed, or seen by the rest of the run. Because each hook gets its own fresh copy, hooks also do not see file changes made by other hooks.
 
+### Remote script sources
+
+By default, `execute` runs programs committed to the repository itself. To run a script defined in a different location, declare a `source`: a git URL that Pipelines fetches before the hook runs.
+
+```hcl
+repository {
+  after_hook "policy_scan" {
+    name     = "Policy Scan"
+    commands = ["plan"]
+    source   = "git::https://github.com/acme/pipelines-hooks.git?ref=v1.2.0"
+    execute  = ["bash", "$PIPELINES_HOOK_CTX_SOURCE_DIR/scripts/scan.sh"]
+  }
+}
+```
+
+The repository is fetched into a directory whose path is exported to the hook in the `PIPELINES_HOOK_CTX_SOURCE_DIR` environment variable, and references to that variable in `execute` are expanded before the hook starts. The variable is set in the hook's environment like any other [context variable](/2.0/reference/pipelines/hooks-api), so the program `execute` runs can also read it directly (for example, a script committed to the repository can use it to invoke tools from the fetched source). The working directory does not change: the hook still runs from its isolated copy of the repository, with the fetched files available alongside it.
+
+The URL accepts the same syntax as [Terragrunt module sources](https://terragrunt.gruntwork.io/docs/reference/hcl/blocks/#terraform), handled by [go-getter](https://github.com/hashicorp/go-getter). Pin a `ref` so hook runs are reproducible. Private sources are fetched with the same git credentials the Pipelines job already uses to read your repositories.
+
+Fetching counts against the hook's `timeout_seconds` and is retried on transient failures. A fetch failure fails the hook like any other hook error. Preflight also fetches every declared source, so a broken URL or ref fails the pull/merge request before any plan or apply runs.
+
 ### Exit codes
 
 A hook's exit code is how it tells Pipelines whether it succeeded:
@@ -79,7 +101,7 @@ Set `run_on_error = true` to run the hook regardless of an earlier failure. This
 
 ### Timeout and cancellation
 
-Each hook has a `timeout_seconds` limit (default `300`). The limit covers the whole hook, including acquiring any credentials from its [`authentication`](/2.0/docs/pipelines/guides/hooks/authentication) block. A hook that runs longer than its limit is cancelled.
+Each hook has a `timeout_seconds` limit (default `300`). The limit covers the whole hook, including fetching its [`source`](#remote-script-sources) and acquiring any credentials from its [`authentication`](/2.0/docs/pipelines/guides/hooks/authentication) block. A hook that runs longer than its limit is cancelled.
 
 When a hook is cancelled, Pipelines signals the hook's process group to terminate, gives it a brief grace period to exit cleanly, and then forcibly kills it. Because the whole process group is signalled, any child processes the hook started are terminated too.
 
