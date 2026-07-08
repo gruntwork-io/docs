@@ -120,6 +120,52 @@ resource "aws_iam_role" "example" {
 }
 ```
 
+## Immutable subject claims (protecting against repo recycling)
+
+GitHub Actions OIDC lets a repository opt in to embedding numeric, immutable owner/repo IDs in the `sub` claim
+(`repo:org@owner_id/repo-name@repo_id:...`) instead of just names (`repo:org/repo-name:...`). This closes a gap
+where a repository is deleted and a new, unrelated repository is created under the same name: with the name-only
+claim, the new repository would inherit trust intended for the old one. See the [GitHub changelog
+post](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for
+details on enabling this on the GitHub side.
+
+Once a repository has opted in, switch its key in `allowed_sources` from `"org/repo-name"` to
+`"org@owner_id/repo-name@repo_id"`:
+
+```hcl
+module "iam_role" {
+  # Update <VERSION> with latest version of the module
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=<VERSION>"
+
+  github_actions_openid_connect_provider_arn = aws_iam_openid_connect_provider.github_actions.arn
+  github_actions_openid_connect_provider_url = aws_iam_openid_connect_provider.github_actions.url
+
+  allowed_sources = {
+    # This repo has opted in to immutable subject claims, so its key uses the org@owner_id/repo-name@repo_id format.
+    "gruntwork-io@1816772/terraform-aws-security@22069063" = ["main"]
+    # This repo hasn't opted in yet, so it keeps the name-only format.
+    "gruntwork-io/terraform-aws-service-catalog" = ["main"]
+  }
+
+  iam_role_name                  = "example-iam-role"
+  permitted_full_access_services = ["ec2"]
+}
+```
+
+Only repos that have opted in need the `@owner_id`/`@repo_id` suffixes; every other key keeps the name-only
+format, and a mix of both formats in the same `allowed_sources` map is fine. The module builds the exact numeric
+ID into the policy condition for any key that includes it, so migrating a repo is a one-line change to its key --
+it doesn't add new repos or branches, it only changes the claim format used for that entry.
+
+You can look up the numeric owner/repo IDs for a repository with the [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
+```
+
+This works whether the owner is an organization or a personal account, so there's no separate lookup needed for
+either case.
+
 ## Using created IAM Role in GitHub Actions Workflow
 
 To use the created IAM role in your GitHub Actions Workflow, you need to configure the following:
@@ -190,9 +236,17 @@ module "github_actions_iam_role" {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Map of github repositories to the list of branches that are allowed to
-  # assume the IAM role. The repository should be encoded as org/repo-name
-  # (e.g., gruntwork-io/terrraform-aws-ci).
+  # Map of github repositories to the list of branches that are allowed to assume the IAM role. Each key can be
+  # encoded in one of two formats:
+  #   - "org/repo-name" (e.g., gruntwork-io/terraform-aws-ci) - the standard, name-only format.
+  #   - "org@owner_id/repo-name@repo_id" (e.g., gruntwork-io@1816772/terraform-aws-ci@22069063) - GitHub's
+  #     immutable subject-claim format, using the numeric, immutable owner/repo IDs instead of names. Use this
+  #     format only for repositories that have opted in to immutable subject claims for Actions OIDC tokens - see
+  #     https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/. You can
+  #     look up the numeric IDs for a repository with:
+  #       gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
+  # A mix of both formats across different keys is fine; each key's format only affects that key's own entry.
+  #
   allowed_sources = <map(list(string))>
 
   # ----------------------------------------------------------------------------------------------------
@@ -278,9 +332,17 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # Map of github repositories to the list of branches that are allowed to
-  # assume the IAM role. The repository should be encoded as org/repo-name
-  # (e.g., gruntwork-io/terrraform-aws-ci).
+  # Map of github repositories to the list of branches that are allowed to assume the IAM role. Each key can be
+  # encoded in one of two formats:
+  #   - "org/repo-name" (e.g., gruntwork-io/terraform-aws-ci) - the standard, name-only format.
+  #   - "org@owner_id/repo-name@repo_id" (e.g., gruntwork-io@1816772/terraform-aws-ci@22069063) - GitHub's
+  #     immutable subject-claim format, using the numeric, immutable owner/repo IDs instead of names. Use this
+  #     format only for repositories that have opted in to immutable subject claims for Actions OIDC tokens - see
+  #     https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/. You can
+  #     look up the numeric IDs for a repository with:
+  #       gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
+  # A mix of both formats across different keys is fine; each key's format only affects that key's own entry.
+  #
   allowed_sources = <map(list(string))>
 
   # ----------------------------------------------------------------------------------------------------
@@ -363,7 +425,17 @@ inputs = {
 <HclListItem name="allowed_sources" requirement="required" type="map(list(…))">
 <HclListItemDescription>
 
-Map of github repositories to the list of branches that are allowed to assume the IAM role. The repository should be encoded as org/repo-name (e.g., gruntwork-io/terrraform-aws-ci).
+Map of github repositories to the list of branches that are allowed to assume the IAM role. Each key can be
+encoded in one of two formats:
+  - 'org/repo-name' (e.g., gruntwork-io/terraform-aws-ci) - the standard, name-only format.
+  - 'org@owner_id/repo-name@repo_id' (e.g., gruntwork-io@1816772/terraform-aws-ci@22069063) - GitHub's
+    immutable subject-claim format, using the numeric, immutable owner/repo IDs instead of names. Use this
+    format only for repositories that have opted in to immutable subject claims for Actions OIDC tokens - see
+    https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/. You can
+    look up the numeric IDs for a repository with:
+      gh api repos/&#123;owner&#125;/&#123;repo&#125; --jq '&#123;owner_id: .owner.id, repo_id: .id&#125;'
+A mix of both formats across different keys is fine; each key's format only affects that key's own entry.
+
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -591,6 +663,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5801174b6ac44799ae3d38f1bf006885"
+  "hash": "28a98392d2085a4a4f917023c1340024"
 }
 ##DOCS-SOURCER-END -->
