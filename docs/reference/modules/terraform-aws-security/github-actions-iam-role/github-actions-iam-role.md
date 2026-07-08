@@ -129,6 +129,9 @@ claim, the new repository would inherit trust intended for the old one. See the 
 post](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for
 details on enabling this on the GitHub side.
 
+**After July 15, 2026, you can only opt in to immutable subject claims on repositories that already existed
+before that date.**
+
 Once a repository has opted in, switch its key in `allowed_sources` from `"org/repo-name"` to
 `"org@owner_id/repo-name@repo_id"`:
 
@@ -663,6 +666,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "28a98392d2085a4a4f917023c1340024"
+  "hash": "efd79d0fdeca5d7a904810b4884b560a"
 }
 ##DOCS-SOURCER-END -->
