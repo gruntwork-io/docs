@@ -120,6 +120,61 @@ resource "aws_iam_role" "example" {
 }
 ```
 
+## Immutable subject claims (protecting against repo recycling)
+
+GitHub Actions OIDC lets a repository opt in to embedding numeric, immutable owner/repo IDs in the `sub` claim
+(`repo:org@owner_id/repo-name@repo_id:...`) instead of just names (`repo:org/repo-name:...`). This closes a gap
+where a repository is deleted and a new, unrelated repository is created under the same name: with the name-only
+claim, the new repository would inherit trust intended for the old one. See the [GitHub changelog
+post](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for
+details on enabling this on the GitHub side.
+
+Once a repository has opted in, add a matching entry to `allowed_sources_immutable_ids`, keyed by the same
+`"org/repo"` string used in `allowed_sources`:
+
+```hcl
+module "iam_role" {
+  # Update <VERSION> with latest version of the module
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=<VERSION>"
+
+  github_actions_openid_connect_provider_arn = aws_iam_openid_connect_provider.github_actions.arn
+  github_actions_openid_connect_provider_url = aws_iam_openid_connect_provider.github_actions.url
+
+  allowed_sources = {
+    "gruntwork-io/terraform-aws-security"        = ["main"]
+    "gruntwork-io/terraform-aws-service-catalog" = ["main"]
+  }
+
+  # Only the repos that have opted in to immutable subject claims need an entry here. Repos with no entry here
+  # keep using the name-only format above.
+  allowed_sources_immutable_ids = {
+    "gruntwork-io/terraform-aws-security" = {
+      owner_id = 1816772
+      repo_id  = 22069063
+    }
+  }
+
+  iam_role_name                  = "example-iam-role"
+  permitted_full_access_services = ["ec2"]
+}
+```
+
+`allowed_sources` is unchanged and always required; `allowed_sources_immutable_ids` is additive and optional. Each
+key in `allowed_sources_immutable_ids` must also exist in `allowed_sources` -- it does not add new repos or
+branches, it only changes the claim format used for an existing entry. The module always builds an exact
+numeric-ID match per entry rather than a wildcard, so a mix of migrated and unmigrated repos in the same
+`allowed_sources` map is safe: repos not yet opted in keep the protection they already have today, and repos that
+have opted in get the added protection against name recycling.
+
+You can look up the numeric owner/repo IDs for a repository with the [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
+```
+
+This works whether the owner is an organization or a personal account, so there's no separate lookup needed for
+either case.
+
 ## Using created IAM Role in GitHub Actions Workflow
 
 To use the created IAM role in your GitHub Actions Workflow, you need to configure the following:
@@ -206,6 +261,18 @@ module "github_actions_iam_role" {
   # determining which GitHub repos are allowed to assume the IAM role. Examples:
   # StringEquals, StringLike, etc.
   allowed_sources_condition_operator = "StringEquals"
+
+  # Optional map of numeric GitHub owner/repo IDs, keyed by the same "org/repo" strings used in allowed_sources.
+  # When an entry is present here for a given "org/repo" key, the assume role policy condition for that
+  # repository is built using GitHub's immutable subject claim format
+  # (repo:org@owner_id/repo-name@repo_id:...) instead of the name-only format (repo:org/repo-name:...). Entries
+  # in allowed_sources with no matching key here keep using the name-only format. Use this only for repositories
+  # that have opted in to GitHub's immutable subject claims for Actions OIDC tokens - see
+  # https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/. You can
+  # look up the numeric IDs for a repository with:
+  #   gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
+  #
+  allowed_sources_immutable_ids = {}
 
   # Whether to create the IAM role and attach permissions for GitHub Actions to
   # assume.
@@ -294,6 +361,18 @@ inputs = {
   # determining which GitHub repos are allowed to assume the IAM role. Examples:
   # StringEquals, StringLike, etc.
   allowed_sources_condition_operator = "StringEquals"
+
+  # Optional map of numeric GitHub owner/repo IDs, keyed by the same "org/repo" strings used in allowed_sources.
+  # When an entry is present here for a given "org/repo" key, the assume role policy condition for that
+  # repository is built using GitHub's immutable subject claim format
+  # (repo:org@owner_id/repo-name@repo_id:...) instead of the name-only format (repo:org/repo-name:...). Entries
+  # in allowed_sources with no matching key here keep using the name-only format. Use this only for repositories
+  # that have opted in to GitHub's immutable subject claims for Actions OIDC tokens - see
+  # https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/. You can
+  # look up the numeric IDs for a repository with:
+  #   gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
+  #
+  allowed_sources_immutable_ids = {}
 
   # Whether to create the IAM role and attach permissions for GitHub Actions to
   # assume.
@@ -393,6 +472,34 @@ The string operator to use when evaluating the AWS IAM condition for determining
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;StringEquals&quot;"/>
+</HclListItem>
+
+<HclListItem name="allowed_sources_immutable_ids" requirement="optional" type="map(object(…))">
+<HclListItemDescription>
+
+Optional map of numeric GitHub owner/repo IDs, keyed by the same 'org/repo' strings used in allowed_sources.
+When an entry is present here for a given 'org/repo' key, the assume role policy condition for that
+repository is built using GitHub's immutable subject claim format
+(repo:org@owner_id/repo-name@repo_id:...) instead of the name-only format (repo:org/repo-name:...). Entries
+in allowed_sources with no matching key here keep using the name-only format. Use this only for repositories
+that have opted in to GitHub's immutable subject claims for Actions OIDC tokens - see
+https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/. You can
+look up the numeric IDs for a repository with:
+  gh api repos/&#123;owner&#125;/&#123;repo&#125; --jq '&#123;owner_id: .owner.id, repo_id: .id&#125;'
+
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(object({
+    owner_id = number
+    repo_id  = number
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 <HclListItem name="create_iam_role" requirement="optional" type="bool">
@@ -591,6 +698,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.0/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5801174b6ac44799ae3d38f1bf006885"
+  "hash": "7911d15fbdf4c875ee842e7dc69491d1"
 }
 ##DOCS-SOURCER-END -->
