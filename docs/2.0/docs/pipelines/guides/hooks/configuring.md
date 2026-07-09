@@ -60,7 +60,7 @@ Any changes a hook makes to files are not persisted. The copy is discarded once 
 
 ### Remote script sources
 
-By default, `execute` runs programs committed to the repository itself. To run a script defined in a different location, declare a `source`: a [go-getter](https://github.com/hashicorp/go-getter#url-format) URL that Pipelines fetches before the hook runs.
+To execute a script from a remote source, declare a `source`: a [go-getter](https://github.com/hashicorp/go-getter#url-format) URL, and set `execute` to a path within the remote source.
 
 ```hcl
 repository {
@@ -73,9 +73,13 @@ repository {
 }
 ```
 
-The source is fetched into a directory whose path is exported to the hook in the `PIPELINES_HOOK_CTX_SOURCE_DIR` environment variable, and references to that variable in `execute` are expanded before the hook starts. The variable is set in the hook's environment like any other [context variable](/2.0/reference/pipelines/hooks-api), so the program `execute` runs can also read it directly (for example, a script committed to the repository can use it to invoke tools from the fetched source). The working directory does not change: the hook still runs from its isolated copy of the repository, with the fetched files available alongside it.
+The source is fetched into a directory whose path is provided to the hook as the `PIPELINES_HOOK_CTX_SOURCE_DIR` environment variable. This variable is expanded within the `execute` arguments, allowing execute to reference files within the source.
 
-The URL accepts the same syntax as [Terragrunt module sources](https://terragrunt.gruntwork.io/docs/reference/hcl/blocks/#terraform), handled by go-getter. Pin a `ref` so hook runs are reproducible. A source must resolve to a directory, from which you specify the script to run via the `execute` arguments.
+Within a hook, `PIPELINES_HOOK_CTX_SOURCE_DIR` can be used to reference (i.e. import) other files from the fetched source.
+
+Using `source` does not affect the working directory `execute` runs in.
+
+The URL accepts the same syntax as [Terragrunt module sources](https://terragrunt.gruntwork.io/docs/reference/hcl/blocks/#terraform), handled by go-getter. Pin a `ref` so hook runs are reproducible. A source must resolve to a directory, paths to individual files are not supported.
 
 :::tip
 
