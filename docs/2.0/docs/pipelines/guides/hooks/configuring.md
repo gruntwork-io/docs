@@ -25,6 +25,7 @@ The block label (`hello_world` in the example above) is also required and must b
 ### Optional fields
 
 - **`name`**: a human-readable display name for the hook.
+- **`source`**: a URL to fetch before the hook runs, so `execute` can run scripts that live outside the repository. See [Remote script sources](#remote-script-sources).
 - **`env`**: environment variables to set for the `execute` command.
 - **`run_on_error`**: whether the hook runs when a preceding command or hook failed. Defaults to `false`.
 - **`timeout_seconds`**: how long the hook may run before it is terminated. Defaults to `300`.
@@ -57,6 +58,37 @@ Each hook runs in its own temporary copy of the repository, with that copy as it
 
 Any changes a hook makes to files are not persisted. The copy is discarded once the hook finishes, so edits are never committed, pushed, or seen by the rest of the run. Because each hook gets its own fresh copy, hooks also do not see file changes made by other hooks.
 
+### Remote script sources
+
+To execute a script from a remote source, declare a `source`: a [go-getter](https://github.com/hashicorp/go-getter#url-format) URL, and set `execute` to a path within the remote source.
+
+```hcl
+repository {
+  after_hook "policy_scan" {
+    name     = "Policy Scan"
+    commands = ["plan"]
+    source   = "git::https://github.com/acme/pipelines-hooks.git?ref=v1.2.0"
+    execute  = ["bash", "$PIPELINES_HOOK_CTX_SOURCE_DIR/scripts/scan.sh"]
+  }
+}
+```
+
+The source is fetched into a directory whose path is provided to the hook as the `PIPELINES_HOOK_CTX_SOURCE_DIR` environment variable. This variable is expanded within the `execute` arguments, allowing execute to reference files within the source.
+
+Within a hook, `PIPELINES_HOOK_CTX_SOURCE_DIR` can be used to reference (i.e. import) other files from the fetched source.
+
+Using `source` does not affect the working directory `execute` runs in.
+
+The URL accepts the same syntax as [Terragrunt module sources](https://terragrunt.gruntwork.io/docs/reference/hcl/blocks/#terraform), handled by go-getter. Pin a `ref` so hook runs are reproducible. A source must resolve to a directory, paths to individual files are not supported.
+
+:::tip
+
+We recommend using a git repository for your source to get the advantage of fetching private repositories with the same git credentials Pipelines already uses to access your repositories.
+
+:::
+
+Fetching counts against the hook's `timeout_seconds` and is retried on transient failures. A fetch failure fails the hook like any other hook error. Preflight also fetches every declared source, so a broken URL or ref fails the pull/merge request before any plan or apply runs.
+
 ### Exit codes
 
 A hook's exit code is how it tells Pipelines whether it succeeded:
@@ -79,7 +111,7 @@ Set `run_on_error = true` to run the hook regardless of an earlier failure. This
 
 ### Timeout and cancellation
 
-Each hook has a `timeout_seconds` limit (default `300`). The limit covers the whole hook, including acquiring any credentials from its [`authentication`](/2.0/docs/pipelines/guides/hooks/authentication) block. A hook that runs longer than its limit is cancelled.
+Each hook has a `timeout_seconds` limit (default `300`). The limit covers the whole hook, including fetching its [`source`](#remote-script-sources) and acquiring any credentials from its [`authentication`](/2.0/docs/pipelines/guides/hooks/authentication) block. A hook that runs longer than its limit is cancelled.
 
 When a hook is cancelled, Pipelines signals the hook's process group to terminate, gives it a brief grace period to exit cleanly, and then forcibly kills it. Because the whole process group is signalled, any child processes the hook started are terminated too.
 

@@ -34,6 +34,7 @@ A context variable that does not apply to the run is left unset, rather than set
 | `PIPELINES_HOOK_CTX_CHANGE_REQUEST_NUMBER` | The pull/merge request number. |
 | `PIPELINES_HOOK_CTX_CHANGE_REQUEST_URL` | The pull/merge request URL. |
 | `PIPELINES_HOOK_CTX_CHANGE_REQUEST_BRANCH` | The source branch of the pull/merge request. |
+| `PIPELINES_HOOK_CTX_SOURCE_DIR` | The directory the hook's [`source`](/2.0/docs/pipelines/guides/hooks/configuring#remote-script-sources) was fetched into. Set only for hooks that declare a `source`. |
 
 The three `CHANGE_REQUEST` variables are set or absent together: they are set when the run is associated with a pull/merge request, and absent for a push to a deploy branch.
 
