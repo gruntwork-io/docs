@@ -60,7 +60,7 @@ Any changes a hook makes to files are not persisted. The copy is discarded once 
 
 ### Remote script sources
 
-By default, `execute` runs programs committed to the repository itself. To run a script defined in a different location, declare a `source`: a [go-getter](https://github.com/hashicorp/go-getter) URL that Pipelines fetches before the hook runs.
+By default, `execute` runs programs committed to the repository itself. To run a script defined in a different location, declare a `source`: a [go-getter](https://github.com/hashicorp/go-getter#url-format) URL that Pipelines fetches before the hook runs.
 
 ```hcl
 repository {
