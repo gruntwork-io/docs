@@ -426,7 +426,7 @@ execute = [".gruntwork/hooks/affected-units.sh"]
 <HclListItem name="source" requirement="optional" type="string">
 <HclListItemDescription>
 
-A go-getter URL Pipelines fetches before running the hook. The fetched directory's path is exported to the hook in the `PIPELINES_HOOK_CTX_SOURCE_DIR` environment variable, which `execute` can reference to run a script defined outside the repository:
+A [go-getter](https://github.com/hashicorp/go-getter) URL Pipelines fetches before running the hook. The fetched directory's path is exported to the hook in the `PIPELINES_HOOK_CTX_SOURCE_DIR` environment variable, which `execute` can reference to run a script defined outside the repository:
 
 ```hcl
 source  = "git::https://github.com/acme/pipelines-hooks.git?ref=v1.2.0"
