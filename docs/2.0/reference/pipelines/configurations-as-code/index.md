@@ -276,7 +276,7 @@ authentication {
 }
 ```
 
-In this example, Pipelines authenticates with AWS using OIDC and assumes the `role-to-assume-for-plans` role within the AWS account identified by `an-aws-account-id` when executing Terragrunt plan commands.
+In this example, Pipelines authenticates with AWS using OIDC and assumes the `role-to-assume-for-plans` role within the AWS account identified by `an-aws-account-id` when executing Terragrunt plan commands. 
 
 ### Environment variables block
 
