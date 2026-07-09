@@ -25,7 +25,7 @@ The block label (`hello_world` in the example above) is also required and must b
 ### Optional fields
 
 - **`name`**: a human-readable display name for the hook.
-- **`source`**: a git URL of a repository to fetch before the hook runs, so `execute` can run scripts that live outside the repository. See [Remote script sources](#remote-script-sources).
+- **`source`**: a URL to fetch before the hook runs, so `execute` can run scripts that live outside the repository. See [Remote script sources](#remote-script-sources).
 - **`env`**: environment variables to set for the `execute` command.
 - **`run_on_error`**: whether the hook runs when a preceding command or hook failed. Defaults to `false`.
 - **`timeout_seconds`**: how long the hook may run before it is terminated. Defaults to `300`.
@@ -60,7 +60,7 @@ Any changes a hook makes to files are not persisted. The copy is discarded once 
 
 ### Remote script sources
 
-By default, `execute` runs programs committed to the repository itself. To run a script defined in a different location, declare a `source`: a git URL that Pipelines fetches before the hook runs.
+By default, `execute` runs programs committed to the repository itself. To run a script defined in a different location, declare a `source`: a go-getter URL that Pipelines fetches before the hook runs.
 
 ```hcl
 repository {
@@ -73,9 +73,15 @@ repository {
 }
 ```
 
-The repository is fetched into a directory whose path is exported to the hook in the `PIPELINES_HOOK_CTX_SOURCE_DIR` environment variable, and references to that variable in `execute` are expanded before the hook starts. The variable is set in the hook's environment like any other [context variable](/2.0/reference/pipelines/hooks-api), so the program `execute` runs can also read it directly (for example, a script committed to the repository can use it to invoke tools from the fetched source). The working directory does not change: the hook still runs from its isolated copy of the repository, with the fetched files available alongside it.
+The source is fetched into a directory whose path is exported to the hook in the `PIPELINES_HOOK_CTX_SOURCE_DIR` environment variable, and references to that variable in `execute` are expanded before the hook starts. The variable is set in the hook's environment like any other [context variable](/2.0/reference/pipelines/hooks-api), so the program `execute` runs can also read it directly (for example, a script committed to the repository can use it to invoke tools from the fetched source). The working directory does not change: the hook still runs from its isolated copy of the repository, with the fetched files available alongside it.
 
-The URL accepts the same syntax as [Terragrunt module sources](https://terragrunt.gruntwork.io/docs/reference/hcl/blocks/#terraform), handled by [go-getter](https://github.com/hashicorp/go-getter). Pin a `ref` so hook runs are reproducible. A source resolves to a directory, from which you specify the script to run via the `execute` arguments. Private sources are fetched with the same git credentials the Pipelines job already uses to read your repositories.
+The URL accepts the same syntax as [Terragrunt module sources](https://terragrunt.gruntwork.io/docs/reference/hcl/blocks/#terraform), handled by [go-getter](https://github.com/hashicorp/go-getter). Pin a `ref` so hook runs are reproducible. A source must resolve to a directory, from which you specify the script to run via the `execute` arguments.
+
+:::tip
+
+We recommend using a git repository for your source to get the advantage of fetching private repositories with the same git credentials Pipelines already uses to access your repositories.
+
+:::
 
 Fetching counts against the hook's `timeout_seconds` and is retried on transient failures. A fetch failure fails the hook like any other hook error. Preflight also fetches every declared source, so a broken URL or ref fails the pull/merge request before any plan or apply runs.
 
