@@ -30,6 +30,7 @@ The block label (`hello_world` in the example above) is also required and must b
 - **`run_on_error`**: whether the hook runs when a preceding command or hook failed. Defaults to `false`.
 - **`timeout_seconds`**: how long the hook may run before it is terminated. Defaults to `300`.
 - **`authentication`**: cloud credentials and secrets for the hook. See [Authentication & Secrets](/2.0/docs/pipelines/guides/hooks/authentication).
+- **`filter`**: scopes the hook to a subset of the run's affected units by path, environment, and/or label. See [Scoping a hook to specific units](#scoping-a-hook-to-specific-units).
 
 See the [`after_hook` block attributes](/2.0/reference/pipelines/configurations-as-code/api#after_hook-block-attributes) reference for full details.
 
@@ -51,6 +52,36 @@ In both cases there is nothing for a hook to act on, so no hooks run.
 A run executes a single command, either `plan` or `apply`, and only hooks whose `commands` include that command run. A hook scoped to `apply` does not run on a pull/merge request plan, and a hook scoped to `plan` does not run on an apply.
 
 A destroy is treated as an `apply` for this purpose, so a hook configured with `commands = ["apply"]` also runs after a destroy.
+
+### Scoping a hook to specific units
+
+By default a hook applies to every affected unit in the run. Add a `filter` block to scope it to a subset of those units, matching by path, environment, and/or label:
+
+```hcl
+repository {
+  after_hook "notify_prod" {
+    commands = ["apply"]
+    execute  = [".gruntwork/hooks/notify.sh"]
+
+    filter {
+      environments = ["prod"]
+      labels = {
+        team = ["platform"]
+      }
+    }
+  }
+}
+```
+
+The filter is evaluated against the run's affected units:
+
+- **`paths`**: a list of path globs. A unit matches if its path matches one of the globs.
+- **`environments`**: a list of environment names. A unit matches if its environment is one of them. Each name must correspond to a configured `environment` block.
+- **`labels`**: a map of label keys to lists of values. A unit matches only if it carries every listed key with every listed value. Labels are assigned to units by [`annotation`](/2.0/reference/pipelines/configurations-as-code/api#annotation-block) blocks.
+
+At least one of these must be set. When more than one is set, a unit must satisfy all of them.
+
+If at least one affected unit matches, the hook runs and receives only the matched units. If no affected unit matches, the hook is skipped, exactly as if no unit were affected.
 
 ### Isolated working directory
 

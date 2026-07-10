@@ -45,6 +45,35 @@ aws {
 </HclListItemExample>
 </HclListItem>
 
+### `annotation` block
+
+<HclListItem name="annotation" requirement="optional" type="labeled-block">
+<HclListItemDescription>
+Annotation blocks assign labels to units. Every unit whose path matches the block's [filter](#filter-block) receives the block's labels. Labels can then be used to target units, for example from an [after_hook `filter`](#after_hook-filter-block).
+<br />
+The label applied to an annotation block is a user-defined name for the annotation and must be unique across annotation blocks.
+<br />
+A unit may match more than one annotation block, in which case it accumulates the labels from every block it matches. As a result a single label key can carry multiple values on a unit.
+<br />
+See more [below](#annotation-block-attributes).
+</HclListItemDescription>
+<HclListItemExample>
+
+```hcl
+# .gruntwork/annotations.hcl
+annotation "core" {
+  filter {
+    paths = ["management/*"]
+  }
+
+  labels = {
+    team = "platform"
+  }
+}
+```
+</HclListItemExample>
+</HclListItem>
+
 ### `unit` block
 <HclListItem name="unit" requirement="optional" type="block">
 <HclListItemDescription>
@@ -170,7 +199,23 @@ repository {
 <HclListItem name="filter" requirement="optional" type="block">
 <HclListItemDescription>
 
-A list of path globs that the filter should match against. Paths are relative to the directory containing the .gruntwork directory.
+A filter block nested inside an [environment](#environment-block) block that determines which units the environment applies to. It matches only on `paths`. Paths are relative to the directory containing the .gruntwork directory.
+
+For the richer filter used inside [after_hook](#after_hook-block) blocks, which also matches on `environments` and `labels`, see the [after_hook `filter` block](#after_hook-filter-block).
+
+</HclListItemDescription>
+</HclListItem>
+
+### after_hook `filter` block
+
+<HclListItem name="filter" requirement="optional" type="block">
+<HclListItemDescription>
+
+A filter block nested inside an [after_hook](#after_hook-block) block that scopes the hook to a subset of the run's affected units. It matches units on `paths`, `environments`, and/or `labels`. At least one of these attributes must be set, and a unit must satisfy every attribute the filter specifies (the dimensions are combined with AND).
+
+This is distinct from the [`filter` block](#filter-block) used inside `environment` blocks, which matches only on `paths`.
+
+See more [below](#after_hook-filter-block-attributes).
 
 </HclListItemDescription>
 </HclListItem>
@@ -259,6 +304,22 @@ Every unit must be uniquely matched by the filters of a single environment block
 <HclListItem name="authentication" requirement="required" type="block">
 <HclListItemDescription>
 An authentication block that determines how Pipelines will authenticate with cloud platforms when running Terragrunt commands. See more [below](#authentication-block-attributes).
+</HclListItemDescription>
+</HclListItem>
+
+### `annotation` block attributes
+
+<HclListItem name="filter" requirement="required" type="block">
+<HclListItemDescription>
+
+A [filter](#filter-block) block that determines which units the annotation's labels are applied to. It matches only on `paths`. See more [below](#filter-block-attributes).
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="labels" requirement="required" type="map[string, string]">
+<HclListItemDescription>
+
+A map of label keys to values applied to every unit the `filter` matches. A unit that matches multiple annotation blocks accumulates the labels from all of them, so a key can end up with multiple values on a unit.
 </HclListItemDescription>
 </HclListItem>
 
@@ -464,12 +525,63 @@ An [authentication](#authentication-block) block defining the credentials for th
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="filter" requirement="optional" type="block">
+<HclListItemDescription>
+
+An [after_hook `filter`](#after_hook-filter-block) block that scopes the hook to a subset of the run's affected units by `paths`, `environments`, and/or `labels`. When present, the hook runs only if at least one affected unit matches the filter, and it receives only the matched units. When no affected unit matches, the hook is skipped. When omitted, the hook applies to all affected units. See more [below](#after_hook-filter-block-attributes).
+
+</HclListItemDescription>
+<HclListItemExample>
+
+```hcl
+repository {
+  after_hook "notify_prod" {
+    commands = ["apply"]
+    execute  = [".gruntwork/hooks/notify.sh"]
+
+    filter {
+      environments = ["prod"]
+      labels = {
+        team = ["platform"]
+      }
+    }
+  }
+}
+```
+</HclListItemExample>
+</HclListItem>
+
 ### `filter` block attributes
 
 <HclListItem name="paths" requirement="required" type="array[string]">
 <HclListItemDescription>
 
 A list of path globs that the filter should match against. Paths are relative to the directory containing the .gruntwork directory.
+</HclListItemDescription>
+</HclListItem>
+
+### after_hook `filter` block attributes
+
+At least one of `paths`, `environments`, or `labels` must be set. A unit matches only if it satisfies every attribute the filter specifies.
+
+<HclListItem name="paths" requirement="optional" type="array[string]">
+<HclListItemDescription>
+
+A list of path globs. A unit matches if its path matches any one of the globs. Paths are relative to the directory containing the .gruntwork directory.
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="environments" requirement="optional" type="array[string]">
+<HclListItemDescription>
+
+A list of [environment](#environment-block) names. A unit matches if its environment is any one of the listed names. Each name must correspond to a configured `environment` block.
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="labels" requirement="optional" type="map[string, array[string]]">
+<HclListItemDescription>
+
+A map of label keys to lists of values. A unit matches only if it carries every listed key with every listed value. Labels are assigned to units by [annotation](#annotation-block) blocks.
 </HclListItemDescription>
 </HclListItem>
 
