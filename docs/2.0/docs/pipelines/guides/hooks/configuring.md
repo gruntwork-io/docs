@@ -77,7 +77,7 @@ The filter is evaluated against the run's units:
 
 - **`paths`**: a list of path globs. A unit matches if its path matches any of the globs.
 - **`environments`**: a list of [`environment`](/2.0/reference/pipelines/configurations-as-code/api#environment-block) names. Units in any of the listed environments match.
-- **`labels`**: a map of label keys to values. Units must have all label values to match. Labels are assigned to units by [`annotation`](/2.0/reference/pipelines/configurations-as-code/api#annotation-block) blocks.
+- **`labels`**: a map of label keys to lists of values. A unit matches only if it has every listed key/value. Labels are assigned by [`annotation`](/2.0/reference/pipelines/configurations-as-code/api#annotation-block) blocks.
 
 If at least one affected unit matches, the hook runs and receives only the matched units. If no affected unit matches, the hook is skipped.
 

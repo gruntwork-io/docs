@@ -49,7 +49,7 @@ aws {
 
 <HclListItem name="annotation" requirement="optional" type="labeled-block">
 <HclListItemDescription>
-Annotation blocks assign labels to units. Every unit whose path matches the block's [filter](#filter-block) receives the block's labels.
+Annotation blocks assign labels to units. Every unit whose path matches the block's [filter](#filter-block-environments-and-annotations) receives the block's labels.
 <br />
 A unit may match more than one annotation block, in which case it accumulates the labels from every block it matches.
 <br />
@@ -287,7 +287,7 @@ A custom authentication block that determines how Pipelines will authenticate wi
 <HclListItem name="filter" requirement="required" type="block">
 <HclListItemDescription>
 
-A filter block that determines which units the environment is applicable to.  See more [below](#filter-block-attributes).
+A filter block that determines which units the environment is applicable to.  See more [below](#filter-block-environments-and-annotations-attributes).
 
 :::caution
 Every unit must be uniquely matched by the filters of a single environment block. If a unit is matched by multiple environment blocks, Pipelines will throw an error.
@@ -306,7 +306,7 @@ An authentication block that determines how Pipelines will authenticate with clo
 <HclListItem name="filter" requirement="required" type="block">
 <HclListItemDescription>
 
-A [filter](#filter-block) block that determines which units the annotation's labels are applied to. See more [below](#filter-block-attributes).
+A [filter](#filter-block-environments-and-annotations) block that determines which units the annotation's labels are applied to. See more [below](#filter-block-environments-and-annotations-attributes).
 </HclListItemDescription>
 </HclListItem>
 
@@ -522,7 +522,7 @@ An [authentication](#authentication-block) block defining the credentials for th
 <HclListItem name="filter" requirement="optional" type="block">
 <HclListItemDescription>
 
-An [after_hook `filter`](#after_hook-filter-block) block that scopes the hook to a subset of the run's affected units by `paths`, `environments`, and/or `labels`. When present, the hook runs only if at least one affected unit matches the filter, and it receives only the matched units. When no affected unit matches, the hook is skipped. When omitted, the hook applies to all affected units. See more [below](#after_hook-filter-block-attributes).
+An [after_hook `filter`](#filter-block-hooks) block that scopes the hook to a subset of the run's affected units by `paths`, `environments`, and/or `labels`. When present, the hook runs only if at least one affected unit matches the filter, and it receives only the matched units. When no affected unit matches, the hook is skipped. When omitted, the hook applies to all affected units. See more [below](#filter-block-hooks-attributes).
 
 </HclListItemDescription>
 <HclListItemExample>
