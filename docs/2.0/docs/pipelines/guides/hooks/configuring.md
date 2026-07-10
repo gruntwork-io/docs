@@ -55,7 +55,7 @@ A destroy is treated as an `apply` for this purpose, so a hook configured with `
 
 ### Scoping a hook to specific units
 
-By default a hook applies to every affected unit in the run. Add a `filter` block to scope it to a subset of those units, matching by path, environment, and/or label:
+By default a hook applies to every unit in the run. Add a `filter` block to scope it to a subset of those units, matching by path, environment, and/or label:
 
 ```hcl
 repository {
@@ -73,15 +73,13 @@ repository {
 }
 ```
 
-The filter is evaluated against the run's affected units:
+The filter is evaluated against the run's units:
 
-- **`paths`**: a list of path globs. A unit matches if its path matches one of the globs.
-- **`environments`**: a list of environment names. A unit matches if its environment is one of them. Each name must correspond to a configured `environment` block.
-- **`labels`**: a map of label keys to lists of values. A unit matches only if it carries every listed key with every listed value. Labels are assigned to units by [`annotation`](/2.0/reference/pipelines/configurations-as-code/api#annotation-block) blocks.
+- **`paths`**: a list of path globs. A unit matches if its path matches any of the globs.
+- **`environments`**: a list of [`environment`](/2.0/reference/pipelines/configurations-as-code/api#environment-block) names. Units in any of the listed environments match.
+- **`labels`**: a map of label keys to values. Units must have all label values to match. Labels are assigned to units by [`annotation`](/2.0/reference/pipelines/configurations-as-code/api#annotation-block) blocks.
 
-At least one of these must be set. When more than one is set, a unit must satisfy all of them.
-
-If at least one affected unit matches, the hook runs and receives only the matched units. If no affected unit matches, the hook is skipped, exactly as if no unit were affected.
+If at least one affected unit matches, the hook runs and receives only the matched units. If no affected unit matches, the hook is skipped.
 
 ### Isolated working directory
 
