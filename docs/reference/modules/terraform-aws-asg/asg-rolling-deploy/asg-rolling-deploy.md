@@ -53,16 +53,27 @@ update your launch templates (e.g. by specifying a new AMI to deploy), Terraform
     [tainted](https://www.terraform.io/docs/commands/taint.html) (i.e. marked for deletion next time) and the original
     ASG will be left unchanged, so again, there is no downtime.
 
-Note that if all we did was use `create_before_destroy`, on each redeploy, our ASG would reset to its hard-coded
-`desired_capacity`, losing the capacity changes from auto scaling policies. We solve this problem by using an
-[external data source](https://www.terraform.io/docs/providers/external/data_source.html) that runs the Python script
-[get-desired-capacity.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.2.0/modules/asg-rolling-deploy/describe-autoscaling-group/get-desired-capacity.py) to fetch the latest value of the
-`desired_capacity` parameter:
+Each rolling deploy creates a brand new `aws_autoscaling_group` resource (its name is derived from the launch
+template's name and version), so it always comes up at the `desired_capacity` you configure. Once that ASG exists,
+the resource's `lifecycle.ignore_changes = [desired_capacity]` means Terraform will not fight any auto scaling
+policies or alarms that subsequently change that ASG's live capacity: `terraform apply` on an unchanged launch
+template won't reset capacity back down (or up) to the configured value.
 
-*   If the script finds a value from an already-existing ASG, we use it, to ensure that the changes form auto scaling
-    events are not lost.
-*   If the script doesn't find an already-existing ASG, that means this is the first deploy, and we fall back to the
-    hard-coded `desired_capacity` value.
+:::note
+
+**Migration guide:** prior versions of this module used an external Python script
+([get-desired-capacity.py](https://github.com/gruntwork-io/terraform-aws-asg/blob/e964629/modules/asg-rolling-deploy/describe-autoscaling-group/get-desired-capacity.py))
+to look up the previous ASG's live `desired_capacity` and carry it forward into the replacement ASG on every rolling
+redeploy. That script (and its vendored `boto3` dependency) has been removed: it required a working `python3` on
+whatever machine ran `terraform apply`, which broke repeatedly as Python/boto3 versions moved (see
+[#242](https://github.com/gruntwork-io/terraform-aws-asg/issues/242)), and there's no equivalent native Terraform
+data source that can safely stand in for it (the AWS provider's `aws_autoscaling_group` data source errors when the
+ASG doesn't exist yet, which is always true on a first `apply`).
+**If you relied on capacity surviving a redeploy:** that behavior is gone. A rolling redeploy now always starts the
+new ASG at the configured `desired_capacity`. If you use auto scaling policies or scheduled actions to manage
+capacity, they will re-adjust the new ASG after each deploy the same way they would for any newly created ASG.
+
+:::
 
 ## Sample Usage
 
@@ -734,6 +745,6 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
     "https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.2.0/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "23e534147eebe0ddb3a0b40789435d1a"
+  "hash": "b42e3c1cc201ec82b7fcc3609649e157"
 }
 ##DOCS-SOURCER-END -->
