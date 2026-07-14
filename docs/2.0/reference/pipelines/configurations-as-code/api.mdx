@@ -49,7 +49,7 @@ aws {
 
 <HclListItem name="annotation" requirement="optional" type="labeled-block">
 <HclListItemDescription>
-Annotation blocks assign labels to units. Every unit whose path matches the block's [filter](#filter-block-environments-and-annotations) receives the block's labels.
+Annotation blocks assign labels to units. Every unit whose path matches the block's [filter](#filter-block) receives the block's labels.
 <br />
 A unit may match more than one annotation block, in which case it accumulates the labels from every block it matches.
 <br />
@@ -192,24 +192,13 @@ repository {
 </HclListItemExample>
 </HclListItem>
 
-### `filter` block (environments and annotations)
+### `filter` block
 
 <HclListItem name="filter" requirement="optional" type="block">
 <HclListItemDescription>
 
-A filter block nested inside an [environment](#environment-block) or [annotation](#annotation-block) block that determines which units the block applies to.
-See more [below](#filter-block-environments-and-annotations-attributes).
-
-</HclListItemDescription>
-</HclListItem>
-
-### `filter` block (hooks)
-
-<HclListItem name="filter" requirement="optional" type="block">
-<HclListItemDescription>
-
-A filter block nested inside an [after_hook](#after_hook-block) block that scopes the hook to a subset of the run's units.
-See more [below](#filter-block-hooks-attributes).
+A filter block nested inside an [environment](#environment-block), [annotation](#annotation-block), or [after_hook](#after_hook-block) block that determines which units the block applies to.
+See more [below](#filter-block-attributes).
 
 </HclListItemDescription>
 </HclListItem>
@@ -287,7 +276,7 @@ A custom authentication block that determines how Pipelines will authenticate wi
 <HclListItem name="filter" requirement="required" type="block">
 <HclListItemDescription>
 
-A filter block that determines which units the environment is applicable to.  See more [below](#filter-block-environments-and-annotations-attributes).
+A filter block that determines which units the environment is applicable to.  See more [below](#filter-block-attributes).
 
 :::caution
 Every unit must be uniquely matched by the filters of a single environment block. If a unit is matched by multiple environment blocks, Pipelines will throw an error.
@@ -306,7 +295,7 @@ An authentication block that determines how Pipelines will authenticate with clo
 <HclListItem name="filter" requirement="required" type="block">
 <HclListItemDescription>
 
-A [filter](#filter-block-environments-and-annotations) block that determines which units the annotation's labels are applied to. See more [below](#filter-block-environments-and-annotations-attributes).
+A [filter](#filter-block) block that determines which units the annotation's labels are applied to. See more [below](#filter-block-attributes).
 </HclListItemDescription>
 </HclListItem>
 
@@ -522,7 +511,7 @@ An [authentication](#authentication-block) block defining the credentials for th
 <HclListItem name="filter" requirement="optional" type="block">
 <HclListItemDescription>
 
-An [after_hook `filter`](#filter-block-hooks) block that scopes the hook to a subset of the run's affected units by `paths`, `environments`, and/or `labels`. When present, the hook runs only if at least one affected unit matches the filter, and it receives only the matched units. When no affected unit matches, the hook is skipped. When omitted, the hook applies to all affected units. See more [below](#filter-block-hooks-attributes).
+An [after_hook `filter`](#filter-block) block that scopes the hook to a subset of the run's affected units by `paths`, `environments`, and/or `labels`. When present, the hook runs only if at least one affected unit matches the filter, and it receives only the matched units. When no affected unit matches, the hook is skipped. When omitted, the hook applies to all affected units. See more [below](#filter-block-attributes).
 
 </HclListItemDescription>
 <HclListItemExample>
@@ -545,37 +534,33 @@ repository {
 </HclListItemExample>
 </HclListItem>
 
-### `filter` block (environments and annotations) attributes
+### `filter` block attributes
 
-<HclListItem name="paths" requirement="required" type="array[string]">
-<HclListItemDescription>
+The valid attributes depend on which block the `filter` is nested in:
 
-A list of path globs that the filter should match against. Paths are relative to the directory containing the .gruntwork directory.
-</HclListItemDescription>
-</HclListItem>
+- Inside an [`environment`](#environment-block) or [`annotation`](#annotation-block) block, only `paths` is valid, and it is required.
+- Inside an [`after_hook`](#after_hook-block) block, `paths`, `environments`, and `labels` are all valid, and at least one of them must be set.
 
-### `filter` block (hooks) attributes
-
-At least one of `paths`, `environments`, or `labels` must be set. A unit matches only if it satisfies every attribute the filter specifies.
+A unit matches only if it satisfies every attribute the filter specifies.
 
 <HclListItem name="paths" requirement="optional" type="array[string]">
 <HclListItemDescription>
 
-A list of path globs that the filter should match against. Paths are relative to the directory containing the .gruntwork directory.
+A list of path globs that the filter should match against. Paths are relative to the directory containing the .gruntwork directory. Required when nested inside an [`environment`](#environment-block) or [`annotation`](#annotation-block) block.
 </HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="environments" requirement="optional" type="array[string]">
 <HclListItemDescription>
 
-A list of environment names. A unit matches if its environment is any one of the listed names. Each name must correspond to a configured [`environment`](#environment-block) block.
+A list of environment names. Only valid inside an [`after_hook`](#after_hook-block) block. A unit matches if its environment is any one of the listed names. Each name must correspond to a configured [`environment`](#environment-block) block.
 </HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="labels" requirement="optional" type="map[string, array[string]]">
 <HclListItemDescription>
 
-A map of label keys to lists of values. A unit matches only if it carries every listed key with every listed value. Labels are assigned to units by [`annotation`](#annotation-block) blocks.
+A map of label keys to lists of values. Only valid inside an [`after_hook`](#after_hook-block) block. A unit matches only if it carries every listed key with every listed value. Labels are assigned to units by [`annotation`](#annotation-block) blocks.
 </HclListItemDescription>
 </HclListItem>
 
