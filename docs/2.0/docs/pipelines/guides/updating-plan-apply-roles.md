@@ -108,8 +108,10 @@ values = {
   github_org_name  = "acme"
   github_repo_name = "infrastructure-live-root"
 
-  # Set both once the repository has opted in to immutable subject claims.
-  # Leave both blank to keep using the legacy name-based sub claim.
+  # Leave both blank only before the repository has opted in to immutable
+  # subject claims. Once set, do not clear either value afterward — the
+  # bootstrap stack would fall back to a legacy name-based trust policy that
+  # won't match GitHub's immutable sub claim.
   github_org_id  = "1234567"
   github_repo_id = "7654321"
 }
@@ -125,8 +127,10 @@ values = {
   github_org_name  = "acme"
   github_repo_name = "infrastructure-live-root"
 
-  # Set both once the repository has opted in to immutable subject claims.
-  # Leave both blank to keep using the legacy name-based sub claim.
+  # Leave both blank only before the repository has opted in to immutable
+  # subject claims. Once set, do not clear either value afterward — the
+  # bootstrap stack would fall back to a legacy name-based trust policy that
+  # won't match GitHub's immutable sub claim.
   github_org_id  = "1234567"
   github_repo_id = "7654321"
 }
@@ -142,8 +146,10 @@ values = {
   github_org_name  = "acme"
   github_repo_name = "infrastructure-live-root"
 
-  # Set both once the repository has opted in to immutable subject claims.
-  # Leave both blank to keep using the legacy name-based sub claim.
+  # Leave both blank only before the repository has opted in to immutable
+  # subject claims. Once set, do not clear either value afterward — the
+  # bootstrap stack would fall back to a legacy name-based trust policy that
+  # won't match GitHub's immutable sub claim.
   github_org_id  = "1234567"
   github_repo_id = "7654321"
 }
@@ -152,7 +158,7 @@ values = {
 </TabItem>
 </Tabs>
 
-Both `github_org_id` and `github_repo_id` must be set together — if either is left blank, the bootstrap stack falls back to the legacy name-based `sub` claim. You can look up the numeric owner/repo IDs for a repository with the [GitHub CLI](https://cli.github.com/):
+Both `github_org_id` and `github_repo_id` must be set together — if either is left blank, the bootstrap stack falls back to the legacy name-based `sub` claim. Once you've set both, don't clear either one afterward: the generated trust policy would revert to the legacy name-based form, which won't match GitHub's immutable `sub` claim, breaking the OIDC handshake. You can look up the numeric owner/repo IDs for a repository with the [GitHub CLI](https://cli.github.com/):
 
 ```bash
 gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
