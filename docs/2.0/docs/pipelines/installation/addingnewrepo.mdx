@@ -137,7 +137,7 @@ To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to sca
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.13.1' \
   --output-folder .
 ```
 
@@ -151,11 +151,13 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.13.1' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitHubOrgName=acme' \
   --var 'GitHubRepoName=infrastructure-live' \
+  --var 'GitHubOrgID=1234567' \
+  --var 'GitHubRepoID=7654321' \
   --var 'AWSAccountID=123456789012' \
   --var 'AWSRegion=us-east-1' \
   --var 'StateBucketName=my-state-bucket' \
@@ -168,6 +170,8 @@ You can also choose to store these values in a YAML file and pass it to Boilerpl
 AccountName: dev
 GitHubOrgName: acme
 GitHubRepoName: infrastructure-live
+GitHubOrgID: 1234567
+GitHubRepoID: 7654321
 AWSAccountID: 123456789012
 AWSRegion: us-east-1
 StateBucketName: my-state-bucket
@@ -175,10 +179,16 @@ StateBucketName: my-state-bucket
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.13.1' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
+```
+
+You can look up the numeric owner/repo IDs for `GitHubOrgID` and `GitHubRepoID` with the [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
 ```
 
 :::
@@ -283,7 +293,7 @@ Just like before, you'll use Boilerplate to scaffold out the necessary content f
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/infrastructure-live?ref=v1.13.1' \
   --output-folder .
 ```
 
@@ -297,7 +307,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/account?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/account?ref=v1.13.1' \
   --output-folder . \
   --var 'AccountName=prod' \
   --var 'AWSAccountID=987654321012' \
@@ -305,6 +315,8 @@ boilerplate \
   --var 'StateBucketName=my-prod-state-bucket' \
   --var 'GitHubOrgName=acme' \
   --var 'GitHubRepoName=infrastructure-live' \
+  --var 'GitHubOrgID=1234567' \
+  --var 'GitHubRepoID=7654321' \
   --non-interactive
 ```
 
@@ -317,14 +329,22 @@ AWSRegion: us-east-1
 StateBucketName: my-prod-state-bucket
 GitHubOrgName: acme
 GitHubRepoName: infrastructure-live
+GitHubOrgID: 1234567
+GitHubRepoID: 7654321
 ```
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/account?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/github/account?ref=v1.13.1' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
+```
+
+You can look up the numeric owner/repo IDs for `GitHubOrgID` and `GitHubRepoID` with the [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
 ```
 
 :::
@@ -409,7 +429,7 @@ To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to sca
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/infrastructure-live?ref=v1.13.1' \
   --output-folder .
 ```
 
@@ -423,11 +443,13 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/infrastructure-live?ref=v1.13.1' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitHubOrgName=acme' \
   --var 'GitHubRepoName=infrastructure-live' \
+  --var 'GitHubOrgID=1234567' \
+  --var 'GitHubRepoID=7654321' \
   --var 'SubscriptionName=dev' \
   --var 'AzureTenantID=00000000-0000-0000-0000-000000000000' \
   --var 'AzureSubscriptionID=11111111-1111-1111-1111-111111111111' \
@@ -444,6 +466,8 @@ You can also choose to store these values in a YAML file and pass it to Boilerpl
 AccountName: dev
 GitHubOrgName: acme
 GitHubRepoName: infrastructure-live
+GitHubOrgID: 1234567
+GitHubRepoID: 7654321
 AzureTenantID: 00000000-0000-0000-0000-000000000000
 AzureSubscriptionID: 11111111-1111-1111-1111-111111111111
 AzureLocation: East US
@@ -454,10 +478,16 @@ StateStorageContainerName: tfstate
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/infrastructure-live?ref=v1.13.1' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
+```
+
+You can look up the numeric owner/repo IDs for `GitHubOrgID` and `GitHubRepoID` with the [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
 ```
 
 :::
@@ -761,7 +791,7 @@ Just like before, you'll use Boilerplate to scaffold out the necessary content f
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.13.1' \
   --output-folder .
 ```
 
@@ -777,11 +807,13 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.13.1' \
   --output-folder . \
   --var 'AccountName=prod' \
   --var 'GitHubOrgName=acme' \
   --var 'GitHubRepoName=infrastructure-live' \
+  --var 'GitHubOrgID=1234567' \
+  --var 'GitHubRepoID=7654321' \
   --var 'SubscriptionName=prod' \
   --var 'AzureTenantID=00000000-0000-0000-0000-000000000000' \
   --var 'AzureSubscriptionID=99999999-9999-9999-9999-999999999999' \
@@ -798,6 +830,8 @@ If you prefer to store the values in a YAML file and pass it to Boilerplate usin
 AccountName: prod
 GitHubOrgName: acme
 GitHubRepoName: infrastructure-live
+GitHubOrgID: 1234567
+GitHubRepoID: 7654321
 SubscriptionName: prod
 AzureTenantID: 00000000-0000-0000-0000-000000000000
 AzureSubscriptionID: 99999999-9999-9999-9999-999999999999
@@ -809,11 +843,19 @@ StateStorageContainerName: tfstate
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/github/subscription?ref=v1.13.1' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
 ```
+
+:::tip
+You can look up the numeric owner/repo IDs for `GitHubOrgID` and `GitHubRepoID` with the [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
+```
+:::
 
 :::note Progress Checklist
 
@@ -1063,7 +1105,7 @@ To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to sca
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/infrastructure-live?ref=v1.13.1' \
   --output-folder .
 ```
 
@@ -1077,7 +1119,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/infrastructure-live?ref=v1.13.1' \
   --output-folder . \
   --var 'ProjectName=dev' \
   --var 'GCPProjectID=my-project-123' \
@@ -1085,6 +1127,8 @@ boilerplate \
   --var 'GCPRegion=us-central1' \
   --var 'GitHubOrgName=acme' \
   --var 'GitHubRepoName=infrastructure-live' \
+  --var 'GitHubOrgID=1234567' \
+  --var 'GitHubRepoID=7654321' \
   --var 'StateBucketName=my-state-bucket' \
   --non-interactive
 ```
@@ -1098,15 +1142,23 @@ GCPProjectNumber: "123456789012"
 GCPRegion: us-central1
 GitHubOrgName: acme
 GitHubRepoName: infrastructure-live
+GitHubOrgID: 1234567
+GitHubRepoID: 7654321
 StateBucketName: my-state-bucket
 ```
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/infrastructure-live?ref=v1.13.1' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
+```
+
+You can look up the numeric owner/repo IDs for `GitHubOrgID` and `GitHubRepoID` with the [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
 ```
 
 :::
@@ -1213,7 +1265,7 @@ Just like before, you'll use Boilerplate to scaffold out the necessary content f
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/project?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/project?ref=v1.13.1' \
   --output-folder .
 ```
 
@@ -1227,7 +1279,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/project?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/project?ref=v1.13.1' \
   --output-folder . \
   --var 'ProjectName=prod' \
   --var 'GCPProjectID=my-prod-project-456' \
@@ -1235,6 +1287,8 @@ boilerplate \
   --var 'GCPRegion=us-central1' \
   --var 'GitHubOrgName=acme' \
   --var 'GitHubRepoName=infrastructure-live' \
+  --var 'GitHubOrgID=1234567' \
+  --var 'GitHubRepoID=7654321' \
   --var 'StateBucketName=my-prod-state-bucket' \
   --non-interactive
 ```
@@ -1248,15 +1302,23 @@ GCPProjectNumber: "456789012345"
 GCPRegion: us-central1
 GitHubOrgName: acme
 GitHubRepoName: infrastructure-live
+GitHubOrgID: 1234567
+GitHubRepoID: 7654321
 StateBucketName: my-prod-state-bucket
 ```
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/project?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/github/project?ref=v1.13.1' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
+```
+
+You can look up the numeric owner/repo IDs for `GitHubOrgID` and `GitHubRepoID` with the [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
 ```
 
 :::
