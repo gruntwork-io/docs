@@ -170,7 +170,9 @@ Refer to [Configuring OpenId Connect in Amazon Web Services](https://docs.github
 :::info Immutable subject claims (GitHub)
 GitHub is rolling out an [immutable subject-claim format](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for Actions OIDC tokens. Repositories that opt in embed numeric, immutable owner/repo IDs in the `sub` claim, e.g. `repo:acme@1234567/infrastructure-live-root@7654321:ref:*`, instead of the name-only form shown above.
 
-Account Factory detects this automatically on a per-repository basis and vends the matching trust policy — no action is required. **No action is needed before July 15, 2026** unless you opt a repository into this format at GitHub, or create, rename, or transfer a repository after that date, since GitHub requires the immutable format for all repositories created from that date forward. If you do opt in an existing repository, re-run onboarding (or manually update the trust policy) to pick up the new `sub` claim format.
+When the [`PIPELINES_FEATURE_EXPERIMENT_IMMUTABLE_OIDC_SUBJECT_CLAIMS`](/2.0/reference/pipelines/feature-flags#pipelines_feature_experiment_immutable_oidc_subject_claims) feature flag is enabled (the default), Account Factory detects this automatically on a per-repository basis and vends the matching trust policy — no action is required. **No action is needed before July 15, 2026** unless you opt a repository into this format at GitHub, or create, rename, or transfer a repository after that date, since GitHub requires the immutable format for all repositories created from that date forward. If you do opt in an existing repository, re-run onboarding (or manually update the trust policy) to pick up the new `sub` claim format.
+
+If the flag is disabled, Account Factory always vends the name-only trust policy, even for repositories that have opted in to the immutable format at GitHub — you'll need to manually add the immutable `sub` claim to the trust policy yourself in that case.
 :::
 
 ### Roles provisioned by Account Factory

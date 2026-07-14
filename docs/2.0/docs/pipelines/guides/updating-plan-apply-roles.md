@@ -93,10 +93,10 @@ The IAM roles granted to each service account are controlled by the `PlanRoles` 
 GitHub is rolling out an [immutable subject-claim format](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for Actions OIDC tokens. Repositories that opt in embed numeric, immutable owner/repo IDs in the `sub` claim (e.g. `repo:acme@1234567/infrastructure-live-root@7654321:ref:refs/heads/main`) instead of relying on the repository name alone. This closes a gap where a deleted repository's name could be reused by an unrelated repository, which would otherwise inherit trust intended for the original one.
 
 :::info
-**Starting July 15, 2026, GitHub requires this format for all newly created repositories.** Existing repositories can opt in at any time before that date. No action is required for repositories that don't opt in and were created before that date — they continue to use the name-based `sub` claim shown above.
+Existing repositories can opt in to this format at any time. **Repositories created, renamed, or transferred after July 15, 2026 automatically use the immutable format.** No action is required for existing repositories that don't opt in — they continue to use the name-based `sub` claim shown above.
 :::
 
-If you're onboarding through Account Factory or Terragrunt Scale, this is detected and configured automatically on a per-repository basis — no manual action is required. If you're managing your bootstrap stack directly, set `github_org_id` and `github_repo_id` alongside the existing `github_org_name`/`github_repo_name` (or platform equivalent) once your repository has opted in:
+If you're onboarding through Account Factory or Terragrunt Scale, this is detected and configured automatically on a per-repository basis when the [`PIPELINES_FEATURE_EXPERIMENT_IMMUTABLE_OIDC_SUBJECT_CLAIMS`](/2.0/reference/pipelines/feature-flags#pipelines_feature_experiment_immutable_oidc_subject_claims) feature flag is enabled (the default) — no manual action is required. If that flag is disabled, or you're managing your bootstrap stack directly, set `github_org_id` and `github_repo_id` alongside the existing `github_org_name`/`github_repo_name` (or platform equivalent) once your repository has opted in:
 
 <Tabs groupId="cloud">
 <TabItem value="aws" label="AWS" default>
