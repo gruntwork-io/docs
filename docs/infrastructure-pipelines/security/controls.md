@@ -69,6 +69,10 @@ The Pipelines IAM role uses a trust policy to limit access to assume the role to
 
 Refer to [Configuring OpenId Connect in Amazon Web Services](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) to learn more.
 
+:::info Immutable subject claims
+GitHub is rolling out an [immutable subject-claim format](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for Actions OIDC tokens, embedding numeric owner/repo IDs in the `sub` claim instead of names alone. This older version of Pipelines, which uses the `infrastructure-pipelines` repository, does not include automatic detection for this format. See the [current Pipelines documentation](../../pipelines/architecture/security-controls) for the latest guidance.
+:::
+
 ### Accessing AWS resources
 
 Access to AWS is only available to workflows running on `main` in the `infrastructure-pipelines` repository. The `infrastructure-live` repository does not have access to AWS directly. Pipelines runs workflows in `infrastructure-live` that call workflows in `infrastructure-pipelines` where the workflow runs on `main`, which grants the workflow in `infrastructure-pipelines` temporary access to run `terragrunt plan`, `terragrunt apply`, or `terragrunt destroy` actions.

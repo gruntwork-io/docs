@@ -167,6 +167,12 @@ For more details, see the [official AWS documentation](https://docs.aws.amazon.c
 
 Refer to [Configuring OpenId Connect in Amazon Web Services](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) for additional details.
 
+:::info Immutable subject claims (GitHub)
+GitHub is rolling out an [immutable subject-claim format](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for Actions OIDC tokens. Repositories that opt in embed numeric, immutable owner/repo IDs in the `sub` claim, e.g. `repo:acme@1234567/infrastructure-live-root@7654321:ref:*`, instead of the name-only form shown above.
+
+Account Factory detects this automatically on a per-repository basis and vends the matching trust policy — no action is required. **No action is needed before July 15, 2026** unless you opt a repository into this format at GitHub, or create, rename, or transfer a repository after that date, since GitHub requires the immutable format for all repositories created from that date forward. If you do opt in an existing repository, re-run onboarding (or manually update the trust policy) to pick up the new `sub` claim format.
+:::
+
 ### Roles provisioned by Account Factory
 
 Pipelines automatically provisions specific roles in AWS accounts to support required infrastructure operations. These roles follow the naming pattern `<repository-allowed-to-use-the-role>-pipelines-<permissions>`.
