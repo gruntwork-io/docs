@@ -160,6 +160,7 @@ boilerplate \
   --var 'GitHubRepoID=7654321' \
   --var 'AWSAccountID=123456789012' \
   --var 'AWSRegion=us-east-1' \
+  --var 'Partition=aws' \
   --var 'StateBucketName=my-state-bucket' \
   --non-interactive
 ```
@@ -174,6 +175,7 @@ GitHubOrgID: 1234567
 GitHubRepoID: 7654321
 AWSAccountID: 123456789012
 AWSRegion: us-east-1
+Partition: aws
 StateBucketName: my-state-bucket
 ```
 
@@ -184,6 +186,12 @@ boilerplate \
   --var-file vars.yml \
   --non-interactive
 ```
+
+:::
+
+:::tip
+
+`Partition` should be `aws` for the standard AWS partition. If you're bootstrapping an AWS GovCloud or China account, set it to `aws-us-gov` or `aws-cn` respectively.
 
 :::
 
@@ -318,6 +326,7 @@ boilerplate \
   --var 'AccountName=prod' \
   --var 'AWSAccountID=987654321012' \
   --var 'AWSRegion=us-east-1' \
+  --var 'Partition=aws' \
   --var 'StateBucketName=my-prod-state-bucket' \
   --var 'GitHubOrgName=acme' \
   --var 'GitHubRepoName=infrastructure-live' \
@@ -332,6 +341,7 @@ If you prefer to store the values in a YAML file and pass it to Boilerplate usin
 AccountName: prod
 AWSAccountID: 987654321012
 AWSRegion: us-east-1
+Partition: aws
 StateBucketName: my-prod-state-bucket
 GitHubOrgName: acme
 GitHubRepoName: infrastructure-live

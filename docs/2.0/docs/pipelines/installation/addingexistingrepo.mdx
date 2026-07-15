@@ -284,6 +284,7 @@ boilerplate \
   --var 'GitHubRepoID=7654321' \
   --var 'AWSAccountID="123456789012"' \
   --var 'AWSRegion=us-east-1' \
+  --var 'Partition=aws' \
   --var 'StateBucketName=my-state-bucket' \
   --non-interactive
 ```
@@ -298,6 +299,7 @@ GitHubOrgID: 1234567
 GitHubRepoID: 7654321
 AWSAccountID: "123456789012"
 AWSRegion: us-east-1
+Partition: aws
 StateBucketName: my-state-bucket
 ```
 
@@ -308,6 +310,12 @@ boilerplate \
   --var-file vars.yml \
   --non-interactive
 ```
+
+:::
+
+:::tip
+
+`Partition` should be `aws` for the standard AWS partition. If you're bootstrapping an AWS GovCloud or China account, set it to `aws-us-gov` or `aws-cn` respectively.
 
 :::
 

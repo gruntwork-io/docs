@@ -74,7 +74,7 @@ Pay attention to the `allowed_sources` value. This field should specify the orga
 
 If you want to allow all refs in a repository to assume this role, you can set the value to `["*"]`.
 
-GitHub is rolling out an [immutable subject-claim format](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for Actions OIDC tokens. If the delegated repository has opted in to this format, use `org@owner_id/repo-name@repo_id` as the key instead of `org/repo-name`, e.g. `acme@1234567/infrastructure-live-root@7654321`. You can look up the numeric owner/repo IDs with the [GitHub CLI](https://cli.github.com/):
+GitHub has rolled out an [immutable subject-claim format](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for Actions OIDC tokens as of July 15, 2026. If the delegated repository has opted in to this format, use `org@owner_id/repo-name@repo_id` as the key instead of `org/repo-name`, e.g. `acme@1234567/infrastructure-live-root@7654321`. You can look up the numeric owner/repo IDs with the [GitHub CLI](https://cli.github.com/):
 
 ```bash
 gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'

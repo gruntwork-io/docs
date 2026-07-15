@@ -90,7 +90,7 @@ The IAM roles granted to each service account are controlled by the `PlanRoles` 
 
 ## Immutable subject claims (GitHub only)
 
-GitHub is rolling out an [immutable subject-claim format](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for Actions OIDC tokens. Repositories that opt in embed numeric, immutable owner/repo IDs in the `sub` claim (e.g. `repo:acme@1234567/infrastructure-live-root@7654321:ref:refs/heads/main`) instead of relying on the repository name alone. This closes a gap where a deleted repository's name could be reused by an unrelated repository, which would otherwise inherit trust intended for the original one.
+GitHub has rolled out an [immutable subject-claim format](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for Actions OIDC tokens as of July 15, 2026. Repositories that opt in embed numeric, immutable owner/repo IDs in the `sub` claim (e.g. `repo:acme@1234567/infrastructure-live-root@7654321:ref:refs/heads/main`) instead of relying on the repository name alone. This closes a gap where a deleted repository's name could be reused by an unrelated repository, which would otherwise inherit trust intended for the original one.
 
 :::info
 Existing repositories can opt in to this format at any time. **Repositories created, renamed, or transferred after July 15, 2026 automatically use the immutable format.** No action is required for existing repositories that don't opt in — they continue to use the name-based `sub` claim shown above.
