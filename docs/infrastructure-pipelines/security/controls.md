@@ -70,7 +70,7 @@ The Pipelines IAM role uses a trust policy to limit access to assume the role to
 Refer to [Configuring OpenId Connect in Amazon Web Services](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) to learn more.
 
 :::info Immutable subject claims
-GitHub is rolling out an [immutable subject-claim format](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for Actions OIDC tokens, embedding numeric owner/repo IDs in the `sub` claim instead of names alone. This older version of Pipelines, which uses the `infrastructure-pipelines` repository, does not include automatic detection for this format. See the [current Pipelines documentation](/2.0/docs/pipelines/architecture/security-controls) for the latest guidance.
+As of July 15, 2026, GitHub has rolled out an [immutable subject-claim format](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for Actions OIDC tokens, embedding numeric owner/repo IDs in the `sub` claim instead of names alone. This older version of Pipelines, which uses the `infrastructure-pipelines` repository, does not include automatic detection for this format. See the [current Pipelines documentation](/2.0/docs/pipelines/architecture/security-controls) for the latest guidance.
 :::
 
 ### Accessing AWS resources
