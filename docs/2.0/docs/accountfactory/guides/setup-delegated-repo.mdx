@@ -62,7 +62,7 @@ Use Terragrunt Scaffold to create the new role in the `infrastructure-live-acces
 # and the account you want to provision your new role in is called `acme`.
 mkdir acme/_global/ecr-push-role
 cd acme/_global/ecr-push-role
-terragrunt scaffold 'git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.73.2'
+terragrunt scaffold 'git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v1.5.1'
 ```
 
 This will create a placeholder `terragrunt.hcl` file for a new role in your repository, which you can modify to suit your specific requirements.
@@ -85,7 +85,7 @@ The legacy name-only format is optional and only needed for repositories created
 
 ```hcl
 terraform {
-  source = "git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.73.2"
+  source = "git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v1.5.1"
 }
 
 # Include the root `terragrunt.hcl` configuration, which has settings common across all environments & components.
