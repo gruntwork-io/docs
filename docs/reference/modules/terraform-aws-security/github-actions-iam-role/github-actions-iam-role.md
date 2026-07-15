@@ -249,6 +249,9 @@ module "github_actions_iam_role" {
   #     look up the numeric IDs for a repository with:
   #       gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
   # A mix of both formats across different keys is fine; each key's format only affects that key's own entry.
+  # Wildcards ("*") are allowed in the names and in place of the numeric IDs (e.g.
+  # "gruntwork-test@72457347/infra-live-e2e-*" or "gruntwork-test@72457347/infra-live-e2e-*@*"), for use with a
+  # StringLike condition operator (see var.allowed_sources_condition_operator).
   #
   allowed_sources = <map(list(string))>
 
@@ -345,6 +348,9 @@ inputs = {
   #     look up the numeric IDs for a repository with:
   #       gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
   # A mix of both formats across different keys is fine; each key's format only affects that key's own entry.
+  # Wildcards ("*") are allowed in the names and in place of the numeric IDs (e.g.
+  # "gruntwork-test@72457347/infra-live-e2e-*" or "gruntwork-test@72457347/infra-live-e2e-*@*"), for use with a
+  # StringLike condition operator (see var.allowed_sources_condition_operator).
   #
   allowed_sources = <map(list(string))>
 
@@ -438,6 +444,9 @@ encoded in one of two formats:
     look up the numeric IDs for a repository with:
       gh api repos/&#123;owner&#125;/&#123;repo&#125; --jq '&#123;owner_id: .owner.id, repo_id: .id&#125;'
 A mix of both formats across different keys is fine; each key's format only affects that key's own entry.
+Wildcards ('*') are allowed in the names and in place of the numeric IDs (e.g.
+'gruntwork-test@72457347/infra-live-e2e-*' or 'gruntwork-test@72457347/infra-live-e2e-*@*'), for use with a
+StringLike condition operator (see <a href="#allowed_sources_condition_operator"><code>allowed_sources_condition_operator</code></a>).
 
 
 </HclListItemDescription>
@@ -666,6 +675,6 @@ The name of the IAM role.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.1/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dac41b1f8d0d956b75853dba3cff4107"
+  "hash": "c8609ea18d5b2134abd7b914292411dd"
 }
 ##DOCS-SOURCER-END -->
