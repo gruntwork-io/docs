@@ -139,7 +139,7 @@ To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to sca
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.13.1' \
   --output-folder .
 ```
 
@@ -153,14 +153,15 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.13.1' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitLabGroupName=acme' \
-  --var 'GitLabRepoName=infrastructure-live' \
+  --var 'GitLabProjectName=infrastructure-live' \
   --var 'GitLabInstanceURL=https://gitlab.com' \
   --var 'AWSAccountID=123456789012' \
   --var 'AWSRegion=us-east-1' \
+  --var 'Partition=aws' \
   --var 'StateBucketName=my-state-bucket' \
   --non-interactive
 ```
@@ -170,33 +171,41 @@ You can also choose to store these values in a YAML file and pass it to Boilerpl
 ```yaml title="vars.yml"
 AccountName: dev
 GitLabGroupName: acme
-GitLabRepoName: infrastructure-live
+GitLabProjectName: infrastructure-live
 GitLabInstanceURL: https://gitlab.com
 AWSAccountID: 123456789012
 AWSRegion: us-east-1
+Partition: aws
 StateBucketName: my-state-bucket
 ```
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.13.1' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
 ```
 
+:::tip
+
+`Partition` should be `aws` for the standard AWS partition. If you're bootstrapping an AWS GovCloud or China account, set it to `aws-us-gov` or `aws-cn` respectively.
+
+:::
+
 If you're using a self-hosted GitLab instance, you'll want to make sure the issuer is set correctly when calling Boilerplate.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.13.1' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitLabGroupName=acme' \
-  --var 'GitLabRepoName=infrastructure-live' \
+  --var 'GitLabProjectName=infrastructure-live' \
   --var 'GitLabInstanceURL=https://gitlab.com' \
   --var 'AWSAccountID=123456789012' \
   --var 'AWSRegion=us-east-1' \
+  --var 'Partition=aws' \
   --var 'StateBucketName=my-state-bucket' \
   --var 'Issuer=$$ISSUER_URL$$' \
   --non-interactive
@@ -289,7 +298,7 @@ Just like before, you'll use Boilerplate to scaffold out the necessary content f
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.13.1' \
   --output-folder .
 ```
 
@@ -303,14 +312,15 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.13.1' \
   --output-folder . \
   --var 'AccountName=prod' \
   --var 'AWSAccountID=987654321012' \
   --var 'AWSRegion=us-east-1' \
+  --var 'Partition=aws' \
   --var 'StateBucketName=my-prod-state-bucket' \
   --var 'GitLabGroupName=acme' \
-  --var 'GitLabRepoName=infrastructure-live' \
+  --var 'GitLabProjectName=infrastructure-live' \
   --var 'GitLabInstanceURL=https://gitlab.com' \
   --non-interactive
 ```
@@ -321,15 +331,16 @@ If you prefer to store the values in a YAML file and pass it to Boilerplate usin
 AccountName: prod
 AWSAccountID: 987654321012
 AWSRegion: us-east-1
+Partition: aws
 StateBucketName: my-prod-state-bucket
 GitLabGroupName: acme
-GitLabRepoName: infrastructure-live
+GitLabProjectName: infrastructure-live
 GitLabInstanceURL: https://gitlab.com
 ```
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.13.1' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -407,7 +418,7 @@ To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to sca
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/infrastructure-live?ref=v1.13.1' \
   --output-folder .
 ```
 
@@ -421,11 +432,11 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/infrastructure-live?ref=v1.13.1' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitLabGroupName=acme' \
-  --var 'GitLabRepoName=infrastructure-live' \
+  --var 'GitLabProjectName=infrastructure-live' \
   --var 'GitLabInstanceURL=https://gitlab.com' \
   --var 'SubscriptionName=dev' \
   --var 'AzureTenantID=00000000-0000-0000-0000-000000000000' \
@@ -442,7 +453,7 @@ You can also choose to store these values in a YAML file and pass it to Boilerpl
 ```yaml title="vars.yml"
 AccountName: dev
 GitLabGroupName: acme
-GitLabRepoName: infrastructure-live
+GitLabProjectName: infrastructure-live
 GitLabInstanceURL: https://gitlab.com
 SubscriptionName: dev
 AzureTenantID: 00000000-0000-0000-0000-000000000000
@@ -455,7 +466,7 @@ StateStorageContainerName: tfstate
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/infrastructure-live?ref=v1.11.0 \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/infrastructure-live?ref=v1.13.1' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -734,7 +745,7 @@ Just like before, you'll use Boilerplate to scaffold out the necessary content f
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.13.1' \
   --output-folder .
 ```
 
@@ -750,11 +761,11 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.13.1' \
   --output-folder . \
   --var 'AccountName=prod' \
   --var 'GitLabGroupName=acme' \
-  --var 'GitLabRepoName=infrastructure-live' \
+  --var 'GitLabProjectName=infrastructure-live' \
   --var 'GitLabInstanceURL=https://gitlab.com' \
   --var 'SubscriptionName=prod' \
   --var 'AzureTenantID=00000000-0000-0000-0000-000000000000' \
@@ -771,7 +782,7 @@ If you prefer to store the values in a YAML file and pass it to Boilerplate usin
 ```yaml title="vars.yml"
 AccountName: prod
 GitLabGroupName: acme
-GitLabRepoName: infrastructure-live
+GitLabProjectName: infrastructure-live
 GitLabInstanceURL: https://gitlab.com
 SubscriptionName: prod
 AzureTenantID: 00000000-0000-0000-0000-000000000000
@@ -784,7 +795,7 @@ StateStorageContainerName: tfstate
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.13.1' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -1014,7 +1025,7 @@ To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to sca
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.13.1' \
   --output-folder .
 ```
 
@@ -1028,7 +1039,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.13.1' \
   --output-folder . \
   --var 'ProjectName=dev' \
   --var 'GCPProjectID=my-project-123' \
@@ -1054,7 +1065,7 @@ StateBucketName: my-state-bucket
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.13.1' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -1064,7 +1075,7 @@ If you're using a self-hosted GitLab instance, you'll also want to pass the `Git
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.13.1' \
   --output-folder . \
   --var 'ProjectName=dev' \
   --var 'GCPProjectID=my-project-123' \
@@ -1179,7 +1190,7 @@ Just like before, you'll use Boilerplate to scaffold out the necessary content f
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/project?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/project?ref=v1.13.1' \
   --output-folder .
 ```
 
@@ -1193,7 +1204,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/project?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/project?ref=v1.13.1' \
   --output-folder . \
   --var 'ProjectName=prod' \
   --var 'GCPProjectID=my-prod-project-456' \
@@ -1219,7 +1230,7 @@ StateBucketName: my-prod-state-bucket
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/project?ref=v1.11.0' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/project?ref=v1.13.1' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive

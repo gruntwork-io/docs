@@ -88,6 +88,82 @@ The IAM roles granted to each service account are controlled by the `PlanRoles` 
 </TabItem>
 </Tabs>
 
+## Immutable subject claims (GitHub only)
+
+GitHub has rolled out an [immutable subject-claim format](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for Actions OIDC tokens as of July 15, 2026. Repositories that opt in embed numeric, immutable owner/repo IDs in the `sub` claim (e.g. `repo:acme@1234567/infrastructure-live-root@7654321:ref:refs/heads/main`) instead of relying on the repository name alone. This closes a gap where a deleted repository's name could be reused by an unrelated repository, which would otherwise inherit trust intended for the original one.
+
+:::info
+Existing repositories can opt in to this format at any time. **Repositories created, renamed, or transferred after July 15, 2026 automatically use the immutable format.** No action is required for existing repositories that don't opt in — they continue to use the name-based `sub` claim shown above.
+:::
+
+If you're onboarding through Account Factory or Terragrunt Scale, this is detected and configured automatically on a per-repository basis when the [`PIPELINES_FEATURE_EXPERIMENT_IMMUTABLE_OIDC_SUBJECT_CLAIMS`](/2.0/reference/pipelines/feature-flags#pipelines_feature_experiment_immutable_oidc_subject_claims) feature flag is enabled (the default) — no manual action is required. If that flag is disabled, or you're managing your bootstrap stack directly, set `github_org_id` and `github_repo_id` alongside the existing `github_org_name`/`github_repo_name` (or platform equivalent) once your repository has opted in:
+
+<Tabs groupId="cloud">
+<TabItem value="aws" label="AWS" default>
+
+```hcl title="$$ACCOUNT_NAME$$/_global/bootstrap/terragrunt.stack.hcl"
+values = {
+  # ... your existing values ...
+
+  github_org_name  = "acme"
+  github_repo_name = "infrastructure-live-root"
+
+  # Leave both blank only before the repository has opted in to immutable
+  # subject claims. Once set, do not clear either value afterward — the
+  # bootstrap stack would fall back to a legacy name-based trust policy that
+  # won't match GitHub's immutable sub claim.
+  github_org_id  = "1234567"
+  github_repo_id = "7654321"
+}
+```
+
+</TabItem>
+<TabItem value="azure" label="Azure">
+
+```hcl title="$$SUBSCRIPTION_NAME$$/bootstrap/terragrunt.stack.hcl"
+values = {
+  # ... your existing values ...
+
+  github_org_name  = "acme"
+  github_repo_name = "infrastructure-live-root"
+
+  # Leave both blank only before the repository has opted in to immutable
+  # subject claims. Once set, do not clear either value afterward — the
+  # bootstrap stack would fall back to a legacy name-based trust policy that
+  # won't match GitHub's immutable sub claim.
+  github_org_id  = "1234567"
+  github_repo_id = "7654321"
+}
+```
+
+</TabItem>
+<TabItem value="gcp" label="GCP">
+
+```hcl title="$$PROJECT_NAME$$/bootstrap/terragrunt.stack.hcl"
+values = {
+  # ... your existing values ...
+
+  github_org_name  = "acme"
+  github_repo_name = "infrastructure-live-root"
+
+  # Leave both blank only before the repository has opted in to immutable
+  # subject claims. Once set, do not clear either value afterward — the
+  # bootstrap stack would fall back to a legacy name-based trust policy that
+  # won't match GitHub's immutable sub claim.
+  github_org_id  = "1234567"
+  github_repo_id = "7654321"
+}
+```
+
+</TabItem>
+</Tabs>
+
+Both `github_org_id` and `github_repo_id` must be set together — if either is left blank, the bootstrap stack falls back to the legacy name-based `sub` claim. Once you've set both, don't clear either one afterward: the generated trust policy would revert to the legacy name-based form, which won't match GitHub's immutable `sub` claim, breaking the OIDC handshake. You can look up the numeric owner/repo IDs for a repository with the [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
+```
+
 ## Customizing roles
 
 The following example walks through adding permissions for a new cloud service to your plan and apply roles.

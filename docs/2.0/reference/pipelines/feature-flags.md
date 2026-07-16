@@ -108,6 +108,22 @@ When running plans and applies, units with no environment are excluded from the 
 </li>
 </ul>
 
+#### `PIPELINES_FEATURE_EXPERIMENT_IMMUTABLE_OIDC_SUBJECT_CLAIMS`
+<ul>
+<li>
+
+Applies to GitHub only. During Account Factory access-control account provisioning, enables Pipelines to detect whether the delegated repository has opted in to GitHub's [immutable subject-claim format](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for Actions OIDC tokens. When a repository has opted in, Pipelines passes its numeric, immutable owner/repo IDs through to the architecture-catalog templates so the vended trust policy uses the `org@owner_id/repo-name@repo_id` key format instead of the name-only `org/repo-name` format.
+
+This is detected automatically per-repository via a GitHub API feature test — no customer action is required. Repositories that have not opted in at the GitHub level continue to receive the name-only format. GitLab has no equivalent API, so GitLab-backed repositories always use the name-only format regardless of this flag.
+</li>
+<li>
+**Default Value**: Enabled
+</li>
+<li>
+**How to Disable**: Set to `"false"`
+</li>
+</ul>
+
 #### `PIPELINES_FEATURE_EXPERIMENT_MINIMIZE_BLAST_RADIUS`
 <ul>
 <li>

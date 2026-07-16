@@ -62,7 +62,7 @@ Use Terragrunt Scaffold to create the new role in the `infrastructure-live-acces
 # and the account you want to provision your new role in is called `acme`.
 mkdir acme/_global/ecr-push-role
 cd acme/_global/ecr-push-role
-terragrunt scaffold 'git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.73.2'
+terragrunt scaffold 'git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v1.5.1'
 ```
 
 This will create a placeholder `terragrunt.hcl` file for a new role in your repository, which you can modify to suit your specific requirements.
@@ -73,11 +73,19 @@ Alternatively, you can use the example configuration below:
 Pay attention to the `allowed_sources` value. This field should specify the organization, name, and ref of the repository being delegated to.
 
 If you want to allow all refs in a repository to assume this role, you can set the value to `["*"]`.
+
+GitHub has rolled out an [immutable subject-claim format](https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/) for Actions OIDC tokens as of July 15, 2026. If the delegated repository has opted in to this format, use `org@owner_id/repo-name@repo_id` as the key instead of `org/repo-name`, e.g. `acme@1234567/infrastructure-live-root@7654321`. You can look up the numeric owner/repo IDs with the [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
+```
+
+The legacy name-only format is optional and only needed for repositories created before July 15, 2026 that haven't opted in to the immutable format — repositories created on or after that date are required by GitHub to use the immutable format.
 :::
 
 ```hcl
 terraform {
-  source = "git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v0.73.2"
+  source = "git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v1.5.1"
 }
 
 # Include the root `terragrunt.hcl` configuration, which has settings common across all environments & components.
