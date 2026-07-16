@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.5.1" lastModifiedVersion="1.3.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.6.0" lastModifiedVersion="1.6.0"/>
 
 # IAM Role for GitHub Actions
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.1/modules/github-actions-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.6.0/modules/github-actions-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.6.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform module can be used to create Assume Role policies and IAM Roles such that they can be used with
 GitHub Actions. This requires you to provision an IAM OpenID Connect Provider for GitHub Actions in your account. By
@@ -233,7 +233,7 @@ jobs:
 
 module "github_actions_iam_role" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v1.5.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v1.6.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -241,14 +241,17 @@ module "github_actions_iam_role" {
 
   # Map of github repositories to the list of branches that are allowed to assume the IAM role. Each key can be
   # encoded in one of two formats:
-  #   - "org/repo-name" (e.g., gruntwork-io/terraform-aws-ci) - the standard, name-only format.
-  #   - "org@owner_id/repo-name@repo_id" (e.g., gruntwork-io@1816772/terraform-aws-ci@22069063) - GitHub's
+  #   - "org/repo-name" (e.g., acmecorp/infra-live) - the standard, name-only format.
+  #   - "org@owner_id/repo-name@repo_id" (e.g., acmecorp@12345/infra-live@67890) - GitHub's
   #     immutable subject-claim format, using the numeric, immutable owner/repo IDs instead of names. Use this
   #     format only for repositories that have opted in to immutable subject claims for Actions OIDC tokens - see
   #     https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/. You can
   #     look up the numeric IDs for a repository with:
   #       gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
   # A mix of both formats across different keys is fine; each key's format only affects that key's own entry.
+  # Wildcards ("*") are allowed in the names and in place of the numeric IDs (e.g.
+  # "acmecorp@12345/infra-*" or "acmecorp@12345/infra-*@*"), for use with a
+  # StringLike condition operator (see var.allowed_sources_condition_operator).
   #
   allowed_sources = <map(list(string))>
 
@@ -326,7 +329,7 @@ module "github_actions_iam_role" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v1.5.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v1.6.0"
 }
 
 inputs = {
@@ -337,14 +340,17 @@ inputs = {
 
   # Map of github repositories to the list of branches that are allowed to assume the IAM role. Each key can be
   # encoded in one of two formats:
-  #   - "org/repo-name" (e.g., gruntwork-io/terraform-aws-ci) - the standard, name-only format.
-  #   - "org@owner_id/repo-name@repo_id" (e.g., gruntwork-io@1816772/terraform-aws-ci@22069063) - GitHub's
+  #   - "org/repo-name" (e.g., acmecorp/infra-live) - the standard, name-only format.
+  #   - "org@owner_id/repo-name@repo_id" (e.g., acmecorp@12345/infra-live@67890) - GitHub's
   #     immutable subject-claim format, using the numeric, immutable owner/repo IDs instead of names. Use this
   #     format only for repositories that have opted in to immutable subject claims for Actions OIDC tokens - see
   #     https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/. You can
   #     look up the numeric IDs for a repository with:
   #       gh api repos/{owner}/{repo} --jq '{owner_id: .owner.id, repo_id: .id}'
   # A mix of both formats across different keys is fine; each key's format only affects that key's own entry.
+  # Wildcards ("*") are allowed in the names and in place of the numeric IDs (e.g.
+  # "acmecorp@12345/infra-*" or "acmecorp@12345/infra-*@*"), for use with a
+  # StringLike condition operator (see var.allowed_sources_condition_operator).
   #
   allowed_sources = <map(list(string))>
 
@@ -430,14 +436,17 @@ inputs = {
 
 Map of github repositories to the list of branches that are allowed to assume the IAM role. Each key can be
 encoded in one of two formats:
-  - 'org/repo-name' (e.g., gruntwork-io/terraform-aws-ci) - the standard, name-only format.
-  - 'org@owner_id/repo-name@repo_id' (e.g., gruntwork-io@1816772/terraform-aws-ci@22069063) - GitHub's
+  - 'org/repo-name' (e.g., acmecorp/infra-live) - the standard, name-only format.
+  - 'org@owner_id/repo-name@repo_id' (e.g., acmecorp@12345/infra-live@67890) - GitHub's
     immutable subject-claim format, using the numeric, immutable owner/repo IDs instead of names. Use this
     format only for repositories that have opted in to immutable subject claims for Actions OIDC tokens - see
     https://github.blog/changelog/2026-04-23-immutable-subject-claims-for-github-actions-oidc-tokens/. You can
     look up the numeric IDs for a repository with:
       gh api repos/&#123;owner&#125;/&#123;repo&#125; --jq '&#123;owner_id: .owner.id, repo_id: .id&#125;'
 A mix of both formats across different keys is fine; each key's format only affects that key's own entry.
+Wildcards ('*') are allowed in the names and in place of the numeric IDs (e.g.
+'acmecorp@12345/infra-*' or 'acmecorp@12345/infra-*@*'), for use with a
+StringLike condition operator (see <a href="#allowed_sources_condition_operator"><code>allowed_sources_condition_operator</code></a>).
 
 
 </HclListItemDescription>
@@ -661,11 +670,11 @@ The name of the IAM role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.1/modules/github-actions-iam-role/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.1/modules/github-actions-iam-role/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.5.1/modules/github-actions-iam-role/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.6.0/modules/github-actions-iam-role/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.6.0/modules/github-actions-iam-role/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.6.0/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dac41b1f8d0d956b75853dba3cff4107"
+  "hash": "05822422e20ae9d465be918dbb264080"
 }
 ##DOCS-SOURCER-END -->
