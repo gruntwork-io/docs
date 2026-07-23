@@ -495,6 +495,13 @@ Whether the hook runs even when the preceding Pipelines `plan` or `apply` comman
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="auto_expand" requirement="optional" type="boolean">
+<HclListItemDescription>
+Whether the hook's section in the pull/merge request comment is expanded by default rather than collapsed.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="timeout_seconds" requirement="optional" type="number">
 <HclListItemDescription>
 The maximum number of seconds the hook is allowed to run before Pipelines terminates it. Must be greater than `0`.
