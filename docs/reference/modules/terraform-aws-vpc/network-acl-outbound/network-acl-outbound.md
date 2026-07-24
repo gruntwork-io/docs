@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.28.16" lastModifiedVersion="0.28.9"/>
+<VersionBadge repoTitle="VPC Modules" version="0.29.0" lastModifiedVersion="0.28.9"/>
 
 # Network ACL Outbound Terraform Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/network-acl-outbound" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.29.0/modules/network-acl-outbound" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -24,7 +24,7 @@ because they are stateless, which means that opening an outbound port is often n
 which the remote services can use to respond. This can be very easy to forget, so this module adds not only the
 outbound to an ACL, but also the ephemeral inbound ports for return traffic.
 
-See the [network-acl-inbound](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/network-acl-inbound) module for the analogous version of this module, but for opening
+See the [network-acl-inbound](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.29.0/modules/network-acl-inbound) module for the analogous version of this module, but for opening
 inbound ports.
 
 ## What's a Network ACL?
@@ -47,7 +47,7 @@ EC2 instance), a network ACL controls what inbound and outbound traffic is allow
 
 module "network_acl_outbound" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.28.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.29.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -134,7 +134,7 @@ module "network_acl_outbound" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.28.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/network-acl-outbound?ref=v0.29.0"
 }
 
 inputs = {
@@ -220,11 +220,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/network-acl-outbound/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/network-acl-outbound/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/network-acl-outbound/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.29.0/modules/network-acl-outbound/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.29.0/modules/network-acl-outbound/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.29.0/modules/network-acl-outbound/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "41b0cf8a3315c49cf2221365da5ada11"
+  "hash": "2e4ec66be34d3adc739ff3e7875000e3"
 }
 ##DOCS-SOURCER-END -->

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="VPC Modules" version="0.28.16" lastModifiedVersion="0.28.9"/>
+<VersionBadge repoTitle="VPC Modules" version="0.29.0" lastModifiedVersion="0.29.0"/>
 
 # Interface VPC Endpoint
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/vpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.29.0/modules/vpc-interface-endpoint" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.28.9" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-vpc/releases/tag/v0.29.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 By default, if code running within your VPCs makes API calls to AWS (e.g., to fetch data from S3 or trigger a Lambda function), those API calls leave the VPC, and are routed via the public Internet. This Terraform Module launches VPC endpoints that allow code running within your VPCs to privately connect to AWS services and APIs without the traffic leaving the VPC and without going over the public Internet. Although all API calls to AWS are encrypted with TLS, VPC endpoints give you one extra layer of security by keeping your API calls within the AWS network.
 
@@ -96,6 +96,47 @@ return something like:
 
 This tells you that, to talk to the EC2 service, your code is using a regional endpoint that is private to your VPC,
 rather than routing out via the public Internet.
+
+### Special behavior for the Cognito User Pools (cognito-idp) service
+
+The VPC endpoint covers SDK calls to `cognito-idp.<region>.amazonaws.com`. The following flows are **not** routed through it and continue over the public internet:
+
+*   Hosted UI / Managed Login and all OAuth domain flows (Authorization Code, Client Credentials, federated sign-in)
+*   M2M client credentials via the token endpoint
+
+**Effect of domain assignment:**
+
+| User pool state | SDK calls transit endpoint | VPC endpoint policies / RCPs apply |
+|---|---|---|
+| No domain assigned | Yes | Yes |
+| Domain assigned | No — incompatible with AWS PrivateLink; requests do not complete through the endpoint | No |
+
+A user pool with any domain assigned — Cognito-managed or custom — is incompatible with AWS PrivateLink. The VPC endpoint is unusable for that user pool. Remove the domain assignment before enabling the endpoint for private routing.
+
+### Special behavior for the Cognito Identity Pools (cognito-identity) service
+
+All identity pool API operations are supported with no domain-based limitations.
+
+When Identity Pools calls STS via `AssumeRoleWithWebIdentity` to issue temporary credentials, that call originates from **Cognito's service infrastructure**, not your VPC. Network context keys (`aws:SourceIp`, `aws:SourceVpc`, `aws:SourceVpce`) in trust policies or RCPs will reflect Cognito's IP, causing unexpected denials if those conditions restrict `AssumeRoleWithWebIdentity`.
+
+**Workaround:** tag the identity pool IAM role and exempt it by tag:
+
+```bash
+aws iam tag-role --role-name MyIdentityPoolRole --tags Key=CognitoServiceCall,Value=true
+```
+
+```json
+{
+  "Effect": "Deny",
+  "Principal": "*",
+  "Action": "sts:AssumeRoleWithWebIdentity",
+  "Resource": "*",
+  "Condition": {
+    "NotIpAddress": { "aws:SourceIp": ["<allowed-ip-ranges>"] },
+    "StringNotEqualsIfExists": { "aws:ResourceTag/CognitoServiceCall": "true" }
+  }
+}
+```
 
 ### Special behavior for the STS service
 
@@ -193,7 +234,7 @@ Not specifying a rule allows all traffic.
 
 ## Other VPC Core Concepts
 
-Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules//_docs/vpc-core-concepts.md) like subnets and NAT Gateways.
+Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.29.0/modules//_docs/vpc-core-concepts.md) like subnets and NAT Gateways.
 
 ## Sample Usage
 
@@ -208,7 +249,7 @@ Learn about [Other VPC Core Concepts](https://github.com/gruntwork-io/terraform-
 
 module "vpc_interface_endpoint" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.28.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.29.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -735,6 +776,52 @@ module "vpc_interface_endpoint" {
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
   # but no other types of resources. If not specified, all resources will be
   # allowed to call this endpoint.
+  cognito_identity_endpoint_policy = null
+
+  # Set to false if you don't want to associate a private hosted zone with the
+  # specified VPC for the Cognito Identity endpoint.
+  cognito_identity_endpoint_private_dns_enabled = true
+
+  # The ID of one or more security groups to associate with the network
+  # interface for the Cognito Identity endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
+  cognito_identity_endpoint_security_group_ids = []
+
+  # The IDs of subnets in which to create a network interface for the Cognito
+  # Identity endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
+  cognito_identity_endpoint_subnet_ids = []
+
+  # Tags for the Cognito Identity endpoint
+  cognito_identity_endpoint_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  cognito_idp_endpoint_policy = null
+
+  # Set to false if you don't want to associate a private hosted zone with the
+  # specified VPC for the Cognito IDP endpoint.
+  cognito_idp_endpoint_private_dns_enabled = true
+
+  # The ID of one or more security groups to associate with the network
+  # interface for the Cognito IDP endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
+  cognito_idp_endpoint_security_group_ids = []
+
+  # The IDs of subnets in which to create a network interface for the Cognito
+  # IDP endpoint. Only a single subnet within an AZ is supported. If omitted,
+  # only subnet_ids will be used.
+  cognito_idp_endpoint_subnet_ids = []
+
+  # Tags for the Cognito IDP endpoint
+  cognito_idp_endpoint_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   config_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
@@ -1223,6 +1310,14 @@ module "vpc_interface_endpoint" {
 
   # Set to true if you want to provision a CodePipeline Endpoint within the VPC
   enable_codepipeline_endpoint = false
+
+  # Set to true if you want to provision a Cognito Identity Pools
+  # (cognito-identity) endpoint within the VPC
+  enable_cognito_identity_endpoint = false
+
+  # Set to true if you want to provision a Cognito User Pools (cognito-idp)
+  # endpoint within the VPC
+  enable_cognito_idp_endpoint = false
 
   # Set to true if you want to provision a config within the VPC
   enable_config_endpoint = false
@@ -2154,7 +2249,7 @@ module "vpc_interface_endpoint" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.28.16"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-vpc.git//modules/vpc-interface-endpoint?ref=v0.29.0"
 }
 
 inputs = {
@@ -2684,6 +2779,52 @@ inputs = {
   # you can add an IAM policy that allows EC2 instances to talk to this endpoint
   # but no other types of resources. If not specified, all resources will be
   # allowed to call this endpoint.
+  cognito_identity_endpoint_policy = null
+
+  # Set to false if you don't want to associate a private hosted zone with the
+  # specified VPC for the Cognito Identity endpoint.
+  cognito_identity_endpoint_private_dns_enabled = true
+
+  # The ID of one or more security groups to associate with the network
+  # interface for the Cognito Identity endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
+  cognito_identity_endpoint_security_group_ids = []
+
+  # The IDs of subnets in which to create a network interface for the Cognito
+  # Identity endpoint. Only a single subnet within an AZ is supported. If
+  # omitted, only subnet_ids will be used.
+  cognito_identity_endpoint_subnet_ids = []
+
+  # Tags for the Cognito Identity endpoint
+  cognito_identity_endpoint_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
+  cognito_idp_endpoint_policy = null
+
+  # Set to false if you don't want to associate a private hosted zone with the
+  # specified VPC for the Cognito IDP endpoint.
+  cognito_idp_endpoint_private_dns_enabled = true
+
+  # The ID of one or more security groups to associate with the network
+  # interface for the Cognito IDP endpoint. If none is provided, AWS will
+  # associate the default security group for the VPC.
+  cognito_idp_endpoint_security_group_ids = []
+
+  # The IDs of subnets in which to create a network interface for the Cognito
+  # IDP endpoint. Only a single subnet within an AZ is supported. If omitted,
+  # only subnet_ids will be used.
+  cognito_idp_endpoint_subnet_ids = []
+
+  # Tags for the Cognito IDP endpoint
+  cognito_idp_endpoint_tags = {}
+
+  # IAM policy to restrict what resources can call this endpoint. For example,
+  # you can add an IAM policy that allows EC2 instances to talk to this endpoint
+  # but no other types of resources. If not specified, all resources will be
+  # allowed to call this endpoint.
   config_endpoint_policy = null
 
   # Set to false if you don't want to associate a private hosted zone with the
@@ -3172,6 +3313,14 @@ inputs = {
 
   # Set to true if you want to provision a CodePipeline Endpoint within the VPC
   enable_codepipeline_endpoint = false
+
+  # Set to true if you want to provision a Cognito Identity Pools
+  # (cognito-identity) endpoint within the VPC
+  enable_cognito_identity_endpoint = false
+
+  # Set to true if you want to provision a Cognito User Pools (cognito-idp)
+  # endpoint within the VPC
+  enable_cognito_idp_endpoint = false
 
   # Set to true if you want to provision a config within the VPC
   enable_config_endpoint = false
@@ -5069,6 +5218,96 @@ Tags for the CodePipeline endpoint
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="cognito_identity_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cognito_identity_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Cognito Identity endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="cognito_identity_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Cognito Identity endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cognito_identity_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Cognito Identity endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cognito_identity_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Cognito Identity endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="cognito_idp_endpoint_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+IAM policy to restrict what resources can call this endpoint. For example, you can add an IAM policy that allows EC2 instances to talk to this endpoint but no other types of resources. If not specified, all resources will be allowed to call this endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="cognito_idp_endpoint_private_dns_enabled" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false if you don't want to associate a private hosted zone with the specified VPC for the Cognito IDP endpoint.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="cognito_idp_endpoint_security_group_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The ID of one or more security groups to associate with the network interface for the Cognito IDP endpoint. If none is provided, AWS will associate the default security group for the VPC.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cognito_idp_endpoint_subnet_ids" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+The IDs of subnets in which to create a network interface for the Cognito IDP endpoint. Only a single subnet within an AZ is supported. If omitted, only subnet_ids will be used.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="cognito_idp_endpoint_tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+Tags for the Cognito IDP endpoint
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="config_endpoint_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -6063,6 +6302,24 @@ Set to true if you want to provision a CodeDeploy Endpoint within the VPC
 <HclListItemDescription>
 
 Set to true if you want to provision a CodePipeline Endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_cognito_identity_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Cognito Identity Pools (cognito-identity) endpoint within the VPC
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="enable_cognito_idp_endpoint" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true if you want to provision a Cognito User Pools (cognito-idp) endpoint within the VPC
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -8246,6 +8503,34 @@ If you have private dns enabled, then your API calls would automatically go thro
 <HclListItem name="codepipeline_network_interface_ids">
 </HclListItem>
 
+<HclListItem name="cognito_identity_endpoint_id">
+</HclListItem>
+
+<HclListItem name="cognito_identity_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your Cognito Identity Pools API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cognito_identity_network_interface_ids">
+</HclListItem>
+
+<HclListItem name="cognito_idp_endpoint_id">
+</HclListItem>
+
+<HclListItem name="cognito_idp_endpoint_url">
+<HclListItemDescription>
+
+If you have private dns enabled, then your Cognito User Pools API calls would automatically go through the VPC Endpoint. Otherwise, you need to explicitly use this endpoint.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="cognito_idp_network_interface_ids">
+</HclListItem>
+
 <HclListItem name="config_endpoint_id">
 </HclListItem>
 
@@ -8904,11 +9189,11 @@ If you have private dns enabled, then your streaming calls would automatically g
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/vpc-interface-endpoint/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/vpc-interface-endpoint/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.28.16/modules/vpc-interface-endpoint/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.29.0/modules/vpc-interface-endpoint/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.29.0/modules/vpc-interface-endpoint/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.29.0/modules/vpc-interface-endpoint/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5e3ae6703d8ed8f7a62167f90fc01361"
+  "hash": "b2c64427eb01a5eb5f35712475c3769b"
 }
 ##DOCS-SOURCER-END -->
