@@ -565,8 +565,11 @@ module "aurora" {
   # paused. Valid values are 300 through 86400.
   scaling_configuration_seconds_until_auto_pause = 300
 
-  # The time, in seconds, before an Aurora DB cluster in serverless mode is
-  # paused. Valid values are 300 through 86400.
+  # The time, in seconds, before an Aurora Serverless v2 DB cluster is paused.
+  # Valid values are 300 through 86400. This only takes effect when
+  # scaling_configuration_min_capacity_V2 is 0 (scale-to-zero). When min
+  # capacity is greater than 0 this value is ignored to avoid perpetual plan
+  # drift.
   scaling_configuration_seconds_until_auto_pause_V2 = 300
 
   # The action to take when the timeout is reached. Valid values:
@@ -1050,8 +1053,11 @@ inputs = {
   # paused. Valid values are 300 through 86400.
   scaling_configuration_seconds_until_auto_pause = 300
 
-  # The time, in seconds, before an Aurora DB cluster in serverless mode is
-  # paused. Valid values are 300 through 86400.
+  # The time, in seconds, before an Aurora Serverless v2 DB cluster is paused.
+  # Valid values are 300 through 86400. This only takes effect when
+  # scaling_configuration_min_capacity_V2 is 0 (scale-to-zero). When min
+  # capacity is greater than 0 this value is ignored to avoid perpetual plan
+  # drift.
   scaling_configuration_seconds_until_auto_pause_V2 = 300
 
   # The action to take when the timeout is reached. Valid values:
@@ -1827,7 +1833,7 @@ The time, in seconds, before an Aurora DB cluster in serverless mode is paused. 
 <HclListItem name="scaling_configuration_seconds_until_auto_pause_V2" requirement="optional" type="number">
 <HclListItemDescription>
 
-The time, in seconds, before an Aurora DB cluster in serverless mode is paused. Valid values are 300 through 86400.
+The time, in seconds, before an Aurora Serverless v2 DB cluster is paused. Valid values are 300 through 86400. This only takes effect when scaling_configuration_min_capacity_V2 is 0 (scale-to-zero). When min capacity is greater than 0 this value is ignored to avoid perpetual plan drift.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="300"/>
@@ -2022,6 +2028,6 @@ A list of identifiers for Aurora cluster instances that are writers.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "867a3942af7c7092d770c59132fdb628"
+  "hash": "cfce2a88daa746bf738998a41ac23ce5"
 }
 ##DOCS-SOURCER-END -->
