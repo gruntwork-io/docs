@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.11.1" lastModifiedVersion="2.3.0"/>
+<VersionBadge version="2.12.0" lastModifiedVersion="2.3.0"/>
 
 # S3 Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/s3-bucket" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.12.0/modules/data-stores/s3-bucket" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Fs3-bucket" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -36,6 +36,7 @@ This service contains code to deploy an [S3 bucket](https://aws.amazon.com/s3/) 
 *   Configure access logging to another S3 bucket
 *   Configure object versioning
 *   Configure cross-region replication
+*   Create objects (files and folders) in the bucket
 
 ## Learn
 
@@ -59,7 +60,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.12.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -67,7 +68,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.12.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -88,7 +89,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "s_3_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/s3-bucket?ref=v2.11.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/s3-bucket?ref=v2.12.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -243,6 +244,11 @@ module "s_3_bucket" {
   # object_lock_default_retention_enabled are true.
   object_lock_years = null
 
+  # The objects to create in the primary S3 bucket. This should be a map, where
+  # each key is the key (path) of the object in the bucket, and each value is an
+  # object that contains the parameters defined in the comment above.
+  objects = {}
+
   # The S3 bucket that will be the replica of this bucket. Set to null to
   # disable replication.
   replica_bucket = null
@@ -327,7 +333,7 @@ module "s_3_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/s3-bucket?ref=v2.11.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/s3-bucket?ref=v2.12.0"
 }
 
 inputs = {
@@ -484,6 +490,11 @@ inputs = {
   # can be configured. Only used if object_lock_enabled and
   # object_lock_default_retention_enabled are true.
   object_lock_years = null
+
+  # The objects to create in the primary S3 bucket. This should be a map, where
+  # each key is the key (path) of the object in the bucket, and each value is an
+  # object that contains the parameters defined in the comment above.
+  objects = {}
 
   # The S3 bucket that will be the replica of this bucket. Set to null to
   # disable replication.
@@ -978,6 +989,59 @@ The number of years that you want to specify for the default retention period fo
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="objects" requirement="optional" type="any">
+<HclListItemDescription>
+
+The objects to create in the primary S3 bucket. This should be a map, where each key is the key (path) of the object in the bucket, and each value is an object that contains the parameters defined in the comment above.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   {
+     "config/" = {}
+     "config/app.json" = {
+       content      = jsonencode({ log_level = "info" })
+       content_type = "application/json"
+     }
+     "scripts/bootstrap.sh" = {
+       source      = "${path.module}/scripts/bootstrap.sh"
+       source_hash = filemd5("${path.module}/scripts/bootstrap.sh")
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Ideally, this would be a map(object({...})), but the Terraform object type constraint doesn't support optional
+   parameters, whereas S3 objects have many optional params. And we can't even use map(any), as the Terraform map type
+   constraint requires all values to have the same type ("shape"), but as each object in the map may specify different
+   optional params, this won't work either. So, sadly, we are forced to fall back to "any."
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="replica_bucket" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1237,6 +1301,30 @@ The name of the primary S3 bucket.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="primary_bucket_object_etags">
+<HclListItemDescription>
+
+A map from the key of each object created in the primary S3 bucket to that object's ETag.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="primary_bucket_object_keys">
+<HclListItemDescription>
+
+The keys of the objects created in the primary S3 bucket.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="primary_bucket_object_version_ids">
+<HclListItemDescription>
+
+A map from the key of each object created in the primary S3 bucket to that object's version ID. The version IDs are only set if versioning is enabled on the bucket.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="primary_bucket_regional_domain_name">
 <HclListItemDescription>
 
@@ -1259,11 +1347,11 @@ The name of the replica S3 bucket.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/s3-bucket/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/s3-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/s3-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.12.0/modules/data-stores/s3-bucket/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.12.0/modules/data-stores/s3-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.12.0/modules/data-stores/s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "5ffcebfb635fbf98075eda46a7b4db8f"
+  "hash": "1bbe4cbdfa603f0eb14fde983e9a6baa"
 }
 ##DOCS-SOURCER-END -->
