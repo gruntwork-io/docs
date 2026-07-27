@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="5.0.0" lastModifiedVersion="5.0.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="5.1.0" lastModifiedVersion="5.0.0"/>
 
 # Gruntwork GitOps "GruntOps"
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.0.0/modules/eks-k8s-argocd" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-k8s-argocd" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v5.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -21,9 +21,9 @@ GitOps is an operational framework that is built around DevOps best practices fo
 
 ## Getting Started
 
-To use this module, you will need to have a running EKS cluster prior to deploying this module. See the [Argo CD Example](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.0.0/examples/eks-cluster-with-argocd/) for an example of how to deploy this module.
+To use this module, you will need to have a running EKS cluster prior to deploying this module. See the [Argo CD Example](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/examples/eks-cluster-with-argocd/) for an example of how to deploy this module.
 
-This module deploys the Helm Chart version of [Argo CD](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd). All available configurations can be found in the repository of the [Argo CD Helm Chart](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd). The default configuration of this module will deploy the Argo CD Helm Chart with it's default values. To configure the Helm Chart to meet the needs of your deployment, configure the `argocd_chart_additional_values` variable in the [variables](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.0.0/modules/eks-k8s-argocd/variables.tf) file.
+This module deploys the Helm Chart version of [Argo CD](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd). All available configurations can be found in the repository of the [Argo CD Helm Chart](https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd). The default configuration of this module will deploy the Argo CD Helm Chart with it's default values. To configure the Helm Chart to meet the needs of your deployment, configure the `argocd_chart_additional_values` variable in the [variables](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-k8s-argocd/variables.tf) file.
 
 ## Connecting to the Argo CD UI
 
@@ -64,7 +64,7 @@ Detailed documentation coming soon...
 
 module "eks_k_8_s_argocd" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-argocd?ref=v5.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-argocd?ref=v5.1.0"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -161,7 +161,7 @@ module "eks_k_8_s_argocd" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-argocd?ref=v5.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-k8s-argocd?ref=v5.1.0"
 }
 
 inputs = {
@@ -468,11 +468,11 @@ The status of the Argo CD Helm chart.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.0.0/modules/eks-k8s-argocd/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.0.0/modules/eks-k8s-argocd/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.0.0/modules/eks-k8s-argocd/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-k8s-argocd/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-k8s-argocd/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-k8s-argocd/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9985222dd573365271adc14f0bdb4be4"
+  "hash": "57adb56580a8719220c3baaf8fd213ed"
 }
 ##DOCS-SOURCER-END -->

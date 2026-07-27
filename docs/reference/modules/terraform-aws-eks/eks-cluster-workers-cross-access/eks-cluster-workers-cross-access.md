@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="5.0.0" lastModifiedVersion="5.0.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="5.1.0" lastModifiedVersion="5.0.0"/>
 
 # EKS Cluster Workers Cross Access Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.0.0/modules/eks-cluster-workers-cross-access" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-workers-cross-access" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v5.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -63,7 +63,7 @@ module.
 
 module "eks_cluster_workers_cross_access" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers-cross-access?ref=v5.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers-cross-access?ref=v5.1.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -101,7 +101,7 @@ module "eks_cluster_workers_cross_access" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers-cross-access?ref=v5.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers-cross-access?ref=v5.1.0"
 }
 
 inputs = {
@@ -138,11 +138,11 @@ inputs = {
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.0.0/modules/eks-cluster-workers-cross-access/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.0.0/modules/eks-cluster-workers-cross-access/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.0.0/modules/eks-cluster-workers-cross-access/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-workers-cross-access/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-workers-cross-access/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-workers-cross-access/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "7fc295069157daa9e3a5731a1a05f185"
+  "hash": "4ff1931cdcce697bf4290ec20d04f97b"
 }
 ##DOCS-SOURCER-END -->
