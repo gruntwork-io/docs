@@ -242,6 +242,11 @@ module "private_s_3_bucket" {
   # object_lock_default_retention_enabled are true.
   object_lock_years = null
 
+  # The objects to create in this S3 bucket. This should be a map, where each
+  # key is the key (path) of the object in the bucket, and each value is an
+  # object that contains the parameters defined in the comment above.
+  objects = {}
+
   # Set to true to enable replication for this bucket. You can set the role to
   # use for replication using the replication_role parameter and the rules for
   # replication using the replication_rules parameter.
@@ -462,6 +467,11 @@ inputs = {
   # can be configured. Only used if object_lock_enabled and
   # object_lock_default_retention_enabled are true.
   object_lock_years = null
+
+  # The objects to create in this S3 bucket. This should be a map, where each
+  # key is the key (path) of the object in the bucket, and each value is an
+  # object that contains the parameters defined in the comment above.
+  objects = {}
 
   # Set to true to enable replication for this bucket. You can set the role to
   # use for replication using the replication_role parameter and the rules for
@@ -925,6 +935,59 @@ The number of years that you want to specify for the default retention period fo
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="objects" requirement="optional" type="any">
+<HclListItemDescription>
+
+The objects to create in this S3 bucket. This should be a map, where each key is the key (path) of the object in the bucket, and each value is an object that contains the parameters defined in the comment above.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+Any types represent complex values of variable type. For details, please consult `variables.tf` in the source repo.
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+<HclGeneralListItem title="Examples">
+<details>
+  <summary>Example</summary>
+
+
+```hcl
+   {
+     "config/" = {}
+     "config/app.json" = {
+       content      = jsonencode({ log_level = "info" })
+       content_type = "application/json"
+     }
+     "scripts/bootstrap.sh" = {
+       source      = "${path.module}/scripts/bootstrap.sh"
+       source_hash = filemd5("${path.module}/scripts/bootstrap.sh")
+     }
+   }
+
+```
+</details>
+
+</HclGeneralListItem>
+<HclGeneralListItem title="More Details">
+<details>
+
+
+```hcl
+
+   Ideally, this would be a map(object({...})), but the Terraform object type constraint doesn't support optional
+   parameters, whereas S3 objects have many optional params. And we can't even use map(any), as the Terraform map type
+   constraint requires all values to have the same type ("shape"), but as each object in the map may specify different
+   optional params, this won't work either. So, sadly, we are forced to fall back to "any."
+
+```
+</details>
+
+</HclGeneralListItem>
+</HclListItem>
+
 <HclListItem name="replication_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1106,6 +1169,30 @@ The name of the S3 bucket.
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="object_etags">
+<HclListItemDescription>
+
+A map from the key of each object created in this S3 bucket to that object's ETag.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="object_keys">
+<HclListItemDescription>
+
+The keys of the objects created in this S3 bucket.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="object_version_ids">
+<HclListItemDescription>
+
+A map from the key of each object created in this S3 bucket to that object's version ID. The version IDs are only set if versioning is enabled on the bucket.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="replication_iam_role_arn">
 <HclListItemDescription>
 
@@ -1133,6 +1220,6 @@ The name of an IAM role that can be used to configure replication from various s
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.6.0/modules/private-s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c301f3dcffd28c47b98333ee8203e020"
+  "hash": "d18ea5f0afcf3483a12da76cb3d59b8c"
 }
 ##DOCS-SOURCER-END -->
