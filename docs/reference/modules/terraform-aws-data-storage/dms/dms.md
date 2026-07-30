@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="1.3.0" lastModifiedVersion="1.3.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="1.3.1" lastModifiedVersion="1.3.0"/>
 
 # DMS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/dms" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/dms" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -100,11 +100,11 @@ If your module path is not `module.dms`, adjust the address prefix accordingly.
 
 ## Configuration
 
-*   See the [root README](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/README.md) for instructions on using Terraform modules.
-*   See the [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/dms/variables.tf) for all the variables you can set on this module.
-*   See the [dms-mysql examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/examples/dms-mysql/) folder for instruction on how to setup the module to migrate data from one AWS RDS MySQL instance to another using a classic DMS replication instance.
-*   See the [dms-aurora examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/examples/dms-aurora/) folder for instructions on how to setup the module to migrate data between Aurora clusters using a classic DMS replication instance.
-*   See the [dms-serverless example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/examples/dms-serverless/) folder for instructions on how to run the module in DMS serverless mode.
+*   See the [root README](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/README.md) for instructions on using Terraform modules.
+*   See the [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/dms/variables.tf) for all the variables you can set on this module.
+*   See the [dms-mysql examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/examples/dms-mysql/) folder for instruction on how to setup the module to migrate data from one AWS RDS MySQL instance to another using a classic DMS replication instance.
+*   See the [dms-aurora examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/examples/dms-aurora/) folder for instructions on how to setup the module to migrate data between Aurora clusters using a classic DMS replication instance.
+*   See the [dms-serverless example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/examples/dms-serverless/) folder for instructions on how to run the module in DMS serverless mode.
 
 ## Key Variables
 
@@ -145,7 +145,7 @@ If your module path is not `module.dms`, adjust the address prefix accordingly.
 
 module "dms" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v1.3.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -406,7 +406,7 @@ module "dms" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v1.3.1"
 }
 
 inputs = {
@@ -1284,11 +1284,11 @@ A map of maps containing the replication tasks created and their full output of 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/dms/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/dms/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/dms/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/dms/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/dms/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/dms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "06fc97ad75f827a6c9423239bf9595e8"
+  "hash": "fdc2468aed8b14b9c7e145f33c133798"
 }
 ##DOCS-SOURCER-END -->

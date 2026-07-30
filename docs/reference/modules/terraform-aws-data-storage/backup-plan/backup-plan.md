@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="1.3.0" lastModifiedVersion="1.2.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="1.3.1" lastModifiedVersion="1.2.0"/>
 
 # Backup Plan Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/backup-plan" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/backup-plan" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -22,7 +22,7 @@ This Terraform Module creates the following AWS Backup resources:
 1.  Backup plans - specifying **how and when** to back things up
 2.  Resource selections - specifying **which resources** to back up
 
-You associate your plans with a [Backup vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/backup-vault).
+You associate your plans with a [Backup vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/backup-vault).
 
 ## What is a Backup Plan?
 
@@ -89,9 +89,51 @@ module "backup_plan" {
 }
 ```
 
+## How do you back up directly into a logically air-gapped vault?
+
+By default, getting recovery points into a [logically air-gapped vault](https://docs.aws.amazon.com/aws-backup/latest/devguide/logicallyairgappedvault.html)
+means backing up to a standard vault and then adding a `copy_action`, which leaves you retaining two copies. Instead,
+set `target_logically_air_gapped_backup_vault_arn` on the rule to make the air-gapped vault the *primary* destination:
+
+```hcl
+module "backup_plan" {
+
+  ...
+
+  plans = {
+    "air-gapped-primary-backup-plan" = {
+        rule = {
+          target_vault_name = values(module.backup_vault.vault_names)[0],
+          target_logically_air_gapped_backup_vault_arn = module.backup_vault.vault_arns["my-air-gapped-vault"]
+          schedule = "cron(47 0/1 * * ? *)"
+          lifecycle = {
+            delete_after = 30
+          }
+        }
+        selection = {
+          selection_tag = {
+            type = "STRINGEQUALS"
+            "key" = "Snapshot"
+            "value" = true
+          }
+        }
+    }
+  }
+}
+```
+
+`target_vault_name` is still required. Resource types that support [full AWS Backup management](https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#full-management)
+(e.g. S3, EFS) go straight to the air-gapped vault and never use it; resource types that do not (e.g. EBS/EC2, Aurora,
+FSx) get a temporary recovery point there that AWS copies over and then deletes. The air-gapped vault must be in the
+same account and region as the resources, and the rule's `lifecycle` must fall within the vault's retention bounds.
+
+Note that AWS Backup recovery point indexing and scheduled malware scanning do **not** support recovery points held in
+a logically air-gapped vault. See [Primary backups to logically air-gapped vaults](https://docs.aws.amazon.com/aws-backup/latest/devguide/lag-vault-primary-backup.html)
+and the [vault-air-gapped-primary-backup example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/examples/vault-air-gapped-primary-backup).
+
 ## How do you troubleshoot Backup jobs?
 
-See [Troubleshooting AWS Backup](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/core-concepts.md#troubleshooting-aws-backup) in the core-concepts guide.
+See [Troubleshooting AWS Backup](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/core-concepts.md#troubleshooting-aws-backup) in the core-concepts guide.
 
 ## Sample Usage
 
@@ -106,7 +148,7 @@ See [Troubleshooting AWS Backup](https://github.com/gruntwork-io/terraform-aws-d
 
 module "backup_plan" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-plan?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-plan?ref=v1.3.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -137,7 +179,7 @@ module "backup_plan" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-plan?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-plan?ref=v1.3.1"
 }
 
 inputs = {
@@ -244,11 +286,11 @@ The ARN of the IAM service role used by Backup plans
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/backup-plan/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/backup-plan/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/backup-plan/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/backup-plan/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/backup-plan/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/backup-plan/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "068b7d1c29ef004e4b40ddf548e43a38"
+  "hash": "e96fd82447c73252721fb0c21b8842e4"
 }
 ##DOCS-SOURCER-END -->

@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="1.3.0" lastModifiedVersion="1.2.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="1.3.1" lastModifiedVersion="1.2.0"/>
 
 # OpenSearch Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/opensearch" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/opensearch" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -103,7 +103,7 @@ module "opensearch" {
 
 module "opensearch" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/opensearch?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/opensearch?ref=v1.3.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -354,7 +354,7 @@ module "opensearch" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/opensearch?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/opensearch?ref=v1.3.1"
 }
 
 inputs = {
@@ -1261,11 +1261,11 @@ The ID of the security group created for the OpenSearch domain. Null if not in V
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/opensearch/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/opensearch/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/opensearch/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/opensearch/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/opensearch/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/opensearch/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "8ca1be19229f40f198a7010c3f095039"
+  "hash": "093c81e6d8d58a85acc860ba0a54a4b8"
 }
 ##DOCS-SOURCER-END -->
