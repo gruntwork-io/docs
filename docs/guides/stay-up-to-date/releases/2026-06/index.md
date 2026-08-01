@@ -368,10 +368,10 @@ Special thanks to the following users for their contribution!
 ## terraform-aws-service-catalog
 
 
-### [v2.12.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v2.11.1)
+### [v2.12.0](https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v2.12.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 6/30/2026 | Modules affected: data-stores, mgmt, services | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v2.11.1">Release notes</a></small>
+  <small>Published: 6/30/2026 | Modules affected: data-stores, mgmt, services | <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases/tag/v2.12.0">Release notes</a></small>
 </p>
 
 <div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
@@ -444,6 +444,6 @@ Special thanks to @a-hat for this contribution!
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "2fe6efe134b0f1baf5314fc4a2e76a75"
+  "hash": "f797bf78b30778abae764735cb894938"
 }
 ##DOCS-SOURCER-END -->

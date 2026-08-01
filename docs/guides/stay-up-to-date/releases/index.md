@@ -11,7 +11,8 @@ Library](https://gruntwork.io/infrastructure-as-code-library/), grouped by month
 updates in your code, check out the [updating documentation](/library/stay-up-to-date/updating).
 
 <CardGroup cols={1} gap="1rem" stacked equalHeightRows={false} commonCardProps={{padding: "1.25rem"}}>
-  <Card title="Gruntwork Release 2026-06" href="/guides/stay-up-to-date/releases/2026-06" />
+  <Card title="Gruntwork Release 2026-07" href="/guides/stay-up-to-date/releases/2026-07" />
+<Card title="Gruntwork Release 2026-06" href="/guides/stay-up-to-date/releases/2026-06" />
 <Card title="Gruntwork Release 2026-05" href="/guides/stay-up-to-date/releases/2026-05" />
 <Card title="Gruntwork Release 2026-04" href="/guides/stay-up-to-date/releases/2026-04" />
 <Card title="Gruntwork Release 2026-03" href="/guides/stay-up-to-date/releases/2026-03" />
@@ -137,6 +138,6 @@ updates in your code, check out the [updating documentation](/library/stay-up-to
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "f709d5297bbbddcfa609e49ebd7b602c"
+  "hash": "f3cd70c2b7f0057be3724456faa39be6"
 }
 ##DOCS-SOURCER-END -->
