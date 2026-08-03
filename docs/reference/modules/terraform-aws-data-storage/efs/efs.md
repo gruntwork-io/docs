@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="1.3.0" lastModifiedVersion="1.0.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="1.3.1" lastModifiedVersion="1.0.0"/>
 
 # EFS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/efs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/efs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -108,7 +108,7 @@ sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,ret
 
 module "efs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v1.3.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -227,7 +227,7 @@ module "efs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v1.3.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/efs?ref=v1.3.1"
 }
 
 inputs = {
@@ -641,11 +641,11 @@ The IDs of the security groups created for the file system.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/efs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/efs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.0/modules/efs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/efs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/efs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/efs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "931e6207d6379f554c84f7aeb0a3099e"
+  "hash": "1d8c147bb7ef23dee1ea6c6afc2b2b09"
 }
 ##DOCS-SOURCER-END -->
