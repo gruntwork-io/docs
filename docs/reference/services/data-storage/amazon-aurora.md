@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.11.1" lastModifiedVersion="2.11.1"/>
+<VersionBadge version="2.12.0" lastModifiedVersion="2.12.0"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.12.0/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.12.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.12.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.11.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.12.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -588,6 +588,13 @@ module "aurora" {
   # is set to serverless.
   scaling_configuration_seconds_until_auto_pause = 300
 
+  # The time, in seconds, before an Aurora Serverless v2 DB cluster is paused.
+  # Valid values are 300 through 86400. This only takes effect when
+  # scaling_configuration_min_capacity_V2 is 0 (scale-to-zero). When min
+  # capacity is greater than 0 this value is ignored to avoid perpetual plan
+  # drift.
+  scaling_configuration_seconds_until_auto_pause_V2 = null
+
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
   # this DB instance, you will not have any backups of the data! You almost
@@ -629,7 +636,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.11.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.12.0"
 }
 
 inputs = {
@@ -1117,6 +1124,13 @@ inputs = {
   # paused. Valid values are 300 through 86400. Only used when var.engine_mode
   # is set to serverless.
   scaling_configuration_seconds_until_auto_pause = 300
+
+  # The time, in seconds, before an Aurora Serverless v2 DB cluster is paused.
+  # Valid values are 300 through 86400. This only takes effect when
+  # scaling_configuration_min_capacity_V2 is 0 (scale-to-zero). When min
+  # capacity is greater than 0 this value is ignored to avoid perpetual plan
+  # drift.
+  scaling_configuration_seconds_until_auto_pause_V2 = null
 
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
@@ -2434,6 +2448,15 @@ The time, in seconds, before an Aurora DB cluster in serverless mode is paused. 
 <HclListItemDefaultValue defaultValue="300"/>
 </HclListItem>
 
+<HclListItem name="scaling_configuration_seconds_until_auto_pause_V2" requirement="optional" type="number">
+<HclListItemDescription>
+
+The time, in seconds, before an Aurora Serverless v2 DB cluster is paused. Valid values are 300 through 86400. This only takes effect when scaling_configuration_min_capacity_V2 is 0 (scale-to-zero). When min capacity is greater than 0 this value is ignored to avoid perpetual plan drift.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2652,11 +2675,11 @@ ID of security group created by aurora module.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.11.1/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.12.0/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.12.0/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.12.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "bb05e4dd77ce86069efaf809ab5a3b64"
+  "hash": "cac0282e8299d235d6e0d07eb53119fc"
 }
 ##DOCS-SOURCER-END -->
