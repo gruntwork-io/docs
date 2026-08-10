@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="2.1.0" />
+<VersionBadge repoTitle="Control Tower" version="2.1.1" />
 
 # Control Tower Organization Structure
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.0/modules/landingzone/control-tower-organization-structure" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.1/modules/landingzone/control-tower-organization-structure" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases?q=control-tower-organization-structure" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -25,7 +25,7 @@ This is a Terraform module for managing an AWS Organizations [organizational uni
 
 OUs created directly through the AWS Organizations API are *not* governed by Control Tower until a Control Tower
 baseline is enabled on them. Until then they show up as **"Not registered"** in the Control Tower console, and
-[Account Factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.0/modules/control-tower-multi-account-factory) refuses to provision accounts into them.
+[Account Factory](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.1/modules/control-tower-multi-account-factory) refuses to provision accounts into them.
 
 The `control-tower-landing-zone` module creates a few OUs as plain `aws_organizations_organizational_unit` resources,
 but the Control Tower landing zone manifest does not register them. This module owns the workload OU tree end to end:
@@ -37,7 +37,7 @@ equivalent of the **"Register OU"** action in the console.
 *   Creates an N-level OU tree (up to AWS's limit of 5 levels under the org root) from a single flat, path-based input.
 *   Registers each OU with Control Tower via `aws_controltower_baseline` (you supply the required baseline ARNs).
 *   Outputs a `path -> { id, arn, name, path }` map for downstream modules (e.g. Account Factory discovers the OU by
-    name, and [`control-tower-controls`](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.0/modules/control-tower-controls) attaches guardrails by OU id).
+    name, and [`control-tower-controls`](https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.1/modules/control-tower-controls) attaches guardrails by OU id).
 
 It does **not** move accounts between OUs. Accounts provisioned through Account Factory are placed by specifying
 `organizational_unit_name` in the account request; this module's job is to make sure that OU exists and is registered
@@ -131,7 +131,7 @@ non-Account-Factory accounts.
 
 module "control_tower_organization_structure" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-organization-structure?ref=v2.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-organization-structure?ref=v2.1.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -196,7 +196,7 @@ module "control_tower_organization_structure" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-organization-structure?ref=v2.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-organization-structure?ref=v2.1.1"
 }
 
 inputs = {
@@ -382,11 +382,11 @@ Map of OU path to the ARN of its enabled Control Tower baseline, for OUs registe
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.0/modules/control-tower-organization-structure/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.0/modules/control-tower-organization-structure/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.0/modules/control-tower-organization-structure/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.1/modules/control-tower-organization-structure/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.1/modules/control-tower-organization-structure/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.1/modules/control-tower-organization-structure/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9c7c51b183f8d54db4cfeff60152090f"
+  "hash": "00e778d174afe6e971fbe07776daca35"
 }
 ##DOCS-SOURCER-END -->
