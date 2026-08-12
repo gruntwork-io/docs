@@ -174,6 +174,11 @@ module "sqs" {
   # default value is set to the same value as `receive_wait_time_seconds`
   dlq_receive_wait_time_seconds = null
 
+  # The JSON policy to set up the Dead Letter Queue redrive allow policy.
+  # Controls which source queues can use this queue as their dead letter target.
+  # When null, no restriction is applied.
+  dlq_redrive_allow_policy = null
+
   # The visibility timeout for the dead letter queue. An integer from 0 to 43200
   # (12 hours). The default value is set to the same value as
   # `visibility_timeout_seconds`
@@ -318,6 +323,11 @@ inputs = {
   # (seconds). Setting this to 0 means the call will return immediately. The
   # default value is set to the same value as `receive_wait_time_seconds`
   dlq_receive_wait_time_seconds = null
+
+  # The JSON policy to set up the Dead Letter Queue redrive allow policy.
+  # Controls which source queues can use this queue as their dead letter target.
+  # When null, no restriction is applied.
+  dlq_redrive_allow_policy = null
 
   # The visibility timeout for the dead letter queue. An integer from 0 to 43200
   # (12 hours). The default value is set to the same value as
@@ -530,6 +540,15 @@ The time for which a ReceiveMessage call will wait for a dead letter queue messa
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="dlq_redrive_allow_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The JSON policy to set up the Dead Letter Queue redrive allow policy. Controls which source queues can use this queue as their dead letter target. When null, no restriction is applied.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="dlq_visibility_timeout_seconds" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -670,6 +689,6 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
     "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sqs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ab6521c597327d209ab588da0d2758f1"
+  "hash": "0481431fa452ea01d2de7f3ad6224e17"
 }
 ##DOCS-SOURCER-END -->
