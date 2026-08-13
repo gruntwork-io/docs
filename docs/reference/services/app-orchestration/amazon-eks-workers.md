@@ -105,6 +105,11 @@ If you want to deploy this repo in production, check out the following resources
 For information on registering the worker IAM role to the EKS control plane, refer to the
 [IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
 
+For information on how to apply OS security patches to worker AMIs on a periodic cadence, independently of Kubernetes
+version upgrades, refer to the
+[How do I apply OS security patches to worker AMIs](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/services/eks-workers/core-concepts.md#how-do-i-apply-os-security-patches-to-worker-amis)
+section of the documentation.
+
 For information on how to perform a blue-green deployment of the worker pools, refer to the
 [How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
 section of the documentation.
@@ -2999,6 +3004,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d8fbee4f4af7d73095bbf1ccd1e40e67"
+  "hash": "2da7db19c0e6c6e8f9a43f404c4cb607"
 }
 ##DOCS-SOURCER-END -->
