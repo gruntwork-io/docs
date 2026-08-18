@@ -104,6 +104,22 @@ async function createConfig() {
         : undefined,
     },
     headTags: [
+      ...(enableGoogleAnalytics
+        ? [
+            {
+              tagName: "script",
+              // `attributes` is required by Docusaurus's headTags schema
+              // (Joi `.required()`), even when empty. `innerHTML` is passed
+              // through as an unknown key and rendered by htmlTags.js.
+              attributes: {},
+              innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://n.gruntwork.io/mtag/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${googleAnalyticsConfig.trackingID}');`,
+            },
+          ]
+        : []),
       {
         tagName: "meta",
         attributes: {
@@ -153,11 +169,12 @@ async function createConfig() {
           theme: {
             customCss: require.resolve("./src/css/custom.css"),
           },
-          googleTagManager: enableGoogleAnalytics
-            ? {
-                containerId: googleAnalyticsConfig.trackingID,
-              }
-            : undefined,
+          // Not using the preset's googleTagManager option: it hardcodes
+          // https://www.googletagmanager.com/gtm.js, which EasyPrivacy blocks
+          // by default (`||googletagmanager.com^`), taking our PostHog tag down
+          // with it. The loader is injected via headTags above instead, pointed
+          // at our own n.gruntwork.io proxy.
+          googleTagManager: undefined,
           sitemap: {
             lastmod: "date",
             changefreq: null,
