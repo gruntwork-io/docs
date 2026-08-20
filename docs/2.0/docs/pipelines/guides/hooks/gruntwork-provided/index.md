@@ -1,6 +1,6 @@
 # Gruntwork Provided Hooks
 
-Gruntwork provided hooks are ready-to-use extensions of a Pipelines run, built and maintained by Gruntwork. Pipelines resolves and runs them directly, so adding one is a line of configuration.
+Gruntwork provided hooks are ready-to-use extensions of a Pipelines run, built and maintained by Gruntwork.
 
 ```hcl
 repository {
@@ -12,25 +12,25 @@ repository {
 }
 ```
 
-Configuration is the same as for a hook you author yourself, with no script in your repository and no [`source`](/2.0/docs/pipelines/guides/hooks/configuring#remote-script-sources) to fetch.
+Unlike other remotely sourced hooks, Gruntwork provided hooks do not require you to [`source`](/2.0/docs/pipelines/guides/hooks/configuring#remote-script-sources) them; you can simply execute pipelines with the hook's name and version as shown above.
 
 ## Available hooks
 
-- [Infracost](/2.0/docs/pipelines/guides/hooks/gruntwork-provided/infracost) - estimates the cost of every unit a run affects.
+- [Infracost](/2.0/docs/pipelines/guides/hooks/gruntwork-provided/infracost) - shows what a change costs before it is applied, per unit and in total.
 
-More hooks are on the way.
+More are in development and will appear here as they are released.
 
 ## Choosing a version
 
-A hook is referenced as `<name>@<version>`. Pin as narrowly as you need:
+A hook is referenced as `<name>@<version>`. Hooks are versioned independently of Pipelines, so a hook gains features without a Pipelines upgrade, and you decide when to take them. Pin as needed.
 
 | Reference | Resolves to | Use when |
 | --- | --- | --- |
-| `infracost@v0` | the latest `v0.x.x` | you want fixes and new features, and never a breaking change |
-| `infracost@v0.5` | the latest `v0.5.x` | you want patches only |
-| `infracost@v0.5.0` | that release exactly | every run must use an identical hook |
+| `infracost@v0` | the latest `v0.x.x` | you want fixes and new features |
+| `infracost@v0.5` | the latest `v0.5.x` | you only want patches |
+| `infracost@v0.5.0` | that release exactly | you want exactly that version |
 
-Hooks are released independently of Pipelines, so a hook can add features without a Pipelines upgrade.
+
 
 ## Configuration
 
@@ -49,8 +49,6 @@ repository {
   }
 }
 ```
-
-Each hook's release notes list the variables that version accepts.
 
 ## Related documentation
 

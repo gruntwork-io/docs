@@ -1,6 +1,6 @@
 # Infracost
 
-The Infracost hook estimates the cost of every unit a run affects, so a reviewer can see what a change costs before it is applied. It uses the [Infracost](https://www.infracost.io/) CLI, which the hook installs itself.
+The Infracost hook estimates the cost of every unit a run affects, so a reviewer can see what a change costs before it is applied. It uses the [Infracost](https://www.infracost.io/) CLI, which the hook installs.
 
 ```hcl
 repository {
@@ -12,7 +12,7 @@ repository {
 }
 ```
 
-The hook should be configured to run after `plan`. It estimates the cost of the change that plan describes, rather than everything you already run.
+The hook should be configured to run after `plan` given that it estimates the cost of the change that the `plan` command describes.
 
 ## What it reports
 
@@ -24,7 +24,7 @@ The summary line shows the change to your monthly bill. The table breaks that ch
 
 A unit whose cost could not be estimated is marked ⚠️ rather than counted as zero, so a partial estimate is not mistaken for a complete one.
 
-The hook reports a [result](/2.0/reference/pipelines/hooks-api) of `warn` when any unit could not be estimated, and `pass` otherwise. It never reports `deny`, so it cannot fail a run or block a merge.
+The hook reports a [result](/2.0/reference/pipelines/hooks-api) of `warn` when any unit could not be estimated, and `pass` otherwise. Currently, it never reports `deny`, so it cannot fail a run or block a merge.
 
 ## Providing an API key
 
