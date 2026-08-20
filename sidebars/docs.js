@@ -408,6 +408,16 @@ const sidebar = [
             id: "2.0/docs/pipelines/guides/hooks/configuring",
           },
           {
+            label: "Writing a Hook",
+            type: "doc",
+            id: "2.0/docs/pipelines/guides/hooks/writing-a-hook",
+          },
+          {
+            label: "Authentication & Secrets",
+            type: "doc",
+            id: "2.0/docs/pipelines/guides/hooks/authentication",
+          },
+          {
             label: "Gruntwork Provided Hooks",
             type: "category",
             collapsed: true,
@@ -417,26 +427,11 @@ const sidebar = [
             },
             items: [
               {
-                label: "Overview",
-                type: "doc",
-                id: "2.0/docs/pipelines/guides/hooks/gruntwork-provided/index",
-              },
-              {
                 label: "Infracost",
                 type: "doc",
                 id: "2.0/docs/pipelines/guides/hooks/gruntwork-provided/infracost",
               },
             ],
-          },
-          {
-            label: "Writing a Hook",
-            type: "doc",
-            id: "2.0/docs/pipelines/guides/hooks/writing-a-hook",
-          },
-          {
-            label: "Authentication & Secrets",
-            type: "doc",
-            id: "2.0/docs/pipelines/guides/hooks/authentication",
           },
         ],
       },

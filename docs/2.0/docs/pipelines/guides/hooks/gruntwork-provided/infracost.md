@@ -1,6 +1,6 @@
 # Infracost
 
-The Infracost hook estimates the cost of every unit a pipelines run affects, so a reviewer can see what a change costs before it is applied. It uses the [Infracost](https://www.infracost.io/) CLI, which the hook installs.
+The Gruntwork-provided Infracost hook estimates the cost of every unit a pipelines run affects, so a reviewer can see what a change costs before it is applied. It invokes the [Infracost](https://www.infracost.io/) CLI directly.
 
 ```hcl
 repository {
@@ -14,9 +14,9 @@ repository {
 
 The hook should be configured to run after `plan` given that it estimates the cost of the change that the `plan` command describes.
 
-## What it reports
+## Outputs
 
-The hook reports the estimate on the pull or merge request:
+The hook posts the estimate on the pull or merge request:
 
 ![Cost Estimate Comment](/img/pipelines/guides/infracost-hook-comment.png)
 
@@ -24,9 +24,9 @@ The summary line shows the change to your monthly bill. The table breaks that ch
 
 A unit whose cost could not be estimated is marked ⚠️ rather than counted as zero, so a partial estimate is not mistaken for a complete one.
 
-The hook reports a [result](/2.0/reference/pipelines/hooks-api) of `warn` when any unit could not be estimated, and `pass` otherwise. Currently, it never reports `deny`, so it cannot fail a run or block a merge.
+The hook reports `pass` when every affected unit was estimated, and `warn` when any could not be. It does not report `deny`, so it cannot fail a run or block a merge.
 
-## Configuration
+## Inputs
 
 The hook reads its settings from environment variables. Set them in the block's `env`, or export them before the hook runs.
 
