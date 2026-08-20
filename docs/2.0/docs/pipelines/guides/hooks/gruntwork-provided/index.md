@@ -1,6 +1,6 @@
 # Gruntwork Provided Hooks
 
-Gruntwork provided hooks are ready-to-use extensions of a Pipelines run, built and maintained by Gruntwork.
+Gruntwork provided hooks are ready-to-use extensions of a Pipelines run, built and maintained by Gruntwork. They are available from `pipelines-workflows` vTBD.
 
 ```hcl
 repository {
@@ -12,7 +12,7 @@ repository {
 }
 ```
 
-Unlike other remotely sourced hooks, Gruntwork provided hooks do not require you to [`source`](/2.0/docs/pipelines/guides/hooks/configuring#remote-script-sources) them; you can simply execute pipelines with the hook's name and version as shown above.
+Gruntwork provided hooks are executed by running pipelines with the hook's name and version as shown above.
 
 ## Available hooks
 
@@ -28,9 +28,7 @@ A hook is referenced as `<name>@<version>`. Hooks are versioned independently of
 | --- | --- | --- |
 | `infracost@v0` | the latest `v0.x.x` | you want fixes and new features |
 | `infracost@v0.5` | the latest `v0.5.x` | you only want patches |
-| `infracost@v0.5.0` | that release exactly | you want exactly that version |
-
-
+| `infracost@v0.5.0` | this specific release | you want fixed versions |
 
 ## Configuration
 

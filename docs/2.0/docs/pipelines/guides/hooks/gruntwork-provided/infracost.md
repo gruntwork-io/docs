@@ -1,6 +1,6 @@
 # Infracost
 
-The Infracost hook estimates the cost of every unit a run affects, so a reviewer can see what a change costs before it is applied. It uses the [Infracost](https://www.infracost.io/) CLI, which the hook installs.
+The Infracost hook estimates the cost of every unit a pipelines run affects, so a reviewer can see what a change costs before it is applied. It uses the [Infracost](https://www.infracost.io/) CLI, which the hook installs.
 
 ```hcl
 repository {
@@ -26,6 +26,37 @@ A unit whose cost could not be estimated is marked ⚠️ rather than counted as
 
 The hook reports a [result](/2.0/reference/pipelines/hooks-api) of `warn` when any unit could not be estimated, and `pass` otherwise. Currently, it never reports `deny`, so it cannot fail a run or block a merge.
 
+## Configuration
+
+The hook reads its settings from environment variables. Set them in the block's `env`, or export them before the hook runs.
+
+### Required
+
+| Variable | Description |
+|---|---|
+| `INFRACOST_API_KEY` | Your Infracost API key. See [Providing an API key](#providing-an-api-key). |
+
+### Optional
+
+| Variable | Description |
+|---|---|
+| `INFRACOST_CURRENCY` | An [ISO 4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#List_of_ISO_4217_currency_codes) to report in. Defaults to `USD`. |
+| `PIPELINES_HOOK_INFRACOST_CLI_VERSION` | The Infracost CLI version the hook installs. Defaults to the version that release of the hook was tested against. |
+
+```hcl
+repository {
+  after_hook "infracost_estimate" {
+    name     = "InfraCost Estimate"
+    commands = ["plan"]
+    execute  = ["pipelines", "hook", "infracost@v0"]
+
+    env {
+      INFRACOST_CURRENCY = "EUR"
+    }
+  }
+}
+```
+
 ## Providing an API key
 
 Infracost requires an API key, which the hook reads from `INFRACOST_API_KEY`.
@@ -37,8 +68,11 @@ repository {
   after_hook "infracost_estimate" {
     name     = "InfraCost Estimate"
     commands = ["plan"]
-    execute = ["bash", "-c",
-      "INFRACOST_API_KEY=$(aws ssm get-parameter --name infracost-api-key --with-decryption --query Parameter.Value --output text) pipelines hook infracost@v0"]
+    execute = ["bash", "-c", <<-EOT
+      export INFRACOST_API_KEY=$(aws ssm get-parameter --name infracost-api-key --with-decryption --query Parameter.Value --output text)
+      pipelines hook infracost@v0
+    EOT
+    ]
 
     authentication {
       aws_oidc {
@@ -56,25 +90,9 @@ The same approach works with any secret store the hook's identity can reach. For
 
 Some costs depend on how much a resource is used rather than on it existing, such as requests, storage, and data transfer. Infracost cannot read those figures from a plan, so it projects them.
 
-Commit an [`infracost-usage.yml`](https://www.infracost.io/docs/features/usage_based_resources/#how-to-override--improve-estimates) at the root of your repository to supply your own projections, and the hook picks it up automatically. Without one, Infracost Cloud's defaults are used where available. The comment states which of the two produced the figures.
+Commit an `infracost-usage.yml` at the root of your repository to supply your own projections, and the hook picks it up automatically, with Infracost Cloud usage defaults as a fallback. The footnote under the table names the sources that applied.
 
-## Currency
-
-Infracost reports in US dollars. Set `INFRACOST_CURRENCY` to an [ISO 4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#List_of_ISO_4217_currency_codes) to report in another currency.
-
-```hcl
-repository {
-  after_hook "infracost_estimate" {
-    name     = "InfraCost Estimate"
-    commands = ["plan"]
-    execute  = ["pipelines", "hook", "infracost@v0"]
-
-    env {
-      INFRACOST_CURRENCY = "EUR"
-    }
-  }
-}
-```
+See Infracost's [usage costs](https://www.infracost.io/docs/features/usage_based_resources/) documentation for the file format and how to override individual resources.
 
 ## Related documentation
 
