@@ -12,15 +12,17 @@ repository {
 }
 ```
 
-The hook runs after `plan` and prices the plan Pipelines gives it, so it reports the change under review rather than everything you already run.
+The hook should be configured to run after `plan`. It estimates the cost of the change that plan describes, rather than everything you already run.
 
 ## What it reports
 
-The hook summary shows the change to your monthly bill:
+The hook reports the estimate on the pull or merge request:
 
-> ✅ **InfraCost Estimate**: +$158 / month ▲
+![Cost Estimate Comment](/img/pipelines/guides/infracost-hook-comment.png)
 
-The comment includes a table of every affected unit, its change, and its new monthly cost. A unit whose cost could not be estimated is marked ⚠️ rather than counted as zero, so a partial estimate is not mistaken for a complete one.
+The summary line shows the change to your monthly bill. The table breaks that change down by unit, alongside each unit's new monthly cost. The Baseline Cost and Usage Cost columns appear only when usage costs were projected.
+
+A unit whose cost could not be estimated is marked ⚠️ rather than counted as zero, so a partial estimate is not mistaken for a complete one.
 
 The hook reports a [result](/2.0/reference/pipelines/hooks-api) of `warn` when any unit could not be estimated, and `pass` otherwise. It never reports `deny`, so it cannot fail a run or block a merge.
 
