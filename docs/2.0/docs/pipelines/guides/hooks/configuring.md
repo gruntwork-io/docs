@@ -25,7 +25,7 @@ The block label (`hello_world` in the example above) is also required and must b
 ### Optional fields
 
 - **`name`**: a human-readable display name for the hook.
-- **`source`**: a URL to fetch before the hook runs, so `execute` can run scripts that live outside the repository. See [Remote script sources](#remote-script-sources).
+- **`source`**: a URL to fetch before the hook runs, so `execute` can run scripts that live outside the repository. See [Remote script sources](#remote-script-sources). Hooks Gruntwork provides do not need a `source`; see [Gruntwork Provided Hooks](/2.0/docs/pipelines/guides/hooks/gruntwork-provided).
 - **`env`**: environment variables to set for the `execute` command.
 - **`run_on_error`**: whether the hook runs when a preceding command or hook failed. Defaults to `false`.
 - **`timeout_seconds`**: how long the hook may run before it is terminated. Defaults to `300`.

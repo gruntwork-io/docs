@@ -408,6 +408,27 @@ const sidebar = [
             id: "2.0/docs/pipelines/guides/hooks/configuring",
           },
           {
+            label: "Gruntwork Provided Hooks",
+            type: "category",
+            collapsed: true,
+            link: {
+              type: "doc",
+              id: "2.0/docs/pipelines/guides/hooks/gruntwork-provided/index",
+            },
+            items: [
+              {
+                label: "Overview",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/hooks/gruntwork-provided/index",
+              },
+              {
+                label: "Infracost",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/hooks/gruntwork-provided/infracost",
+              },
+            ],
+          },
+          {
             label: "Writing a Hook",
             type: "doc",
             id: "2.0/docs/pipelines/guides/hooks/writing-a-hook",
