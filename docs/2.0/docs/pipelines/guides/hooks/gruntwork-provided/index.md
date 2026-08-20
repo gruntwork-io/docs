@@ -1,6 +1,6 @@
 # Gruntwork Provided Hooks
 
-Gruntwork maintains a set of hooks you can use without writing one yourself. Run one by giving its name and version to `pipelines hook`:
+Gruntwork provided hooks are ready-to-use extensions of a Pipelines run, built and maintained by Gruntwork. Pipelines resolves and runs them directly, so adding one is a line of configuration.
 
 ```hcl
 repository {
@@ -12,11 +12,13 @@ repository {
 }
 ```
 
-This is an ordinary [hook](/2.0/docs/pipelines/guides/hooks/configuring). Gruntwork writes and publishes it, so there is no script in your repository and no `source` to fetch.
+Configuration is the same as for a hook you author yourself, with no script in your repository and no [`source`](/2.0/docs/pipelines/guides/hooks/configuring#remote-script-sources) to fetch.
 
 ## Available hooks
 
 - [Infracost](/2.0/docs/pipelines/guides/hooks/gruntwork-provided/infracost) - estimates the cost of every unit a run affects.
+
+More hooks are on the way.
 
 ## Choosing a version
 
