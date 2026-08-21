@@ -95,6 +95,10 @@ See [Setup via Machine Users](/2.0/docs/pipelines/installation/viamachineusers) 
 
 Pipelines will also require access to Gruntwork's GitHub repositories, however those tokens are generated at runtime via the Gruntwork Management Portal.
 
+These Gruntwork GitHub access tokens are short-lived, expiring one hour after they are issued. Every job that needs one obtains its own token from that job's OIDC identity, rather than inheriting a token issued once at the start of the pipeline, so pipelines that run for longer than an hour are not affected by token expiry.
+
+If you set `PIPELINES_GRUNTWORK_READ_TOKEN` yourself as a CI/CD variable, Pipelines uses your token as-is and never replaces it. In that case the token's lifetime is entirely up to you.
+
 </TabItem>
 </Tabs>
 
