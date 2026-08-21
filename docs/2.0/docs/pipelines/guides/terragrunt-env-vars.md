@@ -2,13 +2,13 @@
 
 ## Introduction
 
-When Pipelines detects changes to Infrastructure as Code (IaC) in your repositories, it invokes `terragrunt` with a predefined set of command-line arguments for the detected changes. For instance, if a single unit is modified in a pull request, Pipelines will `chdir` into the unit's directory and execute `terragrunt plan --terragrunt-non-interactive`.
+When Pipelines detects changes to Infrastructure as Code (IaC) in your repositories, it invokes `terragrunt` with a predefined set of command-line arguments for the detected changes. For instance, if a single unit is modified in a pull request, Pipelines will `chdir` into the unit's directory and execute `terragrunt plan --non-interactive`.
 
 You can view the specific commands used in different scenarios by examining the logs of a Pipelines workflow run.
 
 In some situations, you may need to provide additional options to `terragrunt` to accommodate specific requirements. Many Terragrunt CLI options can be controlled through environment variables, allowing for flexible customization of its behavior.
 
-Refer to the complete list of available options in the [Terragrunt CLI documentation](https://terragrunt.gruntwork.io/docs/reference/cli-options/#cli-options).
+Refer to the complete list of available options in the [Terragrunt CLI documentation](https://docs.terragrunt.com/reference/cli/).
 
 ## Adding environment variables
 
@@ -20,13 +20,13 @@ You can configure Pipelines to pass additional environment variables to Terragru
 
 Each entry in the `env` sequence represents an environment variable name and its value.
 
-For example, to enable the `--terragrunt-strict-include` flag in your Terragrunt runs, set the environment variable `TERRAGRUNT_STRICT_INCLUDE` to `true` in the Pipelines configuration file.
+For example, to set the `--parallelism` flag in your Terragrunt runs, set the environment variable `TG_PARALLELISM` to `10` in the Pipelines configuration file.
 
 ```yml title=".gruntwork/config.yml"
 pipelines:
     env:
-    - name: TERRAGRUNT_STRICT_INCLUDE
-      value: true
+    - name: TG_PARALLELISM
+      value: 10
 ```
 
 On the next workflow run, review the workflow logs and locate the `env:` block for the action that executes Terragrunt. If the configuration is correct, your additional environment variable will appear in the `env:` block, confirming it has been successfully passed to the action.

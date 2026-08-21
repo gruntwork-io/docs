@@ -93,14 +93,14 @@ pipelines:
 
 <HclListItem name="env" requirement="optional" type="sequence(mapping)">
 <HclListItemDescription>
-(Optional) additional env vars to set for pipelines executions, e.g. TF_VAR or TERRAGRUNT_ values to customize the Terragrunt/Terraform/Opentofu run.
+(Optional) additional env vars to set for pipelines executions, e.g. TF_VAR or TG_ values to customize the Terragrunt/Terraform/Opentofu run.
 </HclListItemDescription>
 <HclListItemExample>
 
 ```yaml
 pipelines:
   env:
-    - name: TERRAGRUNT_PARALLELISM
+    - name: TG_PARALLELISM
       value: 10
     - name: CUSTOM_ENVVAR
       value: SOME_DATA
@@ -199,7 +199,7 @@ pipelines:
 <HclListItemDescription>
 Enables the <span class="external-link"><a href="https://terragrunt.gruntwork.io/docs/features/provider-cache/">Terragrunt Provider Cache</a></span> for plans and applies.
 
-This option is deprecated in favor of setting `TERRAGRUNT_PROVIDER_CACHE` as an [`env`](#env) option.
+This option is deprecated in favor of setting `TG_PROVIDER_CACHE` as an [`env`](#env) option.
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
 <HclListItemExample>
