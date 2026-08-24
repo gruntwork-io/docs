@@ -1,6 +1,6 @@
 # Infracost
 
-The Gruntwork-provided Infracost hook estimates the cost of every unit a pipelines run affects, so a reviewer can see what a change costs before it is applied. It invokes the [Infracost](https://www.infracost.io/) CLI directly.
+The Gruntwork-provided Infracost hook estimates the cost of every unit a Pipelines run affects, so a reviewer can see what a change costs before it is applied. It invokes the [Infracost](https://www.infracost.io/) CLI directly.
 
 ```hcl
 repository {
@@ -28,20 +28,23 @@ The hook reports `pass` when every affected unit was estimated, and `warn` when 
 
 ## Inputs
 
-The hook reads its settings from environment variables. Set them in the block's `env`, or export them before the hook runs.
+Settings are supplied as environment variables. Set them in the block's `env`, or export them before the hook runs.
 
 ### Required
 
 | Variable | Description |
 |---|---|
-| `INFRACOST_API_KEY` | Your Infracost API key. See [Providing an API key](#providing-an-api-key). |
+| `INFRACOST_API_KEY` | Your Infracost API key, read by the Infracost CLI. The hook stops before estimating if it is unset. See [Providing an API key](#providing-an-api-key). |
 
 ### Optional
 
 | Variable | Description |
 |---|---|
-| `INFRACOST_CURRENCY` | An [ISO 4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#List_of_ISO_4217_currency_codes) to report in. Defaults to `USD`. |
 | `PIPELINES_HOOK_INFRACOST_CLI_VERSION` | The Infracost CLI version the hook installs. Defaults to the version that release of the hook was tested against. |
+
+### Infracost CLI settings
+
+The Infracost CLI reads some of its settings from the environment, and the hook passes them through unchanged. For example, set `INFRACOST_CURRENCY` to an [ISO 4217 currency code](https://en.wikipedia.org/wiki/ISO_4217#List_of_ISO_4217_currency_codes) to report in a currency other than `USD`.
 
 ```hcl
 repository {
@@ -56,6 +59,8 @@ repository {
   }
 }
 ```
+
+The hook also passes an `infracost-usage.yml` from your repository root to the CLI. See [Usage-based costs](#usage-based-costs).
 
 ## Providing an API key
 

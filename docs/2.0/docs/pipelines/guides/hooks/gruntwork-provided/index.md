@@ -6,7 +6,7 @@ Hooks are an Enterprise-only feature.
 
 :::
 
-Gruntwork provided hooks are ready-to-use extensions of a Pipelines run, built and maintained by Gruntwork. They require `pipelines-workflows` v4.24.0 or later on GitHub, or v2.19.0 or later on GitLab.
+Gruntwork-provided hooks are ready-to-use extensions of a Pipelines run, built and maintained by Gruntwork. They require [`pipelines-workflows` v4.24.0](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v4.24.0) or later on GitHub, or [v2.19.0](https://gitlab.com/gruntwork-io/pipelines-workflows/-/releases/v2.19.0) or later on GitLab.
 
 ```hcl
 repository {
@@ -18,7 +18,7 @@ repository {
 }
 ```
 
-Gruntwork provided hooks are executed by running pipelines with the hook's name and version as shown above.
+Gruntwork-provided hooks are executed by running pipelines with the hook's name and version as shown above.
 
 ## Available hooks
 
