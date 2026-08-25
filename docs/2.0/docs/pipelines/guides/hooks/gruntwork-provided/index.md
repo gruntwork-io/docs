@@ -11,7 +11,7 @@ Gruntwork-provided hooks are ready-to-use extensions of a Pipelines run, built a
 ```hcl
 repository {
   after_hook "infracost_estimate" {
-    name     = "InfraCost Estimate"
+    name     = "Infracost Estimate"
     commands = ["plan"]
     execute  = ["pipelines", "hook", "infracost@v0"]
   }
@@ -48,7 +48,7 @@ repository {
     # ...
 
     env {
-      INFRACOST_CURRENCY = "EUR"
+      PIPELINES_HOOK_INFRACOST_CLI_VERSION = "0.10.45"
     }
   }
 }

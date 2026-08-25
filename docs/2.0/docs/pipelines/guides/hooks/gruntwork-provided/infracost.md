@@ -5,7 +5,7 @@ The Gruntwork-provided Infracost hook estimates the cost of every unit a Pipelin
 ```hcl
 repository {
   after_hook "infracost_estimate" {
-    name     = "InfraCost Estimate"
+    name     = "Infracost Estimate"
     commands = ["plan"]
     execute  = ["pipelines", "hook", "infracost@v0"]
   }
@@ -40,7 +40,7 @@ Settings are supplied as environment variables. Set them in the block's `env`, o
 
 | Variable | Description |
 |---|---|
-| `PIPELINES_HOOK_INFRACOST_CLI_VERSION` | The Infracost CLI version the hook installs. Defaults to the version that release of the hook was tested against. |
+| `PIPELINES_HOOK_INFRACOST_CLI_VERSION` | The Infracost CLI version the hook installs. Defaults to the version the released hook was tested against. |
 
 ### Infracost CLI settings
 
@@ -49,7 +49,7 @@ The Infracost CLI reads some of its settings from the environment, and the hook 
 ```hcl
 repository {
   after_hook "infracost_estimate" {
-    name     = "InfraCost Estimate"
+    name     = "Infracost Estimate"
     commands = ["plan"]
     execute  = ["pipelines", "hook", "infracost@v0"]
 
@@ -71,9 +71,9 @@ Pipelines does not store secrets for you (see [Authentication & Secrets](/2.0/do
 ```hcl
 repository {
   after_hook "infracost_estimate" {
-    name     = "InfraCost Estimate"
+    name     = "Infracost Estimate"
     commands = ["plan"]
-    execute = ["bash", "-c", <<-EOT
+    execute  = ["bash", "-c", <<-EOT
       export INFRACOST_API_KEY=$(aws ssm get-parameter --name infracost-api-key --with-decryption --query Parameter.Value --output text)
       pipelines hook infracost@v0
     EOT
