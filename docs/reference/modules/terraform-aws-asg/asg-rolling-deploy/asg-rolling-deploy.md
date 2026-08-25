@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Auto Scaling Group Modules" version="1.2.0" lastModifiedVersion="1.2.0"/>
+<VersionBadge repoTitle="Auto Scaling Group Modules" version="2.0.0" lastModifiedVersion="2.0.0"/>
 
 # Auto Scaling Group with Rolling Deployment Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.2.0/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/tree/v2.0.0/modules/asg-rolling-deploy" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v1.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-asg/releases/tag/v2.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module creates an Auto Scaling Group (ASG) that can do a zero-downtime rolling deployment. That means
 every time you update your app (e.g. publish a new AMI), all you have to do is run `terraform apply` and the new
@@ -53,16 +53,43 @@ update your launch templates (e.g. by specifying a new AMI to deploy), Terraform
     [tainted](https://www.terraform.io/docs/commands/taint.html) (i.e. marked for deletion next time) and the original
     ASG will be left unchanged, so again, there is no downtime.
 
-Note that if all we did was use `create_before_destroy`, on each redeploy, our ASG would reset to its hard-coded
-`desired_capacity`, losing the capacity changes from auto scaling policies. We solve this problem by using an
-[external data source](https://www.terraform.io/docs/providers/external/data_source.html) that runs the Python script
-[get-desired-capacity.py](https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.2.0/modules/asg-rolling-deploy/describe-autoscaling-group/get-desired-capacity.py) to fetch the latest value of the
-`desired_capacity` parameter:
+Each rolling deploy creates a brand new `aws_autoscaling_group` resource (its name is derived from the launch
+template's name and version), so it always comes up at the `desired_capacity` you configure. Once that ASG exists,
+the resource's `lifecycle.ignore_changes = [desired_capacity]` means Terraform will not fight any auto scaling
+policies or alarms that subsequently change that ASG's live capacity: `terraform apply` on an unchanged launch
+template won't reset capacity back down (or up) to the configured value.
 
-*   If the script finds a value from an already-existing ASG, we use it, to ensure that the changes form auto scaling
-    events are not lost.
-*   If the script doesn't find an already-existing ASG, that means this is the first deploy, and we fall back to the
-    hard-coded `desired_capacity` value.
+### How do you change `desired_capacity`?
+
+Updating `desired_capacity` on its own has no effect to an existing ASG (because of `lifecycle.ignore_changes`).
+This is a deliberate choice that also stops Terraform from reverting auto scaling policy adjustments.
+To change desired_capacity, you must use one of the options below:
+
+*   Let auto scaling own it: Manage capacity with scaling policies and scheduled actions. Treat
+    `desired_capacity` purely as the starting size for each newly created ASG (recommended for
+    dynamically-sized ASGs).
+*   Change as part of deploy: Changing `desired_capacity` together with the launch template does
+    take effect, since the deploy creates a brand new ASG and the new value is applied at creation
+    time. Note that prior versions of this module had different behavior since a Python script would read
+    the old ASG's live capacity on every redeploy and use that instead of the configured value.
+*   Set it out-of-band: If the desired capacity is set from the AWS console or cli, Terraform will
+    leave it alone.
+
+:::note
+
+**Migration guide:** prior versions of this module used an external Python script
+([get-desired-capacity.py](https://github.com/gruntwork-io/terraform-aws-asg/blob/e964629/modules/asg-rolling-deploy/describe-autoscaling-group/get-desired-capacity.py))
+to look up the previous ASG's live `desired_capacity` and carry it forward into the replacement ASG on every rolling
+redeploy. That script (and its vendored `boto3` dependency) has been removed: it required a working `python3` on
+whatever machine ran `terraform apply`, which broke repeatedly as Python/boto3 versions moved (see
+[#242](https://github.com/gruntwork-io/terraform-aws-asg/issues/242)), and there's no equivalent native Terraform
+data source that can safely stand in for it (the AWS provider's `aws_autoscaling_group` data source errors when the
+ASG doesn't exist yet, which is always true on a first `apply`).
+**If you relied on capacity surviving a redeploy:** that behavior is gone. A rolling redeploy now always starts the
+new ASG at the configured `desired_capacity`. If you use auto scaling policies or scheduled actions to manage
+capacity, they will re-adjust the new ASG after each deploy the same way they would for any newly created ASG.
+
+:::
 
 ## Sample Usage
 
@@ -77,16 +104,19 @@ Note that if all we did was use `create_before_destroy`, on each redeploy, our A
 
 module "asg_rolling_deploy" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v1.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v2.0.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The desired number of EC2 Instances to run in the ASG initially. Note that
-  # auto scaling policies may change this value. If you're using auto scaling
-  # policies to dynamically resize the cluster, you should actually leave this
-  # value as null.
+  # The desired number of EC2 Instances to run in the ASG when it is first
+  # created. Auto scaling policies may change this value afterwards, and this
+  # module sets lifecycle.ignore_changes on it, so changing this variable on its
+  # own has NO effect on existing ASG (terraform apply will report no change).
+  # It only takes effect when a new ASG is created (by a launch template
+  # change). Setting this to null will let AWS default the initial capacity to
+  # min_size.
   desired_capacity = <number>
 
   # The ID and version of the Launch Template to use for each EC2 instance in
@@ -231,7 +261,7 @@ module "asg_rolling_deploy" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v1.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-asg.git//modules/asg-rolling-deploy?ref=v2.0.0"
 }
 
 inputs = {
@@ -240,10 +270,13 @@ inputs = {
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
 
-  # The desired number of EC2 Instances to run in the ASG initially. Note that
-  # auto scaling policies may change this value. If you're using auto scaling
-  # policies to dynamically resize the cluster, you should actually leave this
-  # value as null.
+  # The desired number of EC2 Instances to run in the ASG when it is first
+  # created. Auto scaling policies may change this value afterwards, and this
+  # module sets lifecycle.ignore_changes on it, so changing this variable on its
+  # own has NO effect on existing ASG (terraform apply will report no change).
+  # It only takes effect when a new ASG is created (by a launch template
+  # change). Setting this to null will let AWS default the initial capacity to
+  # min_size.
   desired_capacity = <number>
 
   # The ID and version of the Launch Template to use for each EC2 instance in
@@ -394,7 +427,7 @@ inputs = {
 <HclListItem name="desired_capacity" requirement="required" type="number">
 <HclListItemDescription>
 
-The desired number of EC2 Instances to run in the ASG initially. Note that auto scaling policies may change this value. If you're using auto scaling policies to dynamically resize the cluster, you should actually leave this value as null.
+The desired number of EC2 Instances to run in the ASG when it is first created. Auto scaling policies may change this value afterwards, and this module sets lifecycle.ignore_changes on it, so changing this variable on its own has NO effect on existing ASG (terraform apply will report no change). It only takes effect when a new ASG is created (by a launch template change). Setting this to null will let AWS default the initial capacity to min_size.
 
 </HclListItemDescription>
 </HclListItem>
@@ -729,11 +762,11 @@ A maximum duration that Terraform should wait for the EC2 Instances to be health
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.2.0/modules/asg-rolling-deploy/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.2.0/modules/asg-rolling-deploy/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v1.2.0/modules/asg-rolling-deploy/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v2.0.0/modules/asg-rolling-deploy/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v2.0.0/modules/asg-rolling-deploy/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-asg/tree/v2.0.0/modules/asg-rolling-deploy/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "23e534147eebe0ddb3a0b40789435d1a"
+  "hash": "a19faee4c474ac7d9c3c8b4fa47111a0"
 }
 ##DOCS-SOURCER-END -->
