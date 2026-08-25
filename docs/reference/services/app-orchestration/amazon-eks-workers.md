@@ -144,15 +144,15 @@ module "eks_workers" {
   autoscaling_group_configurations = <any>
 
   # The AMI to run on each instance in the EKS cluster. You can build the AMI
-  # using the Packer template eks-node-al2.json. One of var.cluster_instance_ami
-  # or var.cluster_instance_ami_filters is required. Only used if
-  # var.cluster_instance_ami_filters is null. Set to null if
+  # using the Packer template eks-node-al2023.pkr.hcl. One of
+  # var.cluster_instance_ami or var.cluster_instance_ami_filters is required.
+  # Only used if var.cluster_instance_ami_filters is null. Set to null if
   # cluster_instance_ami_filters is set.
   cluster_instance_ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
   # self managed workers. You can build the AMI using the Packer template
-  # eks-node-al2.json. One of var.cluster_instance_ami or
+  # eks-node-al2023.pkr.hcl. One of var.cluster_instance_ami or
   # var.cluster_instance_ami_filters is required. If both are defined,
   # var.cluster_instance_ami_filters will be used. Set to null if
   # cluster_instance_ami is set.
@@ -722,15 +722,15 @@ inputs = {
   autoscaling_group_configurations = <any>
 
   # The AMI to run on each instance in the EKS cluster. You can build the AMI
-  # using the Packer template eks-node-al2.json. One of var.cluster_instance_ami
-  # or var.cluster_instance_ami_filters is required. Only used if
-  # var.cluster_instance_ami_filters is null. Set to null if
+  # using the Packer template eks-node-al2023.pkr.hcl. One of
+  # var.cluster_instance_ami or var.cluster_instance_ami_filters is required.
+  # Only used if var.cluster_instance_ami_filters is null. Set to null if
   # cluster_instance_ami_filters is set.
   cluster_instance_ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
   # self managed workers. You can build the AMI using the Packer template
-  # eks-node-al2.json. One of var.cluster_instance_ami or
+  # eks-node-al2023.pkr.hcl. One of var.cluster_instance_ami or
   # var.cluster_instance_ami_filters is required. If both are defined,
   # var.cluster_instance_ami_filters will be used. Set to null if
   # cluster_instance_ami is set.
@@ -1420,7 +1420,7 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="cluster_instance_ami" requirement="required" type="string">
 <HclListItemDescription>
 
-The AMI to run on each instance in the EKS cluster. You can build the AMI using the Packer template eks-node-al2.json. One of <a href="#cluster_instance_ami"><code>cluster_instance_ami</code></a> or <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> is required. Only used if <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> is null. Set to null if cluster_instance_ami_filters is set.
+The AMI to run on each instance in the EKS cluster. You can build the AMI using the Packer template eks-node-al2023.pkr.hcl. One of <a href="#cluster_instance_ami"><code>cluster_instance_ami</code></a> or <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> is required. Only used if <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> is null. Set to null if cluster_instance_ami_filters is set.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1428,7 +1428,7 @@ The AMI to run on each instance in the EKS cluster. You can build the AMI using 
 <HclListItem name="cluster_instance_ami_filters" requirement="required" type="object(…)">
 <HclListItemDescription>
 
-Properties on the AMI that can be used to lookup a prebuilt AMI for use with self managed workers. You can build the AMI using the Packer template eks-node-al2.json. One of <a href="#cluster_instance_ami"><code>cluster_instance_ami</code></a> or <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> is required. If both are defined, <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> will be used. Set to null if cluster_instance_ami is set.
+Properties on the AMI that can be used to lookup a prebuilt AMI for use with self managed workers. You can build the AMI using the Packer template eks-node-al2023.pkr.hcl. One of <a href="#cluster_instance_ami"><code>cluster_instance_ami</code></a> or <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> is required. If both are defined, <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> will be used. Set to null if cluster_instance_ami is set.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -3004,6 +3004,6 @@ The list of names of the ASGs that were deployed to act as EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2da7db19c0e6c6e8f9a43f404c4cb607"
+  "hash": "59a5b04a73b010bd7dac8e0b089be177"
 }
 ##DOCS-SOURCER-END -->
