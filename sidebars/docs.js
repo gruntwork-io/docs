@@ -417,6 +417,22 @@ const sidebar = [
             type: "doc",
             id: "2.0/docs/pipelines/guides/hooks/authentication",
           },
+          {
+            label: "Gruntwork Provided Hooks",
+            type: "category",
+            collapsed: true,
+            link: {
+              type: "doc",
+              id: "2.0/docs/pipelines/guides/hooks/gruntwork-provided/index",
+            },
+            items: [
+              {
+                label: "Infracost",
+                type: "doc",
+                id: "2.0/docs/pipelines/guides/hooks/gruntwork-provided/infracost",
+              },
+            ],
+          },
         ],
       },
       {

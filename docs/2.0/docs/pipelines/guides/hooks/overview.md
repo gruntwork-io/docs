@@ -24,6 +24,7 @@ Hooks are under active development, and new capabilities will continue to roll o
 
 - [Setup & Prerequisites](/2.0/docs/pipelines/guides/hooks/setup) - what you need before configuring a hook.
 - [Configuring Hooks](/2.0/docs/pipelines/guides/hooks/configuring) - how to declare a hook and how hooks execute.
+- [Gruntwork Provided Hooks](/2.0/docs/pipelines/guides/hooks/gruntwork-provided) - hooks Gruntwork maintains, ready to use without writing one.
 - [Hooks API](/2.0/reference/pipelines/hooks-api) - the environment variables and files exchanged with a hook.
 - [Writing a Hook](/2.0/docs/pipelines/guides/hooks/writing-a-hook) - a step-by-step guide to authoring your own hook.
 - [Authentication & Secrets](/2.0/docs/pipelines/guides/hooks/authentication) - giving a hook cloud credentials and secrets when it runs.
