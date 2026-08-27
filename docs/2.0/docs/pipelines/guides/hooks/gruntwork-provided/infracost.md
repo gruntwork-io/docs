@@ -22,9 +22,9 @@ The hook posts the estimate on the pull or merge request:
 
 The summary line shows the change to your monthly bill. The table breaks that change down by unit, alongside each unit's new monthly cost. The Baseline Cost and Usage Cost columns appear only when usage costs were projected.
 
-A unit whose cost could not be estimated is marked ⚠️ rather than counted as zero, so a partial estimate is not mistaken for a complete one.
+A unit whose cost could not be estimated shows ⚠️ in its row, and the summary line reports how many units were not estimated. Its cost contributes zero to the totals.
 
-The hook reports `pass` when every affected unit was estimated, and `warn` when any could not be. It does not report `deny`, so it cannot fail a run or block a merge.
+The hook reports `deny` when a change exceeds a deny [cost threshold](#cost-thresholds). It reports `warn` when a change exceeds a warn threshold, when a unit could not be estimated, or when the estimate failed. Otherwise it reports `pass`.
 
 ## Inputs
 
@@ -41,6 +41,10 @@ Settings are supplied as environment variables. Set them in the block's `env`, o
 | Variable | Description |
 |---|---|
 | `PIPELINES_HOOK_INFRACOST_CLI_VERSION` | The Infracost CLI version the hook installs. Defaults to the version the released hook was tested against. |
+| `PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_AMOUNT` | A monthly amount. A warning is shown when the total change exceeds it. |
+| `PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_PERCENT` | A percentage increase. A warning is shown when the new total exceeds the previous total by more than this. |
+| `PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_AMOUNT` | A monthly amount. The hook blocks merge when the total change exceeds it. |
+| `PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_PERCENT` | A percentage increase. The hook blocks merge when the new total exceeds the previous total by more than this. |
 
 ### Infracost CLI settings
 
@@ -98,6 +102,39 @@ Some costs depend on how much a resource is used rather than on it existing, suc
 Commit an `infracost-usage.yml` at the root of your repository to supply your own projections, and the hook picks it up automatically, with Infracost Cloud usage defaults as a fallback. The footnote under the table names the sources that applied.
 
 See Infracost's [usage costs](https://www.infracost.io/docs/features/usage_based_resources/) documentation for the file format and how to override individual resources.
+
+## Cost thresholds
+
+Set a threshold to have the hook warn on, or even block, a change that raises your monthly cost above a limit you set. Thresholds apply to the total change for the whole run rather than to individual units, as an amount or as a percentage of the previous total. All are optional.
+
+```hcl
+repository {
+  after_hook "infracost_estimate" {
+    # ...
+
+    env {
+      PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_AMOUNT  = "100"
+      PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_PERCENT = "50"
+    }
+  }
+}
+```
+
+Each threshold is a whole number greater than zero. An amount is in the currency the estimate reports, and a value the hook cannot read fails the run.
+
+A summary of any exceeded cost thresholds appears above the cost estimate table:
+
+![Cost Thresholds Comment](/img/pipelines/guides/infracost-hook-thresholds.png)
+
+### Evaluation
+
+- A change equal to a threshold does not exceed it.
+- A change that lowers your monthly cost, or leaves it unchanged, never exceeds a threshold.
+- A percentage threshold is skipped when the previous total is zero, so it never fires on newly created infrastructure. An amount threshold still applies.
+- A unit the hook could not estimate contributes zero, so a change with a ⚠️ row can stay under a threshold its full cost would exceed.
+- A run whose estimate failed reports `warn`, with no threshold checked.
+- A change that exceeds both a warn and a deny threshold reports `deny`, and only the deny thresholds are listed.
+- A `deny` result fails the run and blocks the pull or merge request.
 
 ## Related documentation
 

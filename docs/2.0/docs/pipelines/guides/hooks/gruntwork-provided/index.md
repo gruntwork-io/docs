@@ -35,8 +35,8 @@ A hook is referenced as `<name>@<version>`. Hooks are versioned independently of
 | Reference | Resolves to | Use when |
 | --- | --- | --- |
 | `infracost@v0` | the latest `v0.x.x` | you want fixes and new features |
-| `infracost@v0.5` | the latest `v0.5.x` | you only want patches |
-| `infracost@v0.5.0` | this specific release | you want fixed versions |
+| `infracost@v0.6` | the latest `v0.6.x` | you only want patches |
+| `infracost@v0.6.0` | this specific release | you want fixed versions |
 
 ### Environment variables
 
