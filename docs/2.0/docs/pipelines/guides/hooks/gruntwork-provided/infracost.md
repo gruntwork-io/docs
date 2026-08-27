@@ -122,7 +122,7 @@ repository {
 
 Each threshold is a whole number greater than zero. An amount is in the currency the estimate reports, and a value the hook cannot read fails the run.
 
-Above the table, the hook lists every threshold a change exceeds:
+Above the table, the hook lists the thresholds a change exceeded:
 
 ![Cost Thresholds Comment](/img/pipelines/guides/infracost-hook-thresholds.png)
 
