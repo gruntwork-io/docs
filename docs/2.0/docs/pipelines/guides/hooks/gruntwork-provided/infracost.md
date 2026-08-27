@@ -24,7 +24,7 @@ The summary line shows the change to your monthly bill. The table breaks that ch
 
 A unit whose cost could not be estimated is marked ⚠️ rather than counted as zero, so a partial estimate is not mistaken for a complete one.
 
-The hook reports `pass` when every affected unit was estimated, and `warn` when any could not be. It does not report `deny`, so it cannot fail a run or block a merge.
+The hook reports `deny` when a change goes above a deny [cost threshold](#cost-thresholds), and `warn` when a change goes above a warn threshold or a unit could not be estimated. Otherwise it reports `pass`.
 
 ## Inputs
 
@@ -41,6 +41,12 @@ Settings are supplied as environment variables. Set them in the block's `env`, o
 | Variable | Description |
 |---|---|
 | `PIPELINES_HOOK_INFRACOST_CLI_VERSION` | The Infracost CLI version the hook installs. Defaults to the version the released hook was tested against. |
+| `PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_AMOUNT` | A monthly amount. The hook reports `warn` when the Total Change is above it. |
+| `PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_PERCENT` | A percentage of the past total. The hook reports `warn` when the Total Change is above it. |
+| `PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_AMOUNT` | A monthly amount. The hook reports `deny` when the Total Change is above it. |
+| `PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_PERCENT` | A percentage of the past total. The hook reports `deny` when the Total Change is above it. |
+
+See [Cost thresholds](#cost-thresholds) for how the threshold variables are evaluated.
 
 ### Infracost CLI settings
 
@@ -61,6 +67,38 @@ repository {
 ```
 
 The hook also passes an `infracost-usage.yml` from your repository root to the CLI. See [Usage-based costs](#usage-based-costs).
+
+## Cost thresholds
+
+Set a threshold to have the hook report `warn` or `deny` rather than `pass`. Both measures are read from the Total row of the table rather than from individual units: the change as an amount, and the change as a percentage of the past total. Each of the four variables is optional, and an unset threshold is not evaluated.
+
+```hcl
+repository {
+  after_hook "infracost_estimate" {
+    name     = "Infracost Estimate"
+    commands = ["plan"]
+    execute  = ["pipelines", "hook", "infracost@v0"]
+
+    env {
+      PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_AMOUNT  = "100"
+      PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_AMOUNT  = "500"
+      PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_PERCENT = "50"
+    }
+  }
+}
+```
+
+Amounts are in the currency the estimate reports, so `500` is $500/mo, or €500/mo when `INFRACOST_CURRENCY` is `EUR`. Percentages are plain numbers, so `50` is 50%. Every threshold must be a whole number greater than zero, since the figures it is compared against are rounded. The hook rejects anything else and fails before it installs the Infracost CLI.
+
+When a change goes above a threshold, the hook lists every threshold the change exceeded above the table:
+
+![Cost Thresholds Comment](/img/pipelines/guides/infracost-hook-thresholds.png)
+
+A change equal to a threshold does not exceed it. A change that lowers the total, or leaves it unchanged, never exceeds a threshold. A percentage is measured against the past total, so a percentage threshold is not evaluated when the past total is zero. The two measures are independent: exceeding either is enough, and the list names both when a change exceeds both.
+
+The hook evaluates the deny thresholds first. A change that exceeds a warn threshold and a deny threshold reports `deny`, and the list names only the deny thresholds it exceeded. A `deny` result fails the run and blocks the pull or merge request.
+
+A unit whose cost could not be estimated contributes zero to the Total Change, so a change with a ⚠️ row can stay under a threshold its full cost would exceed.
 
 ## Providing an API key
 
