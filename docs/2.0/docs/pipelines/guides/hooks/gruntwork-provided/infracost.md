@@ -41,10 +41,10 @@ Settings are supplied as environment variables. Set them in the block's `env`, o
 | Variable | Description |
 |---|---|
 | `PIPELINES_HOOK_INFRACOST_CLI_VERSION` | The Infracost CLI version the hook installs. Defaults to the version the released hook was tested against. |
-| `PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_AMOUNT` | A monthly amount. The hook reports `warn` when the Total Change exceeds it. |
-| `PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_PERCENT` | A percentage. The hook reports `warn` when the Total Change, as a percentage of the previous total, exceeds it. |
-| `PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_AMOUNT` | A monthly amount. The hook reports `deny` when the Total Change exceeds it. |
-| `PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_PERCENT` | A percentage. The hook reports `deny` when the Total Change, as a percentage of the previous total, exceeds it. |
+| `PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_AMOUNT` | A monthly amount. A warning is shown when the total change exceeds it. |
+| `PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_PERCENT` | A percentage increase. A warning is shown when the new total exceeds the previous total by more than this. |
+| `PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_AMOUNT` | A monthly amount. The hook blocks merge when the total change exceeds it. |
+| `PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_PERCENT` | A percentage increase. The hook blocks merge when the new total exceeds the previous total by more than this. |
 
 ### Infracost CLI settings
 
@@ -105,7 +105,7 @@ See Infracost's [usage costs](https://www.infracost.io/docs/features/usage_based
 
 ## Cost thresholds
 
-Set a threshold to have the hook warn on, or block, a change that raises your monthly cost above a limit you set. Thresholds apply to the Total Change for the whole run rather than to individual units, as an amount or as a percentage of the previous total, and each is optional.
+Set a threshold to have the hook warn on, or even block, a change that raises your monthly cost above a limit you set. Thresholds apply to the total change for the whole run rather than to individual units, as an amount or as a percentage of the previous total. All are optional.
 
 ```hcl
 repository {
@@ -122,7 +122,7 @@ repository {
 
 Each threshold is a whole number greater than zero. An amount is in the currency the estimate reports, and a value the hook cannot read fails the run.
 
-Above the table, the hook lists the thresholds a change exceeded:
+A summary of any exceeded cost thresholds appears above the cost estimate table:
 
 ![Cost Thresholds Comment](/img/pipelines/guides/infracost-hook-thresholds.png)
 
