@@ -22,9 +22,9 @@ The hook posts the estimate on the pull or merge request:
 
 The summary line shows the change to your monthly bill. The table breaks that change down by unit, alongside each unit's new monthly cost. The Baseline Cost and Usage Cost columns appear only when usage costs were projected.
 
-A unit whose cost could not be estimated is marked ⚠️ rather than counted as zero, so a partial estimate is not mistaken for a complete one.
+A unit whose cost could not be estimated shows ⚠️ in its row, and the summary line reports how many units were not estimated. Its cost contributes zero to the totals.
 
-The hook reports `deny` when a change exceeds a deny [cost threshold](#cost-thresholds), and `warn` when a change exceeds a warn threshold or a unit could not be estimated. Otherwise it reports `pass`.
+The hook reports `deny` when a change exceeds a deny [cost threshold](#cost-thresholds). It reports `warn` when a change exceeds a warn threshold, when a unit could not be estimated, or when the estimate failed. Otherwise it reports `pass`.
 
 ## Inputs
 
@@ -42,9 +42,9 @@ Settings are supplied as environment variables. Set them in the block's `env`, o
 |---|---|
 | `PIPELINES_HOOK_INFRACOST_CLI_VERSION` | The Infracost CLI version the hook installs. Defaults to the version the released hook was tested against. |
 | `PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_AMOUNT` | A monthly amount. The hook reports `warn` when the Total Change exceeds it. |
-| `PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_PERCENT` | A percentage of the previous total. The hook reports `warn` when the Total Change exceeds it. |
+| `PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_PERCENT` | A percentage. The hook reports `warn` when the Total Change, as a percentage of the previous total, exceeds it. |
 | `PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_AMOUNT` | A monthly amount. The hook reports `deny` when the Total Change exceeds it. |
-| `PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_PERCENT` | A percentage of the previous total. The hook reports `deny` when the Total Change exceeds it. |
+| `PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_PERCENT` | A percentage. The hook reports `deny` when the Total Change, as a percentage of the previous total, exceeds it. |
 
 ### Infracost CLI settings
 
@@ -105,37 +105,36 @@ See Infracost's [usage costs](https://www.infracost.io/docs/features/usage_based
 
 ## Cost thresholds
 
-Set a threshold to have the hook warn on, or block, a change that raises your monthly cost by more than you allow. Both measures apply to the Total Change for the whole run rather than to individual units: the change as an amount, and the change as a percentage of the previous total. Each of the four variables is optional.
+Set a threshold to have the hook warn on, or block, a change that raises your monthly cost above a limit you set. Thresholds apply to the Total Change for the whole run rather than to individual units, as an amount or as a percentage of the previous total, and each is optional.
 
 ```hcl
 repository {
   after_hook "infracost_estimate" {
-    name     = "Infracost Estimate"
-    commands = ["plan"]
-    execute  = ["pipelines", "hook", "infracost@v0"]
+    # ...
 
     env {
       PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_AMOUNT  = "100"
-      PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_AMOUNT  = "500"
       PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_PERCENT = "50"
     }
   }
 }
 ```
 
-A threshold is a whole number greater than zero. An amount is in the currency the estimate reports, so `500` is 500 per month, in euros when `INFRACOST_CURRENCY` is `EUR`. A percentage is the number of percent, so `50` means 50%, not `0.5`.
+Each threshold is a whole number greater than zero. An amount is in the currency the estimate reports, and a value the hook cannot read fails the run.
 
 Above the table, the hook lists every threshold a change exceeds:
 
 ![Cost Thresholds Comment](/img/pipelines/guides/infracost-hook-thresholds.png)
 
-The hook reports `deny` for a change that exceeds both a warn and a deny threshold, and lists only the deny thresholds it exceeded. A `deny` result fails the run and blocks the pull or merge request.
+### Evaluation
 
 - A change equal to a threshold does not exceed it.
 - A change that lowers your monthly cost, or leaves it unchanged, never exceeds a threshold.
-- A percentage threshold does nothing on a change with no previous cost to compare against.
-- The two measures are independent, and a change can exceed both.
-- A unit the hook could not estimate counts as zero, so a change with a ⚠️ row can stay under a threshold its full cost would exceed.
+- A percentage threshold is skipped when the previous total is zero, so it never fires on newly created infrastructure. An amount threshold still applies.
+- A unit the hook could not estimate contributes zero, so a change with a ⚠️ row can stay under a threshold its full cost would exceed.
+- A run whose estimate failed reports `warn`, with no threshold checked.
+- A change that exceeds both a warn and a deny threshold reports `deny`, and only the deny thresholds are listed.
+- A `deny` result fails the run and blocks the pull or merge request.
 
 ## Related documentation
 
