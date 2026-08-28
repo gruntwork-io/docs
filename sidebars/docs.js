@@ -347,6 +347,11 @@ const sidebar = [
         id: "2.0/docs/pipelines/tutorials/deploying-to-aws-gov-cloud",
       },
       {
+        label: "Connecting to Azure Government",
+        type: "doc",
+        id: "2.0/docs/pipelines/tutorials/deploying-to-azure-government",
+      },
+      {
         label: "Slack Deploy Notification",
         type: "doc",
         id: "2.0/docs/pipelines/tutorials/slack-deploy-notification",
