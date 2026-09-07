@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="5.1.0" lastModifiedVersion="5.0.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="5.1.0" lastModifiedVersion="5.1.0"/>
 
 # EKS Cluster Control Plane Module
 
 <a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-control-plane" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v5.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v5.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module launches an [Elastic Container Service for Kubernetes
 Cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html).
@@ -2162,6 +2162,6 @@ The IPv4 CIDR block that Kubernetes pod and service IP addresses are assigned fr
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-control-plane/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0238b7fe4a7460a0907bdedd81ed262c"
+  "hash": "13e8c95c82c233f8f5c397cbe1cf76ef"
 }
 ##DOCS-SOURCER-END -->
