@@ -194,10 +194,21 @@ apply_immediately           = true
 
 Apply: `terraform apply`
 
-Then read the `read_replica_engine_versions` output, which reports the version each replica is actually running. If it
-still reports the old version, phase 1 has not happened yet and phase 2 will fail, so do not start it. Note that every
-replica restarts at once: they are one `count` resource with no ordering between the instances. If reads have to stay
-served throughout, apply them one at a time with
+Then confirm each replica actually moved, by asking AWS rather than Terraform:
+
+```shell
+aws rds describe-db-instances \
+   --db-instance-identifier <replica identifier> \
+   --query 'DBInstances[0].EngineVersion'
+```
+
+Do not gate phase 2 on the `read_replica_engine_versions` output. It reports the version Terraform state held at the
+last refresh, so straight after the apply that moves the version it can still show the old one even though the replica
+has upgraded, and it catches up on the next refresh or apply. It is a fine check between applies, just not a check on
+the apply that has only now finished.
+
+Note that every replica restarts at once: they are one `count` resource with no ordering between the instances. If
+reads have to stay served throughout, apply them one at a time with
 `-target='module.<your module name>.module.replicas.aws_db_instance.replicas[0]'` and so on.
 
 **Phase 2: upgrade the primary**
@@ -2156,7 +2167,7 @@ A list of connection endpoints for the read replica RDS instances in address:por
 <HclListItem name="read_replica_engine_versions">
 <HclListItemDescription>
 
-A list of the engine versions the read replica RDS instances are actually running, as reported by AWS.
+A list of the engine versions the read replica RDS instances are running, as of the last refresh of Terraform state. Immediately after an apply that changes the version, this can still report the old version even though the replica has upgraded; it catches up on the next refresh or apply.
 
 </HclListItemDescription>
 </HclListItem>
@@ -2196,6 +2207,6 @@ The ID of the security group created for the RDS instance.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "450e2fed00e3df463d0148adfb72a0be"
+  "hash": "c55c6fb1f1efa60b97015291e64c53ae"
 }
 ##DOCS-SOURCER-END -->

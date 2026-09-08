@@ -55,10 +55,13 @@ Upgrading the source instance first fails with `DBUpgradeDependencyFailure: One 
 replicas need to be upgraded`. So it takes two applies:
 
 1.  Set `engine_version` on this module to the target version and `apply_immediately` to `true`, leave the source
-    instance's `engine_version` where it is, and apply. Read the `read_replica_engine_versions` output to confirm every
-    replica reports the target version; while it still reports the old one, the upgrade has not happened yet and the
-    next step will fail. Every replica restarts at once, since they are one `count` resource with no ordering between
-    the instances, so `-target` them one index at a time if reads have to stay served.
+    instance's `engine_version` where it is, and apply. Confirm every replica moved by asking AWS rather than
+    Terraform, `aws rds describe-db-instances --db-instance-identifier <replica identifier> --query
+    'DBInstances[0].EngineVersion'`. Do not gate the next step on the `read_replica_engine_versions` output: it reports
+    the version Terraform state held at the last refresh, so straight after this apply it can still show the old one
+    even though the replica has upgraded, and it catches up on the next refresh or apply. Every replica restarts at
+    once, since they are one `count` resource with no ordering between the instances, so `-target` them one index at a
+    time if reads have to stay served.
 2.  Move the source instance's `engine_version` to the target version and apply.
 
 Then clear `engine_version` back to `null`. That is a no-op against the state you just reached, because
@@ -1130,7 +1133,7 @@ A list of connection endpoints for the read replica instances in address:port fo
 <HclListItem name="read_replica_engine_versions">
 <HclListItemDescription>
 
-A list of the engine versions the read replica instances are actually running, as reported by AWS.
+A list of the engine versions the read replica instances are running, as of the last refresh of Terraform state. Immediately after an apply that changes the version, this can still report the old version even though the replica has upgraded; it catches up on the next refresh or apply.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1170,6 +1173,6 @@ The port number on which the read replicas accept connections.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "985894bc29b1be50b53e4adc57d32f4e"
+  "hash": "79d9e3c78aed1cddd701811dd2565c89"
 }
 ##DOCS-SOURCER-END -->
