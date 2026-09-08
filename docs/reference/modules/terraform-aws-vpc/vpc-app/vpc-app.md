@@ -90,7 +90,7 @@ For more IPv6 information, please see the following documentation from AWS - [IP
 
 ### Simple IPv6 Assigned from AWS Example
 
-The following example assigns your VPC a CIDR block from AWS and assigns an IPv6 CIDR block to each public subnet.
+The following example assigns your VPC a CIDR block from AWS and assigns an IPv6 CIDR block to each subnet.
 
 ```hcl
 module "vpc_app_ipv6_example" {
@@ -104,6 +104,30 @@ module "vpc_app_ipv6_example" {
   vpc_name                         = var.vpc_name
 }
 ```
+
+### IPv6 in the Private Subnets
+
+`enable_ipv6` assigns a /64 to every subnet tier, not only the public one. The private tiers reach the internet
+through an egress-only internet gateway, which permits outbound IPv6 connections and no inbound ones, so IPv6
+traffic leaves the VPC without a NAT gateway.
+
+Tier offsets within the VPC prefix come from `ipv6_subnet_spacing` rather than the IPv4 `subnet_spacing` variables,
+because `ipv6_subnet_bits` addresses at most 256 subnets while the IPv4 spacing values may be considerably larger.
+
+### Reaching IPv4-only Destinations with DNS64 and NAT64
+
+An IPv6-only workload cannot connect to an IPv4-only endpoint, which still describes many AWS service endpoints and
+much of the internet. `enable_dns64` turns on DNS64 for the private subnets, so that the Route 53 Resolver answers
+with a synthesized AAAA record inside `64:ff9b::/96` for any name that has no AAAA record of its own, and adds a
+route for that prefix to the NAT gateway, which translates the traffic to IPv4.
+
+An EKS cluster created with an `ipv6` ipFamily needs this: its nodes are dual stack, but its pods are given IPv6
+addresses only, so everything a pod reaches over IPv4 goes through NAT64.
+
+DNS64 is enabled only on the tiers that have a NAT64 route to go with it, because a synthesized AAAA record that
+nothing can translate is worse than no DNS64 at all. It therefore has no effect unless `num_nat_gateways` is
+greater than zero, and follows `allow_private_app_internet_access` and `allow_private_persistence_internet_access`
+for each tier.
 
 ## Sample Usage
 
@@ -311,6 +335,16 @@ module "vpc_app" {
   # true.
   enable_dns_support = true
 
+  # (Optional) Enables DNS64 on the private subnets, so that the Route 53
+  # Resolver synthesizes AAAA records for IPv4-only destinations. Traffic to the
+  # synthesized addresses is sent to a NAT gateway for NAT64 translation, which
+  # is what allows IPv6-only workloads (e.g. an EKS cluster with an ipv6
+  # ipFamily) to reach IPv4-only endpoints. This requires a NAT gateway, so it
+  # has no effect unless var.num_nat_gateways is greater than zero and internet
+  # access is allowed for the tier. Only used if var.enable_ipv6 is true.
+  # Defaults to false.
+  enable_dns64 = false
+
   # (Optional) Enables IPv6 resources for the VPC. Defaults to false.
   enable_ipv6 = false
 
@@ -403,6 +437,12 @@ module "vpc_app" {
   # bits for a /64.
   ipv6_subnet_bits = 8
 
+  # (Optional) The amount of spacing between the IPv6 blocks of the different
+  # subnet tiers. Separate from var.subnet_spacing because ipv6_subnet_bits
+  # yields at most 256 subnets, which the larger IPv4 spacing values would
+  # overrun.
+  ipv6_subnet_spacing = 10
+
   # Specify true to indicate that instances launched into the public subnet
   # should be assigned a public IP address (versus a private IP address)
   map_public_ip_on_launch = false
@@ -472,6 +512,12 @@ module "vpc_app" {
   # defined here will override tags defined as custom_tags in case of conflict.
   private_app_subnet_custom_tags = {}
 
+  # (Optional) A map listing the specific IPv6 CIDR blocks desired for each
+  # private-app subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n
+  # is the number of Availability Zones. If left blank, we will compute a
+  # reasonable CIDR block for each subnet.
+  private_app_subnet_ipv6_cidr_blocks = {}
+
   # A map of tags to apply to the private-persistence route tables(s), on top of
   # the custom_tags. The key is the tag name and the value is the tag value.
   # Note that tags defined here will override tags defined as custom_tags in
@@ -489,6 +535,12 @@ module "vpc_app" {
   # that tags defined here will override tags defined as custom_tags in case of
   # conflict.
   private_persistence_subnet_custom_tags = {}
+
+  # (Optional) A map listing the specific IPv6 CIDR blocks desired for each
+  # private-persistence subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n
+  # where n is the number of Availability Zones. If left blank, we will compute
+  # a reasonable CIDR block for each subnet.
+  private_persistence_subnet_ipv6_cidr_blocks = {}
 
   # The name of the private persistence subnet tier. This is used to tag the
   # subnet and its resources.
@@ -848,6 +900,16 @@ inputs = {
   # true.
   enable_dns_support = true
 
+  # (Optional) Enables DNS64 on the private subnets, so that the Route 53
+  # Resolver synthesizes AAAA records for IPv4-only destinations. Traffic to the
+  # synthesized addresses is sent to a NAT gateway for NAT64 translation, which
+  # is what allows IPv6-only workloads (e.g. an EKS cluster with an ipv6
+  # ipFamily) to reach IPv4-only endpoints. This requires a NAT gateway, so it
+  # has no effect unless var.num_nat_gateways is greater than zero and internet
+  # access is allowed for the tier. Only used if var.enable_ipv6 is true.
+  # Defaults to false.
+  enable_dns64 = false
+
   # (Optional) Enables IPv6 resources for the VPC. Defaults to false.
   enable_ipv6 = false
 
@@ -940,6 +1002,12 @@ inputs = {
   # bits for a /64.
   ipv6_subnet_bits = 8
 
+  # (Optional) The amount of spacing between the IPv6 blocks of the different
+  # subnet tiers. Separate from var.subnet_spacing because ipv6_subnet_bits
+  # yields at most 256 subnets, which the larger IPv4 spacing values would
+  # overrun.
+  ipv6_subnet_spacing = 10
+
   # Specify true to indicate that instances launched into the public subnet
   # should be assigned a public IP address (versus a private IP address)
   map_public_ip_on_launch = false
@@ -1009,6 +1077,12 @@ inputs = {
   # defined here will override tags defined as custom_tags in case of conflict.
   private_app_subnet_custom_tags = {}
 
+  # (Optional) A map listing the specific IPv6 CIDR blocks desired for each
+  # private-app subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n
+  # is the number of Availability Zones. If left blank, we will compute a
+  # reasonable CIDR block for each subnet.
+  private_app_subnet_ipv6_cidr_blocks = {}
+
   # A map of tags to apply to the private-persistence route tables(s), on top of
   # the custom_tags. The key is the tag name and the value is the tag value.
   # Note that tags defined here will override tags defined as custom_tags in
@@ -1026,6 +1100,12 @@ inputs = {
   # that tags defined here will override tags defined as custom_tags in case of
   # conflict.
   private_persistence_subnet_custom_tags = {}
+
+  # (Optional) A map listing the specific IPv6 CIDR blocks desired for each
+  # private-persistence subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n
+  # where n is the number of Availability Zones. If left blank, we will compute
+  # a reasonable CIDR block for each subnet.
+  private_persistence_subnet_ipv6_cidr_blocks = {}
 
   # The name of the private persistence subnet tier. This is used to tag the
   # subnet and its resources.
@@ -1620,6 +1700,15 @@ If set to false, the default security groups will NOT be created. This variable 
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="enable_dns64" requirement="optional" type="bool">
+<HclListItemDescription>
+
+(Optional) Enables DNS64 on the private subnets, so that the Route 53 Resolver synthesizes AAAA records for IPv4-only destinations. Traffic to the synthesized addresses is sent to a NAT gateway for NAT64 translation, which is what allows IPv6-only workloads (e.g. an EKS cluster with an ipv6 ipFamily) to reach IPv4-only endpoints. This requires a NAT gateway, so it has no effect unless <a href="#num_nat_gateways"><code>num_nat_gateways</code></a> is greater than zero and internet access is allowed for the tier. Only used if <a href="#enable_ipv6"><code>enable_ipv6</code></a> is true. Defaults to false.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="enable_ipv6" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1820,6 +1909,15 @@ list(object({
 <HclListItemDefaultValue defaultValue="8"/>
 </HclListItem>
 
+<HclListItem name="ipv6_subnet_spacing" requirement="optional" type="number">
+<HclListItemDescription>
+
+(Optional) The amount of spacing between the IPv6 blocks of the different subnet tiers. Separate from <a href="#subnet_spacing"><code>subnet_spacing</code></a> because ipv6_subnet_bits yields at most 256 subnets, which the larger IPv4 spacing values would overrun.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="10"/>
+</HclListItem>
+
 <HclListItem name="map_public_ip_on_launch" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1928,6 +2026,15 @@ A map of tags to apply to the private-app Subnet, on top of the custom_tags. The
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="private_app_subnet_ipv6_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+(Optional) A map listing the specific IPv6 CIDR blocks desired for each private-app subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
 <HclListItem name="private_persistence_route_table_custom_tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -1950,6 +2057,15 @@ A map listing the specific CIDR blocks desired for each private-persistence subn
 <HclListItemDescription>
 
 A map of tags to apply to the private-persistence Subnet, on top of the custom_tags. The key is the tag name and the value is the tag value. Note that tags defined here will override tags defined as custom_tags in case of conflict.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="private_persistence_subnet_ipv6_cidr_blocks" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+(Optional) A map listing the specific IPv6 CIDR blocks desired for each private-persistence subnet. The key must be in the form AZ-0, AZ-1, ... AZ-n where n is the number of Availability Zones. If left blank, we will compute a reasonable CIDR block for each subnet.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
@@ -2283,6 +2399,9 @@ The IPv6 CIDR block associated with the VPC.
 <HclListItem name="private_app_subnet_ids">
 </HclListItem>
 
+<HclListItem name="private_app_subnet_ipv6_cidr_blocks">
+</HclListItem>
+
 <HclListItem name="private_app_subnet_route_table_ids">
 </HclListItem>
 
@@ -2315,6 +2434,9 @@ DEPRECATED. Use `private_persistence_subnet_arns` instead.
 </HclListItem>
 
 <HclListItem name="private_persistence_subnet_ids">
+</HclListItem>
+
+<HclListItem name="private_persistence_subnet_ipv6_cidr_blocks">
 </HclListItem>
 
 <HclListItem name="private_persistence_subnet_route_table_ids">
@@ -2430,6 +2552,6 @@ A map of all transit subnets, with the subnet ID as the key, and all `aws-subnet
     "https://github.com/gruntwork-io/terraform-aws-vpc/tree/v0.29.0/modules/vpc-app/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "85fcaff896e9ea41be750cd8129de68c"
+  "hash": "ec7c7627999f75a553c7a8b3c87b7149"
 }
 ##DOCS-SOURCER-END -->
