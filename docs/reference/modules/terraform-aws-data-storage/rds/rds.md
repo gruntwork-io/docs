@@ -83,6 +83,9 @@ RDS supports automatically installing minor version upgrades. For example, it ca
 1.  Set the `auto_minor_version_upgrade` parameter to `true`.
 2.  Set the `engine_version` parameter to `MAJOR.MINOR` and omit the `PATCH` number.
 
+If you run read replicas, a manual minor version upgrade takes two applies. See
+[Read Replica Version Upgrades](#read-replica-version-upgrades-two-applies-required) below.
+
 ### Major Version Upgrade
 
 RDS supports automatically installing major version upgrades. To enable this functionality, follow these steps:
@@ -91,6 +94,15 @@ RDS supports automatically installing major version upgrades. To enable this fun
 2.  Set the `engine_version` parameter to `MAJOR.MINOR` and omit the `PATCH` number.
 
 **Note**: A minimal downtime is expected during a major version upgrade. Make sure to communicate the potential downtime to relevant stakeholders in advance.
+
+**Read replicas**: on PostgreSQL, AWS upgrades in-Region read replicas along with the primary, so leave
+`read_replica_engine_version` at `null`: "If you upgrade a DB instance that has in-Region read replicas, Amazon RDS
+upgrades the replicas along with the primary DB instance"
+([Upgrades of the RDS for PostgreSQL DB engine](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.PostgreSQL.html),
+checked 7 September 2026). Pinning it to the old version there is a trap, because AWS moves the replicas forward with
+the primary and the next plan then proposes moving them back down. On MySQL and MariaDB, AWS requires the replicas to
+be upgraded first even for a major upgrade, so follow
+[Read Replica Version Upgrades](#read-replica-version-upgrades-two-applies-required) below.
 
 #### PostgreSQL Major Version Upgrades: Two-Phase Process Required
 
@@ -135,6 +147,74 @@ Apply: `terraform apply`
 *   Expect 5-30 minutes downtime
 *   Test in non-production first
 *   After upgrade, set `allow_major_version_upgrade = false` to prevent accidental upgrades
+
+### Read Replica Version Upgrades: Two Applies Required
+
+If you set `num_read_replicas` above 0, upgrading the primary fails with `DBUpgradeDependencyFailure: One or more of
+the DB Instance's read replicas need to be upgraded`. AWS requires the replicas to go first, and which upgrades that
+covers depends on the engine:
+
+*   PostgreSQL, minor upgrades (for example 16.8 to 16.14): "If your database has read replicas, you must first upgrade
+    all of the read replicas before you upgrade the source instance or cluster"
+    ([Upgrades of the RDS for PostgreSQL DB engine](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.PostgreSQL.html),
+    checked 7 September 2026). PostgreSQL major upgrades are different: AWS moves in-Region replicas itself, as
+    described under [Major Version Upgrade](#major-version-upgrade) above.
+*   MySQL and MariaDB, minor and major upgrades alike: "If your MySQL DB instance uses read replicas, then you must
+    upgrade all of the read replicas before upgrading the source instance"
+    ([Upgrading a MySQL DB instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.MySQL.html),
+    checked 7 September 2026). That page states the rule with no minor or major qualifier.
+
+This module cannot satisfy that in one apply, because the replicas are created from the primary, so Terraform always
+plans the primary first. This is a different problem from
+[PostgreSQL Major Version Upgrades](#postgresql-major-version-upgrades-two-phase-process-required) above, which is
+about parameter group families rather than replica ordering. Use `read_replica_engine_version` to move the replicas in
+one apply and `engine_version` to move the primary in the next.
+
+Three things to settle before you start:
+
+*   **Set `apply_immediately = true`, or expect to wait.** RDS holds an engine version change until the next maintenance
+    window unless the modification is applied immediately, and this module defaults `apply_immediately` to `false`. With
+    the default, phase 1 returns green while the replicas are still on the old version, and phase 2 then fails with the
+    error you were trying to avoid.
+*   **Do not use this procedure with `enable_blue_green_update = true`.** AWS copies the read replicas into the green
+    environment and upgrades them there, so upgrading the production replicas in place first gives up the low downtime
+    blue/green exists to provide.
+*   **Do not raise `num_read_replicas` part way through.** `read_replica_engine_version` reaches a replica on a
+    modification only, not on the call that creates it, so a replica added during the upgrade comes up on the primary's
+    version and needs a second apply of its own.
+
+**Phase 1: upgrade the read replicas**
+
+```hcl
+# The primary stays where it is
+engine_version              = "16.8"
+read_replica_engine_version = "16.14"
+apply_immediately           = true
+```
+
+Apply: `terraform apply`
+
+Then read the `read_replica_engine_versions` output, which reports the version each replica is actually running. If it
+still reports the old version, phase 1 has not happened yet and phase 2 will fail, so do not start it. Note that every
+replica restarts at once: they are one `count` resource with no ordering between the instances. If reads have to stay
+served throughout, apply them one at a time with
+`-target='module.<your module name>.module.replicas.aws_db_instance.replicas[0]'` and so on.
+
+**Phase 2: upgrade the primary**
+
+```hcl
+engine_version              = "16.14"
+read_replica_engine_version = "16.14"
+apply_immediately           = true
+```
+
+Apply: `terraform apply`
+
+Then clear `read_replica_engine_version` back to `null`. That is a no-op against the state you just reached, because
+`engine_version` on `aws_db_instance` is a computed attribute, so leaving it unset tracks whatever AWS reports. Leaving
+a full `MAJOR.MINOR.PATCH` version pinned instead invites drift: with `auto_minor_version_upgrade = true`, the default,
+AWS moves the replicas to a newer patch during a maintenance window, and the next plan then proposes moving them back
+down to the pinned value.
 
 ### Blue/Green Deployment for Low-Downtime Updates
 
@@ -532,6 +612,23 @@ module "rds" {
   # WARNING: - In nearly all cases a database should NOT be publicly accessible.
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
+
+  # The engine version to run on the read replicas. If null, the replicas track
+  # the primary's version. Set it to the target version to upgrade the replicas
+  # first, then move var.engine_version to that same version in a second apply:
+  # AWS refuses to upgrade a primary whose replicas run an older version, on a
+  # minor version upgrade of any engine and on a major version upgrade of MySQL
+  # or MariaDB. Three caveats: it has no effect when a replica is created, since
+  # a new replica always comes up on the primary's version and a second apply
+  # moves it; the change is held until the maintenance window unless
+  # var.apply_immediately is true; and while var.auto_minor_version_upgrade is
+  # true, prefer MAJOR.MINOR over a full patch version and clear this back to
+  # null once the upgrade is done, or AWS patching will drift away from the
+  # pinned value. Leave it null for a PostgreSQL major version upgrade, where
+  # AWS upgrades in-Region replicas along with the primary. See the 'Read
+  # Replica Version Upgrades' section of this module README for the full
+  # sequence.
+  read_replica_engine_version = null
 
   # Redefine replica instance type, if you want to define a different RDS
   # instance type for replica.
@@ -987,6 +1084,23 @@ inputs = {
   # WARNING: - In nearly all cases a database should NOT be publicly accessible.
   # Only set this to true if you want the database open to the internet.
   publicly_accessible = false
+
+  # The engine version to run on the read replicas. If null, the replicas track
+  # the primary's version. Set it to the target version to upgrade the replicas
+  # first, then move var.engine_version to that same version in a second apply:
+  # AWS refuses to upgrade a primary whose replicas run an older version, on a
+  # minor version upgrade of any engine and on a major version upgrade of MySQL
+  # or MariaDB. Three caveats: it has no effect when a replica is created, since
+  # a new replica always comes up on the primary's version and a second apply
+  # moves it; the change is held until the maintenance window unless
+  # var.apply_immediately is true; and while var.auto_minor_version_upgrade is
+  # true, prefer MAJOR.MINOR over a full patch version and clear this back to
+  # null once the upgrade is done, or AWS patching will drift away from the
+  # pinned value. Leave it null for a PostgreSQL major version upgrade, where
+  # AWS upgrades in-Region replicas along with the primary. See the 'Read
+  # Replica Version Upgrades' section of this module README for the full
+  # sequence.
+  read_replica_engine_version = null
 
   # Redefine replica instance type, if you want to define a different RDS
   # instance type for replica.
@@ -1808,6 +1922,15 @@ WARNING: - In nearly all cases a database should NOT be publicly accessible. Onl
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="read_replica_engine_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The engine version to run on the read replicas. If null, the replicas track the primary's version. Set it to the target version to upgrade the replicas first, then move <a href="#engine_version"><code>engine_version</code></a> to that same version in a second apply: AWS refuses to upgrade a primary whose replicas run an older version, on a minor version upgrade of any engine and on a major version upgrade of MySQL or MariaDB. Three caveats: it has no effect when a replica is created, since a new replica always comes up on the primary's version and a second apply moves it; the change is held until the maintenance window unless <a href="#apply_immediately"><code>apply_immediately</code></a> is true; and while <a href="#auto_minor_version_upgrade"><code>auto_minor_version_upgrade</code></a> is true, prefer MAJOR.MINOR over a full patch version and clear this back to null once the upgrade is done, or AWS patching will drift away from the pinned value. Leave it null for a PostgreSQL major version upgrade, where AWS upgrades in-Region replicas along with the primary. See the 'Read Replica Version Upgrades' section of this module README for the full sequence.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="read_replica_instance_type" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -2030,6 +2153,14 @@ A list of connection endpoints for the read replica RDS instances in address:por
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="read_replica_engine_versions">
+<HclListItemDescription>
+
+A list of the engine versions the read replica RDS instances are actually running, as reported by AWS.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="read_replica_ids">
 <HclListItemDescription>
 
@@ -2065,6 +2196,6 @@ The ID of the security group created for the RDS instance.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c6575a5505f98fa37cafd7f17901d9c4"
+  "hash": "450e2fed00e3df463d0148adfb72a0be"
 }
 ##DOCS-SOURCER-END -->

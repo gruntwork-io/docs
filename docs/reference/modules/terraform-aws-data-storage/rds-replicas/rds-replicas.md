@@ -26,6 +26,57 @@ queries from your applications to the read replica. Refer to
 [Working with DB instance read replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html)
 for more information.
 
+## Upgrading the engine version on a replica
+
+Set `engine_version` to upgrade replicas that already exist. Leave it `null`, the default, and each replica reports
+whatever version AWS gives it, which is the version it inherited from the primary.
+
+Two limits to know before you rely on it:
+
+*   **It does nothing when a replica is created.** The provider sends the version on a modification only, not on the
+    create call that clones the source instance, so a replica created while `engine_version` is set comes up on the
+    source instance's version and a second apply moves it. Raising `num_read_replicas` part way through an upgrade
+    therefore takes two applies.
+*   **It is held until the maintenance window unless `apply_immediately` is true.** With the default, `false`, the apply
+    returns green and the replica has not moved.
+
+You need this wherever AWS requires the replicas to be upgraded before the source instance:
+
+*   PostgreSQL, minor upgrades: "If your database has read replicas, you must first upgrade all of the read replicas
+    before you upgrade the source instance or cluster"
+    ([Upgrades of the RDS for PostgreSQL DB engine](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.PostgreSQL.html),
+    checked 7 September 2026).
+*   MySQL and MariaDB, minor and major upgrades alike: "If your MySQL DB instance uses read replicas, then you must
+    upgrade all of the read replicas before upgrading the source instance"
+    ([Upgrading a MySQL DB instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.MySQL.html),
+    checked 7 September 2026). That page states the rule with no minor or major qualifier.
+
+Upgrading the source instance first fails with `DBUpgradeDependencyFailure: One or more of the DB Instance's read
+replicas need to be upgraded`. So it takes two applies:
+
+1.  Set `engine_version` on this module to the target version and `apply_immediately` to `true`, leave the source
+    instance's `engine_version` where it is, and apply. Read the `read_replica_engine_versions` output to confirm every
+    replica reports the target version; while it still reports the old one, the upgrade has not happened yet and the
+    next step will fail. Every replica restarts at once, since they are one `count` resource with no ordering between
+    the instances, so `-target` them one index at a time if reads have to stay served.
+2.  Move the source instance's `engine_version` to the target version and apply.
+
+Then clear `engine_version` back to `null`. That is a no-op against the state you just reached, because
+`engine_version` on `aws_db_instance` is a computed attribute, so leaving it unset tracks whatever AWS reports. Leaving
+a full `MAJOR.MINOR.PATCH` version pinned instead invites drift: with `auto_minor_version_upgrade = true`, the default,
+AWS moves the replicas to a newer patch during a maintenance window, and the next plan then proposes moving them back
+down to the pinned value.
+
+A **PostgreSQL major** version upgrade is the exception, and the answer there depends on where the replica lives:
+
+*   **In-Region replicas**: leave `engine_version` at `null`. AWS does the work: "If you upgrade a DB instance that has
+    in-Region read replicas, Amazon RDS upgrades the replicas along with the primary DB instance" (PostgreSQL page
+    above, same date). A pinned old version is a trap here, because AWS moves the replicas forward with the primary and
+    the next plan then proposes moving them back down to the pinned value.
+*   **Cross-region replicas**: that rule covers in-Region replicas only. A replica created by a separate call to this
+    module against a provider in another region is its own `aws_db_instance`, and it moves only when you set
+    `engine_version` on it, so give it its own apply.
+
 ## Promoting Read Replica as Primary
 
 For disaster recovery, you may need to promote a read replica as a primary instance. Promoting an RDS replica to be a
@@ -198,6 +249,22 @@ module "rds_replicas" {
   # error, general, listener, slowquery, trace, postgresql (PostgreSQL) and
   # upgrade (PostgreSQL).
   enabled_cloudwatch_logs_exports = []
+
+  # The engine version to run on the read replicas (e.g. 16.14 for postgres). If
+  # null, each replica reports whatever version AWS gives it, which is the
+  # version it inherited from the primary. Set this to upgrade existing replicas
+  # ahead of the source instance, which AWS requires for a minor version upgrade
+  # on any engine, and on MySQL and MariaDB for a major version upgrade too.
+  # Three caveats: it has no effect when a replica is created, since a new
+  # replica always comes up on the source instance version and a second apply
+  # moves it; the change is held until the maintenance window unless
+  # var.apply_immediately is true; and while var.auto_minor_version_upgrade is
+  # true, prefer MAJOR.MINOR over a full patch version and clear this back to
+  # null once the upgrade is done, or AWS patching will drift away from the
+  # pinned value. Leave it null for a PostgreSQL major version upgrade of an
+  # in-Region replica: AWS upgrades those along with the primary. See this
+  # module README for the sequence.
+  engine_version = null
 
   # Specifies whether IAM database authentication is enabled. This option is
   # only available for MySQL and PostgreSQL engines.
@@ -449,6 +516,22 @@ inputs = {
   # error, general, listener, slowquery, trace, postgresql (PostgreSQL) and
   # upgrade (PostgreSQL).
   enabled_cloudwatch_logs_exports = []
+
+  # The engine version to run on the read replicas (e.g. 16.14 for postgres). If
+  # null, each replica reports whatever version AWS gives it, which is the
+  # version it inherited from the primary. Set this to upgrade existing replicas
+  # ahead of the source instance, which AWS requires for a minor version upgrade
+  # on any engine, and on MySQL and MariaDB for a major version upgrade too.
+  # Three caveats: it has no effect when a replica is created, since a new
+  # replica always comes up on the source instance version and a second apply
+  # moves it; the change is held until the maintenance window unless
+  # var.apply_immediately is true; and while var.auto_minor_version_upgrade is
+  # true, prefer MAJOR.MINOR over a full patch version and clear this back to
+  # null once the upgrade is done, or AWS patching will drift away from the
+  # pinned value. Leave it null for a PostgreSQL major version upgrade of an
+  # in-Region replica: AWS upgrades those along with the primary. See this
+  # module README for the sequence.
+  engine_version = null
 
   # Specifies whether IAM database authentication is enabled. This option is
   # only available for MySQL and PostgreSQL engines.
@@ -810,6 +893,15 @@ List of log types to enable for exporting to CloudWatch logs. If omitted, no log
 <HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
+<HclListItem name="engine_version" requirement="optional" type="string">
+<HclListItemDescription>
+
+The engine version to run on the read replicas (e.g. 16.14 for postgres). If null, each replica reports whatever version AWS gives it, which is the version it inherited from the primary. Set this to upgrade existing replicas ahead of the source instance, which AWS requires for a minor version upgrade on any engine, and on MySQL and MariaDB for a major version upgrade too. Three caveats: it has no effect when a replica is created, since a new replica always comes up on the source instance version and a second apply moves it; the change is held until the maintenance window unless <a href="#apply_immediately"><code>apply_immediately</code></a> is true; and while <a href="#auto_minor_version_upgrade"><code>auto_minor_version_upgrade</code></a> is true, prefer MAJOR.MINOR over a full patch version and clear this back to null once the upgrade is done, or AWS patching will drift away from the pinned value. Leave it null for a PostgreSQL major version upgrade of an in-Region replica: AWS upgrades those along with the primary. See this module README for the sequence.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="iam_database_authentication_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1035,6 +1127,14 @@ A list of connection endpoints for the read replica instances in address:port fo
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="read_replica_engine_versions">
+<HclListItemDescription>
+
+A list of the engine versions the read replica instances are actually running, as reported by AWS.
+
+</HclListItemDescription>
+</HclListItem>
+
 <HclListItem name="read_replica_ids">
 <HclListItemDescription>
 
@@ -1070,6 +1170,6 @@ The port number on which the read replicas accept connections.
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/rds-replicas/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "34539994198560138ef1059418f1e728"
+  "hash": "985894bc29b1be50b53e4adc57d32f4e"
 }
 ##DOCS-SOURCER-END -->
