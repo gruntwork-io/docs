@@ -678,6 +678,25 @@ The Azure client ID that Pipelines will authenticate with when running Terragrun
 </HclListItemDescription>
 </HclListItem>
 
+<HclListItem name="cloud_environment" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Azure cloud environment that Pipelines targets. Pipelines exports this value as `ARM_ENVIRONMENT` when invoking Terragrunt, which the [azurerm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs#environment) and [azuread](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs#environment) providers read to select the matching set of cloud endpoints.
+
+Accepted values match the azurerm provider exactly (lowercase):
+
+- `public` (default): the public Azure cloud (`login.microsoftonline.com` / `management.azure.com`).
+- `usgovernment`: Azure Government (`login.microsoftonline.us` / `management.usgovcloudapi.net`). See the [Connecting to Azure Government](/2.0/docs/pipelines/tutorials/deploying-to-azure-government) tutorial for end-to-end setup.
+- `china`: Azure operated by 21Vianet in China.
+- `german`: Azure Germany (retired by Microsoft in 2021; retained for parity with the azurerm provider).
+- `stack`: Azure Stack Hub.
+
+To target a sovereign cloud, the same value should be passed to the `environment` attribute of your generated `azurerm` and `azuread` provider blocks so local Terragrunt runs target the same cloud as Pipelines.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="public"/>
+</HclListItem>
+
 ### `custom` block attributes
 
 <HclListItem name="auth_provider_cmd" requirement="required" type="string">
