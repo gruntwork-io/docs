@@ -140,6 +140,21 @@ Enables Terragrunt features to reduce the potential changes during a run-all. Te
 </li>
 </ul>
 
+#### `PIPELINES_FEATURE_EXPERIMENT_NO_TG_TF_PATH`
+<ul>
+<li>
+Stops Pipelines from setting [TG_TF_PATH](https://docs.terragrunt.com/reference/cli/commands/run/#tf-path), which it otherwise sets to the binary named by [tf_binary](/2.0/reference/pipelines/configurations-as-code/api#tf_binary), leaving Terragrunt to resolve the OpenTofu/Terraform binary itself.
+
+This flag takes precedence over [PIPELINES_FEATURE_EXPERIMENT_USE_MISE_EXEC_TG_WRAPPER](#pipelines_feature_experiment_use_mise_exec_tg_wrapper).
+</li>
+<li>
+**Default Value**: Disabled
+</li>
+<li>
+**How to Enable**: Set to `"true"`
+</li>
+</ul>
+
 #### `PIPELINES_FEATURE_EXPERIMENT_USE_MISE_EXEC_TG_WRAPPER`
 <ul>
 <li>
