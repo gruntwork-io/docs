@@ -1,0 +1,75 @@
+{
+  "commands": [
+    "plan"
+  ],
+  "description": "Summarize the terragrunt run's plan output with an AI model",
+  "env": [
+    {
+      "help": "API key.",
+      "name": "PIPELINES_HOOK_AI_SUMMARY_API_KEY",
+      "required": true
+    }
+  ],
+  "flags": [
+    {
+      "bool": false,
+      "default": "anthropic",
+      "enum": [
+        "anthropic",
+        "openrouter"
+      ],
+      "env": [
+        "PIPELINES_HOOK_AI_SUMMARY_PROVIDER"
+      ],
+      "help": "Who serves the model.",
+      "name": "provider",
+      "required": false
+    },
+    {
+      "bool": false,
+      "env": [
+        "PIPELINES_HOOK_AI_SUMMARY_MODEL"
+      ],
+      "help": "claude-sonnet-5 on anthropic, anthropic/claude-sonnet-5 on openrouter.",
+      "name": "model",
+      "required": true
+    },
+    {
+      "bool": false,
+      "default": "1500",
+      "env": [
+        "PIPELINES_HOOK_AI_SUMMARY_MAX_OUTPUT_TOKENS"
+      ],
+      "help": "Most tokens the model may write in its answer.",
+      "name": "max-output-tokens",
+      "required": false
+    },
+    {
+      "bool": false,
+      "default": "info",
+      "enum": [
+        "trace",
+        "debug",
+        "info",
+        "warning",
+        "error",
+        "fatal",
+        "panic"
+      ],
+      "env": [
+        "PIPELINES_HOOK_AI_SUMMARY_LOG_LEVEL"
+      ],
+      "group": "Logging",
+      "help": "Log verbosity. A more verbose PIPELINES_LOG_LEVEL overrides it. One of: trace,debug,info,warning,error,fatal,panic.",
+      "name": "log-level",
+      "required": false
+    }
+  ],
+  "internal": false,
+  "line": "v0.2",
+  "name": "ai-summary",
+  "phase": "after_hook",
+  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/ai-summary-v0.2.1",
+  "title": "AI Summary",
+  "version": "0.2.1"
+}
