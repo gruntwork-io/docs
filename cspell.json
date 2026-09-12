@@ -128,7 +128,8 @@
     "CMEK",
     "aiplatform",
     "Feedly",
-    "Inoreader"
+    "Inoreader",
+    "unscanned"
   ],
   "ignoreWords": [],
   "ignorePaths": [
