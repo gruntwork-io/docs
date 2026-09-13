@@ -89,6 +89,48 @@ module "backup_plan" {
 }
 ```
 
+## How do you back up directly into a logically air-gapped vault?
+
+By default, getting recovery points into a [logically air-gapped vault](https://docs.aws.amazon.com/aws-backup/latest/devguide/logicallyairgappedvault.html)
+means backing up to a standard vault and then adding a `copy_action`, which leaves you retaining two copies. Instead,
+set `target_logically_air_gapped_backup_vault_arn` on the rule to make the air-gapped vault the *primary* destination:
+
+```hcl
+module "backup_plan" {
+
+  ...
+
+  plans = {
+    "air-gapped-primary-backup-plan" = {
+        rule = {
+          target_vault_name = values(module.backup_vault.vault_names)[0],
+          target_logically_air_gapped_backup_vault_arn = module.backup_vault.vault_arns["my-air-gapped-vault"]
+          schedule = "cron(47 0/1 * * ? *)"
+          lifecycle = {
+            delete_after = 30
+          }
+        }
+        selection = {
+          selection_tag = {
+            type = "STRINGEQUALS"
+            "key" = "Snapshot"
+            "value" = true
+          }
+        }
+    }
+  }
+}
+```
+
+`target_vault_name` is still required. Resource types that support [full AWS Backup management](https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html#full-management)
+(e.g. S3, EFS) go straight to the air-gapped vault and never use it; resource types that do not (e.g. EBS/EC2, Aurora,
+FSx) get a temporary recovery point there that AWS copies over and then deletes. The air-gapped vault must be in the
+same account and region as the resources, and the rule's `lifecycle` must fall within the vault's retention bounds.
+
+Note that AWS Backup recovery point indexing and scheduled malware scanning do **not** support recovery points held in
+a logically air-gapped vault. See [Primary backups to logically air-gapped vaults](https://docs.aws.amazon.com/aws-backup/latest/devguide/lag-vault-primary-backup.html)
+and the [vault-air-gapped-primary-backup example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/examples/vault-air-gapped-primary-backup).
+
 ## How do you troubleshoot Backup jobs?
 
 See [Troubleshooting AWS Backup](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/core-concepts.md#troubleshooting-aws-backup) in the core-concepts guide.
@@ -249,6 +291,6 @@ The ARN of the IAM service role used by Backup plans
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.3.1/modules/backup-plan/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9844f7e4f3505654f7ed721387d0a3b5"
+  "hash": "e96fd82447c73252721fb0c21b8842e4"
 }
 ##DOCS-SOURCER-END -->
