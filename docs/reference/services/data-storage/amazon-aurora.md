@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.15.0" lastModifiedVersion="2.12.0"/>
+<VersionBadge version="2.16.0" lastModifiedVersion="2.12.0"/>
 
 # Amazon Aurora
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/data-stores/aurora" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=data-stores%2Faurora" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ If you’ve never used the Service Catalog before, make sure to read
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -79,7 +79,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture/),
     and it shows you how we build an end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
 
@@ -102,7 +102,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.15.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.16.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -498,6 +498,13 @@ module "aurora" {
   # db_config_secrets_manager_id.
   master_username = null
 
+  # The interval, in seconds, between points when Enhanced Monitoring metrics
+  # are collected for the DB instances. To disable collecting Enhanced
+  # Monitoring metrics, specify 0. Allowed values: 0, 1, 5, 15, 30, 60. When
+  # left null, the instances inherit var.cluster_monitoring_interval, so setting
+  # Enhanced Monitoring at the cluster level alone is sufficient.
+  monitoring_interval = null
+
   # Specifies whether Performance Insights is enabled or not. On Aurora MySQL,
   # Performance Insights is not supported on db.t2 or db.t3 DB instance classes.
   performance_insights_enabled = false
@@ -605,6 +612,17 @@ module "aurora" {
   # snapshots. Uses the default aws/rds key in KMS.
   storage_encrypted = true
 
+  # The storage type for the DB cluster. Leave null for Aurora Standard, or set
+  # 'aurora-iopt1' for Aurora I/O-Optimized, which removes per-request I/O
+  # charges. Requires Aurora MySQL 3.03.1+, or Aurora PostgreSQL 15.2, 14.7 or
+  # 13.10+, and an existing cluster can only switch to I/O-Optimized once every
+  # 30 days. To go back to Aurora Standard, set 'aurora' explicitly: reverting
+  # to null leaves the cluster where it is and plans empty. Either switch waits
+  # for the maintenance window unless var.apply_immediately is true. 'io1' is
+  # for Multi-AZ DB Clusters only and is not supported here. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.Aurora_Fea_Regions_DB-eng.Feature.storage-type.html
+  storage_type = null
+
   # Trigger an alarm if the number of connections to the DB instance goes above
   # this threshold.
   too_many_db_connections_threshold = null
@@ -629,7 +647,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.15.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/data-stores/aurora?ref=v2.16.0"
 }
 
 inputs = {
@@ -1028,6 +1046,13 @@ inputs = {
   # db_config_secrets_manager_id.
   master_username = null
 
+  # The interval, in seconds, between points when Enhanced Monitoring metrics
+  # are collected for the DB instances. To disable collecting Enhanced
+  # Monitoring metrics, specify 0. Allowed values: 0, 1, 5, 15, 30, 60. When
+  # left null, the instances inherit var.cluster_monitoring_interval, so setting
+  # Enhanced Monitoring at the cluster level alone is sufficient.
+  monitoring_interval = null
+
   # Specifies whether Performance Insights is enabled or not. On Aurora MySQL,
   # Performance Insights is not supported on db.t2 or db.t3 DB instance classes.
   performance_insights_enabled = false
@@ -1134,6 +1159,17 @@ inputs = {
   # underlying storage for the DB, its automated backups, Read Replicas, and
   # snapshots. Uses the default aws/rds key in KMS.
   storage_encrypted = true
+
+  # The storage type for the DB cluster. Leave null for Aurora Standard, or set
+  # 'aurora-iopt1' for Aurora I/O-Optimized, which removes per-request I/O
+  # charges. Requires Aurora MySQL 3.03.1+, or Aurora PostgreSQL 15.2, 14.7 or
+  # 13.10+, and an existing cluster can only switch to I/O-Optimized once every
+  # 30 days. To go back to Aurora Standard, set 'aurora' explicitly: reverting
+  # to null leaves the cluster where it is and plans empty. Either switch waits
+  # for the maintenance window unless var.apply_immediately is true. 'io1' is
+  # for Multi-AZ DB Clusters only and is not supported here. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.Aurora_Fea_Regions_DB-eng.Feature.storage-type.html
+  storage_type = null
 
   # Trigger an alarm if the number of connections to the DB instance goes above
   # this threshold.
@@ -2273,6 +2309,15 @@ The value to use for the master username of the database. This can also be provi
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="monitoring_interval" requirement="optional" type="number">
+<HclListItemDescription>
+
+The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instances. To disable collecting Enhanced Monitoring metrics, specify 0. Allowed values: 0, 1, 5, 15, 30, 60. When left null, the instances inherit <a href="#cluster_monitoring_interval"><code>cluster_monitoring_interval</code></a>, so setting Enhanced Monitoring at the cluster level alone is sufficient.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="performance_insights_enabled" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2459,6 +2504,15 @@ Specifies whether the DB cluster uses encryption for data at rest in the underly
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="storage_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The storage type for the DB cluster. Leave null for Aurora Standard, or set 'aurora-iopt1' for Aurora I/O-Optimized, which removes per-request I/O charges. Requires Aurora MySQL 3.03.1+, or Aurora PostgreSQL 15.2, 14.7 or 13.10+, and an existing cluster can only switch to I/O-Optimized once every 30 days. To go back to Aurora Standard, set 'aurora' explicitly: reverting to null leaves the cluster where it is and plans empty. Either switch waits for the maintenance window unless <a href="#apply_immediately"><code>apply_immediately</code></a> is true. 'io1' is for Multi-AZ DB Clusters only and is not supported here. See https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.Aurora_Fea_Regions_DB-eng.Feature.storage-type.html
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="too_many_db_connections_threshold" requirement="optional" type="number">
@@ -2652,11 +2706,11 @@ ID of security group created by aurora module.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/data-stores/aurora/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/data-stores/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/data-stores/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/data-stores/aurora/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/data-stores/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "0c94eec0671a9bb279e9c889713e712d"
+  "hash": "a791ecee3e2f7d580218aa7a40e9a25d"
 }
 ##DOCS-SOURCER-END -->
