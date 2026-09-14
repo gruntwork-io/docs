@@ -7,6 +7,24 @@ type TableProps = {
   rows: { input: HookInput; variable: string }[]
 }
 
+/** Help without the trailing "One of: ..." sentence, which `enum` renders instead. */
+const help = (input: HookInput) => {
+  const text = input.help ?? ""
+  const start = text.lastIndexOf("One of:")
+
+  if (!input.enum?.length || start === -1) {
+    return input.help
+  }
+
+  // Spacing varies between hooks, so both sides are compared without it.
+  const compact = (value: string) => value.replace(/\s/g, "")
+  const trailing = compact(text.slice(start)).replace(/\.$/, "")
+
+  return trailing === compact(`One of:${input.enum.join(",")}`)
+    ? text.slice(0, start).trimEnd()
+    : input.help
+}
+
 const InputTable: React.FunctionComponent<TableProps> = ({ heading, rows }) => {
   if (rows.length === 0) {
     return null
@@ -32,11 +50,23 @@ const InputTable: React.FunctionComponent<TableProps> = ({ heading, rows }) => {
                 )}
               </td>
               <td>
-                {input.help}
+                {help(input)}
+                {!!input.enum?.length && (
+                  <>
+                    {" One of "}
+                    {input.enum.map((option, i) => (
+                      <React.Fragment key={option}>
+                        {i > 0 && ", "}
+                        <code>{option}</code>
+                      </React.Fragment>
+                    ))}
+                    .
+                  </>
+                )}
                 {!!input.default && (
                   <>
-                    {" "}
-                    Defaults to <code>{input.default}</code>.
+                    {" Defaults to "}
+                    <code>{input.default}</code>.
                   </>
                 )}
               </td>
@@ -49,10 +79,8 @@ const InputTable: React.FunctionComponent<TableProps> = ({ heading, rows }) => {
 }
 
 /**
- * Every input a Gruntwork-provided hook accepts, split only by whether it must be supplied.
- *
- * An input carrying `since` arrived after the hook's compatibility line opened, and is marked. One
- * without has been accepted since the line opened, and says nothing.
+ * Every input a hook accepts, split by whether it must be supplied. `since` marks an input added
+ * after the hook's compatibility line opened.
  */
 const HookInputs: React.FunctionComponent<Hook> = (hook) => {
   const required = hookInputs(hook, true)

@@ -3,9 +3,8 @@ import VersionBadge from "./VersionBadge"
 import type { Hook } from "./hooks"
 
 /**
- * The released version of a Gruntwork-provided hook, linked to its release notes.
- *
- * Renders nothing unnamed or unversioned, so a page whose _hook.json predates a field still builds.
+ * The released version of a hook, linked to its release notes. Renders nothing without a name or
+ * version, and the badge unlinked without a release, so an older _hook.json still builds.
  */
 const HookVersion: React.FunctionComponent<Hook> = ({
   name,
@@ -16,14 +15,9 @@ const HookVersion: React.FunctionComponent<Hook> = ({
     return null
   }
 
-  return (
-    <p>
-      Latest release{" "}
-      <a href={release}>
-        <VersionBadge repoTitle={name} version={version} />
-      </a>
-    </p>
-  )
+  const badge = <VersionBadge repoTitle={name} version={version} />
+
+  return <p>Latest release {release ? <a href={release}>{badge}</a> : badge}</p>
 }
 
 export default HookVersion
