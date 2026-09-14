@@ -106,7 +106,7 @@
   "line": "v0.7",
   "name": "infracost",
   "phase": "after_hook",
-  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/infracost-v0.7.0",
+  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/infracost-v0.7.1",
   "title": "Infracost",
-  "version": "0.7.0"
+  "version": "0.7.1"
 }
