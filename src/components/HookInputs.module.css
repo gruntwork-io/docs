@@ -1,5 +1,4 @@
-/* Marks an input the hook gained after its compatibility line opened, beside the variable name.
-   Emphasis tokens rather than fixed greys, so it inverts with the theme. */
+/* The "Added in" marker beside a variable name. Emphasis tokens, so it inverts with the theme. */
 .added {
   display: inline-block;
   margin-left: 0.5rem;

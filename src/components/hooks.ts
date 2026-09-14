@@ -1,14 +1,12 @@
 /**
- * What the components below read out of a Gruntwork-provided hook's _hook.json, which grreleaser
- * writes from the hook's released API artifact. The file carries more; this is what a page uses.
- *
- * Every field is optional. A page frozen under previous/ was written by an older grreleaser and
- * is never rewritten, so a missing field must render as absent rather than throw.
+ * The fields a hook page reads from its _hook.json. Every one is optional: a page frozen under
+ * previous/ was written by an older grreleaser and is never rewritten.
  */
 export type HookInput = {
   name?: string
   help?: string
   default?: string
+  enum?: string[]
   since?: string
   env?: string[]
   required?: boolean
@@ -16,6 +14,7 @@ export type HookInput = {
 
 export type Hook = {
   name?: string
+  description?: string
   version?: string
   line?: string
   release?: string
@@ -26,16 +25,9 @@ export type Hook = {
 }
 
 /**
- * A hook's inputs in the order it declares them, flags first.
- *
- * `variable` is the environment variable a customer sets. A hook is run as `pipelines hook
- * <name>@<version>` and takes no arguments of its own, so the environment is the only way to
- * configure one. A flag carries the variable its hook derives for it; an env-only input already
- * is one. An input with neither cannot be set at all, so the page leaves it out rather than
- * naming it as something that would not work.
- *
- * `secret` marks an input the hook reads only from the environment. Those are never written into
- * an `env` block: a literal there reaches ps output and CI logs.
+ * A hook's inputs in declaration order, flags first, as the environment variables a customer sets.
+ * An input with no variable cannot be set at all, so it is dropped. `secret` marks an env-only
+ * input, which is never written into an `env` block.
  */
 export const hookInputs = (hook: Hook, required: boolean) =>
   [

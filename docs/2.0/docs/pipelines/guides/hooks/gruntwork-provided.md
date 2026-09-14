@@ -1,3 +1,5 @@
+import HookList from '@site/src/components/HookList'
+
 # Gruntwork Provided Hooks
 
 :::info
@@ -22,9 +24,7 @@ Gruntwork-provided hooks are executed by running pipelines with the hook's name 
 
 ## Available hooks
 
-- [Infracost](/2.0/docs/pipelines/guides/hooks/gruntwork-provided/infracost) - shows what a change costs before it is applied, per unit and in total.
-
-More are in development and will appear here as they are released.
+<HookList />
 
 ## Configuration
 
