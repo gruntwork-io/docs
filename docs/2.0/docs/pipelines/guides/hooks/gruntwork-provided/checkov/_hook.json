@@ -1,0 +1,64 @@
+{
+  "commands": [
+    "plan"
+  ],
+  "description": "Scan each unit's plan for policy violations with Checkov",
+  "env": [],
+  "flags": [
+    {
+      "bool": false,
+      "default": "3.3.16",
+      "env": [
+        "PIPELINES_HOOK_CHECKOV_CLI_VERSION"
+      ],
+      "help": "Checkov version to install and run.",
+      "name": "cli-version",
+      "required": false
+    },
+    {
+      "bool": false,
+      "env": [
+        "PIPELINES_HOOK_CHECKOV_DENY_CHECKS"
+      ],
+      "help": "Check ids that deny the change, as in CKV_AWS_23. Globs allowed, as in CKV_AWS_*. Every id is listed in the Checkov policy index at https://www.checkov.io/5.Policy%20Index/all.html, and each finding this hook reports names the id it failed.",
+      "name": "deny-checks",
+      "required": false
+    },
+    {
+      "bool": false,
+      "env": [
+        "PIPELINES_HOOK_CHECKOV_WARN_CHECKS"
+      ],
+      "help": "Check ids that warn about the change, as in CKV_AWS_23. Globs allowed, as in CKV_AWS_*. Every id is listed in the Checkov policy index at https://www.checkov.io/5.Policy%20Index/all.html, and each finding this hook reports names the id it failed.",
+      "name": "warn-checks",
+      "required": false
+    },
+    {
+      "bool": false,
+      "default": "info",
+      "enum": [
+        "trace",
+        "debug",
+        "info",
+        "warning",
+        "error",
+        "fatal",
+        "panic"
+      ],
+      "env": [
+        "PIPELINES_HOOK_CHECKOV_LOG_LEVEL"
+      ],
+      "group": "Logging",
+      "help": "Log verbosity. A more verbose PIPELINES_LOG_LEVEL overrides it. One of: trace,debug,info,warning,error,fatal,panic.",
+      "name": "log-level",
+      "required": false
+    }
+  ],
+  "internal": false,
+  "line": "v0.1",
+  "name": "checkov",
+  "phase": "after_hook",
+  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/checkov-v0.1.0",
+  "title": "Checkov",
+  "version": "0.1.0"
+}
