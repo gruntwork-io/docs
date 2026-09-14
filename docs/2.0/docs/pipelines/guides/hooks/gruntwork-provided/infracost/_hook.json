@@ -1,0 +1,112 @@
+{
+  "commands": [
+    "plan"
+  ],
+  "description": "Get estimated costs for your infrastructure",
+  "env": [
+    {
+      "help": "Your Infracost API key, read by the Infracost CLI. The hook stops before estimating if it is unset.",
+      "name": "INFRACOST_API_KEY",
+      "required": true
+    }
+  ],
+  "flags": [
+    {
+      "bool": false,
+      "default": "0.10.45",
+      "env": [
+        "PIPELINES_HOOK_INFRACOST_CLI_VERSION"
+      ],
+      "help": "The Infracost CLI version the hook installs.",
+      "name": "cli-version",
+      "required": false
+    },
+    {
+      "bool": false,
+      "env": [
+        "PIPELINES_HOOK_INFRACOST_WARN_TOTAL_COST_ABOVE_AMOUNT"
+      ],
+      "group": "Warn thresholds",
+      "help": "A monthly amount. A warning is shown when the new total exceeds it, unless the change lowers your cost.",
+      "name": "warn-total-cost-above-amount",
+      "required": false
+    },
+    {
+      "bool": false,
+      "env": [
+        "PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_AMOUNT"
+      ],
+      "group": "Warn thresholds",
+      "help": "A monthly amount. A warning is shown when the total change exceeds it.",
+      "name": "warn-total-change-above-amount",
+      "required": false
+    },
+    {
+      "bool": false,
+      "env": [
+        "PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_PERCENT"
+      ],
+      "group": "Warn thresholds",
+      "help": "A percentage increase. A warning is shown when the new total exceeds the previous total by more than this.",
+      "name": "warn-total-change-above-percent",
+      "required": false
+    },
+    {
+      "bool": false,
+      "env": [
+        "PIPELINES_HOOK_INFRACOST_DENY_TOTAL_COST_ABOVE_AMOUNT"
+      ],
+      "group": "Deny thresholds",
+      "help": "A monthly amount. The hook blocks merge when the new total exceeds it, unless the change lowers your cost.",
+      "name": "deny-total-cost-above-amount",
+      "required": false
+    },
+    {
+      "bool": false,
+      "env": [
+        "PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_AMOUNT"
+      ],
+      "group": "Deny thresholds",
+      "help": "A monthly amount. The hook blocks merge when the total change exceeds it.",
+      "name": "deny-total-change-above-amount",
+      "required": false
+    },
+    {
+      "bool": false,
+      "env": [
+        "PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_PERCENT"
+      ],
+      "group": "Deny thresholds",
+      "help": "A percentage increase. The hook blocks merge when the new total exceeds the previous total by more than this.",
+      "name": "deny-total-change-above-percent",
+      "required": false
+    },
+    {
+      "bool": false,
+      "default": "info",
+      "enum": [
+        "trace",
+        "debug",
+        "info",
+        "warning",
+        "error",
+        "fatal",
+        "panic"
+      ],
+      "env": [
+        "PIPELINES_HOOK_INFRACOST_LOG_LEVEL"
+      ],
+      "group": "Logging",
+      "help": "Log verbosity. A more verbose PIPELINES_LOG_LEVEL overrides it. One of: trace,debug,info,warning,error,fatal,panic.",
+      "name": "log-level",
+      "required": false
+    }
+  ],
+  "internal": false,
+  "line": "v0.7",
+  "name": "infracost",
+  "phase": "after_hook",
+  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/infracost-v0.7.0",
+  "title": "Infracost",
+  "version": "0.7.0"
+}

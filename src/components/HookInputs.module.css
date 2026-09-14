@@ -1,0 +1,15 @@
+/* Marks an input the hook gained after its compatibility line opened, beside the variable name.
+   Emphasis tokens rather than fixed greys, so it inverts with the theme. */
+.added {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--ifm-global-radius);
+  background-color: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-800);
+  font-size: 75%;
+  font-weight: var(--ifm-font-weight-bold);
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+}

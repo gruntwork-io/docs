@@ -162,6 +162,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               "guides/build-it-yourself/landing-zone/**",
               "guides/build-it-yourself/vpc/**",
               "**/node_modules/**",
+              // Docusaurus' own defaults, which setting this option replaces. Without them an
+              // underscore-prefixed partial gets a route and a sidebar entry of its own.
+              "**/_*.{js,jsx,ts,tsx,md,mdx}",
+              "**/_*/**",
             ],
             beforeDefaultRemarkPlugins: [captionsPlugin],
           },

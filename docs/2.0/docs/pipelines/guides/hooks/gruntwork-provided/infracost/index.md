@@ -1,4 +1,10 @@
+import hook from './_hook.json'
+import HookVersion from '@site/src/components/HookVersion'
+import HookInputs from '@site/src/components/HookInputs'
+
 # Infracost
+
+<HookVersion {...hook} />
 
 The Gruntwork-provided Infracost hook estimates the cost of every unit a Pipelines run affects, so a reviewer can see what a change costs before it is applied. It invokes the [Infracost](https://www.infracost.io/) CLI directly.
 
@@ -28,23 +34,7 @@ The hook reports `deny` when a change exceeds a deny [cost threshold](#cost-thre
 
 ## Inputs
 
-Settings are supplied as environment variables. Set them in the block's `env`, or export them before the hook runs.
-
-### Required
-
-| Variable | Description |
-|---|---|
-| `INFRACOST_API_KEY` | Your Infracost API key, read by the Infracost CLI. The hook stops before estimating if it is unset. See [Providing an API key](#providing-an-api-key). |
-
-### Optional
-
-| Variable | Description |
-|---|---|
-| `PIPELINES_HOOK_INFRACOST_CLI_VERSION` | The Infracost CLI version the hook installs. Defaults to the version the released hook was tested against. |
-| `PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_AMOUNT` | A monthly amount. A warning is shown when the total change exceeds it. |
-| `PIPELINES_HOOK_INFRACOST_WARN_TOTAL_CHANGE_ABOVE_PERCENT` | A percentage increase. A warning is shown when the new total exceeds the previous total by more than this. |
-| `PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_AMOUNT` | A monthly amount. The hook blocks merge when the total change exceeds it. |
-| `PIPELINES_HOOK_INFRACOST_DENY_TOTAL_CHANGE_ABOVE_PERCENT` | A percentage increase. The hook blocks merge when the new total exceeds the previous total by more than this. |
+<HookInputs {...hook} />
 
 ### Infracost CLI settings
 
