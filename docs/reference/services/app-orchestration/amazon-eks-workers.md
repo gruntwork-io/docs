@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.15.0" lastModifiedVersion="2.11.0"/>
+<VersionBadge version="2.16.0" lastModifiedVersion="2.11.0"/>
 
 # Amazon EKS Workers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/services/eks-workers" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/services/eks-workers" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-workers" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -98,15 +98,20 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Migrating from AL2 to AL2023
 
-**IMPORTANT**: Starting with EKS 1.33, this module defaults to Amazon Linux 2023 (AL2023) instead of Amazon Linux 2 (AL2). If you have existing clusters using AL2, see the [AL2 to AL2023 Migration Guide](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/services/eks-workers/AL2-TO-AL2023-MIGRATION.md) for detailed migration instructions.
+**IMPORTANT**: Starting with EKS 1.33, this module defaults to Amazon Linux 2023 (AL2023) instead of Amazon Linux 2 (AL2). If you have existing clusters using AL2, see the [AL2 to AL2023 Migration Guide](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/services/eks-workers/AL2-TO-AL2023-MIGRATION.md) for detailed migration instructions.
 
 ### Worker Management
 
 For information on registering the worker IAM role to the EKS control plane, refer to the
-[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
+[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
+
+For information on how to apply OS security patches to worker AMIs on a periodic cadence, independently of Kubernetes
+version upgrades, refer to the
+[How do I apply OS security patches to worker AMIs](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/services/eks-workers/core-concepts.md#how-do-i-apply-os-security-patches-to-worker-amis)
+section of the documentation.
 
 For information on how to perform a blue-green deployment of the worker pools, refer to the
-[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
+[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
 section of the documentation.
 
 For information on how to manage your EKS cluster, including how to deploy Pods on Fargate, how to associate IAM roles
@@ -127,7 +132,7 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 module "eks_workers" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v2.15.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v2.16.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -139,15 +144,15 @@ module "eks_workers" {
   autoscaling_group_configurations = <any>
 
   # The AMI to run on each instance in the EKS cluster. You can build the AMI
-  # using the Packer template eks-node-al2.json. One of var.cluster_instance_ami
-  # or var.cluster_instance_ami_filters is required. Only used if
-  # var.cluster_instance_ami_filters is null. Set to null if
+  # using the Packer template eks-node-al2023.pkr.hcl. One of
+  # var.cluster_instance_ami or var.cluster_instance_ami_filters is required.
+  # Only used if var.cluster_instance_ami_filters is null. Set to null if
   # cluster_instance_ami_filters is set.
   cluster_instance_ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
   # self managed workers. You can build the AMI using the Packer template
-  # eks-node-al2.json. One of var.cluster_instance_ami or
+  # eks-node-al2023.pkr.hcl. One of var.cluster_instance_ami or
   # var.cluster_instance_ami_filters is required. If both are defined,
   # var.cluster_instance_ami_filters will be used. Set to null if
   # cluster_instance_ami is set.
@@ -702,7 +707,7 @@ module "eks_workers" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v2.15.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v2.16.0"
 }
 
 inputs = {
@@ -717,15 +722,15 @@ inputs = {
   autoscaling_group_configurations = <any>
 
   # The AMI to run on each instance in the EKS cluster. You can build the AMI
-  # using the Packer template eks-node-al2.json. One of var.cluster_instance_ami
-  # or var.cluster_instance_ami_filters is required. Only used if
-  # var.cluster_instance_ami_filters is null. Set to null if
+  # using the Packer template eks-node-al2023.pkr.hcl. One of
+  # var.cluster_instance_ami or var.cluster_instance_ami_filters is required.
+  # Only used if var.cluster_instance_ami_filters is null. Set to null if
   # cluster_instance_ami_filters is set.
   cluster_instance_ami = <string>
 
   # Properties on the AMI that can be used to lookup a prebuilt AMI for use with
   # self managed workers. You can build the AMI using the Packer template
-  # eks-node-al2.json. One of var.cluster_instance_ami or
+  # eks-node-al2023.pkr.hcl. One of var.cluster_instance_ami or
   # var.cluster_instance_ami_filters is required. If both are defined,
   # var.cluster_instance_ami_filters will be used. Set to null if
   # cluster_instance_ami is set.
@@ -1415,7 +1420,7 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItem name="cluster_instance_ami" requirement="required" type="string">
 <HclListItemDescription>
 
-The AMI to run on each instance in the EKS cluster. You can build the AMI using the Packer template eks-node-al2.json. One of <a href="#cluster_instance_ami"><code>cluster_instance_ami</code></a> or <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> is required. Only used if <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> is null. Set to null if cluster_instance_ami_filters is set.
+The AMI to run on each instance in the EKS cluster. You can build the AMI using the Packer template eks-node-al2023.pkr.hcl. One of <a href="#cluster_instance_ami"><code>cluster_instance_ami</code></a> or <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> is required. Only used if <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> is null. Set to null if cluster_instance_ami_filters is set.
 
 </HclListItemDescription>
 </HclListItem>
@@ -1423,7 +1428,7 @@ The AMI to run on each instance in the EKS cluster. You can build the AMI using 
 <HclListItem name="cluster_instance_ami_filters" requirement="required" type="object(…)">
 <HclListItemDescription>
 
-Properties on the AMI that can be used to lookup a prebuilt AMI for use with self managed workers. You can build the AMI using the Packer template eks-node-al2.json. One of <a href="#cluster_instance_ami"><code>cluster_instance_ami</code></a> or <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> is required. If both are defined, <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> will be used. Set to null if cluster_instance_ami is set.
+Properties on the AMI that can be used to lookup a prebuilt AMI for use with self managed workers. You can build the AMI using the Packer template eks-node-al2023.pkr.hcl. One of <a href="#cluster_instance_ami"><code>cluster_instance_ami</code></a> or <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> is required. If both are defined, <a href="#cluster_instance_ami_filters"><code>cluster_instance_ami_filters</code></a> will be used. Set to null if cluster_instance_ami is set.
 
 </HclListItemDescription>
 <HclListItemTypeDetails>
@@ -2994,11 +2999,11 @@ The list of names of the ASGs that were deployed to act as EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/services/eks-workers/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/services/eks-workers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/services/eks-workers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/services/eks-workers/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/services/eks-workers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "d8fbee4f4af7d73095bbf1ccd1e40e67"
+  "hash": "19d0d1cc4ef153a0390ff7a0cfcd0bdb"
 }
 ##DOCS-SOURCER-END -->

@@ -6,14 +6,9 @@ import { Hook, hookInputs } from "./hooks"
 const AUTHENTICATION = "/2.0/docs/pipelines/guides/hooks/authentication"
 
 /**
- * The hook block a customer declares, ready to paste.
- *
- * The env block sets the inputs with no default, so filling those in is all a copy needs. An
- * input the hook reads only from the environment is a secret and is named underneath instead:
- * a literal in an env block reaches ps output and CI logs.
- *
- * The version reference is the hook's compatibility line rather than its major, so a page frozen
- * under previous/ keeps pointing at the line it documents.
+ * The hook block a customer declares, ready to paste. Required inputs are set to <REQUIRED>; a
+ * secret is named underneath instead, since a literal in an env block reaches ps output and CI
+ * logs. The reference pins the compatibility line, not the major.
  */
 const HookUsage: React.FunctionComponent<Hook> = (hook) => {
   const { name, phase, commands = [], line } = hook
@@ -42,7 +37,7 @@ const HookUsage: React.FunctionComponent<Hook> = (hook) => {
       ? [
           "",
           "    env {",
-          ...settable.map((v) => `      ${v.padEnd(width)} = ""`),
+          ...settable.map((v) => `      ${v.padEnd(width)} = "<REQUIRED>"`),
           "    }",
         ]
       : []),
