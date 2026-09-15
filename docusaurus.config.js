@@ -3,12 +3,22 @@
 const path = require("path")
 
 const { themes } = require("prism-react-renderer")
+const { getVcsPreset } = require("@docusaurus/utils")
 const lightCodeTheme = themes.github
 const darkCodeTheme = themes.nightOwl
 
 const cfg = require("config")
 
 const { redirects } = require("./src/redirects.js")
+
+// Docusaurus 3.10 bug: plugin-sitemap passes site-relative paths to the VCS, but the eager git map is keyed by
+// absolute paths, so every sitemap lastmod is dropped. Resolve paths before delegating to the built-in preset.
+const gitEagerVcs = getVcsPreset("git-eager")
+const vcs = {
+  initialize: gitEagerVcs.initialize,
+  getFileCreationInfo: (p) => gitEagerVcs.getFileCreationInfo(path.resolve(__dirname, p)),
+  getFileLastUpdateInfo: (p) => gitEagerVcs.getFileLastUpdateInfo(path.resolve(__dirname, p)),
+}
 
 const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
 
@@ -70,23 +80,20 @@ const llmsPlugin = [
 // @ts-ignore - types don't understand the plugin config
 plugins.push(llmsPlugin)
 
-/** @type {import('@docusaurus/types').FasterConfig} */
-const fasterConfig = {
-  rspackBundler: true,
-  swcHtmlMinimizer: true,
-  lightningCssMinimizer: true,
-  swcJsLoader: true,
-  swcJsMinimizer: true,
-  mdxCrossCompilerCache: true,
-}
-
 /** @type {() => Promise<import('@docusaurus/types').Config>} */
 async function createConfig() {
   const captionsPlugin = (await import("./src/plugins/captions.mjs")).default
 
   return {
     future: {
-      experimental_faster: fasterConfig,
+      v4: {
+        // Required by faster.ssgWorkerThreads. Other v4 flags stay off to keep output unchanged.
+        removeLegacyPostBuildHeadAttribute: true,
+      },
+      // rspack, swc, lightningcss, persistent bundler cache, SSG worker threads, eager git.
+      faster: true,
+      // One `git log` for all lastUpdated/lastmod values instead of one per page.
+      experimental_vcs: vcs,
     },
     title: "Gruntwork Docs",
     tagline:

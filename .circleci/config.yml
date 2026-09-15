@@ -1,6 +1,16 @@
 version: 2.1
 
 ######################################################################################################################
+# Pipeline parameters
+######################################################################################################################
+parameters:
+  node_version:
+    type: string
+    # Used for the executor image and the node_modules cache key, so a Node upgrade invalidates caches holding
+    # native binaries built against the old ABI.
+    default: "22.18.0"
+
+######################################################################################################################
 # Define the ORBS we'll use in the rest of the workflow
 ######################################################################################################################
 orbs:
@@ -15,7 +25,52 @@ orbs:
 references:
   base_container: &base_container
     docker:
-      - image: cimg/node:22.18.0
+      - image: cimg/node:<< pipeline.parameters.node_version >>
+
+  ######################################################################################################################
+  # node_modules cache (~1GB; a cold `yarn install` is ~70s).
+  #
+  # Only `main` saves the cache; any branch may restore it. If branches could save, a PR could plant a tampered
+  # node_modules under a key that `main` and the prod deploy would later restore.
+  #
+  # Bump the `v1-` prefix to invalidate all caches.
+  ######################################################################################################################
+
+  restore_node_modules: &restore_node_modules
+    restore_cache:
+      name: restore node_modules cache
+      keys:
+        - v1-node-modules-{{ arch }}-node<< pipeline.parameters.node_version >>-{{ checksum "yarn.lock" }}
+        # Fallback to the latest cache for this arch/Node version; yarn install applies the lockfile diff.
+        - v1-node-modules-{{ arch }}-node<< pipeline.parameters.node_version >>-
+
+  # Docusaurus' persistent bundler cache (node_modules/.cache). Rolling: keyed by commit so every `main` build saves
+  # a fresh one, restored by prefix so the next build starts from the latest.
+  restore_build_cache: &restore_build_cache
+    restore_cache:
+      name: restore docusaurus build cache
+      keys:
+        - v1-build-cache-{{ arch }}-node<< pipeline.parameters.node_version >>-
+
+  save_caches_on_main: &save_caches_on_main
+    when:
+      condition:
+        equal: [main, << pipeline.git.branch >>]
+      steps:
+        - save_cache:
+            name: save docusaurus build cache (main only)
+            key: v1-build-cache-{{ arch }}-node<< pipeline.parameters.node_version >>-{{ .Revision }}
+            paths:
+              - node_modules/.cache
+        - run:
+            # Keep the build cache out of the lockfile-keyed node_modules cache; it has its own rolling cache above.
+            name: drop build cache before saving node_modules
+            command: rm -rf node_modules/.cache
+        - save_cache:
+            name: save node_modules cache (main only)
+            key: v1-node-modules-{{ arch }}-node<< pipeline.parameters.node_version >>-{{ checksum "yarn.lock" }}
+            paths:
+              - node_modules
 
   ######################################################################################################################
   # Build steps
@@ -44,25 +99,31 @@ references:
       name: install deps
       command: yarn install
 
+  # Fails if package.json and yarn.lock disagree instead of rewriting the lockfile in CI.
+  install_deps_frozen: &install_deps_frozen
+    run:
+      name: install deps (frozen lockfile)
+      command: yarn install --frozen-lockfile
+
   build_docs: &build_docs
     run:
       name: build
-      command: yarn && yarn build
+      command: yarn build
 
   spellcheck_docs: &spellcheck_docs
     run:
       name: spellcheck
-      command: yarn && yarn spellcheck
+      command: yarn spellcheck
 
   no_relative_links: &no_relative_links
     run:
       name: ensure_no_relative_links
-      command: yarn && yarn relative-link-check
+      command: yarn relative-link-check
 
   test_docs: &test_docs
     run:
       name: test
-      command: yarn && yarn test
+      command: yarn test
 
   deploy_to_prod: &deploy-to-prod
     run:
@@ -120,10 +181,14 @@ jobs:
     description: Validate Build
     steps:
       - checkout
+      - *restore_node_modules
+      - *restore_build_cache
+      - *install_deps_frozen
       - *build_docs
       - *spellcheck_docs
       - *no_relative_links
       - *test_docs
+      - *save_caches_on_main
     # The resource_class feature allows configuring CPU and RAM resources for each job. Different resource classes are
     # available for different executors. https://circleci.com/docs/2.0/configuration-reference/#resourceclass
     resource_class: large
@@ -133,6 +198,8 @@ jobs:
     description: Deploy to Prod
     steps:
       - checkout
+      - *restore_node_modules
+      - *restore_build_cache
       - awscli/install
       - *deploy-to-prod
       - *notify_slack_prod
