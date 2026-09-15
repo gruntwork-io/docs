@@ -60,7 +60,7 @@
   "line": "v0.3",
   "name": "trivy",
   "phase": "after_hook",
-  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/trivy-v0.3.3",
+  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/trivy-v0.3.4",
   "title": "Trivy",
-  "version": "0.3.3"
+  "version": "0.3.4"
 }
