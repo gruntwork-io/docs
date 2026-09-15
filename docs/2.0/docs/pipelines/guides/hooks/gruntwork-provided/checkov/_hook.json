@@ -58,7 +58,7 @@
   "line": "v0.1",
   "name": "checkov",
   "phase": "after_hook",
-  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/checkov-v0.1.0",
+  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/checkov-v0.1.1",
   "title": "Checkov",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
