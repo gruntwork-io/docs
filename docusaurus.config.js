@@ -9,6 +9,7 @@ const darkCodeTheme = themes.nightOwl
 const cfg = require("config")
 
 const { redirects } = require("./src/redirects.js")
+const { createSitemapItems } = require("./src/plugins/sitemap-lastmod.js")
 
 const algoliaConfig = cfg.has("algolia") ? cfg.get("algolia") : undefined
 
@@ -181,6 +182,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           googleTagManager: undefined,
           sitemap: {
             lastmod: "date",
+            // One `git log` for all lastmod values instead of one per page (~35s).
+            createSitemapItems,
             changefreq: null,
             priority: null,
             filename: "sitemap.xml",
