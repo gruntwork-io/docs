@@ -1,0 +1,55 @@
+{
+  "commands": [
+    "plan"
+  ],
+  "description": "Check each unit's plan against your Rego policies. A deny or violation rule blocks merge, a warn rule is advisory, and a unit with no plan to check warns. Conftest's own CONFTEST_* environment variables apply, such as CONFTEST_NAMESPACE and CONFTEST_DATA.",
+  "env": [],
+  "flags": [
+    {
+      "bool": false,
+      "default": "0.70.0",
+      "env": [
+        "PIPELINES_HOOK_CONFTEST_CLI_VERSION"
+      ],
+      "help": "The Conftest CLI version the hook installs.",
+      "name": "cli-version",
+      "required": false
+    },
+    {
+      "bool": false,
+      "env": [
+        "PIPELINES_HOOK_CONFTEST_POLICIES_SOURCE"
+      ],
+      "help": "Where your Rego policies live: a path in your repository, or a remote source conftest pull accepts, such as git::https://github.com/org/policies.git//rego. The hook stops if it finds no .rego files there.",
+      "name": "policies-source",
+      "required": true
+    },
+    {
+      "bool": false,
+      "default": "info",
+      "enum": [
+        "trace",
+        "debug",
+        "info",
+        "warning",
+        "error",
+        "fatal",
+        "panic"
+      ],
+      "env": [
+        "PIPELINES_HOOK_CONFTEST_LOG_LEVEL"
+      ],
+      "group": "Logging",
+      "help": "Log verbosity. A more verbose PIPELINES_LOG_LEVEL overrides it. One of: trace,debug,info,warning,error,fatal,panic.",
+      "name": "log-level",
+      "required": false
+    }
+  ],
+  "internal": false,
+  "line": "v0.1",
+  "name": "conftest",
+  "phase": "after_hook",
+  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/conftest-v0.1.2",
+  "title": "Conftest",
+  "version": "0.1.2"
+}
