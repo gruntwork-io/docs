@@ -1,0 +1,82 @@
+{
+  "commands": [
+    "apply"
+  ],
+  "description": "Label the merged change request with the outcome of its apply",
+  "env": [
+    {
+      "help": "Token allowed to edit labels on the repository's change requests. Unset, the hook warns instead of labeling.",
+      "name": "PIPELINES_HOOK_APPLY_LABELS_TOKEN",
+      "required": false
+    }
+  ],
+  "flags": [
+    {
+      "bool": false,
+      "default": "applied",
+      "env": [
+        "PIPELINES_HOOK_APPLY_LABELS_SUCCESS_LABEL"
+      ],
+      "help": "Label for a change request whose apply succeeded.",
+      "name": "success-label",
+      "required": false
+    },
+    {
+      "bool": false,
+      "default": "#1a7f37",
+      "env": [
+        "PIPELINES_HOOK_APPLY_LABELS_SUCCESS_LABEL_COLOR"
+      ],
+      "help": "Color of the success label as #rrggbb.",
+      "name": "success-label-color",
+      "required": false
+    },
+    {
+      "bool": false,
+      "default": "needs apply",
+      "env": [
+        "PIPELINES_HOOK_APPLY_LABELS_FAILURE_LABEL"
+      ],
+      "help": "Label for a change request whose apply failed.",
+      "name": "failure-label",
+      "required": false
+    },
+    {
+      "bool": false,
+      "default": "#b3261e",
+      "env": [
+        "PIPELINES_HOOK_APPLY_LABELS_FAILURE_LABEL_COLOR"
+      ],
+      "help": "Color of the failure label as #rrggbb.",
+      "name": "failure-label-color",
+      "required": false
+    },
+    {
+      "bool": false,
+      "default": "info",
+      "enum": [
+        "trace",
+        "debug",
+        "info",
+        "warning",
+        "error",
+        "fatal",
+        "panic"
+      ],
+      "env": [
+        "PIPELINES_HOOK_APPLY_LABELS_LOG_LEVEL"
+      ],
+      "group": "Logging",
+      "help": "Log verbosity. A more verbose PIPELINES_LOG_LEVEL overrides it. One of: trace,debug,info,warning,error,fatal,panic.",
+      "name": "log-level",
+      "required": false
+    }
+  ],
+  "internal": false,
+  "line": "v0.1",
+  "name": "apply-labels",
+  "phase": "after_hook",
+  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/apply-labels-v0.1.3",
+  "title": "Apply Labels",
+  "version": "0.1.3"
+}

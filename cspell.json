@@ -144,13 +144,26 @@
     ".cspell.json",
     "tsconfig.json",
     "*.min.js",
-    "*.map"
+    "*.map",
+    "_hook.json"
   ],
   "ignoreRegExpList": [
     "/https?:\\/\\/[^\\s]+/g",
     "/```[\\s\\S]*?```/g"
   ],
   "allowCompoundWords": true,
-  "dictionaries": ["typescript", "node", "npm", "bash", "markdown"],
-  "enableFiletypes": ["markdown", "mdx", "typescript", "javascript", "json"]
+  "dictionaries": [
+    "typescript",
+    "node",
+    "npm",
+    "bash",
+    "markdown"
+  ],
+  "enableFiletypes": [
+    "markdown",
+    "mdx",
+    "typescript",
+    "javascript",
+    "json"
+  ]
 }
