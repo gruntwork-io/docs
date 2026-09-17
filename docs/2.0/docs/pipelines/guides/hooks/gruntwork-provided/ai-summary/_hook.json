@@ -69,7 +69,7 @@
   "line": "v0.2",
   "name": "ai-summary",
   "phase": "after_hook",
-  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/ai-summary-v0.2.2",
+  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/ai-summary-v0.2.3",
   "title": "AI Summary",
-  "version": "0.2.2"
+  "version": "0.2.3"
 }
