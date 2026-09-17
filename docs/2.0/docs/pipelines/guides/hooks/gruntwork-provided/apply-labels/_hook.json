@@ -76,7 +76,7 @@
   "line": "v0.1",
   "name": "apply-labels",
   "phase": "after_hook",
-  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/apply-labels-v0.1.3",
+  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/apply-labels-v0.1.4",
   "title": "Apply Labels",
-  "version": "0.1.3"
+  "version": "0.1.4"
 }
