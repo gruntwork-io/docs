@@ -49,7 +49,7 @@
   "line": "v0.1",
   "name": "conftest",
   "phase": "after_hook",
-  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/conftest-v0.1.2",
+  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/conftest-v0.1.3",
   "title": "Conftest",
-  "version": "0.1.2"
+  "version": "0.1.3"
 }
