@@ -231,6 +231,38 @@ Note that the cluster autoscaler supports ASGs that manage nodes in a single ava
 
 Refer to the [Kubernetes Autoscaler](https://github.com/kubernetes/autoscaler) documentation for more details.
 
+## How do you tag worker node EBS volumes?
+
+ASG tags (`default_tags` with `propagate_at_launch`, `asg_default_tags`, and per-ASG `tags`) apply to EC2 instances. They
+do not apply to EBS volumes created from the launch template.
+
+To tag volumes at launch, pass `asg_default_launch_template_tag_specifications`, or override
+`launch_template_tag_specifications` on a specific entry in `autoscaling_group_configurations`. This applies to both the
+standard launch-template ASG path and mixed instances, since they share the same launch template. Leave these empty
+(the default) to keep existing behavior.
+
+```hcl
+module "eks_workers" {
+  # (arguments omitted)
+
+  asg_default_launch_template_tag_specifications = [
+    {
+      resource_type = "volume"
+      tags = {
+        Environment = "prod"
+        Team        = "platform"
+      }
+    }
+  ]
+}
+```
+
+Do not set `resource_type` to `"instance"`. Auto Scaling ignores instance tag specifications on the launch template and
+uses the ASG tags instead.
+
+Enabling this input creates a new launch template version. This module uses `latest_version` on the ASG, so instances
+may roll when you first apply volume tags.
+
 ## Sample Usage
 
 <Tabs>
@@ -332,6 +364,15 @@ module "eks_cluster_workers" {
   # autoscaling_group_configurations. Any map entry that does not specify
   # asg_instance_user_data_base64 will use this value.
   asg_default_instance_user_data_base64 = null
+
+  # Default value for the launch_template_tag_specifications field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # launch_template_tag_specifications will use this value. Use this to tag
+  # resources created at launch, such as EBS volumes. Empty by default so
+  # existing stacks are unchanged. ASG tags already cover EC2 instances; Auto
+  # Scaling ignores launch template tag specifications with resource_type =
+  # "instance".
+  asg_default_launch_template_tag_specifications = []
 
   # Default value for the max_size field of autoscaling_group_configurations.
   # Any map entry that does not specify max_size will use this value.
@@ -643,6 +684,15 @@ inputs = {
   # asg_instance_user_data_base64 will use this value.
   asg_default_instance_user_data_base64 = null
 
+  # Default value for the launch_template_tag_specifications field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # launch_template_tag_specifications will use this value. Use this to tag
+  # resources created at launch, such as EBS volumes. Empty by default so
+  # existing stacks are unchanged. ASG tags already cover EC2 instances; Auto
+  # Scaling ignores launch template tag specifications with resource_type =
+  # "instance".
+  asg_default_launch_template_tag_specifications = []
+
   # Default value for the max_size field of autoscaling_group_configurations.
   # Any map entry that does not specify max_size will use this value.
   asg_default_max_size = 2
@@ -948,6 +998,10 @@ Any types represent complex values of variable type. For details, please consult
                                                desired HTTP PUT response hop limit for instance metadata requests.
    - extra_block_device_mappings             : (Defaults to value from var.asg_default_extra_block_device_mappings) Additional block device mappings
                                                 to attach to instances. Useful for Bottlerocket or custom storage configs.
+   - launch_template_tag_specifications list(object[LaunchTemplateTagSpecification]) : (Defaults to value from
+                                              var.asg_default_launch_template_tag_specifications) Tag specifications for
+                                              resources created from the launch template (for example EBS volumes). ASG
+                                              tags already cover EC2 instances. Do not set resource_type to "instance".
 
 ```
 </details>
@@ -967,6 +1021,10 @@ Any types represent complex values of variable type. For details, please consult
    - key                  string  : The key for the tag to apply to the instance.
    - value                string  : The value for the tag to apply to the instance.
    - propagate_at_launch  bool    : Whether or not the tags should be propagated to the instance at launch time.
+  
+   Structure of LaunchTemplateTagSpecification object:
+   - resource_type  string      : The type of resource to tag. Use "volume" to tag EBS volumes created at launch.
+   - tags           map(string) : Tags to apply to that resource type. The key is the tag name and the value is the tag value.
   
   
    Example:
@@ -1167,6 +1225,25 @@ Default value for the asg_instance_user_data_base64 field of autoscaling_group_c
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_launch_template_tag_specifications" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Default value for the launch_template_tag_specifications field of autoscaling_group_configurations. Any map entry that does not specify launch_template_tag_specifications will use this value. Use this to tag resources created at launch, such as EBS volumes. Empty by default so existing stacks are unchanged. ASG tags already cover EC2 instances; Auto Scaling ignores launch template tag specifications with resource_type = 'instance'.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    resource_type = string
+    tags          = map(string)
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="asg_default_max_size" requirement="optional" type="number">
@@ -1667,6 +1744,6 @@ AWS ID of the security group created for the EKS worker nodes.
     "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "87fd0b499b8761826c1a349bc3710f89"
+  "hash": "a4094deb12d1082cebeef055bd1caa58"
 }
 ##DOCS-SOURCER-END -->
