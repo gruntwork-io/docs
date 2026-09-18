@@ -595,6 +595,13 @@ module "aurora" {
   # is set to serverless.
   scaling_configuration_seconds_until_auto_pause = 300
 
+  # The time, in seconds, before an Aurora Serverless v2 DB cluster is paused.
+  # Valid values are 300 through 86400. This only takes effect when
+  # scaling_configuration_min_capacity_V2 is 0 (scale-to-zero). When min
+  # capacity is greater than 0 this value is ignored to avoid perpetual plan
+  # drift.
+  scaling_configuration_seconds_until_auto_pause_V2 = null
+
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
   # this DB instance, you will not have any backups of the data! You almost
@@ -611,6 +618,17 @@ module "aurora" {
   # underlying storage for the DB, its automated backups, Read Replicas, and
   # snapshots. Uses the default aws/rds key in KMS.
   storage_encrypted = true
+
+  # The storage type for the DB cluster. Leave null for Aurora Standard, or set
+  # 'aurora-iopt1' for Aurora I/O-Optimized, which removes per-request I/O
+  # charges. Requires Aurora MySQL 3.03.1+, or Aurora PostgreSQL 15.2, 14.7 or
+  # 13.10+, and an existing cluster can only switch to I/O-Optimized once every
+  # 30 days. To go back to Aurora Standard, set 'aurora' explicitly: reverting
+  # to null leaves the cluster where it is and plans empty. Either switch waits
+  # for the maintenance window unless var.apply_immediately is true. 'io1' is
+  # for Multi-AZ DB Clusters only and is not supported here. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.Aurora_Fea_Regions_DB-eng.Feature.storage-type.html
+  storage_type = null
 
   # Trigger an alarm if the number of connections to the DB instance goes above
   # this threshold.
@@ -1132,6 +1150,13 @@ inputs = {
   # is set to serverless.
   scaling_configuration_seconds_until_auto_pause = 300
 
+  # The time, in seconds, before an Aurora Serverless v2 DB cluster is paused.
+  # Valid values are 300 through 86400. This only takes effect when
+  # scaling_configuration_min_capacity_V2 is 0 (scale-to-zero). When min
+  # capacity is greater than 0 this value is ignored to avoid perpetual plan
+  # drift.
+  scaling_configuration_seconds_until_auto_pause_V2 = null
+
   # Determines whether a final DB snapshot is created before the DB instance is
   # deleted. Be very careful setting this to true; if you do, and you delete
   # this DB instance, you will not have any backups of the data! You almost
@@ -1148,6 +1173,17 @@ inputs = {
   # underlying storage for the DB, its automated backups, Read Replicas, and
   # snapshots. Uses the default aws/rds key in KMS.
   storage_encrypted = true
+
+  # The storage type for the DB cluster. Leave null for Aurora Standard, or set
+  # 'aurora-iopt1' for Aurora I/O-Optimized, which removes per-request I/O
+  # charges. Requires Aurora MySQL 3.03.1+, or Aurora PostgreSQL 15.2, 14.7 or
+  # 13.10+, and an existing cluster can only switch to I/O-Optimized once every
+  # 30 days. To go back to Aurora Standard, set 'aurora' explicitly: reverting
+  # to null leaves the cluster where it is and plans empty. Either switch waits
+  # for the maintenance window unless var.apply_immediately is true. 'io1' is
+  # for Multi-AZ DB Clusters only and is not supported here. See
+  # https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.Aurora_Fea_Regions_DB-eng.Feature.storage-type.html
+  storage_type = null
 
   # Trigger an alarm if the number of connections to the DB instance goes above
   # this threshold.
@@ -2457,6 +2493,15 @@ The time, in seconds, before an Aurora DB cluster in serverless mode is paused. 
 <HclListItemDefaultValue defaultValue="300"/>
 </HclListItem>
 
+<HclListItem name="scaling_configuration_seconds_until_auto_pause_V2" requirement="optional" type="number">
+<HclListItemDescription>
+
+The time, in seconds, before an Aurora Serverless v2 DB cluster is paused. Valid values are 300 through 86400. This only takes effect when scaling_configuration_min_capacity_V2 is 0 (scale-to-zero). When min capacity is greater than 0 this value is ignored to avoid perpetual plan drift.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="skip_final_snapshot" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -2482,6 +2527,15 @@ Specifies whether the DB cluster uses encryption for data at rest in the underly
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="storage_type" requirement="optional" type="string">
+<HclListItemDescription>
+
+The storage type for the DB cluster. Leave null for Aurora Standard, or set 'aurora-iopt1' for Aurora I/O-Optimized, which removes per-request I/O charges. Requires Aurora MySQL 3.03.1+, or Aurora PostgreSQL 15.2, 14.7 or 13.10+, and an existing cluster can only switch to I/O-Optimized once every 30 days. To go back to Aurora Standard, set 'aurora' explicitly: reverting to null leaves the cluster where it is and plans empty. Either switch waits for the maintenance window unless <a href="#apply_immediately"><code>apply_immediately</code></a> is true. 'io1' is for Multi-AZ DB Clusters only and is not supported here. See https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.Aurora_Fea_Regions_DB-eng.Feature.storage-type.html
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="too_many_db_connections_threshold" requirement="optional" type="number">
@@ -2680,6 +2734,6 @@ ID of security group created by aurora module.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/data-stores/aurora/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9a5f453e95996afa69419b52b9295ef2"
+  "hash": "f7c4f8c8f0fdeb998d002ad8779bce67"
 }
 ##DOCS-SOURCER-END -->
