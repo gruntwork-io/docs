@@ -8,6 +8,16 @@ Pipelines communicates with a hook entirely through environment variables. There
 
 The hook's `execute` command reads from the first two namespaces and writes to the third.
 
+## API version
+
+Latest version: `v1.0.0`.
+
+The Hooks API follows semantic versioning, starting at `v1.0.0`. The minor version is
+incremented when backwards incompatible changes (new inputs or fields) are added. The patch
+version will be incremented when bugs are fixed.
+
+A hook can compare `PIPELINES_HOOK_CTX_API_VERSION` against the minimum version it requires.
+
 ## Context inputs (`PIPELINES_HOOK_CTX_*`)
 
 Scalar facts about the run, set directly as the variable's value.
@@ -18,6 +28,7 @@ A context variable that does not apply to the run is left unset, rather than set
 
 | Variable | Description |
 |---|---|
+| `PIPELINES_HOOK_CTX_API_VERSION` | The current version of the Hooks API. |
 | `PIPELINES_HOOK_CTX_CI_PLATFORM` | The CI platform running the hook: `github` or `gitlab`. |
 | `PIPELINES_HOOK_CTX_ORGANIZATION` | The organization (GitHub) or group (GitLab) that owns the repository. |
 | `PIPELINES_HOOK_CTX_REPOSITORY` | The repository name. |
