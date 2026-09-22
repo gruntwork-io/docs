@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="2.1.1" lastModifiedVersion="0.8.7"/>
+<VersionBadge repoTitle="Control Tower" version="2.1.2" lastModifiedVersion="0.8.7"/>
 
 # Control Tower Landing Zone
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.1/modules/landingzone/control-tower-landing-zone" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.2/modules/landingzone/control-tower-landing-zone" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v0.8.7" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -115,7 +115,7 @@ The goal of the import is to have a plan with no operations to be performed. If 
 
 module "control_tower_landing_zone" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-landing-zone?ref=v2.1.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-landing-zone?ref=v2.1.2"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -214,6 +214,10 @@ module "control_tower_landing_zone" {
   # later for new landing zones.
   landing_zone_version = "4.0"
 
+  # The Cloud Trail log group that is auto created could be customized or lack
+  # the random suffix
+  log_group_name_prefix = "aws-controltower/CloudTrailLogs-"
+
   # The number of days to retain log objects in the centralized logging bucket.
   logging_bucket_retention_days = 365
 
@@ -250,7 +254,7 @@ module "control_tower_landing_zone" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-landing-zone?ref=v2.1.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/control-tower-landing-zone?ref=v2.1.2"
 }
 
 inputs = {
@@ -351,6 +355,10 @@ inputs = {
   # The version of the AWS Control Tower landing zone to deploy. Must be 4.0 or
   # later for new landing zones.
   landing_zone_version = "4.0"
+
+  # The Cloud Trail log group that is auto created could be customized or lack
+  # the random suffix
+  log_group_name_prefix = "aws-controltower/CloudTrailLogs-"
 
   # The number of days to retain log objects in the centralized logging bucket.
   logging_bucket_retention_days = 365
@@ -616,6 +624,15 @@ The version of the AWS Control Tower landing zone to deploy. Must be 4.0 or late
 <HclListItemDefaultValue defaultValue="&quot;4.0&quot;"/>
 </HclListItem>
 
+<HclListItem name="log_group_name_prefix" requirement="optional" type="string">
+<HclListItemDescription>
+
+The Cloud Trail log group that is auto created could be customized or lack the random suffix
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;aws-controltower/CloudTrailLogs-&quot;"/>
+</HclListItem>
+
 <HclListItem name="logging_bucket_retention_days" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -716,11 +733,11 @@ ARN of the IAM Identity Center (SSO) instance provisioned by Control Tower. Pass
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.1/modules/control-tower-landing-zone/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.1/modules/control-tower-landing-zone/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.1/modules/control-tower-landing-zone/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.2/modules/control-tower-landing-zone/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.2/modules/control-tower-landing-zone/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.2/modules/control-tower-landing-zone/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f46ab575493705ac12b169fe142f0e4f"
+  "hash": "ce04cf3b762ab2cffedfa532a45d2f8c"
 }
 ##DOCS-SOURCER-END -->
