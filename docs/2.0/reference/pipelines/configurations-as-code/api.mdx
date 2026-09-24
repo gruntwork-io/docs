@@ -425,12 +425,31 @@ The Infrastructure as Code(Iac) binary that Pipelines will instruct Terragrunt t
 <HclListItemDefaultValue defaultValue="opentofu"/>
 </HclListItem>
 
-<HclListItem name="ignore_list" requirement="optional" type="string">
+<HclListItem name="ignore_list" requirement="optional" type="string or array[string]">
 <HclListItemDescription>
 
-A comma separate list of ignore filters to exclude from pipelines runs. See the full documentation [here](/2.0/reference/pipelines/ignore-list)
+Glob patterns for files to exclude from Pipelines runs. Accepts a list of strings, or a comma-delimited string for backwards compatibility. Brace alternation is not supported in the string form. See the full documentation [here](/2.0/reference/pipelines/ignore-list).
+
+*List form added in Pipelines v4.29.0*
 
 </HclListItemDescription>
+<HclListItemExample>
+
+```hcl
+repository {
+  ignore_list = ["README.md", "{catalog,.github}/**"]
+}
+```
+
+Equivalent string form:
+
+```hcl
+repository {
+  ignore_list = "README.md,catalog/**,.github/**"
+}
+```
+
+</HclListItemExample>
 </HclListItem>
 
 ### `after_hook` block attributes
