@@ -177,11 +177,22 @@ pipelines:
 
 #### ignore-list
 
-<HclListItem name="ignore-list" requirement="required" type="string">
+<HclListItem name="ignore-list" requirement="required" type="string or array[string]">
 <HclListItemDescription>
-A comma separate list of ignore filters to exclude from pipelines runs. See the full documentation [here](/2.0/reference/pipelines/ignore-list)
+Glob patterns for files to exclude from Pipelines runs. Accepts a list of strings, or a comma-delimited string for backwards compatibility. Brace alternation is not supported in the string form. See the full documentation [here](/2.0/reference/pipelines/ignore-list).
+
+*List form added in Pipelines v4.29.0*
 </HclListItemDescription>
 <HclListItemExample>
+
+```yaml
+pipelines:
+  ignore-list:
+    - README.md
+    - "**/README.md"
+```
+
+Equivalent string form:
 
 ```yaml
 pipelines:
