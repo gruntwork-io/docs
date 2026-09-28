@@ -260,6 +260,15 @@ An Azure OIDC authentication block that determines how Pipelines will authentica
 </HclListItemDescription>
 </HclListItem>
 
+### `gcp_oidc` block
+
+<HclListItem name="gcp_oidc" requirement="optional" type="block">
+<HclListItemDescription>
+
+A GCP OIDC authentication block that determines how Pipelines will authenticate with GCP using OIDC. See more [below](#gcp_oidc-block-attributes).
+</HclListItemDescription>
+</HclListItem>
+
 ### `custom` block
 
 <HclListItem name="custom" requirement="optional" type="block">
@@ -693,6 +702,32 @@ The Azure client ID that Pipelines will authenticate with when running Terragrun
 <HclListItemDescription>
 
 The Azure client ID that Pipelines will authenticate with when running Terragrunt apply commands.
+
+</HclListItemDescription>
+</HclListItem>
+
+### `gcp_oidc` block attributes
+
+<HclListItem name="workload_identity_provider_id" requirement="required" type="string">
+<HclListItemDescription>
+
+The full resource name of the GCP Workload Identity Provider that Pipelines will use to authenticate, e.g. `projects/123456789012/locations/global/workloadIdentityPools/pipelines-pool/providers/pipelines-provider`.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="plan_service_account_email" requirement="required" type="string">
+<HclListItemDescription>
+
+The email of the GCP service account that Pipelines will impersonate when running Terragrunt plan commands.
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="apply_service_account_email" requirement="required" type="string">
+<HclListItemDescription>
+
+The email of the GCP service account that Pipelines will impersonate when running Terragrunt apply commands.
 
 </HclListItemDescription>
 </HclListItem>
