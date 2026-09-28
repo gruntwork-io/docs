@@ -10,7 +10,7 @@ The hook's `execute` command reads from the first two namespaces and writes to t
 
 ## API version
 
-Latest version: `v1.0.0`.
+Latest version: `v1.1.0`.
 
 The Hooks API follows semantic versioning, starting at `v1.0.0`. The minor version is
 incremented when backwards incompatible changes (new inputs or fields) are added. The patch
@@ -87,15 +87,17 @@ The file is the JSON form of the OpenTofu/Terraform plan (`terraform show -json`
 
 ## Outputs (`PIPELINES_HOOK_OUT_*`)
 
-Paths to files the hook may write. All are always set. Pipelines reads them back only when the hook process exits `0`; if the hook exits non-zero the output files are ignored.
+Paths to files the hook may write. Each is set from the API version that introduced it. Pipelines reads the result, summary and comment back only when the hook process exits `0`, and reads the error summary and error comment only when it exits non-zero.
 
 | Variable | Description |
 |---|---|
 | `PIPELINES_HOOK_OUT_RESULT_FILE` | Write the hook's result: `pass`, `warn`, or `deny`. |
 | `PIPELINES_HOOK_OUT_SUMMARY_FILE` | Write a short summary of the hook's outcome. |
 | `PIPELINES_HOOK_OUT_COMMENT_FILE` | Write a comment body to surface on the pull/merge request. |
+| `PIPELINES_HOOK_OUT_ERROR_SUMMARY_FILE` | Write a short summary of why the hook failed, shown next to the title when it exits non-zero. Since `v1.1.0`. |
+| `PIPELINES_HOOK_OUT_ERROR_COMMENT_FILE` | Write the body to show on the pull/merge request when the hook exits non-zero. Since `v1.1.0`. |
 
-Writing to these files is optional. A hook that writes nothing reports a `pass` with no summary or comment.
+Writing to these files is optional. A hook that exits `0` and writes nothing reports a `pass` with no summary or comment. A hook that exits non-zero and writes nothing shows its exit code.
 
 ### Results
 
