@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.7.0" lastModifiedVersion="1.6.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.7.1" lastModifiedVersion="1.6.0"/>
 
 # IAM Role for GitHub Actions
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.0/modules/github-actions-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/github-actions-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.6.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -233,7 +233,7 @@ jobs:
 
 module "github_actions_iam_role" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v1.7.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v1.7.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -303,6 +303,14 @@ module "github_actions_iam_role" {
   # true.
   iam_role_name = null
 
+  # Path to the role. See IAM Identifiers for more information:
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html.
+  iam_role_path = null
+
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
+  iam_role_permissions_boundary = null
+
   # The maximum allowable session duration, in seconds, for the credentials you
   # get when assuming the IAM roles created by this module.
   max_session_duration = 43200
@@ -313,6 +321,9 @@ module "github_actions_iam_role" {
   # to find the service name. For example, to grant developers access only to
   # EC2 and Amazon Machine Learning, use the value ["ec2","machinelearning"].
   permitted_full_access_services = []
+
+  # A map of tags to apply to the IAM role.
+  tags = {}
 
 }
 
@@ -329,7 +340,7 @@ module "github_actions_iam_role" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v1.7.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=v1.7.1"
 }
 
 inputs = {
@@ -402,6 +413,14 @@ inputs = {
   # true.
   iam_role_name = null
 
+  # Path to the role. See IAM Identifiers for more information:
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html.
+  iam_role_path = null
+
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM role.
+  iam_role_permissions_boundary = null
+
   # The maximum allowable session duration, in seconds, for the credentials you
   # get when assuming the IAM roles created by this module.
   max_session_duration = 43200
@@ -412,6 +431,9 @@ inputs = {
   # to find the service name. For example, to grant developers access only to
   # EC2 and Amazon Machine Learning, use the value ["ec2","machinelearning"].
   permitted_full_access_services = []
+
+  # A map of tags to apply to the IAM role.
+  tags = {}
 
 }
 
@@ -603,6 +625,24 @@ The name of an IAM role to create. Required when <a href="#create_iam_role"><cod
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="iam_role_path" requirement="optional" type="string">
+<HclListItemDescription>
+
+Path to the role. See IAM Identifiers for more information: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="max_session_duration" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -619,6 +659,15 @@ A list of AWS services for which the IAM role will receive full permissions. See
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="tags" requirement="optional" type="map(string)">
+<HclListItemDescription>
+
+A map of tags to apply to the IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
 </TabItem>
@@ -670,11 +719,11 @@ The name of the IAM role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.0/modules/github-actions-iam-role/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.0/modules/github-actions-iam-role/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.0/modules/github-actions-iam-role/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/github-actions-iam-role/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/github-actions-iam-role/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/github-actions-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5da2c2b48b21c333f8a0d9b2c4b90a49"
+  "hash": "2b3f0509c1d97cbf7c6f18cbd31bbf0a"
 }
 ##DOCS-SOURCER-END -->

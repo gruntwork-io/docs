@@ -298,6 +298,22 @@ The CLI update also improves troubleshooting when preflight checks fail: the out
 </div>
 
 
+### [v6.0.2](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v6.0.2)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/3/2026 | <a href="https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v6.0.2">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  * add a longer timeout for retryable errors, don&apos;t merge envcommon by @odgrim in https://github.com/gruntwork-io/terraform-aws-architecture-catalog/pull/1210
+
+
+**Full Changelog**: https://github.com/gruntwork-io/terraform-aws-architecture-catalog/compare/v6.0.1...v6.0.2
+
+</div>
+
+
 ### [v6.0.1](https://github.com/gruntwork-io/terraform-aws-architecture-catalog/releases/tag/v6.0.1)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -406,6 +422,23 @@ Special thanks to @FriedCircuits for the contribution!
 ## terraform-aws-eks
 
 
+### [v.5.1.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v5.1.0)
+
+<p style={{marginTop: "-20px", marginBottom: "10px"}}>
+  <small>Published: 7/22/2026 | Modules affected: eks-cluster-control-plane, eks-k8s-karpenter | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v5.1.0">Release notes</a></small>
+</p>
+
+<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
+
+  
+
+- aded support zonal_shift_config and Karpenter enableZonalShift (#819)
+
+
+
+</div>
+
+
 ### [v5.0.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v5.0.0)
 
 <p style={{marginTop: "-20px", marginBottom: "10px"}}>
@@ -418,23 +451,6 @@ Special thanks to @FriedCircuits for the contribution!
 
 - Scope cloud-nuke cleanup to repo resource types (v0.51.0)
 - require AWS provider v6 across all modules (LIB-5235)
-
-
-
-</div>
-
-
-### [v.5.1.0](https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v5.1.0)
-
-<p style={{marginTop: "-20px", marginBottom: "10px"}}>
-  <small>Published: 7/22/2026 | Modules affected: eks-cluster-control-plane, eks-k8s-karpenter | <a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v5.1.0">Release notes</a></small>
-</p>
-
-<div style={{"overflow":"hidden","textOverflow":"ellipsis","display":"-webkit-box","WebkitLineClamp":10,"lineClamp":10,"WebkitBoxOrient":"vertical"}}>
-
-  
-
-- aded support zonal_shift_config and Karpenter enableZonalShift (#819)
 
 
 
@@ -547,6 +563,6 @@ Added validation to github-actions-iam-role and gitlab-actions-iam-role to verif
 <!-- ##DOCS-SOURCER-START
 {
   "sourcePlugin": "releases",
-  "hash": "523a51da13ea85ff91300c91fe0db169"
+  "hash": "94a043737cb84dac6a1e89ada37042fa"
 }
 ##DOCS-SOURCER-END -->

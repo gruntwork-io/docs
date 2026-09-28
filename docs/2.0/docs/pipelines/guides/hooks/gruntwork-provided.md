@@ -1,3 +1,5 @@
+import HookList from '@site/src/components/HookList'
+
 # Gruntwork Provided Hooks
 
 :::info
@@ -22,9 +24,7 @@ Gruntwork-provided hooks are executed by running pipelines with the hook's name 
 
 ## Available hooks
 
-- [Infracost](/2.0/docs/pipelines/guides/hooks/gruntwork-provided/infracost) - shows what a change costs before it is applied, per unit and in total.
-
-More are in development and will appear here as they are released.
+<HookList />
 
 ## Configuration
 
@@ -35,8 +35,8 @@ A hook is referenced as `<name>@<version>`. Hooks are versioned independently of
 | Reference | Resolves to | Use when |
 | --- | --- | --- |
 | `infracost@v0` | the latest `v0.x.x` | you want fixes and new features |
-| `infracost@v0.5` | the latest `v0.5.x` | you only want patches |
-| `infracost@v0.5.0` | this specific release | you want fixed versions |
+| `infracost@v0.6` | the latest `v0.6.x` | you only want patches |
+| `infracost@v0.6.0` | this specific release | you want fixed versions |
 
 ### Environment variables
 

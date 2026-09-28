@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.7.0" lastModifiedVersion="1.3.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.7.1" lastModifiedVersion="1.3.0"/>
 
 # IAM Users
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.0/modules/iam-users" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/iam-users" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -139,7 +139,7 @@ Under the hood, this module uses the [`aws_iam_user` resource](https://registry.
 
 module "iam_users" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v1.7.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v1.7.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -210,7 +210,7 @@ module "iam_users" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v1.7.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/iam-users?ref=v1.7.1"
 }
 
 inputs = {
@@ -555,11 +555,11 @@ A map of usernames to that user's AWS SSH Security Credential ID
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.0/modules/iam-users/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.0/modules/iam-users/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.0/modules/iam-users/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/iam-users/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/iam-users/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/iam-users/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "df8cdaee245099c6de8f7762d290e015"
+  "hash": "9e0acd2e8315c34d34a1bbf5c4b1e9d5"
 }
 ##DOCS-SOURCER-END -->

@@ -10,7 +10,7 @@ To set up the ignore list, you can add it to your Pipelines configuration using 
 
 ```hcl
 repository {
-  ignore_list = "README.md,docs/**.md,local-testing/**"
+  ignore_list = ["README.md", "docs/**.md", "local-testing/**"]
   # ... other config ...
 }
 ```
@@ -19,11 +19,29 @@ Or, in YAML, you would add an `ignore-list` field to your `.gruntwork/config.yml
 
 ```yaml
 pipelines:
+  ignore-list:
+    - README.md
+    - docs/**.md
+    - local-testing/**
+  # ... other config ...
+```
+
+The list form requires [`pipelines-workflows` v4.29.0](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v4.29.0) or later. On earlier versions, write the same patterns as one comma-delimited string:
+
+```hcl
+repository {
+  ignore_list = "README.md,docs/**.md,local-testing/**"
+  # ... other config ...
+}
+```
+
+```yaml
+pipelines:
   ignore-list: "README.md,docs/**.md,local-testing/**"
   # ... other config ...
 ```
 
-The patterns you use in the ignore list are always relative to the repository root, and you can combine multiple patterns by separating them with commas.
+The patterns you use in the ignore list are always relative to the repository root. Brace alternation is not supported in the string form.
 
 For more details and the full syntax, see the [Ignore List Reference](/2.0/reference/pipelines/ignore-list).
 
@@ -38,11 +56,11 @@ E.g. `a/*-dev/b` will match `a/my-dev/b` but not `a/b/c/my-dev/b`.
 
 ## Practical example
 
-Let's walk through a practical example. Suppose you want to ensure that changes to any `README.md` file — whether at the root or in any subdirectory — do not trigger Pipelines runs. First, use the pattern `README.md` to match the file at the root of your repository. Next, add `**/README.md` to match any `README.md` file in any subdirectory, at any depth. Combine these patterns with a comma: `README.md,**/README.md`. Your configuration would look like this in HCL:
+Let's walk through a practical example. Suppose you want to ensure that changes to any `README.md` file — whether at the root or in any subdirectory — do not trigger Pipelines runs. First, use the pattern `README.md` to match the file at the root of your repository. Next, add `**/README.md` to match any `README.md` file in any subdirectory, at any depth. Your configuration would look like this in HCL:
 
 ```hcl
 repository {
-  ignore_list = "README.md,**/README.md"
+  ignore_list = ["README.md", "**/README.md"]
 }
 ```
 
@@ -50,7 +68,9 @@ Or in YAML:
 
 ```yaml
 pipelines:
-  ignore-list: "README.md,**/README.md"
+  ignore-list:
+    - README.md
+    - "**/README.md"
 ```
 
 :::note

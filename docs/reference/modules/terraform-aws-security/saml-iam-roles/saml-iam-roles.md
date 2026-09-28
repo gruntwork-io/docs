@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.7.0" lastModifiedVersion="1.3.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.7.1" lastModifiedVersion="1.3.0"/>
 
 # A best-practices set of IAM roles for SAML access
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.0/modules/saml-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/saml-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -47,7 +47,7 @@ This module creates the following IAM roles (all optional):
 
 *   **allow-ssh-grunt-access-from-saml**: Users authenticated by the SAML providers in
     `var.allow_ssh_grunt_access_from_saml_provider_arns` will get read access to IAM Groups and public SSH keys. This is
-    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.0/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
+    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
     connections against IAM users defined in this AWS account.
 
 *   **allow-dev-access-from-saml**:Users authenticated by the SAML providers in
@@ -78,7 +78,7 @@ This module creates the following IAM roles (all optional):
 
 module "saml_iam_roles" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v1.7.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v1.7.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -162,6 +162,10 @@ module "saml_iam_roles" {
   # What to name the auto deploy IAM role
   auto_deploy_access_iam_role_name = "allow-auto-deploy-from-saml"
 
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # auto deploy IAM role.
+  auto_deploy_access_iam_role_permissions_boundary = null
+
   # A list of IAM permissions (e.g. ec2:*) which will be granted for automated
   # deployment.
   auto_deploy_permissions = []
@@ -169,12 +173,20 @@ module "saml_iam_roles" {
   # What to name the billing access IAM role
   billing_access_iam_role_name = "allow-billing-only-access-from-saml"
 
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # billing access IAM role.
+  billing_access_iam_role_permissions_boundary = null
+
   # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs IAM
   # roles will include permissions to decrypt using this CMK.
   cloudtrail_kms_key_arn = null
 
   # What to name the dev access IAM role
   dev_access_iam_role_name = "allow-dev-access-from-saml"
+
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # dev access IAM role.
+  dev_access_iam_role_permissions_boundary = null
 
   # A list of AWS services for which the developers from the accounts in
   # var.allow_dev_access_from_other_account_arns will receive full permissions.
@@ -187,11 +199,23 @@ module "saml_iam_roles" {
   # What to name the full access IAM role
   full_access_iam_role_name = "allow-full-access-from-saml"
 
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # full access IAM role.
+  full_access_iam_role_permissions_boundary = null
+
   # What to name the IAM admin access IAM role
   iam_admin_access_iam_role_name = "allow-iam-admin-access-from-saml"
 
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM admin access IAM role.
+  iam_admin_access_iam_role_permissions_boundary = null
+
   # What to name the logs access IAM role
   logs_access_iam_role_name = "allow-logs-access-from-saml"
+
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # logs access IAM role.
+  logs_access_iam_role_permissions_boundary = null
 
   # The maximum allowable session duration, in seconds, for the credentials you
   # get when assuming the IAM roles created by this module. This variable
@@ -213,11 +237,23 @@ module "saml_iam_roles" {
   # What to name the read-only access IAM role
   read_only_access_iam_role_name = "allow-read-only-access-from-saml"
 
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # read-only access IAM role.
+  read_only_access_iam_role_permissions_boundary = null
+
   # What to name the ssh-grunt access IAM role
   ssh_grunt_access_iam_role_name = "allow-ssh-grunt-access-from-saml"
 
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # ssh-grunt access IAM role.
+  ssh_grunt_access_iam_role_permissions_boundary = null
+
   # What to name the support access IAM role
   support_access_iam_role_name = "allow-support-access-from-saml"
+
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # support access IAM role.
+  support_access_iam_role_permissions_boundary = null
 
   # A map of tags to apply to the IAM roles.
   tags = {}
@@ -237,7 +273,7 @@ module "saml_iam_roles" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v1.7.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v1.7.1"
 }
 
 inputs = {
@@ -324,6 +360,10 @@ inputs = {
   # What to name the auto deploy IAM role
   auto_deploy_access_iam_role_name = "allow-auto-deploy-from-saml"
 
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # auto deploy IAM role.
+  auto_deploy_access_iam_role_permissions_boundary = null
+
   # A list of IAM permissions (e.g. ec2:*) which will be granted for automated
   # deployment.
   auto_deploy_permissions = []
@@ -331,12 +371,20 @@ inputs = {
   # What to name the billing access IAM role
   billing_access_iam_role_name = "allow-billing-only-access-from-saml"
 
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # billing access IAM role.
+  billing_access_iam_role_permissions_boundary = null
+
   # The ARN of a KMS CMK used to encrypt CloudTrail logs. If set, the logs IAM
   # roles will include permissions to decrypt using this CMK.
   cloudtrail_kms_key_arn = null
 
   # What to name the dev access IAM role
   dev_access_iam_role_name = "allow-dev-access-from-saml"
+
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # dev access IAM role.
+  dev_access_iam_role_permissions_boundary = null
 
   # A list of AWS services for which the developers from the accounts in
   # var.allow_dev_access_from_other_account_arns will receive full permissions.
@@ -349,11 +397,23 @@ inputs = {
   # What to name the full access IAM role
   full_access_iam_role_name = "allow-full-access-from-saml"
 
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # full access IAM role.
+  full_access_iam_role_permissions_boundary = null
+
   # What to name the IAM admin access IAM role
   iam_admin_access_iam_role_name = "allow-iam-admin-access-from-saml"
 
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # IAM admin access IAM role.
+  iam_admin_access_iam_role_permissions_boundary = null
+
   # What to name the logs access IAM role
   logs_access_iam_role_name = "allow-logs-access-from-saml"
+
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # logs access IAM role.
+  logs_access_iam_role_permissions_boundary = null
 
   # The maximum allowable session duration, in seconds, for the credentials you
   # get when assuming the IAM roles created by this module. This variable
@@ -375,11 +435,23 @@ inputs = {
   # What to name the read-only access IAM role
   read_only_access_iam_role_name = "allow-read-only-access-from-saml"
 
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # read-only access IAM role.
+  read_only_access_iam_role_permissions_boundary = null
+
   # What to name the ssh-grunt access IAM role
   ssh_grunt_access_iam_role_name = "allow-ssh-grunt-access-from-saml"
 
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # ssh-grunt access IAM role.
+  ssh_grunt_access_iam_role_permissions_boundary = null
+
   # What to name the support access IAM role
   support_access_iam_role_name = "allow-support-access-from-saml"
+
+  # The ARN of the policy that is used to set the permissions boundary for the
+  # support access IAM role.
+  support_access_iam_role_permissions_boundary = null
 
   # A map of tags to apply to the IAM roles.
   tags = {}
@@ -709,6 +781,15 @@ What to name the auto deploy IAM role
 <HclListItemDefaultValue defaultValue="&quot;allow-auto-deploy-from-saml&quot;"/>
 </HclListItem>
 
+<HclListItem name="auto_deploy_access_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the auto deploy IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="auto_deploy_permissions" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -725,6 +806,15 @@ What to name the billing access IAM role
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;allow-billing-only-access-from-saml&quot;"/>
+</HclListItem>
+
+<HclListItem name="billing_access_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the billing access IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="cloudtrail_kms_key_arn" requirement="optional" type="string">
@@ -745,6 +835,15 @@ What to name the dev access IAM role
 <HclListItemDefaultValue defaultValue="&quot;allow-dev-access-from-saml&quot;"/>
 </HclListItem>
 
+<HclListItem name="dev_access_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the dev access IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="dev_permitted_services" requirement="optional" type="list(string)">
 <HclListItemDescription>
 
@@ -763,6 +862,15 @@ What to name the full access IAM role
 <HclListItemDefaultValue defaultValue="&quot;allow-full-access-from-saml&quot;"/>
 </HclListItem>
 
+<HclListItem name="full_access_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the full access IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="iam_admin_access_iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -772,6 +880,15 @@ What to name the IAM admin access IAM role
 <HclListItemDefaultValue defaultValue="&quot;allow-iam-admin-access-from-saml&quot;"/>
 </HclListItem>
 
+<HclListItem name="iam_admin_access_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the IAM admin access IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="logs_access_iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -779,6 +896,15 @@ What to name the logs access IAM role
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;allow-logs-access-from-saml&quot;"/>
+</HclListItem>
+
+<HclListItem name="logs_access_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the logs access IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="max_session_duration_human_users" requirement="optional" type="number">
@@ -808,6 +934,15 @@ What to name the read-only access IAM role
 <HclListItemDefaultValue defaultValue="&quot;allow-read-only-access-from-saml&quot;"/>
 </HclListItem>
 
+<HclListItem name="read_only_access_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the read-only access IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="ssh_grunt_access_iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -817,6 +952,15 @@ What to name the ssh-grunt access IAM role
 <HclListItemDefaultValue defaultValue="&quot;allow-ssh-grunt-access-from-saml&quot;"/>
 </HclListItem>
 
+<HclListItem name="ssh_grunt_access_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the ssh-grunt access IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="support_access_iam_role_name" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -824,6 +968,15 @@ What to name the support access IAM role
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;allow-support-access-from-saml&quot;"/>
+</HclListItem>
+
+<HclListItem name="support_access_iam_role_permissions_boundary" requirement="optional" type="string">
+<HclListItemDescription>
+
+The ARN of the policy that is used to set the permissions boundary for the support access IAM role.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 <HclListItem name="tags" requirement="optional" type="map(string)">
@@ -895,11 +1048,11 @@ A map of tags to apply to the IAM roles.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.0/modules/saml-iam-roles/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.0/modules/saml-iam-roles/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.0/modules/saml-iam-roles/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/saml-iam-roles/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/saml-iam-roles/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/saml-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "b8ce8f5e4e3c26ab1e952d3e3664fde5"
+  "hash": "761c63e051e8c612cb6dc1b1e0ebd330"
 }
 ##DOCS-SOURCER-END -->

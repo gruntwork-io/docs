@@ -475,11 +475,12 @@ For more information on creating and using GitHub Actions Repository secrets, re
 </TabItem>
 <TabItem value="gitlab" label="GitLab">
 
-For GitLab, Pipelines requires a couple of CI variables.
+For GitLab, Pipelines uses the following CI variables.
 
 - `PIPELINES_GITLAB_TOKEN` requires the `Developer`, `Maintainer` or `Owner` role and the scopes listed below. This token will be used to authenticate API calls and access repositories within your GitLab group.
 - `PIPELINES_GITLAB_READ_TOKEN` will be used to access your own code within GitLab. If not set, Pipelines will default to the `CI_JOB_TOKEN` when accessing internal GitLab hosted code.
 - `PIPELINES_GITLAB_ADMIN_TOKEN` (Enterprise customers only) will be used to create repositories within your GitLab group when provisioning new AWS accounts requiring a dedicated repository. This **MUST** be a Group Access Token but only set as a variable in your infrastructure-live-root's CI/CD variables.
+- `PIPELINES_GITLAB_INIT_READ_TOKEN` and `PIPELINES_GRUNTWORK_READ_TOKEN` are **GitHub** tokens, not GitLab ones, each needed only in a specific scenario. See [GitHub tokens](#github-tokens).
 
 ### Creating the Access Token
 
@@ -532,6 +533,24 @@ Add the `PIPELINES_GITLAB_TOKEN` and `PIPELINES_GITLAB_READ_TOKEN` as CI/CD vari
 :::caution
 Remember to update this token before it expires to prevent pipeline disruptions.
 :::
+
+### GitHub tokens {#github-tokens}
+
+Pipelines requires assets served from GitHub. Two CI/CD variables authenticate those requests, each covering a specific scenario. Neither is needed for a standard installation. Create their tokens under the same machine user, added to your team in Gruntwork's GitHub Organization. See [inviting a user to your team](https://docs.gruntwork.io/developer-portal/invite-team#inviting-team-members) and [linking the user's GitHub ID to Gruntwork](https://docs.gruntwork.io/developer-portal/link-github-id), then follow [Configure CI/CD Variables](#configure-cicd-variables) to add them.
+
+**`PIPELINES_GITLAB_INIT_READ_TOKEN`** covers the setup scripts every job fetches before it starts. This is a public repository and will work without authentication. If you encounter clone failures due to GitHub rate limiting unauthenticated clones, setting this token will enable authentication. It only needs to read public repositories: `Public Repositories (read-only)` if it is fine-grained, or `public_repo` if it is classic.
+
+**`PIPELINES_GRUNTWORK_READ_TOKEN`** covers Gruntwork's private repositories: the CI/CD code Pipelines runs, the Pipelines CLI, and any Gruntwork IaC Library modules you reference. This token takes precedence over an internal token created by app.gruntwork.io. If your runners cannot reach app.gruntwork.io you can use this token. Make it fine-grained, with resource owner `gruntwork-io` and both `Contents: Read` and `Metadata: Read`.
+
+:::caution
+Leave **Protect variable** unchecked. GitLab keeps protected variables out of merge request pipelines, so your jobs would quietly fall back to unauthenticated fetches.
+:::
+
+**Checklist:**
+
+- [ ] Machine user added to your team in Gruntwork's GitHub Organization (only if you need either token)
+- [ ] PIPELINES_GITLAB_INIT_READ_TOKEN created and added to CI/CD variables (only if clones fail due to GitHub rate limiting)
+- [ ] PIPELINES_GRUNTWORK_READ_TOKEN created and added to CI/CD variables (only if runners cannot reach app.gruntwork.io)
 
 ### Authorize your groups to the Pipelines backend {#authorize-your-groups-to-the-gruntwork-pipelines-backend}
 

@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="1.3.1" lastModifiedVersion="1.3.1"/>
+<VersionBadge repoTitle="AWS Lambda" version="1.4.0" lastModifiedVersion="1.4.0"/>
 
 # Keep Warm Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/keep-warm" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/keep-warm" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v1.3.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v1.4.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This is a Lambda function you can use to invoke your other Lambda functions on a scheduled basis to keep those
 functions "warm." This is necessary for Lambda functions that require a low response time (e.g., if you're using Lambda API Gateway as a web service), as Lambda functions that have not been executed in a while will be shut down (that is,
@@ -50,7 +50,7 @@ level](#concurrency) for your functions.
 ## Background info
 
 For more information on AWS Lambda, how it works, and how to configure your functions, check out the [lambda module
-documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/lambda).
+documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/lambda).
 
 ## Sample Usage
 
@@ -65,7 +65,7 @@ documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/
 
 module "keep_warm" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/keep-warm?ref=v1.3.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/keep-warm?ref=v1.4.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -138,7 +138,7 @@ module "keep_warm" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/keep-warm?ref=v1.3.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/keep-warm?ref=v1.4.0"
 }
 
 inputs = {
@@ -344,11 +344,11 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/keep-warm/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/keep-warm/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.3.1/modules/keep-warm/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/keep-warm/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/keep-warm/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/keep-warm/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1bdc87ee9e7671a168dfcc287620b6ff"
+  "hash": "00383fbadcb61aff6ea7812e1641e543"
 }
 ##DOCS-SOURCER-END -->

@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.15.0" lastModifiedVersion="2.9.0"/>
+<VersionBadge version="2.16.0" lastModifiedVersion="2.9.0"/>
 
 # Cost Management
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/mgmt/cost-management" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/mgmt/cost-management" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=mgmt%2Fcost-management" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -71,7 +71,7 @@ When `enable_scheduled_cloud_nuke = true`:
 
 ## Deploy
 
-See [examples/for-learning-and-testing/mgmt/cost-management](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/examples/for-learning-and-testing/mgmt/cost-management)
+See [examples/for-learning-and-testing/mgmt/cost-management](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/examples/for-learning-and-testing/mgmt/cost-management)
 for a runnable example.
 
 
@@ -88,7 +88,7 @@ for a runnable example.
 
 module "cost_management" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/cost-management?ref=v2.15.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/cost-management?ref=v2.16.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -253,7 +253,7 @@ module "cost_management" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/cost-management?ref=v2.15.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/mgmt/cost-management?ref=v2.16.0"
 }
 
 inputs = {
@@ -783,11 +783,11 @@ ARN of the SNS topic that fans out Budgets and Cost Anomaly Detection notificati
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/mgmt/cost-management/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/mgmt/cost-management/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.15.0/modules/mgmt/cost-management/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/mgmt/cost-management/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/mgmt/cost-management/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.16.0/modules/mgmt/cost-management/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "4d91483a74a5509dd29e8e28b3e6cdb9"
+  "hash": "357a5133bbdf976d5a804916a4c11f2b"
 }
 ##DOCS-SOURCER-END -->

@@ -193,6 +193,13 @@ pre.language-markdown {
   font-weight: 600;
 }
 
+/* Docusaurus 3.8+ bug: its rule squaring the code area's top corners under a title references a class hash
+   from another CSS module and never matches. Visible because HclListItem.module.css gives every pre a border. */
+.theme-code-block > div:first-child:not(:only-child) + div pre {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 main {
   margin-top: 2em;
 }
