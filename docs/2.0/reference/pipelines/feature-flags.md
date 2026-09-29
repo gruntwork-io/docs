@@ -64,9 +64,16 @@ This behavior will likely become the default in a major release of Pipelines but
 #### `PIPELINES_FEATURE_EXPERIMENT_DISABLE_PREFLIGHT_AHEAD_OF_DEPLOY_BRANCH`
 <ul>
 <li>
-Allows users to opt-out of the preflight check that prevents Pipelines from running if the current commit is behind the tip of the deploy branch.
+Downgrades the preflight check that prevents Pipelines from running if the current commit is behind the tip of the deploy branch to a warning.
 
 We do not recommend enabling this feature by default as it removes the guarantee that Pipelines will apply the reviewed plan. This feature exists to unblock teams that are facing contention issues keeping branches ahead of their deploy branch - and is 'at your own risk'.
+
+:::caution
+- Pull requests behind the deploy branch are planned without the latest deploy branch changes. After merge, Pipelines applies the merged result, which can differ from the reviewed plan.
+- On the deploy branch, Pipelines skips the check that the triggering commit is the latest. An older commit's apply can run after a newer one.
+- `PIPELINES_FEATURE_EXPERIMENT_ALL` also enables this flag.
+- When a pull request is behind the deploy branch, Pipelines shows a warning in the pull request comment instead of blocking.
+:::
 </li>
 <li>
 **Default Value**: Disabled
