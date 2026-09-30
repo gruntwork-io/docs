@@ -61,6 +61,32 @@ This behavior will likely become the default in a major release of Pipelines but
 </li>
 </ul>
 
+#### `PIPELINES_FEATURE_EXPERIMENT_COMMIT_AS_TOKEN_OWNER`
+<ul>
+<li>
+
+Authors the commits Pipelines creates as the owner of the token that pushes them, rather than as the user who triggered the pipeline. The committer is set to the same identity. This covers Account Factory baseline commits, access control and delegated repository pull or merge requests, and Drift Detection change requests.
+
+On GitHub:
+- With the GitHub App on github.com, commits are attributed to `gruntwork-io[bot]` (`<id>+gruntwork-io[bot]@users.noreply.github.com`).
+- With machine users, commits are attributed to the account that owns the token (`<id>+<login>@users.noreply.<host>`). Account Factory baseline commits use `INFRA_ROOT_WRITE_TOKEN`, Drift Detection commits use `PR_CREATE_TOKEN`, and access control and delegated repository commits use `ORG_REPO_ADMIN_TOKEN`.
+
+On GitLab, commits use the name and commit email (or primary email, if no commit email is set) of the token's user. Account Factory baseline and Drift Detection commits use `PIPELINES_GITLAB_TOKEN`, and access control and delegated repository commits use `PIPELINES_GITLAB_ADMIN_TOKEN`. Enable this if your project uses a push rule that requires the commit author to match the pusher.
+
+If the token owner cannot be looked up while this flag is enabled, the run fails.
+
+Set this flag in the `env` block of your Pipelines configuration; CI/CD variables don't enable it. `PIPELINES_FEATURE_EXPERIMENT_ALL` in the same block also enables this flag. To keep it off while `PIPELINES_FEATURE_EXPERIMENT_ALL` is enabled, set this flag to `"false"`.
+
+**Note**: This changes who generated commits are attributed to, which is visible in `git blame`, in commit history, and in notifications on generated pull or merge requests.
+</li>
+<li>
+**Default Value**: Disabled
+</li>
+<li>
+**How to Enable**: Set to `"true"`
+</li>
+</ul>
+
 #### `PIPELINES_FEATURE_EXPERIMENT_DISABLE_PREFLIGHT_AHEAD_OF_DEPLOY_BRANCH`
 <ul>
 <li>
@@ -80,50 +106,6 @@ We do not recommend enabling this feature by default as it removes the guarantee
 <ul>
 <li>
 Causes Pipelines to generate all stacks before running a plan or apply operation. This ensures that any stacks that are dependencies of units outside of the current stack or unit are available during the execution.
-</li>
-<li>
-**Default Value**: Disabled
-</li>
-<li>
-**How to Enable**: Set to `"true"`
-</li>
-</ul>
-
-#### `PIPELINES_FEATURE_EXPERIMENT_GITHUB_COMMIT_AUTHOR`
-<ul>
-<li>
-
-Applies to GitHub only. Authors the commits Pipelines creates — Account Factory code generation and Drift Detection change requests — as the owner of the GitHub token used to push them, rather than as the user who triggered the pipeline.
-
-On a machine user installation the commit is attributed to that token's own account. On a GitHub App installation it is attributed to the App's bot account, `gruntwork-io[bot]`.
-
-If the identity cannot be resolved, Pipelines logs a warning and leaves the commit attributed to the triggering user rather than failing the run.
-
-To choose the identity yourself instead, set both `PIPELINES_COMMIT_AUTHOR_NAME` and `PIPELINES_COMMIT_AUTHOR_EMAIL`. Setting only one of the two is an error. Both are read only while this flag is enabled.
-
-**Note**: this changes who generated commits are attributed to, which is visible in `git blame`, in commit history, and in GitHub's notification behavior on generated pull requests.
-</li>
-<li>
-**Default Value**: Disabled
-</li>
-<li>
-**How to Enable**: Set to `"true"`
-</li>
-</ul>
-
-#### `PIPELINES_FEATURE_EXPERIMENT_GITLAB_COMMIT_AUTHOR`
-<ul>
-<li>
-
-Applies to GitLab only. Authors the commits Pipelines creates — Account Factory code generation and Drift Detection change requests — as the owner of the GitLab token used to push them, rather than as the user who triggered the pipeline.
-
-Enable this if your project uses a push rule that requires the commit author to match the pusher. Pipelines pushes with `PIPELINES_GITLAB_TOKEN`, or with `PIPELINES_GITLAB_ADMIN_TOKEN` when Account Factory provisions a delegated repository, so a commit attributed to the triggering user is rejected at pre-receive by such a rule.
-
-The token must be able to read its own owner's profile. The `api` scope that Pipelines already requires covers this, as do `read_user` and `read_api`. If the owner cannot be resolved the run fails, naming the flag to unset.
-
-To choose the identity yourself instead, set both `PIPELINES_COMMIT_AUTHOR_NAME` and `PIPELINES_COMMIT_AUTHOR_EMAIL`. Setting only one of the two is an error. Both are read only while this flag is enabled.
-
-**Note**: this changes who generated commits are attributed to, which is visible in `git blame` and in commit history.
 </li>
 <li>
 **Default Value**: Disabled
