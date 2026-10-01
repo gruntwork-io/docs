@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Control Tower" version="2.1.2" lastModifiedVersion="1.2.0"/>
+<VersionBadge repoTitle="Control Tower" version="2.1.3" lastModifiedVersion="1.2.0"/>
 
 # Organizational Units Data Source
 
-<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.2/modules/landingzone/organizational-units" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.3/modules/landingzone/organizational-units" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-control-tower/releases/tag/v1.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -44,7 +44,7 @@ The output `ous` returns a list of organizational units, which have the followin
 
 module "organizational_units" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/organizational-units?ref=v2.1.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/organizational-units?ref=v2.1.3"
 
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
@@ -70,7 +70,7 @@ module "organizational_units" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/organizational-units?ref=v2.1.2"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-control-tower.git//modules/landingzone/organizational-units?ref=v2.1.3"
 }
 
 inputs = {
@@ -123,11 +123,11 @@ If set to true, this module will look for the specified organizational unit (OU)
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.2/modules/organizational-units/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.2/modules/organizational-units/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.2/modules/organizational-units/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.3/modules/organizational-units/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.3/modules/organizational-units/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-control-tower/tree/v2.1.3/modules/organizational-units/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "9000c425c3996a70648b65e92aee143b"
+  "hash": "08ff13cda740e361d6d25234002db85e"
 }
 ##DOCS-SOURCER-END -->
