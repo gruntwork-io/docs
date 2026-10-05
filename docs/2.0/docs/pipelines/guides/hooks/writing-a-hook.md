@@ -127,6 +127,8 @@ The two text outputs serve different purposes:
 
 If the hook writes no comment, Pipelines shows a fallback line in the body, such as `Hook exited with code 0`. The hook from this guide writes a `pass` result and a comment, so it appears with a ✅ icon and its unit list in the body.
 
+When the hook exits non-zero, Pipelines ignores these two files and reads `PIPELINES_HOOK_OUT_ERROR_SUMMARY_FILE` and `PIPELINES_HOOK_OUT_ERROR_COMMENT_FILE` instead, in the same two places. Write them before exiting so the comment says what went wrong rather than `Hook exited with code 1`. They need Pipelines with hook API `v1.1.0` or later; on an older Pipelines they are not set.
+
 ### How results affect the run
 
 A `deny` result fails the pipeline run and blocks the pull/merge request from merging, and shows a ⛔️ in the comment. A `warn` shows a ⚠️ and raises the severity in the comment but does not fail the run. Results are only read when the hook exits `0`; a non-zero exit is always a failure, see [Exit codes](/2.0/docs/pipelines/guides/hooks/configuring#exit-codes).
