@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="1.0.3" lastModifiedVersion="0.13.0"/>
+<VersionBadge repoTitle="AWS Messaging" version="1.1.0" lastModifiedVersion="1.1.0"/>
 
 # Simple Queuing Service (SQS) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sqs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sqs" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v0.13.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v1.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy an SQS queue along with policies for the topic.
 
@@ -101,7 +101,7 @@ including:
 
 module "sqs" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v1.0.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v1.1.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -174,6 +174,11 @@ module "sqs" {
   # default value is set to the same value as `receive_wait_time_seconds`
   dlq_receive_wait_time_seconds = null
 
+  # The JSON policy to set up the Dead Letter Queue redrive allow policy.
+  # Controls which source queues can use this queue as their dead letter target.
+  # When null, no restriction is applied.
+  dlq_redrive_allow_policy = null
+
   # The visibility timeout for the dead letter queue. An integer from 0 to 43200
   # (12 hours). The default value is set to the same value as
   # `visibility_timeout_seconds`
@@ -243,7 +248,7 @@ module "sqs" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v1.0.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs?ref=v1.1.0"
 }
 
 inputs = {
@@ -318,6 +323,11 @@ inputs = {
   # (seconds). Setting this to 0 means the call will return immediately. The
   # default value is set to the same value as `receive_wait_time_seconds`
   dlq_receive_wait_time_seconds = null
+
+  # The JSON policy to set up the Dead Letter Queue redrive allow policy.
+  # Controls which source queues can use this queue as their dead letter target.
+  # When null, no restriction is applied.
+  dlq_redrive_allow_policy = null
 
   # The visibility timeout for the dead letter queue. An integer from 0 to 43200
   # (12 hours). The default value is set to the same value as
@@ -530,6 +540,15 @@ The time for which a ReceiveMessage call will wait for a dead letter queue messa
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="dlq_redrive_allow_policy" requirement="optional" type="string">
+<HclListItemDescription>
+
+The JSON policy to set up the Dead Letter Queue redrive allow policy. Controls which source queues can use this queue as their dead letter target. When null, no restriction is applied.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="dlq_visibility_timeout_seconds" requirement="optional" type="number">
 <HclListItemDescription>
 
@@ -665,11 +684,11 @@ The visibility timeout for the queue. An integer from 0 to 43200 (12 hours).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sqs/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sqs/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sqs/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sqs/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sqs/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sqs/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "ab6521c597327d209ab588da0d2758f1"
+  "hash": "8b9e7f0d0a163e363d3b312cea662e7b"
 }
 ##DOCS-SOURCER-END -->

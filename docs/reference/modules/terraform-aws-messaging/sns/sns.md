@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="1.0.3" lastModifiedVersion="1.0.3"/>
+<VersionBadge repoTitle="AWS Messaging" version="1.1.0" lastModifiedVersion="1.1.0"/>
 
 # Simple Notification Service (SNS) Topic Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sns" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v1.0.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v1.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy a SNS topic along with the publisher and subscriber policies for the topic.
 
@@ -42,7 +42,7 @@ including:
 
 module "sns" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v1.0.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v1.1.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -90,6 +90,12 @@ module "sns" {
   # name of the topic.
   enable_fifo = false
 
+  # **Requires `enable_fifo = true`.** Specifies whether the FIFO topic
+  # throughput quota applies to the entire topic or per message group. Valid
+  # values are `Topic` and `MessageGroup`. Only used if `enable_fifo` is set to
+  # true.
+  fifo_throughput_scope = null
+
   # ARN of the http failure feedback role - when using delivery policy for sns
   # topic.
   http_failure_feedback_role_arn = null
@@ -108,8 +114,17 @@ module "sns" {
   # Docs](https://docs.aws.amazon.com/sns/latest/dg/message-archiving-and-replay-topic-owner.html)
   message_retention_period = null
 
+  # The signature version corresponds to the hashing algorithm used while
+  # creating the signature of the notifications, subscription confirmations, or
+  # unsubscribe confirmation messages sent by Amazon SNS. Valid values: `1`
+  # (SHA1, default), `2` (SHA256).
+  signature_version = null
+
   # A map of key value pairs to apply as tags to the SNS topic.
   tags = {}
+
+  # Tracing mode of an Amazon SNS topic. Valid values: `PassThrough`, `Active`.
+  tracing_config = null
 
 }
 
@@ -126,7 +141,7 @@ module "sns" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v1.0.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns?ref=v1.1.0"
 }
 
 inputs = {
@@ -177,6 +192,12 @@ inputs = {
   # name of the topic.
   enable_fifo = false
 
+  # **Requires `enable_fifo = true`.** Specifies whether the FIFO topic
+  # throughput quota applies to the entire topic or per message group. Valid
+  # values are `Topic` and `MessageGroup`. Only used if `enable_fifo` is set to
+  # true.
+  fifo_throughput_scope = null
+
   # ARN of the http failure feedback role - when using delivery policy for sns
   # topic.
   http_failure_feedback_role_arn = null
@@ -195,8 +216,17 @@ inputs = {
   # Docs](https://docs.aws.amazon.com/sns/latest/dg/message-archiving-and-replay-topic-owner.html)
   message_retention_period = null
 
+  # The signature version corresponds to the hashing algorithm used while
+  # creating the signature of the notifications, subscription confirmations, or
+  # unsubscribe confirmation messages sent by Amazon SNS. Valid values: `1`
+  # (SHA1, default), `2` (SHA256).
+  signature_version = null
+
   # A map of key value pairs to apply as tags to the SNS topic.
   tags = {}
+
+  # Tracing mode of an Amazon SNS topic. Valid values: `PassThrough`, `Active`.
+  tracing_config = null
 
 }
 
@@ -322,6 +352,15 @@ Flag to indicate if the SNS topic is FIFO. This will append `.fifo` to the name 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="fifo_throughput_scope" requirement="optional" type="string">
+<HclListItemDescription>
+
+**Requires `enable_fifo = true`.** Specifies whether the FIFO topic throughput quota applies to the entire topic or per message group. Valid values are `Topic` and `MessageGroup`. Only used if `enable_fifo` is set to true.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="http_failure_feedback_role_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -358,6 +397,15 @@ The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CM
 <HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
+<HclListItem name="signature_version" requirement="optional" type="number">
+<HclListItemDescription>
+
+The signature version corresponds to the hashing algorithm used while creating the signature of the notifications, subscription confirmations, or unsubscribe confirmation messages sent by Amazon SNS. Valid values: `1` (SHA1, default), `2` (SHA256).
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="tags" requirement="optional" type="map(string)">
 <HclListItemDescription>
 
@@ -365,6 +413,15 @@ A map of key value pairs to apply as tags to the SNS topic.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="tracing_config" requirement="optional" type="string">
+<HclListItemDescription>
+
+Tracing mode of an Amazon SNS topic. Valid values: `PassThrough`, `Active`.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
 </HclListItem>
 
 </TabItem>
@@ -388,11 +445,11 @@ A map of key value pairs to apply as tags to the SNS topic.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sns/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sns/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/sns/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sns/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sns/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sns/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "3a9650a34f42aa52c488c490af3462a3"
+  "hash": "9cf2dbcafe487ef7a75e1e6b99f1d058"
 }
 ##DOCS-SOURCER-END -->
