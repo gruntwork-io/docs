@@ -75,7 +75,6 @@ On GitLab, commits use the name and commit email (or primary email, if no commit
 
 If the token owner cannot be looked up while this flag is enabled, the run fails.
 
-Set this flag in the `env` block of your Pipelines configuration; CI/CD variables don't enable it. `PIPELINES_FEATURE_EXPERIMENT_ALL` in the same block also enables this flag. To keep it off while `PIPELINES_FEATURE_EXPERIMENT_ALL` is enabled, set this flag to `"false"`.
 
 **Note**: This changes who generated commits are attributed to, which is visible in `git blame`, in commit history, and in notifications on generated pull or merge requests.
 </li>
