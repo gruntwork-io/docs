@@ -5,7 +5,6 @@ globs:
 
 Pipelines supports both GitHub and GitLab.  
 
-GitLab does not yet support account factory.
 GitLab does not yet support the same level of customization as GitHub
 GitLab requires one machine user with just one token and does not have a gitlab app.  
 ## GitLab Setup Requirements
