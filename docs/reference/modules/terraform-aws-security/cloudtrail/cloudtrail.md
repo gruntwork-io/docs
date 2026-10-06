@@ -339,6 +339,15 @@ module "cloudtrail" {
   # itself. The key is the tag name and the value is the tag value.
   tags = {}
 
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior. Leave null to
+  # keep the provider default.
+  transition_default_minimum_object_size = null
+
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
   # are friendlier to automated policy checkers, which may scan a single
@@ -598,6 +607,15 @@ inputs = {
   # A map of tags to apply to the S3 Bucket, CloudTrail KMS Key, and CloudTrail
   # itself. The key is the tag name and the value is the tag value.
   tags = {}
+
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior. Leave null to
+  # keep the provider default.
+  transition_default_minimum_object_size = null
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -1299,6 +1317,15 @@ A map of tags to apply to the S3 Bucket, CloudTrail KMS Key, and CloudTrail itse
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="transition_default_minimum_object_size" requirement="optional" type="string">
+<HclListItemDescription>
+
+The default minimum object size behavior applied to the lifecycle configuration. Valid values: all_storage_classes_128K (default), varies_by_storage_class. To customize the minimum object size for any transition you can add a filter that specifies a custom object_size_greater_than or object_size_less_than value. Custom filters always take precedence over the default transition behavior. Leave null to keep the provider default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1418,6 +1445,6 @@ The name of the cloudtrail trail.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/cloudtrail/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "c869dd5691b226711ff109a996fe677b"
+  "hash": "a21fff3931a37a3254dc573027ae568f"
 }
 ##DOCS-SOURCER-END -->

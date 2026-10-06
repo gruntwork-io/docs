@@ -199,6 +199,15 @@ module "cloudtrail_bucket" {
   # itself. The key is the tag name and the value is the tag value.
   tags = {}
 
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior. Leave null to
+  # keep the provider default.
+  transition_default_minimum_object_size = null
+
 }
 
 
@@ -377,6 +386,15 @@ inputs = {
   # A map of tags to apply to the S3 Bucket, CloudTrail KMS Key, and CloudTrail
   # itself. The key is the tag name and the value is the tag value.
   tags = {}
+
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior. Leave null to
+  # keep the provider default.
+  transition_default_minimum_object_size = null
 
 }
 
@@ -866,6 +884,15 @@ A map of tags to apply to the S3 Bucket, CloudTrail KMS Key, and CloudTrail itse
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="transition_default_minimum_object_size" requirement="optional" type="string">
+<HclListItemDescription>
+
+The default minimum object size behavior applied to the lifecycle configuration. Valid values: all_storage_classes_128K (default), varies_by_storage_class. To customize the minimum object size for any transition you can add a filter that specifies a custom object_size_greater_than or object_size_less_than value. Custom filters always take precedence over the default transition behavior. Leave null to keep the provider default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -928,6 +955,6 @@ The name of the S3 bucket where cloudtrail logs are delivered.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/cloudtrail-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "dc2a58e45b1d15c517ca0254b38be04f"
+  "hash": "99d42eeaff9e145db773a5a167eba837"
 }
 ##DOCS-SOURCER-END -->

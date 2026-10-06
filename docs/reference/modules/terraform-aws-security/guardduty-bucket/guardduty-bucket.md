@@ -137,6 +137,15 @@ module "guardduty_bucket" {
   # Tags to apply to the GuardDuty findings resources (S3 bucket and CMK).
   tags = {}
 
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior. Leave null to
+  # keep the provider default.
+  transition_default_minimum_object_size = null
+
 }
 
 
@@ -256,6 +265,15 @@ inputs = {
 
   # Tags to apply to the GuardDuty findings resources (S3 bucket and CMK).
   tags = {}
+
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior. Leave null to
+  # keep the provider default.
+  transition_default_minimum_object_size = null
 
 }
 
@@ -586,6 +604,15 @@ Tags to apply to the GuardDuty findings resources (S3 bucket and CMK).
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="transition_default_minimum_object_size" requirement="optional" type="string">
+<HclListItemDescription>
+
+The default minimum object size behavior applied to the lifecycle configuration. Valid values: all_storage_classes_128K (default), varies_by_storage_class. To customize the minimum object size for any transition you can add a filter that specifies a custom object_size_greater_than or object_size_less_than value. Custom filters always take precedence over the default transition behavior. Leave null to keep the provider default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -632,6 +659,6 @@ The name of the S3 bucket where GuardDuty findings are delivered.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/guardduty-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6fc4927620bd71ebecf7cbaf38d9580a"
+  "hash": "5b117c278c8fd8d6975c15021a805eb3"
 }
 ##DOCS-SOURCER-END -->

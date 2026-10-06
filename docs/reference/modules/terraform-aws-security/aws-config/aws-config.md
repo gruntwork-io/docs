@@ -355,6 +355,15 @@ module "aws_config" {
   # value is the tag value.
   tags = {}
 
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior. Leave null to
+  # keep the provider default.
+  transition_default_minimum_object_size = null
+
   # Toggle if the recording_group should be setup using the
   # var.global_recorder_region (true) or if the recording_group will be setup
   # for each entry in var.recording_groups (false). Defaults to true.
@@ -651,6 +660,15 @@ inputs = {
   # A map of tags to apply to the S3 Bucket. The key is the tag name and the
   # value is the tag value.
   tags = {}
+
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior. Leave null to
+  # keep the provider default.
+  transition_default_minimum_object_size = null
 
   # Toggle if the recording_group should be setup using the
   # var.global_recorder_region (true) or if the recording_group will be setup
@@ -1162,6 +1180,15 @@ A map of tags to apply to the S3 Bucket. The key is the tag name and the value i
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="transition_default_minimum_object_size" requirement="optional" type="string">
+<HclListItemDescription>
+
+The default minimum object size behavior applied to the lifecycle configuration. Valid values: all_storage_classes_128K (default), varies_by_storage_class. To customize the minimum object size for any transition you can add a filter that specifies a custom object_size_greater_than or object_size_less_than value. Custom filters always take precedence over the default transition behavior. Leave null to keep the provider default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="use_global_record_region" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1242,6 +1269,6 @@ The ARN of the SNS topic to which Config delivers notifications.
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/aws-config/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "96b096fa7fb9cbdc3918252a76b55b62"
+  "hash": "56b98e579d1e267fded2561848c3317d"
 }
 ##DOCS-SOURCER-END -->
