@@ -287,6 +287,18 @@ module "valkey" {
   # alphanumeric characters or symbols (excluding @, <double-quotes>, and /)
   auth_token = null
 
+  # Strategy to use when updating the auth_token: SET, ROTATE, or DELETE. Passed
+  # straight through to the aws_elasticache_replication_group resource's
+  # auth_token_update_strategy argument. This only affects updates to an
+  # already-existing replication group - it has no effect at creation time.
+  # Without setting this explicitly, a plain `terraform apply` that adds or
+  # changes `auth_token` on an existing replication group is not guaranteed to
+  # actually push that change to the live cluster; the resource can end up with
+  # the old (or no) auth token still in effect on AWS's side even though the
+  # Terraform config and state show the new value. Defaults to null (provider
+  # default) to preserve existing behavior for callers that don't set it.
+  auth_token_update_strategy = null
+
   # Specifies whether minor version engine upgrades will be applied
   # automatically to the underlying Cache Cluster instances during the
   # maintenance window. Only supported for engine type 'valkey' and if the
@@ -522,6 +534,18 @@ inputs = {
   # only if transit_encryption_enabled = true. Must contain from 16 to 128
   # alphanumeric characters or symbols (excluding @, <double-quotes>, and /)
   auth_token = null
+
+  # Strategy to use when updating the auth_token: SET, ROTATE, or DELETE. Passed
+  # straight through to the aws_elasticache_replication_group resource's
+  # auth_token_update_strategy argument. This only affects updates to an
+  # already-existing replication group - it has no effect at creation time.
+  # Without setting this explicitly, a plain `terraform apply` that adds or
+  # changes `auth_token` on an existing replication group is not guaranteed to
+  # actually push that change to the live cluster; the resource can end up with
+  # the old (or no) auth token still in effect on AWS's side even though the
+  # Terraform config and state show the new value. Defaults to null (provider
+  # default) to preserve existing behavior for callers that don't set it.
+  auth_token_update_strategy = null
 
   # Specifies whether minor version engine upgrades will be applied
   # automatically to the underlying Cache Cluster instances during the
@@ -786,6 +810,15 @@ Specifies whether any database modifications are applied immediately, or during 
 <HclListItemDescription>
 
 The password used to access a password protected server. Can be specified only if transit_encryption_enabled = true. Must contain from 16 to 128 alphanumeric characters or symbols (excluding @, &lt;double-quotes>, and /)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="auth_token_update_strategy" requirement="optional" type="string">
+<HclListItemDescription>
+
+Strategy to use when updating the auth_token: SET, ROTATE, or DELETE. Passed straight through to the aws_elasticache_replication_group resource's auth_token_update_strategy argument. This only affects updates to an already-existing replication group - it has no effect at creation time. Without setting this explicitly, a plain `terraform apply` that adds or changes `auth_token` on an existing replication group is not guaranteed to actually push that change to the live cluster; the resource can end up with the old (or no) auth token still in effect on AWS's side even though the Terraform config and state show the new value. Defaults to null (provider default) to preserve existing behavior for callers that don't set it.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1224,6 +1257,6 @@ Version number of valkey to use (e.g. 7.2).
     "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/valkey/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fc88a9e6a772eb13aa3f48f0acf850f0"
+  "hash": "3909061642af32c7e6e9e2d19d4e96da"
 }
 ##DOCS-SOURCER-END -->
