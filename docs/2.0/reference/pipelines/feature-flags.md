@@ -76,7 +76,6 @@ On GitLab, commits use the name and commit email (or primary email, if no commit
 If the token owner cannot be looked up while this flag is enabled, the run fails.
 
 
-**Note**: This changes who generated commits are attributed to, which is visible in `git blame`, in commit history, and in notifications on generated pull or merge requests.
 </li>
 <li>
 **Default Value**: Disabled
