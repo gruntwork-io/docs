@@ -61,6 +61,30 @@ This behavior will likely become the default in a major release of Pipelines but
 </li>
 </ul>
 
+#### `PIPELINES_FEATURE_EXPERIMENT_COMMIT_AS_TOKEN_OWNER`
+<ul>
+<li>
+
+Authors the commits Pipelines creates as the owner of the token that pushes them, rather than as the user who triggered the pipeline. The committer is set to the same identity. This covers Account Factory baseline commits, access control and delegated repository pull or merge requests, and Drift Detection change requests.
+
+On GitHub:
+- With the GitHub App on github.com, commits are attributed to `gruntwork-io[bot]` (`<id>+gruntwork-io[bot]@users.noreply.github.com`).
+- With machine users, commits are attributed to the account that owns the token (`<id>+<login>@users.noreply.<host>`). Account Factory baseline commits use `INFRA_ROOT_WRITE_TOKEN`, Drift Detection commits use `PR_CREATE_TOKEN`, and access control and delegated repository commits use `ORG_REPO_ADMIN_TOKEN`.
+
+On GitLab, commits use the name and commit email (or primary email, if no commit email is set) of the token's user. Account Factory baseline and Drift Detection commits use `PIPELINES_GITLAB_TOKEN`, and access control and delegated repository commits use `PIPELINES_GITLAB_ADMIN_TOKEN`. Enable this if your project uses a push rule that requires the commit author to match the pusher.
+
+If the token owner cannot be looked up while this flag is enabled, the run fails.
+
+
+</li>
+<li>
+**Default Value**: Disabled
+</li>
+<li>
+**How to Enable**: Set to `"true"`
+</li>
+</ul>
+
 #### `PIPELINES_FEATURE_EXPERIMENT_DISABLE_PREFLIGHT_AHEAD_OF_DEPLOY_BRANCH`
 <ul>
 <li>
