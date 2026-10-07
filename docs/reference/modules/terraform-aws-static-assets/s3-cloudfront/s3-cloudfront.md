@@ -122,13 +122,18 @@ now recommends:
     service principal to write objects, and only for deliveries from your own account. ACLs are disabled.
 *   **The module creates the delivery in us-east-1:** AWS only accepts CloudFront v2 logging configuration there,
     whatever region your provider and bucket are in. You do not need a second provider.
-*   **Logs land under `access_log_prefix`**, so the expiration rule still applies. With no prefix, AWS writes them
-    under `AWSLogs/<account ID>/CloudFront/`.
+*   **Logs land under `access_log_prefix`**, so the expiration rule still applies, and the bucket policy only lets the
+    delivery service write there. With no prefix, AWS writes them under `AWSLogs/<account ID>/CloudFront/`. AWS will not
+    change the prefix of a destination a delivery is using, so changing `access_log_prefix` later may need the delivery
+    destroyed and recreated.
 *   **`access_logs_output_format` sets the file format:** `w3c` by default, which is the format legacy logs use. AWS
     cannot change the format of an existing delivery, so changing it replaces the delivery.
 *   **With `existing_s3_log_bucket_name`**, you manage that bucket, so its policy must allow the delivery service to
-    write. AWS shows the statement in its [S3 permissions
-    guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-and-resource-policy.html#AWS-logs-infrastructure-V2-S3).
+    write. AWS shows the statement in its [S3 bucket resource policy
+    guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-infrastructure-V2-S3.html#AWS-logs-infrastructure-V2-S3-bucket-resource-policy).
+*   **One delivery source per distribution:** AWS allows only one. If you already turned on v2 logging for the
+    distribution in the console, delete that delivery source, or import it as
+    `aws_cloudwatch_log_delivery_source.access_logs[0]`, before you apply.
 
 ### Switching an existing deployment to standard logging (v2)
 
@@ -1618,6 +1623,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.2.0/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "073cb1090c0c0c84a87b7063a85246fd"
+  "hash": "2a5d3047aa9d8f3b4961e9a27851c5aa"
 }
 ##DOCS-SOURCER-END -->
