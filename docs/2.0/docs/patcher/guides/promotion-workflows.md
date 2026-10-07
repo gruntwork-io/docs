@@ -11,25 +11,32 @@ Rolling out updates to infrastructure-as-code is already painful. But it becomes
 
 In short, you can choose between confidence and efficiency, but historically you can't get both.
 
-With promotion workflows, we aim to bridge that gap in a small way. You can now open a pull request that updates OpenTofu/Terraform/Terragrunt code only your initial rollout environment (e.g. dev). Once you merge that pull request, Patcher promotion workflows automatically open a corresponding pull request that updates all the same dependencies for your next rollout environment (e.g. stage). The process continues until you reach prod.
+With promotion workflows, we aim to bridge that gap. You open a pull request that updates OpenTofu/Terraform/Terragrunt code only in your initial rollout environment (e.g. dev). Once you merge that pull request, Patcher promotion workflows automatically trigger the next environment’s workflow (e.g. stage), which opens a pull request with the same dependency updates for that environment. The process continues until you reach prod.
 
-This way, you can incrementally roll out your changes, but you lessen the pain of doing so because the pull requests for each subsequent environment are created automatically for you.
+This way, you incrementally roll out changes with one PR per environment, and the pull requests for each subsequent environment are created automatically.
 
 ### Limitations
 
-Promotion workflows define their subsequent updates based on the initial `patcher report` run. If you make manual updates to an individual pull request (e.g. by removing a dependency update), Patcher promotion workflows do not currently recognize that.
-
-Of course, you can always just manually update the subsequent pull requests, so this isn't a blocker, but it's admittedly a limitation.
+Promotion workflows trigger the next environment based on a merged PR that has the correct label (e.g. `updates-dev`). If you merge a PR after editing it (e.g. by dropping some dependency updates), the next environment’s run will still report and update based on what’s currently outdated in that environment—it does not replay your exact edits. You can always adjust the downstream PRs manually if needed.
 
 ## Prerequisites
 
 ### Supported CI systems
 
-Gruntwork officially supports Patcher Promotion Workflows using GitHub Actions.
+Gruntwork officially supports Patcher promotion workflows using **GitHub Actions** and the [patcher-action](https://github.com/gruntwork-io/patcher-action) workflow (v5).
 
-### Organizing environments as folder structures 
+### Secrets or OIDC
 
-To support multiple environments (such as `dev`, `stage`, and `prod`), your codebase must represent these environments with a consistent folder structure that can be grouped using glob pattern matching.
+The workflow needs permission to download Patcher from Gruntwork and to push branches and open pull requests in your repo. You can use either:
+
+- **OIDC** (recommended): If your repository is linked in Gruntwork Pipelines, the workflow uses the pipelines-credentials action to obtain short-lived tokens. No long-lived secrets are required in that case.
+- **Secrets as fallback**: If OIDC is not available, set these repository secrets:
+  - `PIPELINES_READ_TOKEN` — used to download Patcher and read Gruntwork modules and your repos. See [setting up machine user tokens](/2.0/docs/pipelines/installation/viamachineusers).
+  - `PR_CREATE_TOKEN` — used to push branches and create pull requests in your infrastructure repo.
+
+### Organizing environments as folder structures
+
+To support multiple environments (such as `dev`, `stage`, and `prod`), your codebase must represent these environments with a consistent folder structure that can be targeted using glob pattern matching.
 
 For example, if your environments were organized like this:
 
@@ -43,47 +50,70 @@ stage-account1
 stage-account2
 ```
 
-You could define your Patcher environments as `dev-*`, `stage-*`, and `prod-*`. 
+You would use `include_dirs` such as `"{*dev*}/**"`, `"{*stage*}/**"`, and `"{*prod*}/**"` in each workflow.
 
-## Implementation & setup example 
+### Labeling PRs for promotion
 
-The Patcher Promotion Workflow process consists of a series of GitHub Actions workflow files, where each environment is represented as an individual workflow. The process begins with the lowest environment (typically `dev`). It scans the entire `dev` environment for dependencies that require updates and generates one pull request per dependency. Each pull request updates the dependency specifically in the `dev` environment. 
+Promotion is triggered when a **merged** pull request has a label that matches the environment (e.g. `updates-dev`, `updates-stage`). You need a way to apply these labels based on which paths the PR changes. The examples below use GitHub’s [labeler](https://github.com/actions/labeler) plus a config file so that PRs touching `dev/**` get `updates-dev`, and so on. Setup is described in [Setting up the labeler](#setting-up-the-labeler).
 
-After a pull request is approved and merged in the dev environment, Patcher automatically triggers pull requests for the next environment (e.g., `stage`) via repository dispatch events. This step-by-step promotion continues until production is updated.
+## Implementation & setup example
 
-To get started quickly, copy and customize the example files below to match your environment names. In this example, the promotion workflow moves updates sequentially across `dev`, `stage`, and finally `prod`. 
+The promotion workflow uses the **patcher-action** workflow (`gruntwork-io/patcher-action/.github/workflows/patcher.yml@v5`). That workflow runs in a single job: it checks out your repo, runs `patcher report` (scoped by `include_dirs`), then runs `patcher update` and opens **one pull request per environment** with all dependency updates for that environment.
 
-### Setting up the initial dev promotion step 
+Each environment (dev, stage, prod) has its own workflow file that:
 
-The initial GitHub Actions workflow file, `update-dev.yml` in this example, highlights the following key components: 
+1. Calls the workflow with the right `include_dirs` for that environment.
+2. Listens for the appropriate trigger: schedule, manual run, or a `repository_dispatch` event from the previous environment.
+3. (Dev and stage only) When a PR with the matching label is **merged**, sends a `repository_dispatch` to trigger the next environment’s workflow.
 
-* **Job triggers**: 
-    * The job is configured to run on a schedule, pull request targets, workflow dispatch, and repository dispatch events. 
-        * A **schedule** is optional but recommended for regular updates. 
-        * **Workflow dispatch** is a recommended testing mechanism. 
-        * The **pull request target** is required to trigger certain dependent jobs. 
+Copy and customize the example files below to match your environment names and paths. The promotion flow moves updates sequentially: dev → stage → prod.
 
-* **`trigger-next-env` job**: 
-    * This job runs **only** when a pull request is merged. It sends a repository dispatch event (`dev_updates_merged`) to trigger the next environment’s workflow. 
-    * It includes metadata, specifically a `dependency` (derived from the Git branch name), to inform the subsequent job which dependency to process. 
+### Setting up the labeler
 
-* **`patcher-report` job**: 
-    * This job runs `patcher report` to generate a list of updates for a specific environment, using the `include_dirs` argument to target that environment. 
-    * It uses a secret, `PIPELINES_READ_TOKEN`, which must have access to your Gruntwork account to download the Patcher binary. For details on setting up machine user tokens, see [here](/2.0/docs/pipelines/installation/viamachineusers). 
+So that merged PRs trigger the next environment, they must have the right label (`updates-dev`, `updates-stage`, etc.). Add a workflow that labels PRs by changed paths, and a config file that maps paths to labels.
 
-* **`update-env` job**: 
-    * This job processes the `spec` output from the `patcher report` command, saves it to a file, and then runs `patcher update`. 
-    * The `patcher update` command reads the `spec` file, checks out the repository code, commits the changes, and pushes a pull request. 
-    * For the pull request workflow to function correctly, the `pull_request_branch` must follow the format `$PREFIX$DEPENDENCYID`. This format allows the workflow to track and process updates accurately. The `trigger-next-env` job strips out the prefix.
+Create **`.github/labeler.yml`** (adjust paths to match your repo):
 
-:::info
-As of `v0.14.x` (`patcher-action` `v2.10.x`), Patcher has deprecated support of checking in the spec output file from a `patcher report` run into your codebase. 
-This file, similar to an OpenTofu plan file, is intended to be a temporary artifact to capture run details between `report` and `update`.   
-We recommend that you delete and `.gitignore` any spec files in your codebase.
-:::
+```yaml
+# Label PRs by which environment paths they change
+updates-dev:
+  - dev/**/*
+  - dev2/**/*
+updates-stage:
+  - stage/**/*
+updates-prod:
+  - prod/**/*
+```
+
+Add a **Labeler** workflow (e.g. `.github/workflows/label.yml`):
+
+```yaml
+name: Labeler
+on: [pull_request_target]
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/labeler@v4
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          sync-labels: true
+```
+
+### Setting up the initial dev promotion step
+
+The **dev** workflow runs Patcher for the dev environment and, when a labeled PR is merged, triggers the stage workflow.
+
+- **Triggers**: `workflow_dispatch`, `repository_dispatch` (e.g. `new_module_release`), optional **schedule**, and `pull_request_target` (closed) so the merge can trigger the next env.
+- **`trigger-next-env` job**: Runs only when a PR is merged and has the label `updates-dev`. Sends a `repository_dispatch` event `dev_updates_merged` to trigger the stage workflow.
+- **`patcher` job**: Calls the workflow with `include_dirs: "{*dev*}/**"` so report and update run only for dev. The workflow opens a single PR with all dev dependency updates.
 
 <!-- spell-checker: disable -->
-```yml
+```yaml
 name: Update Dev Dependencies
 on:
   workflow_dispatch:
@@ -99,86 +129,42 @@ on:
       - main
 
 permissions:
+  id-token: write
   contents: write
-  pull_requests: write
-
-env:
-  ENV_FOLDER_NAME: dev
-  PR_BRANCH_PREFIX: patcherv2-dev-updates-
 
 jobs:
   trigger-next-env:
     if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'updates-dev')
     runs-on: ubuntu-latest
     steps:
-      - shell: bash
-        id: dependency
-        env:
-          PR_BRANCH_PREFIX: ${{ env.PR_BRANCH_PREFIX }}
-          BRANCH: ${{ github.head_ref }}
-        run: |
-          dep=${BRANCH#"$PR_BRANCH_PREFIX"}
-          echo "dependency=$dep" >> "$GITHUB_OUTPUT"
-
-      - uses: peter-evans/repository-dispatch@v2
+      - uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ github.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
           event-type: dev_updates_merged
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "branch": "${{ github.head_ref }}", "dependency": "${{ steps.dependency.outputs.dependency }}"}'
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "branch": "${{ github.head_ref }}" }'
 
-  patcher-report:
+  patcher:
     if: github.event_name == 'repository_dispatch' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    outputs:
-      spec: ${{ steps.get-spec.outputs.spec }}
-    steps:
-      - uses: actions/checkout@v3
-      - uses: gruntwork-io/patcher-action@v2
-        id: get-spec
-        with:
-          patcher_command: report
-          github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
-          include_dirs: "{*dev*}/**"
-          working_dir: ./
-          spec_file: /tmp/patcher-spec.json
-
-  update-env:
-    needs: [patcher-report]
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        dependency: ${{ fromJson(needs.patcher-report.outputs.spec).Dependencies }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Create the spec file
-        shell: bash
-        run: |
-          echo '${{ needs.patcher-report.outputs.spec }}' > /tmp/patcher-spec.json
-
-      - uses: gruntwork-io/patcher-action@v2
-        with:
-          patcher_command: update
-          github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
-          working_dir: ${{ env.ENV_FOLDER_NAME }}
-          dependency: ${{ matrix.dependency.ID }}
-          spec_file: /tmp/patcher-spec.json
-          pull_request_title: "[Patcher] [dev] Update ${{ matrix.dependency.ID }}"
-          pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
+    uses: gruntwork-io/patcher-action/.github/workflows/patcher.yml@v5
+    with:
+      working_dir: ./
+      include_dirs: "{*dev*}/**"
+    secrets:
+      PIPELINES_READ_TOKEN: ${{ secrets.PIPELINES_READ_TOKEN }}
+      PR_CREATE_TOKEN: ${{ secrets.PR_CREATE_TOKEN }}
 ```
 <!-- spell-checker: enable -->
+
 ### Setting up the stage step
 
-The `update-stage.yml` workflow file is nearly identical to `update-dev.yml`.
+The **stage** workflow is triggered when dev’s updates are merged (`dev_updates_merged`) and, when a stage PR with the right label is merged, triggers prod.
 
-The key differences are: 
-* The `repository_dispatch` event type is now `dev_updates_merged`.
-* The `include_dirs` argument targets the `stage` environment instead of `dev`.
-* The `PR_BRANCH_PREFIX` and `pull_request_title` reference the `stage` environment instead of `dev`.
+- **Triggers**: `workflow_dispatch`, `repository_dispatch` with `dev_updates_merged`, and `pull_request_target` (closed).
+- **`trigger-next-env` job**: When a merged PR has the label `updates-stage`, sends `stage_updates_merged` to trigger the prod workflow.
+- **`patcher` job**: Same as dev but with `include_dirs: "{*stage*}/**"`.
 
-```yml
+```yaml
 name: Update Stage Dependencies
 
 on:
@@ -192,85 +178,40 @@ on:
       - main
 
 permissions:
+  id-token: write
   contents: write
-
-env:
-  PR_BRANCH_PREFIX: patcher-stage-updates-
 
 jobs:
   trigger-next-env:
     if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'updates-stage')
     runs-on: ubuntu-latest
     steps:
-      - shell: bash
-        id: dependency
-        env:
-          PR_BRANCH_PREFIX: ${{ env.PR_BRANCH_PREFIX }}
-          BRANCH: ${{ github.head_ref }}
-        run: |
-          dep=${BRANCH#"$PR_BRANCH_PREFIX"}
-          echo "dependency=$dep" >> "$GITHUB_OUTPUT"
-
-      - uses: peter-evans/repository-dispatch@v2
+      - uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ github.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
           event-type: stage_updates_merged
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "branch": "${{ github.head_ref }}", "dependency": "${{ steps.dependency.outputs.dependency }}"}'
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "branch": "${{ github.head_ref }}" }'
 
-  patcher-report:
+  patcher:
     if: github.event_name == 'repository_dispatch' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    outputs:
-      spec: ${{ steps.run-report.outputs.spec }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: gruntwork-io/patcher-action@v2
-        id: run-report
-        with:
-          github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
-          patcher_command: report
-          working_dir: ./
-          spec_file: /tmp/patcher-spec.json
-          include_dirs: "{*stage*}/**"
-
-  update-env:
-    needs: [patcher-report]
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      max-parallel: 2
-      matrix:
-        dependency: ${{ github.event.client_payload.dependency && fromJson(format('[{{"ID"{0} "{1}"}}]', ':', github.event.client_payload.dependency)) || fromJson(needs.patcher-report.outputs.spec).Dependencies }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Create the spec file
-        shell: bash
-        run: |
-          echo '${{ needs.patcher-report.outputs.spec }}' > /tmp/patcher-spec.json
-
-      - uses: gruntwork-io/patcher-action@v2
-        with:
-          github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
-          dependency: ${{ matrix.dependency.ID }}
-          patcher_command: update
-          spec_file: /tmp/patcher-spec.json
-          pull_request_title: "[Patcher] [stage] Update ${{ matrix.dependency.ID }}"
-          pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
+    uses: gruntwork-io/patcher-action/.github/workflows/patcher.yml@v5
+    with:
+      working_dir: ./
+      include_dirs: "{*stage*}/**"
+    secrets:
+      PIPELINES_READ_TOKEN: ${{ secrets.PIPELINES_READ_TOKEN }}
+      PR_CREATE_TOKEN: ${{ secrets.PR_CREATE_TOKEN }}
 ```
 
-### Setting up the prod stage
+### Setting up the prod step
 
-The `update-prod.yml` workflow file is nearly identical to `update-stage.yml`.
+The **prod** workflow is the last in the chain. It has no `trigger-next-env` job and no `pull_request_target`; it only runs when triggered by `stage_updates_merged` or manually.
 
-The key differences are:
-* The `repository_dispatch` event type is now `stage_updates_merged`.
-* The `include_dirs` argument targets the `prod` environment instead of `stage`. 
-* The `PR_BRANCH_PREFIX` and `pull_request_title` reference the `prod` environment instead of `stage`.
-* Since this is the final environment in the chain, the `trigger-next-env` job is no longer needed.
+- **Triggers**: `workflow_dispatch` and `repository_dispatch` with `stage_updates_merged`.
+- **`patcher` job**: Same pattern with `include_dirs: "{*prod*}/**"`.
 
-
-```yml
+```yaml
 name: Update Prod Dependencies
 
 on:
@@ -279,55 +220,21 @@ on:
     types: [stage_updates_merged]
 
 permissions:
+  id-token: write
   contents: write
 
-env:
-  PR_BRANCH_PREFIX: patcher-prod-updates-
-
 jobs:
-  patcher-report:
-    if: github.event_name == 'repository_dispatch' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    outputs:
-      spec: ${{ steps.run-report.outputs.spec }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: gruntwork-io/patcher-action@v2
-        id: run-report
-        with:
-          github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
-          patcher_command: report
-          working_dir: ./
-          dependency: ${{ github.event.client_payload.dependency }}
-          spec_file: /tmp/patcher-spec.json
-          include_dirs: "{*prod*}/**"
-
-  update-env:
-    needs: [patcher-report]
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      max-parallel: 2
-      matrix:
-        dependency: ${{ github.event.client_payload.dependency && fromJson(format('[{{"ID"{0} "{1}"}}]', ':', github.event.client_payload.dependency)) || fromJson(needs.patcher-report.outputs.spec).Dependencies }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Create the spec file
-        shell: bash
-        run: |
-          echo '${{ needs.patcher-report.outputs.spec }}' > /tmp/patcher-spec.json
-
-      - uses: gruntwork-io/patcher-action@v2
-        with:
-          github_token: ${{ secrets.PIPELINES_READ_TOKEN }}
-          dependency: ${{ matrix.dependency.ID }}
-          patcher_command: update
-          spec_file: /tmp/patcher-spec.json
-          pull_request_title: "[Patcher] [prod] Update ${{ matrix.dependency.ID }}"
-          pull_request_branch: "${{ env.PR_BRANCH_PREFIX }}${{ matrix.dependency.ID }}"
+  patcher:
+    uses: gruntwork-io/patcher-action/.github/workflows/patcher.yml@v5
+    with:
+      working_dir: ./
+      include_dirs: "{*prod*}/**"
+    secrets:
+      PIPELINES_READ_TOKEN: ${{ secrets.PIPELINES_READ_TOKEN }}
+      PR_CREATE_TOKEN: ${{ secrets.PR_CREATE_TOKEN }}
 ```
 
 ## Related content
 
-* [Concepts - Patcher Workflows](/2.0/docs/patcher/concepts/promotion-workflows) 
-* [Architecture - Overview](/2.0/docs/patcher/architecture) 
+* [Concepts - Patcher Workflows](/2.0/docs/patcher/concepts/promotion-workflows)
+* [Architecture - Overview](/2.0/docs/patcher/architecture)
