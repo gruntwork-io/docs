@@ -105,6 +105,16 @@ module "ecr_repos" {
   # repositories map.
   default_automatic_image_scanning = true
 
+  # Whether or not to create the repos. Set to false to only manage the
+  # repository policies and lifecycle policies of repos that already exist
+  # outside this module, such as the replicas that ECR cross region replication
+  # creates in other regions. The repos must exist before you run plan. Don't
+  # set this to false for a repo that's already in this module's state (created
+  # by it or imported): Terraform will plan to delete it. Run terraform state rm
+  # 'aws_ecr_repository.repos["<NAME>"]' first. Can be overridden on a per repo
+  # basis by the create_repository property in the repositories map.
+  default_create_repository = true
+
   # The default encryption configuration to apply to the created ECR repository.
   # When null, the images in the ECR repo will not be encrypted at rest. Can be
   # overridden on a per repo basis by the encryption_config property in the
@@ -204,6 +214,16 @@ inputs = {
   # on a per repo basis by the enable_automatic_image_scanning property in the
   # repositories map.
   default_automatic_image_scanning = true
+
+  # Whether or not to create the repos. Set to false to only manage the
+  # repository policies and lifecycle policies of repos that already exist
+  # outside this module, such as the replicas that ECR cross region replication
+  # creates in other regions. The repos must exist before you run plan. Don't
+  # set this to false for a repo that's already in this module's state (created
+  # by it or imported): Terraform will plan to delete it. Run terraform state rm
+  # 'aws_ecr_repository.repos["<NAME>"]' first. Can be overridden on a per repo
+  # basis by the create_repository property in the repositories map.
+  default_create_repository = true
 
   # The default encryption configuration to apply to the created ECR repository.
   # When null, the images in the ECR repo will not be encrypted at rest. Can be
@@ -309,6 +329,19 @@ Any types represent complex values of variable type. For details, please consult
    Each entry in the map supports the following attributes:
   
    OPTIONAL (defaults to value of corresponding module input):
+   - create_repository                       bool                     : Whether or not to create the repo. Set to false
+                                                                        to only manage the repository policy and
+                                                                        lifecycle policy of a repo that already exists,
+                                                                        such as a replica that ECR cross region
+                                                                        replication created. The repo must exist before
+                                                                        you run plan. When false,
+                                                                        enable_automatic_image_scanning,
+                                                                        encryption_config, image_tag_mutability,
+                                                                        force_delete, and tags are ignored. Don't set
+                                                                        this to false for a repo already in this
+                                                                        module's state: Terraform will plan to delete
+                                                                        it. See var.default_create_repository. If
+                                                                        omitted, use var.default_create_repository.
    - external_account_ids_with_read_access   list(string)             : List of account IDs that should have read
                                                                         access on the repo. If omitted, use
                                                                         var.default_external_account_ids_with_read_access.
@@ -375,6 +408,15 @@ Any types represent complex values of variable type. For details, please consult
 <HclListItemDescription>
 
 Whether or not to enable image scanning on all the repos. Can be overridden on a per repo basis by the enable_automatic_image_scanning property in the repositories map.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
+<HclListItem name="default_create_repository" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Whether or not to create the repos. Set to false to only manage the repository policies and lifecycle policies of repos that already exist outside this module, such as the replicas that ECR cross region replication creates in other regions. The repos must exist before you run plan. Don't set this to false for a repo that's already in this module's state (created by it or imported): Terraform will plan to delete it. Run terraform state rm 'aws_ecr_repository.repos['&lt;NAME>']' first. Can be overridden on a per repo basis by the create_repository property in the repositories map.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="true"/>
@@ -557,7 +599,7 @@ A list of IAM policy actions necessary for ECR read access.
 <HclListItem name="ecr_repo_arns">
 <HclListItemDescription>
 
-A map of repository name to its ECR ARN.
+A map of repository name to its ECR ARN. Includes the existing repos looked up when create_repository is false.
 
 </HclListItemDescription>
 </HclListItem>
@@ -565,7 +607,7 @@ A map of repository name to its ECR ARN.
 <HclListItem name="ecr_repo_urls">
 <HclListItemDescription>
 
-A map of repository name to its URL.
+A map of repository name to its URL. Includes the existing repos looked up when create_repository is false.
 
 </HclListItemDescription>
 </HclListItem>
@@ -589,6 +631,6 @@ A list of IAM policy actions necessary for ECR write access.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.17.0/modules/data-stores/ecr-repos/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "79daa8565eb3b0c9fbf959ccb3250a7e"
+  "hash": "913904303b7707aa9c9806144866a69f"
 }
 ##DOCS-SOURCER-END -->
