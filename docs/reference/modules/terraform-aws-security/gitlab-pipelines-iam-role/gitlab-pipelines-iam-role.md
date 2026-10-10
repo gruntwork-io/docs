@@ -9,20 +9,20 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.7.1" lastModifiedVersion="1.6.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.8.0" lastModifiedVersion="1.8.0"/>
 
 # IAM Role for GitLab Pipelines
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/gitlab-pipelines-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/gitlab-pipelines-iam-role" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.6.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.8.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform module can be used to create Assume Role policies and IAM Roles such that they can be used with
 GitLab Pipelines. This requires you to provision an IAM OpenID Connect Provider for GitLab Pipelines in your account. By
 using OpenID Connect, GitLab Pipelines can directly exchange credentials to access AWS without having to store and provide
 GitLab with permanent AWS access credentials. This is useful to prevent credential leaks from progressing undetected.
 
-You can use the [OpenID Connect Provider for GitLab Pipelines](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/gitlab-pipelines-openid-connect-provider/README.md) module in the IAM role creation process like so:
+You can use the [OpenID Connect Provider for GitLab Pipelines](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/gitlab-pipelines-openid-connect-provider/README.md) module in the IAM role creation process like so:
 
 ```hcl
 module "gitlab_pipelines_openid_connect_provider" {
@@ -117,6 +117,65 @@ resource "aws_iam_role" "example" {
 }
 ```
 
+## Trusting tags, environments and pull requests
+
+`allowed_sources` is a shorthand for branches: each value is turned into the subject claim
+`repo:<key>:ref:refs/heads/<branch>`.
+
+GitHub Actions has many other subject claims, such as a workflow triggered by a tag push that uses
+`repo:<org>/<repo>:ref:refs/tags/<tag>`, one running against a named environment that uses
+`repo:<org>/<repo>:environment:<name>`, and one triggered by a pull request that uses `repo:<org>/<repo>:pull_request`.
+
+To trust one or more of thse, use `allowed_source_claims`. This var is keyed exactly like `allowed_sources`, and each
+value is the part of the subject claim that comes after `repo:<key>:`. The module adds the prefix for you, so a key using the
+immutable ID format carries through here too. Both variables feed the same `sub` condition, so you can mix them:
+
+```hcl
+module "iam_role" {
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/github-actions-iam-role?ref=<VERSION>"
+
+  github_actions_openid_connect_provider_arn = aws_iam_openid_connect_provider.github_actions.arn
+  github_actions_openid_connect_provider_url = aws_iam_openid_connect_provider.github_actions.url
+
+  # Plan runs on the main branch...
+  allowed_sources = {
+    "acmecorp/infra-live" = ["main"]
+  }
+
+  # ...but deploys only from a tag push or the "prod" environment.
+  allowed_source_claims = {
+    "acmecorp/infra-live" = ["ref:refs/tags/v*", "environment:prod"]
+  }
+
+  # Required because "ref:refs/tags/v*" contains a wildcard.
+  allowed_sources_condition_operator = "StringLike"
+
+  iam_role_name                  = "example-iam-role"
+  permitted_full_access_services = ["ec2"]
+}
+```
+
+That role trusts three subjects:
+
+```
+repo:acmecorp/infra-live:ref:refs/heads/main
+repo:acmecorp/infra-live:ref:refs/tags/v*
+repo:acmecorp/infra-live:environment:prod
+```
+
+With this method, be aware of the following:
+
+*   Wildcards in `allowed_source_claims` need `allowed_sources_condition_operator = "StringLike"`, exactly as they do
+    in `allowed_sources`. Under the default `StringEquals`, `*` is matched literally and the condition silently never
+    grants anything, so the module fails the plan with a precondition error instead.
+*   Don't repeat the `repo:<key>:` prefix in a value; use `"ref:refs/tags/v1.0.0"` and not
+    `"repo:acmecorp/infra-live:ref:refs/tags/v1.0.0"`.
+
+`allowed_source_claims` can be used on its own, with no `allowed_sources` at all, if the role should only ever be
+assumed by tag- or environment-scoped runs. See [GitHub's list of example subject
+claims](https://docs.github.com/en/actions/concepts/security/openid-connect#example-subject-claims) for everything
+you can put here.
+
 ## Using created IAM Role in GitLab Pipelines Workflow
 
 TODO
@@ -140,16 +199,11 @@ TODO
 
 module "gitlab_pipelines_iam_role" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-iam-role?ref=v1.7.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-iam-role?ref=v1.8.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
-
-  # Map of GitLab project path to the list of branches that are allowed to
-  # assume the IAM role. The repository should be encoded as
-  # group/subgroup/repo-name (e.g., gruntwork-io/terrraform-aws-ci).
-  allowed_sources = <map(list(string))>
 
   # ARN of the OpenID Connect Provider provisioned for GitLab Pipelines.
   gitlab_pipelines_openid_connect_provider_arn = <string>
@@ -160,6 +214,28 @@ module "gitlab_pipelines_iam_role" {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # Map of GitLab project path to the list of additional subject claims that are allowed to assume the IAM role. The
+  # keys use the same format as var.allowed_sources, and each value is the portion of the OIDC token's "sub" claim
+  # that follows "project_path:<key>:". Use this for any trust that the branch shorthand in var.allowed_sources can't
+  # express, for example:
+  #   - "ref_type:tag:ref:v1.0.0" or "ref_type:tag:ref:*" for pipelines triggered by a tag.
+  #   - "environment:production" for pipelines running against a named GitLab environment.
+  # Do not include the "project_path:<key>:" prefix in the value; this module adds it. Entries here are merged with
+  # the ones built from var.allowed_sources into the same "sub" condition, and wildcards ("*") require
+  # var.allowed_sources_condition_operator to be "StringLike" just as they do there. See
+  # https://docs.gitlab.com/ci/secrets/id_token_authentication/#token-payload for the full list of subject claim
+  # formats GitLab can issue.
+  #
+  allowed_source_claims = {}
+
+  # Map of GitLab project path to the list of branches that are allowed to
+  # assume the IAM role. The repository should be encoded as
+  # group/subgroup/repo-name (e.g., gruntwork-io/terrraform-aws-ci). This
+  # variable only covers branches; to trust pipelines triggered by anything else
+  # (e.g., tags, named environments) use var.allowed_source_claims. At least one
+  # of the two variables must be set.
+  allowed_sources = {}
 
   # The string operator to use when evaluating the AWS IAM condition for
   # determining which GitLab repos are allowed to assume the IAM role. Examples:
@@ -230,7 +306,7 @@ module "gitlab_pipelines_iam_role" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-iam-role?ref=v1.7.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/gitlab-pipelines-iam-role?ref=v1.8.0"
 }
 
 inputs = {
@@ -238,11 +314,6 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
   # ----------------------------------------------------------------------------------------------------
-
-  # Map of GitLab project path to the list of branches that are allowed to
-  # assume the IAM role. The repository should be encoded as
-  # group/subgroup/repo-name (e.g., gruntwork-io/terrraform-aws-ci).
-  allowed_sources = <map(list(string))>
 
   # ARN of the OpenID Connect Provider provisioned for GitLab Pipelines.
   gitlab_pipelines_openid_connect_provider_arn = <string>
@@ -253,6 +324,28 @@ inputs = {
   # ----------------------------------------------------------------------------------------------------
   # OPTIONAL VARIABLES
   # ----------------------------------------------------------------------------------------------------
+
+  # Map of GitLab project path to the list of additional subject claims that are allowed to assume the IAM role. The
+  # keys use the same format as var.allowed_sources, and each value is the portion of the OIDC token's "sub" claim
+  # that follows "project_path:<key>:". Use this for any trust that the branch shorthand in var.allowed_sources can't
+  # express, for example:
+  #   - "ref_type:tag:ref:v1.0.0" or "ref_type:tag:ref:*" for pipelines triggered by a tag.
+  #   - "environment:production" for pipelines running against a named GitLab environment.
+  # Do not include the "project_path:<key>:" prefix in the value; this module adds it. Entries here are merged with
+  # the ones built from var.allowed_sources into the same "sub" condition, and wildcards ("*") require
+  # var.allowed_sources_condition_operator to be "StringLike" just as they do there. See
+  # https://docs.gitlab.com/ci/secrets/id_token_authentication/#token-payload for the full list of subject claim
+  # formats GitLab can issue.
+  #
+  allowed_source_claims = {}
+
+  # Map of GitLab project path to the list of branches that are allowed to
+  # assume the IAM role. The repository should be encoded as
+  # group/subgroup/repo-name (e.g., gruntwork-io/terrraform-aws-ci). This
+  # variable only covers branches; to trust pipelines triggered by anything else
+  # (e.g., tags, named environments) use var.allowed_source_claims. At least one
+  # of the two variables must be set.
+  allowed_sources = {}
 
   # The string operator to use when evaluating the AWS IAM condition for
   # determining which GitLab repos are allowed to assume the IAM role. Examples:
@@ -326,21 +419,6 @@ inputs = {
 
 ### Required
 
-<HclListItem name="allowed_sources" requirement="required" type="map(list(…))">
-<HclListItemDescription>
-
-Map of GitLab project path to the list of branches that are allowed to assume the IAM role. The repository should be encoded as group/subgroup/repo-name (e.g., gruntwork-io/terrraform-aws-ci).
-
-</HclListItemDescription>
-<HclListItemTypeDetails>
-
-```hcl
-map(list(string))
-```
-
-</HclListItemTypeDetails>
-</HclListItem>
-
 <HclListItem name="gitlab_pipelines_openid_connect_provider_arn" requirement="required" type="string">
 <HclListItemDescription>
 
@@ -358,6 +436,49 @@ URL of the OpenID Connect Provider provisioned for GitLab Pipelines.
 </HclListItem>
 
 ### Optional
+
+<HclListItem name="allowed_source_claims" requirement="optional" type="map(list(…))">
+<HclListItemDescription>
+
+Map of GitLab project path to the list of additional subject claims that are allowed to assume the IAM role. The
+keys use the same format as <a href="#allowed_sources"><code>allowed_sources</code></a>, and each value is the portion of the OIDC token's 'sub' claim
+that follows 'project_path:&lt;key>:'. Use this for any trust that the branch shorthand in <a href="#allowed_sources"><code>allowed_sources</code></a> can't
+express, for example:
+  - 'ref_type:tag:ref:v1.0.0' or 'ref_type:tag:ref:*' for pipelines triggered by a tag.
+  - 'environment:production' for pipelines running against a named GitLab environment.
+Do not include the 'project_path:&lt;key>:' prefix in the value; this module adds it. Entries here are merged with
+the ones built from <a href="#allowed_sources"><code>allowed_sources</code></a> into the same 'sub' condition, and wildcards ('*') require
+<a href="#allowed_sources_condition_operator"><code>allowed_sources_condition_operator</code></a> to be 'StringLike' just as they do there. See
+https://docs.gitlab.com/ci/secrets/id_token_authentication/#token-payload for the full list of subject claim
+formats GitLab can issue.
+
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(list(string))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="allowed_sources" requirement="optional" type="map(list(…))">
+<HclListItemDescription>
+
+Map of GitLab project path to the list of branches that are allowed to assume the IAM role. The repository should be encoded as group/subgroup/repo-name (e.g., gruntwork-io/terrraform-aws-ci). This variable only covers branches; to trust pipelines triggered by anything else (e.g., tags, named environments) use <a href="#allowed_source_claims"><code>allowed_source_claims</code></a>. At least one of the two variables must be set.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+map(list(string))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
 
 <HclListItem name="allowed_sources_condition_operator" requirement="optional" type="string">
 <HclListItemDescription>
@@ -543,11 +664,11 @@ The name of the IAM role.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/gitlab-pipelines-iam-role/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/gitlab-pipelines-iam-role/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/gitlab-pipelines-iam-role/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/gitlab-pipelines-iam-role/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/gitlab-pipelines-iam-role/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/gitlab-pipelines-iam-role/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "4fe266d265fd24b63baab7d6b9bfd81e"
+  "hash": "d08ddcf12cc116247f30f7f63011d618"
 }
 ##DOCS-SOURCER-END -->
