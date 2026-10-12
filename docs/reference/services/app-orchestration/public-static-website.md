@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.17.0" lastModifiedVersion="1.2.0"/>
+<VersionBadge version="2.18.0" lastModifiedVersion="1.2.0"/>
 
 # Public Static Website
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.17.0/modules/services/public-static-website" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.18.0/modules/services/public-static-website" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Fpublic-static-website" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -35,7 +35,8 @@ contain static HTML, CSS, JS, and images.
 ## Features
 
 *   Offload storage and serving of static content (HTML, CSS, JS, images) to a public S3 bucket configured as a website.
-*   Create additional buckets to store your website access logs, and your CloudFront access logs.
+*   Create additional buckets to store your website access logs, and your CloudFront access logs, with CloudFront
+    standard logging (legacy) by default or standard logging (v2) when `use_cloudfront_standard_logging_v2` is true.
 *   Deploy a CloudFront Distribution in front of the public S3 bucket for your website domain.
 *   Optionally:
 
@@ -60,7 +61,7 @@ If you’ve never used the Service Catalog before, make sure to read
 ### Core concepts
 
 This module deploys a public website, so the S3 bucket and objects with it are readable by the public. It also is
-hosted in a Public Hosted Zone in Route 53. You may provide a `hosted_zone_id` in [variables](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.17.0/modules/services/public-static-website/variables.tf),
+hosted in a Public Hosted Zone in Route 53. You may provide a `hosted_zone_id` in [variables](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.18.0/modules/services/public-static-website/variables.tf),
 or you may provide the `base_domain_name` associated with your Public Hosted Zone in Route 53, optionally along with
 any tags that must match that zone in `base_domain_name_tags`. If you do the latter, this module will find the hosted
 zone id for you.
@@ -71,17 +72,17 @@ website, and how to configure SSL, check out the documentation for the
 and [s3-cloudfront](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/master/modules/s3-cloudfront)
 modules.
 
-*   [Quick Start](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.17.0/modules/services/public-static-website/core-concepts.md#quick-start)
+*   [Quick Start](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.18.0/modules/services/public-static-website/core-concepts.md#quick-start)
 *   [How to test the website](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-to-test-the-website)
-*   [How to configure HTTPS (SSL) or a CDN?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.17.0/modules/services/public-static-website/core-concepts.md#how-to-configure-https-ssl-or-a-cdn)
+*   [How to configure HTTPS (SSL) or a CDN?](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.18.0/modules/services/public-static-website/core-concepts.md#how-to-configure-https-ssl-or-a-cdn)
 *   [How to handle www + root domains](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-do-i-handle-www—root-domains)
 *   [How do I configure Cross Origin Resource Sharing (CORS)?](https://github.com/gruntwork-io/terraform-aws-static-assets/blob/master/modules/s3-static-website/core-concepts.md#how-do-i-configure-cross-origin-resource-sharing-cors)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.17.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.17.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.17.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.18.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.18.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.18.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -89,7 +90,7 @@ modules.
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.17.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.18.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -97,7 +98,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.17.0/examples/for-learning-and-testing/services/public-static-website/example-website):
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.18.0/examples/for-learning-and-testing/services/public-static-website/example-website):
     The `examples/for-production` folder contains sample code optimized for direct usage in production. This is code from
     the [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -116,7 +117,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "public_static_website" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/public-static-website?ref=v2.17.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/public-static-website?ref=v2.18.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -144,6 +145,11 @@ module "public_static_website" {
   # zones for the same var.base_domain_name, this will help filter the hosted
   # zones so that the correct hosted zone is found.
   base_domain_name_tags = {}
+
+  # The format of CloudFront access log files when
+  # var.use_cloudfront_standard_logging_v2 is true. One of w3c, json, plain or
+  # parquet. Changing it replaces the log delivery.
+  cloudfront_access_logs_output_format = "w3c"
 
   # A configuration for CORS on the S3 bucket. Default value comes from AWS. Can
   # override for custom CORS by passing the object structure define in the
@@ -300,6 +306,14 @@ module "public_static_website" {
   # https://github.com/terraform-providers/terraform-provider-aws/issues/10158
   # for context.
   use_cloudfront_arn_for_bucket_policy = false
+
+  # Set to true to send CloudFront access logs with standard logging (v2)
+  # instead of standard logging (legacy). The CloudFront access logs bucket then
+  # trusts the delivery.logs.amazonaws.com service instead of the CloudFront log
+  # delivery AWS account, and has ACLs disabled. To switch an existing
+  # deployment, reset that bucket's ACL to private first, as described in
+  # https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-cloudfront#switching-an-existing-deployment-to-standard-logging-v2.
+  use_cloudfront_standard_logging_v2 = false
 
   # Use this element to specify the protocol that users can use to access the
   # files in the origin specified by TargetOriginId when a request matches the
@@ -332,7 +346,7 @@ module "public_static_website" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/public-static-website?ref=v2.17.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/public-static-website?ref=v2.18.0"
 }
 
 inputs = {
@@ -363,6 +377,11 @@ inputs = {
   # zones for the same var.base_domain_name, this will help filter the hosted
   # zones so that the correct hosted zone is found.
   base_domain_name_tags = {}
+
+  # The format of CloudFront access log files when
+  # var.use_cloudfront_standard_logging_v2 is true. One of w3c, json, plain or
+  # parquet. Changing it replaces the log delivery.
+  cloudfront_access_logs_output_format = "w3c"
 
   # A configuration for CORS on the S3 bucket. Default value comes from AWS. Can
   # override for custom CORS by passing the object structure define in the
@@ -519,6 +538,14 @@ inputs = {
   # https://github.com/terraform-providers/terraform-provider-aws/issues/10158
   # for context.
   use_cloudfront_arn_for_bucket_policy = false
+
+  # Set to true to send CloudFront access logs with standard logging (v2)
+  # instead of standard logging (legacy). The CloudFront access logs bucket then
+  # trusts the delivery.logs.amazonaws.com service instead of the CloudFront log
+  # delivery AWS account, and has ACLs disabled. To switch an existing
+  # deployment, reset that bucket's ACL to private first, as described in
+  # https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-cloudfront#switching-an-existing-deployment-to-standard-logging-v2.
+  use_cloudfront_standard_logging_v2 = false
 
   # Use this element to specify the protocol that users can use to access the
   # files in the origin specified by TargetOriginId when a request matches the
@@ -595,6 +622,15 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="{}"/>
+</HclListItem>
+
+<HclListItem name="cloudfront_access_logs_output_format" requirement="optional" type="string">
+<HclListItemDescription>
+
+The format of CloudFront access log files when <a href="#use_cloudfront_standard_logging_v2"><code>use_cloudfront_standard_logging_v2</code></a> is true. One of w3c, json, plain or parquet. Changing it replaces the log delivery.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;w3c&quot;"/>
 </HclListItem>
 
 <HclListItem name="cors_rule" requirement="optional" type="any">
@@ -1014,6 +1050,15 @@ In older AWS accounts, you must set this variable to true to use the ARN of the 
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="use_cloudfront_standard_logging_v2" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to send CloudFront access logs with standard logging (v2) instead of standard logging (legacy). The CloudFront access logs bucket then trusts the delivery.logs.amazonaws.com service instead of the CloudFront log delivery AWS account, and has ACLs disabled. To switch an existing deployment, reset that bucket's ACL to private first, as described in https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-cloudfront#switching-an-existing-deployment-to-standard-logging-v2.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="viewer_protocol_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1090,11 +1135,11 @@ The ARN of the created S3 bucket associated with the website.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.17.0/modules/services/public-static-website/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.17.0/modules/services/public-static-website/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.17.0/modules/services/public-static-website/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.18.0/modules/services/public-static-website/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.18.0/modules/services/public-static-website/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.18.0/modules/services/public-static-website/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "9da10d8d5041093dc9eff41e1388f7e8"
+  "hash": "3a7c9f86ce858df6c6a63d316a0a2a6e"
 }
 ##DOCS-SOURCER-END -->
