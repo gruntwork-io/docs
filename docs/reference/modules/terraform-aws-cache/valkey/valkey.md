@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="1.0.5" lastModifiedVersion="1.0.1"/>
+<VersionBadge repoTitle="Cache Modules" version="2.0.0" lastModifiedVersion="2.0.0"/>
 
 # Valkey Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/valkey" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/valkey" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v1.0.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v2.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster that runs [Valkey](http://valkey.io/).
 
@@ -240,7 +240,7 @@ ElastiCache for Valkey supports the following types of automatic scaling dimensi
 
 module "valkey" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/valkey?ref=v1.0.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/valkey?ref=v2.0.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -286,6 +286,18 @@ module "valkey" {
   # only if transit_encryption_enabled = true. Must contain from 16 to 128
   # alphanumeric characters or symbols (excluding @, <double-quotes>, and /)
   auth_token = null
+
+  # Strategy to use when updating the auth_token: SET, ROTATE, or DELETE. Passed
+  # straight through to the aws_elasticache_replication_group resource's
+  # auth_token_update_strategy argument. This only affects updates to an
+  # already-existing replication group - it has no effect at creation time.
+  # Without setting this explicitly, a plain `terraform apply` that adds or
+  # changes `auth_token` on an existing replication group is not guaranteed to
+  # actually push that change to the live cluster; the resource can end up with
+  # the old (or no) auth token still in effect on AWS's side even though the
+  # Terraform config and state show the new value. Defaults to null (provider
+  # default) to preserve existing behavior for callers that don't set it.
+  auth_token_update_strategy = null
 
   # Specifies whether minor version engine upgrades will be applied
   # automatically to the underlying Cache Cluster instances during the
@@ -473,7 +485,7 @@ module "valkey" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/valkey?ref=v1.0.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/valkey?ref=v2.0.0"
 }
 
 inputs = {
@@ -522,6 +534,18 @@ inputs = {
   # only if transit_encryption_enabled = true. Must contain from 16 to 128
   # alphanumeric characters or symbols (excluding @, <double-quotes>, and /)
   auth_token = null
+
+  # Strategy to use when updating the auth_token: SET, ROTATE, or DELETE. Passed
+  # straight through to the aws_elasticache_replication_group resource's
+  # auth_token_update_strategy argument. This only affects updates to an
+  # already-existing replication group - it has no effect at creation time.
+  # Without setting this explicitly, a plain `terraform apply` that adds or
+  # changes `auth_token` on an existing replication group is not guaranteed to
+  # actually push that change to the live cluster; the resource can end up with
+  # the old (or no) auth token still in effect on AWS's side even though the
+  # Terraform config and state show the new value. Defaults to null (provider
+  # default) to preserve existing behavior for callers that don't set it.
+  auth_token_update_strategy = null
 
   # Specifies whether minor version engine upgrades will be applied
   # automatically to the underlying Cache Cluster instances during the
@@ -786,6 +810,15 @@ Specifies whether any database modifications are applied immediately, or during 
 <HclListItemDescription>
 
 The password used to access a password protected server. Can be specified only if transit_encryption_enabled = true. Must contain from 16 to 128 alphanumeric characters or symbols (excluding @, &lt;double-quotes>, and /)
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="auth_token_update_strategy" requirement="optional" type="string">
+<HclListItemDescription>
+
+Strategy to use when updating the auth_token: SET, ROTATE, or DELETE. Passed straight through to the aws_elasticache_replication_group resource's auth_token_update_strategy argument. This only affects updates to an already-existing replication group - it has no effect at creation time. Without setting this explicitly, a plain `terraform apply` that adds or changes `auth_token` on an existing replication group is not guaranteed to actually push that change to the live cluster; the resource can end up with the old (or no) auth token still in effect on AWS's side even though the Terraform config and state show the new value. Defaults to null (provider default) to preserve existing behavior for callers that don't set it.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1219,11 +1252,11 @@ Version number of valkey to use (e.g. 7.2).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/valkey/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/valkey/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/valkey/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/valkey/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/valkey/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/valkey/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "fc88a9e6a772eb13aa3f48f0acf850f0"
+  "hash": "afcce3a8264d872aa9af9259eed441a0"
 }
 ##DOCS-SOURCER-END -->
