@@ -9,25 +9,25 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Static Assets Modules" version="1.2.0" lastModifiedVersion="1.2.0"/>
+<VersionBadge repoTitle="Static Assets Modules" version="1.3.0" lastModifiedVersion="1.3.0"/>
 
 # S3 CloudFront Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.2.0/modules/s3-cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-cloudfront" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v1.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-static-assets/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module deploys a [CloudFront](https://aws.amazon.com/cloudfront/) distribution as a Content Distribution Network
 (CDN) in front of an [S3 bucket](https://aws.amazon.com/s3/). This reduces latency for your users, by caching your
 static content in servers around the world. It also allows you to use SSL with the static content in an S3 bucket.
 
-See the [s3-static-website module](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.2.0/modules/s3-static-website) for how to deploy static content in an S3 bucket.
+See the [s3-static-website module](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-static-website) for how to deploy static content in an S3 bucket.
 
 ## Quick Start
 
-*   See the [cloudfront-s3-public](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.2.0/examples/cloudfront-s3-public) and
-    [cloudfront-s3-private](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.2.0/examples/cloudfront-s3-private) examples for working sample code.
-*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.2.0/modules/s3-cloudfront/vars.tf) for all parameters you can set for this module.
+*   See the [cloudfront-s3-public](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/examples/cloudfront-s3-public), [cloudfront-s3-private-standard-logging](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/examples/cloudfront-s3-private-standard-logging) and
+    [cloudfront-s3-private](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/examples/cloudfront-s3-private) examples for working sample code.
+*   Check out [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-cloudfront/vars.tf) for all parameters you can set for this module.
 
 ## Public vs private S3 buckets
 
@@ -108,6 +108,44 @@ To use the Origin Group feature, you will need to provide values for the followi
 *   failover_buckets
 *   failover_bucket_website_endpoints (if making a public site)
 
+## Access logs
+
+By default, this module turns on CloudFront [standard logging
+(legacy)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/standard-logging-legacy-s3.html). It
+creates an access logs bucket with ACLs enabled, and grants the CloudFront log delivery AWS account access to it.
+
+Set `use_cloudfront_standard_logging_v2 = true` to use [standard logging
+(v2)](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/standard-logging.html) instead, which AWS
+now recommends:
+
+*   **The bucket trusts a service, not an account:** the bucket policy allows only the `delivery.logs.amazonaws.com`
+    service principal to write objects, and only for deliveries from your own account. ACLs are disabled.
+*   **The module creates the delivery in us-east-1:** AWS only accepts CloudFront v2 logging configuration there,
+    whatever region your provider and bucket are in. You do not need a second provider.
+*   **Logs land under `access_log_prefix`**, so the expiration rule still applies, and the bucket policy only lets the
+    delivery service write there. With no prefix, AWS writes them under `AWSLogs/<account ID>/CloudFront/`. AWS will not
+    change the prefix of a destination a delivery is using, so changing `access_log_prefix` later may need the delivery
+    destroyed and recreated.
+*   **`access_logs_output_format` sets the file format:** `w3c` by default, which is the format legacy logs use. AWS
+    cannot change the format of an existing delivery, so changing it replaces the delivery.
+*   **With `existing_s3_log_bucket_name`**, you manage that bucket, so its policy must allow the delivery service to
+    write. AWS shows the statement in its [S3 bucket resource policy
+    guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AWS-logs-infrastructure-V2-S3.html#AWS-logs-infrastructure-V2-S3-bucket-resource-policy).
+*   **One delivery source per distribution:** AWS allows only one. If you already turned on v2 logging for the
+    distribution in the console, delete that delivery source, or import it as
+    `aws_cloudwatch_log_delivery_source.access_logs[0]`, before you apply.
+
+### Switching an existing deployment to standard logging (v2)
+
+S3 refuses to disable ACLs on a bucket whose ACL still grants access outside your account, and the legacy setup
+grants the CloudFront log delivery account. Reset the access logs bucket's ACL to private, then apply:
+
+1.  Run `aws s3api put-bucket-acl --bucket <bucket_name>-<access_logs_bucket_suffix> --acl private`. Legacy log
+    delivery may fail between this step and the next, so run them together.
+2.  Set `use_cloudfront_standard_logging_v2 = true` and run `terraform apply`.
+
+Logs already in the bucket stay where they are, and the expiration rule keeps deleting them on schedule.
+
 ## Limitations
 
 To create a CloudFront distribution with Terraform, you use the [aws_cloudfront_distribution
@@ -130,7 +168,7 @@ most use cases, but is not particularly flexible. In particular, the limitations
 *   Only one default cache behavior is supported
     ([cache behaviors](https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#cache-behavior-arguments)
     is an inline block). You can control the default cache settings using a number of parameters, including
-    `cached_methods`, `default_ttl`, `min_ttl`, `max_ttl`, and many others (see [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.2.0/modules/s3-cloudfront/vars.tf) for the full list).
+    `cached_methods`, `default_ttl`, `min_ttl`, `max_ttl`, and many others (see [vars.tf](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-cloudfront/vars.tf) for the full list).
 
 *   Only two error responses are supported
     ([error responses](https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html#custom-error-response-arguments)
@@ -162,7 +200,7 @@ into your own codebase, using it as a guide, and adding the tweaks you need.
 
 module "s_3_cloudfront" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v1.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v1.3.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -216,6 +254,12 @@ module "s_3_cloudfront" {
 
   # How many days to keep access logs around for before deleting them.
   access_logs_expiration_time_in_days = 30
+
+  # With use_cloudfront_standard_logging_v2, the format of the log files: w3c,
+  # json, plain or parquet. w3c is the format standard logging (legacy) writes.
+  # AWS cannot change the format of an existing delivery, so changing this
+  # replaces it. Parquet incurs CloudWatch conversion charges.
+  access_logs_output_format = "w3c"
 
   # The ARN of the AWS Certificate Manager certificate that you wish to use with
   # this distribution. The ACM certificate must be in us-east-1. You must set
@@ -448,6 +492,15 @@ module "s_3_cloudfront" {
   # Origin Access Identity (OAI)
   use_cloudfront_origin_access_control = false
 
+  # Set to true to send access logs with CloudFront standard logging (v2)
+  # instead of standard logging (legacy). The access logs bucket this module
+  # creates then trusts only the delivery.logs.amazonaws.com service principal,
+  # with ACLs disabled, instead of the CloudFront log delivery account. If you
+  # set existing_s3_log_bucket_name, that bucket's policy must allow the
+  # delivery service to write. Switching an existing access logs bucket needs a
+  # one-time ACL reset first; see the README.
+  use_cloudfront_standard_logging_v2 = false
+
   # Use this element to specify the protocol that users can use to access the
   # files in the origin specified by TargetOriginId when a request matches the
   # path pattern in PathPattern. One of allow-all, https-only, or
@@ -482,7 +535,7 @@ module "s_3_cloudfront" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v1.2.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-static-assets.git//modules/s3-cloudfront?ref=v1.3.0"
 }
 
 inputs = {
@@ -540,6 +593,12 @@ inputs = {
   # How many days to keep access logs around for before deleting them.
   access_logs_expiration_time_in_days = 30
 
+  # With use_cloudfront_standard_logging_v2, the format of the log files: w3c,
+  # json, plain or parquet. w3c is the format standard logging (legacy) writes.
+  # AWS cannot change the format of an existing delivery, so changing this
+  # replaces it. Parquet incurs CloudWatch conversion charges.
+  access_logs_output_format = "w3c"
+
   # The ARN of the AWS Certificate Manager certificate that you wish to use with
   # this distribution. The ACM certificate must be in us-east-1. You must set
   # exactly one of var.use_cloudfront_default_certificate,
@@ -770,6 +829,15 @@ inputs = {
   # Enable the use of CloudFront OAC. Enabling the use of OAC will disable
   # Origin Access Identity (OAI)
   use_cloudfront_origin_access_control = false
+
+  # Set to true to send access logs with CloudFront standard logging (v2)
+  # instead of standard logging (legacy). The access logs bucket this module
+  # creates then trusts only the delivery.logs.amazonaws.com service principal,
+  # with ACLs disabled, instead of the CloudFront log delivery account. If you
+  # set existing_s3_log_bucket_name, that bucket's policy must allow the
+  # delivery service to write. Switching an existing access logs bucket needs a
+  # one-time ACL reset first; see the README.
+  use_cloudfront_standard_logging_v2 = false
 
   # Use this element to specify the protocol that users can use to access the
   # files in the origin specified by TargetOriginId when a request matches the
@@ -892,6 +960,15 @@ How many days to keep access logs around for before deleting them.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="30"/>
+</HclListItem>
+
+<HclListItem name="access_logs_output_format" requirement="optional" type="string">
+<HclListItemDescription>
+
+With use_cloudfront_standard_logging_v2, the format of the log files: w3c, json, plain or parquet. w3c is the format standard logging (legacy) writes. AWS cannot change the format of an existing delivery, so changing this replaces it. Parquet incurs CloudWatch conversion charges.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;w3c&quot;"/>
 </HclListItem>
 
 <HclListItem name="acm_certificate_arn" requirement="optional" type="string">
@@ -1463,6 +1540,15 @@ Enable the use of CloudFront OAC. Enabling the use of OAC will disable Origin Ac
 <HclListItemDefaultValue defaultValue="false"/>
 </HclListItem>
 
+<HclListItem name="use_cloudfront_standard_logging_v2" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to true to send access logs with CloudFront standard logging (v2) instead of standard logging (legacy). The access logs bucket this module creates then trusts only the delivery.logs.amazonaws.com service principal, with ACLs disabled, instead of the CloudFront log delivery account. If you set existing_s3_log_bucket_name, that bucket's policy must allow the delivery service to write. Switching an existing access logs bucket needs a one-time ACL reset first; see the README.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
 <HclListItem name="viewer_protocol_policy" requirement="optional" type="string">
 <HclListItemDescription>
 
@@ -1532,11 +1618,11 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.2.0/modules/s3-cloudfront/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.2.0/modules/s3-cloudfront/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.2.0/modules/s3-cloudfront/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-cloudfront/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-cloudfront/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "094b123e3942cf09222457f8e0ab94c4"
+  "hash": "e99bbe98bda343036541de1ce34f1299"
 }
 ##DOCS-SOURCER-END -->
