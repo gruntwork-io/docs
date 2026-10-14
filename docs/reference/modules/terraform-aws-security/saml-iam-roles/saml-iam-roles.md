@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.7.1" lastModifiedVersion="1.3.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.8.0" lastModifiedVersion="1.8.0"/>
 
 # A best-practices set of IAM roles for SAML access
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/saml-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/saml-iam-roles" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.8.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module can be used to allow users authenticated via external Security Assertion Markup Language (SAML) identity
 providers such as Google, Amazon SSO, Microsoft Active Directory Federation Services (ADFS), Okta, and OneLogin to access
@@ -47,7 +47,7 @@ This module creates the following IAM roles (all optional):
 
 *   **allow-ssh-grunt-access-from-saml**: Users authenticated by the SAML providers in
     `var.allow_ssh_grunt_access_from_saml_provider_arns` will get read access to IAM Groups and public SSH keys. This is
-    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
+    useful to allow [ssh-grunt](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/ssh-grunt) running on EC2 Instances in other AWS accounts to validate SSH
     connections against IAM users defined in this AWS account.
 
 *   **allow-dev-access-from-saml**:Users authenticated by the SAML providers in
@@ -78,7 +78,7 @@ This module creates the following IAM roles (all optional):
 
 module "saml_iam_roles" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v1.7.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v1.8.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -273,7 +273,7 @@ module "saml_iam_roles" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v1.7.1"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/saml-iam-roles?ref=v1.8.0"
 }
 
 inputs = {
@@ -1048,11 +1048,11 @@ A map of tags to apply to the IAM roles.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/saml-iam-roles/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/saml-iam-roles/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.7.1/modules/saml-iam-roles/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/saml-iam-roles/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/saml-iam-roles/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/saml-iam-roles/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "761c63e051e8c612cb6dc1b1e0ebd330"
+  "hash": "26aac9b597a85446831568293ec22ae6"
 }
 ##DOCS-SOURCER-END -->
