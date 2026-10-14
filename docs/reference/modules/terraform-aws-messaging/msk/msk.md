@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="1.0.3" lastModifiedVersion="1.0.3"/>
+<VersionBadge repoTitle="AWS Messaging" version="1.1.0" lastModifiedVersion="1.0.3"/>
 
 # Amazon Managed Streaming for Apache Kafka (Amazon MSK) Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/msk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/msk" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v1.0.3" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -145,7 +145,7 @@ The MSK module supports the following authentication and authorization methods:
 
 *   [IAM access control](https://docs.aws.amazon.com/msk/latest/developerguide/iam-access-control.html)
     using `var.enable_client_sasl_iam`. You can refer
-    to the [msk-with-iam-auth example module](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/examples/msk-with-iam-auth).
+    to the [msk-with-iam-auth example module](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/examples/msk-with-iam-auth).
 *   [SASL/SCRAM authentication](https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html) using
     `var.enable_client_sasl_scram` and `var.client_sasl_scram_secret_arns`.
 *   [TLS (Mutual TLS)](https://docs.aws.amazon.com/msk/latest/developerguide/msk-authentication.html) using `var.enable_client_tls`
@@ -195,7 +195,7 @@ methods (e.g., during a migration), you can set `enable_client_unauthenticated =
 you should explicitly set `enable_client_unauthenticated = true` to prevent Terraform from changing the
 unauthenticated setting unexpectedly.
 
-See the [msk-with-multi-auth example](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/examples/msk-with-multi-auth) for a complete working example.
+See the [msk-with-multi-auth example](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/examples/msk-with-multi-auth) for a complete working example.
 
 You can read more about available authentication and authorization options from
 the [Authentication and authorization for Apache Kafka APIs page](https://docs.aws.amazon.com/msk/latest/developerguide/kafka_apis_iam.html)
@@ -310,7 +310,7 @@ It's only supported for the provisioned cluster type (non-serverless mode).
 
 module "msk" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v1.0.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v1.1.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -495,7 +495,7 @@ module "msk" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v1.0.3"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/msk?ref=v1.1.0"
 }
 
 inputs = {
@@ -1245,11 +1245,11 @@ A comma separated list of one or more hostname:port pairs to use to connect to t
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/msk/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/msk/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.0.3/modules/msk/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/msk/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/msk/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/msk/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6638bb3b448949c0f5682284c3b40ddf"
+  "hash": "7c2e8a012f83c53074d571d79ad4eef6"
 }
 ##DOCS-SOURCER-END -->
