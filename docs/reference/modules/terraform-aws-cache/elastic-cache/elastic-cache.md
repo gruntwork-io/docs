@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="1.0.5" lastModifiedVersion="1.0.4"/>
+<VersionBadge repoTitle="Cache Modules" version="2.0.0" lastModifiedVersion="2.0.0"/>
 
 # ElasticCache Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/elastic-cache" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/elastic-cache" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v1.0.4" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v2.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an ElastiCache cluster, which manages either a Memcached cluster, a single-node Redis instance.
 
@@ -47,7 +47,7 @@ For more info, see [Scaling Memcached](http://docs.aws.amazon.com/AmazonElastiCa
 
 module "elastic_cache" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v1.0.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v2.0.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -167,7 +167,7 @@ module "elastic_cache" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v1.0.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/elastic-cache?ref=v2.0.0"
 }
 
 inputs = {
@@ -528,11 +528,11 @@ A set of tags to set for the ElastiCache Cluster.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/elastic-cache/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/elastic-cache/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/elastic-cache/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/elastic-cache/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/elastic-cache/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/elastic-cache/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6a3168a161d5585b026f017524d1191c"
+  "hash": "36c3b905d619cedb4b7ad1f6d6c0aca8"
 }
 ##DOCS-SOURCER-END -->

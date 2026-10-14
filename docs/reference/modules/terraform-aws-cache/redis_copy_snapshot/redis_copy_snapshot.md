@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="1.0.5" lastModifiedVersion="0.22.8"/>
+<VersionBadge repoTitle="Cache Modules" version="2.0.0" lastModifiedVersion="2.0.0"/>
 
 # Redis Copy Snapshot Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/redis_copy_snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/redis_copy_snapshot" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v0.22.8" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v2.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module copies an existing Redis snapshot to an external s3 bucket.
 You can find more information
@@ -45,7 +45,7 @@ instruction: [Making manual backups](https://docs.aws.amazon.com/AmazonElastiCac
 The caller of the module needs to have the appropriate permission on the s3 bucket and the elastic cache cluster. The
 detailed permission requirement is explained in detail
 here: [Exporting a backup](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html) page.
-You can also refer to [redis_copy_snapshot](https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/examples/redis_copy_snapshot) module as an example.
+You can also refer to [redis_copy_snapshot](https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/examples/redis_copy_snapshot) module as an example.
 
 ## Encryption Limitation
 
@@ -69,7 +69,7 @@ try to export a snapshot encrypted with CMK (Customer Managed Key), you will get
 
 module "redis_copy_snapshot" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis_copy_snapshot?ref=v1.0.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis_copy_snapshot?ref=v2.0.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -112,7 +112,7 @@ module "redis_copy_snapshot" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis_copy_snapshot?ref=v1.0.5"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/redis_copy_snapshot?ref=v2.0.0"
 }
 
 inputs = {
@@ -216,11 +216,11 @@ A name for the exported snapshot copy. ElastiCache does not permit overwriting a
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/redis_copy_snapshot/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/redis_copy_snapshot/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v1.0.5/modules/redis_copy_snapshot/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/redis_copy_snapshot/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/redis_copy_snapshot/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/redis_copy_snapshot/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "db34a7088ea94d0be48dbc135ffa65fa"
+  "hash": "e5c0d8a34e1193f7d154270947da2331"
 }
 ##DOCS-SOURCER-END -->
