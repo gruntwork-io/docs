@@ -82,7 +82,11 @@ If a change produces no work, hooks are skipped and the run still succeeds. This
 
 In both cases there is nothing for a hook to act on, so no hooks run.
 
-Error hooks follow the first case, but not the second: if jobs run and a `plan` or `apply` fails, error hooks run even when no unit was affected.
+:::note
+
+Error hooks are the exception. They run if the `plan` or `apply` fails, regardless of whether a unit was affected.
+
+:::
 
 ### Command filtering
 
