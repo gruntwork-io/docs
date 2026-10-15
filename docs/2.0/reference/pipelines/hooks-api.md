@@ -45,7 +45,7 @@ A context variable that does not apply to the run is left unset, rather than set
 | `PIPELINES_HOOK_CTX_CHANGE_REQUEST_NUMBER` | The pull/merge request number. |
 | `PIPELINES_HOOK_CTX_CHANGE_REQUEST_URL` | The pull/merge request URL. |
 | `PIPELINES_HOOK_CTX_CHANGE_REQUEST_BRANCH` | The source branch of the pull/merge request. |
-| `PIPELINES_HOOK_CTX_SOURCE_DIR` | The directory the hook's [`source`](/2.0/docs/pipelines/guides/hooks/configuring#remote-script-sources) was fetched into. Set only for hooks that declare a `source`. |
+| `PIPELINES_HOOK_CTX_SOURCE_DIR` | The directory the hook's [`source`](/2.0/docs/pipelines/guides/hooks/execution#remote-script-sources) was fetched into. Set only for hooks that declare a `source`. |
 
 The three `CHANGE_REQUEST` variables are set or absent together: they are set when the run is associated with a pull/merge request, and absent for a push to a deploy branch.
 
@@ -57,7 +57,7 @@ Paths to files the hook reads. The plans directory and units file are always set
 |---|---|
 | `PIPELINES_HOOK_IN_PLAN_JSON_DIR` | Directory containing the decrypted plan JSON for the run's units. |
 | `PIPELINES_HOOK_IN_UNITS_JSON_FILE` | Path to a JSON file describing the units in the run. |
-| `PIPELINES_HOOK_IN_ERRORS_FILE` | Path to a plain text file holding the combined output of the run's failed Terragrunt executions, with ANSI color codes removed. Set only for [error hooks](/2.0/docs/pipelines/guides/hooks/configuring#error-hooks). Since `v1.2.0`. |
+| `PIPELINES_HOOK_IN_ERRORS_FILE` | Path to a plain text file holding the combined output of the run's failed Terragrunt executions, with ANSI color codes removed. Set only for [error hooks](/2.0/docs/pipelines/guides/hooks/hook-types#error-hooks). Since `v1.2.0`. |
 
 ### Plans JSON directory
 

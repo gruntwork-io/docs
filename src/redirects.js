@@ -2,6 +2,10 @@
 export const redirects = [
     // BEGIN - Deleted / Moved Content
     {
+        from: '/2.0/docs/pipelines/guides/hooks/configuring',
+        to: '/2.0/docs/pipelines/guides/hooks/execution'
+    },
+    {
         from: '/docs/guides/build-it-yourself/landing-zone',
         to: '/reference/services/landing-zone/aws-app-account-baseline-wrapper/'
     },

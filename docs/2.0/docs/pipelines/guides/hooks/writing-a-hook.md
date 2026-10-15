@@ -13,7 +13,7 @@ A hook is any executable command. Here we use a bash script committed to the rep
 set -euo pipefail
 ```
 
-Hooks run from the root of a copy of your repository, so this path resolves relative to the repository root when the hook is configured. See [Isolated working directory](/2.0/docs/pipelines/guides/hooks/configuring#isolated-working-directory) for details.
+Hooks run from the root of a copy of your repository, so this path resolves relative to the repository root when the hook is configured. See [Isolated working directory](/2.0/docs/pipelines/guides/hooks/execution#isolated-working-directory) for details.
 
 ## 2. Read the run context
 
@@ -89,7 +89,7 @@ repository {
 }
 ```
 
-See [Configuring Hooks](/2.0/docs/pipelines/guides/hooks/configuring) for every field and how hooks execute.
+See [Hook Types](/2.0/docs/pipelines/guides/hooks/hook-types) for every field and [How Hooks Execute](/2.0/docs/pipelines/guides/hooks/execution) for how hooks run.
 
 ## 6. Run the hook
 
@@ -131,11 +131,11 @@ When the hook exits non-zero, Pipelines ignores these two files and reads `PIPEL
 
 ### How results affect the run
 
-A `deny` result fails the pipeline run and blocks the pull/merge request from merging, and shows a ⛔️ in the comment. A `warn` shows a ⚠️ and raises the severity in the comment but does not fail the run. Results are only read when the hook exits `0`; a non-zero exit is always a failure, see [Exit codes](/2.0/docs/pipelines/guides/hooks/configuring#exit-codes).
+A `deny` result fails the pipeline run and blocks the pull/merge request from merging, and shows a ⛔️ in the comment. A `warn` shows a ⚠️ and raises the severity in the comment but does not fail the run. Results are only read when the hook exits `0`; a non-zero exit is always a failure, see [Exit codes](/2.0/docs/pipelines/guides/hooks/execution#exit-codes).
 
 ### Skipped hooks
 
-A hook skipped because of an earlier failure (see [Skipping after a failure](/2.0/docs/pipelines/guides/hooks/configuring#skipping-after-a-failure)) appears with a ⏭️ icon and the note "Hook skipped due to previous failure", rather than as a pass or a failure.
+A hook skipped because of an earlier failure (see [Skipping after a failure](/2.0/docs/pipelines/guides/hooks/execution#skipping-after-a-failure)) appears with a ⏭️ icon and the note "Hook skipped due to previous failure", rather than as a pass or a failure.
 
 ## Next steps
 
