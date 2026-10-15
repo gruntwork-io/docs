@@ -3,7 +3,7 @@
     "plan",
     "apply"
   ],
-  "description": "Explain a failed terragrunt run's errors and how to fix them with an AI model",
+  "description": "Explain a failed Terragrunt run's errors and how to fix them with an AI model",
   "env": [
     {
       "help": "API key.",
