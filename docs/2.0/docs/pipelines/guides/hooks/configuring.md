@@ -128,7 +128,7 @@ The filter is evaluated against the run's units:
 
 If at least one affected unit matches, the hook runs and receives only the matched units. If no affected unit matches, the hook is skipped.
 
-An error hook's filter is stricter: the hook runs only if at least one matched unit failed. It receives every unit the filter matches, including units that succeeded. To act only on the failures, have the hook read each unit's `result` field from the [units JSON file](/2.0/reference/pipelines/hooks-api#units-json-file).
+An error hook's filter is stricter: the hook runs only if at least one matched unit failed. It receives every unit the filter matches, including units that succeeded or exited early. To act only on the failures, have the hook read each unit's `result` field from the [units JSON file](/2.0/reference/pipelines/hooks-api#units-json-file).
 
 ### Isolated working directory
 
