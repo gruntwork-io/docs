@@ -84,7 +84,7 @@ In both cases there is nothing for a hook to act on, so no hooks run.
 
 :::note
 
-Error hooks are the exception. They run if the `plan` or `apply` fails, regardless of whether a unit was affected.
+Error hooks are the exception. Pipelines evaluates them whenever the `plan` or `apply` fails, regardless of whether a unit was affected. If an error hook has a `filter`, it runs only when a unit matching the filter failed, so it is skipped when no unit was affected. See [Scoping a hook to specific units](#scoping-a-hook-to-specific-units).
 
 :::
 
