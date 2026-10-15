@@ -61,4 +61,5 @@ Add a project or group CI/CD variable named `PIPELINES_PLAN_ENCRYPTION_KEY` unde
 
 ## Next steps
 
-- [Configuring Hooks](/2.0/docs/pipelines/guides/hooks/configuring)
+- [Hook Types](/2.0/docs/pipelines/guides/hooks/hook-types)
+- [How Hooks Execute](/2.0/docs/pipelines/guides/hooks/execution)

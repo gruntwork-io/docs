@@ -403,9 +403,14 @@ const sidebar = [
             id: "2.0/docs/pipelines/guides/hooks/setup",
           },
           {
-            label: "Configuring Hooks",
+            label: "Hook Types",
             type: "doc",
-            id: "2.0/docs/pipelines/guides/hooks/configuring",
+            id: "2.0/docs/pipelines/guides/hooks/hook-types",
+          },
+          {
+            label: "How Hooks Execute",
+            type: "doc",
+            id: "2.0/docs/pipelines/guides/hooks/execution",
           },
           {
             label: "Writing a Hook",
