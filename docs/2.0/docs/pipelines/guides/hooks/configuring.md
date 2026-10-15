@@ -189,7 +189,11 @@ A skipped hook does not run, and is reported as skipped on the pull/merge reques
 
 Set `run_on_error = true` to run the hook regardless of an earlier failure. This is useful for hooks that should always run, such as sending a notification whether the run succeeded or failed. A `run_on_error` hook still runs even when a preceding hook failed.
 
-This applies to after hooks only. Error hooks run because of a failure, and every matching error hook runs even when an earlier error hook failed.
+:::note
+
+Error hooks are the exception. They run because of a failure, so every matching error hook runs, even when an earlier error hook failed.
+
+:::
 
 ### Timeout and cancellation
 
