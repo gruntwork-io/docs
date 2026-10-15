@@ -4,6 +4,8 @@ import Link from "@docusaurus/Link"
 import { Hook, hookInputs } from "./hooks"
 
 const AUTHENTICATION = "/2.0/docs/pipelines/guides/hooks/authentication"
+const ERROR_HOOK = "error_hook"
+const ANY_ERROR_OUTPUT = `["."]`
 
 /**
  * The hook block a customer declares, ready to paste. Required inputs are set to <REQUIRED>; a
@@ -28,11 +30,24 @@ const HookUsage: React.FunctionComponent<Hook> = (hook) => {
   const width = Math.max(0, ...settable.map((variable) => variable.length))
   const reference = line ? `${name}@${line}` : name
 
+  const errorHookAttributes: [string, string][] =
+    phase === ERROR_HOOK ? [["on_errors", ANY_ERROR_OUTPUT]] : []
+  const attributes: [string, string][] = [
+    ["commands", `[${commands.map((command) => `"${command}"`).join(", ")}]`],
+    ...errorHookAttributes,
+    ["execute", `["pipelines", "hook", "${reference}"]`],
+  ]
+  const attributeWidth = Math.max(
+    ...attributes.map(([attribute]) => attribute.length)
+  )
+
   const block = [
     "repository {",
     `  ${phase} "${name}" {`,
-    `    commands = [${commands.map((command) => `"${command}"`).join(", ")}]`,
-    `    execute  = ["pipelines", "hook", "${reference}"]`,
+    ...attributes.map(
+      ([attribute, value]) =>
+        `    ${attribute.padEnd(attributeWidth)} = ${value}`
+    ),
     ...(settable.length > 0
       ? [
           "",
