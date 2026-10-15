@@ -10,9 +10,9 @@ Hooks are how you extend a Pipelines run with your own tooling. If you have used
 
 This unblocks the kinds of integrations teams reach for most when running infrastructure changes at scale, such as cost estimation, security scanning, policy enforcement, auditing, and notifications.
 
-Hooks are configured in your Pipelines HCL configuration. Each hook declares whether it runs after `plan` and/or `apply`, and the command to execute.
+Hooks are configured in your Pipelines HCL configuration. Each hook declares whether it runs after `plan` and/or `apply`, and the command to execute. *Error hooks* run only when that command fails with an error matching a pattern you set.
 
-Pipelines passes each hook context about the run through environment variables (for example the actor, repository, and action). *After hooks* additionally receive the run's OpenTofu/Terraform plan. In turn, a hook can write outputs that Pipelines reflects back in the pull/merge request comment, so its results show up alongside the plan or apply summary. See [Hooks API](/2.0/reference/pipelines/hooks-api) for the full contract.
+Pipelines passes each hook context about the run through environment variables (for example the actor, repository, and action). Hooks also receive the run's OpenTofu/Terraform plan. In turn, a hook can write outputs that Pipelines reflects back in the pull/merge request comment, so its results show up alongside the plan or apply summary. See [Hooks API](/2.0/reference/pipelines/hooks-api) for the full contract.
 
 :::note
 
@@ -33,3 +33,4 @@ Hooks are under active development, and new capabilities will continue to roll o
 ## Related documentation
 
 - [`after_hook` block reference](/2.0/reference/pipelines/configurations-as-code/api#after_hook-block) - the full list of configurable fields.
+- [`error_hook` block reference](/2.0/reference/pipelines/configurations-as-code/api#error_hook-block) - the full list of configurable fields.

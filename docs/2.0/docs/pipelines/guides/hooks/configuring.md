@@ -34,6 +34,41 @@ The block label (`hello_world` in the example above) is also required and must b
 
 See the [`after_hook` block attributes](/2.0/reference/pipelines/configurations-as-code/api#after_hook-block-attributes) reference for full details.
 
+## Error hooks
+
+Error hooks run when a `plan` or `apply` fails with an error that matches one of their patterns. They are configured with [`error_hook`](/2.0/reference/pipelines/configurations-as-code/api#error_hook-block) blocks nested inside the `repository` block. Each block declares which commands it handles failures of, the error patterns to match, and the command to run. You can define multiple error hooks, and they run in the order they are defined.
+
+```hcl
+repository {
+  error_hook "state_lock" {
+    commands  = ["plan", "apply"]
+    on_errors = ["Error acquiring the state lock"]
+    execute   = ["echo", "Another run holds the state lock"]
+  }
+}
+```
+
+### Required fields
+
+- **`commands`**: the Pipelines commands whose failures this hook handles. One or both of `plan` and `apply`.
+- **`on_errors`**: a list of regular expressions matched against the output of the failed command. See [Matching errors](#matching-errors).
+- **`execute`**: the command to run, given as a list of the program followed by its arguments.
+
+The block label (`state_lock` in the example above) is also required and must be unique among the `error_hook` blocks in the `repository` block.
+
+### Optional fields
+
+- **`name`**: a human-readable display name for the hook.
+- **`source`**: a URL to fetch before the hook runs, so `execute` can run scripts that live outside the repository. See [Remote script sources](#remote-script-sources).
+- **`env`**: environment variables to set for the `execute` command.
+- **`timeout_seconds`**: how long the hook may run before it is terminated. Defaults to `300`.
+- **`authentication`**: cloud credentials and secrets for the hook. See [Authentication & Secrets](/2.0/docs/pipelines/guides/hooks/authentication).
+- **`filter`**: scopes the hook to failures in a subset of the run's affected units by path, environment, and/or label. See [Scoping a hook to specific units](#scoping-a-hook-to-specific-units).
+
+Error hooks have no `run_on_error` field, because they only run after a failure.
+
+See the [`error_hook` block attributes](/2.0/reference/pipelines/configurations-as-code/api#error_hook-block-attributes) reference for full details.
+
 ## How hooks execute
 
 ### Hooks only run when units are affected
@@ -47,11 +82,19 @@ If a change produces no work, hooks are skipped and the run still succeeds. This
 
 In both cases there is nothing for a hook to act on, so no hooks run.
 
+Error hooks follow the first case, but not the second: if jobs run and a `plan` or `apply` fails, error hooks run even when no unit was affected.
+
 ### Command filtering
 
 A run executes a single command, either `plan` or `apply`, and only hooks whose `commands` include that command run. A hook scoped to `apply` does not run on a pull/merge request plan, and a hook scoped to `plan` does not run on an apply.
 
 A destroy is treated as an `apply` for this purpose, so a hook configured with `commands = ["apply"]` also runs after a destroy.
+
+### Matching errors
+
+Error hooks run at the end of the run, after the after hooks, and only when a `plan` or `apply` failed. A failed after hook does not trigger them.
+
+Pipelines matches each pattern in `on_errors` against the combined output of the run's failed Terragrunt executions. Patterns use [Go RE2 syntax](https://github.com/google/re2/wiki/Syntax), and a hook runs if any one of them matches. Pipelines strips ANSI color codes from the output first, so patterns match plain text. The hook can read the same output from the file named in `PIPELINES_HOOK_IN_ERRORS_FILE`.
 
 ### Scoping a hook to specific units
 
@@ -80,6 +123,8 @@ The filter is evaluated against the run's units:
 - **`labels`**: a map of label keys to lists of values. A unit matches only if it has every listed key/value. Labels are assigned by [`annotation`](/2.0/reference/pipelines/configurations-as-code/api#annotation-block) blocks.
 
 If at least one affected unit matches, the hook runs and receives only the matched units. If no affected unit matches, the hook is skipped.
+
+An error hook's filter is stricter: the hook runs only if at least one matched unit failed. It still receives every matched unit, including units that succeeded, so check each unit's `result` in the [units JSON file](/2.0/reference/pipelines/hooks-api#units-json-file).
 
 ### Isolated working directory
 
@@ -125,6 +170,8 @@ A hook's exit code is how it tells Pipelines whether it succeeded:
 - **Exit `0`** means the hook succeeded. Pipelines reads back its output files (result, summary, and comment).
 - **Any non-zero exit** means the hook failed. **A failed hook fails the entire pipeline run**, exactly as a failed `plan` or `apply` does. Pipelines ignores the result, summary and comment files and reads the error summary and error comment instead, so the hook can explain why it failed.
 
+An error hook only runs once the run has already failed, so it cannot change the run's outcome. Its exit code and result are still reported in the comment.
+
 The exit code is not the only thing that can fail the run. When a hook exits `0`, Pipelines reads the result it wrote (`pass`, `warn`, or `deny`) and surfaces it in the comment. A `deny` result fails the pipeline run and blocks the pull/merge request from merging. `warn` is advisory and does not affect the run, and `pass` (or an empty or unrecognized value) has no effect. See [Hooks API](/2.0/reference/pipelines/hooks-api) for the result values.
 
 ### Skipping after a failure
@@ -138,17 +185,21 @@ A skipped hook does not run, and is reported as skipped on the pull/merge reques
 
 Set `run_on_error = true` to run the hook regardless of an earlier failure. This is useful for hooks that should always run, such as sending a notification whether the run succeeded or failed. A `run_on_error` hook still runs even when a preceding hook failed.
 
+This applies to after hooks only. Error hooks run because of a failure, and every matching error hook runs even when an earlier error hook failed.
+
 ### Timeout and cancellation
 
 Each hook has a `timeout_seconds` limit (default `300`). The limit covers the whole hook, including fetching its [`source`](#remote-script-sources) and acquiring any credentials from its [`authentication`](/2.0/docs/pipelines/guides/hooks/authentication) block. A hook that runs longer than its limit is cancelled.
 
 When a hook is cancelled, Pipelines signals the hook's process group to terminate, gives it a brief grace period to exit cleanly, and then forcibly kills it. Because the whole process group is signalled, any child processes the hook started are terminated too.
 
-A cancelled hook counts as a failure: it fails the run and, like any failure, causes later hooks without `run_on_error = true` to be skipped.
+A cancelled hook counts as a failure: it fails the run and, like any failure, causes later hooks without `run_on_error = true` to be skipped. A cancelled error hook is reported as failed, and the remaining error hooks still run.
 
 ### Inputs and outputs
 
 Pipelines passes information to a hook through environment variables, and a hook returns information by writing to files whose paths Pipelines provides. See [Hooks API](/2.0/reference/pipelines/hooks-api) for the full contract.
+
+Error hooks also receive `PIPELINES_HOOK_IN_ERRORS_FILE`, the output of the failed Terragrunt executions. Their outputs appear in a separate Error Hooks section of the pull/merge request comment, below the after hooks.
 
 ## Next steps
 

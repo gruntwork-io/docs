@@ -10,7 +10,7 @@ The hook's `execute` command reads from the first two namespaces and writes to t
 
 ## API version
 
-Latest version: `v1.1.0`.
+Latest version: `v1.2.0`.
 
 The Hooks API follows semantic versioning, starting at `v1.0.0`. The minor version is
 incremented when backwards incompatible changes (new inputs or fields) are added. The patch
@@ -51,12 +51,13 @@ The three `CHANGE_REQUEST` variables are set or absent together: they are set wh
 
 ## File inputs (`PIPELINES_HOOK_IN_*`)
 
-Paths to files the hook reads. Both are always set.
+Paths to files the hook reads. The plans directory and units file are always set.
 
 | Variable | Description |
 |---|---|
 | `PIPELINES_HOOK_IN_PLAN_JSON_DIR` | Directory containing the decrypted plan JSON for the run's units. |
 | `PIPELINES_HOOK_IN_UNITS_JSON_FILE` | Path to a JSON file describing the units in the run. |
+| `PIPELINES_HOOK_IN_ERRORS_FILE` | Path to a plain text file holding the combined output of the run's failed Terragrunt executions, with ANSI color codes removed. Set only for [error hooks](/2.0/docs/pipelines/guides/hooks/configuring#error-hooks). Since `v1.2.0`. |
 
 ### Plans JSON directory
 
@@ -72,10 +73,13 @@ The file is the JSON form of the OpenTofu/Terraform plan (`terraform show -json`
 [
   {
     "path": "dev/us-east-1/vpc",
-    "plan_json_file": "/abs/path/to/dev/us-east-1/vpc/tfplan.json"
+    "plan_json_file": "/abs/path/to/dev/us-east-1/vpc/tfplan.json",
+    "result": "succeeded"
   },
   {
-    "path": "dev/us-east-1/no-changes"
+    "path": "dev/us-east-1/database",
+    "result": "failed",
+    "reason": "run error"
   }
 ]
 ```
@@ -84,6 +88,9 @@ The file is the JSON form of the OpenTofu/Terraform plan (`terraform show -json`
 |---|---|
 | `path` | The unit's path relative to the repository root. |
 | `plan_json_file` | Absolute path to the unit's decrypted plan JSON, the same file addressed under the plans directory above. Omitted when the unit produced no plan. |
+| `result` | The unit's result from the [Terragrunt run report](https://docs.terragrunt.com/schemas/run/report/v4/schema.json): `succeeded`, `failed`, or `early exit`. Omitted when the run report has no entry for the unit. Since `v1.2.0`. |
+| `reason` | The reason from the run report, when it gives one. Since `v1.2.0`. |
+| `cause` | The cause from the run report, when it gives one. Since `v1.2.0`. |
 
 ## Outputs (`PIPELINES_HOOK_OUT_*`)
 
