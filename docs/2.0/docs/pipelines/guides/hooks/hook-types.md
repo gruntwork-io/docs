@@ -42,7 +42,7 @@ Error hooks run when a `plan` or `apply` fails with an error that matches one of
 repository {
   error_hook "on_failure" {
     commands  = ["plan", "apply"]
-    on_errors = [".*"]
+    on_errors = ["."]
     execute   = [".gruntwork/hooks/failed.sh"]
   }
 }

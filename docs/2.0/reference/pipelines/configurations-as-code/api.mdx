@@ -201,7 +201,7 @@ When any `after_hook` or `error_hook` block is configured, the [`PIPELINES_PLAN_
 repository {
   error_hook "on_failure" {
     commands  = ["plan", "apply"]
-    on_errors = [".*"]
+    on_errors = ["."]
     execute   = [".gruntwork/hooks/failed.sh"]
   }
 }
