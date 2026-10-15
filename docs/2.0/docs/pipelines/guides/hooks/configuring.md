@@ -65,7 +65,7 @@ The block label (`state_lock` in the example above) is also required and must be
 - **`authentication`**: cloud credentials and secrets for the hook. See [Authentication & Secrets](/2.0/docs/pipelines/guides/hooks/authentication).
 - **`filter`**: scopes the hook to failures in a subset of the run's affected units by path, environment, and/or label. See [Scoping a hook to specific units](#scoping-a-hook-to-specific-units).
 
-Error hooks have no `run_on_error` field, because they only run after a failure.
+Error hooks have no `run_on_error` field, because running on error is a non-configurable setting for them.
 
 See the [`error_hook` block attributes](/2.0/reference/pipelines/configurations-as-code/api#error_hook-block-attributes) reference for full details.
 
@@ -180,20 +180,14 @@ The exit code is not the only thing that can fail the run. When a hook exits `0`
 
 ### Skipping after a failure
 
-By default, a hook is skipped if anything earlier in the run failed. This includes:
+By default, any hook other than an error hook is skipped if anything earlier in the run failed. This includes:
 
 - the `plan` or `apply` the hook runs after, or
 - an earlier hook in the list that exited non-zero.
 
 A skipped hook does not run, and is reported as skipped on the pull/merge request.
 
-Set `run_on_error = true` to run the hook regardless of an earlier failure. This is useful for hooks that should always run, such as sending a notification whether the run succeeded or failed. A `run_on_error` hook still runs even when a preceding hook failed.
-
-:::note
-
-Error hooks are the exception. They run because of a failure, so every matching error hook runs, even when an earlier error hook failed.
-
-:::
+Set `run_on_error = true` to run the hook regardless of an earlier failure. This is useful for hooks that should always run, such as sending a notification whether the run succeeded or failed. A `run_on_error` hook still runs even when a preceding hook failed. For error hooks, running on error is a non-configurable setting.
 
 ### Timeout and cancellation
 
@@ -201,7 +195,7 @@ Each hook has a `timeout_seconds` limit (default `300`). The limit covers the wh
 
 When a hook is cancelled, Pipelines signals the hook's process group to terminate, gives it a brief grace period to exit cleanly, and then forcibly kills it. Because the whole process group is signalled, any child processes the hook started are terminated too.
 
-A cancelled hook counts as a failure: it fails the run and, like any failure, causes later hooks without `run_on_error = true` to be skipped. A cancelled error hook is reported as failed, and the remaining error hooks still run.
+A cancelled hook counts as a failure: it fails the run and, like any failure, causes later hooks to be skipped, except error hooks and hooks with `run_on_error = true`.
 
 ### Inputs and outputs
 
