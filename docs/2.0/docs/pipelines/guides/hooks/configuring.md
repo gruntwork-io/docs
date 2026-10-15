@@ -84,7 +84,7 @@ In both cases there is nothing for a hook to act on, so no hooks run.
 
 :::note
 
-Error hooks are the exception. Pipelines evaluates them whenever the `plan` or `apply` fails, regardless of whether a unit was affected. If an error hook has a `filter`, it runs only when a unit matching the filter failed, so it is skipped when no unit was affected. See [Scoping a hook to specific units](#scoping-a-hook-to-specific-units).
+If a `plan` or `apply` fails before any unit reports a result, for example because a unit's configuration cannot be parsed, hooks that run on error still run: error hooks, and after hooks with `run_on_error = true`. A hook with a `filter` is still skipped, because no unit matches it. See [Scoping a hook to specific units](#scoping-a-hook-to-specific-units).
 
 :::
 
@@ -96,7 +96,7 @@ A destroy is treated as an `apply` for this purpose, so a hook configured with `
 
 ### Matching errors
 
-Error hooks run at the end of the run, after the after hooks, and only when a `plan` or `apply` failed. A failed after hook does not trigger them.
+Error hooks run at the end of the run, after the after hooks, and only when a `plan` or `apply` failed. A failing hook does not trigger them.
 
 Pipelines matches each pattern in `on_errors` against the combined output of the run's failed Terragrunt executions. Patterns use [Go RE2 syntax](https://github.com/google/re2/wiki/Syntax), and a hook runs if any one of them matches. Pipelines strips ANSI color codes from the output first, so patterns match plain text. The hook can read the same output from the file named in `PIPELINES_HOOK_IN_ERRORS_FILE`.
 
