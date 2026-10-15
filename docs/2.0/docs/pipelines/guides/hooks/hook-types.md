@@ -1,6 +1,6 @@
 # Hook Types
 
-Hooks are configured in your Pipelines HCL configuration, as blocks nested inside the [`repository`](/2.0/reference/pipelines/configurations-as-code/api#repository-block) block. This page covers the fields each type of hook accepts. See [How Hooks Execute](/2.0/docs/pipelines/guides/hooks/execution) for when and how Pipelines runs them.
+Pipelines currently supports two types of hooks, each declared with its own block inside the [`repository`](/2.0/reference/pipelines/configurations-as-code/api#repository-block) block: [after hooks](#after-hooks) and [error hooks](#error-hooks).
 
 ## After hooks
 
@@ -8,7 +8,7 @@ After hooks run after Pipelines completes a `plan` or `apply`. They are configur
 
 ```hcl
 repository {
-  after_hook "success" {
+  after_hook "on_success" {
     commands = ["plan"]
     execute  = [".gruntwork/hooks/success.sh"]
   }
@@ -20,7 +20,7 @@ repository {
 - **`commands`**: the Pipelines commands this hook runs after. One or both of `plan` and `apply`.
 - **`execute`**: the command to run, given as a list of the program followed by its arguments.
 
-The block label (`success` in the example above) is also required and must be unique within the `repository` block.
+The block label (`on_success` in the example above) is also required and must be unique within the `repository` block.
 
 ### Optional fields
 
@@ -40,9 +40,9 @@ Error hooks run when a `plan` or `apply` fails with an error that matches one of
 
 ```hcl
 repository {
-  error_hook "failed" {
+  error_hook "on_failure" {
     commands  = ["plan", "apply"]
-    on_errors = ["Error"]
+    on_errors = [".*"]
     execute   = [".gruntwork/hooks/failed.sh"]
   }
 }
@@ -54,7 +54,7 @@ repository {
 - **`on_errors`**: a list of regular expressions matched against the output of the failed command. See [Matching errors](/2.0/docs/pipelines/guides/hooks/execution#matching-errors).
 - **`execute`**: the command to run, given as a list of the program followed by its arguments.
 
-The block label (`failed` in the example above) is also required and must be unique among the `error_hook` blocks in the `repository` block.
+The block label (`on_failure` in the example above) is also required and must be unique among the `error_hook` blocks in the `repository` block.
 
 ### Optional fields
 
