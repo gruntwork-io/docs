@@ -1,0 +1,79 @@
+{
+  "commands": [
+    "plan",
+    "apply"
+  ],
+  "description": "Explain a failed terragrunt run's errors and how to fix them with an AI model",
+  "env": [
+    {
+      "help": "API key.",
+      "name": "PIPELINES_HOOK_AI_ERROR_ANALYSIS_API_KEY",
+      "required": true
+    }
+  ],
+  "flags": [
+    {
+      "bool": false,
+      "default": "anthropic",
+      "enum": [
+        "anthropic",
+        "openrouter"
+      ],
+      "env": [
+        "PIPELINES_HOOK_AI_ERROR_ANALYSIS_PROVIDER"
+      ],
+      "help": "Who serves the model. For anthropic, the hook configures the model to check Terragrunt fixes against the Terragrunt docs, through their MCP server.",
+      "name": "provider",
+      "required": false
+    },
+    {
+      "bool": false,
+      "env": [
+        "PIPELINES_HOOK_AI_ERROR_ANALYSIS_MODEL"
+      ],
+      "help": "claude-sonnet-5 on anthropic, anthropic/claude-sonnet-5 on openrouter.",
+      "name": "model",
+      "required": true
+    },
+    {
+      "bool": false,
+      "default": "4000",
+      "env": [
+        "PIPELINES_HOOK_AI_ERROR_ANALYSIS_MAX_OUTPUT_TOKENS"
+      ],
+      "help": "Most tokens the model may write, thinking included.",
+      "name": "max-output-tokens",
+      "required": false
+    },
+    {
+      "bool": false,
+      "default": "info",
+      "enum": [
+        "trace",
+        "debug",
+        "info",
+        "warning",
+        "error",
+        "fatal",
+        "panic"
+      ],
+      "env": [
+        "PIPELINES_HOOK_AI_ERROR_ANALYSIS_LOG_LEVEL"
+      ],
+      "group": "Logging",
+      "help": "Log verbosity. A more verbose PIPELINES_LOG_LEVEL overrides it. One of: trace,debug,info,warning,error,fatal,panic.",
+      "name": "log-level",
+      "required": false
+    }
+  ],
+  "internal": false,
+  "line": "v0.1",
+  "name": "ai-error-analysis",
+  "on_errors": [
+    "."
+  ],
+  "phase": "error_hook",
+  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/ai-error-analysis-v0.1.2",
+  "title": "AI Error Analysis",
+  "version": "0.1.2"
+}
