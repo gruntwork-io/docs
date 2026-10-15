@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.8.0" lastModifiedVersion="1.3.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.9.0" lastModifiedVersion="1.3.0"/>
 
 # KMS Master Key Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/kms-master-key" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/kms-master-key" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -87,7 +87,7 @@ more onerous.
 
 module "kms_master_key" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key?ref=v1.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key?ref=v1.9.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -151,7 +151,7 @@ module "kms_master_key" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key?ref=v1.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/kms-master-key?ref=v1.9.0"
 }
 
 inputs = {
@@ -450,11 +450,11 @@ A map of CMK name to CMK ID.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/kms-master-key/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/kms-master-key/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/kms-master-key/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/kms-master-key/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/kms-master-key/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/kms-master-key/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d998e245e387a594b207ba6007faef17"
+  "hash": "fe5024c6323359dd5c402dd55fd838ce"
 }
 ##DOCS-SOURCER-END -->
