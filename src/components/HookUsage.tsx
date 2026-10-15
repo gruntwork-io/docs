@@ -4,8 +4,6 @@ import Link from "@docusaurus/Link"
 import { Hook, hookInputs } from "./hooks"
 
 const AUTHENTICATION = "/2.0/docs/pipelines/guides/hooks/authentication"
-const ERROR_HOOK = "error_hook"
-const ANY_ERROR_OUTPUT = `["."]`
 
 /**
  * The hook block a customer declares, ready to paste. Required inputs are set to <REQUIRED>; a
@@ -13,7 +11,7 @@ const ANY_ERROR_OUTPUT = `["."]`
  * logs. The reference pins the compatibility line, not the major.
  */
 const HookUsage: React.FunctionComponent<Hook> = (hook) => {
-  const { name, phase, commands = [], line } = hook
+  const { name, phase, commands = [], on_errors: onErrors, line } = hook
 
   if (!name || !phase || commands.length === 0) {
     return null
@@ -30,11 +28,12 @@ const HookUsage: React.FunctionComponent<Hook> = (hook) => {
   const width = Math.max(0, ...settable.map((variable) => variable.length))
   const reference = line ? `${name}@${line}` : name
 
-  const errorHookAttributes: [string, string][] =
-    phase === ERROR_HOOK ? [["on_errors", ANY_ERROR_OUTPUT]] : []
+  const onErrorsAttributes: [string, string][] = onErrors
+    ? [["on_errors", hclList(onErrors)]]
+    : []
   const attributes: [string, string][] = [
-    ["commands", `[${commands.map((command) => `"${command}"`).join(", ")}]`],
-    ...errorHookAttributes,
+    ["commands", hclList(commands)],
+    ...onErrorsAttributes,
     ["execute", `["pipelines", "hook", "${reference}"]`],
   ]
   const attributeWidth = Math.max(
@@ -74,5 +73,8 @@ const HookUsage: React.FunctionComponent<Hook> = (hook) => {
     </>
   )
 }
+
+const hclList = (values: string[]) =>
+  `[${values.map((value) => JSON.stringify(value)).join(", ")}]`
 
 export default HookUsage
