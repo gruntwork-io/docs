@@ -1,0 +1,24 @@
+import hook from './_hook.json'
+import HookVersion from '@site/src/components/HookVersion'
+import HookUsage from '@site/src/components/HookUsage'
+import HookInputs from '@site/src/components/HookInputs'
+
+# AI Error Analysis
+
+<HookVersion {...hook} />
+
+Explain a failed Terragrunt run's errors and how to fix them with an AI model.
+
+## Usage
+
+<HookUsage {...hook} />
+
+## Inputs
+
+<HookInputs {...hook} />
+
+## Related documentation
+
+- [Gruntwork Provided Hooks](/2.0/docs/pipelines/guides/hooks/gruntwork-provided) - version pinning and configuration common to every provided hook.
+- [How Hooks Execute](/2.0/docs/pipelines/guides/hooks/execution) - when and how Pipelines runs hooks.
+- [Authentication & Secrets](/2.0/docs/pipelines/guides/hooks/authentication) - giving a hook cloud credentials.
