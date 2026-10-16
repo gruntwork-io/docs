@@ -55,6 +55,29 @@ aws cloudwatch list-tags-for-resource --resource-arn alarm_arn
 
 Tags associated with a metric alarm are not propagated with the alarm payload when the alarm is triggered.
 
+## Alarm names and ARNs
+
+Modules that create CloudWatch metric alarms export `alarm_names` and `alarm_arns`. Disabled alarms are omitted, and the two lists are in the same order. Pass `alarm_names` to [`aws_cloudwatch_alarm_mute_rule`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_alarm_mute_rule) `mute_targets.alarm_names`. The caller needs an AWS provider release that includes that resource.
+
+```hcl
+resource "aws_cloudwatch_alarm_mute_rule" "maintenance" {
+  name = "elasticsearch-maintenance"
+
+  rule {
+    schedule {
+      duration   = "PT4H"
+      expression = "cron(0 2 * * *)"
+    }
+  }
+
+  mute_targets {
+    alarm_names = module.elasticsearch_alarms.alarm_names
+  }
+}
+```
+
+The `lambda-alarms` module already exports the singular outputs `alarm_name` and `alarm_arn` instead of these lists.
+
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
@@ -63,6 +86,6 @@ Tags associated with a metric alarm are not propagated with the alarm payload wh
     "https://github.com/gruntwork-io/terraform-aws-monitoring/tree/v1.4.0/modules/alarms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "f4a685caf1988c5db8e16a74d8c43322"
+  "hash": "aaa54497806d5d0101d627d21d1eacf0"
 }
 ##DOCS-SOURCER-END -->
