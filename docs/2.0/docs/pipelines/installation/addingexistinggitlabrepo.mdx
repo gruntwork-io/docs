@@ -55,7 +55,7 @@ Review your existing project structure and identify:
 :::note Progress Checklist
 
 <PersistentCheckbox id="inventory-environments" label="Create an inventory of all environments you want to manage with Pipelines." />
-<PersistentCheckbox id="map-cloud-accounts" label="Map each environment to its corresponding AWS Account / Azure Subscription." />
+<PersistentCheckbox id="map-cloud-accounts" label="Map each environment to its corresponding AWS Account / Azure Subscription / GCP Project." />
 <PersistentCheckbox id="identify-directory-paths" label="Identify the directory paths in your project for each environment's Terragrunt units." />
 <PersistentCheckbox id="check-existing-oidc" label="Check if OIDC providers and IAM roles already exist in your cloud accounts." />
 
@@ -63,7 +63,7 @@ Review your existing project structure and identify:
 
 ### Determine Required OIDC Roles
 
-For each AWS Account / Azure Subscription you want to manage, you might already have some or all of the following resources provisioned.
+For each AWS Account / Azure Subscription / GCP Project you want to manage, you might already have some or all of the following resources provisioned.
 
 <Tabs groupId="cloud-provider">
 <TabItem value="aws" label="AWS" default>
@@ -82,7 +82,6 @@ For each AWS Account / Azure Subscription you want to manage, you might already 
 - Entra ID Application for plans with Federated Identity Credential
 - Entra ID Application for applies with Federated Identity Credential
 - Service Principals with appropriate role assignments
-- Storage Account and Container for Terragrunt state storage (if not already existing)
 
 </TabItem>
 <TabItem value="gcp" label="GCP">
@@ -400,18 +399,17 @@ terragrunt run --all --non-interactive --provider-cache apply
 
 The resources you need provisioned in Azure to start managing resources with Pipelines are:
 
-1. An Azure Resource Group for OpenTofu state resources
-   1. An Azure Storage Account in that resource group for OpenTofu state storage
-      1. An Azure Storage Container in that storage account for OpenTofu state storage
-2. An Entra ID Application to use for plans
+1. An Entra ID Application to use for plans
    1. A Flexible Federated Identity Credential for the application to authenticate with your project on any branch
    2. A Service Principal for the application to be used in role assignments
       1. A role assignment for the service principal to access the Azure subscription
-      2. A role assignment for the service principal to access the Azure Storage Account
-3. An Entra ID Application to use for applies
+      2. A role assignment for the service principal to access the Azure Storage Account that holds OpenTofu state
+2. An Entra ID Application to use for applies
    1. A Federated Identity Credential for the application to authenticate with your project on the deploy branch
    2. A Service Principal for the application to be used in role assignments
       1. A role assignment for the service principal to access the Azure subscription
+
+For every Azure subscription you want Pipelines to manage infrastructure in.
 
 :::tip Don't Panic!
 
@@ -424,13 +422,63 @@ If you want to peruse the catalog that's used in the bootstrap process, you can 
 The process that we'll follow to get these resources ready for Pipelines is:
 
 1. Use Boilerplate to scaffold bootstrap configurations in your project for each Azure subscription
-2. Use Terragrunt to provision these resources in your Azure subscription
-3. Finalizing Terragrunt configurations using the bootstrap resources we just provisioned
-4. Pull the bootstrap resources into state, now that we have configured a remote state backend
-5. (Optionally) Bootstrap additional Azure subscriptions until all your Azure subscriptions are ready for Pipelines
+2. Use Terragrunt to provision these resources in your Azure subscriptions
 
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
 <h3>Bootstrap Your Project for Azure</h3>
+
+First, confirm that you have a `root.hcl` file in the root of your project that looks something like this:
+
+```hcl title="root.hcl"
+locals {
+  sub_hcl = read_terragrunt_config(find_in_parent_folders("sub.hcl"))
+
+  subscription_id = local.sub_hcl.locals.subscription_id
+  location        = local.sub_hcl.locals.location
+
+  state_resource_group_name    = local.sub_hcl.locals.state_resource_group_name
+  state_storage_account_name   = local.sub_hcl.locals.state_storage_account_name
+  state_storage_container_name = local.sub_hcl.locals.state_storage_container_name
+}
+
+remote_state {
+  backend = "azurerm"
+  generate = {
+    path      = "backend.tf"
+    if_exists = "overwrite"
+  }
+  config = {
+    subscription_id      = local.subscription_id
+    resource_group_name  = local.state_resource_group_name
+    storage_account_name = local.state_storage_account_name
+    container_name       = local.state_storage_container_name
+    key                  = "${path_relative_to_include()}/tofu.tfstate"
+    location             = local.location
+  }
+}
+
+generate "provider" {
+  path      = "provider.tf"
+  if_exists = "overwrite_terragrunt"
+  contents  = <<EOF
+provider "azurerm" {
+  features {}
+
+  resource_provider_registrations = "none"
+}
+
+provider "azuread" {}
+EOF
+}
+```
+
+If you don't have a `root.hcl` file, you might need to customize the bootstrapping process, as the Terragrunt scale catalog expects a `root.hcl` file in the root of the project. Please contact [Gruntwork support](/support) for assistance if you need help.
+
+:::note Progress Checklist
+
+<PersistentCheckbox id="confirm-azure-remote-state-backend" label="Confirm that the `root.hcl` file defines an `azurerm` remote state backend, including `location`." />
+
+:::
 
 For each Azure subscription that needs bootstrapping, we'll use Boilerplate to scaffold the necessary content. Run this command from the root of your project for each subscription:
 
@@ -484,7 +532,7 @@ AzureTenantID: 00000000-0000-0000-0000-000000000000
 AzureSubscriptionID: 11111111-1111-1111-1111-111111111111
 AzureLocation: East US
 StateResourceGroupName: pipelines-rg
-StateStorageAccountName: my-storage-account
+StateStorageAccountName: mysa
 StateStorageContainerName: tfstate
 ```
 
@@ -498,6 +546,12 @@ boilerplate \
 
 :::
 
+:::tip
+
+`StateStorageAccountName` must be globally unique across Azure, 3 to 24 characters long, and use only lowercase letters and numbers.
+
+:::
+
 :::note Progress Checklist
 
 <PersistentCheckbox id="scaffold-azure-subscription" label="Use Boilerplate to scaffold out your project with the necessary bootstrap configurations for each Azure subscription." />
@@ -507,7 +561,7 @@ boilerplate \
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
 <h3>Provision Azure Bootstrap Resources</h3>
 
-Once you've scaffolded out the subscriptions you want to bootstrap, you can use Terragrunt to provision the resources in your Azure subscription.
+Once you've scaffolded out the subscriptions you want to bootstrap, you can use Terragrunt to provision the resources in each of these subscriptions.
 
 If you haven't already, you'll want to authenticate to Azure using the `az` CLI.
 
@@ -521,161 +575,47 @@ az login
 
 :::
 
-
-To dynamically configure the Azure provider with a given tenant ID and subscription ID, ensure that you are exporting the following environment variables if you haven't the values via the `az` CLI:
-
-- `ARM_TENANT_ID`
-- `ARM_SUBSCRIPTION_ID`
-
-For example:
+The Azure provider reads the subscription to work in from the `ARM_SUBSCRIPTION_ID` environment variable, so export it before running any Terragrunt commands.
 
 ```bash
-export ARM_TENANT_ID="00000000-0000-0000-0000-000000000000"
 export ARM_SUBSCRIPTION_ID="11111111-1111-1111-1111-111111111111"
-```
-
-:::note Progress Checklist
-
-<PersistentCheckbox id="export-arm-tenant-id" label="Export the ARM_TENANT_ID environment variable with the tenant ID of the Azure subscription you want to provision resources in." />
-<PersistentCheckbox id="export-arm-subscription-id" label="Export the ARM_SUBSCRIPTION_ID environment variable with the subscription ID of the Azure subscription you want to provision resources in." />
-:::
-
-First, make sure that everything is set up correctly by running a plan in the subscription directory.
-
-```bash title="name-of-subscription"
-terragrunt run --all --non-interactive --provider-cache plan
 ```
 
 :::tip
 
-We're using the `--provider-cache` flag here to ensure that we don't re-download the Azure provider on every run to speed up the process by leveraging the [Terragrunt Provider Cache Server](https://terragrunt.gruntwork.io/docs/features/provider-cache-server/).
+Before you provision resources in each subscription, export `ARM_SUBSCRIPTION_ID` with the ID of that subscription.
 
 :::
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="run-azure-plan" label="Run a plan in the subscription directory to make sure that everything is set up correctly." />
+<PersistentCheckbox id="export-arm-subscription-id" label="Export the ARM_SUBSCRIPTION_ID environment variable with the subscription ID of the Azure subscription you want to provision resources in." />
+:::
+
+First, make sure that everything is set up correctly by running a plan in the `bootstrap` directory in `name-of-subscription` where `name-of-subscription` is the name of the Azure subscription you want to bootstrap.
+
+```bash title="name-of-subscription/bootstrap"
+terragrunt run --all --non-interactive --provider-cache --backend-bootstrap plan
+```
+
+:::tip
+
+We're using the `--provider-cache` flag here to ensure that we don't re-download the Azure provider on every run by leveraging the [Terragrunt Provider Cache Server](https://terragrunt.gruntwork.io/docs/features/provider-cache-server/).
+
+We're using the `--backend-bootstrap` flag here to tell Terragrunt to bootstrap the Azure Storage backend automatically for the subscription.
 
 :::
 
 Next, apply the changes to your subscription.
 
-```bash title="name-of-subscription"
-terragrunt run --all --non-interactive --provider-cache --no-stack-generate apply
-```
-
-:::tip
-
-We're adding the `--no-stack-generate` flag here, as Terragrunt will already have the requisite stack configurations generated, and we don't want to accidentally overwrite any configurations while we have state stored locally before we pull them into remote state.
-
-:::
-
-:::note Progress Checklist
-
-<PersistentCheckbox id="run-azure-apply" label="Run an apply in the subscription directory to provision the resources in your Azure subscription." />
-:::
-
-{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
-<h3>Finalizing Terragrunt configurations</h3>
-
-Once you've provisioned the resources in your Azure subscription, you can finalize the Terragrunt configurations using the bootstrap resources we just provisioned.
-
-First, edit the `root.hcl` file in the root of your project to leverage the storage account we just provisioned.
-
-If your `root.hcl` file doesn't already have a remote state backend configuration, you'll need to add one that looks like this:
-
-```hcl title="root.hcl"
-locals {
-  sub_hcl = read_terragrunt_config(find_in_parent_folders("sub.hcl"))
-
-  state_resource_group_name    = local.sub_hcl.locals.state_resource_group_name
-  state_storage_account_name   = local.sub_hcl.locals.state_storage_account_name
-  state_storage_container_name = local.sub_hcl.locals.state_storage_container_name
-}
-
-remote_state {
-  backend = "azurerm"
-  generate = {
-    path      = "backend.tf"
-    if_exists = "overwrite"
-  }
-  config = {
-    resource_group_name  = local.state_resource_group_name
-    storage_account_name = local.state_storage_account_name
-    container_name       = local.state_storage_container_name
-    key                  = "${path_relative_to_include()}/tofu.tfstate"
-  }
-}
-
-generate "provider" {
-  path      = "provider.tf"
-  if_exists = "overwrite_terragrunt"
-  contents  = <<EOF
-provider "azurerm" {
-  features {}
-
-  resource_provider_registrations = "none"
-}
-
-provider "azuread" {}
-EOF
-}
+```bash title="name-of-subscription/bootstrap"
+terragrunt run --all --non-interactive --provider-cache apply
 ```
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="add-remote-state-backend" label="Add or uncomment the section that defines the remote state backend in the `root.hcl` file." />
-
-:::
-
-Next, finalize the `.gruntwork/environment-<name-of-subscription>.hcl` file in the root of your project to reference the IDs for the applications we just provisioned.
-
-You can find the values for the `plan_client_id` and `apply_client_id` by running `terragrunt stack output` in the `bootstrap` directory in `name-of-subscription/bootstrap`.
-
-```bash
-terragrunt stack output
-```
-
-The relevant bits that you want to extract from the stack output are the following:
-
-```hcl
-bootstrap = {
-  apply_app = {
-    client_id = "33333333-3333-3333-3333-333333333333"
-  }
-  plan_app = {
-    client_id = "44444444-4444-4444-4444-444444444444"
-  }
-}
-```
-
-You can use those values to set the values for `plan_client_id` and `apply_client_id` in the `.gruntwork/environment-<name-of-subscription>.hcl` file.
-
-:::note Progress Checklist
-
-<PersistentCheckbox id="fill-in-plan-client-id" label="Fill in `plan_client_id` after bootstrapping." />
-<PersistentCheckbox id="fill-in-apply-client-id" label="Fill in `apply_client_id` after bootstrapping." />
-
-:::
-
-{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
-<h3>Pulling the resources into state</h3>
-
-Once you've provisioned the resources in your Azure subscription, you can pull the resources into state using the storage account we just provisioned.
-
-```bash title="name-of-subscription"
-terragrunt run --all --non-interactive --provider-cache --no-stack-generate -- init -migrate-state -force-copy
-```
-
-:::tip
-
-We're adding the `-force-copy` flag here to avoid any issues with OpenTofu waiting for an interactive prompt to copy up local state.
-
-:::
-
-:::note Progress Checklist
-
-<PersistentCheckbox id="run-init-migrate-state-force-copy" label="Pull the resources into state using Terragrunt." />
+<PersistentCheckbox id="run-azure-plan" label="Run a plan in the bootstrap directory to make sure that everything is set up correctly." />
+<PersistentCheckbox id="run-azure-apply" label="Run an apply in the bootstrap directory to provision the resources in your Azure subscription." />
 
 :::
 
@@ -914,6 +854,8 @@ environment "production" {
 }
 ```
 
+To find the values for `plan_client_id` and `apply_client_id`, run `terragrunt stack output` in each subscription's `bootstrap` directory and copy `bootstrap.plan_app.client_id` and `bootstrap.apply_app.client_id`.
+
 :::tip
 
 Learn more about how Pipelines authenticates to Azure in the [Authenticating to Azure](/2.0/docs/pipelines/concepts/cloud-auth/azure) page.
@@ -1060,11 +1002,11 @@ If you encounter issues during the setup process, here are some common troublesh
 
 If your bootstrap resource provisioning fails:
 
-<PersistentCheckbox id="troubleshoot-check-credentials" label="Confirm that you have the correct cloud provider credentials and permissions to create resources in your AWS Accounts / Azure Subscriptions." />
+<PersistentCheckbox id="troubleshoot-check-credentials" label="Confirm that you have the correct cloud provider credentials and permissions to create resources in your AWS Accounts / Azure Subscriptions / GCP Projects." />
 <PersistentCheckbox id="troubleshoot-check-aws-unique-names" label="For AWS: Confirm that your S3 bucket names are globally unique and follow relevant naming restrictions from AWS." />
 <PersistentCheckbox id="troubleshoot-check-azure-unique-names" label="For Azure: Confirm that your storage account names are globally unique and follow relevant naming restrictions from Azure." />
 <PersistentCheckbox id="troubleshoot-check-gitlab-group-project" label="Ensure your GitLab group and project names in the bootstrap configurations match your actual GitLab group and project." />
-<PersistentCheckbox id="troubleshoot-check-environment-variables" label="For Azure: Confirm that you have exported the ARM_TENANT_ID and ARM_SUBSCRIPTION_ID environment variables." />
+<PersistentCheckbox id="troubleshoot-check-environment-variables" label="For Azure: Confirm that you have exported the ARM_SUBSCRIPTION_ID environment variable and left ARM_TENANT_ID unset." />
 
 ### HCL Configuration Issues
 
