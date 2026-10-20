@@ -393,8 +393,8 @@ module "lambda" {
   # Set to true to give your Lambda function access to resources within a VPC.
   run_in_vpc = false
 
-  # The runtime environment for the Lambda function (e.g. nodejs, python3.9,
-  # java8). See
+  # The runtime environment for the Lambda function (e.g. nodejs24.x,
+  # python3.13, java21). See
   # https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime
   # for all possible values.
   runtime = null
@@ -715,8 +715,8 @@ inputs = {
   # Set to true to give your Lambda function access to resources within a VPC.
   run_in_vpc = false
 
-  # The runtime environment for the Lambda function (e.g. nodejs, python3.9,
-  # java8). See
+  # The runtime environment for the Lambda function (e.g. nodejs24.x,
+  # python3.13, java21). See
   # https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime
   # for all possible values.
   runtime = null
@@ -1223,7 +1223,7 @@ Set to true to give your Lambda function access to resources within a VPC.
 <HclListItem name="runtime" requirement="optional" type="string">
 <HclListItemDescription>
 
-The runtime environment for the Lambda function (e.g. nodejs, python3.9, java8). See https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime for all possible values.
+The runtime environment for the Lambda function (e.g. nodejs24.x, python3.13, java21). See https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime for all possible values.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1445,6 +1445,6 @@ Optimization status of Lambda SnapStart. Possible values: 'On' (SnapStart is act
     "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/lambda/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "bf2800b85f1c9d84b9432b4b84bf97e9"
+  "hash": "2c1fcbe92f5396a463786c95576a084a"
 }
 ##DOCS-SOURCER-END -->
