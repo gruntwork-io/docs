@@ -139,7 +139,7 @@ To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to sca
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.14.0' \
   --output-folder .
 ```
 
@@ -153,7 +153,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.14.0' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitLabGroupName=acme' \
@@ -181,7 +181,7 @@ StateBucketName: my-state-bucket
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.14.0' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -197,7 +197,7 @@ If you're using a self-hosted GitLab instance, you'll want to make sure the issu
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.14.0' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitLabGroupName=acme' \
@@ -298,7 +298,7 @@ Just like before, you'll use Boilerplate to scaffold out the necessary content f
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/infrastructure-live?ref=v1.14.0' \
   --output-folder .
 ```
 
@@ -312,7 +312,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.14.0' \
   --output-folder . \
   --var 'AccountName=prod' \
   --var 'AWSAccountID=987654321012' \
@@ -340,7 +340,7 @@ GitLabInstanceURL: https://gitlab.com
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/aws/gitlab/account?ref=v1.14.0' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -382,18 +382,17 @@ terragrunt run --all --non-interactive --provider-cache apply
 
 The resources that you need provisioned in Azure to start managing resources with Pipelines are:
 
-1. An Azure Resource Group for OpenTofu state resources
-   1. An Azure Storage Account in that resource group for OpenTofu state storage
-      1. An Azure Storage Container in that storage account for OpenTofu state storage
-2. An Entra ID Application to use for Pipelines plans
+1. An Entra ID Application to use for Pipelines plans
    1. A Flexible Federated Identity Credential for the application to authenticate with your project on any branch
    2. A Service Principal for the application to be used in role assignments
       1. A role assignment for the service principal to access the Azure subscription
-      2. A role assignment for the service principal to access the Azure Storage Account
-3. An Entra ID Application to use for Pipelines applies
+      2. A role assignment for the service principal to access the Azure Storage Account that holds OpenTofu state
+2. An Entra ID Application to use for Pipelines applies
    1. A Federated Identity Credential for the application to authenticate with your project on the deploy branch
    2. A Service Principal for the application to be used in role assignments
       1. A role assignment for the service principal to access the Azure subscription
+
+For every Azure subscription you want Pipelines to manage infrastructure in.
 
 :::tip Don't Panic!
 
@@ -405,11 +404,10 @@ If you want to peruse the catalog that's used in the bootstrap process, you can 
 
 The process that we'll follow to get these resources ready for Pipelines is:
 
-1. Set up these bootstrap resources by creating some Terragrunt configurations in your `infrastructure-live` repository for bootstrapping Pipelines in a single Azure subscription
+1. Set up the Terragrunt configurations in your `infrastructure-live` repository for bootstrapping Pipelines in a single Azure subscription
 2. Use Terragrunt to provision these resources in your Azure subscription
-3. Finalizing Terragrunt configurations using the bootstrap resources we just provisioned
-4. Pull the bootstrapped resources into state, now that we have configured a remote state backend
-5. (Optionally) Bootstrap additional Azure subscriptions until all your Azure subscriptions are ready for Pipelines
+3. Fill in the client IDs of the Entra ID applications in your Pipelines configuration
+4. (Optionally) Bootstrap additional Azure subscriptions until all your Azure subscriptions are ready for Pipelines
 
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
 <h3>Bootstrap your `infrastructure-live` repository</h3>
@@ -418,7 +416,7 @@ To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to sca
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/infrastructure-live?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/infrastructure-live?ref=v1.14.0' \
   --output-folder .
 ```
 
@@ -432,7 +430,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/infrastructure-live?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/infrastructure-live?ref=v1.14.0' \
   --output-folder . \
   --var 'AccountName=dev' \
   --var 'GitLabGroupName=acme' \
@@ -460,13 +458,13 @@ AzureTenantID: 00000000-0000-0000-0000-000000000000
 AzureSubscriptionID: 11111111-1111-1111-1111-111111111111
 AzureLocation: East US
 StateResourceGroupName: pipelines-rg
-StateStorageAccountName: my-storage-account
+StateStorageAccountName: mysa
 StateStorageContainerName: tfstate
 ```
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/infrastructure-live?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/infrastructure-live?ref=v1.14.0' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -474,8 +472,16 @@ boilerplate \
 
 :::
 
+:::tip
+
+`StateStorageAccountName` must be globally unique across Azure, 3 to 24 characters long, and use only lowercase letters and numbers.
+
+:::
+
 :::note Progress Checklist
+
 <PersistentCheckbox id="azure-scaffold-repository" label="Use Boilerplate to scaffold out your repository with the necessary scaffolding for Pipelines." />
+
 :::
 
 Next, install Terragrunt and OpenTofu locally (the `.mise.toml` file in the root of the repository after scaffolding should already be set to the versions you want for Terragrunt and OpenTofu):
@@ -507,154 +513,53 @@ az login
 
 :::
 
-
-To dynamically configure the Azure provider with a given tenant ID and subscription ID, ensure that you are exporting the following environment variables if you haven't set the values via the `az` CLI:
-
-- `ARM_TENANT_ID`
-- `ARM_SUBSCRIPTION_ID`
-
-For example:
+The Azure provider reads the subscription to work in from the `ARM_SUBSCRIPTION_ID` environment variable, so export it before running any Terragrunt commands.
 
 ```bash
-export ARM_TENANT_ID="00000000-0000-0000-0000-000000000000"
 export ARM_SUBSCRIPTION_ID="11111111-1111-1111-1111-111111111111"
 ```
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="export-arm-tenant-id" label="Export the ARM_TENANT_ID environment variable with the tenant ID of the Azure subscription you want to provision resources in." />
 <PersistentCheckbox id="export-arm-subscription-id" label="Export the ARM_SUBSCRIPTION_ID environment variable with the subscription ID of the Azure subscription you want to provision resources in." />
 :::
 
-First, make sure that everything is set up correctly by running a plan in the subscription directory.
+First, make sure that everything is set up correctly by running a plan in the `bootstrap` directory in `name-of-subscription` where `name-of-subscription` is the name of the first Azure subscription you want to bootstrap.
 
-```bash title="name-of-subscription"
-terragrunt run --all --non-interactive --provider-cache plan
+```bash title="name-of-subscription/bootstrap"
+terragrunt run --all --non-interactive --provider-cache --backend-bootstrap plan
 ```
 
 :::tip
 
-We're using the `--provider-cache` flag here to ensure that we don't re-download the Azure provider on every run to speed up the process by leveraging the [Terragrunt Provider Cache Server](https://terragrunt.gruntwork.io/docs/features/provider-cache-server/).
+We're using the `--provider-cache` flag here to ensure that we don't re-download the Azure provider on every run by leveraging the [Terragrunt Provider Cache Server](https://terragrunt.gruntwork.io/docs/features/provider-cache-server/).
+
+We're using the `--backend-bootstrap` flag here to tell Terragrunt to bootstrap the Azure Storage backend automatically for the subscription.
 
 :::
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="run-azure-plan" label="Run a plan in the subscription directory to make sure that everything is set up correctly." />
+<PersistentCheckbox id="run-azure-plan" label="Run a plan in the bootstrap directory to make sure that everything is set up correctly." />
 
 :::
 
 Next, apply the changes to your subscription.
 
-```bash title="name-of-subscription"
-terragrunt run --all --non-interactive --provider-cache --no-stack-generate apply
+```bash title="name-of-subscription/bootstrap"
+terragrunt run --all --non-interactive --provider-cache apply
 ```
-
-:::tip
-
-We're adding the `--no-stack-generate` flag here, as Terragrunt will already have the requisite stack configurations generated, and we don't want to accidentally overwrite any configurations while we have state stored locally before we pull them into remote state.
-
-:::
 
 :::note Progress Checklist
 
-<PersistentCheckbox id="run-azure-apply" label="Run an apply in the subscription directory to provision the resources in your Azure subscription." />
+<PersistentCheckbox id="run-azure-apply" label="Run an apply in the bootstrap directory to provision the resources in your Azure subscription." />
+
 :::
 
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
-<h3>Finalizing Terragrunt configurations</h3>
+<h3>Filling in the client IDs</h3>
 
-Once you've provisioned the resources in your Azure subscription, you can finalize the Terragrunt configurations using the bootstrap resources we just provisioned.
-
-First, edit the `root.hcl` file in the root of your `infrastructure-live` repository to leverage the storage account we just provisioned.
-
-```hcl title="root.hcl"
-locals {
-  sub_hcl = read_terragrunt_config(find_in_parent_folders("sub.hcl"))
-
-  state_resource_group_name    = local.sub_hcl.locals.state_resource_group_name
-  state_storage_account_name   = local.sub_hcl.locals.state_storage_account_name
-  state_storage_container_name = local.sub_hcl.locals.state_storage_container_name
-}
-
-# FIXME: Uncomment the code below when you've successfully bootstrapped Pipelines state.
-#
-# remote_state {
-#   backend = "azurerm"
-#   generate = {
-#     path      = "backend.tf"
-#     if_exists = "overwrite"
-#   }
-#   config = {
-#     resource_group_name  = local.state_resource_group_name
-#     storage_account_name = local.state_storage_account_name
-#     container_name       = local.state_storage_container_name
-#     key                  = "${path_relative_to_include()}/tofu.tfstate"
-#   }
-# }
-
-generate "provider" {
-  path      = "provider.tf"
-  if_exists = "overwrite_terragrunt"
-  contents  = <<EOF
-provider "azurerm" {
-  features {}
-
-  resource_provider_registrations = "none"
-}
-
-provider "azuread" {}
-EOF
-}
-```
-
-Uncomment the section that defines the remote state backend, so that you can pull the resources provisioned so far into state.
-
-```hcl title="root.hcl"
-locals {
-  sub_hcl = read_terragrunt_config(find_in_parent_folders("sub.hcl"))
-
-  state_resource_group_name    = local.sub_hcl.locals.state_resource_group_name
-  state_storage_account_name   = local.sub_hcl.locals.state_storage_account_name
-  state_storage_container_name = local.sub_hcl.locals.state_storage_container_name
-}
-
-remote_state {
-  backend = "azurerm"
-  generate = {
-    path      = "backend.tf"
-    if_exists = "overwrite"
-  }
-  config = {
-    resource_group_name  = local.state_resource_group_name
-    storage_account_name = local.state_storage_account_name
-    container_name       = local.state_storage_container_name
-    key                  = "${path_relative_to_include()}/tofu.tfstate"
-  }
-}
-
-generate "provider" {
-  path      = "provider.tf"
-  if_exists = "overwrite_terragrunt"
-  contents  = <<EOF
-provider "azurerm" {
-  features {}
-
-  resource_provider_registrations = "none"
-}
-
-provider "azuread" {}
-EOF
-}
-```
-
-:::note Progress Checklist
-
-<PersistentCheckbox id="uncomment-remote-state-backend" label="Uncomment the section that defines the remote state backend in the `root.hcl` file." />
-
-:::
-
-Next, finalize the `.gruntwork/environment-<name-of-subscription>.hcl` file in the root of your `infrastructure-live` repository to reference the IDs for the applications we just provisioned.
+Edit the `.gruntwork/environment-<name-of-subscription>.hcl` file in the root of your `infrastructure-live` repository to reference the client IDs of the applications we just provisioned.
 
 ```hcl title=".gruntwork/environment-<name-of-subscription>.hcl"
 environment "dev" {
@@ -674,9 +579,9 @@ environment "dev" {
 }
 ```
 
-You can find the values for the `plan_client_id` and `apply_client_id` by running `terragrunt stack output` in the `bootstrap` directory in `name-of-subscription/bootstrap`.
+You can find the values for the `plan_client_id` and `apply_client_id` by running `terragrunt stack output` in the `name-of-subscription/bootstrap` directory.
 
-```bash
+```bash title="name-of-subscription/bootstrap"
 terragrunt stack output
 ```
 
@@ -703,27 +608,6 @@ You can use those values to set the values for `plan_client_id` and `apply_clien
 :::
 
 {/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
-<h3>Pulling the resources into state</h3>
-
-Once you've provisioned the resources in your Azure subscription, you can pull the resources into state using the storage account we just provisioned.
-
-```bash title="name-of-subscription"
-terragrunt run --all --non-interactive --provider-cache --no-stack-generate -- init -migrate-state -force-copy
-```
-
-:::tip
-
-We're adding the `-force-copy` flag here to avoid any issues with OpenTofu waiting for an interactive prompt to copy up local state.
-
-:::
-
-:::note Progress Checklist
-
-<PersistentCheckbox id="run-init-migrate-state-force-copy" label="Pull the resources into state using Terragrunt." />
-
-:::
-
-{/* We're using an h3 tag here instead of a markdown heading to avoid adding content to the ToC that won't work when switching between tabs */}
 <h3>Optional: Bootstrapping additional Azure subscriptions</h3>
 
 If you have multiple Azure subscriptions, and you want to bootstrap them as well, you can do so by following a similar, but slightly condensed process.
@@ -736,8 +620,10 @@ If you are going to bootstrap more Azure subscriptions, you'll probably want to 
 
 ```bash
 git add .
-git commit -m "Add additional Azure subscriptions [skip ci]"
+git commit -m "Add core Pipelines scaffolding [skip ci]"
 ```
+
+The `[skip ci]` in the commit message is just in-case you push your changes up to your repository at this state, as you don't want to trigger Pipelines yet.
 
 :::
 
@@ -745,7 +631,7 @@ Just like before, you'll use Boilerplate to scaffold out the necessary content f
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.14.0' \
   --output-folder .
 ```
 
@@ -753,15 +639,13 @@ boilerplate \
 
 Again, you can just reply `y` to all the prompts to include dependencies, and accept defaults unless you want to customize something.
 
-:::
-
 Alternatively, you could run Boilerplate non-interactively by passing the `--non-interactive` flag. You'll need to supply the relevant values for required variables in that case.
 
 e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.14.0' \
   --output-folder . \
   --var 'AccountName=prod' \
   --var 'GitLabGroupName=acme' \
@@ -795,11 +679,13 @@ StateStorageContainerName: tfstate
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/azure/gitlab/subscription?ref=v1.14.0' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
 ```
+
+:::
 
 :::note Progress Checklist
 
@@ -807,69 +693,21 @@ boilerplate \
 
 :::
 
-To avoid issues with the remote state backend not existing yet, you'll want to comment out your remote state backend configurations in your `root.hcl` file before you start the bootstrap process for these new subscriptions.
+Once you've scaffolded out the additional subscriptions you want to bootstrap, you can use Terragrunt to provision the resources in each of these subscriptions.
 
-```hcl title="root.hcl"
-locals {
-  sub_hcl = read_terragrunt_config(find_in_parent_folders("sub.hcl"))
+:::tip
 
-  state_resource_group_name    = local.sub_hcl.locals.state_resource_group_name
-  state_storage_account_name   = local.sub_hcl.locals.state_storage_account_name
-  state_storage_container_name = local.sub_hcl.locals.state_storage_container_name
-}
-
-# FIXME: Temporarily commented out again, pending successful bootstrap of the new subscription(s).
-#
-# remote_state {
-#   backend = "azurerm"
-#   generate = {
-#     path      = "backend.tf"
-#     if_exists = "overwrite"
-#   }
-#   config = {
-#     resource_group_name  = local.state_resource_group_name
-#     storage_account_name = local.state_storage_account_name
-#     container_name       = local.state_storage_container_name
-#     key                  = "${path_relative_to_include()}/tofu.tfstate"
-#   }
-# }
-
-generate "provider" {
-  path      = "provider.tf"
-  if_exists = "overwrite_terragrunt"
-  contents  = <<EOF
-provider "azurerm" {
-  features {}
-
-  resource_provider_registrations = "none"
-}
-
-provider "azuread" {}
-EOF
-}
-```
-
-:::note Progress Checklist
-
-<PersistentCheckbox id="comment-out-remote-state-backend" label="Comment out the remote state backend configurations in the `root.hcl` file." />
+Before you provision resources in each subscription, export `ARM_SUBSCRIPTION_ID` with the ID of that subscription.
 
 :::
-
-Just like before, you can use Terragrunt to provision the resources in each of these subscriptions.
 
 For each subscription you want to bootstrap, you'll need to run the following commands:
 
 ```bash
 cd <subscription-name>/bootstrap
-terragrunt run --all --non-interactive --provider-cache plan
-terragrunt run --all --non-interactive --provider-cache --no-stack-generate apply
+terragrunt run --all --non-interactive --provider-cache --backend-bootstrap plan
+terragrunt run --all --non-interactive --provider-cache apply
 ```
-
-:::tip
-
-We're adding the `--no-stack-generate` flag here, as Terragrunt will already have the requisite stack configurations generated, and we don't want to accidentally overwrite any configurations while we have state stored locally before we pull them into remote state.
-
-:::
 
 :::note Progress Checklist
 
@@ -878,73 +716,7 @@ We're adding the `--no-stack-generate` flag here, as Terragrunt will already hav
 
 :::
 
-Next, you can pull the resources into state using the storage account we just provisioned.
-
-First, edit the `root.hcl` file in the root of your `infrastructure-live` repository to uncomment the remote state backend configurations you commented out earlier.
-
-```hcl title="root.hcl"
-locals {
-  sub_hcl = read_terragrunt_config(find_in_parent_folders("sub.hcl"))
-
-  state_resource_group_name    = local.sub_hcl.locals.state_resource_group_name
-  state_storage_account_name   = local.sub_hcl.locals.state_storage_account_name
-  state_storage_container_name = local.sub_hcl.locals.state_storage_container_name
-}
-
-remote_state {
-  backend = "azurerm"
-  generate = {
-    path      = "backend.tf"
-    if_exists = "overwrite"
-  }
-  config = {
-    resource_group_name  = local.state_resource_group_name
-    storage_account_name = local.state_storage_account_name
-    container_name       = local.state_storage_container_name
-    key                  = "${path_relative_to_include()}/tofu.tfstate"
-  }
-}
-
-generate "provider" {
-  path      = "provider.tf"
-  if_exists = "overwrite_terragrunt"
-  contents  = <<EOF
-provider "azurerm" {
-  features {}
-
-  resource_provider_registrations = "none"
-}
-
-provider "azuread" {}
-EOF
-}
-```
-
-:::note Progress Checklist
-
-<PersistentCheckbox id="uncomment-remote-state-backend-additional" label="Uncomment the remote state backend configurations in the `root.hcl` file." />
-
-:::
-
-Next, you can pull the resources into state using the storage account we just provisioned.
-
-```bash title="name-of-subscription"
-terragrunt run --all --non-interactive --provider-cache --no-stack-generate -- init -migrate-state -force-copy
-```
-
-:::tip
-
-We're adding the `-force-copy` flag here to avoid any issues with OpenTofu waiting for an interactive prompt to copy up local state.
-
-:::
-
-:::note Progress Checklist
-
-<PersistentCheckbox id="run-init-migrate-state-force-copy-additional" label="Pull the resources into state using Terragrunt." />
-
-:::
-
-Finally, we can edit each of the `.gruntwork/environment-<name-of-subscription>.hcl` files in the root of your `infrastructure-live` repository to reference the IDs for the applications we just provisioned.
+Finally, edit each of the `.gruntwork/environment-<name-of-subscription>.hcl` files in the root of your `infrastructure-live` repository to reference the client IDs of the applications we just provisioned.
 
 ```hcl title=".gruntwork/environment-<name-of-subscription>.hcl"
 environment "prod" {
@@ -964,13 +736,11 @@ environment "prod" {
 }
 ```
 
-You can find the values for the `plan_client_id` and `apply_client_id` by running `terragrunt stack output` in the `bootstrap` directory in `name-of-subscription/bootstrap`.
+Just like before, run `terragrunt stack output` in the `name-of-subscription/bootstrap` directory to find the values for `plan_client_id` and `apply_client_id`.
 
-```bash
+```bash title="name-of-subscription/bootstrap"
 terragrunt stack output
 ```
-
-The relevant bits that you want to extract from the stack output are the following:
 
 ```hcl
 bootstrap = {
@@ -983,12 +753,10 @@ bootstrap = {
 }
 ```
 
-You can use those values to set the values for `plan_client_id` and `apply_client_id` in the `.gruntwork/environment-<name-of-subscription>.hcl` file.
-
 :::note Progress Checklist
 
-<PersistentCheckbox id="fill-in-plan-client-id-additional" label="Fill in `plan_client_id` after bootstrapping." />
-<PersistentCheckbox id="fill-in-apply-client-id-additional" label="Fill in `apply_client_id` after bootstrapping." />
+<PersistentCheckbox id="fill-in-plan-client-id-additional" label="Fill in `plan_client_id` for each additional subscription." />
+<PersistentCheckbox id="fill-in-apply-client-id-additional" label="Fill in `apply_client_id` for each additional subscription." />
 
 :::
 
@@ -1025,7 +793,7 @@ To bootstrap your `infrastructure-live` repository, we'll use Boilerplate to sca
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.14.0' \
   --output-folder .
 ```
 
@@ -1039,7 +807,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.14.0' \
   --output-folder . \
   --var 'ProjectName=dev' \
   --var 'GCPProjectID=my-project-123' \
@@ -1065,7 +833,7 @@ StateBucketName: my-state-bucket
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.14.0' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
@@ -1075,7 +843,7 @@ If you're using a self-hosted GitLab instance, you'll also want to pass the `Git
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/infrastructure-live?ref=v1.14.0' \
   --output-folder . \
   --var 'ProjectName=dev' \
   --var 'GCPProjectID=my-project-123' \
@@ -1190,7 +958,7 @@ Just like before, you'll use Boilerplate to scaffold out the necessary content f
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/project?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/project?ref=v1.14.0' \
   --output-folder .
 ```
 
@@ -1204,7 +972,7 @@ e.g.
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/project?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/project?ref=v1.14.0' \
   --output-folder . \
   --var 'ProjectName=prod' \
   --var 'GCPProjectID=my-prod-project-456' \
@@ -1230,7 +998,7 @@ StateBucketName: my-prod-state-bucket
 
 ```bash
 boilerplate \
-  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/project?ref=v1.13.1' \
+  --template-url 'github.com/gruntwork-io/terragrunt-scale-catalog//templates/boilerplate/gcp/gitlab/project?ref=v1.14.0' \
   --output-folder . \
   --var-file vars.yml \
   --non-interactive
