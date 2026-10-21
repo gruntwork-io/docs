@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.8.0" lastModifiedVersion="1.3.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.9.0" lastModifiedVersion="1.9.0"/>
 
 # GuardDuty Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/guardduty-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/guardduty-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.9.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an S3 bucket for storing GuardDuty findings and optionally a KMS Customer Master Key (CMK) for encrypting that
 data, including all the appropriate lifecycle, encryption, and permission settings for GuardDuty.
@@ -35,7 +35,7 @@ It is particularly useful when configuring cross account access, for example whe
 
 module "guardduty_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-bucket?ref=v1.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-bucket?ref=v1.9.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -137,6 +137,15 @@ module "guardduty_bucket" {
   # Tags to apply to the GuardDuty findings resources (S3 bucket and CMK).
   tags = {}
 
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior. Leave null to
+  # keep the provider default.
+  transition_default_minimum_object_size = null
+
 }
 
 
@@ -152,7 +161,7 @@ module "guardduty_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-bucket?ref=v1.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/guardduty-bucket?ref=v1.9.0"
 }
 
 inputs = {
@@ -256,6 +265,15 @@ inputs = {
 
   # Tags to apply to the GuardDuty findings resources (S3 bucket and CMK).
   tags = {}
+
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior. Leave null to
+  # keep the provider default.
+  transition_default_minimum_object_size = null
 
 }
 
@@ -586,6 +604,15 @@ Tags to apply to the GuardDuty findings resources (S3 bucket and CMK).
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="transition_default_minimum_object_size" requirement="optional" type="string">
+<HclListItemDescription>
+
+The default minimum object size behavior applied to the lifecycle configuration. Valid values: all_storage_classes_128K (default), varies_by_storage_class. To customize the minimum object size for any transition you can add a filter that specifies a custom object_size_greater_than or object_size_less_than value. Custom filters always take precedence over the default transition behavior. Leave null to keep the provider default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -627,11 +654,11 @@ The name of the S3 bucket where GuardDuty findings are delivered.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/guardduty-bucket/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/guardduty-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/guardduty-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/guardduty-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/guardduty-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/guardduty-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "0cbb5cb74cd9c8981fbf38ab59b5fe78"
+  "hash": "1949acd706aef6ed342b924bd9e178e7"
 }
 ##DOCS-SOURCER-END -->

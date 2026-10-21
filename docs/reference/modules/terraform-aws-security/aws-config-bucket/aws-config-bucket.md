@@ -9,19 +9,19 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.8.0" lastModifiedVersion="1.3.0"/>
+<VersionBadge repoTitle="Security Modules" version="1.9.0" lastModifiedVersion="1.9.0"/>
 
 # AWS Config Bucket
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/aws-config-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/aws-config-bucket" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.9.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an S3 bucket for storing AWS Config data, including all the appropriate lifecycle, encryption, and
 permission settings for AWS Config.
 
-This module is not meant to be used directly. Instead, it's used under the hood in the [aws-config](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/aws-config)
-and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/account-baseline-root) modules. Please see those modules for more information.
+This module is not meant to be used directly. Instead, it's used under the hood in the [aws-config](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/aws-config)
+and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/account-baseline-root) modules. Please see those modules for more information.
 
 ## Sample Usage
 
@@ -36,7 +36,7 @@ and [account-baseline-root](https://github.com/gruntwork-io/terraform-aws-securi
 
 module "aws_config_bucket" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v1.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v1.9.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -138,6 +138,15 @@ module "aws_config_bucket" {
   # value is the tag value.
   tags = {}
 
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior. Leave null to
+  # keep the provider default.
+  transition_default_minimum_object_size = null
+
 }
 
 
@@ -153,7 +162,7 @@ module "aws_config_bucket" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v1.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/aws-config-bucket?ref=v1.9.0"
 }
 
 inputs = {
@@ -257,6 +266,15 @@ inputs = {
   # A map of tags to apply to the S3 Bucket. The key is the tag name and the
   # value is the tag value.
   tags = {}
+
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior. Leave null to
+  # keep the provider default.
+  transition_default_minimum_object_size = null
 
 }
 
@@ -471,6 +489,15 @@ A map of tags to apply to the S3 Bucket. The key is the tag name and the value i
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="transition_default_minimum_object_size" requirement="optional" type="string">
+<HclListItemDescription>
+
+The default minimum object size behavior applied to the lifecycle configuration. Valid values: all_storage_classes_128K (default), varies_by_storage_class. To customize the minimum object size for any transition you can add a filter that specifies a custom object_size_greater_than or object_size_less_than value. Custom filters always take precedence over the default transition behavior. Leave null to keep the provider default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -496,11 +523,11 @@ The name of the S3 bucket used by AWS Config to store configuration items.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/aws-config-bucket/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/aws-config-bucket/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/aws-config-bucket/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/aws-config-bucket/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/aws-config-bucket/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/aws-config-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6661899dd7a3a6fc2a6a7cb2c1e7d025"
+  "hash": "91e8408ba5d2c709a1294cc15a854785"
 }
 ##DOCS-SOURCER-END -->

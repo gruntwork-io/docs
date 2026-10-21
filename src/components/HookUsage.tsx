@@ -11,7 +11,7 @@ const AUTHENTICATION = "/2.0/docs/pipelines/guides/hooks/authentication"
  * logs. The reference pins the compatibility line, not the major.
  */
 const HookUsage: React.FunctionComponent<Hook> = (hook) => {
-  const { name, phase, commands = [], line } = hook
+  const { name, phase, commands = [], on_errors: onErrors, line } = hook
 
   if (!name || !phase || commands.length === 0) {
     return null
@@ -28,11 +28,25 @@ const HookUsage: React.FunctionComponent<Hook> = (hook) => {
   const width = Math.max(0, ...settable.map((variable) => variable.length))
   const reference = line ? `${name}@${line}` : name
 
+  const onErrorsAttributes: [string, string][] = onErrors
+    ? [["on_errors", hclList(onErrors)]]
+    : []
+  const attributes: [string, string][] = [
+    ["commands", hclList(commands)],
+    ...onErrorsAttributes,
+    ["execute", `["pipelines", "hook", "${reference}"]`],
+  ]
+  const attributeWidth = Math.max(
+    ...attributes.map(([attribute]) => attribute.length)
+  )
+
   const block = [
     "repository {",
     `  ${phase} "${name}" {`,
-    `    commands = [${commands.map((command) => `"${command}"`).join(", ")}]`,
-    `    execute  = ["pipelines", "hook", "${reference}"]`,
+    ...attributes.map(
+      ([attribute, value]) =>
+        `    ${attribute.padEnd(attributeWidth)} = ${value}`
+    ),
     ...(settable.length > 0
       ? [
           "",
@@ -59,5 +73,8 @@ const HookUsage: React.FunctionComponent<Hook> = (hook) => {
     </>
   )
 }
+
+const hclList = (values: string[]) =>
+  `[${values.map((value) => JSON.stringify(value)).join(", ")}]`
 
 export default HookUsage

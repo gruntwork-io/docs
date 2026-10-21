@@ -3,7 +3,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-A hook often needs to call a cloud API or reach an external service: to inspect live resources, fetch a secret, or post a notification. The [`authentication`](/2.0/reference/pipelines/configurations-as-code/api#authentication-block) block on an [`after_hook`](/2.0/reference/pipelines/configurations-as-code/api#after_hook-block) gives the hook's `execute` command a cloud identity to do this. When it is present, Pipelines authenticates and makes the resulting credentials available to the hook before running its command. When it is omitted, the hook runs with no cloud credentials.
+A hook often needs to call a cloud API or reach an external service: to inspect live resources, fetch a secret, or post a notification. The [`authentication`](/2.0/reference/pipelines/configurations-as-code/api#authentication-block) block on an [`after_hook`](/2.0/reference/pipelines/configurations-as-code/api#after_hook-block) or [`error_hook`](/2.0/reference/pipelines/configurations-as-code/api#error_hook-block) gives the hook's `execute` command a cloud identity to do this. When it is present, Pipelines authenticates and makes the resulting credentials available to the hook before running its command. When it is omitted, the hook runs with no cloud credentials.
 
 ## Cloud credentials
 

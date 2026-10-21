@@ -129,5 +129,5 @@ A summary of any exceeded cost thresholds appears above the cost estimate table:
 ## Related documentation
 
 - [Gruntwork Provided Hooks](/2.0/docs/pipelines/guides/hooks/gruntwork-provided) - version pinning and configuration common to every provided hook.
-- [Configuring Hooks](/2.0/docs/pipelines/guides/hooks/configuring) - the full set of hook fields.
+- [How Hooks Execute](/2.0/docs/pipelines/guides/hooks/execution) - when and how Pipelines runs hooks.
 - [Authentication & Secrets](/2.0/docs/pipelines/guides/hooks/authentication) - giving a hook cloud credentials.

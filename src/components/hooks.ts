@@ -20,6 +20,7 @@ export type Hook = {
   release?: string
   phase?: string
   commands?: string[]
+  on_errors?: string[]
   flags?: HookInput[]
   env?: HookInput[]
 }

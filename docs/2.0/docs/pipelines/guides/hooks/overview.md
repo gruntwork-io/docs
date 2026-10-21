@@ -10,9 +10,12 @@ Hooks are how you extend a Pipelines run with your own tooling. If you have used
 
 This unblocks the kinds of integrations teams reach for most when running infrastructure changes at scale, such as cost estimation, security scanning, policy enforcement, auditing, and notifications.
 
-Hooks are configured in your Pipelines HCL configuration. Each hook declares whether it runs after `plan` and/or `apply`, and the command to execute.
+Hooks are configured in your Pipelines HCL configuration. Each hook declares the commands it applies to, `plan` and/or `apply`, and the command to execute. Pipelines supports two types of hooks:
 
-Pipelines passes each hook context about the run through environment variables (for example the actor, repository, and action). *After hooks* additionally receive the run's OpenTofu/Terraform plan. In turn, a hook can write outputs that Pipelines reflects back in the pull/merge request comment, so its results show up alongside the plan or apply summary. See [Hooks API](/2.0/reference/pipelines/hooks-api) for the full contract.
+1. [After hooks](/2.0/docs/pipelines/guides/hooks/hook-types#after-hooks) run after a `plan` or `apply`.
+2. [Error hooks](/2.0/docs/pipelines/guides/hooks/hook-types#error-hooks) run when a `plan` or `apply` fails with an error matching a pattern you set.
+
+Pipelines passes each hook context about the run through environment variables (for example the actor, repository, and action). Hooks also receive the run's OpenTofu/Terraform plan. In turn, a hook can write outputs that Pipelines reflects back in the pull/merge request comment, so its results show up alongside the plan or apply summary. See [Hooks API](/2.0/reference/pipelines/hooks-api) for the full contract.
 
 :::note
 
@@ -23,7 +26,8 @@ Hooks are under active development, and new capabilities will continue to roll o
 ## In this section
 
 - [Setup & Prerequisites](/2.0/docs/pipelines/guides/hooks/setup) - what you need before configuring a hook.
-- [Configuring Hooks](/2.0/docs/pipelines/guides/hooks/configuring) - how to declare a hook and how hooks execute.
+- [Hook Types](/2.0/docs/pipelines/guides/hooks/hook-types) - how to declare each type of hook.
+- [How Hooks Execute](/2.0/docs/pipelines/guides/hooks/execution) - when and how Pipelines runs hooks.
 - [Gruntwork Provided Hooks](/2.0/docs/pipelines/guides/hooks/gruntwork-provided) - hooks Gruntwork maintains, ready to use without writing one.
 - [Hooks API](/2.0/reference/pipelines/hooks-api) - the environment variables and files exchanged with a hook.
 - [Writing a Hook](/2.0/docs/pipelines/guides/hooks/writing-a-hook) - a step-by-step guide to authoring your own hook.
@@ -33,3 +37,4 @@ Hooks are under active development, and new capabilities will continue to roll o
 ## Related documentation
 
 - [`after_hook` block reference](/2.0/reference/pipelines/configurations-as-code/api#after_hook-block) - the full list of configurable fields.
+- [`error_hook` block reference](/2.0/reference/pipelines/configurations-as-code/api#error_hook-block) - the full list of configurable fields.

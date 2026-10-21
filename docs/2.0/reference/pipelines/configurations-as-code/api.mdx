@@ -152,7 +152,7 @@ Hooks are an Enterprise-only feature.
 
 :::caution
 
-When any `after_hook` block is configured, the `PIPELINES_PLAN_ENCRYPTION_KEY` secret must be set. Pipelines will fail preflight checks if hooks are declared and this secret is missing. See [Plan encryption key](/2.0/docs/pipelines/guides/hooks/setup#plan-encryption-key) for how to generate and configure it.
+When any `after_hook` or `error_hook` block is configured, the [`PIPELINES_PLAN_ENCRYPTION_KEY`](/2.0/docs/pipelines/guides/hooks/setup#plan-encryption-key) secret must be set.
 
 :::
 
@@ -171,12 +171,50 @@ repository {
 </HclListItemExample>
 </HclListItem>
 
+### `error_hook` block
+
+<HclListItem name="error_hook" requirement="optional" type="labeled-block">
+<HclListItemDescription>
+
+Error hook blocks are nested inside the [repository](#repository-block) block and define a command that Pipelines runs when a `plan` or `apply` fails with output matching one of the hook's `on_errors` patterns.
+<br />
+The label applied to an error_hook block is a user-defined identifier for the hook and must be unique among the error_hook blocks in the repository block.
+<br />
+See more [below](#error_hook-block-attributes).
+
+:::info
+
+Hooks are an Enterprise-only feature.
+
+:::
+
+:::caution
+
+When any `after_hook` or `error_hook` block is configured, the [`PIPELINES_PLAN_ENCRYPTION_KEY`](/2.0/docs/pipelines/guides/hooks/setup#plan-encryption-key) secret must be set.
+
+:::
+
+</HclListItemDescription>
+<HclListItemExample>
+
+```hcl
+repository {
+  error_hook "on_failure" {
+    commands  = ["plan", "apply"]
+    on_errors = ["."]
+    execute   = [".gruntwork/hooks/failed.sh"]
+  }
+}
+```
+</HclListItemExample>
+</HclListItem>
+
 ### `env` block
 
 <HclListItem name="env" requirement="optional" type="block">
 <HclListItemDescription>
 
-Env blocks are configuration components used by [repository](#repository-block) blocks to specify environment variables that will be set when executing Terragrunt commands. The block contains a map of environment variable names and their values. Env blocks are also valid inside [after_hook](#after_hook-block) blocks to set environment variables for the hook's `execute` command.
+Env blocks are configuration components used by [repository](#repository-block) blocks to specify environment variables that will be set when executing Terragrunt commands. The block contains a map of environment variable names and their values. Env blocks are also valid inside [after_hook](#after_hook-block) and [error_hook](#error_hook-block) blocks to set environment variables for the hook's `execute` command.
 
 </HclListItemDescription>
 <HclListItemExample>
@@ -197,7 +235,7 @@ repository {
 <HclListItem name="filter" requirement="optional" type="block">
 <HclListItemDescription>
 
-A filter block nested inside an [environment](#environment-block), [annotation](#annotation-block), or [after_hook](#after_hook-block) block that determines which units the block applies to.
+A filter block nested inside an [environment](#environment-block), [annotation](#annotation-block), [after_hook](#after_hook-block), or [error_hook](#error_hook-block) block that determines which units the block applies to.
 See more [below](#filter-block-attributes).
 
 </HclListItemDescription>
@@ -505,7 +543,7 @@ source  = "git::https://github.com/acme/pipelines-hooks.git?ref=v1.2.0"
 execute = ["bash", "$PIPELINES_HOOK_CTX_SOURCE_DIR/scripts/scan.sh"]
 ```
 
-See [Remote script sources](/2.0/docs/pipelines/guides/hooks/configuring#remote-script-sources).
+See [Remote script sources](/2.0/docs/pipelines/guides/hooks/execution#remote-script-sources).
 
 </HclListItemDescription>
 </HclListItem>
@@ -569,12 +607,84 @@ repository {
 </HclListItemExample>
 </HclListItem>
 
+### `error_hook` block attributes
+
+<HclListItem name="name" requirement="optional" type="string">
+<HclListItemDescription>
+A human-readable display name for the hook, shown in Pipelines output and status comments.
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="commands" requirement="required" type="array[string]">
+<HclListItemDescription>
+The Terragrunt commands whose failures this hook handles. Valid values are `plan` and `apply`. Values must be unique.
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="on_errors" requirement="required" type="array[string]">
+<HclListItemDescription>
+
+A list of regular expressions in [Go RE2 syntax](https://github.com/google/re2/wiki/Syntax), at least one. The hook runs if any pattern matches the combined output of the run's failed Terragrunt executions. Pipelines strips ANSI color codes from the output before matching.
+
+```hcl
+on_errors = ["Error acquiring the state lock", "(?i)throttl(ed|ing)"]
+```
+
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="execute" requirement="required" type="array[string]">
+<HclListItemDescription>
+The command Pipelines runs for the hook, in the same form as the [after_hook `execute`](#after_hook-block-attributes) attribute.
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="source" requirement="optional" type="string">
+<HclListItemDescription>
+A [go-getter](https://github.com/hashicorp/go-getter#url-format) URL Pipelines fetches before running the hook, in the same form as the [after_hook `source`](#after_hook-block-attributes) attribute. See [Remote script sources](/2.0/docs/pipelines/guides/hooks/execution#remote-script-sources).
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="env" requirement="optional" type="block">
+<HclListItemDescription>
+An [env](#env-block) block of key/value environment variables made available to the `execute` command. Values may be strings, numbers, or booleans and are converted to strings.
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="auto_expand" requirement="optional" type="boolean">
+<HclListItemDescription>
+Whether the hook's section in the pull/merge request comment is expanded by default rather than collapsed.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="false"/>
+</HclListItem>
+
+<HclListItem name="timeout_seconds" requirement="optional" type="number">
+<HclListItemDescription>
+The maximum number of seconds the hook is allowed to run before Pipelines terminates it. Must be greater than `0`.
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="300"/>
+</HclListItem>
+
+<HclListItem name="authentication" requirement="optional" type="block">
+<HclListItemDescription>
+An [authentication](#authentication-block) block defining the credentials for this hook. When omitted, the hook runs without any cloud credentials. See more [below](#authentication-block-attributes).
+</HclListItemDescription>
+</HclListItem>
+
+<HclListItem name="filter" requirement="optional" type="block">
+<HclListItemDescription>
+
+A [`filter`](#filter-block) block that scopes the hook to a subset of the run's affected units by `paths`, `environments`, and/or `labels`. When present, the hook runs only if at least one matched unit failed, and it receives every matched unit, including units that succeeded. When omitted, the hook receives all affected units. See more [below](#filter-block-attributes).
+
+</HclListItemDescription>
+</HclListItem>
+
 ### `filter` block attributes
 
 The valid attributes depend on which block the `filter` is nested in:
 
 - Inside an [`environment`](#environment-block) or [`annotation`](#annotation-block) block, only `paths` is valid, and it is required.
-- Inside an [`after_hook`](#after_hook-block) block, `paths`, `environments`, and `labels` are all valid, and at least one of them must be set.
+- Inside an [`after_hook`](#after_hook-block) or [`error_hook`](#error_hook-block) block, `paths`, `environments`, and `labels` are all valid, and at least one of them must be set.
 
 A unit matches only if it satisfies every attribute the filter specifies.
 
@@ -588,14 +698,14 @@ A list of path globs that the filter should match against. Paths are relative to
 <HclListItem name="environments" requirement="optional" type="array[string]">
 <HclListItemDescription>
 
-A list of environment names. Only valid inside an [`after_hook`](#after_hook-block) block. A unit matches if its environment is any one of the listed names. Each name must correspond to a configured [`environment`](#environment-block) block.
+A list of environment names. Only valid inside an [`after_hook`](#after_hook-block) or [`error_hook`](#error_hook-block) block. A unit matches if its environment is any one of the listed names. Each name must correspond to a configured [`environment`](#environment-block) block.
 </HclListItemDescription>
 </HclListItem>
 
 <HclListItem name="labels" requirement="optional" type="map[string, array[string]]">
 <HclListItemDescription>
 
-A map of label keys to lists of values. Only valid inside an [`after_hook`](#after_hook-block) block. A unit matches only if it carries every listed key with every listed value. Labels are assigned to units by [`annotation`](#annotation-block) blocks.
+A map of label keys to lists of values. Only valid inside an [`after_hook`](#after_hook-block) or [`error_hook`](#error_hook-block) block. A unit matches only if it carries every listed key with every listed value. Labels are assigned to units by [`annotation`](#annotation-block) blocks.
 </HclListItemDescription>
 </HclListItem>
 

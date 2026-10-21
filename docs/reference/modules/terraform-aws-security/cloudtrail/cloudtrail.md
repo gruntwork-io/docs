@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Security Modules" version="1.8.0" lastModifiedVersion="1.3.1"/>
+<VersionBadge repoTitle="Security Modules" version="1.9.0" lastModifiedVersion="1.9.0"/>
 
 # AWS CloudTrail
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/cloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/cloudtrail" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.3.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-security/releases/tag/v1.9.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This Terraform Module configures [AWS CloudTrail](https://aws.amazon.com/cloudtrail/), a service for logging every API call made against your AWS account.
 
@@ -39,25 +39,25 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 ### Core concepts
 
-*   [What is CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/cloudtrail/core-concepts.md#what-is-cloudtrail)
+*   [What is CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/cloudtrail/core-concepts.md#what-is-cloudtrail)
 
-*   [Why use CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/cloudtrail/core-concepts.md#why-use-cloudtrail)
+*   [Why use CloudTrail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/cloudtrail/core-concepts.md#why-use-cloudtrail)
 
-*   [What is a CloudTrail Trail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/cloudtrail/core-concepts.md#what-is-a-cloudtrail-trail)
+*   [What is a CloudTrail Trail?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/cloudtrail/core-concepts.md#what-is-a-cloudtrail-trail)
 
-*   [What’s the difference between CloudTrail and AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/cloudtrail/core-concepts.md#whats-the-difference-between-cloudtrail-and-aws-config)
+*   [What’s the difference between CloudTrail and AWS Config?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/cloudtrail/core-concepts.md#whats-the-difference-between-cloudtrail-and-aws-config)
 
-*   [CloudTrail Threat Model](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/cloudtrail/core-concepts.md#cloudtrail-threat-model)
+*   [CloudTrail Threat Model](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/cloudtrail/core-concepts.md#cloudtrail-threat-model)
 
-*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/cloudtrail/core-concepts.md#resources-created)
+*   [What resources does this module create?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/cloudtrail/core-concepts.md#resources-created)
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
 
-*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/examples): This folder contains working examples of how to use the submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/examples): This folder contains working examples of how to use the submodules.
 
-*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/test): Automated tests for the modules and examples.
+*   [test](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -65,7 +65,7 @@ This repo is a part of [the Gruntwork Infrastructure as Code Library](https://gr
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/examples/cloudtrail): The `examples/cloudtrail` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
+*   [examples/cloudtrail](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/examples/cloudtrail): The `examples/cloudtrail` folder contains sample code optimized for learning, experimenting, and testing (but not production usage).
 
 ### Production deployment
 
@@ -81,15 +81,15 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Day-to-day operations
 
-*   [Where are CloudTrail logs stored?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/cloudtrail/core-concepts.md#where-are-cloudtrail-logs-stored)
+*   [Where are CloudTrail logs stored?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/cloudtrail/core-concepts.md#where-are-cloudtrail-logs-stored)
 
-*   [What kind of data do CloudTrail log entries contain?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/cloudtrail/core-concepts.md#what-kind-of-data-do-cloudtrail-log-entries-contain)
+*   [What kind of data do CloudTrail log entries contain?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/cloudtrail/core-concepts.md#what-kind-of-data-do-cloudtrail-log-entries-contain)
 
-*   [What’s the best way to view CloudTrail Log Data?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/cloudtrail/core-concepts.md#whats-the-best-way-to-view-cloudtrail-log-data)
+*   [What’s the best way to view CloudTrail Log Data?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/cloudtrail/core-concepts.md#whats-the-best-way-to-view-cloudtrail-log-data)
 
 ### Major changes
 
-*   [Can you get alerted when certain API events occur?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/cloudtrail/core-concepts.md#can-you-get-alerted-when-certain-api-events-occur)
+*   [Can you get alerted when certain API events occur?](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/cloudtrail/core-concepts.md#can-you-get-alerted-when-certain-api-events-occur)
 
 ## Sample Usage
 
@@ -104,7 +104,7 @@ If you want to deploy this repo in production, check out the following resources
 
 module "cloudtrail" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail?ref=v1.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail?ref=v1.9.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -339,6 +339,15 @@ module "cloudtrail" {
   # itself. The key is the tag name and the value is the tag value.
   tags = {}
 
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior. Leave null to
+  # keep the provider default.
+  transition_default_minimum_object_size = null
+
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
   # are friendlier to automated policy checkers, which may scan a single
@@ -361,7 +370,7 @@ module "cloudtrail" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail?ref=v1.8.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-security.git//modules/cloudtrail?ref=v1.9.0"
 }
 
 inputs = {
@@ -598,6 +607,15 @@ inputs = {
   # A map of tags to apply to the S3 Bucket, CloudTrail KMS Key, and CloudTrail
   # itself. The key is the tag name and the value is the tag value.
   tags = {}
+
+  # The default minimum object size behavior applied to the lifecycle
+  # configuration. Valid values: all_storage_classes_128K (default),
+  # varies_by_storage_class. To customize the minimum object size for any
+  # transition you can add a filter that specifies a custom
+  # object_size_greater_than or object_size_less_than value. Custom filters
+  # always take precedence over the default transition behavior. Leave null to
+  # keep the provider default.
+  transition_default_minimum_object_size = null
 
   # When true, all IAM policies will be managed as dedicated policies rather
   # than inline policies attached to the IAM roles. Dedicated managed policies
@@ -1299,6 +1317,15 @@ A map of tags to apply to the S3 Bucket, CloudTrail KMS Key, and CloudTrail itse
 <HclListItemDefaultValue defaultValue="{}"/>
 </HclListItem>
 
+<HclListItem name="transition_default_minimum_object_size" requirement="optional" type="string">
+<HclListItemDescription>
+
+The default minimum object size behavior applied to the lifecycle configuration. Valid values: all_storage_classes_128K (default), varies_by_storage_class. To customize the minimum object size for any transition you can add a filter that specifies a custom object_size_greater_than or object_size_less_than value. Custom filters always take precedence over the default transition behavior. Leave null to keep the provider default.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 <HclListItem name="use_managed_iam_policies" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1413,11 +1440,11 @@ The name of the cloudtrail trail.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/cloudtrail/readme.adoc",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/cloudtrail/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.8.0/modules/cloudtrail/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/cloudtrail/readme.adoc",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/cloudtrail/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/cloudtrail/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "461578b2172776b7d045f0fe58024d4c"
+  "hash": "7b9a0274bc65cf08a3662a5a02dcef5a"
 }
 ##DOCS-SOURCER-END -->
