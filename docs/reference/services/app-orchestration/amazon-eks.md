@@ -102,6 +102,61 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 To add and manage additional worker groups, refer to the [eks-workers module](/reference/services/app-orchestration/amazon-eks-workers).
 
+### Keeping core components in sync with the control plane
+
+Starting with `v2.0.0` (which uses `terraform-aws-eks` `v4.0.0`), this module no longer uses `kubergrunt` to update
+the core cluster components (`kube-proxy`, `coredns`, and `vpc-cni`) when you upgrade the Kubernetes version. Unless you
+manage them as [EKS managed add-ons](https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html), they stay at
+whatever version was last deployed while the control plane and worker nodes move ahead.
+
+If you are upgrading from a version earlier than `v2.0.0`, enable EKS add-ons for these components before (or as part
+of) your next Kubernetes version upgrade, and bump `addon_version` every time you bump `kubernetes_version`:
+
+```hcl
+enable_eks_addons = true
+eks_addons = {
+  "kube-proxy" = {
+    addon_version               = "v1.35.3-eksbuild.59"
+    resolve_conflicts_on_create = "OVERWRITE"
+    resolve_conflicts_on_update = "OVERWRITE"
+  }
+  "coredns" = {
+    addon_version               = "v1.14.7-eksbuild.22"
+    resolve_conflicts_on_create = "OVERWRITE"
+    resolve_conflicts_on_update = "OVERWRITE"
+  }
+  "vpc-cni" = {
+    addon_version               = "v1.23.2-eksbuild.8"
+    resolve_conflicts_on_create = "OVERWRITE"
+    resolve_conflicts_on_update = "OVERWRITE"
+    # Replaces the removed vpc_cni_enable_prefix_delegation, vpc_cni_warm_ip_target, and vpc_cni_minimum_ip_target
+    # variables.
+    configuration_values = {
+      env = {
+        ENABLE_PREFIX_DELEGATION = "true"
+        WARM_IP_TARGET           = "5"
+      }
+    }
+  }
+}
+```
+
+The versions above are examples for Kubernetes 1.35. To find the versions compatible with your cluster, run:
+
+```bash
+aws eks describe-addon-versions --kubernetes-version 1.35 --addon-name kube-proxy \
+  --query 'addons[].addonVersions[].addonVersion'
+```
+
+Note that `OVERWRITE` replaces any manual changes to the `ConfigMap`s and `DaemonSet`s of these components (for example,
+a custom `kube-proxy` mode, or the `ENABLE_PREFIX_DELEGATION=true` setting that earlier versions of this module applied to
+`aws-node` by default). Carry such settings over through `configuration_values`. If you enabled prefix delegation
+previously, also set `use_prefix_mode_to_calculate_max_pods = true` so worker max pods are calculated accordingly.
+
+Removing a key from `configuration_values` does not revert it in the cluster; set the desired value explicitly instead.
+Changes to the `kube-proxy` configuration also do not restart running `kube-proxy` Pods, so run
+`kubectl -n kube-system rollout restart daemonset/kube-proxy` after changing it.
+
 
 ## Sample Usage
 
@@ -4225,6 +4280,6 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
     "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.21.0/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "610198f9f99fb5c7d20e882fa0b66cda"
+  "hash": "9d4ba5c1e0ff26275efe777dae58596f"
 }
 ##DOCS-SOURCER-END -->
