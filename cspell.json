@@ -129,7 +129,8 @@
     "aiplatform",
     "Feedly",
     "Inoreader",
-    "unscanned"
+    "unscanned",
+    "unuse"
   ],
   "ignoreWords": [],
   "ignorePaths": [

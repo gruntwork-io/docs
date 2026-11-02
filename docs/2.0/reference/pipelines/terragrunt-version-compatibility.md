@@ -5,6 +5,8 @@ import TabItem from '@theme/TabItem';
 
 Pipelines reads the Terragrunt and OpenTofu versions to run from the `.mise.toml` file at the root of your repository. Pin an exact version of each tool in that file and bump it deliberately, so local runs and Pipelines use the same binary and an upgrade shows up as a reviewable change. See the [example mise configuration](/2.0/reference/pipelines/configurations#example-mise-configuration).
 
+To try an unreleased Terragrunt build in Pipelines before it ships, see [Testing Terragrunt Tip and Test Builds](/2.0/docs/pipelines/guides/terragrunt-tip-builds).
+
 <Tabs groupId="platform">
 <TabItem value="github" label="GitHub" default>
 
