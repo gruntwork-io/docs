@@ -458,6 +458,11 @@ const sidebar = [
         id: "2.0/docs/pipelines/guides/file-dependencies",
       },
       {
+        label: "Testing Terragrunt Tip and Test Builds",
+        type: "doc",
+        id: "2.0/docs/pipelines/guides/terragrunt-tip-builds",
+      },
+      {
         label: "Leveraging advanced Terragrunt Features",
         type: "doc",
         id: "2.0/docs/pipelines/guides/terragrunt-env-vars",
