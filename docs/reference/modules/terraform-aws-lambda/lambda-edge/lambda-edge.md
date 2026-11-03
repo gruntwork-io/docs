@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="1.4.0" lastModifiedVersion="1.4.0"/>
+<VersionBadge repoTitle="AWS Lambda" version="1.5.0" lastModifiedVersion="1.5.0"/>
 
 # Lambda@Edge Function Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/lambda-edge" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.5.0/modules/lambda-edge" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v1.4.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v1.5.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module makes it easy to deploy and manage an [AWS Lambda@Edge](https://aws.amazon.com/lambda/edge/) function.
 Lambda@Edge gives you a way to run code on-demand in AWS Edge locations without having to manage servers.
@@ -28,9 +28,8 @@ for the full details):
 *   The execution timeout must not be higher than 30 seconds.
 *   The function must be versioned in order to be a target for Cloudfront events.
 *   The function must be deployed in the `us-east-1` region.
-*   The function runtime must be one of:
-    *   `nodejs22.x` or newer
-    *   `python3.9` or newer
+*   The function runtime must be a Node.js or Python runtime that Lambda has not deprecated (e.g. `nodejs24.x`,
+    `python3.13`). See [Lambda@Edge supported runtimes](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-at-edge-function-restrictions.html#lambda-at-edge-restrictions-runtime).
 
 ## What is AWS Lambda?
 
@@ -65,7 +64,7 @@ resource "aws_lambda_permission" "with_sns" {
 
 Lambda@Edge stores CloudWatch Logs in the AWS Regions closest to the location where the function receives traffic and is
 executed. That means a log group must be created in every region that have [Regional Edge Caches](https://aws.amazon.com/blogs/networking-and-content-delivery/aggregating-lambdaedge-logs/).
-Instructions on how to do this can be found at the   [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/lambda-edge-multi-region-log-groups). To see which regions are receiving traffic, you can find graphs of metrics for the
+Instructions on how to do this can be found at the   [`lambda-edge-multi-region-log-groups` module](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.5.0/modules/lambda-edge-multi-region-log-groups). To see which regions are receiving traffic, you can find graphs of metrics for the
 function on the CloudFront console and choose your region there.
 
 ## How to trigger this Lambda function from Cloudfront
@@ -84,7 +83,7 @@ triggers:
 ## Background info
 
 For more information on AWS Lambda, how it works, and how to configure your functions, check out the [lambda module
-documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/lambda).
+documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.5.0/modules/lambda).
 
 ## Sample Usage
 
@@ -99,7 +98,7 @@ documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/
 
 module "lambda_edge" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v1.5.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -207,12 +206,13 @@ module "lambda_edge" {
   # if unreserved.
   reserved_concurrent_executions = null
 
-  # The runtime environment for the Lambda function (e.g. nodejs, python3.9,
-  # java8). See
+  # The runtime environment for the Lambda function (e.g. nodejs24.x,
+  # python3.13). See
   # https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime
-  # for all possible values. Currently Lambda@Edge supports only nodejs22.x and
-  # python3.9.
-  runtime = "nodejs22.x"
+  # for all possible values. Lambda@Edge supports only the Node.js and Python
+  # runtimes that Lambda has not deprecated; see
+  # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-at-edge-function-restrictions.html#lambda-at-edge-restrictions-runtime.
+  runtime = "nodejs24.x"
 
   # An S3 bucket location containing the function's deployment package. Exactly
   # one of var.source_path or the var.s3_xxx variables must be specified.
@@ -291,7 +291,7 @@ module "lambda_edge" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-edge?ref=v1.5.0"
 }
 
 inputs = {
@@ -402,12 +402,13 @@ inputs = {
   # if unreserved.
   reserved_concurrent_executions = null
 
-  # The runtime environment for the Lambda function (e.g. nodejs, python3.9,
-  # java8). See
+  # The runtime environment for the Lambda function (e.g. nodejs24.x,
+  # python3.13). See
   # https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime
-  # for all possible values. Currently Lambda@Edge supports only nodejs22.x and
-  # python3.9.
-  runtime = "nodejs22.x"
+  # for all possible values. Lambda@Edge supports only the Node.js and Python
+  # runtimes that Lambda has not deprecated; see
+  # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-at-edge-function-restrictions.html#lambda-at-edge-restrictions-runtime.
+  runtime = "nodejs24.x"
 
   # An S3 bucket location containing the function's deployment package. Exactly
   # one of var.source_path or the var.s3_xxx variables must be specified.
@@ -721,10 +722,10 @@ The amount of reserved concurrent executions for this lambda function or -1 if u
 <HclListItem name="runtime" requirement="optional" type="string">
 <HclListItemDescription>
 
-The runtime environment for the Lambda function (e.g. nodejs, python3.9, java8). See https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime for all possible values. Currently Lambda@Edge supports only nodejs22.x and python3.9.
+The runtime environment for the Lambda function (e.g. nodejs24.x, python3.13). See https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime for all possible values. Lambda@Edge supports only the Node.js and Python runtimes that Lambda has not deprecated; see https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-at-edge-function-restrictions.html#lambda-at-edge-restrictions-runtime.
 
 </HclListItemDescription>
-<HclListItemDefaultValue defaultValue="&quot;nodejs22.x&quot;"/>
+<HclListItemDefaultValue defaultValue="&quot;nodejs24.x&quot;"/>
 </HclListItem>
 
 <HclListItem name="s3_bucket" requirement="optional" type="string">
@@ -873,11 +874,11 @@ Name of the (optionally) created CloudWatch log groups for the lambda function.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/lambda-edge/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/lambda-edge/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/lambda-edge/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.5.0/modules/lambda-edge/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.5.0/modules/lambda-edge/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.5.0/modules/lambda-edge/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "cc78c943c1fa5ed32866532e9061e6a4"
+  "hash": "759b3b9a1fe1353d1f7a9bfca8055d34"
 }
 ##DOCS-SOURCER-END -->

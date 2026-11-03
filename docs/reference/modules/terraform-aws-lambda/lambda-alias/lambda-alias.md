@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Lambda" version="1.4.0" lastModifiedVersion="1.4.0"/>
+<VersionBadge repoTitle="AWS Lambda" version="1.5.0" lastModifiedVersion="1.4.0"/>
 
 # Lambda Alias Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/lambda-alias" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.5.0/modules/lambda-alias" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-lambda/releases/tag/v1.4.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -50,7 +50,7 @@ In this example, 90% of traffic goes to version 2 (the primary version) and 10% 
 ## Background info
 
 For more information on AWS Lambda, how it works, and how to configure your functions, check out the [lambda module
-documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/lambda).
+documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.5.0/modules/lambda).
 
 ## Sample Usage
 
@@ -65,7 +65,7 @@ documentation](https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/
 
 module "lambda_alias" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-alias?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-alias?ref=v1.5.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -106,7 +106,7 @@ module "lambda_alias" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-alias?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-lambda.git//modules/lambda-alias?ref=v1.5.0"
 }
 
 inputs = {
@@ -239,11 +239,11 @@ The name of the Lambda alias
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/lambda-alias/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/lambda-alias/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.4.0/modules/lambda-alias/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.5.0/modules/lambda-alias/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.5.0/modules/lambda-alias/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-lambda/tree/v1.5.0/modules/lambda-alias/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "64542f6577f13ecde348e13576fa68bf"
+  "hash": "174b75694b43033f42479bcb613bac5a"
 }
 ##DOCS-SOURCER-END -->
