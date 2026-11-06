@@ -9,39 +9,39 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Amazon EKS" version="5.1.0" lastModifiedVersion="5.0.0"/>
+<VersionBadge repoTitle="Amazon EKS" version="5.2.0" lastModifiedVersion="5.2.0"/>
 
 # EKS Cluster Workers Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.2.0/modules/eks-cluster-workers" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v5.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-eks/releases/tag/v5.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
-**This module provisions self managed ASGs, in contrast to [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html). See the [eks-cluster-managed-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-managed-workers) module for a module to deploy Managed Node Groups.**
+**This module provisions self managed ASGs, in contrast to [EKS Managed Node Groups](https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html). See the [eks-cluster-managed-workers](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.2.0/modules/eks-cluster-managed-workers) module for a module to deploy Managed Node Groups.**
 
 This Terraform Module launches worker nodes for an [Elastic Container Service for Kubernetes
 Cluster](https://docs.aws.amazon.com/eks/latest/userguide/clusters.html) that you can use to run Kubernetes Pods and
 Deployments.
 
 This module is responsible for the EKS Worker Nodes in [the EKS cluster
-topology](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-control-plane/README.md#what-is-an-eks-cluster). You must launch a control plane in order
-for the worker nodes to function. See the [eks-cluster-control-plane module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-control-plane) for
+topology](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.2.0/modules/eks-cluster-control-plane/README.md#what-is-an-eks-cluster). You must launch a control plane in order
+for the worker nodes to function. See the [eks-cluster-control-plane module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.2.0/modules/eks-cluster-control-plane) for
 managing an EKS control plane.
 
 ## Differences with managed node groups
 
 See the \[Differences with self managed workers] section in the documentation for [eks-cluster-managed-workers
-module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-managed-workers) for a detailed overview of differences with EKS Managed Node Groups.
+module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.2.0/modules/eks-cluster-managed-workers) for a detailed overview of differences with EKS Managed Node Groups.
 
 ## What should be included in the user-data script?
 
 In order for the EKS worker nodes to function, it must register itself to the Kubernetes API run by the EKS control
 plane. This is handled by the bootstrap script provided in the EKS optimized AMI. The user-data script should call the
 bootstrap script at some point during its execution. You can get this information from the [eks-cluster-control-plane
-module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-control-plane).
+module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.2.0/modules/eks-cluster-control-plane).
 
 For an example of a user data script, see the [eks-cluster example's user-data.sh
-script](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/examples/eks-cluster-with-iam-role-mappings/user-data/user-data.sh).
+script](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.2.0/examples/eks-cluster-with-iam-role-mappings/user-data/user-data.sh).
 
 You can read more about the bootstrap script in [the official documentation for EKS](https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html).
 
@@ -144,7 +144,7 @@ EOF
 ```
 
 **Note**: The IAM policies you add will apply to ALL Pods running on these EC2 Instances. See the [How do I associate
-IAM roles to the Pods?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-control-plane/README.md#how-do-i-associate-iam-roles-to-the-pods) section of the
+IAM roles to the Pods?](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.2.0/modules/eks-cluster-control-plane/README.md#how-do-i-associate-iam-roles-to-the-pods) section of the
 `eks-cluster-control-plane` module README for more fine-grained allocation of IAM credentials to Pods.
 
 ## How do I SSH into the nodes?
@@ -219,7 +219,7 @@ The following are the steps you can take to perform a blue-green release for thi
 This module will not automatically scale in response to resource usage by default, the
 `autoscaling_group_configurations.*.max_size` option is only used to give room for new instances during rolling updates.
 To enable auto-scaling in response to resource utilization, you must set the `include_autoscaler_discovery_tags` input
-variable to `true` and also deploy the [Kubernetes Cluster Autoscaler module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-k8s-cluster-autoscaler).
+variable to `true` and also deploy the [Kubernetes Cluster Autoscaler module](https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.2.0/modules/eks-k8s-cluster-autoscaler).
 
 Note that the cluster autoscaler supports ASGs that manage nodes in a single availability zone or ASGs that manage nodes in multiple availability zones. However, there is a caveat:
 
@@ -230,6 +230,38 @@ Note that the cluster autoscaler supports ASGs that manage nodes in a single ava
 *   AWS now supports EFS as a persistent storage solution with EKS. This can be used with ASGs that span a single or multiple AZs.
 
 Refer to the [Kubernetes Autoscaler](https://github.com/kubernetes/autoscaler) documentation for more details.
+
+## How do you tag worker node EBS volumes?
+
+ASG tags (`default_tags` with `propagate_at_launch`, `asg_default_tags`, and per-ASG `tags`) apply to EC2 instances. They
+do not apply to EBS volumes created from the launch template.
+
+To tag volumes at launch, pass `asg_default_launch_template_tag_specifications`, or override
+`launch_template_tag_specifications` on a specific entry in `autoscaling_group_configurations`. This applies to both the
+standard launch-template ASG path and mixed instances, since they share the same launch template. Leave these empty
+(the default) to keep existing behavior.
+
+```hcl
+module "eks_workers" {
+  # (arguments omitted)
+
+  asg_default_launch_template_tag_specifications = [
+    {
+      resource_type = "volume"
+      tags = {
+        Environment = "prod"
+        Team        = "platform"
+      }
+    }
+  ]
+}
+```
+
+Do not set `resource_type` to `"instance"`. Auto Scaling ignores instance tag specifications on the launch template and
+uses the ASG tags instead.
+
+Enabling this input creates a new launch template version. This module uses `latest_version` on the ASG, so instances
+may roll when you first apply volume tags.
 
 ## Sample Usage
 
@@ -244,7 +276,7 @@ Refer to the [Kubernetes Autoscaler](https://github.com/kubernetes/autoscaler) d
 
 module "eks_cluster_workers" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers?ref=v5.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers?ref=v5.2.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -332,6 +364,15 @@ module "eks_cluster_workers" {
   # autoscaling_group_configurations. Any map entry that does not specify
   # asg_instance_user_data_base64 will use this value.
   asg_default_instance_user_data_base64 = null
+
+  # Default value for the launch_template_tag_specifications field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # launch_template_tag_specifications will use this value. Use this to tag
+  # resources created at launch, such as EBS volumes. Empty by default so
+  # existing stacks are unchanged. ASG tags already cover EC2 instances; Auto
+  # Scaling ignores launch template tag specifications with resource_type =
+  # "instance".
+  asg_default_launch_template_tag_specifications = []
 
   # Default value for the max_size field of autoscaling_group_configurations.
   # Any map entry that does not specify max_size will use this value.
@@ -551,7 +592,7 @@ module "eks_cluster_workers" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers?ref=v5.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-eks.git//modules/eks-cluster-workers?ref=v5.2.0"
 }
 
 inputs = {
@@ -642,6 +683,15 @@ inputs = {
   # autoscaling_group_configurations. Any map entry that does not specify
   # asg_instance_user_data_base64 will use this value.
   asg_default_instance_user_data_base64 = null
+
+  # Default value for the launch_template_tag_specifications field of
+  # autoscaling_group_configurations. Any map entry that does not specify
+  # launch_template_tag_specifications will use this value. Use this to tag
+  # resources created at launch, such as EBS volumes. Empty by default so
+  # existing stacks are unchanged. ASG tags already cover EC2 instances; Auto
+  # Scaling ignores launch template tag specifications with resource_type =
+  # "instance".
+  asg_default_launch_template_tag_specifications = []
 
   # Default value for the max_size field of autoscaling_group_configurations.
   # Any map entry that does not specify max_size will use this value.
@@ -948,6 +998,10 @@ Any types represent complex values of variable type. For details, please consult
                                                desired HTTP PUT response hop limit for instance metadata requests.
    - extra_block_device_mappings             : (Defaults to value from var.asg_default_extra_block_device_mappings) Additional block device mappings
                                                 to attach to instances. Useful for Bottlerocket or custom storage configs.
+   - launch_template_tag_specifications list(object[LaunchTemplateTagSpecification]) : (Defaults to value from
+                                              var.asg_default_launch_template_tag_specifications) Tag specifications for
+                                              resources created from the launch template (for example EBS volumes). ASG
+                                              tags already cover EC2 instances. Do not set resource_type to "instance".
 
 ```
 </details>
@@ -967,6 +1021,10 @@ Any types represent complex values of variable type. For details, please consult
    - key                  string  : The key for the tag to apply to the instance.
    - value                string  : The value for the tag to apply to the instance.
    - propagate_at_launch  bool    : Whether or not the tags should be propagated to the instance at launch time.
+  
+   Structure of LaunchTemplateTagSpecification object:
+   - resource_type  string      : The type of resource to tag. Use "volume" to tag EBS volumes created at launch.
+   - tags           map(string) : Tags to apply to that resource type. The key is the tag name and the value is the tag value.
   
   
    Example:
@@ -1167,6 +1225,25 @@ Default value for the asg_instance_user_data_base64 field of autoscaling_group_c
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
+<HclListItem name="asg_default_launch_template_tag_specifications" requirement="optional" type="list(object(…))">
+<HclListItemDescription>
+
+Default value for the launch_template_tag_specifications field of autoscaling_group_configurations. Any map entry that does not specify launch_template_tag_specifications will use this value. Use this to tag resources created at launch, such as EBS volumes. Empty by default so existing stacks are unchanged. ASG tags already cover EC2 instances; Auto Scaling ignores launch template tag specifications with resource_type = 'instance'.
+
+</HclListItemDescription>
+<HclListItemTypeDetails>
+
+```hcl
+list(object({
+    resource_type = string
+    tags          = map(string)
+  }))
+```
+
+</HclListItemTypeDetails>
+<HclListItemDefaultValue defaultValue="[]"/>
 </HclListItem>
 
 <HclListItem name="asg_default_max_size" requirement="optional" type="number">
@@ -1662,11 +1739,11 @@ AWS ID of the security group created for the EKS worker nodes.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-workers/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-workers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.1.0/modules/eks-cluster-workers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.2.0/modules/eks-cluster-workers/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.2.0/modules/eks-cluster-workers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-eks/tree/v5.2.0/modules/eks-cluster-workers/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "87fd0b499b8761826c1a349bc3710f89"
+  "hash": "54a46f1da1c6de7f0db47f266a481df5"
 }
 ##DOCS-SOURCER-END -->
