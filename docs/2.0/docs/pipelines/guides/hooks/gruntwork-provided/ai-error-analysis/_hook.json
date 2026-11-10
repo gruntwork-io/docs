@@ -72,7 +72,7 @@
     "."
   ],
   "phase": "error_hook",
-  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/ai-error-analysis-v0.2.1",
+  "release": "https://github.com/gruntwork-io/pipelines-hooks-cli/releases/tag/ai-error-analysis-v0.2.2",
   "title": "AI Error Analysis",
-  "version": "0.2.1"
+  "version": "0.2.2"
 }
