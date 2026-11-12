@@ -487,6 +487,11 @@ const sidebar = [
         type: "doc",
         id: "2.0/docs/pipelines/guides/unlock",
       },
+      {
+        label: "Running Pipelines on a Self-Hosted Runner",
+        type: "doc",
+        id: "2.0/docs/pipelines/guides/self-hosted-runners",
+      },
     ],
   },
   {
