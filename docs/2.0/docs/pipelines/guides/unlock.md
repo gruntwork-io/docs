@@ -80,7 +80,7 @@ What Unlock All removes depends on the cloud each unit's environment authenticat
 
 - **AWS:** deletes the DynamoDB `terraform-locks` table in every region, then re-runs `init` in one unit per account to recreate it. If your lock tables have a different name, enable [PIPELINES_FEATURE_EXPERIMENT_UNLOCK_ALL_LOCK_TABLE_FROM_REMOTE_STATE](/2.0/reference/pipelines/feature-flags#pipelines_feature_experiment_unlock_all_lock_table_from_remote_state) to use the `dynamodb_table` set in each unit's `remote_state`.
 - **GCP:** deletes each unit's lock object (`<prefix>/default.tflock`) from its GCS state bucket, read from the unit's `remote_state` block. No re-init is needed. This requires Terragrunt 1.0 or later. Units it can't unlock are listed in a warning: those that fail to render, have no `gcs` remote_state, or set `storage_custom_endpoint` or `universe_domain`.
-- **Azure:** not supported yet. Azure units are skipped with a warning.
+- **Azure:** releases the lease on each unit's state blob, read from the unit's `remote_state` block, as `force-unlock` does. No re-init is needed. This requires Terragrunt 1.0 or later. Unless `use_azuread_auth` is set, the blob is reached with a storage account access key, so `resource_group_name` must be set. Units it can't unlock are listed in a warning: those that fail to render, have no `azurerm` remote_state, set a non-public `environment`, or set `endpoint`, `metadata_host` or `customer_provided_key`.
 
 <Tabs groupId="platform">
 <TabItem value="github" label="GitHub">
