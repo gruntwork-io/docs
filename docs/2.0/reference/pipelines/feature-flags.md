@@ -179,6 +179,21 @@ This flag takes precedence over [PIPELINES_FEATURE_EXPERIMENT_USE_MISE_EXEC_TG_W
 </li>
 </ul>
 
+#### `PIPELINES_FEATURE_EXPERIMENT_UNLOCK_ALL_LOCK_TABLE_FROM_REMOTE_STATE`
+<ul>
+<li>
+Makes [Unlock All](/2.0/docs/pipelines/guides/unlock#unlocking-all-state) delete each AWS unit's own DynamoDB lock table, read from the `dynamodb_table` and `region` in its `remote_state`, instead of `terraform-locks` in every region. Units without a `dynamodb_table`, or with a custom DynamoDB endpoint, are skipped with a warning. Units that fail to render fall back to `terraform-locks` in every region. Requires Terragrunt 1.0 or later.
+
+The `--table-name` flag of `pipelines unlock all` is deprecated. If set, it still deletes that table in every region.
+</li>
+<li>
+**Default Value**: Disabled
+</li>
+<li>
+**How to Enable**: Set to `"true"`
+</li>
+</ul>
+
 #### `PIPELINES_FEATURE_EXPERIMENT_USE_MISE_EXEC_TG_WRAPPER`
 <ul>
 <li>
