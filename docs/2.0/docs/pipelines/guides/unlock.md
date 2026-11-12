@@ -80,7 +80,7 @@ What Unlock All removes depends on the cloud each unit's environment authenticat
 
 - **AWS:** deletes the DynamoDB `terraform-locks` table in every region, then re-runs `init` in one unit per account to recreate it.
 - **GCP:** deletes each unit's lock object (`<prefix>/default.tflock`) from its GCS state bucket, read from the unit's `remote_state` block. No re-init is needed. This requires Terragrunt 1.0 or later. Units whose `gcs` backend sets `storage_custom_endpoint` or `universe_domain` are skipped and listed in a warning.
-- **Azure:** not supported yet. Azure units are skipped with a warning; unlock them individually with the unlock unit workflow above.
+- **Azure:** not supported yet. Azure units are skipped with a warning.
 
 <Tabs groupId="platform">
 <TabItem value="github" label="GitHub">
