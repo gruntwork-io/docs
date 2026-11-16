@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="1.4.0" lastModifiedVersion="1.3.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="1.4.1" lastModifiedVersion="1.4.1"/>
 
 # DMS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/dms" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/dms" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.3.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.4.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates AWS Database Migration Service (DMS) resources for database migration and replication.
 
@@ -100,11 +100,11 @@ If your module path is not `module.dms`, adjust the address prefix accordingly.
 
 ## Configuration
 
-*   See the [root README](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/README.md) for instructions on using Terraform modules.
-*   See the [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/dms/variables.tf) for all the variables you can set on this module.
-*   See the [dms-mysql examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/examples/dms-mysql/) folder for instruction on how to setup the module to migrate data from one AWS RDS MySQL instance to another using a classic DMS replication instance.
-*   See the [dms-aurora examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/examples/dms-aurora/) folder for instructions on how to setup the module to migrate data between Aurora clusters using a classic DMS replication instance.
-*   See the [dms-serverless example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/examples/dms-serverless/) folder for instructions on how to run the module in DMS serverless mode.
+*   See the [root README](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/README.md) for instructions on using Terraform modules.
+*   See the [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/dms/variables.tf) for all the variables you can set on this module.
+*   See the [dms-mysql examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/examples/dms-mysql/) folder for instruction on how to setup the module to migrate data from one AWS RDS MySQL instance to another using a classic DMS replication instance.
+*   See the [dms-aurora examples](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/examples/dms-aurora/) folder for instructions on how to setup the module to migrate data between Aurora clusters using a classic DMS replication instance.
+*   See the [dms-serverless example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/examples/dms-serverless/) folder for instructions on how to run the module in DMS serverless mode.
 
 ## Key Variables
 
@@ -145,7 +145,7 @@ If your module path is not `module.dms`, adjust the address prefix accordingly.
 
 module "dms" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v1.4.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -260,11 +260,9 @@ module "dms" {
   # https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.html.
   source_endpoint_extra_connection_attributes = null
 
-  # ARN for the KMS key that will be used to encrypt the connection parameters.
-  # If you do not specify a value for kms_key_arn, then AWS DMS will use your
-  # default encryption key. AWS KMS creates the default encryption key for your
-  # AWS account. Your AWS account has a different default encryption key for
-  # each AWS region
+  # ARN of the KMS key that encrypts the endpoint's connection parameters. When
+  # null, AWS DMS uses its default key for the account and region. Not passed to
+  # an S3 endpoint, where AWS does not use it.
   source_endpoint_kms_key_arn = null
 
   # Password to be used to login to the endpoint database.
@@ -327,11 +325,9 @@ module "dms" {
   # https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.html.
   target_endpoint_extra_connection_attributes = null
 
-  # ARN for the KMS key that will be used to encrypt the connection parameters.
-  # If you do not specify a value for kms_key_arn, then AWS DMS will use your
-  # default encryption key. AWS KMS creates the default encryption key for your
-  # AWS account. Your AWS account has a different default encryption key for
-  # each AWS region
+  # ARN of the KMS key that encrypts the endpoint's connection parameters. When
+  # null, AWS DMS uses its default key for the account and region. Not passed to
+  # an S3 endpoint, where AWS does not use it.
   target_endpoint_kms_key_arn = null
 
   # Password to be used to login to the endpoint database.
@@ -406,7 +402,7 @@ module "dms" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/dms?ref=v1.4.1"
 }
 
 inputs = {
@@ -524,11 +520,9 @@ inputs = {
   # https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.html.
   source_endpoint_extra_connection_attributes = null
 
-  # ARN for the KMS key that will be used to encrypt the connection parameters.
-  # If you do not specify a value for kms_key_arn, then AWS DMS will use your
-  # default encryption key. AWS KMS creates the default encryption key for your
-  # AWS account. Your AWS account has a different default encryption key for
-  # each AWS region
+  # ARN of the KMS key that encrypts the endpoint's connection parameters. When
+  # null, AWS DMS uses its default key for the account and region. Not passed to
+  # an S3 endpoint, where AWS does not use it.
   source_endpoint_kms_key_arn = null
 
   # Password to be used to login to the endpoint database.
@@ -591,11 +585,9 @@ inputs = {
   # https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.html.
   target_endpoint_extra_connection_attributes = null
 
-  # ARN for the KMS key that will be used to encrypt the connection parameters.
-  # If you do not specify a value for kms_key_arn, then AWS DMS will use your
-  # default encryption key. AWS KMS creates the default encryption key for your
-  # AWS account. Your AWS account has a different default encryption key for
-  # each AWS region
+  # ARN of the KMS key that encrypts the endpoint's connection parameters. When
+  # null, AWS DMS uses its default key for the account and region. Not passed to
+  # an S3 endpoint, where AWS does not use it.
   target_endpoint_kms_key_arn = null
 
   # Password to be used to login to the endpoint database.
@@ -909,7 +901,7 @@ Additional attributes associated with the connection. For available attributes f
 <HclListItem name="source_endpoint_kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-ARN for the KMS key that will be used to encrypt the connection parameters. If you do not specify a value for kms_key_arn, then AWS DMS will use your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS region
+ARN of the KMS key that encrypts the endpoint's connection parameters. When null, AWS DMS uses its default key for the account and region. Not passed to an S3 endpoint, where AWS does not use it.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1053,7 +1045,7 @@ Additional attributes associated with the connection. For available attributes f
 <HclListItem name="target_endpoint_kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-ARN for the KMS key that will be used to encrypt the connection parameters. If you do not specify a value for kms_key_arn, then AWS DMS will use your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS region
+ARN of the KMS key that encrypts the endpoint's connection parameters. When null, AWS DMS uses its default key for the account and region. Not passed to an S3 endpoint, where AWS does not use it.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1284,11 +1276,11 @@ A map of maps containing the replication tasks created and their full output of 
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/dms/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/dms/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/dms/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/dms/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/dms/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/dms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "466f6a1ae2778b2a86f625fd90aca421"
+  "hash": "6aeca470893525b4a8e463addf3c0859"
 }
 ##DOCS-SOURCER-END -->
