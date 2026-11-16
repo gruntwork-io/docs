@@ -261,8 +261,8 @@ module "dms" {
   source_endpoint_extra_connection_attributes = null
 
   # ARN of the KMS key that encrypts the endpoint's connection parameters. When
-  # null, AWS DMS uses its default key for the account and region. Not passed to
-  # an S3 endpoint, where AWS does not use it.
+  # null, AWS DMS uses its default key for the account and region. The module
+  # does not pass it to an S3 endpoint, where AWS does not use it.
   source_endpoint_kms_key_arn = null
 
   # Password to be used to login to the endpoint database.
@@ -326,8 +326,8 @@ module "dms" {
   target_endpoint_extra_connection_attributes = null
 
   # ARN of the KMS key that encrypts the endpoint's connection parameters. When
-  # null, AWS DMS uses its default key for the account and region. Not passed to
-  # an S3 endpoint, where AWS does not use it.
+  # null, AWS DMS uses its default key for the account and region. The module
+  # does not pass it to an S3 endpoint, where AWS does not use it.
   target_endpoint_kms_key_arn = null
 
   # Password to be used to login to the endpoint database.
@@ -521,8 +521,8 @@ inputs = {
   source_endpoint_extra_connection_attributes = null
 
   # ARN of the KMS key that encrypts the endpoint's connection parameters. When
-  # null, AWS DMS uses its default key for the account and region. Not passed to
-  # an S3 endpoint, where AWS does not use it.
+  # null, AWS DMS uses its default key for the account and region. The module
+  # does not pass it to an S3 endpoint, where AWS does not use it.
   source_endpoint_kms_key_arn = null
 
   # Password to be used to login to the endpoint database.
@@ -586,8 +586,8 @@ inputs = {
   target_endpoint_extra_connection_attributes = null
 
   # ARN of the KMS key that encrypts the endpoint's connection parameters. When
-  # null, AWS DMS uses its default key for the account and region. Not passed to
-  # an S3 endpoint, where AWS does not use it.
+  # null, AWS DMS uses its default key for the account and region. The module
+  # does not pass it to an S3 endpoint, where AWS does not use it.
   target_endpoint_kms_key_arn = null
 
   # Password to be used to login to the endpoint database.
@@ -901,7 +901,7 @@ Additional attributes associated with the connection. For available attributes f
 <HclListItem name="source_endpoint_kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-ARN of the KMS key that encrypts the endpoint's connection parameters. When null, AWS DMS uses its default key for the account and region. Not passed to an S3 endpoint, where AWS does not use it.
+ARN of the KMS key that encrypts the endpoint's connection parameters. When null, AWS DMS uses its default key for the account and region. The module does not pass it to an S3 endpoint, where AWS does not use it.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1045,7 +1045,7 @@ Additional attributes associated with the connection. For available attributes f
 <HclListItem name="target_endpoint_kms_key_arn" requirement="optional" type="string">
 <HclListItemDescription>
 
-ARN of the KMS key that encrypts the endpoint's connection parameters. When null, AWS DMS uses its default key for the account and region. Not passed to an S3 endpoint, where AWS does not use it.
+ARN of the KMS key that encrypts the endpoint's connection parameters. When null, AWS DMS uses its default key for the account and region. The module does not pass it to an S3 endpoint, where AWS does not use it.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="null"/>
@@ -1281,6 +1281,6 @@ A map of maps containing the replication tasks created and their full output of 
     "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/dms/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6aeca470893525b4a8e463addf3c0859"
+  "hash": "cecbfe13061a544754753ce780267761"
 }
 ##DOCS-SOURCER-END -->
