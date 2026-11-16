@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="1.4.0" lastModifiedVersion="1.2.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="1.4.1" lastModifiedVersion="1.2.0"/>
 
 # Backup Plan Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/backup-plan" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/backup-plan" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.2.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -22,7 +22,7 @@ This Terraform Module creates the following AWS Backup resources:
 1.  Backup plans - specifying **how and when** to back things up
 2.  Resource selections - specifying **which resources** to back up
 
-You associate your plans with a [Backup vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/backup-vault).
+You associate your plans with a [Backup vault](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/backup-vault).
 
 ## What is a Backup Plan?
 
@@ -129,11 +129,11 @@ same account and region as the resources, and the rule's `lifecycle` must fall w
 
 Note that AWS Backup recovery point indexing and scheduled malware scanning do **not** support recovery points held in
 a logically air-gapped vault. See [Primary backups to logically air-gapped vaults](https://docs.aws.amazon.com/aws-backup/latest/devguide/lag-vault-primary-backup.html)
-and the [vault-air-gapped-primary-backup example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/examples/vault-air-gapped-primary-backup).
+and the [vault-air-gapped-primary-backup example](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/examples/vault-air-gapped-primary-backup).
 
 ## How do you troubleshoot Backup jobs?
 
-See [Troubleshooting AWS Backup](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/core-concepts.md#troubleshooting-aws-backup) in the core-concepts guide.
+See [Troubleshooting AWS Backup](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/core-concepts.md#troubleshooting-aws-backup) in the core-concepts guide.
 
 ## Sample Usage
 
@@ -148,7 +148,7 @@ See [Troubleshooting AWS Backup](https://github.com/gruntwork-io/terraform-aws-d
 
 module "backup_plan" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-plan?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-plan?ref=v1.4.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -179,7 +179,7 @@ module "backup_plan" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-plan?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/backup-plan?ref=v1.4.1"
 }
 
 inputs = {
@@ -286,11 +286,11 @@ The ARN of the IAM service role used by Backup plans
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/backup-plan/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/backup-plan/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/backup-plan/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/backup-plan/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/backup-plan/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/backup-plan/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "1549b332a0097fb4954f23b1047fc0e2"
+  "hash": "27407ba4ecc0649bcc065a9e7aa21b2a"
 }
 ##DOCS-SOURCER-END -->

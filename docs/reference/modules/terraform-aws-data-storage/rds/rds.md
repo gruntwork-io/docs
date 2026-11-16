@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="1.4.0" lastModifiedVersion="1.4.0"/>
+<VersionBadge repoTitle="Data Storage Modules" version="1.4.1" lastModifiedVersion="1.4.0"/>
 
 # RDS Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/rds" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.4.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -250,7 +250,7 @@ Set `multi_az=true`. When setting up a multi-AZ (Availability Zone) RDS deployme
 
 module "rds" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v1.4.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -704,6 +704,13 @@ module "rds" {
   # Timeout for DB updating
   updating_timeout = "80m"
 
+  # RDS event categories, such as failure or maintenance, to check for after
+  # Terraform creates or updates the primary or its read replicas. Each matching
+  # event RDS reports during the operation is shown as a Terraform warning.
+  # Requires the rds:DescribeEvents IAM permission. When null, nothing is
+  # checked.
+  warning_event_categories = null
+
 }
 
 
@@ -719,7 +726,7 @@ module "rds" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/rds?ref=v1.4.1"
 }
 
 inputs = {
@@ -1175,6 +1182,13 @@ inputs = {
 
   # Timeout for DB updating
   updating_timeout = "80m"
+
+  # RDS event categories, such as failure or maintenance, to check for after
+  # Terraform creates or updates the primary or its read replicas. Each matching
+  # event RDS reports during the operation is shown as a Terraform warning.
+  # Requires the rds:DescribeEvents IAM permission. When null, nothing is
+  # checked.
+  warning_event_categories = null
 
 }
 
@@ -2073,6 +2087,15 @@ Timeout for DB updating
 <HclListItemDefaultValue defaultValue="&quot;80m&quot;"/>
 </HclListItem>
 
+<HclListItem name="warning_event_categories" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+RDS event categories, such as failure or maintenance, to check for after Terraform creates or updates the primary or its read replicas. Each matching event RDS reports during the operation is shown as a Terraform warning. Requires the rds:DescribeEvents IAM permission. When null, nothing is checked.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -2202,11 +2225,11 @@ The ID of the security group created for the RDS instance.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/rds/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/rds/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/rds/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/rds/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/rds/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.1/modules/rds/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "73bb27d357adb51e51babf6e3d8ba720"
+  "hash": "6dde564f5e5ec7907574b9cd03273fcc"
 }
 ##DOCS-SOURCER-END -->
