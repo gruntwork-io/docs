@@ -182,7 +182,7 @@ This flag takes precedence over [PIPELINES_FEATURE_EXPERIMENT_USE_MISE_EXEC_TG_W
 #### `PIPELINES_FEATURE_EXPERIMENT_UNLOCK_ALL_LOCK_TABLE_FROM_REMOTE_STATE`
 <ul>
 <li>
-Makes [Unlock All](/2.0/docs/pipelines/guides/unlock#unlocking-all-state) read each AWS unit's DynamoDB lock table name and region from the `dynamodb_table` and `region` in its `remote_state`, so lock tables with custom names are supported. Without it, Unlock All assumes every table is named `terraform-locks` and tries every region. Units without a `dynamodb_table`, or with a custom DynamoDB endpoint, are skipped with a warning. Units that fail to render fall back to `terraform-locks` in every region. Requires Terragrunt 1.0 or later.
+Makes [Unlock All](/2.0/docs/pipelines/guides/unlock#unlocking-all-state) read each AWS unit's DynamoDB lock table name and region from the `dynamodb_table` and `region` in its `remote_state`, so lock tables with custom names are supported. Without it, Unlock All assumes every table is named `terraform-locks` and tries every region. Units without a `dynamodb_table`, or with a custom DynamoDB endpoint, are skipped with a warning. Units that fail to render fall back to `terraform-locks` in every region. Requires Terragrunt 1.0 or later, and [`pipelines-workflows` v4.34.0](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v4.34.0) or later on GitHub, or [v2.29.0](https://gitlab.com/gruntwork-io/pipelines-workflows/-/releases/v2.29.0) or later on GitLab.
 </li>
 <li>
 **Default Value**: Disabled
