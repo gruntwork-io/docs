@@ -146,6 +146,22 @@ grants the CloudFront log delivery account. Reset the access logs bucket's ACL t
 
 Logs already in the bucket stay where they are, and the expiration rule keeps deleting them on schedule.
 
+### When bucket-level Block Public Access is denied
+
+Some organizations block public access to S3 for the whole account, and use a Service Control Policy (SCP) to deny
+`s3:PutBucketPublicAccessBlock`. In those environments, creating the access logs bucket fails with an `AccessDenied`
+error on its `aws_s3_bucket_public_access_block` resource. Set `create_public_access_block = false` to skip that
+resource. If you use the `s3-static-website` module for the origin bucket, set the same variable there too; see [its
+docs](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-static-website/core-concepts.md#how-do-i-deploy-when-bucket-level-block-public-access-is-denied).
+
+*   **Only do this when public access is blocked by other means**, such as account-level S3 Block Public Access. New
+    buckets still have all four Block Public Access settings enabled by default, but this module will no longer manage
+    them or correct drift in them.
+*   **Existing deployments:** switching from `true` to `false` makes Terraform delete the bucket's Block Public Access
+    configuration, and under an SCP like the one above, that deletion is also denied. To stop managing the configuration
+    while leaving it in place, remove it from state before you apply, for example:
+    `terraform state rm 'module.<MODULE NAME>.module.access_logs[0].aws_s3_bucket_public_access_block.public_access[0]'`
+
 ## Limitations
 
 To create a CloudFront distribution with Terraform, you use the [aws_cloudfront_distribution
@@ -316,6 +332,18 @@ module "s_3_cloudfront" {
   # Whether you want CloudFront to automatically compress content for web
   # requests that include 'Accept-Encoding: gzip' in the request header.
   compress = true
+
+  # Set to false to skip creating the bucket-level S3 Block Public Access
+  # configuration (aws_s3_bucket_public_access_block) on the access logs bucket
+  # this module creates. Only do this when public access is already blocked by
+  # other means, such as account-level S3 Block Public Access, for example when
+  # a Service Control Policy denies s3:PutBucketPublicAccessBlock. New S3
+  # buckets have all four Block Public Access settings enabled by default, so
+  # this does not open up a new bucket, but this module will no longer manage
+  # those settings or correct drift in them. Switching this from true to false
+  # on an existing bucket makes Terraform delete its Block Public Access
+  # configuration; see the README for how to avoid that.
+  create_public_access_block = true
 
   # If set to true, create a DNS A Record in Route 53 with each domain name in
   # var.domain_names.
@@ -654,6 +682,18 @@ inputs = {
   # Whether you want CloudFront to automatically compress content for web
   # requests that include 'Accept-Encoding: gzip' in the request header.
   compress = true
+
+  # Set to false to skip creating the bucket-level S3 Block Public Access
+  # configuration (aws_s3_bucket_public_access_block) on the access logs bucket
+  # this module creates. Only do this when public access is already blocked by
+  # other means, such as account-level S3 Block Public Access, for example when
+  # a Service Control Policy denies s3:PutBucketPublicAccessBlock. New S3
+  # buckets have all four Block Public Access settings enabled by default, so
+  # this does not open up a new bucket, but this module will no longer manage
+  # those settings or correct drift in them. Switching this from true to false
+  # on an existing bucket makes Terraform delete its Block Public Access
+  # configuration; see the README for how to avoid that.
+  create_public_access_block = true
 
   # If set to true, create a DNS A Record in Route 53 with each domain name in
   # var.domain_names.
@@ -1157,6 +1197,15 @@ Whether you want CloudFront to automatically compress content for web requests t
 <HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
+<HclListItem name="create_public_access_block" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to skip creating the bucket-level S3 Block Public Access configuration (aws_s3_bucket_public_access_block) on the access logs bucket this module creates. Only do this when public access is already blocked by other means, such as account-level S3 Block Public Access, for example when a Service Control Policy denies s3:PutBucketPublicAccessBlock. New S3 buckets have all four Block Public Access settings enabled by default, so this does not open up a new bucket, but this module will no longer manage those settings or correct drift in them. Switching this from true to false on an existing bucket makes Terraform delete its Block Public Access configuration; see the README for how to avoid that.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
+</HclListItem>
+
 <HclListItem name="create_route53_entries" requirement="optional" type="bool">
 <HclListItemDescription>
 
@@ -1623,6 +1672,6 @@ If you have specified whitelist in <a href="#forward_cookies"><code>forward_cook
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-cloudfront/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "e99bbe98bda343036541de1ce34f1299"
+  "hash": "ea5ef83ea4f304361feaaf1b430ce866"
 }
 ##DOCS-SOURCER-END -->
