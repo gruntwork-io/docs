@@ -24,6 +24,27 @@ best practices for private access:
 *   Encryption at rest: server-side encryption is enabled, optionally with a custom KMS key.
 *   Encryption in transit: the bucket can only be accessed over TLS.
 
+## How do you use this module when bucket-level Block Public Access is denied?
+
+Some organizations block public access to S3 at the account or organization level, and use a Service Control Policy
+(SCP) to deny `s3:PutBucketPublicAccessBlock` so that nobody can change those settings on individual buckets. In those
+environments, creating the `aws_s3_bucket_public_access_block` resource fails with an `AccessDenied` error.
+
+To use this module in such an environment, set `create_public_access_block = false`. The module will then skip the
+bucket-level Block Public Access configuration. Keep the following in mind:
+
+*   Only do this when public access is blocked by other means, such as
+    [account-level S3 Block Public Access](https://docs.aws.amazon.com/AmazonS3/latest/userguide/configuring-block-public-access-account.html)
+    (see the [s3-account-public-access-block module](https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/s3-account-public-access-block)).
+*   New S3 buckets have all four Block Public Access settings enabled by default, so skipping this resource does not open
+    up a new bucket. However, this module will no longer manage those settings or correct drift in them.
+*   If you switch an existing bucket from `true` to `false`, Terraform will delete the bucket's Block Public Access
+    configuration (and under an SCP like the one above, that deletion is also denied). To stop managing the configuration
+    while leaving it in place, remove the resource from state before you apply:
+    ```
+    terraform state rm 'module.<MODULE NAME>.aws_s3_bucket_public_access_block.public_access[0]'
+    ```
+
 ## How do you enable MFA Delete?
 
 Enabling MFA Delete in your bucket adds another layer of security by requiring MFA in any request to delete a version or change the versioning state of the bucket.
@@ -149,6 +170,19 @@ module "private_s_3_bucket" {
 
   # CORS rules to set on this S3 bucket
   cors_rules = []
+
+  # Set to false to skip creating the bucket-level S3 Block Public Access
+  # configuration (aws_s3_bucket_public_access_block) for this bucket. Only do
+  # this when public access is already blocked by other means, such as
+  # account-level S3 Block Public Access or an organization policy, for example
+  # when a Service Control Policy denies s3:PutBucketPublicAccessBlock. New S3
+  # buckets have all four Block Public Access settings enabled by default, so
+  # skipping this resource does not open up a new bucket, but this module will
+  # no longer manage those settings or correct drift in them. Switching this
+  # from true to false on an existing bucket makes Terraform delete the bucket's
+  # Block Public Access configuration; to stop managing it while leaving it in
+  # place, run 'terraform state rm' on the resource first.
+  create_public_access_block = true
 
   # When true, provision an IAM role that allows various source buckets to
   # replicate to this bucket. Note that this setting should be used if you
@@ -375,6 +409,19 @@ inputs = {
 
   # CORS rules to set on this S3 bucket
   cors_rules = []
+
+  # Set to false to skip creating the bucket-level S3 Block Public Access
+  # configuration (aws_s3_bucket_public_access_block) for this bucket. Only do
+  # this when public access is already blocked by other means, such as
+  # account-level S3 Block Public Access or an organization policy, for example
+  # when a Service Control Policy denies s3:PutBucketPublicAccessBlock. New S3
+  # buckets have all four Block Public Access settings enabled by default, so
+  # skipping this resource does not open up a new bucket, but this module will
+  # no longer manage those settings or correct drift in them. Switching this
+  # from true to false on an existing bucket makes Terraform delete the bucket's
+  # Block Public Access configuration; to stop managing it while leaving it in
+  # place, run 'terraform state rm' on the resource first.
+  create_public_access_block = true
 
   # When true, provision an IAM role that allows various source buckets to
   # replicate to this bucket. Note that this setting should be used if you
@@ -767,6 +814,15 @@ Any types represent complex values of variable type. For details, please consult
 </details>
 
 </HclGeneralListItem>
+</HclListItem>
+
+<HclListItem name="create_public_access_block" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to skip creating the bucket-level S3 Block Public Access configuration (aws_s3_bucket_public_access_block) for this bucket. Only do this when public access is already blocked by other means, such as account-level S3 Block Public Access or an organization policy, for example when a Service Control Policy denies s3:PutBucketPublicAccessBlock. New S3 buckets have all four Block Public Access settings enabled by default, so skipping this resource does not open up a new bucket, but this module will no longer manage those settings or correct drift in them. Switching this from true to false on an existing bucket makes Terraform delete the bucket's Block Public Access configuration; to stop managing it while leaving it in place, run 'terraform state rm' on the resource first.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="create_replication_iam_role_to_bucket" requirement="optional" type="bool">
@@ -1220,6 +1276,6 @@ The name of an IAM role that can be used to configure replication from various s
     "https://github.com/gruntwork-io/terraform-aws-security/tree/v1.9.0/modules/private-s3-bucket/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "d8051d7cc434f3021702176596a6e409"
+  "hash": "acfc0cc18b5f64f854c28885942de85a"
 }
 ##DOCS-SOURCER-END -->
