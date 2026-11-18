@@ -111,7 +111,7 @@ Since `ModulesAddedOrChanged` uses the `run-all` Terragrunt command, it respects
 
   :::tip
 
-In rare cases, you might disable job consolidation to allocate maximum resources to each CI/CD job. While this is not a general recommendation, it can be a helpful workaround if your runner is depleting its available resources during execution.
+In rare cases, you might disable job consolidation to allocate maximum resources to each CI/CD job. While this is not a general recommendation, it can be a helpful workaround if your runner is depleting its available resources during execution. Another option is to [run Pipelines on a self-hosted runner](/2.0/docs/pipelines/guides/self-hosted-runners) with more memory.
 
   :::
 
