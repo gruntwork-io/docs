@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.22.0" lastModifiedVersion="2.22.0"/>
+<VersionBadge version="2.23.0" lastModifiedVersion="2.23.0"/>
 
 # Amazon EKS
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/modules/services/eks-cluster" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-cluster" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -151,7 +151,11 @@ aws eks describe-addon-versions --kubernetes-version 1.35 --addon-name kube-prox
 Note that `OVERWRITE` replaces any manual changes to the `ConfigMap`s and `DaemonSet`s of these components (for example,
 a custom `kube-proxy` mode, or the `ENABLE_PREFIX_DELEGATION=true` setting that earlier versions of this module applied to
 `aws-node` by default). Carry such settings over through `configuration_values`. If you enabled prefix delegation
-previously, also set `use_prefix_mode_to_calculate_max_pods = true` so worker max pods are calculated accordingly.
+previously, also set `use_prefix_mode_to_calculate_max_pods = true` so worker max pods are calculated accordingly. On
+AL2023 workers the result is capped at 110 (instance types with fewer than 30 vCPUs) or 250. Releases up to `v2.23.0`
+do not apply this cap on AL2023. On those releases, do not set `use_prefix_mode_to_calculate_max_pods = true`: the
+uncapped value makes nodeadm reserve more memory than small instances have (for example, `c6a.large`), and kubelet
+fails to start.
 
 Removing a key from `configuration_values` does not revert it in the cluster; set the desired value explicitly instead.
 Changes to the `kube-proxy` configuration also do not restart running `kube-proxy` Pods, so run
@@ -171,7 +175,7 @@ Changes to the `kube-proxy` configuration also do not restart running `kube-prox
 
 module "eks_cluster" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v2.22.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v2.23.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -390,6 +394,9 @@ module "eks_cluster" {
   # Namespace to deploy the aws-auth-merger into. The app will watch for
   # ConfigMaps in this Namespace to merge into the aws-auth ConfigMap.
   aws_auth_merger_namespace = "aws-auth-merger"
+
+  # The AWS partition used for default AWS Resources.
+  aws_partition = "aws"
 
   # Whether or not to bootstrap an access entry with cluster admin permissions
   # for the cluster creator.
@@ -922,7 +929,9 @@ module "eks_cluster" {
   # prefix delegation mode, each ENI will be allocated 16 IP addresses (/28)
   # instead of 1, allowing you to pack more Pods per node. This should be set to
   # true when the vpc-cni EKS addon is configured with
-  # ENABLE_PREFIX_DELEGATION=true.
+  # ENABLE_PREFIX_DELEGATION=true. On AL2023 nodes the computed value is capped
+  # at 110 for instance types with fewer than 30 vCPUs and at 250 otherwise,
+  # matching the limits that max-pods-calculator.sh applies on AL2.
   use_prefix_mode_to_calculate_max_pods = false
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
@@ -977,7 +986,7 @@ module "eks_cluster" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v2.22.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-cluster?ref=v2.23.0"
 }
 
 inputs = {
@@ -1200,6 +1209,9 @@ inputs = {
   # ConfigMaps in this Namespace to merge into the aws-auth ConfigMap.
   aws_auth_merger_namespace = "aws-auth-merger"
 
+  # The AWS partition used for default AWS Resources.
+  aws_partition = "aws"
+
   # Whether or not to bootstrap an access entry with cluster admin permissions
   # for the cluster creator.
   bootstrap_cluster_creator_admin_permissions = true
@@ -1731,7 +1743,9 @@ inputs = {
   # prefix delegation mode, each ENI will be allocated 16 IP addresses (/28)
   # instead of 1, allowing you to pack more Pods per node. This should be set to
   # true when the vpc-cni EKS addon is configured with
-  # ENABLE_PREFIX_DELEGATION=true.
+  # ENABLE_PREFIX_DELEGATION=true. On AL2023 nodes the computed value is capped
+  # at 110 for instance types with fewer than 30 vCPUs and at 250 otherwise,
+  # matching the limits that max-pods-calculator.sh applies on AL2.
   use_prefix_mode_to_calculate_max_pods = false
 
   # The ID (ARN, alias ARN, AWS ID) of a customer managed KMS Key to use for
@@ -2426,6 +2440,15 @@ Namespace to deploy the aws-auth-merger into. The app will watch for ConfigMaps 
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="&quot;aws-auth-merger&quot;"/>
+</HclListItem>
+
+<HclListItem name="aws_partition" requirement="optional" type="string">
+<HclListItemDescription>
+
+The AWS partition used for default AWS Resources.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="&quot;aws&quot;"/>
 </HclListItem>
 
 <HclListItem name="bootstrap_cluster_creator_admin_permissions" requirement="optional" type="bool">
@@ -4037,7 +4060,7 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <HclListItem name="use_prefix_mode_to_calculate_max_pods" requirement="optional" type="bool">
 <HclListItemDescription>
 
-When true, assumes prefix delegation mode is in use for the AWS VPC CNI component of the EKS cluster when computing max pods allowed on the node. In prefix delegation mode, each ENI will be allocated 16 IP addresses (/28) instead of 1, allowing you to pack more Pods per node. This should be set to true when the vpc-cni EKS addon is configured with ENABLE_PREFIX_DELEGATION=true.
+When true, assumes prefix delegation mode is in use for the AWS VPC CNI component of the EKS cluster when computing max pods allowed on the node. In prefix delegation mode, each ENI will be allocated 16 IP addresses (/28) instead of 1, allowing you to pack more Pods per node. This should be set to true when the vpc-cni EKS addon is configured with ENABLE_PREFIX_DELEGATION=true. On AL2023 nodes the computed value is capped at 110 for instance types with fewer than 30 vCPUs and at 250 otherwise, matching the limits that max-pods-calculator.sh applies on AL2.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -4275,11 +4298,11 @@ The ID of the AWS Security Group associated with the self-managed EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/modules/services/eks-cluster/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/modules/services/eks-cluster/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/modules/services/eks-cluster/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/modules/services/eks-cluster/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/modules/services/eks-cluster/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/modules/services/eks-cluster/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "2c197db606f7b3167a5a5a773495a413"
+  "hash": "b45c06abcf0db7eb5eca84f1568c2b7a"
 }
 ##DOCS-SOURCER-END -->

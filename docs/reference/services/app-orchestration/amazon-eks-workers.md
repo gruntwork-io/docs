@@ -16,11 +16,11 @@ import TabItem from '@theme/TabItem';
 import VersionBadge from '../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../src/components/HclListItem.tsx';
 
-<VersionBadge version="2.22.0" lastModifiedVersion="2.22.0"/>
+<VersionBadge version="2.23.0" lastModifiedVersion="2.22.0"/>
 
 # Amazon EKS Workers
 
-<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/modules/services/eks-workers" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/modules/services/eks-workers" className="link-button" title="View the source code for this service in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-service-catalog/releases?q=services%2Feks-workers" className="link-button" title="Release notes for only versions which impacted this service.">Release Notes</a>
 
@@ -68,9 +68,9 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 ### Repo organization
 
-*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
-*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/examples): This folder contains working examples of how to use the submodules.
-*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/test): Automated tests for the modules and examples.
+*   [modules](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/modules): the main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
+*   [examples](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/examples): This folder contains working examples of how to use the submodules.
+*   [test](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/test): Automated tests for the modules and examples.
 
 ## Deploy
 
@@ -78,7 +78,7 @@ more, see the documentation in the [terraform-aws-eks](https://github.com/gruntw
 
 If you just want to try this repo out for experimenting and learning, check out the following resources:
 
-*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/examples/for-learning-and-testing): The
+*   [examples/for-learning-and-testing folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/examples/for-learning-and-testing): The
     `examples/for-learning-and-testing` folder contains standalone sample code optimized for learning, experimenting, and
     testing (but not direct production usage).
 
@@ -86,7 +86,7 @@ If you just want to try this repo out for experimenting and learning, check out 
 
 If you want to deploy this repo in production, check out the following resources:
 
-*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/examples/for-production): The `examples/for-production` folder contains sample code
+*   [examples/for-production folder](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/examples/for-production): The `examples/for-production` folder contains sample code
     optimized for direct usage in production. This is code from the
     [Gruntwork Reference Architecture](https://gruntwork.io/reference-architecture), and it shows you how we build an
     end-to-end, integrated tech stack on top of the Gruntwork Service Catalog.
@@ -98,20 +98,20 @@ If you want to deploy this repo in production, check out the following resources
 
 ### Migrating from AL2 to AL2023
 
-**IMPORTANT**: Starting with EKS 1.33, this module defaults to Amazon Linux 2023 (AL2023) instead of Amazon Linux 2 (AL2). If you have existing clusters using AL2, see the [AL2 to AL2023 Migration Guide](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/modules/services/eks-workers/AL2-TO-AL2023-MIGRATION.md) for detailed migration instructions.
+**IMPORTANT**: Starting with EKS 1.33, this module defaults to Amazon Linux 2023 (AL2023) instead of Amazon Linux 2 (AL2). If you have existing clusters using AL2, see the [AL2 to AL2023 Migration Guide](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/modules/services/eks-workers/AL2-TO-AL2023-MIGRATION.md) for detailed migration instructions.
 
 ### Worker Management
 
 For information on registering the worker IAM role to the EKS control plane, refer to the
-[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
+[IAM Roles and Kubernetes API Access](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/modules/services/eks-workers/core-concepts.md#iam-roles-and-kubernetes-api-access) section of the documentation.
 
 For information on how to apply OS security patches to worker AMIs on a periodic cadence, independently of Kubernetes
 version upgrades, refer to the
-[How do I apply OS security patches to worker AMIs](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/modules/services/eks-workers/core-concepts.md#how-do-i-apply-os-security-patches-to-worker-amis)
+[How do I apply OS security patches to worker AMIs](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/modules/services/eks-workers/core-concepts.md#how-do-i-apply-os-security-patches-to-worker-amis)
 section of the documentation.
 
 For information on how to perform a blue-green deployment of the worker pools, refer to the
-[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
+[How do I perform a blue green release to roll out new versions of the module](https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/modules/services/eks-workers/core-concepts.md#how-do-i-perform-a-blue-green-release-to-roll-out-new-versions-of-the-module)
 section of the documentation.
 
 For information on how to manage your EKS cluster, including how to deploy Pods on Fargate, how to associate IAM roles
@@ -132,7 +132,7 @@ to Pod, how to upgrade your EKS cluster, and more, see the documentation in the
 
 module "eks_workers" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v2.22.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v2.23.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -679,7 +679,10 @@ module "eks_workers" {
   # When true, assumes prefix delegation mode is in use for the AWS VPC CNI
   # component of the EKS cluster when computing max pods allowed on the node. In
   # prefix delegation mode, each ENI will be allocated 16 IP addresses (/28)
-  # instead of 1, allowing you to pack more Pods per node.
+  # instead of 1, allowing you to pack more Pods per node. On AL2023 nodes the
+  # computed value is capped at 110 for instance types with fewer than 30 vCPUs
+  # and at 250 otherwise, matching the limits that max-pods-calculator.sh
+  # applies on AL2.
   use_prefix_mode_to_calculate_max_pods = false
 
   # Name of the IAM role to Kubernetes RBAC group mapping ConfigMap. Only used
@@ -707,7 +710,7 @@ module "eks_workers" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v2.22.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-service-catalog.git//modules/services/eks-workers?ref=v2.23.0"
 }
 
 inputs = {
@@ -1257,7 +1260,10 @@ inputs = {
   # When true, assumes prefix delegation mode is in use for the AWS VPC CNI
   # component of the EKS cluster when computing max pods allowed on the node. In
   # prefix delegation mode, each ENI will be allocated 16 IP addresses (/28)
-  # instead of 1, allowing you to pack more Pods per node.
+  # instead of 1, allowing you to pack more Pods per node. On AL2023 nodes the
+  # computed value is capped at 110 for instance types with fewer than 30 vCPUs
+  # and at 250 otherwise, matching the limits that max-pods-calculator.sh
+  # applies on AL2.
   use_prefix_mode_to_calculate_max_pods = false
 
   # Name of the IAM role to Kubernetes RBAC group mapping ConfigMap. Only used
@@ -2846,7 +2852,7 @@ When true, all IAM policies will be managed as dedicated policies rather than in
 <HclListItem name="use_prefix_mode_to_calculate_max_pods" requirement="optional" type="bool">
 <HclListItemDescription>
 
-When true, assumes prefix delegation mode is in use for the AWS VPC CNI component of the EKS cluster when computing max pods allowed on the node. In prefix delegation mode, each ENI will be allocated 16 IP addresses (/28) instead of 1, allowing you to pack more Pods per node.
+When true, assumes prefix delegation mode is in use for the AWS VPC CNI component of the EKS cluster when computing max pods allowed on the node. In prefix delegation mode, each ENI will be allocated 16 IP addresses (/28) instead of 1, allowing you to pack more Pods per node. On AL2023 nodes the computed value is capped at 110 for instance types with fewer than 30 vCPUs and at 250 otherwise, matching the limits that max-pods-calculator.sh applies on AL2.
 
 </HclListItemDescription>
 <HclListItemDefaultValue defaultValue="false"/>
@@ -2999,11 +3005,11 @@ The list of names of the ASGs that were deployed to act as EKS workers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/modules/services/eks-workers/README.md",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/modules/services/eks-workers/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.22.0/modules/services/eks-workers/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/modules/services/eks-workers/README.md",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/modules/services/eks-workers/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-service-catalog/tree/v2.23.0/modules/services/eks-workers/outputs.tf"
   ],
   "sourcePlugin": "service-catalog-api",
-  "hash": "ba9ee1c8b8d52767c7d544d5e86d32e2"
+  "hash": "e309f642bde88fb2e6e6755d4438f376"
 }
 ##DOCS-SOURCER-END -->
