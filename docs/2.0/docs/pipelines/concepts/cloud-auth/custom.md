@@ -222,7 +222,7 @@ environment "prod" {
 The merge fails if two providers set the same env var, if more than one sets `awsCredentials` or `awsRole`, or if `awsCredentials` is combined with another provider's `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` or `AWS_SESSION_TOKEN` env var.
 
 :::note GitLab
-Every cloud receives the same `OIDC_TOKEN`, whose audience is `$CI_SERVER_URL/$CI_PROJECT_NAMESPACE`. Combining clouds on GitLab works only if each cloud trusts that audience, which is the bootstrap default. A cloud set up with a different audience, such as Azure with `api://AzureADTokenExchange`, fails to authenticate.
+On GitLab, Pipelines signs in to every cloud with the same GitLab token. Clouds set up with the Gruntwork bootstrap accept that token, so combining them just works. If you changed a cloud's OIDC audience from the default (`$CI_SERVER_URL/$CI_PROJECT_NAMESPACE`), that cloud will fail to authenticate. Contact Gruntwork support if you need a custom audience.
 :::
 
 ## Best practices
