@@ -23,7 +23,7 @@ The [Unlock All](/2.0/docs/pipelines/guides/unlock#unlocking-all-state) workflow
 Pipelines supports custom authentication via Terragrunt's [auth provider command](https://terragrunt.gruntwork.io/docs/features/authentication/#auth-provider-command) feature. When you configure a `custom` authentication block, Pipelines will execute the command specified in the `auth_provider_cmd` attribute, and pass the output of that command to Terragrunt (with the output expected to match the schema documented in Terragrunt's documentation for the auth provider command feature).
 
 :::note
-Pipelines does not cache the results of a custom auth command. 
+Pipelines does not cache the results of a custom auth command.  The auth command, depending on the type of pipelines run, can be run once or potentially many times.
 :::
 
 Your authentication provider command should output a JSON response to stdout that follows the schema expected by Terragrunt:
