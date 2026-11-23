@@ -180,7 +180,7 @@ environment "cloudflare_environment" {
 
 ## Combining providers
 
-With [PIPELINES_FEATURE_EXPERIMENT_MULTIPLE_AUTHENTICATION_PROVIDERS](/2.0/reference/pipelines/feature-flags#pipelines_feature_experiment_multiple_authentication_providers) enabled, one `authentication` block can hold any of `aws_oidc`, `azure_oidc` and `gcp_oidc`, plus any number of `custom` blocks. Pipelines gets credentials from each and merges them for Terragrunt runs. Hooks still use a single provider.
+With [PIPELINES_FEATURE_EXPERIMENT_MULTIPLE_AUTHENTICATION_PROVIDERS](/2.0/reference/pipelines/feature-flags#pipelines_feature_experiment_multiple_authentication_providers) enabled, one `authentication` block can hold any or all of `aws_oidc`, `azure_oidc` and `gcp_oidc`, plus any number of `custom` blocks. Pipelines gets credentials from each and merges them for Terragrunt runs. Hooks still use a single provider.
 
 ```hcl title=".gruntwork/environments.hcl"
 environment "prod" {
@@ -193,6 +193,19 @@ environment "prod" {
       account_id         = "123456789012"
       plan_iam_role_arn  = "arn:aws:iam::123456789012:role/pipelines-plan"
       apply_iam_role_arn = "arn:aws:iam::123456789012:role/pipelines-apply"
+    }
+
+    azure_oidc {
+      subscription_id = "00000000-0000-0000-0000-000000000000"
+      tenant_id       = "11111111-1111-1111-1111-111111111111"
+      plan_client_id  = "22222222-2222-2222-2222-222222222222"
+      apply_client_id = "33333333-3333-3333-3333-333333333333"
+    }
+
+    gcp_oidc {
+      workload_identity_provider_id = "projects/123456789/locations/global/workloadIdentityPools/pipelines/providers/pipelines"
+      plan_service_account_email    = "pipelines-plan@my-project.iam.gserviceaccount.com"
+      apply_service_account_email   = "pipelines-apply@my-project.iam.gserviceaccount.com"
     }
 
     custom {
