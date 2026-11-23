@@ -9,13 +9,13 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Data Storage Modules" version="1.4.0" lastModifiedVersion="1.3.1"/>
+<VersionBadge repoTitle="Data Storage Modules" version="1.5.0" lastModifiedVersion="1.5.0"/>
 
 # Aurora Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.5.0/modules/aurora" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
-<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.3.1" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-data-storage/releases/tag/v1.5.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
 This module creates an Amazon Aurora, a MySQL and PostgreSQL compatible relational database built for the cloud.
 
@@ -59,7 +59,7 @@ Cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Managing.h
 ## How do you configure this module?
 
 This module allows you to configure a number of parameters, such as backup windows, maintenance window, port number,
-and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/aurora/variables.tf).
+and encryption. For a list of all available variables and their descriptions, see [variables.tf](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.5.0/modules/aurora/variables.tf).
 
 ## How do you create a cross-region read replica cluster?
 
@@ -77,7 +77,7 @@ module "replica" {
 }
 ```
 
-See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/examples/aurora-with-cross-region-replica) for more details.
+See the example [here](https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.5.0/examples/aurora-with-cross-region-replica) for more details.
 
 ## How do you destroy a cross-region read replica?
 
@@ -137,7 +137,7 @@ see [Limitations of Aurora Serverless](https://docs.aws.amazon.com/AmazonRDS/lat
 
 module "aurora" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v1.5.0"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -607,6 +607,13 @@ module "aurora" {
   # Timeout for DB updating
   updating_timeout = "120m"
 
+  # RDS event categories, such as failure or maintenance, to check for after
+  # Terraform creates or updates the cluster or its instances. Each matching
+  # event RDS reports during the operation is shown as a Terraform warning.
+  # Requires the rds:DescribeEvents IAM permission. When null, nothing is
+  # checked.
+  warning_event_categories = null
+
 }
 
 
@@ -622,7 +629,7 @@ module "aurora" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v1.4.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-data-storage.git//modules/aurora?ref=v1.5.0"
 }
 
 inputs = {
@@ -1094,6 +1101,13 @@ inputs = {
 
   # Timeout for DB updating
   updating_timeout = "120m"
+
+  # RDS event categories, such as failure or maintenance, to check for after
+  # Terraform creates or updates the cluster or its instances. Each matching
+  # event RDS reports during the operation is shown as a Terraform warning.
+  # Requires the rds:DescribeEvents IAM permission. When null, nothing is
+  # checked.
+  warning_event_categories = null
 
 }
 
@@ -1902,6 +1916,15 @@ Timeout for DB updating
 <HclListItemDefaultValue defaultValue="&quot;120m&quot;"/>
 </HclListItem>
 
+<HclListItem name="warning_event_categories" requirement="optional" type="list(string)">
+<HclListItemDescription>
+
+RDS event categories, such as failure or maintenance, to check for after Terraform creates or updates the cluster or its instances. Each matching event RDS reports during the operation is shown as a Terraform warning. Requires the rds:DescribeEvents IAM permission. When null, nothing is checked.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="null"/>
+</HclListItem>
+
 </TabItem>
 <TabItem value="outputs" label="Outputs">
 
@@ -2023,11 +2046,11 @@ A list of identifiers for Aurora cluster instances that are writers.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/aurora/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/aurora/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.4.0/modules/aurora/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.5.0/modules/aurora/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.5.0/modules/aurora/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-data-storage/tree/v1.5.0/modules/aurora/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "725f578944242077f3e328084138c821"
+  "hash": "8625068a4a00181ecee5083c45db0bc1"
 }
 ##DOCS-SOURCER-END -->
