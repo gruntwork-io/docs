@@ -47,6 +47,8 @@ The reason to serve static content from S3 rather than from your own app server 
 
 *   [How do I configure Cross Origin Resource Sharing (CORS)?](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-static-website/core-concepts.md#how-do-i-configure-cross-origin-resource-sharing-cors)
 
+*   [How do I deploy when bucket-level Block Public Access is denied?](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-static-website/core-concepts.md#how-do-i-deploy-when-bucket-level-block-public-access-is-denied)
+
 ### Repo organization
 
 *   [modules](https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules): The main implementation code for this repo, broken down into multiple standalone, orthogonal submodules.
@@ -152,6 +154,20 @@ module "s_3_static_website" {
   # documentation
   # https://www.terraform.io/docs/providers/aws/r/s3_bucket.html#using-cors.
   cors_rule = []
+
+  # Set to false to skip creating the bucket-level S3 Block Public Access
+  # configuration (aws_s3_bucket_public_access_block) on the buckets this module
+  # creates: the website or redirect bucket, and the access logs bucket. Only do
+  # this when public access is already blocked by other means, such as
+  # account-level S3 Block Public Access, for example when a Service Control
+  # Policy denies s3:PutBucketPublicAccessBlock. New S3 buckets have all four
+  # Block Public Access settings enabled by default, so this only works for a
+  # private website (var.restrict_access_to_cloudfront = true and
+  # var.should_redirect_all_requests = false): a public website or redirect
+  # bucket needs this module to turn those settings off. Switching this from
+  # true to false on existing buckets makes Terraform delete their Block Public
+  # Access configuration; see core-concepts.md for how to avoid that.
+  create_public_access_block = true
 
   # If set to true, create a DNS A Record in Route 53 with the domain name in
   # var.website_domain_name. If you're using CloudFront, you should configure
@@ -340,6 +356,20 @@ inputs = {
   # documentation
   # https://www.terraform.io/docs/providers/aws/r/s3_bucket.html#using-cors.
   cors_rule = []
+
+  # Set to false to skip creating the bucket-level S3 Block Public Access
+  # configuration (aws_s3_bucket_public_access_block) on the buckets this module
+  # creates: the website or redirect bucket, and the access logs bucket. Only do
+  # this when public access is already blocked by other means, such as
+  # account-level S3 Block Public Access, for example when a Service Control
+  # Policy denies s3:PutBucketPublicAccessBlock. New S3 buckets have all four
+  # Block Public Access settings enabled by default, so this only works for a
+  # private website (var.restrict_access_to_cloudfront = true and
+  # var.should_redirect_all_requests = false): a public website or redirect
+  # bucket needs this module to turn those settings off. Switching this from
+  # true to false on existing buckets makes Terraform delete their Block Public
+  # Access configuration; see core-concepts.md for how to avoid that.
+  create_public_access_block = true
 
   # If set to true, create a DNS A Record in Route 53 with the domain name in
   # var.website_domain_name. If you're using CloudFront, you should configure
@@ -579,6 +609,15 @@ Any types represent complex values of variable type. For details, please consult
 
 </HclListItemTypeDetails>
 <HclListItemDefaultValue defaultValue="[]"/>
+</HclListItem>
+
+<HclListItem name="create_public_access_block" requirement="optional" type="bool">
+<HclListItemDescription>
+
+Set to false to skip creating the bucket-level S3 Block Public Access configuration (aws_s3_bucket_public_access_block) on the buckets this module creates: the website or redirect bucket, and the access logs bucket. Only do this when public access is already blocked by other means, such as account-level S3 Block Public Access, for example when a Service Control Policy denies s3:PutBucketPublicAccessBlock. New S3 buckets have all four Block Public Access settings enabled by default, so this only works for a private website (<a href="#restrict_access_to_cloudfront"><code>restrict_access_to_cloudfront</code></a> = true and <a href="#should_redirect_all_requests"><code>should_redirect_all_requests</code></a> = false): a public website or redirect bucket needs this module to turn those settings off. Switching this from true to false on existing buckets makes Terraform delete their Block Public Access configuration; see core-concepts.md for how to avoid that.
+
+</HclListItemDescription>
+<HclListItemDefaultValue defaultValue="true"/>
 </HclListItem>
 
 <HclListItem name="create_route53_entry" requirement="optional" type="bool">
@@ -864,6 +903,6 @@ A value that can be used to chain resources to depend on the website bucket bein
     "https://github.com/gruntwork-io/terraform-aws-static-assets/tree/v1.3.0/modules/s3-static-website/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "6ee61b61bf110cb9d443c09ff423bfd7"
+  "hash": "549a1e213b0c9248af1830ceb0f759c6"
 }
 ##DOCS-SOURCER-END -->
