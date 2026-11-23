@@ -76,7 +76,7 @@ In the event that many locks are being held, and it is difficult to obtain the L
 Unlock All removes every lock, including locks held by jobs that are still running. Only run it when no pipelines are in flight.
 :::
 
-Unlock All checks every unit that isn't in your [ignore list](/2.0/reference/pipelines/ignore-list). It decides which cloud a unit uses from the type of block inside the [`authentication` block](/2.0/reference/pipelines/configurations-as-code/api#authentication-block) of the unit's matching [`environment`](/2.0/reference/pipelines/configurations-as-code/api#environment-block): `aws_oidc`, `gcp_oidc` or `azure_oidc`. It does not look at your `remote_state` backend or your credentials to work this out. If a unit doesn't match any environment, the workflow fails.
+Unlock All checks every unit that isn't in your [ignore list](/2.0/reference/pipelines/ignore-list). It decides which cloud a unit uses from the type of block inside the [`authentication` block](/2.0/reference/pipelines/configurations-as-code/api#authentication-block) of the unit's matching [`environment`](/2.0/reference/pipelines/configurations-as-code/api#environment-block): `aws_oidc`, `gcp_oidc` or `azure_oidc`.
 
 What Unlock All removes depends on that cloud:
 
