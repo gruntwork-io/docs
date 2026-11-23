@@ -180,6 +180,8 @@ environment "cloudflare_environment" {
 
 ## Combining providers
 
+*Added in Pipelines v4.35.0 (GitHub) and v2.30.0 (GitLab)*
+
 With [PIPELINES_FEATURE_EXPERIMENT_MULTIPLE_AUTHENTICATION_PROVIDERS](/2.0/reference/pipelines/feature-flags#pipelines_feature_experiment_multiple_authentication_providers) enabled, one `authentication` block can hold any or all of `aws_oidc`, `azure_oidc` and `gcp_oidc`, plus any number of `custom` blocks. Pipelines gets credentials from each and merges them for Terragrunt runs. Hooks still use a single provider.
 
 ```hcl title=".gruntwork/environments.hcl"
