@@ -164,6 +164,19 @@ Enables Terragrunt features to reduce the potential changes during a run-all. Te
 </li>
 </ul>
 
+#### `PIPELINES_FEATURE_EXPERIMENT_MULTIPLE_AUTHENTICATION_PROVIDERS`
+<ul>
+<li>
+Lets one [authentication](/2.0/reference/pipelines/configurations-as-code/api#authentication-block-attributes) block combine several providers, such as `aws_oidc` plus any number of `custom` blocks. Pipelines gets credentials from each and merges them for Terragrunt. The merge fails if two providers set the same env var, if more than one sets `awsCredentials` or `awsRole`, or if `awsCredentials` is combined with another provider's `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` or `AWS_SESSION_TOKEN` env var. See [Combining providers](/2.0/docs/pipelines/concepts/cloud-auth/custom#combining-providers).
+</li>
+<li>
+**Default Value**: Disabled
+</li>
+<li>
+**How to Enable**: Set to `"true"`
+</li>
+</ul>
+
 #### `PIPELINES_FEATURE_EXPERIMENT_NO_TG_TF_PATH`
 <ul>
 <li>

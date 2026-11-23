@@ -178,6 +178,40 @@ environment "cloudflare_environment" {
 }
 ```
 
+## Combining providers
+
+With [PIPELINES_FEATURE_EXPERIMENT_MULTIPLE_AUTHENTICATION_PROVIDERS](/2.0/reference/pipelines/feature-flags#pipelines_feature_experiment_multiple_authentication_providers) enabled, one `authentication` block can hold any of `aws_oidc`, `azure_oidc` and `gcp_oidc`, plus any number of `custom` blocks. Pipelines gets credentials from each and merges them for Terragrunt runs. Hooks still use a single provider.
+
+```hcl title=".gruntwork/environments.hcl"
+environment "prod" {
+  filter {
+    paths = ["prod/*"]
+  }
+
+  authentication {
+    aws_oidc {
+      account_id         = "123456789012"
+      plan_iam_role_arn  = "arn:aws:iam::123456789012:role/pipelines-plan"
+      apply_iam_role_arn = "arn:aws:iam::123456789012:role/pipelines-apply"
+    }
+
+    custom {
+      auth_provider_cmd = "./scripts/pagerduty-auth.sh"
+    }
+
+    custom {
+      auth_provider_cmd = "./scripts/kube-auth.sh"
+    }
+  }
+}
+```
+
+The merge fails if two providers set the same env var, if more than one sets `awsCredentials` or `awsRole`, or if `awsCredentials` is combined with another provider's `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` or `AWS_SESSION_TOKEN` env var.
+
+:::note GitLab
+Every cloud receives the same `OIDC_TOKEN`, whose audience is `$CI_SERVER_URL/$CI_PROJECT_NAMESPACE`. Combining clouds on GitLab works only if each cloud trusts that audience, which is the bootstrap default. A cloud set up with a different audience, such as Azure with `api://AzureADTokenExchange`, fails to authenticate.
+:::
+
 ## Best practices
 
 These are some general best practices you should keep in mind as you implement custom authentication.
