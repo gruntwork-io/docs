@@ -76,11 +76,14 @@ In the event that many locks are being held, and it is difficult to obtain the L
 Unlock All removes every lock, including locks held by jobs that are still running. Only run it when no pipelines are in flight.
 :::
 
-What Unlock All removes depends on the cloud each unit's environment authenticates to:
+Unlock All checks every unit that isn't in your [ignore list](/2.0/reference/pipelines/ignore-list). It decides which cloud a unit uses from the type of block inside the [`authentication` block](/2.0/reference/pipelines/configurations-as-code/api#authentication-block) of the unit's matching [`environment`](/2.0/reference/pipelines/configurations-as-code/api#environment-block): `aws_oidc`, `gcp_oidc` or `azure_oidc`.
+
+What Unlock All removes depends on that cloud:
 
 - **AWS:** deletes the DynamoDB `terraform-locks` table in every region, then re-runs `init` in one unit per account to recreate it. If your lock tables have a different name, enable [PIPELINES_FEATURE_EXPERIMENT_UNLOCK_ALL_LOCK_TABLE_FROM_REMOTE_STATE](/2.0/reference/pipelines/feature-flags#pipelines_feature_experiment_unlock_all_lock_table_from_remote_state) to use the `dynamodb_table` set in each unit's `remote_state`.
 - **GCP:** deletes each unit's lock object (`<prefix>/default.tflock`) from its GCS state bucket, read from the unit's `remote_state` block. No re-init is needed. This requires Terragrunt 1.0 or later, and [`pipelines-workflows` v4.34.0](https://github.com/gruntwork-io/pipelines-workflows/releases/tag/v4.34.0) or later on GitHub, or [v2.29.0](https://gitlab.com/gruntwork-io/pipelines-workflows/-/releases/v2.29.0) or later on GitLab. Units it can't unlock are listed in a warning: those that fail to render, have no `gcs` remote_state, or set `storage_custom_endpoint` or `universe_domain`.
 - **Azure:** not supported yet. Azure units are skipped with a warning.
+- **[Custom authentication](/2.0/docs/pipelines/concepts/cloud-auth/custom):** not supported. Unlock All can't tell which cloud a `custom` block authenticates to, so it skips these units. A skipped unit only gets an info-level log line, `Skipping unit - "<unit path>" no AWS account found`, and the workflow still succeeds. To remove a lock in one of these units, use [Unlocking Unit State](#unlocking-unit-state).
 
 <Tabs groupId="platform">
 <TabItem value="github" label="GitHub">

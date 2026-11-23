@@ -12,6 +12,12 @@ If you are not sure if custom authentication is right for you, please contact Gr
 
 :::
 
+:::note
+
+The [Unlock All](/2.0/docs/pipelines/guides/unlock#unlocking-all-state) workflow skips units whose environment uses `custom` authentication. To clear a stuck lock in one of these units, use [Unlocking Unit State](/2.0/docs/pipelines/guides/unlock#unlocking-unit-state) instead.
+
+:::
+
 ## How custom authentication works
 
 Pipelines supports custom authentication via Terragrunt's [auth provider command](https://terragrunt.gruntwork.io/docs/features/authentication/#auth-provider-command) feature. When you configure a `custom` authentication block, Pipelines will execute the command specified in the `auth_provider_cmd` attribute, and pass the output of that command to Terragrunt (with the output expected to match the schema documented in Terragrunt's documentation for the auth provider command feature).
