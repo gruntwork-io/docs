@@ -368,7 +368,7 @@ An authentication block that determines how Pipelines will authenticate with clo
 ### `authentication` block attributes
 
 :::note
-With [PIPELINES_FEATURE_EXPERIMENT_MULTIPLE_AUTHENTICATION_PROVIDERS](/2.0/reference/pipelines/feature-flags#pipelines_feature_experiment_multiple_authentication_providers), one `authentication` block can combine several provider blocks, and `custom` may repeat. Credentials from each block are merged. If two blocks set the same env var, or both return AWS credentials, Pipelines reports a merge conflict and fails. A `unit` block's `authentication` still supersedes its environment's.
+With [PIPELINES_FEATURE_EXPERIMENT_MULTIPLE_AUTHENTICATION_PROVIDERS](/2.0/reference/pipelines/feature-flags#pipelines_feature_experiment_multiple_authentication_providers), one `authentication` block can combine several provider blocks, and `custom` may repeat. Credentials from each block are merged. If two blocks set the same credential, such as the same env var or AWS credentials, Pipelines reports a merge conflict and fails. A `unit` block's `authentication` still supersedes its environment's.
 :::
 
 <HclListItem name="aws_oidc" requirement="required" type="block">
