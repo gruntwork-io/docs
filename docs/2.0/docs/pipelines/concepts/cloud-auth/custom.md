@@ -221,7 +221,7 @@ environment "prod" {
 }
 ```
 
-The merge fails if two providers set the same env var, if more than one sets `awsCredentials` or `awsRole`, or if `awsCredentials` is set alongside an `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` or `AWS_SESSION_TOKEN` env var.
+The merge fails if two providers set the same env var, or if more than one of these supplies AWS credentials: `awsCredentials`, `awsRole`, or the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_SESSION_TOKEN` env vars.
 
 :::note GitLab
 On GitLab, Pipelines sends every cloud the same JWT: the `OIDC_TOKEN` ID token GitLab generates for the job. Gruntwork's bootstrap sets up the clouds to accept that JWT, so using the same ID token across clouds works fine. If you changed a cloud's OIDC audience from the default (`$CI_SERVER_URL/$CI_PROJECT_NAMESPACE`), that cloud will fail to authenticate.
