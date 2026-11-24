@@ -182,7 +182,7 @@ environment "cloudflare_environment" {
 
 *Added in Pipelines v4.35.0 (GitHub) and v2.30.0 (GitLab)*
 
-With [PIPELINES_FEATURE_EXPERIMENT_MULTIPLE_AUTHENTICATION_PROVIDERS](/2.0/reference/pipelines/feature-flags#pipelines_feature_experiment_multiple_authentication_providers) enabled, one `authentication` block can hold any or all of `aws_oidc`, `azure_oidc` and `gcp_oidc`, plus any number of `custom` blocks. Pipelines gets credentials from each and merges them for Terragrunt runs. Hooks still use a single provider.
+With [PIPELINES_FEATURE_EXPERIMENT_MULTIPLE_AUTHENTICATION_PROVIDERS](/2.0/reference/pipelines/feature-flags#pipelines_feature_experiment_multiple_authentication_providers) enabled, one `authentication` block can hold any or all of `aws_oidc`, `azure_oidc` and `gcp_oidc`, plus any number of `custom` blocks. Pipelines gets credentials from each and merges them, for Terragrunt runs and for hooks.
 
 ```hcl title=".gruntwork/environments.hcl"
 environment "prod" {
@@ -221,7 +221,7 @@ environment "prod" {
 }
 ```
 
-The merge fails if two providers set the same env var, if more than one sets `awsCredentials` or `awsRole`, or if `awsCredentials` is combined with another provider's `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` or `AWS_SESSION_TOKEN` env var.
+The merge fails if two providers set the same env var, if more than one sets `awsCredentials` or `awsRole`, or if `awsCredentials` is set alongside an `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` or `AWS_SESSION_TOKEN` env var.
 
 :::note GitLab
 On GitLab, Pipelines sends every cloud the same JWT: the `OIDC_TOKEN` ID token GitLab generates for the job. Gruntwork's bootstrap sets up the clouds to accept that JWT, so using the same ID token across clouds works fine. If you changed a cloud's OIDC audience from the default (`$CI_SERVER_URL/$CI_PROJECT_NAMESPACE`), that cloud will fail to authenticate.
