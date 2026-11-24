@@ -182,6 +182,55 @@ environment "cloudflare_environment" {
 }
 ```
 
+## Combining providers
+
+*Added in Pipelines v4.35.0 (GitHub) and v2.30.0 (GitLab)*
+
+With [PIPELINES_FEATURE_EXPERIMENT_MULTIPLE_AUTHENTICATION_PROVIDERS](/2.0/reference/pipelines/feature-flags#pipelines_feature_experiment_multiple_authentication_providers) enabled, one `authentication` block can hold any or all of `aws_oidc`, `azure_oidc` and `gcp_oidc`, plus any number of `custom` blocks. Pipelines gets credentials from each and merges them, for Terragrunt runs and for hooks.
+
+```hcl title=".gruntwork/environments.hcl"
+environment "prod" {
+  filter {
+    paths = ["prod/*"]
+  }
+
+  authentication {
+    aws_oidc {
+      account_id         = "123456789012"
+      plan_iam_role_arn  = "arn:aws:iam::123456789012:role/pipelines-plan"
+      apply_iam_role_arn = "arn:aws:iam::123456789012:role/pipelines-apply"
+    }
+
+    azure_oidc {
+      subscription_id = "00000000-0000-0000-0000-000000000000"
+      tenant_id       = "11111111-1111-1111-1111-111111111111"
+      plan_client_id  = "22222222-2222-2222-2222-222222222222"
+      apply_client_id = "33333333-3333-3333-3333-333333333333"
+    }
+
+    gcp_oidc {
+      workload_identity_provider_id = "projects/123456789/locations/global/workloadIdentityPools/pipelines/providers/pipelines"
+      plan_service_account_email    = "pipelines-plan@my-project.iam.gserviceaccount.com"
+      apply_service_account_email   = "pipelines-apply@my-project.iam.gserviceaccount.com"
+    }
+
+    custom {
+      auth_provider_cmd = "./scripts/pagerduty-auth.sh"
+    }
+
+    custom {
+      auth_provider_cmd = "./scripts/kube-auth.sh"
+    }
+  }
+}
+```
+
+The merge fails if two providers set the same env var, or if more than one of these supplies AWS credentials: `awsCredentials`, `awsRole`, or the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_SESSION_TOKEN` env vars.
+
+:::note GitLab
+On GitLab, Pipelines sends every cloud the same JWT: the `OIDC_TOKEN` ID token GitLab generates for the job. Gruntwork's bootstrap sets up the clouds to accept that JWT, so using the same ID token across clouds works fine. If you changed a cloud's OIDC audience from the default (`$CI_SERVER_URL/$CI_PROJECT_NAMESPACE`), that cloud will fail to authenticate.
+:::
+
 ## Best practices
 
 These are some general best practices you should keep in mind as you implement custom authentication.
