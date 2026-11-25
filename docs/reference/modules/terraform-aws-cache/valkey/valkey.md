@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="Cache Modules" version="2.0.0" lastModifiedVersion="2.0.0"/>
+<VersionBadge repoTitle="Cache Modules" version="2.0.1" lastModifiedVersion="2.0.0"/>
 
 # Valkey Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/valkey" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.1/modules/valkey" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-cache/releases/tag/v2.0.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -240,7 +240,7 @@ ElastiCache for Valkey supports the following types of automatic scaling dimensi
 
 module "valkey" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/valkey?ref=v2.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/valkey?ref=v2.0.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -485,7 +485,7 @@ module "valkey" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/valkey?ref=v2.0.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-cache.git//modules/valkey?ref=v2.0.1"
 }
 
 inputs = {
@@ -1252,11 +1252,11 @@ Version number of valkey to use (e.g. 7.2).
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/valkey/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/valkey/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.0/modules/valkey/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.1/modules/valkey/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.1/modules/valkey/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-cache/tree/v2.0.1/modules/valkey/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "afcce3a8264d872aa9af9259eed441a0"
+  "hash": "edd20a5dbb6b3368a73252b345b8556b"
 }
 ##DOCS-SOURCER-END -->
