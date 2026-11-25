@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="1.1.0" lastModifiedVersion="1.1.0"/>
+<VersionBadge repoTitle="AWS Messaging" version="1.1.1" lastModifiedVersion="1.1.0"/>
 
 # Amazon MQ Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/amazon-mq" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/modules/amazon-mq" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v1.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -54,7 +54,7 @@ module "amazon_mq" {
 }
 ```
 
-See [variables.tf](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/amazon-mq/variables.tf) for all available options and the [examples folder](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/examples) for working examples.
+See [variables.tf](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/modules/amazon-mq/variables.tf) for all available options and the [examples folder](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/examples) for working examples.
 
 ## Sample Usage
 
@@ -74,7 +74,7 @@ See [variables.tf](https://github.com/gruntwork-io/terraform-aws-messaging/tree/
 
 module "amazon_mq" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/amazon-mq?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/amazon-mq?ref=v1.1.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -218,7 +218,7 @@ module "amazon_mq" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/amazon-mq?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/amazon-mq?ref=v1.1.1"
 }
 
 inputs = {
@@ -730,11 +730,11 @@ The ID of the security group created for the broker.
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/amazon-mq/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/amazon-mq/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/amazon-mq/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/modules/amazon-mq/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/modules/amazon-mq/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/modules/amazon-mq/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "5754ad5bf3d8f7b6d0f1d9aa8a0f5584"
+  "hash": "5373f977e1e40392336c8c43656473fa"
 }
 ##DOCS-SOURCER-END -->

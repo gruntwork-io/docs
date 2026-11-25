@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="1.1.0" lastModifiedVersion="1.1.0"/>
+<VersionBadge repoTitle="AWS Messaging" version="1.1.1" lastModifiedVersion="1.1.0"/>
 
 # Simple Queuing Service (SQS) To Lambda Connection Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sqs-lambda-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/modules/sqs-lambda-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v1.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -32,7 +32,7 @@ This module wraps the basics for using SQS to trigger a Lambda for processing
 
 module "sqs_lambda_connection" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v1.1.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -76,7 +76,7 @@ module "sqs_lambda_connection" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sqs-lambda-connection?ref=v1.1.1"
 }
 
 inputs = {
@@ -183,11 +183,11 @@ Limits the number of concurrent instances that the Amazon SQS event source can i
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sqs-lambda-connection/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sqs-lambda-connection/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sqs-lambda-connection/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/modules/sqs-lambda-connection/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/modules/sqs-lambda-connection/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/modules/sqs-lambda-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "36bdd33a219e986e25ff43a38960afb5"
+  "hash": "0e0bf0ee997c5ebceba9731c3be4ed99"
 }
 ##DOCS-SOURCER-END -->

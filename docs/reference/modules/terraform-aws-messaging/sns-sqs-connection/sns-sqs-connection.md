@@ -9,11 +9,11 @@ import VersionBadge from '../../../../../src/components/VersionBadge.tsx';
 import { HclListItem, HclListItemDescription, HclListItemTypeDetails, HclListItemDefaultValue, HclGeneralListItem } from '../../../../../src/components/HclListItem.tsx';
 import { ModuleUsage } from "../../../../../src/components/ModuleUsage";
 
-<VersionBadge repoTitle="AWS Messaging" version="1.1.0" lastModifiedVersion="1.1.0"/>
+<VersionBadge repoTitle="AWS Messaging" version="1.1.1" lastModifiedVersion="1.1.0"/>
 
 # Simple Notification Service (SNS) Topic to Simple Queuing Service (SQS) Connection Module
 
-<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sns-sqs-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
+<a href="https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/modules/sns-sqs-connection" className="link-button" title="View the source code for this module in GitHub.">View Source</a>
 
 <a href="https://github.com/gruntwork-io/terraform-aws-messaging/releases/tag/v1.1.0" className="link-button" title="Release notes for only versions which impacted this module.">Release Notes</a>
 
@@ -21,7 +21,7 @@ This module makes it easy to subscribe a SQS to a SNS topic after both have been
 
 ## Managing Queue Policy Separately
 
-By default, this module creates an SQS queue policy allowing the SNS topic to send messages. Set `create_queue_policy = false` if you manage the policy elsewhere (e.g., via the [sqs module](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sqs)'s `queue_policy` variable).
+By default, this module creates an SQS queue policy allowing the SNS topic to send messages. Set `create_queue_policy = false` if you manage the policy elsewhere (e.g., via the [sqs module](https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/modules/sqs)'s `queue_policy` variable).
 
 ## Sample Usage
 
@@ -36,7 +36,7 @@ By default, this module creates an SQS queue policy allowing the SNS topic to se
 
 module "sns_sqs_connection" {
 
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns-sqs-connection?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns-sqs-connection?ref=v1.1.1"
 
   # ----------------------------------------------------------------------------------------------------
   # REQUIRED VARIABLES
@@ -90,7 +90,7 @@ module "sns_sqs_connection" {
 # ------------------------------------------------------------------------------------------------------
 
 terraform {
-  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns-sqs-connection?ref=v1.1.0"
+  source = "git::git@github.com:gruntwork-io/terraform-aws-messaging.git//modules/sns-sqs-connection?ref=v1.1.1"
 }
 
 inputs = {
@@ -224,11 +224,11 @@ Whether to enable raw message delivery (the original message is directly passed,
 <!-- ##DOCS-SOURCER-START
 {
   "originalSources": [
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sns-sqs-connection/readme.md",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sns-sqs-connection/variables.tf",
-    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.0/modules/sns-sqs-connection/outputs.tf"
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/modules/sns-sqs-connection/readme.md",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/modules/sns-sqs-connection/variables.tf",
+    "https://github.com/gruntwork-io/terraform-aws-messaging/tree/v1.1.1/modules/sns-sqs-connection/outputs.tf"
   ],
   "sourcePlugin": "module-catalog-api",
-  "hash": "44b0ed8803731a52830b5ed79c81c616"
+  "hash": "65daeefe2b4e89e88f5f32c16a2e60d1"
 }
 ##DOCS-SOURCER-END -->
